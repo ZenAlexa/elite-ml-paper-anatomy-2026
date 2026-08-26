@@ -233,6 +233,58 @@ iclr-2026-fb08cee992a1,ICLR,oral,method,20,setup_notation,give_intuition
 iclr-2026-fb08cee992a1,ICLR,oral,method,21,give_intuition,instantiate_algorithm
 iclr-2026-fb08cee992a1,ICLR,oral,method,22,instantiate_algorithm,give_intuition
 iclr-2026-fb08cee992a1,ICLR,oral,method,23,give_intuition,connect_to_experiment
+iclr-2026-eadaf839df8b,ICLR,oral,introduction,1,context: 视觉模型部署的计算/内存约束与 KD 的压缩目标,problem: logits 只保留压缩后的最终层知识；feature-level transfer 更丰富但依赖 heuristic 和 hyperparameters
+iclr-2026-eadaf839df8b,ICLR,oral,introduction,2,problem: logits 只保留压缩后的最终层知识；feature-level transfer 更丰富但依赖 heuristic 和 hyperparameters,failure_of_prior_work: feature-level 方法仍有 teacher/student objective mismatch
+iclr-2026-eadaf839df8b,ICLR,oral,introduction,3,failure_of_prior_work: feature-level 方法仍有 teacher/student objective mismatch,problem: 将瓶颈具体化为 Gradient Conflict 与 Gradient Dominance，并用 Figure 1 诊断
+iclr-2026-eadaf839df8b,ICLR,oral,introduction,4,problem: 将瓶颈具体化为 Gradient Conflict 与 Gradient Dominance，并用 Figure 1 诊断,missing_insight: 把 KD 改写成 dynamic trade-off / MOO，并寻求 Pareto-optimal solution
+iclr-2026-eadaf839df8b,ICLR,oral,introduction,5,missing_insight: 把 KD 改写成 dynamic trade-off / MOO，并寻求 Pareto-optimal solution,core_idea: 用 closed-form trade-off 跟随快速变化的梯度，替代手工 α
+iclr-2026-eadaf839df8b,ICLR,oral,introduction,6,core_idea: 用 closed-form trade-off 跟随快速变化的梯度，替代手工 α,method_preview/result_preview: 端到端训练、fewer epochs、覆盖两类视觉任务
+iclr-2026-eadaf839df8b,ICLR,oral,introduction,7,method_preview/result_preview: 端到端训练、fewer epochs、覆盖两类视觉任务,contribution_list: dynamic balance、GrC/GrD、classification/detection SOTA 与 ablation
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,1,taxonomy,chronology
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,2,chronology,gap_creation: logit-level KD 从 classical/ensemble/assistant 到 divergence，缺口是只传 final-layer information
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,3,gap_creation: logit-level KD 从 classical/ensemble/assistant 到 divergence，缺口是只传 final-layer information,taxonomy
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,4,taxonomy,chronology
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,5,chronology,gap_creation: feature-level KD 的 feature selection/alignment 演进，仍缺 long-range/global context
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,6,gap_creation: feature-level KD 的 feature selection/alignment 演进，仍缺 long-range/global context,taxonomy
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,7,taxonomy,nearest_neighbor_contrast
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,8,nearest_neighbor_contrast,gap_creation: token-level KD 传递 transformer semantics，但 dark knowledge 难传且方案 fragmented
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,9,gap_creation: token-level KD 传递 transformer semantics，但 dark knowledge 难传且方案 fragmented,credit_or_foundation
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,10,credit_or_foundation,chronology
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,11,chronology,nearest_neighbor_contrast: MOO 从 manual re-weighting 到 gradient manipulation，DTO-KD 定位为 KD 应用
+iclr-2026-eadaf839df8b,ICLR,oral,related_work,12,nearest_neighbor_contrast: MOO 从 manual re-weighting 到 gradient manipulation，DTO-KD 定位为 KD 应用,gap_creation: 相关工作以四类信号/优化主题收束到 unified end-to-end trade-off，后续不逐篇重复介绍
+iclr-2026-eadaf839df8b,ICLR,oral,method,1,setup_notation: 定义 teacher ϕ、student θ、数据 S、输入与目标,state_problem: 定义 L_distill 与 L_task 的一般期望形式
+iclr-2026-eadaf839df8b,ICLR,oral,method,2,state_problem: 定义 L_distill 与 L_task 的一般期望形式,state_problem: 由固定 α 加权总损失与总梯度引出 GrC
+iclr-2026-eadaf839df8b,ICLR,oral,method,3,state_problem: 由固定 α 加权总损失与总梯度引出 GrC,state_problem: 用范数比定义 GrD，并指出 α 需随训练变化
+iclr-2026-eadaf839df8b,ICLR,oral,method,4,state_problem: 用范数比定义 GrD，并指出 α 需随训练变化,derive: 把训练写为二目标向量并定义 Pareto optimal
+iclr-2026-eadaf839df8b,ICLR,oral,method,5,derive: 把训练写为二目标向量并定义 Pareto optimal,derive: Stage 1 用相对改善率度量两 loss 沿更新方向的收益
+iclr-2026-eadaf839df8b,ICLR,oral,method,6,derive: Stage 1 用相对改善率度量两 loss 沿更新方向的收益,derive: Stage 2 最大化最坏改善率并惩罚更新范数，转到 simplex dual
+iclr-2026-eadaf839df8b,ICLR,oral,method,7,derive: Stage 2 最大化最坏改善率并惩罚更新范数，转到 simplex dual,derive: Theorem 3.1 用 Gram matrix 给二目标权重闭式解
+iclr-2026-eadaf839df8b,ICLR,oral,method,8,derive: Theorem 3.1 用 Gram matrix 给二目标权重闭式解,explain_mechanism: corollaries 解释 alignment、equal contribution 与 norm bounds
+iclr-2026-eadaf839df8b,ICLR,oral,method,9,explain_mechanism: corollaries 解释 alignment、equal contribution 与 norm bounds,connect_to_prediction: 借 Liu et al. (2023) 宣称 Pareto-front convergence
+iclr-2026-eadaf839df8b,ICLR,oral,method,10,connect_to_prediction: 借 Liu et al. (2023) 宣称 Pareto-front convergence,instantiate_algorithm: frozen teacher、projectors、heads、losses、gradient update 与 π 更新
+iclr-2026-eadaf839df8b,ICLR,oral,method,11,instantiate_algorithm: frozen teacher、projectors、heads、losses、gradient update 与 π 更新,contrast_alternative: 精确 per-task gradients 需两次 backpropagation，故使用 amortized approximation
+iclr-2026-eadaf839df8b,ICLR,oral,method,12,contrast_alternative: 精确 per-task gradients 需两次 backpropagation，故使用 amortized approximation,instantiate_algorithm: 式 (18) 后 softmax 保证权重重新归一化
+iclr-2026-eadaf839df8b,ICLR,oral,method,13,instantiate_algorithm: 式 (18) 后 softmax 保证权重重新归一化,connect_to_experiment: 报告 240 epochs 达到 300-epoch VKD top performance
+iclr-2026-b7a66e10bf69,ICLR,oral,introduction,1,"context: normal maps encode surface orientation and motivate applications in relighting, 3D reconstruction, and rendering; monocular estimation avoids specialized hardware cost.",problem: direct RGB-to-normal deep models can look visually correct while being inconsistent with underlying 3D geometry; subtle color differences make fine detail hard to distinguish.
+iclr-2026-b7a66e10bf69,ICLR,oral,introduction,2,problem: direct RGB-to-normal deep models can look visually correct while being inconsistent with underlying 3D geometry; subtle color differences make fine detail hard to distinguish.,"failure_of_prior_work and missing_insight: Figure 2 shows over-smooth surfaces, while Figure 3 contrasts geometry sensitivity of shading sequence and normal representations using TV."
+iclr-2026-b7a66e10bf69,ICLR,oral,introduction,3,"failure_of_prior_work and missing_insight: Figure 2 shows over-smooth surfaces, while Figure 3 contrasts geometry sensitivity of shading sequence and normal representations using TV.",core_idea: propose a clamped normal-light dot-product sequence that preserves geometry cues while excluding material influence and can be converted back to normals with OLS.
+iclr-2026-b7a66e10bf69,ICLR,oral,introduction,4,core_idea: propose a clamped normal-light dot-product sequence that preserves geometry cues while excluding material influence and can be converted back to normals with OLS.,"method_preview: treat the sequence as a video, use an image-to-video generative model, recover normals with OLS, and train on MultiShade for complex materials and lights."
+iclr-2026-b7a66e10bf69,ICLR,oral,introduction,5,"method_preview: treat the sequence as a video, use an image-to-video generative model, recover normals with OLS, and train on MultiShade for complex materials and lights.","result_preview: claim superior performance to state-of-the-art methods without reporting a number, uncertainty, or failure count."
+iclr-2026-b7a66e10bf69,ICLR,oral,introduction,6,"result_preview: claim superior performance to state-of-the-art methods without reporting a number, uncertainty, or failure count.","contribution_list: enumerate the new paradigm, RoSE with canonical parallel lights and analytic derivation, and MultiShade plus multi-dataset SOTA results."
+iclr-2026-b7a66e10bf69,ICLR,oral,related_work,1,"taxonomy and nearest_neighbor_contrast: classify monocular-normal methods from handcrafted/conventional deep to generative, physics-inspired, autoregressive, and multi-light generation; position shading supervision as a response to 3D misalignment and generated-image artifacts.","chronology and nearest_neighbor_contrast: summarize video generation architectures and contrast NormalCrafter's per-frame normals for an input video with this paper's single-image, predefined-light-path shading sequence."
+iclr-2026-b7a66e10bf69,ICLR,oral,related_work,2,"chronology and nearest_neighbor_contrast: summarize video generation architectures and contrast NormalCrafter's per-frame normals for an input video with this paper's single-image, predefined-light-path shading sequence.","credit_or_foundation and gap_creation: cite photometric-stereo work showing learned features resemble shading sequences, then make sequence supervision the training target."
+iclr-2026-b7a66e10bf69,ICLR,oral,method,1,setup_notation and define_component: define shading map as clamped normal-light dot products and the multi-light shading sequence; state that reflectance and cast-shadow effects are removed while geometry cues remain.,state_problem and contrast_alternative: express direct monocular estimation as Φ:I
+iclr-2026-b7a66e10bf69,ICLR,oral,method,2,state_problem and contrast_alternative: express direct monocular estimation as Φ:I,N and describe bias introduced by first generating RGB images under simple lights.
+iclr-2026-b7a66e10bf69,ICLR,oral,method,3,N and describe bias introduced by first generating RGB images under simple lights.,derive: define ΦS:Ig
+iclr-2026-b7a66e10bf69,ICLR,oral,method,4,derive: define ΦS:Ig,Ss and derive the OLS shading-to-normal solution.
+iclr-2026-b7a66e10bf69,ICLR,oral,method,5,Ss and derive the OLS shading-to-normal solution.,explain_mechanism and connect_to_prediction: identify clamp-induced OLS bias and retain only positive shading equations.
+iclr-2026-b7a66e10bf69,ICLR,oral,method,6,explain_mechanism and connect_to_prediction: identify clamp-induced OLS bias and retain only positive shading equations.,"state_complexity/guarantee: require at least three positive shadings from non-coplanar lights, choose a 45-degree upper-hemisphere ring-light, and state Lemma 1's six-light lower bound."
+iclr-2026-b7a66e10bf69,ICLR,oral,method,7,"state_complexity/guarantee: require at least three positive shadings from non-coplanar lights, choose a 45-degree upper-hemisphere ring-light, and state Lemma 1's six-light lower bound.","connect_to_experiment: report non-monotone light-count observations—nine lights improve over six by 0.74 degrees on LUCES, while twelve lose 1.31 degrees."
+iclr-2026-b7a66e10bf69,ICLR,oral,method,8,"connect_to_experiment: report non-monotone light-count observations—nine lights improve over six by 0.74 degrees on LUCES, while twelve lose 1.31 degrees.",instantiate_algorithm and give_intuition: instantiate gθ as a video diffusion U-Net producing a grayscale sequence conditioned on grayscale input; Figure 5 supplies the pipeline.
+iclr-2026-b7a66e10bf69,ICLR,oral,method,9,instantiate_algorithm and give_intuition: instantiate gθ as a video diffusion U-Net producing a grayscale sequence conditioned on grayscale input; Figure 5 supplies the pipeline.,"define_component: combine global CLIP cross-attention with local VAE-latent concatenation, replicate grayscale to three channels, decode and average channels."
+iclr-2026-b7a66e10bf69,ICLR,oral,method,10,"define_component: combine global CLIP cross-attention with local VAE-latent concatenation, replicate grayscale to three channels, decode and average channels.","derive and instantiate_algorithm: train in latent space with z0=E(Ss), zt=αtε"
+iclr-2026-b7a66e10bf69,ICLR,oral,method,11,"derive and instantiate_algorithm: train in latent space with z0=E(Ss), zt=αtε","σtz0, and the one-step denoised z-hat0 diffusion loss."
+iclr-2026-b7a66e10bf69,ICLR,oral,method,12,"σtz0, and the one-step denoised z-hat0 diffusion loss.","connect_to_experiment: curate MultiShade from 90K Objaverse models with three light families, six views, view-dependent transforms, MatSynth augmentation, 576×576 Blender renders, and approximately three million pairs."
 iclr-2026-935af26c0a67,ICLR,oral,introduction,1,context,core_idea
 iclr-2026-935af26c0a67,ICLR,oral,introduction,2,core_idea,scope_boundary
 iclr-2026-935af26c0a67,ICLR,oral,introduction,3,scope_boundary,contribution_list
@@ -246,6 +298,23 @@ iclr-2026-935af26c0a67,ICLR,oral,method,2,define_component,setup_notation
 iclr-2026-935af26c0a67,ICLR,oral,method,3,setup_notation,derive
 iclr-2026-935af26c0a67,ICLR,oral,method,4,derive,explain_mechanism
 iclr-2026-935af26c0a67,ICLR,oral,method,5,explain_mechanism,define_component
+iclr-2026-8e4dfde7b55f,ICLR,oral,introduction,1,context,problem
+iclr-2026-8e4dfde7b55f,ICLR,oral,introduction,2,problem,method_preview
+iclr-2026-8e4dfde7b55f,ICLR,oral,introduction,3,method_preview,missing_insight
+iclr-2026-8e4dfde7b55f,ICLR,oral,introduction,4,missing_insight,core_idea
+iclr-2026-8e4dfde7b55f,ICLR,oral,introduction,5,core_idea,contribution_list
+iclr-2026-8e4dfde7b55f,ICLR,oral,related_work,1,taxonomy_credit_or_foundation_limitation_of_prior,gap_creation_nearest_neighbor_contrast
+iclr-2026-8e4dfde7b55f,ICLR,oral,related_work,2,gap_creation_nearest_neighbor_contrast,taxonomy_nearest_neighbor_contrast
+iclr-2026-8e4dfde7b55f,ICLR,oral,related_work,3,taxonomy_nearest_neighbor_contrast,nearest_neighbor_contrast_gap_creation
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,1,setup_notation,state_problem
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,2,state_problem,derive
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,3,derive,explain_mechanism
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,4,explain_mechanism,contrast_alternative
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,5,contrast_alternative,derive
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,6,derive,define_component
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,7,define_component,instantiate_algorithm
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,8,instantiate_algorithm,state_complexity
+iclr-2026-8e4dfde7b55f,ICLR,oral,method,9,state_complexity,connect_to_experiment
 iclr-2026-a6ddc629568b,ICLR,outstanding,introduction,1,context,failure_of_prior_work
 iclr-2026-a6ddc629568b,ICLR,outstanding,introduction,2,failure_of_prior_work,core_idea
 iclr-2026-a6ddc629568b,ICLR,outstanding,introduction,3,core_idea,result_preview

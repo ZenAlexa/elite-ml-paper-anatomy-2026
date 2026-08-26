@@ -165,6 +165,28 @@ iclr-2026-fb08cee992a1,ICLR,oral,uncertainty_and_tests,not_present,主要图表�
 iclr-2026-fb08cee992a1,ICLR,oral,data_leakage_control,not_present,WebArena 排除规则控制网站状态污染；未讨论训练/测试内容泄漏。,,,29,Appendix E.1
 iclr-2026-fb08cee992a1,ICLR,oral,failure_criterion,observed,主要使用环境 outcome reward、accuracy/success 与 task completion；未给跨环境统一失败阈值。,,,3|25,§2.1 Formulation|Table 5
 iclr-2026-fb08cee992a1,ICLR,oral,implementation_source,observed,提供 GitHub 与匿名 code/data ZIP；未给 commit、容器或环境版本。,,,1|11,Abstract|Reproducibility Statement
+iclr-2026-eadaf839df8b,ICLR,oral,研究问题/假设是否预先列出,not_present,实验节按 classification、detection 和 ablation 组织，没有 RQ/H 编号或预先失败判定。,,,7,§4 Experiments
+iclr-2026-eadaf839df8b,ICLR,oral,ImageNet-1K 设置,observed,RegNetY-160（ImageNet-21K 预训练）作为 teacher，DeiT-tiny/small 作为 students；主要训练 300 epochs，指标为 Top@1。,,,7|8,§4 Implementation details|§4.1 / Table 1
+iclr-2026-eadaf839df8b,ICLR,oral,CIFAR-100 设置,observed,Table 2 覆盖三组 homogeneous 与三组 heterogeneous CNN teacher–student；指标为 Top-1。,,,9,Table 2
+iclr-2026-eadaf839df8b,ICLR,oral,COCO 设置,observed,MS-COCO/COCO2017 val 上以 ViDT-base teacher 蒸馏 ViDT/Swin nano、tiny、small students；50 epochs，报告 AP、AP50、AP75、APS、APM、APL、参数量和 FPS。,,,8|9,§4.3|Table 3
+iclr-2026-eadaf839df8b,ICLR,oral,teacher-scale 对照,observed,Table 5 在检测中用 ViDT-small 与 ViDT-base 两种 teacher，比较 ViDT-nano/tiny student 的 AP。,,,9,Table 5
+iclr-2026-eadaf839df8b,ICLR,oral,优化器与超参数,observed,整体设置写有 AdamW lr 0.025/wd 0.01；分类另写 lr 0.001/wd 0.05；检测 body/neck/head 初始 lr 10^-4，其余沿用 ViDT/DeiT。,,,7|7|7,Implementation details|Implementation details|Implementation details
+iclr-2026-eadaf839df8b,ICLR,oral,增广、框架与硬件,observed,分类增广沿用 Roy Miles & Deng，分类策略沿用 DeiT；检测沿用 ViDT；使用 PyTorch 与四张 NVIDIA H100。,,,7,Implementation details
+iclr-2026-eadaf839df8b,ICLR,oral,随机种子与不确定性,not_present,没有 seed、重复次数、标准差、误差条、区间或显著性检验。,,,8|9|10,Table 1|Tables 2–5|Figures 3–4
+iclr-2026-eadaf839df8b,ICLR,oral,控制变量与失败判定,not_present,epoch、架构和部分参数量可见；未提供数据泄漏控制、完整初始化/冻结对照或预注册失败标准。,,,8|9,Table 1|Table 3
+iclr-2026-eadaf839df8b,ICLR,oral,实现来源/代码链接,not_present,只说明使用 PyTorch，未给本论文代码仓库或复现实验链接。,,,7,Implementation details
+iclr-2026-b7a66e10bf69,ICLR,oral,research_questions,observed,"The paper does not pre-list numbered hypotheses; its sections operationalize benchmark effectiveness, sequence quality, unseen-distribution robustness, and component/data/path attribution.",,,7|9,4.2 Performance on Benchmark Dataset|4.4 Ablation Study
+iclr-2026-b7a66e10bf69,ICLR,oral,datasets_and_tasks,observed,"Object-based monocular normal estimation is evaluated on DiLiGenT, LUCES, and a 100-object unseen Objaverse test set; DiLiGenT is parallel-light and LUCES near-field.",,,6|7|8,4.1 Experiment Setup / Datasets|4.2 Performance on Benchmark Dataset|4.3 Performance on MultiShade
+iclr-2026-b7a66e10bf69,ICLR,oral,baselines,observed,"Seven monocular-normal baselines are listed: GeoWizard, DSINE, StableNormal, Lotus-G, Lotus-D, Neural LightRig, and NiRNE.",,,6,4.1 Experiment Setup / Baselines
+iclr-2026-b7a66e10bf69,ICLR,oral,benchmark_sampling,observed,"For each DiLiGenT/LUCES object, ten relatively centered-light images are selected; the indices are said to be in the appendix.",,,7,4.2 Performance on Benchmark Dataset
+iclr-2026-b7a66e10bf69,ICLR,oral,multishade_test_protocol,observed,"MultiShade test uses 100 unseen Objaverse objects, random MatSynth-test materials, one point, one directional, two environment lights, seven views, and 2,800 samples.",,,8,4.3 Performance on MultiShade
+iclr-2026-b7a66e10bf69,ICLR,oral,implementation_and_hardware,observed,Training uses 8 NVIDIA H100 GPUs with 80GB memory; the video architecture follows prior work.,,,6,4.1 Experiment Setup / Implementation details and evaluation metrics
+iclr-2026-b7a66e10bf69,ICLR,oral,optimizer_and_learning_rate,observed,"AdamW is used with learning rate 1×10^-5; no schedule, steps, or wall-clock is supplied in the main PDF.",,,7,4.1 Experiment Setup / Implementation details and evaluation metrics
+iclr-2026-b7a66e10bf69,ICLR,oral,metrics,observed,"Normal estimation uses mean angular error (MAE); MultiShade adds mean/median and threshold coverage, while sequence and detail diagnostics use PSNR/SSIM/LPIPS and SNE.",,,7|8|9,4.1 Experiment Setup / Implementation details and evaluation metrics|4.3 Performance on MultiShade|4.4 Ablation Study
+iclr-2026-b7a66e10bf69,ICLR,oral,random_seeds_and_repetitions,not_present,"No random seed, number of repeats, error bar, or per-seed spread is reported in the main pages or result tables.",,,7,4.1–4.2
+iclr-2026-b7a66e10bf69,ICLR,oral,leakage_control,observed,"The authors state that MultiShade test objects and several environment lights differ from training, but do not provide a split manifest or overlap audit.",,,8,4.3 Performance on MultiShade
+iclr-2026-b7a66e10bf69,ICLR,oral,failure_rule,not_present,"No predeclared pass/fail criterion is stated; decisions are based on means, medians, threshold percentages, and representative qualitative images.",,,8,Table 3 and 4.3
+iclr-2026-b7a66e10bf69,ICLR,oral,reproducibility_details,not_present,Rendering/camera/augmentation details and benchmark image indices are explicitly deferred to an appendix that is absent from the supplied PDF.,,,6|7,3.3 Dataset Curation|4.2 Performance on Benchmark Dataset
 iclr-2026-935af26c0a67,ICLR,oral,Predeclared research questions,not_present,正文按三个攻击场景与两个 robustness/ablation 模块组织，但未以 RQ/Hypothesis 编号预列问题。,,,5,4 Evaluation
 iclr-2026-935af26c0a67,ICLR,oral,Threat-model separation,observed,攻击者不知道 victim 数据集或微调细节；FAB 内层固定用 Alpaca，而评估覆盖四个用户数据集。,,,3|5,3 Threat Model|4 General Experimental Setup
 iclr-2026-935af26c0a67,ICLR,oral,Target behaviors,observed,三个主任务为 advertisement injection、jailbreakability 与 over-refusal；附录增加 sudo 条件触发。,,,5|32,4 Evaluation|B Additional Scenario
@@ -189,6 +211,17 @@ iclr-2026-935af26c0a67,ICLR,oral,Data leakage controls,not_present,论文维持 
 iclr-2026-935af26c0a67,ICLR,oral,Failure and success thresholds,observed,主表用相对 baseline 2× 或绝对 ASR 色阶作可视阈值；这些阈值未表述为统计检验。,,,6|8,4.1 Results|Table 7
 iclr-2026-935af26c0a67,ICLR,oral,Main-result sequence,observed,实验先给三种攻击，再做 victim-configuration robustness、FAB component ablation、额外 post-training。,,,5|9,4 Evaluation|4.6 FAB Robustness
 iclr-2026-935af26c0a67,ICLR,oral,Reproduction granularity,observed,正文给 threat model、algorithm 与主设置；App. C 补训练超参数、judge prompt、runtime，资源与许可在 App. E。,,,10|32,Reproducibility Statement|C Extended Experimental Details
+iclr-2026-8e4dfde7b55f,ICLR,oral,explicit_research_questions,not_present,§5 直接从 Datasets 开始，未列编号研究问题或预注册假设。,,,8,5 Experiments
+iclr-2026-8e4dfde7b55f,ICLR,oral,benchmark_datasets,observed,RewardBench v2 有 1.87K prompts 和 chosen/rejected responses；MMLU-Pro 有 12K questions，每题 10 个候选答案。,,,8|8,5 Experiments|5 Experiments
+iclr-2026-8e4dfde7b55f,ICLR,oral,training_data,observed,训练集是 pre-processed and binarized UltraFeedback。,,,9,5 Experiments
+iclr-2026-8e4dfde7b55f,ICLR,oral,models,observed,Table 1 列出 Llama3.1-8B、Llama3.2-1B 和 Qwen3-0.6B；Table 2 展开 Llama3.1-8B。,,,9,Table 1 and Table 2
+iclr-2026-8e4dfde7b55f,ICLR,oral,baselines,observed,比较 AuxDPO、DPO、IPO 和 DPOP。,,,9,Evaluation and Methodology
+iclr-2026-8e4dfde7b55f,ICLR,oral,id_evaluation_protocol,observed,每个 dataset 80/20 划分 training/evaluation，以声称 IID comparisons。,,,9,Evaluation and Methodology
+iclr-2026-8e4dfde7b55f,ICLR,oral,ood_evaluation_protocol,observed,OOD 时在 cleaned UltraFeedback 训练、在 preference datasets 评估。,,,9,Evaluation and Methodology
+iclr-2026-8e4dfde7b55f,ICLR,oral,reported_training_regime,observed,报告 full finetuning results。,,,9,Evaluation and Methodology
+iclr-2026-8e4dfde7b55f,ICLR,oral,metrics,observed,Table 1 以 chosen logit 是否超过 rejected logit 定义 accuracy；Table 2 以 generated answer 与 correct answer 的匹配定义 accuracy。,,,9|9,Evaluation and Methodology|Evaluation and Methodology
+iclr-2026-8e4dfde7b55f,ICLR,oral,seeds_hardware_training_budget_hyperparameters,unavailable,该 PDF 没有给出；正文将 implementation 和 dataset details 转到未随 PDF 提供的 Appendix B.2。,,,9|10,5 Experiments|References
+iclr-2026-8e4dfde7b55f,ICLR,oral,leakage_controls_and_failure_criterion,not_present,可见文本仅说明 ID 的 80/20 split 与 OOD 的训练/评估来源，未见额外 leakage-control procedure 或预先 failure criterion。,,,9,Evaluation and Methodology
 iclr-2026-a6ddc629568b,ICLR,outstanding,predeclared_research_questions,not_present,"No numbered RQ, preregistered hypothesis, or decision rule is stated; §4 moves directly from tasks to metrics and scale.",,,4,§4 Experiment
 iclr-2026-a6ddc629568b,ICLR,outstanding,tasks_and_datasets,observed,"Six main generation tasks: Code (HumanEval/LiveCodeBench), Database (Spider), Actions (BFCL), Math (GSM8K), Data-to-Text (ToTTo), Summary (Summary of a Haystack).",,,5,§4.1
 iclr-2026-a6ddc629568b,ICLR,outstanding,instruction_count,observed,"Approximately 90-120 sharded instructions per task; task-specific appendix reports 100 Code, 107 Database, 105 Actions, 103 Math, 120 Data-to-Text, and 92 Summary.",,,4|32,§4.1|Appendix J
