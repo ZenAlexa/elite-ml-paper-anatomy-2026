@@ -375,6 +375,59 @@ def main() -> None:
         distributions,
         ["conference", "analysis_stratum", "metric", "n", "mean", "median", "q1", "q3", "min", "max"],
     )
+
+    automatic_distributions: list[dict[str, object]] = []
+    for source_version, source_metrics in (
+        ("official_pdf_provisional_parser", metrics),
+        ("arxiv_preprint_provisional_parser", preprint_metrics),
+    ):
+        source_groups: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
+        for paper_id, metric in source_metrics.items():
+            paper = catalog.get(paper_id)
+            if paper is None or metric.get("status") != "measured":
+                continue
+            source_groups[(paper["conference"], "all")].append(metric)
+            source_groups[(paper["conference"], paper["analysis_stratum"])].append(metric)
+        for (conference, stratum), rows in sorted(source_groups.items()):
+            for field in (
+                "pdf_pages",
+                "total_words",
+                "main_words_provisional",
+                "appendix_words_provisional",
+                "figure_captions",
+                "table_captions",
+                "algorithm_captions",
+                "numbered_equations_provisional",
+                "theorem_items",
+                "limitation_mentions_main",
+            ):
+                values = [float(row[field]) for row in rows if row.get(field, "") != ""]
+                automatic_distributions.append(
+                    {
+                        "source_version": source_version,
+                        "conference": conference,
+                        "analysis_stratum": stratum,
+                        "metric": field,
+                        **describe(values),
+                    }
+                )
+    write_csv(
+        table_dir / "automatic_metric_distributions.csv",
+        automatic_distributions,
+        [
+            "source_version",
+            "conference",
+            "analysis_stratum",
+            "metric",
+            "n",
+            "mean",
+            "median",
+            "q1",
+            "q3",
+            "min",
+            "max",
+        ],
+    )
     print(json.dumps(coverage, ensure_ascii=False, indent=2))
 
 
