@@ -115,8 +115,12 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--refresh", action="store_true")
     parser.add_argument("--paper-id", action="append", default=[])
+    parser.add_argument("--conference", action="append", default=[])
     args = parser.parse_args()
     rows = read_csv(PROCESSED / "papers.csv")
+    if args.conference:
+        conferences = set(args.conference)
+        rows = [row for row in rows if row["conference"] in conferences]
     if args.paper_id:
         requested = set(args.paper_id)
         rows = [row for row in rows if row["paper_id"] in requested]

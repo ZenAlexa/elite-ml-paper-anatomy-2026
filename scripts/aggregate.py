@@ -6,7 +6,7 @@ import json
 import statistics
 from collections import Counter, defaultdict
 
-from common import PROCESSED, ROOT, read_csv, write_csv, write_json
+from common import PROCESSED, ROOT, load_complete_reading, read_csv, write_csv, write_json
 
 
 def main() -> None:
@@ -14,9 +14,9 @@ def main() -> None:
     metrics = {row["paper_id"]: row for row in read_csv(PROCESSED / "auto_metrics.csv")} if (PROCESSED / "auto_metrics.csv").exists() else {}
     readings = {}
     for row in papers:
-        path = ROOT / "readings" / f"{row['paper_id']}.json"
-        if path.exists():
-            readings[row["paper_id"]] = json.loads(path.read_text(encoding="utf-8"))
+        reading = load_complete_reading(row["paper_id"])
+        if reading is not None:
+            readings[row["paper_id"]] = reading
     coverage = []
     for conference in ("ICLR", "ICML", "NeurIPS"):
         eligible = [row for row in papers if row["conference"] == conference]

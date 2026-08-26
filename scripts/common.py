@@ -8,6 +8,7 @@ import json
 import re
 import unicodedata
 import urllib.request
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterable
 
@@ -81,7 +82,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def write_csv(path: Path, rows: Iterable[dict[str, object]], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
+        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -89,3 +90,25 @@ def write_csv(path: Path, rows: Iterable[dict[str, object]], fields: list[str]) 
 def write_json(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+@lru_cache(maxsize=1)
+def reading_required_keys() -> set[str]:
+    schema = json.loads((ROOT / "schemas" / "deep-read.schema.json").read_text(encoding="utf-8"))
+    return set(schema["required"])
+
+
+def load_complete_reading(paper_id: str) -> dict[str, object] | None:
+    json_path = ROOT / "readings" / f"{paper_id}.json"
+    markdown_path = ROOT / "readings" / f"{paper_id}.md"
+    if not json_path.exists() or not markdown_path.exists():
+        return None
+    try:
+        value = json.loads(json_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(value, dict):
+        return None
+    if value.get("paper_id") != paper_id or not reading_required_keys().issubset(value):
+        return None
+    return value
