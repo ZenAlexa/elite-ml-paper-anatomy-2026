@@ -1,0 +1,3357 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-a6ddc629568b",
+  "bibliography": {
+    "title": "LLMs Get Lost In Multi-Turn Conversation",
+    "authors": [
+      "Philippe Laban",
+      "Hiroaki Hayashi",
+      "Yingbo Zhou",
+      "Jennifer Neville"
+    ],
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "outstanding",
+      "oral"
+    ]
+  },
+  "source_files": {
+    "pdf": "/Users/zimingwang/Developer/GitHub/elite-ml-paper-anatomy-2026/corpus/pdfs/iclr-2026-a6ddc629568b.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=VKGTGGcwl6"
+  },
+  "page_map": {
+    "pdf_pages": 41,
+    "main_pages": 11,
+    "reference_pages": 6,
+    "appendix_pages": 25,
+    "boundary_note": "正文在 PDF p.11 的 Reproducibility Statement 后结束；References 同页开始并延续至 p.16，因此 main_pages 与 reference_pages 在 p.11 重叠。Appendix A 从 p.17 开始。",
+    "layout_notes": [
+      {
+        "description": "全文为单栏 ICLR 版式；没有双栏正文。主文图表均为栏宽或接近整页宽度。",
+        "evidence": {
+          "page": 2,
+          "section": "§1-§2",
+          "anchor": "single-column prose spans the text block",
+          "basis": "layout_observation"
+        }
+      },
+      {
+        "description": "PDF p.7 由 Table 1 与 Figure 5 占据大部分可读面积，§5.1 仅从页底开始。",
+        "evidence": {
+          "page": 7,
+          "section": "§5.1",
+          "anchor": "Table 1 and Figure 5 occupy most of the page",
+          "basis": "layout_observation"
+        }
+      },
+      {
+        "description": "PDF p.34 的 Figure 10 是跨页宽、文字密集的六轮对话示例，正文解释被压至页底。",
+        "evidence": {
+          "page": 34,
+          "section": "Appendix K-L",
+          "anchor": "Figure 10 spans most of the page",
+          "basis": "layout_observation"
+        }
+      },
+      {
+        "description": "PDF p.36-p.41 以大段灰底 prompt 框为主；p.39-p.41 留有较多下方空白。",
+        "evidence": {
+          "page": 41,
+          "section": "Prompts, O.2",
+          "anchor": "User simulator prompt ends above a large blank area",
+          "basis": "layout_observation"
+        }
+      }
+    ],
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 187
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 670
+      },
+      {
+        "title": "2 Background and Related Work",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 460
+      },
+      {
+        "title": "3 Simulating Underspecified, Multi-Turn Conversation",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 800
+      },
+      {
+        "title": "4 Experiment",
+        "module": "experimental_design",
+        "start_page": 4,
+        "end_page": 7,
+        "estimated_words": 1490
+      },
+      {
+        "title": "5 Results",
+        "module": "results",
+        "start_page": 7,
+        "end_page": 9,
+        "estimated_words": 930
+      },
+      {
+        "title": "5.3 Gradual Sharding Experiment",
+        "module": "ablation",
+        "start_page": 9,
+        "end_page": 9,
+        "estimated_words": 330
+      },
+      {
+        "title": "6 Implications Summary",
+        "module": "other",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 720
+      },
+      {
+        "title": "7 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 100
+      },
+      {
+        "title": "8 Ethics Statement",
+        "module": "limitations",
+        "start_page": 10,
+        "end_page": 11,
+        "estimated_words": 600
+      },
+      {
+        "title": "9 Reproducibility Statement",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 220
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 16,
+        "estimated_words": 2740
+      },
+      {
+        "title": "Appendix A Related Work on Underspecification",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 17,
+        "estimated_words": 570
+      },
+      {
+        "title": "Appendix B Precise Definition of Sharded Instructions",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 18,
+        "estimated_words": 520
+      },
+      {
+        "title": "Appendix C Semi-Automatic Sharding Process",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 19,
+        "estimated_words": 740
+      },
+      {
+        "title": "Appendix D Inspection of Simulated Sharded Conversation",
+        "module": "appendix",
+        "start_page": 19,
+        "end_page": 20,
+        "estimated_words": 620
+      },
+      {
+        "title": "Appendix E Concrete Example of Loss in Aptitude vs. Reliability",
+        "module": "appendix",
+        "start_page": 20,
+        "end_page": 21,
+        "estimated_words": 590
+      },
+      {
+        "title": "Appendix F Qualitative Analyses of Simulation Logs",
+        "module": "appendix",
+        "start_page": 21,
+        "end_page": 25,
+        "estimated_words": 2470
+      },
+      {
+        "title": "Appendix G Implications",
+        "module": "appendix",
+        "start_page": 25,
+        "end_page": 29,
+        "estimated_words": 2160
+      },
+      {
+        "title": "Appendix H Assistant Response Categorization",
+        "module": "appendix",
+        "start_page": 29,
+        "end_page": 29,
+        "estimated_words": 300
+      },
+      {
+        "title": "Appendix I Model Access",
+        "module": "appendix",
+        "start_page": 29,
+        "end_page": 30,
+        "estimated_words": 300
+      },
+      {
+        "title": "Appendix J Task-Specific Implementation Details",
+        "module": "appendix",
+        "start_page": 30,
+        "end_page": 33,
+        "estimated_words": 1930
+      },
+      {
+        "title": "Appendix K Example Simulated Conversation",
+        "module": "appendix",
+        "start_page": 33,
+        "end_page": 34,
+        "estimated_words": 310
+      },
+      {
+        "title": "Appendix L Gradual Sharding Implementation",
+        "module": "appendix",
+        "start_page": 33,
+        "end_page": 34,
+        "estimated_words": 350
+      },
+      {
+        "title": "Appendix M Temperature Experiment Implementation",
+        "module": "appendix",
+        "start_page": 34,
+        "end_page": 35,
+        "estimated_words": 420
+      },
+      {
+        "title": "Appendix N Recap & Snowball Experiment Implementation",
+        "module": "appendix",
+        "start_page": 35,
+        "end_page": 35,
+        "estimated_words": 260
+      },
+      {
+        "title": "Appendix O On Obtaining Deterministic Outputs from LLMs",
+        "module": "appendix",
+        "start_page": 35,
+        "end_page": 35,
+        "estimated_words": 210
+      },
+      {
+        "title": "Prompts (O.1 Sharding; O.2 Experiments)",
+        "module": "appendix",
+        "start_page": 36,
+        "end_page": 41,
+        "estimated_words": 1520
+      }
+    ]
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 187,
+      "main_word_share": 0.029,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 670,
+      "main_word_share": 0.103,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 460,
+      "main_word_share": 0.071,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 800,
+      "main_word_share": 0.123,
+      "figures": 2,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "theory",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 1490,
+      "main_word_share": 0.229,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 1
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 930,
+      "main_word_share": 0.143,
+      "figures": 1,
+      "tables": 1,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 330,
+      "main_word_share": 0.051,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 100,
+      "main_word_share": 0.015,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 600,
+      "main_word_share": 0.092,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 940,
+      "main_word_share": 0.144,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 13830,
+      "main_word_share": null,
+      "figures": 5,
+      "tables": 9,
+      "algorithms": 0,
+      "displayed_equations": 7
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Large Language Models (LLMs) are conversational interfaces.",
+      "word_count": 7,
+      "functions": [
+        "object_scope"
+      ],
+      "qualifiers": [],
+      "numbers": [],
+      "comparison": "not_present",
+      "transition": "opening definition",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "LLMs are conversational interfaces",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "As such, LLMs have the potential to assist their users not only when they can fully specify the task at hand, but also to help them define, explore, and refine what they need through multi-turn conversational exchange.",
+      "word_count": 37,
+      "functions": [
+        "object_scope",
+        "impact_claim"
+      ],
+      "qualifiers": [
+        "have the potential"
+      ],
+      "numbers": [],
+      "comparison": "fully specified task versus iterative multi-turn refinement",
+      "transition": "extends the opening definition into practical scope",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "help them define, explore, and refine what they need",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "Although analysis of LLM conversation logs has confirmed that underspecification occurs frequently in user instructions, LLM evaluation has predominantly focused on the single-turn, fully-specified instruction setting.",
+      "word_count": 26,
+      "functions": [
+        "problem_gap"
+      ],
+      "qualifiers": [
+        "frequently",
+        "predominantly"
+      ],
+      "numbers": [],
+      "comparison": "real underspecified instructions versus single-turn evaluation",
+      "transition": "concession creates the evaluation gap",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "evaluation has predominantly focused on the single-turn",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "In this work, we perform large-scale simulation experiments to compare LLM performance in single- and multi-turn settings.",
+      "word_count": 17,
+      "functions": [
+        "method",
+        "experimental_setup"
+      ],
+      "qualifiers": [
+        "large-scale"
+      ],
+      "numbers": [],
+      "comparison": "single-turn versus multi-turn",
+      "transition": "answers the gap with the study design",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "compare LLM performance in single- and multi-turn settings",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "Our experiments confirm that all the top open- and closed-weight LLMs we test exhibit significantly lower performance in multi-turn conversations than single-turn, with an average drop of 39% across six generation tasks.",
+      "word_count": 32,
+      "functions": [
+        "quantitative_result"
+      ],
+      "qualifiers": [
+        "all",
+        "top",
+        "significantly",
+        "average"
+      ],
+      "numbers": [
+        "39%",
+        "six"
+      ],
+      "comparison": "multi-turn versus single-turn across tested models and tasks",
+      "transition": "delivers the headline outcome",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "average drop of 39% across six generation tasks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "Analysis of 200,000+ simulated conversations decomposes the performance degradation into two components: a minor loss in aptitude and a significant increase in unreliability.",
+      "word_count": 24,
+      "functions": [
+        "method",
+        "quantitative_result",
+        "core_idea"
+      ],
+      "qualifiers": [
+        "minor",
+        "significant"
+      ],
+      "numbers": [
+        "200,000+",
+        "two"
+      ],
+      "comparison": "aptitude loss versus unreliability increase",
+      "transition": "turns the headline drop into a decomposition",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "a minor loss in aptitude and a significant increase in unreliability",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "We find that LLMs often make assumptions in early turns and prematurely attempt to generate final solutions, on which they overly rely.",
+      "word_count": 22,
+      "functions": [
+        "qualitative_result"
+      ],
+      "qualifiers": [
+        "often",
+        "prematurely",
+        "overly"
+      ],
+      "numbers": [],
+      "comparison": "not_present",
+      "transition": "offers a behavioral explanation",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "make assumptions in early turns and prematurely attempt",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "text": "In simpler terms, we discover that when LLMs take a wrong turn in a conversation, they get lost and do not recover.",
+      "word_count": 22,
+      "functions": [
+        "core_idea",
+        "impact_claim"
+      ],
+      "qualifiers": [],
+      "numbers": [],
+      "comparison": "not_present",
+      "transition": "compresses the decomposition into the title metaphor",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "they get lost and do not recover",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "abstract_summary": {
+    "function_sequence": "object_scope → impact_claim → problem_gap → method/experimental_setup → quantitative_result → decomposition/core_idea → qualitative_result → core_idea/impact_claim",
+    "reports_experimental_results": true,
+    "reported_results": "39% average drop across six tasks; 200,000+ conversations; degradation decomposed into aptitude and unreliability; early assumptions and premature answers.",
+    "mentions_theory": false,
+    "mentions_limitations": false,
+    "strongest_claim_position": "Sentence 5 supplies the strongest numeric claim; sentence 8 ends on the memorable unrecoverable-loss formulation.",
+    "evidence": {
+      "page": 1,
+      "section": "Abstract",
+      "anchor": "average drop of 39% across six generation tasks",
+      "basis": "interpretation"
+    }
+  },
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context",
+      "estimated_words": 175,
+      "first_sentence_function": "defines LLMs as conversational interfaces",
+      "previous_question": "Why should multi-turn interaction matter?",
+      "current_answer": "Users often begin underspecified and clarify over turns.",
+      "next_hook": "Evaluation practice does not reflect that use pattern.",
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "users might start with an underspecified instruction",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "failure_of_prior_work",
+      "estimated_words": 105,
+      "first_sentence_function": "contrasts conversation logs with episodic benchmarks",
+      "previous_question": "What exactly is missing from existing evaluation?",
+      "current_answer": "Prior multi-turn tasks can be decomposed into isolated subtasks.",
+      "next_hook": "A matched non-episodic simulation is needed.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "conversation can effectively be decomposed as an array of subtasks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "core_idea",
+      "estimated_words": 112,
+      "first_sentence_function": "names sharded simulation",
+      "previous_question": "How can the missing setting be tested while preserving task identity?",
+      "current_answer": "Split one fully specified instruction into shards revealed one per turn.",
+      "next_hook": "The matched design enables a direct performance comparison.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "each turn of conversation reveals at most one shard",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "result_preview",
+      "estimated_words": 118,
+      "first_sentence_function": "reports the 90-to-65 performance change",
+      "previous_question": "Does multi-turn underspecification change performance?",
+      "current_answer": "Average performance falls by 25 points and the effect appears even at two turns.",
+      "next_hook": "Average loss must be decomposed.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "average performance of 65%—a 25-point drop",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "result_preview",
+      "estimated_words": 95,
+      "first_sentence_function": "decomposes degradation into aptitude and unreliability",
+      "previous_question": "Is the drop inability or instability?",
+      "current_answer": "Unreliability rises across models and defines Lost in Conversation.",
+      "next_hook": "Behavioral correlates may explain the instability.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "all LLMs exhibit very high unreliability in multi-turn settings",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "scope_boundary",
+      "estimated_words": 100,
+      "first_sentence_function": "lists four behavioral explanations and a practical call",
+      "previous_question": "What behaviors and implications follow?",
+      "current_answer": "Premature solutions, assumptions, answer dependence, and verbosity motivate reliability-focused evaluation.",
+      "next_hook": "§2 positions the design against episodic evaluation.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "prioritize multi-turn reliability in conjunction with aptitude",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_analysis": {
+    "move_word_shares": {
+      "context": 0.248,
+      "failure_of_prior_work": 0.149,
+      "core_idea": 0.159,
+      "result_preview": 0.302,
+      "scope_boundary": 0.142
+    },
+    "argument_chain": "conversational use → underspecification is prevalent → episodic evaluation misses it → sharded simulation preserves task identity while dispersing information → matched performance drops → unreliability dominates → behavioral correlates and stakeholder implications",
+    "contribution_list": "not_present",
+    "roadmap": "not_present",
+    "repeats_abstract": "Yes. The result and mechanism previews substantially repeat abstract sentences 4-8, but add the 90-to-65 values and stakeholder call.",
+    "falsifiable_claims": "The 90-to-65 drop, occurrence at two turns, cross-model unreliability, and four behavioral correlates are testable.",
+    "limitations_in_contribution_preview": "not_present",
+    "evidence": {
+      "page": 2,
+      "section": "§1 Introduction",
+      "anchor": "We investigate several explanations for this effect",
+      "basis": "interpretation"
+    }
+  },
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "credit_or_foundation",
+      "estimated_words": 60,
+      "cluster": "pre-LLM single-turn models and modular dialogue systems",
+      "comparison_dimension": "system architecture and evaluation protocol",
+      "evidence": {
+        "page": 2,
+        "section": "§2 Background and Related Work",
+        "anchor": "Conversational agents were instead built as modular systems",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 145,
+      "cluster": "post-ChatGPT multi-turn benchmarks",
+      "comparison_dimension": "episodic subtasks versus dispersed clues for one solution",
+      "evidence": {
+        "page": 2,
+        "section": "§2 Background and Related Work",
+        "anchor": "every turn is a self-contained subtask",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "gap_creation",
+      "estimated_words": 105,
+      "cluster": "task granularity and open-ended generation",
+      "comparison_dimension": "matched task identity and generative versus short-form tasks",
+      "evidence": {
+        "page": 2,
+        "section": "§2 Background and Related Work",
+        "anchor": "run both settings on a common set of tasks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "taxonomy",
+      "estimated_words": 105,
+      "cluster": "user simulators",
+      "comparison_dimension": "realism, cost, and scalability",
+      "evidence": {
+        "page": 3,
+        "section": "§2 Background and Related Work",
+        "anchor": "each trading realism for cost and scalability",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "credit_or_foundation",
+      "estimated_words": 50,
+      "cluster": "linguistic underspecification",
+      "comparison_dimension": "underspecification as a property of human language",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "underspecification as a common feature of human language",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 205,
+      "cluster": "LLM responses, rewriting, grounding, and real chat reconstruction",
+      "comparison_dimension": "response behavior and information-revelation rate",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "humans are 15 times more likely to do so",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "taxonomy",
+      "estimated_words": 175,
+      "cluster": "direct ambiguity and underspecification evaluations",
+      "comparison_dimension": "NLI ambiguity, relative specification, and issue resolution",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "direct tasks to evaluate model ability",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "taxonomy",
+      "estimated_words": 120,
+      "cluster": "causes of underspecification",
+      "comparison_dimension": "task, intent, location, and reference ambiguity",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "classified different root causes for underspecification",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_analysis": {
+    "placement": "mixed: §2 in the main body plus Appendix A",
+    "estimated_main_words": 460,
+    "estimated_total_words": 1030,
+    "main_body_share": 0.071,
+    "citation_clusters": 8,
+    "avoid_method_repetition": "§2 compares task structure and simulator choices; the operational sharding pipeline is deferred to §3 and Appendices B-C.",
+    "citations_reused_later": "Herlihy et al. supports the seven response strategies in §3.2/Appendix H; Choi et al. supports decontextualization in Appendix C; long-context work supports §F.3.",
+    "evidence": {
+      "page": 3,
+      "section": "§2-§3",
+      "anchor": "treating it strictly as a probe of LLM behavior",
+      "basis": "interpretation"
+    }
+  },
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "state_problem",
+      "estimated_words": 70,
+      "evidence": {
+        "page": 3,
+        "section": "§3",
+        "anchor": "repurposes existing tasks from single-turn benchmarks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "define_component",
+      "estimated_words": 265,
+      "component": "sharded instruction",
+      "problem_solved": "preserve the original task while distributing specifications",
+      "evidence": {
+        "page": 3,
+        "section": "§3.1",
+        "anchor": "set of shards reflects the same information",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "instantiate_algorithm",
+      "estimated_words": 170,
+      "component": "simulation loop",
+      "problem_solved": "reveal at most one requirement per turn and score each attempt",
+      "evidence": {
+        "page": 3,
+        "section": "§3.2",
+        "anchor": "assistant gets up to N answer attempts",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "explain_mechanism",
+      "estimated_words": 95,
+      "component": "maximum-over-turn scoring",
+      "problem_solved": "avoid penalizing a correct answer reached before the final turn",
+      "evidence": {
+        "page": 4,
+        "section": "§3.2",
+        "anchor": "is credited for the best one",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "define_component",
+      "estimated_words": 120,
+      "component": "GPT-4o-mini user simulator",
+      "problem_solved": "select a contextually appropriate unrevealed shard",
+      "evidence": {
+        "page": 4,
+        "section": "§3.2",
+        "anchor": "select and lightly rephrase the shard",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "connect_to_experiment",
+      "estimated_words": 105,
+      "component": "strategy classifier and answer extractor",
+      "problem_solved": "turn free text into task scores",
+      "evidence": {
+        "page": 4,
+        "section": "§3.2",
+        "anchor": "detect answer attempt turns, which trigger answer extraction and scoring",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "contrast_alternative",
+      "estimated_words": 235,
+      "component": "FULL, SHARDED, CONCAT, RECAP, SNOWBALL",
+      "problem_solved": "separate underspecification from paraphrase and test context reminders",
+      "evidence": {
+        "page": 4,
+        "section": "§3.3",
+        "anchor": "control to ensure the performance drop",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "setup_notation",
+      "estimated_words": 225,
+      "component": "P, A90, U10-90",
+      "problem_solved": "separate mean performance, best-case aptitude, and run variation",
+      "evidence": {
+        "page": 6,
+        "section": "§4.2",
+        "anchor": "define three metrics: averaged performance, aptitude, and unreliability",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "derive",
+      "estimated_words": 220,
+      "component": "atomic content units and valid shards",
+      "problem_solved": "formalize information-preserving task equivalence",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "same intended output as q",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "define_component",
+      "estimated_words": 330,
+      "component": "properties P1-P5",
+      "problem_solved": "constrain preservation, intent, ordering, granularity, and rewriting",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix B",
+        "anchor": "Information Preservation; Clear Initial Intent; Order Insensitive",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 11,
+      "move": "instantiate_algorithm",
+      "estimated_words": 610,
+      "component": "segmentation, rephrasing, verification, manual inspection",
+      "problem_solved": "produce task shards at scale with quality control",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C",
+        "anchor": "all manually reviewed by two authors",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 12,
+      "move": "connect_to_prediction",
+      "estimated_words": 130,
+      "component": "CONCAT and SHUFFLE-CONCAT thresholds",
+      "problem_solved": "detect information loss or order dependence before main simulation",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C",
+        "anchor": "below 80%, it indicates a potential loss of information",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_summary": {
+    "formal_objects": "Original query q, intended output Y*q, atomic content units I(q), shard sequence q', per-run score S_i, mean P, aptitude A90, unreliability U10-90.",
+    "input": "A fully specified benchmark instruction plus task evaluator.",
+    "output": "A validated shard set and simulated conversations with per-turn answer scores.",
+    "state": "Conversation history, revealed and unrevealed shards, assistant response strategy, extracted answer, and task score.",
+    "objective": "Compare matched task performance under different information-disclosure schedules.",
+    "assumptions": "Shard equivalence preserves intended output; one shard is revealed at most per turn; the LLM user is a behavior probe rather than a user model.",
+    "first_formalization": "P, A, U appear in §4.2 (PDF p.6); q/I(q)/q' appear in Appendix B (PDF p.17).",
+    "transition_sequence": "state_problem → define_component → instantiate_algorithm → explain_mechanism → contrast_alternative → setup_notation → derive → define_component → connect_to_prediction",
+    "algorithm_count": 0,
+    "pseudo_code": "not_present",
+    "theory_role": "No theorem or guarantee. The formulas define experimental estimands and shard-validity conditions; their role is explanatory and diagnostic.",
+    "evidence": {
+      "page": 17,
+      "section": "Appendix B",
+      "anchor": "construct a set of shorter instruction shards",
+      "basis": "interpretation"
+    }
+  },
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "abstract",
+      "page": 1,
+      "size": "approximately 0.36 page, full text width",
+      "comparison": "single-turn versus multi-turn aptitude/unreliability plus a schematic dialogue",
+      "encoding_channels": "scatter position, trend lines, colored dialogue panels, callout percentages",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "mostly; names tasks/models and headline changes but not metric definitions",
+      "purpose": "Front-load the 39% drop and the aptitude/reliability framing.",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "major performance drop in multi-turn settings (-39%)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "method",
+      "page": 3,
+      "size": "approximately 0.16 page, full width",
+      "comparison": "not_applicable",
+      "encoding_channels": "directed flow, role boxes, outcome colors",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes for the pipeline overview",
+      "purpose": "Show the simulator loop from shard reveal through grading.",
+      "evidence": {
+        "page": 3,
+        "section": "§3.2",
+        "anchor": "Sharded Conversation Simulation Diagram",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "method",
+      "page": 4,
+      "size": "approximately 0.23 page, right half",
+      "comparison": "FULL, SHARDED, CONCAT, RECAP, SNOWBALL",
+      "encoding_channels": "turn-by-type grid with colored shard blocks",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes",
+      "purpose": "Differentiate information-disclosure schedules and controls.",
+      "evidence": {
+        "page": 4,
+        "section": "§3.3",
+        "anchor": "Conversation simulation types based on sharded instructions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "experimental_design",
+      "page": 5,
+      "size": "approximately 0.55 page, full width",
+      "comparison": "six tasks with fully specified and sharded examples",
+      "encoding_channels": "six aligned task columns, blue/yellow instruction blocks, source/evaluator row",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes",
+      "purpose": "Make task coverage, sharding, sources, and evaluation concrete.",
+      "evidence": {
+        "page": 5,
+        "section": "§4.1",
+        "anchor": "Six sharded tasks included in our experiments",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 7,
+      "size": "approximately 0.33 page, full width",
+      "comparison": "15 models across six tasks and FULL/CONCAT/SHARDED",
+      "encoding_channels": "numeric cells, task grouping, red degradation shading, model symbols",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "partly; symbols require nearby text/legend",
+      "purpose": "Serve as the central performance matrix and model-level degradation summary.",
+      "evidence": {
+        "page": 7,
+        "section": "§5.1",
+        "anchor": "Average Performance of 15 LLMs on six tasks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "results",
+      "page": 7,
+      "size": "approximately 0.46 page, full width, three panels",
+      "comparison": "metric concept, model degradation, and 1-8 shard granularity",
+      "encoding_channels": "box-plot schematic, paired numeric/model grid, line plot",
+      "uncertainty_expression": "percentile-derived aptitude/unreliability but no estimator interval",
+      "caption_self_contained": "yes at a high level",
+      "purpose": "Connect metric definitions to cross-model reliability and gradual sharding.",
+      "evidence": {
+        "page": 7,
+        "section": "§5",
+        "anchor": "reliability results based on experimental simulations with 15 LLMs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "appendix",
+      "page": 18,
+      "size": "approximately 0.31 page, full width",
+      "comparison": "four sharding stages from source to inspected shards",
+      "encoding_channels": "process columns, text examples, rejection thresholds",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes",
+      "purpose": "Show the semi-automatic sharding pipeline and rejection points.",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix C",
+        "anchor": "four-step semi-automatic process",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "appendix",
+      "page": 20,
+      "size": "approximately 0.18 page, centered",
+      "comparison": "five inspection criteria across four tasks",
+      "encoding_channels": "percentages by task",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes, except caption sample count conflicts with Appendix D prose",
+      "purpose": "Validate user simulation, strategy labels, extraction, and overall conversation success.",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix D",
+        "anchor": "Overall Success 97.8",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 7",
+      "module": "appendix",
+      "page": 21,
+      "size": "approximately 0.45 page, left half",
+      "comparison": "same mean performance under aptitude loss, reliability loss, or both",
+      "encoding_channels": "green/red 10-by-10 outcome grids with P/A/U labels",
+      "uncertainty_expression": "none; didactic construction",
+      "caption_self_contained": "yes",
+      "purpose": "Explain why mean performance cannot identify aptitude versus reliability.",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix E",
+        "anchor": "same P = 60 while varying in aptitude",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "appendix",
+      "page": 22,
+      "size": "approximately 0.29 page, centered",
+      "comparison": "first-answer timing bins across 15 models",
+      "encoding_channels": "performance values by timing quintile",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes",
+      "purpose": "Associate delayed first answer attempts with higher performance.",
+      "evidence": {
+        "page": 22,
+        "section": "§F.1",
+        "anchor": "based on how early in the conversation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 8",
+      "module": "appendix",
+      "page": 23,
+      "size": "approximately 0.24 page, full width",
+      "comparison": "answer length by attempt number for four tasks with FULL/CONCAT references",
+      "encoding_channels": "four line plots and horizontal reference lines",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes",
+      "purpose": "Visualize answer bloat over successive multi-turn attempts.",
+      "evidence": {
+        "page": 23,
+        "section": "§F.2",
+        "anchor": "SHARDED answer attempts increase in length",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 9",
+      "module": "appendix",
+      "page": 24,
+      "size": "approximately 0.31 page, right half",
+      "comparison": "document introduction turn versus citation turn",
+      "encoding_channels": "lower-triangular percentage heatmap",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes, including hallucination caveat",
+      "purpose": "Show first/last-turn citation bias and loss in middle turns.",
+      "evidence": {
+        "page": 24,
+        "section": "§F.3",
+        "anchor": "Percentages in a row do not add up to 100%",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "appendix",
+      "page": 25,
+      "size": "approximately 0.23 page, centered",
+      "comparison": "performance across response-verbosity quintiles and six tasks",
+      "encoding_channels": "blue intensity and numeric values",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes",
+      "purpose": "Associate longer assistant responses with lower performance on five tasks.",
+      "evidence": {
+        "page": 25,
+        "section": "§F.4",
+        "anchor": "Performance degrades when models generate longer responses",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "appendix",
+      "page": 26,
+      "size": "approximately 0.10 page, centered",
+      "comparison": "FULL/CONCAT/SHARDED/RECAP/SNOWBALL for GPT-4o-mini and GPT-4o",
+      "encoding_channels": "numeric cells with simulation-type icons",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "partly; icons require context",
+      "purpose": "Measure agent-style repetition interventions.",
+      "evidence": {
+        "page": 26,
+        "section": "§G.1",
+        "anchor": "additional simulation types: Recap and Snowball",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 6",
+      "module": "appendix",
+      "page": 26,
+      "size": "approximately 0.10 page, centered",
+      "comparison": "GPT-4o SHARDED with versus without system hint",
+      "encoding_channels": "task scores and average",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes",
+      "purpose": "Test whether warning the model about underspecification changes performance.",
+      "evidence": {
+        "page": 26,
+        "section": "§G.1",
+        "anchor": "providing a specialized system prompt",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 7",
+      "module": "appendix",
+      "page": 27,
+      "size": "approximately 0.20 page, full width",
+      "comparison": "assistant and user temperature combinations in three settings",
+      "encoding_channels": "unreliability values by temperature grid",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "yes",
+      "purpose": "Test temperature as a reliability intervention.",
+      "evidence": {
+        "page": 27,
+        "section": "§G.2",
+        "anchor": "lower the number the more reliable",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 8",
+      "module": "appendix",
+      "page": 28,
+      "size": "approximately 0.08 page, centered",
+      "comparison": "FULL/CONCAT/SHARDED translation scores for two models",
+      "encoding_channels": "BLEU values",
+      "uncertainty_expression": "none",
+      "caption_self_contained": "partly; simulation icons require context",
+      "purpose": "Provide an episodic-task negative result.",
+      "evidence": {
+        "page": 28,
+        "section": "§G.3",
+        "anchor": "Performance on the translation task",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 9",
+      "module": "appendix",
+      "page": 29,
+      "size": "approximately 0.34 page, full width",
+      "comparison": "seven assistant response categories",
+      "encoding_channels": "definition/example rows",
+      "uncertainty_expression": "not_applicable",
+      "caption_self_contained": "yes",
+      "purpose": "Operationalize response-strategy classification.",
+      "evidence": {
+        "page": 29,
+        "section": "Appendix H",
+        "anchor": "Definition of turn categories",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 10",
+      "module": "appendix",
+      "page": 30,
+      "size": "approximately 0.34 page, full width",
+      "comparison": "15 model names, versions, and providers",
+      "encoding_channels": "model rows and metadata columns",
+      "uncertainty_expression": "not_applicable",
+      "caption_self_contained": "yes",
+      "purpose": "Record model access details for reproducibility.",
+      "evidence": {
+        "page": 30,
+        "section": "Appendix I",
+        "anchor": "Specific model versions used",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 10",
+      "module": "appendix",
+      "page": 34,
+      "size": "approximately 0.70 page, full width",
+      "comparison": "six conversation turns and extracted final answer",
+      "encoding_channels": "aligned turn transcripts with final score",
+      "uncertainty_expression": "not_applicable; one example",
+      "caption_self_contained": "yes",
+      "purpose": "Give a concrete failure case of assumption accumulation and incomplete recovery.",
+      "evidence": {
+        "page": 34,
+        "section": "Appendix K",
+        "anchor": "correct answer to the instruction is 85,000 calories",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "displayed_equation",
+      "label": "P, A90, U10-90 definitions",
+      "module": "experimental_design",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "§4.2",
+        "anchor": "define three metrics",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Atomic content units I(q)",
+      "module": "theory",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "atomic content units (ACU) of the query",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Shard equivalence q' and I(q)=I(q')",
+      "module": "theory",
+      "page": 17,
+      "role": "core_chain",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "same intended output as q",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "CONCAT and SHUFFLE-CONCAT acceptance thresholds",
+      "module": "method",
+      "page": 19,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C",
+        "anchor": "acceptable if the following conditions are met",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "FULL baseline outcome construction",
+      "module": "theory",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix E",
+        "anchor": "perfect performance on 9 instructions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Situation 1 aptitude-loss construction",
+      "module": "theory",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix E",
+        "anchor": "Drop in Aptitude",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Situation 2 reliability-loss construction",
+      "module": "theory",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix E",
+        "anchor": "Drop in Reliability",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Situation 3 combined-loss construction",
+      "module": "theory",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix E",
+        "anchor": "Combined drop in Aptitude and Reliability",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_summary": {
+    "displayed_equation_blocks": 8,
+    "numbered_equations": 0,
+    "theorems": 0,
+    "lemmas": 0,
+    "propositions": 0,
+    "corollaries": 0,
+    "proofs": 0,
+    "interpretation": "The paper is empirical. Equations define estimands, shard validity, acceptance thresholds, and didactic examples; they do not establish guarantees.",
+    "evidence": {
+      "page": 21,
+      "section": "Appendix E",
+      "anchor": "illustrate extreme scenarios",
+      "basis": "interpretation"
+    }
+  },
+  "experimental_design": [
+    {
+      "name": "predeclared_research_questions",
+      "status": "not_present",
+      "description": "No numbered RQ, preregistered hypothesis, or decision rule is stated; §4 moves directly from tasks to metrics and scale.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§4 Experiment",
+          "anchor": "We construct sharded instructions for six tasks",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "tasks_and_datasets",
+      "status": "observed",
+      "description": "Six main generation tasks: Code (HumanEval/LiveCodeBench), Database (Spider), Actions (BFCL), Math (GSM8K), Data-to-Text (ToTTo), Summary (Summary of a Haystack).",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§4.1",
+          "anchor": "Six sharded tasks included in our experiments",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "instruction_count",
+      "status": "observed",
+      "description": "Approximately 90-120 sharded instructions per task; task-specific appendix reports 100 Code, 107 Database, 105 Actions, 103 Math, 120 Data-to-Text, and 92 Summary.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§4.1",
+          "anchor": "For each task, we prepare 90-120 sharded instructions",
+          "basis": "explicit"
+        },
+        {
+          "page": 32,
+          "section": "Appendix J",
+          "anchor": "until we obtained 103 valid sharded instructions",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "model_scope",
+      "status": "observed",
+      "description": "15 LLMs from eight families, spanning small/large, open/closed, and two reasoning models.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.3",
+          "anchor": "15 LLMs from eight model families",
+          "basis": "explicit"
+        },
+        {
+          "page": 30,
+          "section": "Appendix I",
+          "anchor": "Specific model versions used",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "matched_conditions",
+      "status": "observed",
+      "description": "FULL, CONCAT, and SHARDED reuse the same underlying tasks; CONCAT controls for shard rephrasing while removing multi-turn disclosure.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.3",
+          "anchor": "due to multi-turn underspecification, not due to the rephrasing",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "simulation_repetition",
+      "status": "observed",
+      "description": "Ten runs per model-instruction-simulation-type pair in the main experiment; more than 200,000 conversations total.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.3",
+          "anchor": "N = 10 simulations for each pair",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "aggregation_and_denominator",
+      "status": "observed",
+      "description": "P, A, and U are computed per instruction and then averaged over a corpus; task scores are normalized to 0-100.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.2",
+          "anchor": "computed on a per-instruction basis",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "§4.1",
+          "anchor": "map binary accuracy to the range of 0-100",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "metrics",
+      "status": "observed",
+      "description": "P is mean task score; A is the per-instruction 90th percentile; U is the 90th-minus-10th percentile range. Task evaluators include functional accuracy, semantic equivalence, exact match, BLEU, and Joint Score.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.2",
+          "anchor": "Aptitude A90 is an estimate",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "§4.1",
+          "anchor": "reuse the metrics used in the original benchmarks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "answer_attempt_scoring",
+      "status": "observed",
+      "description": "A SHARDED conversation receives the maximum score across per-turn answer attempts, giving it more chances than single-turn baselines.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.2",
+          "anchor": "is credited for the best one",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "random_seeds",
+      "status": "not_present",
+      "description": "The main simulation reports independent stochastic repetitions but no seed values or seed schedule.",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "§9 Reproducibility Statement",
+          "anchor": "probabilistic in nature, leading to statistical variance",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "training_budget",
+      "status": "not_applicable",
+      "description": "The work evaluates existing LLMs and does not train a model.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.3",
+          "anchor": "simulating ten conversations",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "inference_budget",
+      "status": "observed",
+      "description": "Estimated total API cost is about $5,000; all tasks use under 20k context tokens, most under 8k.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.3",
+          "anchor": "total cost of conducting simulations to be around $5,000",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "hyperparameters",
+      "status": "observed",
+      "description": "Main experiments use temperature 1.0 and default remaining hyperparameters; response cap 1,000 tokens, increased to 10,000 for o3 and Deepseek-R1.",
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix I",
+          "anchor": "temperature to T = 1.0",
+          "basis": "explicit"
+        },
+        {
+          "page": 30,
+          "section": "Appendix I",
+          "anchor": "increased the limit to 10,000 tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "physical_hardware",
+      "status": "not_present",
+      "description": "Model providers and local Ollama access are listed, but CPU/GPU hardware is not specified.",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix I",
+          "anchor": "Access Provider",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "implementation_sources",
+      "status": "observed",
+      "description": "Appendix J identifies benchmark sources and reuses official or maintained evaluators; the paper states code/data will be released upon acceptance.",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "§J.1",
+          "anchor": "re-use the evaluation codebase",
+          "basis": "explicit"
+        },
+        {
+          "page": 11,
+          "section": "§9 Reproducibility Statement",
+          "anchor": "plan to release the code used for simulation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "data_leakage_control",
+      "status": "not_present",
+      "description": "No explicit contamination audit is reported. The authors acknowledge that an early correct guess could reflect benchmark memorization.",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "§8 Ethics Statement",
+          "anchor": "whether due to benchmark memorization",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "failure_criteria",
+      "status": "observed",
+      "description": "Task-specific success is defined by official evaluators; invalid SQL/code or semantic mismatch yields zero, while refinement tasks use continuous metrics.",
+      "evidence": [
+        {
+          "page": 31,
+          "section": "§J.2-§J.3",
+          "anchor": "candidate is considered incorrect (Score = 0)",
+          "basis": "explicit"
+        },
+        {
+          "page": 32,
+          "section": "§J.5-§J.6",
+          "anchor": "automatically categorized as answer attempts",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "simulator_validation",
+      "status": "observed",
+      "description": "Manual inspection evaluates shard reveal/contextualization, strategy labels, extraction, and overall validity; the prose and table disagree on inspected conversation count.",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix D",
+          "anchor": "inspection of 200 simulated SHARDED conversations",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Table 2",
+          "anchor": "manual inspection of 100 simulated SHARDED conversations",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "formal_statistical_inference",
+      "status": "not_present",
+      "description": "The paper reports means and empirical percentiles but no estimator intervals, hypothesis-test specification, or multiple-comparison procedure.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.2",
+          "anchor": "averaged performance, aptitude, and unreliability",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "supplementary_experiments",
+      "status": "observed",
+      "description": "Gradual sharding, RECAP/SNOWBALL, system-prompt hinting, temperature, and translation experiments probe granularity, mitigations, and scope.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5.3-§6",
+          "anchor": "gradual sharding experiment",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "§G.1",
+          "anchor": "additional simulation types",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "Every tested model degrades on every main task under SHARDED, with 39% average degradation.",
+      "value": "P is described as approximately 90 in FULL and 65 in SHARDED; Table 1 aggregates a -39% degradation.",
+      "comparison": "SHARDED versus FULL across 15 models and six tasks.",
+      "statistical_method": "Per-instruction mean over 10 simulations, then corpus/task/model aggregation; no inferential interval or formal test reported.",
+      "module": "results",
+      "aggregate_unit": "instruction first, then task/model averages",
+      "visualization": "Table 1; Figure 1",
+      "author_interpretation": "The matched multi-turn setting exposes capability hidden by fully specified evaluation.",
+      "adverse_interpretation": "The result is conditional on a synthetic, narrow, analytical English stress test.",
+      "author_handling": "§8 explicitly limits interpretation to a controlled underspecification stress test.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§5.1",
+          "anchor": "every model sees its performance degrade on every task",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§8 Ethics Statement",
+          "anchor": "controlled underspecification stress test",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "CONCAT largely preserves FULL performance, supporting information preservation under rephrased shards.",
+      "value": "CONCAT averages 95.1% of FULL.",
+      "comparison": "CONCAT versus FULL.",
+      "statistical_method": "Aggregate performance ratio across main tasks/models; no uncertainty interval.",
+      "module": "results",
+      "aggregate_unit": "model-task cells",
+      "visualization": "Table 1",
+      "author_interpretation": "SHARDED loss is not explained by information loss in the shard wording.",
+      "adverse_interpretation": "Several smaller models retain only 86-92% under CONCAT, so paraphrase is not neutral for all models.",
+      "author_handling": "The text names these smaller-model exceptions and attributes them to weaker paraphrase robustness.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§5.1",
+          "anchor": "CONCAT performance averaging 95.1%",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§5.1",
+          "anchor": "smaller models struggle to generalize",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Stronger models get lost at a similar relative rate to weaker models.",
+      "value": "Average degradations for named strong models are 30-40%.",
+      "comparison": "Claude 3.7 Sonnet, Gemini 2.5, GPT-4.1 versus smaller models.",
+      "statistical_method": "Relative degradation aggregated across six tasks; denominator depends on each model's FULL score.",
+      "module": "results",
+      "aggregate_unit": "model",
+      "visualization": "Table 1",
+      "author_interpretation": "Single-turn strength does not prevent multi-turn degradation.",
+      "adverse_interpretation": "Lower-FULL models have less room for relative degradation.",
+      "author_handling": "The authors state this denominator effect directly.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§5.1",
+          "anchor": "get equally lost in conversation",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§5.1",
+          "anchor": "less scope for degradation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The average degradation is dominated by unreliability rather than aptitude loss.",
+      "value": "Aptitude drops 16%; unreliability increases 112%; fixed-instruction best-to-worst runs differ by 50 points on average.",
+      "comparison": "FULL versus SHARDED.",
+      "statistical_method": "Per-instruction 90th percentile and 90th-minus-10th percentile range, averaged across corpora.",
+      "module": "results",
+      "aggregate_unit": "instruction percentiles, then corpus/model aggregation",
+      "visualization": "Figure 5b",
+      "author_interpretation": "Lost in Conversation is principally a reliability phenomenon.",
+      "adverse_interpretation": "With only 10 runs per instruction, empirical tail percentiles are coarse and their estimation uncertainty is not reported.",
+      "author_handling": "Appendix E explains the estimands, while §9 notes that scaling repetitions could uncover additional findings.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§5.2",
+          "anchor": "average drop of 16%",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§5.2",
+          "anchor": "average increase of 112%",
+          "basis": "explicit"
+        },
+        {
+          "page": 11,
+          "section": "§9 Reproducibility Statement",
+          "anchor": "scaling up the experiments further might help",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The main effect appears once instructions span two or more turns in the gradual experiment.",
+      "value": "Both GPT-4o and GPT-4o-mini show a large reliability increase from two shards onward.",
+      "comparison": "One through eight shards.",
+      "statistical_method": "10 simulations per instruction/model; 31 claimed source instructions expanded to 248 variants, though Appendix L contains a conflicting 'eight instructions' sentence.",
+      "module": "ablation",
+      "aggregate_unit": "instruction variant",
+      "visualization": "Figure 5c",
+      "author_interpretation": "Providing everything at once is the only tested granularity that restores reliability.",
+      "adverse_interpretation": "The source instructions all had eight shards and are more complex than the corpus average; the sample-count inconsistency adds reporting ambiguity.",
+      "author_handling": "§5.3 acknowledges the complexity selection and says a varying-complexity design would confound granularity.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5.3",
+          "anchor": "with two-shard instructions and beyond",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5.3",
+          "anchor": "inherently more complex than the corpus average",
+          "basis": "explicit"
+        },
+        {
+          "page": 34,
+          "section": "Appendix L",
+          "anchor": "leading to a total of eight instructions",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Later first answer attempts are associated with higher performance on Code and Math.",
+      "value": "30.9 for first attempt in the first 20% versus 64.4 in the last 20%.",
+      "comparison": "Earliest versus latest first-answer timing bins.",
+      "statistical_method": "Conversations binned by normalized first-answer turn; averages across 15 models on two tasks.",
+      "module": "appendix",
+      "aggregate_unit": "simulated conversation",
+      "visualization": "Table 3",
+      "author_interpretation": "Premature answer attempts can plant incorrect assumptions.",
+      "adverse_interpretation": "Timing is observational, and four tasks could not be analyzed because attempts usually occurred on turn one.",
+      "author_handling": "The appendix reports the two-task restriction and labels the assumption mechanism a hypothesis.",
+      "evidence": [
+        {
+          "page": 23,
+          "section": "§F.1",
+          "anchor": "score of 30.9, less than half of the 64.4",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "§F.1",
+          "anchor": "only two observed a significant range",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Answer attempts grow longer over turns and remain longer even when correct.",
+      "value": "Final SHARDED attempts are 20-300% longer; correct Code is 27% longer and correct Database is 14% longer than FULL.",
+      "comparison": "Successive SHARDED attempts versus FULL/CONCAT and correct-only subsets.",
+      "statistical_method": "Mean extracted-answer character length by attempt index; filtered correct subset for Code/Database.",
+      "module": "appendix",
+      "aggregate_unit": "answer attempt",
+      "visualization": "Figure 8",
+      "author_interpretation": "Models retain invalid assumptions and bloat later solutions.",
+      "adverse_interpretation": "Length is a proxy; it does not directly identify which tokens encode invalid assumptions.",
+      "author_handling": "The text calls the result a hint of qualitative worsening, not a direct semantic analysis.",
+      "evidence": [
+        {
+          "page": 23,
+          "section": "§F.2",
+          "anchor": "tend to be 20-300% longer",
+          "basis": "explicit"
+        },
+        {
+          "page": 23,
+          "section": "§F.2",
+          "anchor": "hinting that the solutions are qualitatively worse",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Summary citations overweight first and last turns relative to middle turns.",
+      "value": "At turn 8, 20% cite turn-8 documents versus 8% for turns 2 and 3.",
+      "comparison": "Document introduction turn within eight-turn summaries.",
+      "statistical_method": "Citation shares averaged across 15 models; row totals may be under 100% due to hallucinated citations.",
+      "module": "appendix",
+      "aggregate_unit": "citation",
+      "visualization": "Figure 9",
+      "author_interpretation": "Loss-in-the-middle also occurs across conversation turns.",
+      "adverse_interpretation": "Model-specific heterogeneity is omitted and the analysis covers only Summary.",
+      "author_handling": "The authors state the model-specific magnitude varies and defer that analysis.",
+      "evidence": [
+        {
+          "page": 24,
+          "section": "§F.3",
+          "anchor": "20% of citations are to documents introduced in turn 8",
+          "basis": "explicit"
+        },
+        {
+          "page": 24,
+          "section": "§F.3",
+          "anchor": "do not include model-specific analyses",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "More verbose conversations perform worse on five of six tasks.",
+      "value": "Average P is 40.7 in the shortest quintile and 35.6 in the longest; task-level gains for short responses are described as 10-50%.",
+      "comparison": "Within-model-instruction verbosity quintiles.",
+      "statistical_method": "Ten runs split into five bins of two for each model-instruction pair, then averaged by task.",
+      "module": "appendix",
+      "aggregate_unit": "simulated conversation within model-instruction pair",
+      "visualization": "Table 4",
+      "author_interpretation": "Short responses avoid unnecessary assumptions and keep the conversation focused.",
+      "adverse_interpretation": "Actions reverses the pattern; verbosity may be an outcome of difficulty rather than a cause.",
+      "author_handling": "The Actions exception is reported, and the causal explanation is marked as a hypothesis.",
+      "evidence": [
+        {
+          "page": 25,
+          "section": "§F.4",
+          "anchor": "On five of the six tasks",
+          "basis": "explicit"
+        },
+        {
+          "page": 25,
+          "section": "§F.4",
+          "anchor": "We hypothesize that deterioration due to over-verbosity",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "RECAP and SNOWBALL help but do not restore FULL/CONCAT performance.",
+      "value": "SNOWBALL mitigates 15-20% of the FULL-to-SHARDED deterioration; RECAP performs better but is operationally unrealistic.",
+      "comparison": "RECAP/SNOWBALL versus SHARDED and FULL/CONCAT.",
+      "statistical_method": "10 simulations on all instructions from four tasks for GPT-4o and GPT-4o-mini.",
+      "module": "appendix",
+      "aggregate_unit": "instruction/model/task",
+      "visualization": "Table 5",
+      "author_interpretation": "Agent-side memory repetition is insufficient.",
+      "adverse_interpretation": "Only two models and four tasks are tested; RECAP knows the final turn.",
+      "author_handling": "The final-turn unrealism is stated explicitly.",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "§G.1",
+          "anchor": "mitigate the FULL-to-SHARDED performance deterioration by 15-20%",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "§G.1",
+          "anchor": "RECAP is an unrealistic setting",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "A system prompt warning produces only a small average change.",
+      "value": "+1% average, with +1 to +3 on two tasks, +7 on one, and -6 on one.",
+      "comparison": "GPT-4o SHARDED with versus without a multi-turn/underspecification hint.",
+      "statistical_method": "Four-task performance comparison; no uncertainty interval.",
+      "module": "appendix",
+      "aggregate_unit": "task",
+      "visualization": "Table 6",
+      "author_interpretation": "The hint changes behavior but does not prevent getting lost.",
+      "adverse_interpretation": "The average masks large task-direction heterogeneity.",
+      "author_handling": "All task-level directions are reported in the prose.",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "§G.1",
+          "anchor": "totaling a small improvement (+1%)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Lowering temperature improves single-turn reliability much more than multi-turn reliability.",
+      "value": "FULL/CONCAT U falls 50-80%; SHARDED remains around U=30 even with both temperatures at 0.",
+      "comparison": "Assistant temperatures 1.0/0.5/0.0 and user temperatures 1.0/0.5/0.0.",
+      "statistical_method": "20 runs per condition, 40 instructions, two models, four tasks.",
+      "module": "appendix",
+      "aggregate_unit": "instruction-temperature-model condition",
+      "visualization": "Table 7",
+      "author_interpretation": "Small early nondeterminism cascades over turns.",
+      "adverse_interpretation": "The intervention covers two models and a reduced task subset.",
+      "author_handling": "Appendix M reports the limited model/instruction sample.",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "§G.2",
+          "anchor": "there remains a large unreliability of around 30%",
+          "basis": "explicit"
+        },
+        {
+          "page": 34,
+          "section": "Appendix M",
+          "anchor": "two models",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Document translation does not show the main degradation pattern.",
+      "value": "FULL, CONCAT, and SHARDED BLEU remain within 10% for GPT-4o-mini and GPT-4o.",
+      "comparison": "Three simulation settings on 30 WMT 2019 document pairs.",
+      "statistical_method": "BLEU on ten-sentence documents sharded two sentences per turn.",
+      "module": "appendix",
+      "aggregate_unit": "document pair",
+      "visualization": "Table 8",
+      "author_interpretation": "The task is episodic and therefore not genuinely underspecified across turns.",
+      "adverse_interpretation": "BLEU may miss document-level coherence, weakening the negative control.",
+      "author_handling": "The appendix names BLEU's document-level limitation.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "§G.3",
+          "anchor": "do not exhibit degradation in performance",
+          "basis": "explicit"
+        },
+        {
+          "page": 28,
+          "section": "§G.3",
+          "anchor": "BLEU score does not adequately capture document-level nuances",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The simulator is usually valid under manual inspection.",
+      "value": "Overall Success 97.8%; shard fully revealed 96.0%; strategy accuracy 95.2%; extraction success 97.0%.",
+      "comparison": "Four inspected tasks and five validation criteria.",
+      "statistical_method": "Manual annotation of a reported 200 conversations in prose versus 100 in Table 2 caption; no inter-annotator agreement statistic.",
+      "module": "appendix",
+      "aggregate_unit": "turn and conversation",
+      "visualization": "Table 2",
+      "author_interpretation": "Simulator error cannot explain degradation beyond roughly 2%.",
+      "adverse_interpretation": "The sample-size contradiction and absent agreement measure reduce auditability.",
+      "author_handling": "Component-level error rates and examples of self-correction are reported.",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix D",
+          "anchor": "roughly 98% of inspected conversations",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Table 2",
+          "anchor": "manual inspection of 100 simulated SHARDED conversations",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "gradual_sharding",
+      "status": "observed",
+      "description": "Scale sensitivity/robustness: vary shard count from 1 to 8 while holding the underlying problem fixed.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5.3",
+          "anchor": "only modified factor is sharding granularity",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "recap_and_snowball",
+      "status": "observed",
+      "description": "Mechanism alternative: repeat all requirements once or cumulatively to test whether context reminders recover performance.",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "§G.1",
+          "anchor": "repeat the past user's turn information",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "system_prompt_hint",
+      "status": "observed",
+      "description": "Behavioral intervention: tell GPT-4o that the user may initially omit needed information.",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "§G.1",
+          "anchor": "ask for clarifications if needed",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "temperature",
+      "status": "observed",
+      "description": "Randomness sensitivity: vary assistant and user temperature over 0, 0.5, and 1.",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "§G.2",
+          "anchor": "assistant's temperature ... varied to three values",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "episodic_translation_negative_result",
+      "status": "observed",
+      "description": "Scope/negative result: an append-style translation task does not degrade under SHARDED.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "§G.3",
+          "anchor": "task can largely be accomplished at the sentence-level",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "qualitative_mechanism_analyses",
+      "status": "observed",
+      "description": "Four observational analyses target premature answering, answer bloat, turn-position attention, and verbosity.",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix F",
+          "anchor": "We identify four behaviors",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "component_deletion",
+      "status": "not_applicable",
+      "description": "The work proposes an evaluation environment rather than a trained modular model, so there is no learned component-deletion ablation.",
+      "evidence": []
+    },
+    {
+      "name": "compute_cost_analysis",
+      "status": "observed",
+      "description": "Main simulation cost is estimated at $5,000; sharding preparation requires about three author-hours per 100 instructions.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.3",
+          "anchor": "around $5,000",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "§G.3",
+          "anchor": "average of three hours of manual work",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "Sharded simulation creates matched single- and multi-turn versions of existing generation tasks.",
+      "origin": "§1 Introduction, PDF p.2",
+      "status": "closed",
+      "method_response": "§3 defines shard creation and the five disclosure schedules; Appendices B-C formalize validity and production.",
+      "evidence_response": "CONCAT retains 95.1% of FULL on average; manual simulator inspection reports 97.8% overall success.",
+      "conclusion_response": "§7 recovers the fixed-task comparison.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "§1",
+          "anchor": "leverages existing instructions",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§5.1",
+          "anchor": "CONCAT performance averaging 95.1%",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Tested LLM performance drops sharply in multi-turn underspecified conversation.",
+      "origin": "Abstract and §1, PDF p.1-p.2",
+      "status": "closed",
+      "method_response": "FULL and SHARDED compare the same task and task evaluator.",
+      "evidence_response": "Table 1 reports every model-task pair degrading, averaging -39%.",
+      "conclusion_response": "§7 restates significant degradation on the fixed task set.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§5.1",
+          "anchor": "every model sees its performance degrade on every task",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Unreliability, more than aptitude loss, explains the average degradation.",
+      "origin": "Abstract and §1, PDF p.1-p.2",
+      "status": "closed",
+      "method_response": "§4.2 defines P, A, and U; Appendix E demonstrates their distinction.",
+      "evidence_response": "Figure 5b reports A down 16% and U up 112%.",
+      "conclusion_response": "§7 identifies a significant reliability decrease.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§5.2",
+          "anchor": "due in large part to increased model unreliability",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Premature answers, answer bloat, middle-turn neglect, and verbosity are root causes of getting lost.",
+      "origin": "Abstract and §1, PDF p.1-p.2",
+      "status": "partially_closed",
+      "method_response": "Appendix F defines four post-hoc observational analyses.",
+      "evidence_response": "Each behavior correlates with lower performance or skewed attention, but no intervention isolates its causal effect; coverage varies by task.",
+      "conclusion_response": "§7 compresses three behaviors into a causal-sounding explanation.",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix F",
+          "anchor": "purpose ... is to discern root causes",
+          "basis": "explicit"
+        },
+        {
+          "page": 25,
+          "section": "§F.4",
+          "anchor": "We hypothesize that deterioration",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Two or more turns are sufficient for models to get lost, regardless of granularity.",
+      "origin": "§5.3, PDF p.9",
+      "status": "partially_closed",
+      "method_response": "Gradual sharding holds the underlying problem fixed while merging shards.",
+      "evidence_response": "Two models on a selected complex-instruction subset degrade from two shards onward.",
+      "conclusion_response": "The conclusion does not restate the universal two-turn boundary.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5.3",
+          "anchor": "two-shard instructions and beyond",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5.3",
+          "anchor": "inherently more complex than the corpus average",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Agent-style repetition, prompting, and lower temperature do not solve multi-turn unreliability.",
+      "origin": "§6 Implications Summary, PDF p.9",
+      "status": "partially_closed",
+      "method_response": "Appendices G, M, and N define RECAP/SNOWBALL, prompt, and temperature interventions.",
+      "evidence_response": "The interventions are tested on reduced model/task subsets and improve some cells without restoring FULL.",
+      "conclusion_response": "§7 says known remediations are ineffective in multi-turn settings.",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "§G.1",
+          "anchor": "still lags behind FULL or CONCAT",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "§G.2",
+          "anchor": "lowering the temperature ... is ineffective",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The simulation likely underestimates unreliability in genuine human-AI conversation.",
+      "origin": "§2 and §8, PDF p.3 and p.11",
+      "status": "not_testable_here",
+      "method_response": "The study deliberately treats the simulator as a probe, not a user model.",
+      "evidence_response": "No real-user comparison is run; the direction of external bias is argued from simplification and structural advantage.",
+      "conclusion_response": "The conclusion stays with simulated settings.",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§2",
+          "anchor": "not user behavior",
+          "basis": "explicit"
+        },
+        {
+          "page": 11,
+          "section": "§8",
+          "anchor": "most likely an underestimate",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "LLM builders should jointly optimize aptitude and reliability for native multi-turn support.",
+      "origin": "§1 and §6, PDF p.2 and p.9",
+      "status": "not_testable_here",
+      "method_response": "The paper defines reliability targets but does not train a new model.",
+      "evidence_response": "Evaluation demonstrates a deficiency and limited mitigation, not efficacy of a builder intervention.",
+      "conclusion_response": "§7 repeats the call to action.",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "§G.2",
+          "anchor": "jointly optimize model aptitude and reliability",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "Appendix A Related Work on Underspecification",
+      "category": "other",
+      "start_page": 17,
+      "end_page": 17,
+      "main_text_calls": [
+        "§2 footnote 1, PDF p.2"
+      ],
+      "object_count": 4,
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix A",
+          "anchor": "other related prior works",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix B Precise Definition of Sharded Instructions",
+      "category": "extended_method",
+      "start_page": 17,
+      "end_page": 18,
+      "main_text_calls": [
+        "§3.1, PDF p.3"
+      ],
+      "object_count": 5,
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix B",
+          "anchor": "P1: Information Preservation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix C Semi-Automatic Sharding Process",
+      "category": "extended_method",
+      "start_page": 18,
+      "end_page": 19,
+      "main_text_calls": [
+        "§3.1 footnote 2, PDF p.3",
+        "§8, PDF p.10"
+      ],
+      "object_count": 1,
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix C",
+          "anchor": "three automated steps ... followed by a manual step",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix D Inspection of Simulated Sharded Conversation",
+      "category": "robustness",
+      "start_page": 19,
+      "end_page": 20,
+      "main_text_calls": [
+        "§3.2 footnote 3, PDF p.4"
+      ],
+      "object_count": 1,
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix D",
+          "anchor": "Overall Success 97.8",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix E Concrete Example of Loss in Aptitude vs. Reliability",
+      "category": "extended_method",
+      "start_page": 20,
+      "end_page": 21,
+      "main_text_calls": [
+        "§5.1 footnote 5, PDF p.7"
+      ],
+      "object_count": 4,
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix E",
+          "anchor": "same P = 60 while varying in aptitude",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix F Qualitative Analyses of Simulation Logs",
+      "category": "ablation",
+      "start_page": 21,
+      "end_page": 25,
+      "main_text_calls": [
+        "§5.2, PDF p.8-p.9"
+      ],
+      "object_count": 4,
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix F",
+          "anchor": "We identify four behaviors",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix G Implications",
+      "category": "additional_result",
+      "start_page": 25,
+      "end_page": 29,
+      "main_text_calls": [
+        "§6, PDF p.9-p.10"
+      ],
+      "object_count": 4,
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix G",
+          "anchor": "Implications for System and Agent Builders",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix H Assistant Response Categorization",
+      "category": "implementation_detail",
+      "start_page": 29,
+      "end_page": 29,
+      "main_text_calls": [
+        "§3.2, PDF p.3"
+      ],
+      "object_count": 7,
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix H",
+          "anchor": "seven response categories",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix I Model Access",
+      "category": "reproducibility",
+      "start_page": 29,
+      "end_page": 30,
+      "main_text_calls": [
+        "§4.3, PDF p.6"
+      ],
+      "object_count": 15,
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix I",
+          "anchor": "exact Version of the model accessed",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix J Task-Specific Implementation Details",
+      "category": "implementation_detail",
+      "start_page": 30,
+      "end_page": 33,
+      "main_text_calls": [
+        "§4.1 footnote 4, PDF p.5",
+        "§G.3, PDF p.27"
+      ],
+      "object_count": 7,
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix J",
+          "anchor": "task implementation details",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix K Example Simulated Conversation",
+      "category": "qualitative_example",
+      "start_page": 33,
+      "end_page": 34,
+      "main_text_calls": [
+        "§3.2, PDF p.4"
+      ],
+      "object_count": 1,
+      "evidence": [
+        {
+          "page": 34,
+          "section": "Appendix K",
+          "anchor": "correct answer ... 85,000 calories",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix L Gradual Sharding Implementation",
+      "category": "ablation",
+      "start_page": 33,
+      "end_page": 34,
+      "main_text_calls": [
+        "§5.3, PDF p.9"
+      ],
+      "object_count": 1,
+      "evidence": [
+        {
+          "page": 34,
+          "section": "Appendix L",
+          "anchor": "ranging from two to eight shards",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix M Temperature Experiment Implementation",
+      "category": "ablation",
+      "start_page": 34,
+      "end_page": 35,
+      "main_text_calls": [
+        "§G.2, PDF p.27"
+      ],
+      "object_count": 1,
+      "evidence": [
+        {
+          "page": 34,
+          "section": "Appendix M",
+          "anchor": "20 runs per condition",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix N Recap & Snowball Experiment Implementation",
+      "category": "ablation",
+      "start_page": 35,
+      "end_page": 35,
+      "main_text_calls": [
+        "§G.1, PDF p.25-p.26"
+      ],
+      "object_count": 1,
+      "evidence": [
+        {
+          "page": 35,
+          "section": "Appendix N",
+          "anchor": "appended the recap turn",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix O On Obtaining Deterministic Outputs from LLMs",
+      "category": "other",
+      "start_page": 35,
+      "end_page": 35,
+      "main_text_calls": [
+        "§G.2, PDF p.27"
+      ],
+      "object_count": 0,
+      "evidence": [
+        {
+          "page": 35,
+          "section": "Appendix O",
+          "anchor": "temperatures to zero still leads to high unreliability",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Prompts: O.1 Sharding and O.2 Experiments",
+      "category": "reproducibility",
+      "start_page": 36,
+      "end_page": 41,
+      "main_text_calls": [
+        "Appendix C, PDF p.18",
+        "§3.2, PDF p.3-p.4"
+      ],
+      "object_count": 6,
+      "evidence": [
+        {
+          "page": 36,
+          "section": "Prompts O.1",
+          "anchor": "We show the prompts for the sharding process",
+          "basis": "explicit"
+        },
+        {
+          "page": 39,
+          "section": "Prompts O.2",
+          "anchor": "specific prompts to simulate the conversation",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_analysis": {
+    "relative_length": "Appendix occupies PDF p.17-p.41 (25 physical pages), versus main content ending on p.11; it is approximately 2.3 times the main-body physical-page span.",
+    "main_text_dependency": "The headline drop is supported in the main body, but simulator validity, formal shard properties, task-specific evaluation, four mechanism analyses, and all intervention details require the appendix.",
+    "main_body_decision_objects": "Figure 1, Figure 4, Table 1, Figure 5, P/A/U definitions, the gradual-sharding summary, and explicit limitations remain in the main body.",
+    "missing_from_appendix": "No real-user validation, physical hardware specification, contamination audit, formal inferential uncertainty analysis, or model-specific loss-in-middle-turns table is supplied.",
+    "self_containment_effect": "The main body is self-contained for the existence and descriptive decomposition of the main effect, but not for the claimed behavioral mechanism or replication of task evaluators.",
+    "evidence": {
+      "page": 8,
+      "section": "§5.2",
+      "anchor": "Appendix F explores potential root causes",
+      "basis": "interpretation"
+    }
+  },
+  "limitations": [
+    {
+      "name": "simulation_external_validity",
+      "status": "observed",
+      "description": "Automated conversations are not representative of natural human-AI dialogue; findings are framed as a controlled stress test.",
+      "codes": [
+        "scope",
+        "generality",
+        "deployment"
+      ],
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§8 Ethics Statement",
+          "anchor": "rather than a direct measurement",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "narrow_conversation_structure",
+      "status": "observed",
+      "description": "At most one new shard is revealed per turn; the final turn contains all required information; high-level intent is always present in the first turn.",
+      "codes": [
+        "assumption",
+        "generality"
+      ],
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§8",
+          "anchor": "rather narrow structure",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "minimal_shards",
+      "status": "observed",
+      "description": "Minimal shards may be unrealistic and potentially adversarial.",
+      "codes": [
+        "data",
+        "generality"
+      ],
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§8",
+          "anchor": "unrealistic and potentially adversarial",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "sharded_scoring_advantage",
+      "status": "observed",
+      "description": "Maximum-over-turn scoring gives SHARDED more answer opportunities than FULL, including lucky guesses or memorized answers.",
+      "codes": [
+        "metric"
+      ],
+      "evidence": [
+        {
+          "page": 11,
+          "section": "§8",
+          "anchor": "scoring mechanism itself favors the sharded setting",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "analytical_tasks_only",
+      "status": "observed",
+      "description": "The six tasks require analytical solutions; creative writing and other open-ended domains are outside the evidence.",
+      "codes": [
+        "scope",
+        "generality"
+      ],
+      "evidence": [
+        {
+          "page": 11,
+          "section": "§8",
+          "anchor": "focus on analytical tasks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "english_text_only",
+      "status": "observed",
+      "description": "Other languages and multimodal user or assistant utterances are not tested.",
+      "codes": [
+        "scope",
+        "generality"
+      ],
+      "evidence": [
+        {
+          "page": 11,
+          "section": "§8",
+          "anchor": "text-only tasks in the English language",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "regular_context_only",
+      "status": "observed",
+      "description": "The study is not a long-context stress test; most tasks fit within 8k and all within 20k tokens.",
+      "codes": [
+        "scope"
+      ],
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.3",
+          "anchor": "not to stress-test long-context capabilities",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "summary_model_exclusions",
+      "status": "observed",
+      "description": "Phi-4 and OLMo-2-13B are excluded from Summary because of context limits.",
+      "codes": [
+        "compute",
+        "scope"
+      ],
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.3",
+          "anchor": "were excluded from it",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "api_reproducibility",
+      "status": "observed",
+      "description": "Closed API models may be deprecated, preventing exact future reruns.",
+      "codes": [
+        "deployment",
+        "reproducibility"
+      ],
+      "evidence": [
+        {
+          "page": 11,
+          "section": "§9",
+          "anchor": "exact experiments will not be possible",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "stochastic_reproducibility",
+      "status": "observed",
+      "description": "Ten repetitions leave statistical variance; larger repetition budgets might reveal missed findings.",
+      "codes": [
+        "compute",
+        "metric"
+      ],
+      "evidence": [
+        {
+          "page": 11,
+          "section": "§9",
+          "anchor": "statistical variance in the results",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "gradual_sharding_selection",
+      "status": "observed",
+      "description": "Gradual sharding uses inherently complex eight-shard source instructions, limiting the two-turn generalization.",
+      "codes": [
+        "data",
+        "generality",
+        "causality"
+      ],
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5.3",
+          "anchor": "inherently more complex than the corpus average",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "mechanism_identification",
+      "status": "observed",
+      "description": "Mechanism analyses are observational and task-restricted; the paper often uses 'hypothesize' or 'likely' for causal explanations.",
+      "codes": [
+        "causality",
+        "scope"
+      ],
+      "evidence": [
+        {
+          "page": 23,
+          "section": "§F.1",
+          "anchor": "We hypothesize that this is due",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "§F.1",
+          "anchor": "only two observed a significant range",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "summary_metric_length_bias",
+      "status": "observed",
+      "description": "Joint Score is recall-based and favors longer summaries; outputs above 300 words are truncated proportionally before evaluation.",
+      "codes": [
+        "metric"
+      ],
+      "evidence": [
+        {
+          "page": 33,
+          "section": "§J.6",
+          "anchor": "longer summaries are likely to score higher",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "translation_metric_scope",
+      "status": "observed",
+      "description": "BLEU may not capture document-level nuances, weakening the translation scope test.",
+      "codes": [
+        "metric",
+        "generality"
+      ],
+      "evidence": [
+        {
+          "page": 28,
+          "section": "§G.3",
+          "anchor": "does not adequately capture document-level nuances",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "appendix_migration_of_mechanism_evidence",
+      "status": "observed",
+      "description": "The main body states four behavioral causes, while the analyses that support them are entirely in Appendix F (PDF p.21-p.25). This increases the evidence distance for the causal narrative.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§5.2",
+          "anchor": "Appendix F explores potential root causes",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 22,
+          "section": "Appendix F",
+          "anchor": "We identify four behaviors",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "aggregate_masks_heterogeneity",
+      "status": "observed",
+      "description": "The headline 39% and model-level averages compress task heterogeneity; the prose partly repairs this by naming domain exceptions.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§5.1",
+          "anchor": "more muted degradations in certain tasks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "inferential_language_without_test_specification",
+      "status": "observed",
+      "description": "Abstract and conclusion use 'significantly', but the methods specify empirical means/percentiles without a hypothesis test or estimator interval.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "exhibit significantly lower performance",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "§4.2",
+          "anchor": "averaged performance, aptitude, and unreliability",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "negative_scope_result_deferred",
+      "status": "observed",
+      "description": "The translation task that does not degrade is placed in Appendix G.3, while the main-body title and abstract omit this episodic-task boundary.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "§G.3",
+          "anchor": "do not exhibit degradation in performance",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "active_discussion_of_adverse_design_facts",
+      "status": "observed",
+      "description": "The authors proactively discuss the sharded scoring advantage, gradual-sample complexity, task exceptions, metric weaknesses, and simulator artificiality rather than hiding them.",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "§8",
+          "anchor": "scoring mechanism itself favors the sharded setting",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5.3",
+          "anchor": "design decision that affects interpretation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "sample_count_inconsistencies",
+      "status": "observed",
+      "description": "Appendix L says both eight and 31 source instructions; Appendix D prose says 200 inspected conversations while Table 2 says 100. These are reader-cost/reporting inconsistencies, not evidence of intent.",
+      "evidence": [
+        {
+          "page": 34,
+          "section": "Appendix L",
+          "anchor": "total of eight instructions",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Table 2",
+          "anchor": "100 simulated SHARDED conversations",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "conclusion_analysis": {
+    "paragraphs": [
+      {
+        "index": 1,
+        "moves": [
+          "restate_problem",
+          "recover_result",
+          "boundary",
+          "impact"
+        ],
+        "new_claim": "not_present",
+        "new_number": "not_present",
+        "evidence": {
+          "page": 10,
+          "section": "§7 Conclusion",
+          "anchor": "known remediations ... are ineffective",
+          "basis": "explicit"
+        }
+      }
+    ],
+    "closure": "The conclusion closes the fixed-task degradation, reliability decomposition, and mitigation findings. It does not restate the real-user boundary, gradual-sample restriction, or the translation negative result.",
+    "evidence": {
+      "page": 10,
+      "section": "§7 Conclusion",
+      "anchor": "on a fixed set of tasks",
+      "basis": "interpretation"
+    }
+  },
+  "lexical_rhetorical_analysis": {
+    "counting_scope": "Approximate main-body extraction through §9, excluding References, template header/footer, figure/table caption lines, and numeric-heavy lines; raw counts remain vulnerable to PDF word splitting.",
+    "approx_words": 6445,
+    "frequent_content_words": [
+      [
+        "multi-turn",
+        57
+      ],
+      [
+        "conversation",
+        52
+      ],
+      [
+        "models",
+        51
+      ],
+      [
+        "performance",
+        40
+      ],
+      [
+        "instructions",
+        38
+      ],
+      [
+        "sharded",
+        38
+      ],
+      [
+        "tasks",
+        35
+      ],
+      [
+        "aptitude",
+        29
+      ],
+      [
+        "simulation",
+        26
+      ],
+      [
+        "unreliability",
+        23
+      ],
+      [
+        "reliability",
+        20
+      ],
+      [
+        "degradation",
+        19
+      ]
+    ],
+    "frequent_bigrams": [
+      [
+        "sharded instructions",
+        14
+      ],
+      [
+        "multi-turn settings",
+        11
+      ],
+      [
+        "sharding process",
+        8
+      ],
+      [
+        "gradual sharding",
+        8
+      ],
+      [
+        "get lost",
+        7
+      ],
+      [
+        "performance degradation",
+        6
+      ],
+      [
+        "answer attempts",
+        6
+      ]
+    ],
+    "frequent_trigrams": [
+      [
+        "gradual sharding experiment",
+        6
+      ],
+      [
+        "aptitude and reliability",
+        5
+      ],
+      [
+        "single and multi-turn",
+        4
+      ]
+    ],
+    "claim_structures": {
+      "we show": 1,
+      "we find": 5,
+      "we demonstrate": 0,
+      "we propose": 2,
+      "we observe": 3,
+      "we observed": 1,
+      "we identify": 2,
+      "we argue": 2,
+      "we believe": 2,
+      "we hypothesize": 1,
+      "we conduct": 2,
+      "we call": 1
+    },
+    "strong_claims": "'confirm', 'all', 'significantly', 'skyrockets', and 'ineffective' cluster around the headline and mitigation claims.",
+    "weak_claims": "'likely', 'might', 'we believe', 'we hypothesize', and 'indicates' are used for causal explanations and external validity.",
+    "strong_to_weak_assessment": "Strong wording dominates the descriptive matched-setting result; weak wording dominates mechanisms and real-world extrapolation. The conclusion strengthens some appendix hypotheses by presenting assumptions/over-reliance as the materialized phenomenon.",
+    "context_note": "High-frequency terms are primarily domain and experimental-state nouns, not generic contribution boilerplate. 'get lost' is a deliberate metaphor repeated as a naming device.",
+    "tokenization_risks": "Small-model names, metric notation, hyphenated terms, ligatures, and table legends are easily mis-split by PDF extraction.",
+    "evidence": {
+      "page": 8,
+      "section": "§5.2",
+      "anchor": "unreliability skyrockets",
+      "basis": "interpretation"
+    }
+  },
+  "measurement_disagreements": [
+    {
+      "name": "appendix_boundary",
+      "status": "observed",
+      "description": "auto_metrics marks main_end_page_provisional=41 and no appendix. Manual reading finds References on p.11-p.16 and Appendix A beginning on p.17.",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix A",
+          "anchor": "A Related Work on Underspecification",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "figure_caption_count",
+      "status": "observed",
+      "description": "auto_metrics reports 8 figure captions. Manual inspection finds Figure 1 through Figure 10 (10 total); Figures 9 and 10 are likely missed.",
+      "evidence": [
+        {
+          "page": 24,
+          "section": "§F.3",
+          "anchor": "Figure 9",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 34,
+          "section": "Appendix K",
+          "anchor": "Figure 10",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "numbered_equations",
+      "status": "observed",
+      "description": "auto_metrics reports 2 provisional numbered equations. Manual inspection finds 8 displayed equation blocks and no printed equation numbers.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.2",
+          "anchor": "define three metrics",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 21,
+          "section": "Appendix E",
+          "anchor": "Situation 3",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "appendix_word_count",
+      "status": "observed",
+      "description": "auto_metrics assigns zero appendix words because it misses the boundary. Manual page map estimates approximately 13.8k words on p.17-p.41.",
+      "evidence": [
+        {
+          "page": 36,
+          "section": "Prompts O.1",
+          "anchor": "We show the prompts",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "gradual_sharding_sample_count",
+      "status": "observed",
+      "description": "§5.3 says 31 instructions. Appendix L first says 'a total of eight instructions' but later again says 31 and 248 variants. The internally consistent arithmetic is 31×8=248, so 'eight instructions' is likely a text error.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5.3",
+          "anchor": "selected 31 instructions",
+          "basis": "explicit"
+        },
+        {
+          "page": 34,
+          "section": "Appendix L",
+          "anchor": "total of eight instructions",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "simulator_inspection_sample_count",
+      "status": "observed",
+      "description": "Appendix D prose reports inspection of 200 conversations; Table 2 caption reports 100. The PDF does not resolve which denominator is correct.",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix D",
+          "anchor": "inspection of 200 simulated SHARDED conversations",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Table 2",
+          "anchor": "100 simulated SHARDED conversations",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "把同一 fully-specified instruction 拆成逐轮揭示的 shards，在任务与 evaluator 不变的配对设计中观察 performance；结果显示主损失来自 run-to-run unreliability，而非单纯 aptitude 下降，并以 premature attempts、answer bloat 与 turn-position attention 作为描述性机制线索（PDF p.2 §1，anchor: 'same information'; p.8 §5.2，anchor: 'increased model unreliability'）。",
+    "main_body_keeps": "正文保留 sharded simulation 的核心流程、六任务与 15 模型规模、P/A/U 定义、Table 1、Figure 5、gradual sharding、stakeholder implications 与外部效度限制，因此读者可在正文判断主效应与描述性分解（PDF p.4 §3.3，anchor: 'five types of conversation'; p.7-p.9 §5）。",
+    "appendix_moves": "附录承载 shard 的形式化性质与生成流程、simulator inspection、四项行为分析、所有 mitigation/temperature/translation 结果、task evaluator 细节、model versions、failure case 与完整 prompts。迁移不妨碍判断 39% 主效应，但削弱了正文对所谓 root causes 的自足性（PDF p.8 §5.2，anchor: 'Appendix F explores potential root causes'; p.21-p.25 Appendix F）。",
+    "best_pattern": "最有效模式是 matched FULL/CONCAT/SHARDED control 与 P/A/U decomposition 配合：CONCAT 排除大部分 rephrasing/information-loss 解释，Figure 5 再把均值下降拆成 aptitude 与 unreliability（PDF p.4 §3.3，anchor: 'control to ensure'; p.8 §5.2，anchor: 'average increase of 112%'）。",
+    "largest_gap": "最大缺口是机制主张的识别强度：Appendix F 主要给 correlation、length proxy 与 attention distribution，且覆盖任务不一；结论却将 premature assumptions 与 over-reliance 写成现象构成。另有 gradual sample 与 simulator inspection 两处 denominator 冲突（PDF p.22-p.25 Appendix F；p.34 Appendix L；p.19-p.20 Appendix D）。",
+    "transfer_rule": "未来论文若主张 interaction-induced degradation，应对同一底层任务做 matched disclosure comparison，加入等信息 paraphrase control，先报告 per-unit stochastic distribution，再将最关键 mechanism test 留在正文，而非只放 appendix（PDF p.4 §3.3；p.6 §4.2；p.8 §5.2）。",
+    "transfer_boundary": "该规则适用于能定义同一 target output、能构造 information-preserving disclosure schedules、并可重复评分的交互任务；不应直接外推到 creative、multimodal、non-English、real-user 或 episodic append-only tasks（PDF p.11 §8，anchor: 'focus on analytical tasks'; p.28 §G.3，anchor: 'task is episodic'）。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 166,
+    "claims_with_page_evidence": 166,
+    "status": "complete",
+    "counting_note": "Counts structured records with non-empty page evidence; the not_applicable component-deletion placeholder is excluded. Final-judgment strings carry inline page citations and are not added to this count."
+  }
+}
