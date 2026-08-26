@@ -58,3 +58,7 @@
 - ICML 2026 Orals：<https://icml.cc/virtual/2026/events/oral>
 - ICML 2026 Awards：<https://blog.icml.cc/2026/07/05/announcing-the-icml-2026-awards/>
 - NeurIPS 2026 CFP：<https://neurips.cc/Conferences/2026/CallForPapers>
+
+## PDF 版本边界
+
+正文篇幅、页级结构和附录长度以官方 conference PDF 为准。ICLR 使用官方 proceedings PDF。ICML 的 PMLR 卷未上线且 OpenReview 直连触发访问挑战时，`data/processed/preprint_sources.csv` 只提供按 OpenReview ID 对齐的 arXiv 临时入口。临时入口由 [ICML2026 数据集](https://huggingface.co/datasets/ai-conferences/ICML2026) 定位，属于次级获取线索。该入口不得静默替代 camera-ready 版本进入最终版面统计。临时深读结果须在官方 PDF 到位后复核页码、章节边界、图表位置和附录长度。
