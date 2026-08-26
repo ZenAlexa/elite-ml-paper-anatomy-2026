@@ -1,0 +1,192 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "icml-2026-01423817c82b",
+  "bibliography": {"title": "Skip a Layer or Loop It? Learning Program-of-Layers in LLMs", "conference": "ICML", "year": 2026, "selection_flags": ["oral", "spotlight"]},
+  "source_files": {"pdf": "corpus/preprints/icml-2026-01423817c82b.pdf", "pdf_verified": true, "supplementary": null, "source_kind": "verified_preprint", "source_url": "https://arxiv.org/pdf/2606.06574", "openreview_url": "https://openreview.net/forum?id=pl10b6EQAN"},
+  "page_map": {
+    "pdf_pages": 22, "main_pages": 10, "reference_pages": 2, "appendix_pages": 10,
+    "boundary_notes": "正文 p.1–10；References p.11–12；Appendix A–D p.13–22。",
+    "layout": {"column_layout": "two_column", "floating_objects": "Figures 1–8 and Tables 1–4 are interleaved with two-column text; Appendix Tables 5–11 are large floats.", "white_space": "Large tables reduce local text density on p.5, p.7–9 and p.17–20."},
+    "sections": [
+      {"title":"Abstract","module":"abstract","start_page":1,"end_page":1,"estimated_words":170},
+      {"title":"1 Introduction","module":"introduction","start_page":1,"end_page":2,"estimated_words":700},
+      {"title":"2 Dynamic Inference as a Program-of-Layers in LLMs","module":"theory","start_page":2,"end_page":5,"estimated_words":1700},
+      {"title":"3 Learning Program-of-Layers (POLAR) in LLMs","module":"method","start_page":5,"end_page":6,"estimated_words":1150},
+      {"title":"4.1 Experimental Setup","module":"experimental_design","start_page":7,"end_page":7,"estimated_words":430},
+      {"title":"4.2 Main Results","module":"results","start_page":7,"end_page":8,"estimated_words":800},
+      {"title":"4.3 Out-of-Distribution Performance","module":"results","start_page":8,"end_page":9,"estimated_words":420},
+      {"title":"5 Related Works","module":"related_work","start_page":9,"end_page":9,"estimated_words":400},
+      {"title":"6 Conclusion","module":"conclusion","start_page":9,"end_page":9,"estimated_words":150},
+      {"title":"Impact Statement","module":"limitations","start_page":10,"end_page":10,"estimated_words":210},
+      {"title":"References","module":"other","start_page":11,"end_page":12,"estimated_words":890},
+      {"title":"Appendix A Related Work","module":"appendix","start_page":13,"end_page":13,"estimated_words":740},
+      {"title":"Appendix B Searching the Execution Program Space","module":"appendix","start_page":14,"end_page":15,"estimated_words":560},
+      {"title":"Appendix C Experimental Results","module":"appendix","start_page":16,"end_page":20,"estimated_words":700},
+      {"title":"Appendix D Empirical Details","module":"appendix","start_page":21,"end_page":22,"estimated_words":450}
+    ]
+  },
+  "module_metrics": [
+    {"module":"abstract","status":"observed","estimated_words":170,"main_word_share":0.028,"figures":1,"tables":0,"algorithms":0,"displayed_equations":0},
+    {"module":"introduction","status":"observed","estimated_words":700,"main_word_share":0.114,"figures":0,"tables":0,"algorithms":0,"displayed_equations":0},
+    {"module":"related_work","status":"observed","estimated_words":400,"main_word_share":0.065,"figures":0,"tables":0,"algorithms":0,"displayed_equations":0},
+    {"module":"method","status":"observed","estimated_words":1150,"main_word_share":0.188,"figures":1,"tables":0,"algorithms":0,"displayed_equations":12},
+    {"module":"theory","status":"observed","estimated_words":1700,"main_word_share":0.277,"figures":6,"tables":1,"algorithms":0,"displayed_equations":3},
+    {"module":"experimental_design","status":"observed","estimated_words":430,"main_word_share":0.07,"figures":0,"tables":0,"algorithms":0,"displayed_equations":0},
+    {"module":"results","status":"observed","estimated_words":1220,"main_word_share":0.199,"figures":7,"tables":3,"algorithms":0,"displayed_equations":0},
+    {"module":"ablation","status":"not_present","estimated_words":0,"main_word_share":0.0,"figures":0,"tables":0,"algorithms":0,"displayed_equations":0},
+    {"module":"conclusion","status":"observed","estimated_words":150,"main_word_share":0.024,"figures":0,"tables":0,"algorithms":0,"displayed_equations":0},
+    {"module":"limitations","status":"observed","estimated_words":210,"main_word_share":0.034,"figures":0,"tables":0,"algorithms":0,"displayed_equations":0},
+    {"module":"appendix","status":"observed","estimated_words":2450,"main_word_share":null,"figures":0,"tables":7,"algorithms":1,"displayed_equations":5},
+    {"module":"other","status":"observed","estimated_words":890,"main_word_share":0.0,"figures":0,"tables":0,"algorithms":0,"displayed_equations":0}
+  ],
+  "abstract_sentences": [
+    {"index":1,"text":"Large language models perform inference with fixed depth and order and non-recurrent execution.","word_count":18,"functions":["object_scope","problem_gap"],"evidence":{"page":1,"section":"Abstract","anchor":"fixed depth and order","basis":"explicit"}},
+    {"index":2,"text":"POLAR exposes training-free dynamic programs that skip or loop pretrained layers.","word_count":32,"functions":["core_idea","method"],"evidence":{"page":1,"section":"Abstract","anchor":"layers can be packed as modules","basis":"explicit"}},
+    {"index":3,"text":"Most inputs admit shorter executions with equal or better accuracy, including corrections of original errors.","word_count":30,"functions":["qualitative_result"],"evidence":{"page":1,"section":"Abstract","anchor":"substantially shorter program executions","basis":"explicit"}},
+    {"index":4,"text":"Inference admits multiple valid latent computations beyond the standard forward pass.","word_count":15,"functions":["core_idea","qualitative_result"],"evidence":{"page":1,"section":"Abstract","anchor":"multiple valid latent computations","basis":"explicit"}},
+    {"index":5,"text":"A lightweight predictor generates input-specific skip/repeat programs.","word_count":29,"functions":["method"],"evidence":{"page":1,"section":"Abstract","anchor":"lightweight POLAR prediction network","basis":"explicit"}},
+    {"index":6,"text":"Mathematical benchmarks show gains over standard and dynamic-depth inference, often with fewer layers and OOD persistence.","word_count":31,"functions":["experimental_setup","qualitative_result"],"evidence":{"page":1,"section":"Abstract","anchor":"gains persist under out-of-distribution evaluation","basis":"explicit"}},
+    {"index":7,"text":"Fixed-depth execution captures a narrow subset of latent reasoning capacity.","word_count":17,"functions":["impact_claim"],"evidence":{"page":1,"section":"Abstract","anchor":"narrow subset of an LLM’s latent reasoning capacity","basis":"explicit"}}
+  ],
+  "introduction_moves": [
+    {"index":1,"move":"context","estimated_words":90,"evidence":{"page":1,"section":"§1 Introduction","anchor":"static, pre-defined architecture to all inputs","basis":"explicit"}},
+    {"index":2,"move":"problem","estimated_words":105,"evidence":{"page":1,"section":"§1 Introduction","anchor":"high variance in complexity and difficulty","basis":"explicit"}},
+    {"index":3,"move":"missing_insight","estimated_words":130,"evidence":{"page":1,"section":"§1 Introduction","anchor":"save more steps and compute on easier tasks","basis":"explicit"}},
+    {"index":4,"move":"core_idea","estimated_words":180,"evidence":{"page":2,"section":"§1 Introduction","anchor":"library of atomic functions","basis":"explicit"}},
+    {"index":5,"move":"method_preview","estimated_words":115,"evidence":{"page":2,"section":"§1 Introduction","anchor":"Monte-Carlo Tree Search","basis":"explicit"}},
+    {"index":6,"move":"result_preview","estimated_words":95,"evidence":{"page":2,"section":"§1 Introduction","anchor":"joint space of layer-skip/repeat","basis":"explicit"}},
+    {"index":7,"move":"method_preview","estimated_words":105,"evidence":{"page":2,"section":"§1 Introduction","anchor":"single-shot prediction problem","basis":"explicit"}},
+    {"index":8,"move":"contribution_list","estimated_words":125,"evidence":{"page":2,"section":"§1 Introduction","anchor":"This design offers several advantages","basis":"explicit"}},
+    {"index":9,"move":"scope_boundary","estimated_words":70,"evidence":{"page":2,"section":"§1 Introduction","anchor":"range of mathematical reasoning benchmarks","basis":"explicit"}}
+  ],
+  "related_work_moves": [
+    {"index":1,"move":"taxonomy","estimated_words":100,"evidence":{"page":9,"section":"§5 Related Works","anchor":"Early-exit and layer skipping methods","basis":"explicit"}},
+    {"index":2,"move":"credit_or_foundation","estimated_words":90,"evidence":{"page":9,"section":"§5 Related Works","anchor":"layer reuse and recurrence","basis":"explicit"}},
+    {"index":3,"move":"nearest_neighbor_contrast","estimated_words":90,"evidence":{"page":9,"section":"§5 Related Works","anchor":"offline diagnostic tool","basis":"explicit"}},
+    {"index":4,"move":"nearest_neighbor_contrast","estimated_words":80,"evidence":{"page":9,"section":"§5 Related Works","anchor":"predicts the entire execution program upfront","basis":"explicit"}},
+    {"index":5,"move":"gap_creation","estimated_words":100,"evidence":{"page":13,"section":"Appendix A","anchor":"pure test-time adaptation","basis":"explicit"}}
+  ],
+  "method_moves": [
+    {"index":1,"move":"setup_notation","estimated_words":150,"evidence":{"page":2,"section":"§2","anchor":"each layer defines a fixed computation function","basis":"explicit"}},
+    {"index":2,"move":"state_problem","estimated_words":120,"evidence":{"page":2,"section":"§2","anchor":"standard forward pass","basis":"explicit"}},
+    {"index":3,"move":"derive","estimated_words":130,"evidence":{"page":2,"section":"§2","anchor":"A program is defined as a finite sequence","basis":"explicit"}},
+    {"index":4,"move":"instantiate_algorithm","estimated_words":140,"evidence":{"page":3,"section":"§2","anchor":"use MCTS strictly as a diagnostic tool","basis":"explicit"}},
+    {"index":5,"move":"define_component","estimated_words":170,"evidence":{"page":5,"section":"§3.1","anchor":"binary boundary mask encoding the segmentation","basis":"explicit"}},
+    {"index":6,"move":"give_intuition","estimated_words":120,"evidence":{"page":5,"section":"§3.1","anchor":"valid execution programs are dominated by short","basis":"explicit"}},
+    {"index":7,"move":"define_component","estimated_words":180,"evidence":{"page":6,"section":"§3.1","anchor":"three operations {skip, keep, repeat}","basis":"explicit"}},
+    {"index":8,"move":"explain_mechanism","estimated_words":180,"evidence":{"page":6,"section":"§3.2","anchor":"layer embeddings as queries","basis":"explicit"}},
+    {"index":9,"move":"derive","estimated_words":180,"evidence":{"page":6,"section":"§3.2","anchor":"binary cross-entropy over boundary indicators","basis":"explicit"}},
+    {"index":10,"move":"instantiate_algorithm","estimated_words":140,"evidence":{"page":6,"section":"§3.2","anchor":"small beam search over segment-level operation choices","basis":"explicit"}},
+    {"index":11,"move":"connect_to_prediction","estimated_words":100,"evidence":{"page":6,"section":"§3.2","anchor":"ground-truth execution program","basis":"explicit"}},
+    {"index":12,"move":"connect_to_experiment","estimated_words":90,"evidence":{"page":7,"section":"§4.1","anchor":"fully frozen setting","basis":"explicit"}}
+  ],
+  "visual_inventory": [
+    {"kind":"figure","label":"Figure 1","module":"theory","page":1,"purpose":"示意 layer functions 的 skip/recurrent program。","evidence":{"page":1,"section":"Figure 1","anchor":"Program-of-layers","basis":"layout_observation"}},
+    {"kind":"figure","label":"Figure 2","module":"method","page":3,"purpose":"对比 sequential MCTS 与 direct POLAR prediction。","evidence":{"page":3,"section":"Figure 2","anchor":"MCTS (Sequential Search)","basis":"layout_observation"}},
+    {"kind":"figure","label":"Figure 3","module":"results","page":3,"purpose":"depth budget 与 MCTS program accuracy。","evidence":{"page":3,"section":"Figure 3","anchor":"Accuracy of MCTS discovered programs","basis":"layout_observation"}},
+    {"kind":"figure","label":"Figure 4","module":"results","page":3,"purpose":"C→C 与 W→C 的 total/effective depth。","evidence":{"page":3,"section":"Figure 4","anchor":"shorter valid solutions","basis":"layout_observation"}},
+    {"kind":"figure","label":"Figure 5","module":"results","page":4,"purpose":"recurrence budget 与 difficulty-conditioned operator demand。","evidence":{"page":4,"section":"Figure 5","anchor":"Test-time scaling via recurrence","basis":"layout_observation"}},
+    {"kind":"figure","label":"Figure 6","module":"results","page":4,"purpose":"accuracy 与 total layer executions。","evidence":{"page":4,"section":"Figure 6","anchor":"Accuracy vs. total layer executions","basis":"layout_observation"}},
+    {"kind":"figure","label":"Figure 7","module":"results","page":4,"purpose":"segment continuity 与 recurrence count。","evidence":{"page":4,"section":"Figure 7","anchor":"Structural bias of valid execution programs","basis":"layout_observation"}},
+    {"kind":"figure","label":"Figure 8","module":"results","page":8,"purpose":"pass@k scaling 与 unique-depth CDF。","evidence":{"page":8,"section":"Figure 8","anchor":"Pass@k accuracy and unique depth","basis":"layout_observation"}},
+    {"kind":"table","label":"Table 1","module":"results","page":5,"purpose":"四模型五难度的 Base/Skip/Loop/Skip&Loop accuracy。","evidence":{"page":5,"section":"Table 1","anchor":"Accuracy (%) of programs searched","basis":"layout_observation"}},
+    {"kind":"table","label":"Table 2","module":"results","page":7,"purpose":"LLaMA ID pass@1–5 基线比较。","evidence":{"page":7,"section":"Table 2","anchor":"Pass@k accuracy","basis":"layout_observation"}},
+    {"kind":"table","label":"Table 3","module":"results","page":8,"purpose":"Qwen1.5 OOD pass@1。","evidence":{"page":8,"section":"Table 3","anchor":"Out-of-distribution performance","basis":"layout_observation"}},
+    {"kind":"table","label":"Table 4","module":"results","page":9,"purpose":"预测器开销与端到端 latency。","evidence":{"page":9,"section":"Table 4","anchor":"Component-wise inference overhead","basis":"layout_observation"}},
+    {"kind":"algorithm","label":"Algorithm 1","module":"appendix","page":15,"purpose":"MCTS selection/expansion/simulation/backpropagation。","evidence":{"page":15,"section":"Appendix B.4","anchor":"Monte Carlo Tree Search for Execution Programs","basis":"layout_observation"}},
+    {"kind":"table","label":"Tables 5–7","module":"appendix","page":17,"purpose":"Qwen1.5、Qwen2.5、Qwen3 的完整 ID pass@k。","evidence":{"page":17,"section":"Appendix C.1","anchor":"detailed in-distribution results","basis":"layout_observation"}},
+    {"kind":"table","label":"Tables 8–10","module":"appendix","page":19,"purpose":"三模型 OOD pass@1。","evidence":{"page":19,"section":"Appendix C.2","anchor":"Out-of-Distribution Generalization","basis":"layout_observation"}},
+    {"kind":"table","label":"Table 11","module":"appendix","page":21,"purpose":"predictor/base parameter counts and ratios。","evidence":{"page":21,"section":"Appendix D.3","anchor":"Parameter size of the learned POLAR predictor","basis":"layout_observation"}}
+  ],
+  "equation_theory_inventory": [
+    {"kind":"displayed_equation","label":"f_i layer function","module":"theory","page":2,"role":"core_chain","evidence":{"page":2,"section":"§2","anchor":"each layer defines a fixed computation function","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"π program sequence","module":"theory","page":2,"role":"core_chain","evidence":{"page":2,"section":"§2","anchor":"A program is defined as a finite sequence","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"Fπ composition","module":"theory","page":2,"role":"core_chain","evidence":{"page":2,"section":"§2","anchor":"composed computation","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"skip/keep/repeat operators","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.1","anchor":"skip, keep, repeat","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"z_op operation vector","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.1","anchor":"categorical label vector","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"cross-attention X","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.2","anchor":"X = MHA(Q, K, V)","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"cross-layer encoder X′","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.2","anchor":"self-attention across layers","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"prediction logits","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.2","anchor":"Two linear heads produce logits","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"L_seg boundary BCE","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.2","anchor":"binary cross-entropy over boundary indicators","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"L_op masked CE","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.2","anchor":"masked cross-entropy","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"L total objective","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.2","anchor":"The final objective is","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"operation log probability","module":"method","page":6,"role":"core_chain","evidence":{"page":6,"section":"§3.2","anchor":"operation log-probabilities","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"f_i repeated formalization","module":"appendix","page":14,"role":"explanation","evidence":{"page":14,"section":"Appendix B.1","anchor":"each layer defines a fixed computation function","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"π repeated formalization","module":"appendix","page":14,"role":"explanation","evidence":{"page":14,"section":"Appendix B.1","anchor":"An execution program is defined","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"Fπ repeated composition","module":"appendix","page":14,"role":"explanation","evidence":{"page":14,"section":"Appendix B.1","anchor":"composed computation","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"binary reward r(π,x)","module":"appendix","page":14,"role":"diagnostic","evidence":{"page":14,"section":"Appendix B.3","anchor":"binary reward","basis":"explicit"}},
+    {"kind":"displayed_equation","label":"UCB with length penalty","module":"appendix","page":14,"role":"diagnostic","evidence":{"page":14,"section":"Appendix B.3","anchor":"UCB-style objective","basis":"explicit"}}
+  ],
+  "experimental_design": [
+    {"name":"frozen backbones","status":"observed","description":"Four pretrained instruction-tuned LLMs are evaluated with base parameters frozen.","evidence":[{"page":7,"section":"§4.1","anchor":"fully frozen setting","basis":"explicit"}]},
+    {"name":"DART-Math ID split","status":"observed","description":"Five difficulty levels; Appendix D deduplicates by question text and uses approximately 62.5/12.5/25 percent train/validation/test, totaling 4130/826/1651.","evidence":[{"page":21,"section":"Appendix D.1","anchor":"deduplicate examples within each difficulty level","basis":"explicit"}]},
+    {"name":"OOD benchmarks","status":"observed","description":"ASDiv, MAWPS and MMLU-Pro subject subsets are evaluated zero-shot after DART-Math training.","evidence":[{"page":7,"section":"§4.1","anchor":"out-of-distribution evaluation","basis":"explicit"}]},
+    {"name":"pass@k metric","status":"observed","description":"Probability that at least one of top-k beam programs or sampled outputs is correct; OOD defaults to pass@1.","evidence":[{"page":7,"section":"§4.1","anchor":"probability that at least one of the top-k candidates","basis":"explicit"}]},
+    {"name":"baselines","status":"observed","description":"Base greedy/sampling, ShortGPT, MindSkip, FlexiDepth and DR.LLM are compared.","evidence":[{"page":7,"section":"§4.1","anchor":"representative dynamic-computation methods","basis":"explicit"}]},
+    {"name":"direct prompting","status":"observed","description":"No chain-of-thought; prompt requires only a boxed final answer.","evidence":[{"page":21,"section":"Appendix D.4","anchor":"without eliciting chain-of-thought","basis":"explicit"}]},
+    {"name":"training configuration","status":"observed","description":"AdamW, validation-tuned learning-rate/batch/epoch grids, cosine schedule and linear warmup.","evidence":[{"page":21,"section":"Appendix D.2","anchor":"We use the AdamW optimizer","basis":"explicit"}]},
+    {"name":"runtime measurement","status":"observed","description":"Component and end-to-end latency are measured on Qwen1.5-MoE-A2.7B-Chat with 24 layers.","evidence":[{"page":9,"section":"Table 4","anchor":"with 24 layers","basis":"explicit"}]},
+    {"name":"random seeds and uncertainty","status":"not_present","description":"No seed count, repeated-run dispersion, confidence interval, hypothesis test or per-item failure table is reported.","evidence":[{"page":7,"section":"§4.1","anchor":"Experimental Setup","basis":"interpretation"}]},
+    {"name":"search and decoding budgets","status":"not_present","description":"K_max=4 is given, but N_sim, beam width, boundary threshold and MCTS wall-clock budget are absent.","evidence":[{"page":14,"section":"Appendix B","anchor":"number of simulations Nsim","basis":"interpretation"}]}
+  ],
+  "result_inventory": [
+    {"claim":"Skip&Loop is best in searched spaces","value":"LLaMA DM-1: 37.7/45.3/55.0/85.0 Base/Skip/Loop/Skip&Loop; +47.3pp","comparison":"Skip and Loop","statistical_method":"descriptive accuracy percentage","module":"results","evidence":[{"page":5,"section":"Table 1","anchor":"combining the two complementary operators produces the best","basis":"explicit"}]},
+    {"claim":"Short valid programs exist and correct some errors","value":"71.9% C→C; 34.0% W→C","comparison":"standard forward pass","statistical_method":"program-level fraction","module":"results","evidence":[{"page":4,"section":"Figure 4","anchor":"71.9% admit shorter valid programs","basis":"explicit"}]},
+    {"claim":"POLAR improves LLaMA ID accuracy","value":"Pass@5 gain +9.3/+5.7/+8.1/+6.6/+7.4pp for DM-1–5","comparison":"Base sampling","statistical_method":"pass@k accuracy","module":"results","evidence":[{"page":7,"section":"Table 2","anchor":"outperforms Base (sampling) across all difficulty levels","basis":"explicit"}]},
+    {"claim":"POLAR scales with candidate program count","value":"Macro-average 35.1→51.2% from pass@1→5; Base sampling 32.8→43.8%","comparison":"Base sampling","statistical_method":"macro-averaged pass@k","module":"results","evidence":[{"page":8,"section":"Figure 8","anchor":"structured execution-program exploration","basis":"explicit"}]},
+    {"claim":"OOD transfer is positive on Qwen1.5","value":"ASDiv 63.8 vs 59.1; MAWPS 46.7 vs 41.7; all Table 3 columns exceed Base","comparison":"Base greedy","statistical_method":"OOD pass@1","module":"results","evidence":[{"page":8,"section":"Table 3","anchor":"consistently outperforms standard inference","basis":"explicit"}]},
+    {"claim":"POLAR reduces latency","value":"3.05ms extra overhead; 0.83× runtime DM-1 and 0.95× DM-5","comparison":"Base 373.45ms","statistical_method":"wall-clock latency","module":"results","evidence":[{"page":9,"section":"Table 4","anchor":"Total additional overhead 3.05 ms","basis":"explicit"}]},
+    {"claim":"Appendix results extend ID/OOD directions","value":"Tables 5–10 report three further ID model tables and three OOD model tables; pass@5 gains are positive across listed DM levels","comparison":"Base sampling/greedy","statistical_method":"descriptive accuracy","module":"results","evidence":[{"page":17,"section":"Appendix C.1","anchor":"P O L AR achieves strong in-distribution performance","basis":"explicit"},{"page":19,"section":"Appendix C.2","anchor":"generalizes effectively to heterogeneous domains","basis":"explicit"}]},
+    {"claim":"Predictor is parameter-light","value":"2.11–2.12M parameters; 0.0148%–0.0623% of base","comparison":"frozen base LLM","statistical_method":"parameter ratio","module":"results","evidence":[{"page":21,"section":"Table 11","anchor":"approximately 2.1M parameters","basis":"explicit"}]}
+  ],
+  "ablation_inventory": [
+    {"name":"Skip vs Loop vs Skip&Loop","status":"observed","description":"Search-space/operator comparison identifies complementary recurrence and skipping.","evidence":[{"page":5,"section":"Table 1","anchor":"Skip&Loop","basis":"explicit"}]},
+    {"name":"recurrence budget","status":"observed","description":"Structural scaling diagnostic varies maximum additional recurrence steps.","evidence":[{"page":4,"section":"Figure 5(a)","anchor":"monotonic increase","basis":"explicit"}]},
+    {"name":"component deletion","status":"not_present","description":"No deletion of heads, encoder, operation vocabulary or loss term is reported.","evidence":[{"page":6,"section":"§3.2","anchor":"The final objective is","basis":"interpretation"}]},
+    {"name":"K_max/beam/threshold sensitivity","status":"not_present","description":"The paper fixes K_max=4 and uses beam search without sensitivity curves.","evidence":[{"page":5,"section":"§3.1","anchor":"We set Kmax = 4","basis":"explicit"}]}
+  ],
+  "claim_closure": [
+    {"claim":"Multiple valid programs exist beyond standard forward","origin":"§1–§2","status":"partially_closed","method_response":"Function composition and constrained MCTS","evidence_response":"Figures 3–7 and Table 1","conclusion_response":"§6 recalls multiple valid programs","evidence":[{"page":2,"section":"§2","anchor":"multiple distinct executions","basis":"explicit"}]},
+    {"claim":"Skip&Loop improves accuracy","origin":"Finding 1","status":"closed","method_response":"Three operation vocabulary","evidence_response":"Table 1 across four models/five levels","conclusion_response":"§6 recalls skip/repeat execution","evidence":[{"page":5,"section":"Table 1","anchor":"highest accuracy","basis":"explicit"}]},
+    {"claim":"Short programs preserve/correct outputs","origin":"Finding 2","status":"partially_closed","method_response":"MCTS length-aware program search","evidence_response":"71.9% C→C and 34.0% W→C","conclusion_response":"§6 says many programs are shorter and corrective","evidence":[{"page":4,"section":"Figure 4","anchor":"W→C","basis":"explicit"}]},
+    {"claim":"Predictor replaces online search","origin":"§1","status":"closed","method_response":"Boundary/operation heads and beam decoding","evidence_response":"Tables 2–4 and Figure 8","conclusion_response":"§6 recalls lightweight framework","evidence":[{"page":6,"section":"§3.2","anchor":"decoded in two stages","basis":"explicit"}]},
+    {"claim":"OOD generalization","origin":"§1","status":"partially_closed","method_response":"Frozen input-conditioned execution","evidence_response":"Tables 3 and 8–10","conclusion_response":"§6 says in- and out-of-distribution gains","evidence":[{"page":8,"section":"Table 3","anchor":"OOD performance","basis":"explicit"}]},
+    {"claim":"Latency reduction","origin":"§1","status":"partially_closed","method_response":"Small predictor and fewer executed layers","evidence_response":"Table 4 one 24-layer model","conclusion_response":"§6 recalls efficient inference","evidence":[{"page":9,"section":"Table 4","anchor":"reduces end-to-end latency","basis":"explicit"}]},
+    {"claim":"High-stakes safety and energy benefits","origin":"Impact Statement","status":"not_testable_here","method_response":"No safety or energy method","evidence_response":"No corresponding experiment","conclusion_response":"Future evaluation requested","evidence":[{"page":10,"section":"Impact Statement","anchor":"Before applying dynamic execution in high-stakes domains","basis":"explicit"}]}
+  ],
+  "appendix_inventory": [
+    {"title":"A. Related Work","category":"other","start_page":13,"end_page":13,"main_text_calls":["§5 Related Works"],"evidence":[{"page":13,"section":"Appendix A","anchor":"Dynamic Routing and Modular Inference","basis":"layout_observation"}]},
+    {"title":"B. Searching the Execution Program Space","category":"extended_method","start_page":14,"end_page":15,"main_text_calls":["§2 says MCTS is diagnostic; §2 says details are in Appendix B"],"evidence":[{"page":14,"section":"Appendix B","anchor":"search procedure used to test the conjecture","basis":"explicit"}]},
+    {"title":"C. Experimental Results","category":"additional_result","start_page":16,"end_page":20,"main_text_calls":["§4.2 Appendix C.1","§4.3 Appendix C.2"],"evidence":[{"page":16,"section":"Appendix C","anchor":"full quantitative comparisons","basis":"explicit"}]},
+    {"title":"D.1 Dataset Details","category":"dataset_detail","start_page":21,"end_page":21,"main_text_calls":["§4.1 dataset summary"],"evidence":[{"page":21,"section":"Appendix D.1","anchor":"After deduplication","basis":"explicit"}]},
+    {"title":"D.2–D.4 Empirical Details","category":"reproducibility","start_page":21,"end_page":22,"main_text_calls":["§4.1 training details","§4.2 prompt/metric context"],"evidence":[{"page":21,"section":"Appendix D.2–D.4","anchor":"All hyperparameters are selected via validation tuning","basis":"explicit"}]}
+  ],
+  "limitations": [
+    {"name":"restricted program space","status":"observed","description":"MCTS block size/repetition are at most 4; POLAR uses K_max=4 and single-repeat.","evidence":[{"page":14,"section":"Appendix B.2","anchor":"k, r ≤ 4","basis":"explicit"}]},
+    {"name":"MCTS cost","status":"observed","description":"MCTS is diagnostic and per-input search is described as expensive; N_sim and runtime are absent.","evidence":[{"page":3,"section":"§2","anchor":"strictly as a diagnostic tool","basis":"explicit"}]},
+    {"name":"domain coverage","status":"observed","description":"Experiments focus on mathematical reasoning, ASDiv/MAWPS and MMLU-Pro.","evidence":[{"page":10,"section":"Impact Statement","anchor":"experiments focus on mathematical reasoning","basis":"explicit"}]},
+    {"name":"latency coverage","status":"observed","description":"Latency is measured only on Qwen1.5 with 24 layers and DM-1/DM-5 examples.","evidence":[{"page":9,"section":"Table 4","anchor":"Qwen1.5-MoE-A2.7B-Chat with 24 layers","basis":"explicit"}]},
+    {"name":"statistical uncertainty","status":"not_present","description":"No seed dispersion, intervals, tests or per-example failures.","evidence":[{"page":7,"section":"§4.1","anchor":"Experimental Setup","basis":"interpretation"}]},
+    {"name":"high-stakes safety","status":"observed","description":"Impact Statement requests robustness, calibration, interpretability and safety before high-stakes use.","evidence":[{"page":10,"section":"Impact Statement","anchor":"robustness, calibration, interpretability, and safety","basis":"explicit"}]}
+  ],
+  "adverse_presentation_strategies": [
+    {"name":"aggregate masking","status":"observed","description":"Cross-domain claims use aggregate accuracy and words such as consistently/often without dispersion.","evidence":[{"page":8,"section":"Table 3","anchor":"consistently outperforms standard inference","basis":"explicit"}]},
+    {"name":"appendix migration","status":"observed","description":"MCTS details, full results and training details are deferred to Appendix B–D.","evidence":[{"page":7,"section":"§4.1","anchor":"More dataset and training details are in Appendix D","basis":"explicit"}]},
+    {"name":"delayed failure discussion","status":"observed","description":"Safety and deployment limits appear in Impact Statement after the main conclusion.","evidence":[{"page":10,"section":"Impact Statement","anchor":"Potential misuse includes","basis":"explicit"}]},
+    {"name":"selected efficiency case","status":"observed","description":"Latency evidence is a single 24-layer Qwen configuration with two difficulty rows.","evidence":[{"page":9,"section":"Table 4","anchor":"End-to-end latency","basis":"layout_observation"}]}
+  ],
+  "measurement_disagreements": [
+    {"name":"main/appendix boundary","status":"observed","description":"preprint_auto_metrics.csv provisionally places main_end_page at 22 and appendix_start_page at 12; page reading identifies main p.1–10, references p.11–12, appendix p.13–22.","evidence":[{"page":13,"section":"Appendix A","anchor":"A. Related Work","basis":"layout_observation"}]},
+    {"name":"visual object count","status":"observed","description":"Automatic caption count undercounts figures; visual inventory has Figures 1–8, Tables 1–11 and Algorithm 1.","evidence":[{"page":8,"section":"Figure 8","anchor":"Pass@k accuracy and unique depth","basis":"layout_observation"}]}
+  ],
+  "final_judgment": {
+    "single_storyline":"受限 MCTS 发现多种 layer execution，再把连续 segment 与少量 recurrence 编码为 input-conditioned predictor，转为一次预测。〔p.2 §2；p.5–6 §3；“predicts the entire execution program upfront”〕",
+    "main_body_keeps":"正文保留 conjecture、四个 Finding、表示与损失、主表、OOD 代表性结果、pass@k scaling 和 latency。〔p.3–9〕",
+    "appendix_moves":"附录承载 MCTS、完整模型结果、去重与训练网格、predictor 参数和 direct prompt；N_sim、seed、beam width、threshold 仍缺失。〔p.14–22〕",
+    "best_pattern":"现象→结构统计→表示约束→部署测量：Figure 4–7 将短程序、难度和 segment 结构连接到 K_max=4/single-repeat。〔p.4–6〕",
+    "largest_gap":"predictor 对 MCTS supervision 的依赖、搜索成本和随机性没有量化；OOD 与效率也只覆盖选定 benchmark 和单一 latency case。〔p.7–10〕",
+    "transfer_rule":"先报告搜索空间中有效解的结构，再把高频结构转为表示约束，并分别用 scaling、短程序和端到端 latency 回收能力、效率和可部署性。〔p.4–9〕",
+    "transfer_boundary":"规则适用于有可靠 correctness signal、离散控制动作和冻结基础模型的 test-time adaptation；无逐题 validity 或需要复杂长程重排的任务不应直接采用 K_max=4。〔p.5、p.14〕"
+  },
+  "evidence_coverage": {"substantive_claims": 45, "claims_with_page_evidence": 45, "status": "complete", "basis": "摘要、引言、方法、理论、设计、结果、限制、附录和最终判断中的实质判断均带物理页码、章节和短锚点。"}
+}
