@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
+import random
 import statistics
 from collections import Counter, defaultdict
 
@@ -9,6 +11,12 @@ from common import PROCESSED, ROOT, load_complete_reading, read_csv, write_csv
 
 
 VIEWS = ("foundation_200", "replication_200", "combined_400")
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Compare the frozen 200-paper cohorts with identical estimands.")
+    parser.add_argument("--bootstrap-replicates", type=int, default=2000)
+    return parser.parse_args()
 
 
 def weight(sample: dict[str, str], view: str) -> float:
@@ -21,6 +29,17 @@ def weighted_mean(values: list[tuple[float, float]]) -> float | str:
         return ""
     denominator = sum(item_weight for _, item_weight in values)
     return round(sum(value * item_weight for value, item_weight in values) / denominator, 9)
+
+
+def quantile(values: list[float], probability: float) -> float:
+    ordered = sorted(values)
+    if not ordered:
+        raise ValueError("quantile requires at least one value")
+    position = (len(ordered) - 1) * probability
+    lower = int(position)
+    upper = min(lower + 1, len(ordered) - 1)
+    fraction = position - lower
+    return ordered[lower] * (1.0 - fraction) + ordered[upper] * fraction
 
 
 def reading_views(
@@ -83,6 +102,9 @@ def paper_scalars(reading: dict[str, object]) -> dict[str, float]:
 
 
 def main() -> None:
+    args = parse_args()
+    if args.bootstrap_replicates < 1:
+        raise SystemExit("--bootstrap-replicates must be positive")
     sample = read_csv(PROCESSED / "analysis_sample.csv")
     readings = {
         row["paper_id"]: reading
@@ -218,6 +240,128 @@ def main() -> None:
                     }
                 )
 
+    phase_stability_rows: list[dict[str, object]] = []
+    by_cohort_group: dict[
+        tuple[str, str, str], list[tuple[dict[str, str], dict[str, object]]]
+    ] = defaultdict(list)
+    for sample_row in sample:
+        reading = readings.get(sample_row["paper_id"])
+        if reading is not None:
+            by_cohort_group[
+                (sample_row["sample_cohort"], sample_row["conference"], sample_row["analysis_stratum"])
+            ].append((sample_row, reading))
+
+    common_groups = sorted(
+        {
+            (conference, stratum)
+            for cohort, conference, stratum in by_cohort_group
+            if stratum != "outstanding"
+            and ("foundation_200", conference, stratum) in by_cohort_group
+            and ("replication_200", conference, stratum) in by_cohort_group
+        }
+    )
+    for conference, stratum in common_groups:
+        foundation = by_cohort_group[("foundation_200", conference, stratum)]
+        replication = by_cohort_group[("replication_200", conference, stratum)]
+        metric_families: list[
+            tuple[str, str, dict[str, list[tuple[float, float]]], dict[str, list[tuple[float, float]]]]
+        ] = []
+
+        foundation_paper: dict[str, list[tuple[float, float]]] = defaultdict(list)
+        replication_paper: dict[str, list[tuple[float, float]]] = defaultdict(list)
+        for sample_row, reading in foundation:
+            for metric, value in paper_scalars(reading).items():
+                foundation_paper[metric].append((value, weight(sample_row, "foundation_200")))
+        for sample_row, reading in replication:
+            for metric, value in paper_scalars(reading).items():
+                replication_paper[metric].append((value, weight(sample_row, "replication_200")))
+        metric_families.append(("paper", "", foundation_paper, replication_paper))
+
+        for module in MODULES:
+            foundation_module: dict[str, list[tuple[float, float]]] = defaultdict(list)
+            replication_module: dict[str, list[tuple[float, float]]] = defaultdict(list)
+            for cohort_name, group, target in (
+                ("foundation_200", foundation, foundation_module),
+                ("replication_200", replication, replication_module),
+            ):
+                for sample_row, reading in group:
+                    item = next(entry for entry in reading["module_metrics"] if entry["module"] == module)
+                    visual_objects = item["figures"] + item["tables"] + item["algorithms"]
+                    values = {
+                        "present": float(item["status"] == "observed"),
+                        "estimated_words": float(item["estimated_words"]),
+                        "main_word_share": (
+                            float(item["main_word_share"]) if item["main_word_share"] is not None else None
+                        ),
+                        "figures": float(item["figures"]),
+                        "tables": float(item["tables"]),
+                        "algorithms": float(item["algorithms"]),
+                        "displayed_equations": float(item["displayed_equations"]),
+                        "visual_objects": float(visual_objects),
+                        "visual_objects_per_1000_words": (
+                            1000.0 * visual_objects / item["estimated_words"] if item["estimated_words"] else None
+                        ),
+                        "equations_per_1000_words": (
+                            1000.0 * item["displayed_equations"] / item["estimated_words"]
+                            if item["estimated_words"]
+                            else None
+                        ),
+                    }
+                    item_weight = weight(sample_row, cohort_name)
+                    for metric, value in values.items():
+                        if value is not None:
+                            target[metric].append((value, item_weight))
+            metric_families.append(("module", module, foundation_module, replication_module))
+
+        for family, module, foundation_metrics, replication_metrics in metric_families:
+            for metric in sorted(set(foundation_metrics) & set(replication_metrics)):
+                foundation_values = foundation_metrics[metric]
+                replication_values = replication_metrics[metric]
+                if not foundation_values or not replication_values:
+                    continue
+                foundation_mean = float(weighted_mean(foundation_values))
+                replication_mean = float(weighted_mean(replication_values))
+                rng = random.Random(
+                    f"elite-ml-paper-anatomy-2026-bootstrap-v1|{family}|{module}|{conference}|{stratum}|{metric}"
+                )
+                differences: list[float] = []
+                for _ in range(args.bootstrap_replicates):
+                    foundation_draw = [rng.choice(foundation_values) for _ in foundation_values]
+                    replication_draw = [rng.choice(replication_values) for _ in replication_values]
+                    differences.append(
+                        float(weighted_mean(replication_draw)) - float(weighted_mean(foundation_draw))
+                    )
+                difference = replication_mean - foundation_mean
+                phase_stability_rows.append(
+                    {
+                        "family": family,
+                        "module": module,
+                        "conference": conference,
+                        "analysis_stratum": stratum,
+                        "metric": metric,
+                        "n_foundation": len(foundation_values),
+                        "n_replication": len(replication_values),
+                        "foundation_design_weighted_mean": round(foundation_mean, 9),
+                        "replication_design_weighted_mean": round(replication_mean, 9),
+                        "replication_minus_foundation": round(difference, 9),
+                        "relative_difference_to_foundation": (
+                            round(difference / abs(foundation_mean), 9) if foundation_mean else ""
+                        ),
+                        "bootstrap_median_difference": round(statistics.median(differences), 9),
+                        "bootstrap_q025_difference": round(quantile(differences, 0.025), 9),
+                        "bootstrap_q975_difference": round(quantile(differences, 0.975), 9),
+                        "bootstrap_probability_replication_greater": round(
+                            sum(value > 0 for value in differences) / len(differences), 9
+                        ),
+                        "bootstrap_replicates": args.bootstrap_replicates,
+                        "status": (
+                            "complete"
+                            if len(views["foundation_200"]) == 200 and len(views["replication_200"]) == 200
+                            else "interim"
+                        ),
+                    }
+                )
+
     write_csv(
         table_dir / "cohort_module_comparison.csv",
         module_rows,
@@ -243,11 +387,26 @@ def main() -> None:
             "median_count_per_paper", "status",
         ],
     )
+    write_csv(
+        table_dir / "cohort_phase_stability.csv",
+        phase_stability_rows,
+        [
+            "family", "module", "conference", "analysis_stratum", "metric", "n_foundation",
+            "n_replication", "foundation_design_weighted_mean", "replication_design_weighted_mean",
+            "replication_minus_foundation", "relative_difference_to_foundation", "bootstrap_median_difference",
+            "bootstrap_q025_difference", "bootstrap_q975_difference",
+            "bootstrap_probability_replication_greater", "bootstrap_replicates", "status",
+        ],
+    )
     print(
         " ".join(
             [f"completed={len(readings)}"]
             + [f"{view}={len(rows)}" for view, rows in views.items()]
-            + [f"module_rows={len(module_rows)}", f"categorical_rows={len(categorical_rows)}"]
+            + [
+                f"module_rows={len(module_rows)}",
+                f"categorical_rows={len(categorical_rows)}",
+                f"phase_stability_rows={len(phase_stability_rows)}",
+            ]
         )
     )
 

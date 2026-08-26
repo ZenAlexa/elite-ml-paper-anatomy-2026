@@ -50,7 +50,7 @@ make lexical       # 按队列、会议和等级更新词频与修辞模式
 
 机器测量用于一致计量与异常发现。语义模块边界、论证推进、负面结果包装、附录职责等结论来自 `prompts/deep-read.md` 约束下的逐篇人工式深读编码。每个子智能体只处理一篇论文，写入该论文独立的 Markdown 和 JSON 后停止。
 
-`reports/tables/module_distributions.csv` 以论文为等权单位，报告各语义模块的正文词数占比、图表算法数、公式数、每千词密度及其在正文中的相对份额。`weighted_module_means.csv` 按逐层纳入概率还原会议内部构成，`conference_equal_module_means.csv` 再对 ICLR 与 ICML 等权。`cohort_module_comparison.csv`、`cohort_paper_comparison.csv` 和 `cohort_categorical_comparison.csv` 使用同一变量分别计算两个 200 篇队列与合并 400 篇。`abstract_function_summary.csv` 汇总摘要功能及句序，`inventory_summaries.csv` 汇总图、表、算法、理论对象、附录职责和主张闭环，实验设计、结果、消融、统计方法、局限与不利信息呈现策略另保留逐项证据表。对应队列尚未读完时，结果标为 `interim`，不作为最终普适结论。
+`reports/tables/module_distributions.csv` 以论文为等权单位，报告各语义模块的正文词数占比、图表算法数、公式数、每千词密度及其在正文中的相对份额。`weighted_module_means.csv` 按逐层纳入概率还原会议内部构成，`conference_equal_module_means.csv` 再对 ICLR 与 ICML 等权。`cohort_module_comparison.csv`、`cohort_paper_comparison.csv` 和 `cohort_categorical_comparison.csv` 使用同一变量分别计算两个 200 篇队列与合并 400 篇；`cohort_phase_stability.csv` 对两个队列的共同等级层执行固定种子、论文级 bootstrap 比较。`abstract_function_summary.csv` 汇总摘要功能及句序，`inventory_summaries.csv` 汇总图、表、算法、理论对象、附录职责和主张闭环，实验设计、结果、消融、统计方法、局限与不利信息呈现策略另保留逐项证据表。对应队列尚未读完时，结果标为 `interim`，不作为最终普适结论。
 
 ## 证据原则
 
