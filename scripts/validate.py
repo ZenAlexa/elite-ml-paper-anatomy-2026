@@ -69,17 +69,17 @@ def main() -> None:
     if sample_path.exists():
         sample = read_csv(sample_path)
         sample_ids = [row["paper_id"] for row in sample]
-        if len(sample) != 200 or len(sample_ids) != len(set(sample_ids)):
-            errors.append("analysis sample must contain 200 unique papers")
+        if len(sample) != 400 or len(sample_ids) != len(set(sample_ids)):
+            errors.append("analysis sample must contain 400 unique papers")
         unknown = sorted(set(sample_ids) - set(catalog))
         if unknown:
             errors.append(f"analysis sample contains unknown paper ids: {unknown}")
         expected_groups = {
             ("ICLR", "outstanding"): 2,
-            ("ICLR", "oral"): 98,
+            ("ICLR", "oral"): 198,
             ("ICML", "outstanding"): 2,
-            ("ICML", "oral"): 49,
-            ("ICML", "spotlight"): 49,
+            ("ICML", "oral"): 99,
+            ("ICML", "spotlight"): 99,
         }
         actual_groups = {
             group: sum(
@@ -90,6 +90,27 @@ def main() -> None:
         }
         if actual_groups != expected_groups:
             errors.append(f"analysis sample group counts mismatch: {actual_groups}")
+        expected_cohort_groups = {
+            ("foundation_200", "ICLR", "outstanding"): 2,
+            ("foundation_200", "ICLR", "oral"): 98,
+            ("foundation_200", "ICML", "outstanding"): 2,
+            ("foundation_200", "ICML", "oral"): 49,
+            ("foundation_200", "ICML", "spotlight"): 49,
+            ("replication_200", "ICLR", "oral"): 100,
+            ("replication_200", "ICML", "oral"): 50,
+            ("replication_200", "ICML", "spotlight"): 50,
+        }
+        actual_cohort_groups = {
+            group: sum(
+                row.get("sample_cohort") == group[0]
+                and row["conference"] == group[1]
+                and row["analysis_stratum"] == group[2]
+                for row in sample
+            )
+            for group in expected_cohort_groups
+        }
+        if actual_cohort_groups != expected_cohort_groups:
+            errors.append(f"analysis sample cohort counts mismatch: {actual_cohort_groups}")
         for sample_row in sample:
             source_path = ROOT / sample_row["source_path"]
             if not source_path.exists() or source_path.read_bytes()[:5] != b"%PDF-":

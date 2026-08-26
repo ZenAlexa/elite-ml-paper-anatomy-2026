@@ -43,8 +43,9 @@ RHETORICAL_PATTERNS = {
 }
 
 
-def main_body_text(paper_id: str, main_pages: int) -> str:
-    text = (TEXT / f"{paper_id}.txt").read_text(encoding="utf-8", errors="replace")
+def main_body_text(paper_id: str, main_pages: int, source_kind: str) -> str:
+    text_root = ROOT / "corpus" / ("preprint_text" if source_kind == "verified_preprint" else "text")
+    text = (text_root / f"{paper_id}.txt").read_text(encoding="utf-8", errors="replace")
     pages = text.split("\f")
     body = "\n".join(pages[:main_pages])
     reference_match = REFERENCES.search(body)
@@ -59,13 +60,22 @@ def main_body_text(paper_id: str, main_pages: int) -> str:
 def main() -> None:
     papers = read_csv(PROCESSED / "papers.csv")
     catalog = {row["paper_id"]: row for row in papers}
+    sample_rows = read_csv(PROCESSED / "analysis_sample.csv")
+    sample = {row["paper_id"]: row for row in sample_rows}
     documents: list[dict[str, object]] = []
     rhetoric_rows: list[dict[str, object]] = []
     for paper_id, paper in catalog.items():
+        if paper_id not in sample:
+            continue
         reading = load_complete_reading(paper_id)
         if reading is None:
             continue
-        body = main_body_text(paper_id, int(float(reading["page_map"]["main_pages"])))
+        sample_row = sample[paper_id]
+        body = main_body_text(
+            paper_id,
+            int(float(reading["page_map"]["main_pages"])),
+            sample_row["source_kind"],
+        )
         tokens = TOKEN.findall(body)
         content_tokens = [token for token in tokens if token not in STOPWORDS and len(token) >= 3]
         documents.append(
@@ -73,6 +83,7 @@ def main() -> None:
                 "paper_id": paper_id,
                 "conference": paper["conference"],
                 "analysis_stratum": paper["analysis_stratum"],
+                "sample_cohort": sample_row["sample_cohort"],
                 "tokens": tokens,
                 "content_tokens": content_tokens,
             }
@@ -84,20 +95,22 @@ def main() -> None:
                     "paper_id": paper_id,
                     "conference": paper["conference"],
                     "analysis_stratum": paper["analysis_stratum"],
+                    "sample_cohort": sample_row["sample_cohort"],
                     "pattern": pattern,
                     "count": count,
                     "per_10000_words": round(count / len(tokens) * 10000, 6) if tokens else "",
                 }
             )
 
-    groups: dict[tuple[str, str], list[dict[str, object]]] = defaultdict(list)
+    groups: dict[tuple[str, str, str], list[dict[str, object]]] = defaultdict(list)
     for document in documents:
-        groups[(str(document["conference"]), "all")].append(document)
-        groups[(str(document["conference"]), str(document["analysis_stratum"]))].append(document)
+        for view in (str(document["sample_cohort"]), "combined_400"):
+            groups[(view, str(document["conference"]), "all")].append(document)
+            groups[(view, str(document["conference"]), str(document["analysis_stratum"]))].append(document)
 
     frequency_rows: list[dict[str, object]] = []
     ngram_rows: list[dict[str, object]] = []
-    for (conference, stratum), group in sorted(groups.items()):
+    for (analysis_view, conference, stratum), group in sorted(groups.items()):
         token_counts: Counter[str] = Counter()
         document_counts: Counter[str] = Counter()
         total_tokens = 0
@@ -117,6 +130,7 @@ def main() -> None:
                 {
                     "conference": conference,
                     "analysis_stratum": stratum,
+                    "analysis_view": analysis_view,
                     "token": token,
                     "count": count,
                     "document_count": document_counts[token],
@@ -130,6 +144,7 @@ def main() -> None:
                     {
                         "conference": conference,
                         "analysis_stratum": stratum,
+                        "analysis_view": analysis_view,
                         "n": n,
                         "phrase": " ".join(phrase),
                         "count": count,
@@ -143,17 +158,17 @@ def main() -> None:
     write_csv(
         table_dir / "lexical_frequencies.csv",
         frequency_rows,
-        ["conference", "analysis_stratum", "token", "count", "document_count", "document_share", "per_10000_all_words"],
+        ["analysis_view", "conference", "analysis_stratum", "token", "count", "document_count", "document_share", "per_10000_all_words"],
     )
     write_csv(
         table_dir / "ngram_frequencies.csv",
         ngram_rows,
-        ["conference", "analysis_stratum", "n", "phrase", "count", "document_count", "document_share", "per_10000_all_words"],
+        ["analysis_view", "conference", "analysis_stratum", "n", "phrase", "count", "document_count", "document_share", "per_10000_all_words"],
     )
     write_csv(
         table_dir / "rhetorical_patterns.csv",
         rhetoric_rows,
-        ["paper_id", "conference", "analysis_stratum", "pattern", "count", "per_10000_words"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "pattern", "count", "per_10000_words"],
     )
     print(f"documents={len(documents)} lexical_rows={len(frequency_rows)} ngram_rows={len(ngram_rows)}")
 

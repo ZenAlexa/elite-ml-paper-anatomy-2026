@@ -13,7 +13,9 @@
 
 Outstanding、Oral、Spotlight 可能重叠。`data/processed/papers.csv` 以论文为单位去重，保留 `selection_flags`，并用 `analysis_stratum` 设定互斥分析层级：`outstanding > oral > spotlight`。跨会议分析先计算会议内相对比例，再对会议等权汇总，避免篇幅、样本量和类别命名差异主导结论。
 
-主分析集固定为 200 篇：ICLR 100 篇、ICML 100 篇。两会 4 篇 Outstanding 全部纳入；ICLR 另抽取 98 篇 Oral，ICML 另抽取 49 篇 Oral 和 49 篇 Spotlight。抽样只在已有已验证 PDF 的论文中进行，固定种子和逐层纳入概率保存在 `data/processed/analysis_sample.csv`。调度顺序可以按阅读成本优化，最终统计只使用预先冻结的主分析集；已完成的其他论文保留为扩展集。
+分析集固定为两个连续队列，共 400 篇。`foundation_200` 包含 ICLR 100 篇和 ICML 100 篇，两会 4 篇 Outstanding 全部纳入；`replication_200` 再从未入选论文中抽取 ICLR 100 篇和 ICML 100 篇。合并后，ICLR 为 2 篇 Outstanding 和 198 篇 Oral；ICML 为 2 篇 Outstanding、99 篇 Oral 和 99 篇 Spotlight。抽样只在已有已验证 PDF 的论文中进行。队列、固定种子、条件纳入概率和合并纳入概率均保存在 `data/processed/analysis_sample.csv`。
+
+调度器默认先完成 `foundation_200`，再派发 `replication_200`。两个队列使用同一深读 Prompt、schema、证据页码规则和统计变量。报告同时保留首批 200、复现批 200 和合并 400 的估计，用于检验高频模式是否随样本扩展保持稳定。此前按同一协议完成且恰好进入复现批的论文直接计入，不重复读取。
 
 ## 目录
 
@@ -38,15 +40,17 @@ make acquire       # 下载并用 %PDF、pdfinfo 验证 PDF
 make resolve-preprints  # 建立 ICML arXiv 临时入口，不替代官方 PDF
 make acquire-preprints  # 下载并验证可定位的临时版本
 make measure       # 提取版面文本和初步结构测量
-make sample        # 重建固定 200 篇分层主分析集
+make sample        # 重建两个固定队列，共 400 篇
 make validate      # 校验目录、PDF 和一文一读结果
 make next          # 按已验证 PDF、预计阅读成本和模型路由给出下一批三篇
 make aggregate     # 更新会议内相对量；总体齐备后生成跨会议等权结果
+make cohort        # 比较首批 200、复现批 200 和合并 400
+make lexical       # 按队列、会议和等级更新词频与修辞模式
 ```
 
-机器测量用于一致计量与异常发现。语义模块边界、论证推进、负面结果包装、附录职责等结论来自 `prompts/deep-read.md` 约束下的逐篇人工式深读编码。
+机器测量用于一致计量与异常发现。语义模块边界、论证推进、负面结果包装、附录职责等结论来自 `prompts/deep-read.md` 约束下的逐篇人工式深读编码。每个子智能体只处理一篇论文，写入该论文独立的 Markdown 和 JSON 后停止。
 
-`reports/tables/module_distributions.csv` 以论文为等权单位，报告各语义模块的正文词数占比、图表算法数、公式数、每千词密度及其在正文中的相对份额。`weighted_module_means.csv` 按逐层纳入概率还原会议内部构成，`conference_equal_module_means.csv` 再对 ICLR 与 ICML 等权。`abstract_function_summary.csv` 汇总摘要功能及句序，`inventory_summaries.csv` 汇总图、表、算法、理论对象、附录职责和主张闭环，实验设计、结果、消融、统计方法、局限与不利信息呈现策略另保留逐项证据表。主分析集尚未读完时，这些文件属于中间分布，不作为最终普适结论。
+`reports/tables/module_distributions.csv` 以论文为等权单位，报告各语义模块的正文词数占比、图表算法数、公式数、每千词密度及其在正文中的相对份额。`weighted_module_means.csv` 按逐层纳入概率还原会议内部构成，`conference_equal_module_means.csv` 再对 ICLR 与 ICML 等权。`cohort_module_comparison.csv`、`cohort_paper_comparison.csv` 和 `cohort_categorical_comparison.csv` 使用同一变量分别计算两个 200 篇队列与合并 400 篇。`abstract_function_summary.csv` 汇总摘要功能及句序，`inventory_summaries.csv` 汇总图、表、算法、理论对象、附录职责和主张闭环，实验设计、结果、消融、统计方法、局限与不利信息呈现策略另保留逐项证据表。对应队列尚未读完时，结果标为 `interim`，不作为最终普适结论。
 
 ## 证据原则
 
@@ -58,6 +62,6 @@ make aggregate     # 更新会议内相对量；总体齐备后生成跨会议�
 
 PDF 是可重建的本地缓存，不提交 Git。`data/processed/pdf_manifest.csv` 与 `preprint_manifest.csv` 记录来源、状态、字节数和页数。统计对应实际读取版本；同一论文获得新版 PDF 时可以复核并更新，不阻塞当前分析。
 
-本地已下载的 ICLR 与 ICML PDF 缓存约 4.3 GiB。主分析集的来源文件已经在缓存中，后续阅读不会重复下载；新增空间主要来自 Markdown、JSON 和小型 CSV。空间不足时可删除主分析集以外的 PDF 或文本缓存，再按 manifest 重建。
+本地已下载的 ICLR 与 ICML PDF 缓存约 4.3 GiB。400 篇分析集的来源文件已经在缓存中，后续阅读不会重复下载；新增空间主要来自 Markdown、JSON 和小型 CSV。空间不足时可删除分析集以外的 PDF 或文本缓存，再按 manifest 重建。
 
 详细口径见 [`docs/corpus-scope.md`](docs/corpus-scope.md) 和 [`docs/statistical-analysis-plan.md`](docs/statistical-analysis-plan.md)。

@@ -23,6 +23,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--limit", type=int, default=3)
     parser.add_argument("--exclude", action="append", default=[], metavar="PAPER_ID")
     parser.add_argument(
+        "--cohort",
+        choices=("foundation_200", "replication_200", "all"),
+        default="foundation_200",
+        help="Dispatch the first 200 to completion before opening the replication cohort.",
+    )
+    parser.add_argument(
         "--all-eligible",
         action="store_true",
         help="Ignore analysis_sample.csv and dispatch from the full verified corpus.",
@@ -68,6 +74,13 @@ def main() -> None:
             continue
         if sample and not args.all_eligible and paper_id not in sample:
             continue
+        if (
+            sample
+            and not args.all_eligible
+            and args.cohort != "all"
+            and sample[paper_id].get("sample_cohort") != args.cohort
+        ):
+            continue
         official = manifest.get(paper_id, {})
         preprint = preprint_manifest.get(paper_id, {})
         if official.get("status") == "verified":
@@ -93,6 +106,7 @@ def main() -> None:
                 "analysis_stratum": paper["analysis_stratum"],
                 "selection_flags": paper["selection_flags"],
                 "selection_role": sample.get(paper_id, {}).get("selection_role", "extended"),
+                "sample_cohort": sample.get(paper_id, {}).get("sample_cohort", "extended"),
                 "title": paper["title"],
                 "openreview_url": paper["openreview_url"],
                 "pdf_path": source["pdf_path"],

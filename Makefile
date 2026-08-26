@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints sample validate aggregate lexical next next-icml
+.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints sample validate aggregate cohort lexical next next-icml
 
 catalog:
 	$(PYTHON) scripts/build_catalog.py
@@ -34,6 +34,9 @@ validate:
 
 aggregate:
 	$(PYTHON) scripts/aggregate.py
+
+cohort:
+	$(PYTHON) scripts/cohort_analysis.py
 
 lexical:
 	$(PYTHON) scripts/lexical_analysis.py

@@ -126,6 +126,7 @@ def main() -> None:
     sample_rows = read_csv(sample_path) if sample_path.exists() else []
     sample_ids = {row["paper_id"] for row in sample_rows}
     sample_by_id = {row["paper_id"]: row for row in sample_rows}
+    cohort_names = ("foundation_200", "replication_200")
     all_readings = {}
     for row in papers:
         reading = load_complete_reading(row["paper_id"])
@@ -151,11 +152,31 @@ def main() -> None:
                 "provisional_measurements": sum(row["paper_id"] in preprint_metrics for row in eligible),
                 "automatic_measurements": sum(row["paper_id"] in metrics for row in eligible),
                 "completed_independent_readings": sum(row["paper_id"] in all_readings for row in eligible),
-                "primary_target_papers": sum(
+                "analysis_target_papers": sum(
                     sample["conference"] == conference for sample in sample_rows
                 ),
-                "primary_completed_readings": sum(
+                "analysis_completed_readings": sum(
                     sample["conference"] == conference and sample["paper_id"] in all_readings
+                    for sample in sample_rows
+                ),
+                "foundation_target_papers": sum(
+                    sample["conference"] == conference and sample.get("sample_cohort") == "foundation_200"
+                    for sample in sample_rows
+                ),
+                "foundation_completed_readings": sum(
+                    sample["conference"] == conference
+                    and sample.get("sample_cohort") == "foundation_200"
+                    and sample["paper_id"] in all_readings
+                    for sample in sample_rows
+                ),
+                "replication_target_papers": sum(
+                    sample["conference"] == conference and sample.get("sample_cohort") == "replication_200"
+                    for sample in sample_rows
+                ),
+                "replication_completed_readings": sum(
+                    sample["conference"] == conference
+                    and sample.get("sample_cohort") == "replication_200"
+                    and sample["paper_id"] in all_readings
                     for sample in sample_rows
                 ),
                 "status": "not_yet_observed" if conference == "NeurIPS" else "observed",
@@ -172,21 +193,38 @@ def main() -> None:
             "provisional_measurements",
             "automatic_measurements",
             "completed_independent_readings",
-            "primary_target_papers",
-            "primary_completed_readings",
+            "analysis_target_papers",
+            "analysis_completed_readings",
+            "foundation_target_papers",
+            "foundation_completed_readings",
+            "replication_target_papers",
+            "replication_completed_readings",
             "status",
         ],
     )
+    cohort_status = {
+        cohort: {
+            "target_papers": sum(row.get("sample_cohort") == cohort for row in sample_rows),
+            "completed_readings": sum(
+                row.get("sample_cohort") == cohort and row["paper_id"] in all_readings
+                for row in sample_rows
+            ),
+        }
+        for cohort in cohort_names
+    }
+    for value in cohort_status.values():
+        value["ready"] = bool(value["target_papers"]) and value["completed_readings"] == value["target_papers"]
     aggregate_ready = bool(sample_rows) and all(sample["paper_id"] in all_readings for sample in sample_rows)
     write_json(
         ROOT / "reports" / "analysis_status.json",
         {
-            "schema_version": "analysis-status.v1",
+            "schema_version": "analysis-status.v2",
             "coverage": coverage,
             "aggregate_ready": aggregate_ready,
-            "analysis_set": "primary_stratified_sample" if sample_rows else "all_completed_interim",
-            "primary_target_papers": len(sample_rows),
-            "primary_completed_readings": sum(sample["paper_id"] in all_readings for sample in sample_rows),
+            "analysis_set": "two_phase_stratified_sample_400" if sample_rows else "all_completed_interim",
+            "analysis_target_papers": len(sample_rows),
+            "analysis_completed_readings": sum(sample["paper_id"] in all_readings for sample in sample_rows),
+            "cohorts": cohort_status,
             "extended_completed_readings": len(all_readings),
         },
     )
@@ -229,6 +267,7 @@ def main() -> None:
                 "paper_id": paper_id,
                 "conference": paper["conference"],
                 "analysis_stratum": paper["analysis_stratum"],
+                "sample_cohort": sample_by_id.get(paper_id, {}).get("sample_cohort", "extended"),
                 "selection_flags": paper["selection_flags"],
                 "selection_probability": sample_by_id.get(paper_id, {}).get("selection_probability", 1.0),
                 "analysis_weight": round(
@@ -447,6 +486,26 @@ def main() -> None:
                 )
 
     table_dir = ROOT / "reports" / "tables"
+    raw_tables = (
+        module_metrics,
+        abstract_functions,
+        visuals,
+        theory_items,
+        appendix_items,
+        claim_rows,
+        abstract_sequences,
+        move_rows,
+        move_transitions,
+        design_rows,
+        result_rows,
+        ablation_rows,
+        limitation_rows,
+        adverse_rows,
+        statistical_rows,
+    )
+    for table in raw_tables:
+        for row in table:
+            row["sample_cohort"] = sample_by_id.get(str(row["paper_id"]), {}).get("sample_cohort", "extended")
     write_csv(
         table_dir / "paper_metrics.csv",
         paper_metrics,
@@ -454,6 +513,7 @@ def main() -> None:
             "paper_id",
             "conference",
             "analysis_stratum",
+            "sample_cohort",
             "selection_flags",
             "selection_probability",
             "analysis_weight",
@@ -488,36 +548,40 @@ def main() -> None:
             "limitations_recorded",
         ],
     )
-    write_csv(table_dir / "module_metrics.csv", module_metrics, MODULE_FIELDS)
+    write_csv(
+        table_dir / "module_metrics.csv",
+        module_metrics,
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", *MODULE_FIELDS[3:]],
+    )
     write_csv(
         table_dir / "abstract_functions.csv",
         abstract_functions,
-        ["paper_id", "conference", "analysis_stratum", "function", "sentence_mentions", "abstract_sentences", "present"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "function", "sentence_mentions", "abstract_sentences", "present"],
     )
     write_csv(
         table_dir / "visual_inventory.csv",
         visuals,
-        ["paper_id", "conference", "analysis_stratum", "kind", "module", "label", "page", "purpose"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "kind", "module", "label", "page", "purpose"],
     )
     write_csv(
         table_dir / "theory_inventory.csv",
         theory_items,
-        ["paper_id", "conference", "analysis_stratum", "kind", "module", "role", "label", "page"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "kind", "module", "role", "label", "page"],
     )
     write_csv(
         table_dir / "appendix_inventory.csv",
         appendix_items,
-        ["paper_id", "conference", "analysis_stratum", "category", "title", "start_page", "end_page", "pages_spanned", "main_text_call_count"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "category", "title", "start_page", "end_page", "pages_spanned", "main_text_call_count"],
     )
     write_csv(
         table_dir / "claim_closure.csv",
         claim_rows,
-        ["paper_id", "conference", "analysis_stratum", "status", "claim", "origin"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "status", "claim", "origin"],
     )
     write_csv(
         table_dir / "abstract_sequences.csv",
         abstract_sequences,
-        ["paper_id", "conference", "analysis_stratum", "sentence_count", "sequence"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "sentence_count", "sequence"],
     )
     write_csv(
         table_dir / "move_inventory.csv",
@@ -526,6 +590,7 @@ def main() -> None:
             "paper_id",
             "conference",
             "analysis_stratum",
+            "sample_cohort",
             "module",
             "paragraph_index",
             "atom_position",
@@ -536,12 +601,13 @@ def main() -> None:
     write_csv(
         table_dir / "move_transitions.csv",
         move_transitions,
-        ["paper_id", "conference", "analysis_stratum", "module", "transition_index", "source", "target"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "module", "transition_index", "source", "target"],
     )
     evidence_inventory_fields = [
         "paper_id",
         "conference",
         "analysis_stratum",
+        "sample_cohort",
         "name",
         "status",
         "description",
@@ -561,6 +627,7 @@ def main() -> None:
             "paper_id",
             "conference",
             "analysis_stratum",
+            "sample_cohort",
             "module",
             "claim",
             "value",
@@ -575,7 +642,7 @@ def main() -> None:
     write_csv(
         table_dir / "statistical_methods.csv",
         statistical_rows,
-        ["paper_id", "conference", "analysis_stratum", "field", "reported", "value"],
+        ["paper_id", "conference", "analysis_stratum", "sample_cohort", "field", "reported", "value"],
     )
 
     reading_groups: dict[tuple[str, str], list[tuple[str, dict[str, object]]]] = defaultdict(list)

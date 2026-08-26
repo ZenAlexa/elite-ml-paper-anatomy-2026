@@ -18,11 +18,16 @@
 - 页面级：正文和附录页面；
 - 句子／词项级：摘要功能、叙事动作和词频。
 
-## 主分析集
+## 两阶段分析集
 
-主分析集为固定 200 篇，会议等额：ICLR 100 篇、ICML 100 篇。两会 Outstanding 各 2 篇全部纳入。ICLR 从已有已验证 PDF 的其他 Oral 中分层随机抽取 98 篇；ICML 从已有已验证 PDF 的其他 Oral 和 Spotlight 中各抽取 49 篇。固定种子为 `elite-ml-paper-anatomy-2026-primary-v1`，逐层候选数、目标数、纳入概率和实际来源保存在 `data/processed/analysis_sample.csv`。
+分析集固定为 400 篇，分两个互不重叠的 200 篇队列：
 
-调度器可以优先读取短论文或低复杂度论文以提高吞吐，但该顺序不改变主分析集。已完成而未被抽中的论文属于扩展集，只用于敏感性分析和例证，不进入主结果的比例估计。
+- `foundation_200`：ICLR 100 篇、ICML 100 篇。两会 Outstanding 各 2 篇全部纳入；ICLR 另抽取 98 篇 Oral，ICML 另抽取 49 篇 Oral 和 49 篇 Spotlight。固定种子为 `elite-ml-paper-anatomy-2026-primary-v1`。
+- `replication_200`：在首批未入选论文中，抽取 ICLR Oral 100 篇、ICML Oral 50 篇和 ICML Spotlight 50 篇。固定种子为 `elite-ml-paper-anatomy-2026-replication-v1`。
+
+合并 400 篇包含 ICLR 2 篇 Outstanding 和 198 篇 Oral，以及 ICML 2 篇 Outstanding、99 篇 Oral 和 99 篇 Spotlight。逐层候选数、队列目标数、抽取时剩余候选数、条件纳入概率、合并纳入概率和实际来源均保存在 `data/processed/analysis_sample.csv`。
+
+调度器在队列内可以优先读取短论文或低复杂度论文，但默认在 `foundation_200` 完成前不派发 `replication_200`。调度顺序不改变分析集。已完成而未被抽中的论文属于扩展集，只用于敏感性分析和例证，不进入主要比例估计。
 
 ## 主要变量
 
@@ -44,12 +49,15 @@ module_visual_density = module_visual_count / module_words * 1000
 appendix_ratio = appendix_pages / main_pages
 ```
 
-会议内先报告中位数、四分位数、20% 截尾均值、经验分布和论文级 bootstrap。ICML 的 Oral 与 Spotlight 按 `analysis_sample.csv` 中的逐层纳入概率加权还原；Outstanding 作为全纳层单列。跨会议主结果采用会议等权：先得到每个会议的论文级统计量，再对可观测会议取算术平均。另给论文等权结果作为敏感性分析。Outstanding、Oral、Spotlight 使用互斥 `analysis_stratum` 比较，同时用多标签结果检查重叠影响。
+会议内先报告中位数、四分位数、20% 截尾均值、经验分布和论文级 bootstrap。队列内估计使用 `cohort_selection_probability`，合并 400 篇估计使用 `selection_probability`。ICML 的 Oral 与 Spotlight 按逐层纳入概率加权还原；Outstanding 作为全纳层单列。跨会议主结果采用会议等权：先得到每个会议的论文级统计量，再对可观测会议取算术平均。另给论文等权结果作为敏感性分析。Outstanding、Oral、Spotlight 使用互斥 `analysis_stratum` 比较，同时用多标签结果检查重叠影响。
+
+同一指标分别在 `foundation_200`、`replication_200` 和 `combined_400` 中计算。两批方向一致、量级接近且合并估计不由单一会议或等级层主导时，才归纳为稳定的普适模式。队列差异本身作为异质性结果保留，不通过改动编码规则消除。
 
 ## 推断边界
 
 - Outstanding 属于全纳层，直接报告有限总体值；其他层属于固定分层样本，报告估计值与抽样稳定性。
 - bootstrap 在会议与等级层内重采样论文，用于描述论文构成变化时的稳定性。
+- 首批 200 的结果在进入复现批前冻结；复现批使用同一 schema，不回改首批变量定义。
 - NeurIPS 未产生决定前，跨三会估计均记为 `not_yet_observed`。
 - 自动章节分类与 agent 编码的分歧率单独报告；分歧不静默覆盖。
 - 词频先词形归一化，去除参考文献、公式碎片、数据集专名和模板固定语；同时报告每 10,000 正文词的相对频率和文档频率。
