@@ -22,11 +22,50 @@ MODULE_FIELDS = [
     "displayed_equations",
 ]
 
+MODULES = [
+    "abstract",
+    "introduction",
+    "related_work",
+    "method",
+    "theory",
+    "experimental_design",
+    "results",
+    "ablation",
+    "conclusion",
+    "limitations",
+    "appendix",
+    "other",
+]
+
+ABSTRACT_FUNCTIONS = [
+    "object_scope",
+    "problem_gap",
+    "core_idea",
+    "method",
+    "theory",
+    "experimental_setup",
+    "quantitative_result",
+    "qualitative_result",
+    "limitation",
+    "impact_claim",
+]
+
 
 def describe(values: list[float]) -> dict[str, object]:
     if not values:
-        return {"n": 0, "mean": "", "median": "", "q1": "", "q3": "", "min": "", "max": ""}
+        return {
+            "n": 0,
+            "mean": "",
+            "trimmed_mean_20": "",
+            "median": "",
+            "q1": "",
+            "q3": "",
+            "min": "",
+            "max": "",
+        }
     ordered = sorted(values)
+    trim = int(len(ordered) * 0.2)
+    trimmed = ordered[trim : len(ordered) - trim] if trim and trim * 2 < len(ordered) else ordered
     if len(ordered) == 1:
         q1 = q3 = ordered[0]
     else:
@@ -34,12 +73,40 @@ def describe(values: list[float]) -> dict[str, object]:
     return {
         "n": len(ordered),
         "mean": round(statistics.fmean(ordered), 6),
+        "trimmed_mean_20": round(statistics.fmean(trimmed), 6),
         "median": round(statistics.median(ordered), 6),
         "q1": round(q1, 6),
         "q3": round(q3, 6),
         "min": round(ordered[0], 6),
         "max": round(ordered[-1], 6),
     }
+
+
+def serialize(value: object) -> str:
+    if isinstance(value, (dict, list)):
+        return json.dumps(value, ensure_ascii=False, sort_keys=True)
+    return str(value)
+
+
+def evidence_locations(items: list[dict[str, object]]) -> tuple[str, str]:
+    pages = "|".join(str(item.get("page", "")) for item in items)
+    sections = "|".join(str(item.get("section", "")) for item in items)
+    return pages, sections
+
+
+def is_reported(value: object) -> bool:
+    if value is None or value == "" or value == [] or value == {}:
+        return False
+    if isinstance(value, str):
+        normalized = value.strip().lower().replace("-", "_").replace(" ", "_")
+        return normalized not in {
+            "not_present",
+            "not_applicable",
+            "unavailable",
+            "not_yet_observed",
+            "none",
+        }
+    return True
 
 
 def main() -> None:
@@ -115,6 +182,12 @@ def main() -> None:
     abstract_sequences: list[dict[str, object]] = []
     move_rows: list[dict[str, object]] = []
     move_transitions: list[dict[str, object]] = []
+    design_rows: list[dict[str, object]] = []
+    result_rows: list[dict[str, object]] = []
+    ablation_rows: list[dict[str, object]] = []
+    limitation_rows: list[dict[str, object]] = []
+    adverse_rows: list[dict[str, object]] = []
+    statistical_rows: list[dict[str, object]] = []
     for paper_id, reading in readings.items():
         paper = catalog[paper_id]
         page_map = reading["page_map"]
@@ -236,6 +309,59 @@ def main() -> None:
                     "origin": item["origin"],
                 }
             )
+        for inventory_name, target in (
+            ("experimental_design", design_rows),
+            ("ablation_inventory", ablation_rows),
+            ("limitations", limitation_rows),
+            ("adverse_presentation_strategies", adverse_rows),
+        ):
+            for item in reading[inventory_name]:
+                pages, sections = evidence_locations(item.get("evidence", []))
+                target.append(
+                    {
+                        "paper_id": paper_id,
+                        "conference": paper["conference"],
+                        "analysis_stratum": paper["analysis_stratum"],
+                        "name": item["name"],
+                        "status": item["status"],
+                        "description": item["description"],
+                        "limitation_type": item.get("limitation_type", ""),
+                        "strategy": item.get("strategy", ""),
+                        "evidence_pages": pages,
+                        "evidence_sections": sections,
+                    }
+                )
+        for item in reading["result_inventory"]:
+            pages, sections = evidence_locations(item.get("evidence", []))
+            result_rows.append(
+                {
+                    "paper_id": paper_id,
+                    "conference": paper["conference"],
+                    "analysis_stratum": paper["analysis_stratum"],
+                    "module": item["module"],
+                    "claim": item["claim"],
+                    "value": item["value"],
+                    "comparison": item["comparison"],
+                    "statistical_method": item["statistical_method"],
+                    "author_interpretation": item.get("author_interpretation", ""),
+                    "adverse_explanation": item.get("adverse_explanation", ""),
+                    "evidence_pages": pages,
+                    "evidence_sections": sections,
+                }
+            )
+        for field, value in reading.get("statistical_analysis", {}).items():
+            if field == "evidence":
+                continue
+            statistical_rows.append(
+                {
+                    "paper_id": paper_id,
+                    "conference": paper["conference"],
+                    "analysis_stratum": paper["analysis_stratum"],
+                    "field": field,
+                    "reported": is_reported(value),
+                    "value": serialize(value),
+                }
+            )
         for move_module, key in (
             ("introduction", "introduction_moves"),
             ("related_work", "related_work_moves"),
@@ -350,6 +476,235 @@ def main() -> None:
         move_transitions,
         ["paper_id", "conference", "analysis_stratum", "module", "transition_index", "source", "target"],
     )
+    evidence_inventory_fields = [
+        "paper_id",
+        "conference",
+        "analysis_stratum",
+        "name",
+        "status",
+        "description",
+        "limitation_type",
+        "strategy",
+        "evidence_pages",
+        "evidence_sections",
+    ]
+    write_csv(table_dir / "experimental_design_inventory.csv", design_rows, evidence_inventory_fields)
+    write_csv(table_dir / "ablation_inventory.csv", ablation_rows, evidence_inventory_fields)
+    write_csv(table_dir / "limitation_inventory.csv", limitation_rows, evidence_inventory_fields)
+    write_csv(table_dir / "adverse_strategy_inventory.csv", adverse_rows, evidence_inventory_fields)
+    write_csv(
+        table_dir / "result_inventory.csv",
+        result_rows,
+        [
+            "paper_id",
+            "conference",
+            "analysis_stratum",
+            "module",
+            "claim",
+            "value",
+            "comparison",
+            "statistical_method",
+            "author_interpretation",
+            "adverse_explanation",
+            "evidence_pages",
+            "evidence_sections",
+        ],
+    )
+    write_csv(
+        table_dir / "statistical_methods.csv",
+        statistical_rows,
+        ["paper_id", "conference", "analysis_stratum", "field", "reported", "value"],
+    )
+
+    reading_groups: dict[tuple[str, str], list[tuple[str, dict[str, object]]]] = defaultdict(list)
+    for paper_id, reading in readings.items():
+        paper = catalog[paper_id]
+        reading_groups[(paper["conference"], "all")].append((paper_id, reading))
+        reading_groups[(paper["conference"], paper["analysis_stratum"])].append((paper_id, reading))
+
+    module_distributions: list[dict[str, object]] = []
+    for (conference, stratum), group in sorted(reading_groups.items()):
+        for module in MODULES:
+            records = [
+                next(item for item in reading["module_metrics"] if item["module"] == module)
+                for _, reading in group
+            ]
+            derived: dict[str, list[float]] = {
+                "present": [float(item["status"] == "observed") for item in records],
+                "estimated_words": [float(item["estimated_words"]) for item in records],
+                "main_word_share": [
+                    float(item["main_word_share"])
+                    for item in records
+                    if item["main_word_share"] is not None
+                ],
+                "figures": [float(item["figures"]) for item in records],
+                "tables": [float(item["tables"]) for item in records],
+                "algorithms": [float(item["algorithms"]) for item in records],
+                "displayed_equations": [float(item["displayed_equations"]) for item in records],
+                "visual_objects": [
+                    float(item["figures"] + item["tables"] + item["algorithms"])
+                    for item in records
+                ],
+                "visual_objects_per_1000_words": [
+                    1000.0 * (item["figures"] + item["tables"] + item["algorithms"]) / item["estimated_words"]
+                    for item in records
+                    if item["estimated_words"]
+                ],
+                "equations_per_1000_words": [
+                    1000.0 * item["displayed_equations"] / item["estimated_words"]
+                    for item in records
+                    if item["estimated_words"]
+                ],
+            }
+            visual_shares: list[float] = []
+            equation_shares: list[float] = []
+            for (_, reading), item in zip(group, records):
+                main_modules = [entry for entry in reading["module_metrics"] if entry["module"] != "appendix"]
+                visual_total = sum(entry["figures"] + entry["tables"] + entry["algorithms"] for entry in main_modules)
+                equation_total = sum(entry["displayed_equations"] for entry in main_modules)
+                if visual_total:
+                    visual_shares.append((item["figures"] + item["tables"] + item["algorithms"]) / visual_total)
+                if equation_total:
+                    equation_shares.append(item["displayed_equations"] / equation_total)
+            derived["visual_share_within_main"] = visual_shares
+            derived["equation_share_within_main"] = equation_shares
+            for metric, values in derived.items():
+                module_distributions.append(
+                    {
+                        "conference": conference,
+                        "analysis_stratum": stratum,
+                        "module": module,
+                        "metric": metric,
+                        **describe(values),
+                    }
+                )
+    write_csv(
+        table_dir / "module_distributions.csv",
+        module_distributions,
+        [
+            "conference",
+            "analysis_stratum",
+            "module",
+            "metric",
+            "n",
+            "mean",
+            "trimmed_mean_20",
+            "median",
+            "q1",
+            "q3",
+            "min",
+            "max",
+        ],
+    )
+
+    abstract_function_summary: list[dict[str, object]] = []
+    for (conference, stratum), group in sorted(reading_groups.items()):
+        for function in ABSTRACT_FUNCTIONS:
+            mention_counts = []
+            sentence_shares = []
+            for _, reading in group:
+                functions = [item for sentence in reading["abstract_sentences"] for item in sentence["functions"]]
+                mention_counts.append(float(functions.count(function)))
+                sentence_shares.append(
+                    sum(function in sentence["functions"] for sentence in reading["abstract_sentences"])
+                    / len(reading["abstract_sentences"])
+                )
+            abstract_function_summary.append(
+                {
+                    "conference": conference,
+                    "analysis_stratum": stratum,
+                    "function": function,
+                    "papers": len(group),
+                    "papers_present": sum(value > 0 for value in mention_counts),
+                    "paper_prevalence": round(sum(value > 0 for value in mention_counts) / len(group), 6),
+                    "mean_mentions_per_paper": round(statistics.fmean(mention_counts), 6),
+                    "mean_sentence_share": round(statistics.fmean(sentence_shares), 6),
+                }
+            )
+    write_csv(
+        table_dir / "abstract_function_summary.csv",
+        abstract_function_summary,
+        [
+            "conference",
+            "analysis_stratum",
+            "function",
+            "papers",
+            "papers_present",
+            "paper_prevalence",
+            "mean_mentions_per_paper",
+            "mean_sentence_share",
+        ],
+    )
+
+    inventory_summaries: list[dict[str, object]] = []
+    for (conference, stratum), group in sorted(reading_groups.items()):
+        dimensions = {
+            "visual_kind": ("visual_inventory", "kind"),
+            "visual_module": ("visual_inventory", "module"),
+            "theory_kind": ("equation_theory_inventory", "kind"),
+            "theory_module": ("equation_theory_inventory", "module"),
+            "theory_role": ("equation_theory_inventory", "role"),
+            "appendix_category": ("appendix_inventory", "category"),
+            "claim_status": ("claim_closure", "status"),
+        }
+        for dimension, (inventory, field) in dimensions.items():
+            values = sorted({str(item[field]) for _, reading in group for item in reading[inventory]})
+            for value in values:
+                counts = [float(sum(str(item[field]) == value for item in reading[inventory])) for _, reading in group]
+                inventory_summaries.append(
+                    {
+                        "conference": conference,
+                        "analysis_stratum": stratum,
+                        "dimension": dimension,
+                        "value": value,
+                        "papers": len(group),
+                        "papers_present": sum(count > 0 for count in counts),
+                        "paper_prevalence": round(sum(count > 0 for count in counts) / len(group), 6),
+                        **{f"count_{key}": result for key, result in describe(counts).items()},
+                    }
+                )
+    write_csv(
+        table_dir / "inventory_summaries.csv",
+        inventory_summaries,
+        [
+            "conference",
+            "analysis_stratum",
+            "dimension",
+            "value",
+            "papers",
+            "papers_present",
+            "paper_prevalence",
+            "count_n",
+            "count_mean",
+            "count_trimmed_mean_20",
+            "count_median",
+            "count_q1",
+            "count_q3",
+            "count_min",
+            "count_max",
+        ],
+    )
+
+    statistical_method_summary: list[dict[str, object]] = []
+    for (conference, stratum), group in sorted(reading_groups.items()):
+        fields = sorted({field for _, reading in group for field in reading.get("statistical_analysis", {}) if field != "evidence"})
+        for field in fields:
+            flags = [is_reported(reading.get("statistical_analysis", {}).get(field)) for _, reading in group]
+            statistical_method_summary.append(
+                {
+                    "conference": conference,
+                    "analysis_stratum": stratum,
+                    "field": field,
+                    "papers": len(group),
+                    "papers_reported": sum(flags),
+                    "paper_prevalence": round(sum(flags) / len(group), 6),
+                }
+            )
+    write_csv(
+        table_dir / "statistical_method_summary.csv",
+        statistical_method_summary,
+        ["conference", "analysis_stratum", "field", "papers", "papers_reported", "paper_prevalence"],
+    )
 
     distributions: list[dict[str, object]] = []
     numeric_paper_fields = [
@@ -373,7 +728,19 @@ def main() -> None:
     write_csv(
         table_dir / "interim_distributions.csv",
         distributions,
-        ["conference", "analysis_stratum", "metric", "n", "mean", "median", "q1", "q3", "min", "max"],
+        [
+            "conference",
+            "analysis_stratum",
+            "metric",
+            "n",
+            "mean",
+            "trimmed_mean_20",
+            "median",
+            "q1",
+            "q3",
+            "min",
+            "max",
+        ],
     )
 
     automatic_distributions: list[dict[str, object]] = []
@@ -421,6 +788,7 @@ def main() -> None:
             "metric",
             "n",
             "mean",
+            "trimmed_mean_20",
             "median",
             "q1",
             "q3",

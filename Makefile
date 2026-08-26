@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints validate aggregate lexical
+.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints validate aggregate lexical next
 
 catalog:
 	$(PYTHON) scripts/build_catalog.py
@@ -34,3 +34,6 @@ aggregate:
 
 lexical:
 	$(PYTHON) scripts/lexical_analysis.py
+
+next:
+	$(PYTHON) scripts/next_batch.py --limit 3

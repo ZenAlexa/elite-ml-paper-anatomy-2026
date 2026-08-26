@@ -1,0 +1,222 @@
+paper_id,conference,analysis_stratum,name,status,description,limitation_type,strategy,evidence_pages,evidence_sections
+iclr-2026-8da8f79c49d5,ICLR,oral,prelisted_research_questions,not_present,正文未以RQ或hypothesis清单预注册研究问题；贡献清单列产物而非可判定假设。,,,3,1 Introduction
+iclr-2026-8da8f79c49d5,ICLR,oral,benchmark_hierarchy,observed,"10 main categories × 5 subcategories × 7 scenarios × 3 prompt variations = 1,050 prompts；分Fundamental、Composite、Anti-Physics三层。",,,1|5,Figure 1|3.1 Dataset Creation Pipeline
+iclr-2026-8da8f79c49d5,ICLR,oral,prompt_creation,observed,GPT-4o/Gemini各生成20个Event Prompts，人工选7个；Physics-Enhanced由人工写，Detailed由LLM生成后人工核验。,,,5|13,3.1 Dataset Creation Pipeline|C Annotation Details
+iclr-2026-8da8f79c49d5,ICLR,oral,evaluation_targets,observed,"12个生成模型，每个模型1050 videos，共12,600 outputs；5个proprietary、7个open-source。",,,3|7,1 Introduction|4 Video Generation Results
+iclr-2026-8da8f79c49d5,ICLR,oral,binary_outcome_definition,observed,SA要求对象数量与事件均满足；PC要求所有Key Standards满足；Both为SA=1且PC=1。,,,6|13,3.1 Dataset Creation Pipeline|B Benchmark Details
+iclr-2026-8da8f79c49d5,ICLR,oral,human_evaluation,observed,MTurk每个video由3名独立标注者评估，majority vote；报酬18 USD/hour。,,,13|13,C Annotation Details|C Annotation Details
+iclr-2026-8da8f79c49d5,ICLR,oral,automatic_evaluation,observed,CAP均匀抽取8帧，先描述object/event/physics，再结构化Yes/No；主实验使用GPT-o1并以human labels评ROC-AUC。,,,7|18,3.3 MLLM Evaluator|K Query Used
+iclr-2026-8da8f79c49d5,ICLR,oral,automatic_baselines,observed,自动评估基线为Qwen-VL-2.0、Gemini-2.0-Flash、GPT-4o、GPT-o1，并做去CoT/去Context消融。,,,7,Table 2
+iclr-2026-8da8f79c49d5,ICLR,oral,prompt_type_control,observed,prompt variation效应只在开源模型上分析，因为proprietary refinement不可核验。,,,8,4.3 Effect of Prompt Enhancement
+iclr-2026-8da8f79c49d5,ICLR,oral,paired_failure_tests,observed,abrupt/non-abrupt与complex/less-complex各使用20对提示×12模型=240 videos，只做人类正确性判断。,,,9|9,4.5 Erratic Visual Changes|4.6 Higher Complexity
+iclr-2026-8da8f79c49d5,ICLR,oral,implementation_sources,observed,附录列7个开源模型的repo/license，闭源模型访问方式及Luma API。,,,15|16,E Model Application Details|E Model Application Details
+iclr-2026-8da8f79c49d5,ICLR,oral,video_duration,observed,11个模型为5秒，Open-Sora为2秒，Step-Video-T2V为8秒。,,,32,Table 14
+iclr-2026-8da8f79c49d5,ICLR,oral,random_seeds,not_present,正文与附录均未报告generator seed、CAP sampling seed或标注抽样seed。,,,7,4 Video Generation Results
+iclr-2026-8da8f79c49d5,ICLR,oral,hardware,not_present,生成、CAP推理与fine-tuning均未报告硬件。,,,15,E Model Application Details
+iclr-2026-8da8f79c49d5,ICLR,oral,full_generation_budget,not_present,仅零散给出Hunyuan/Wanx生成时间和Open-Sora sampling steps，未给12模型统一预算与关键超参数。,,,16,G Performance Between Models
+iclr-2026-8da8f79c49d5,ICLR,oral,data_leakage_control,not_present,没有测试benchmark prompts或场景是否进入各生成模型训练数据，也未提供去重/污染检查。,,,5,3.1 Dataset Creation Pipeline
+iclr-2026-8da8f79c49d5,ICLR,oral,statistical_uncertainty,not_present,主结果报告比例、ROC-AUC、precision/recall与差值，但无区间、假设检验、bootstrap或多重比较处理。,,,8|15,Table 3|Table 5
+iclr-2026-ff40de6c7ac1,ICLR,oral,Predeclared research questions,not_present,"No numbered research questions or hypotheses precede the setup; it starts with models, tasks, baselines, temperatures, and metrics.",,,6,4.1
+iclr-2026-ff40de6c7ac1,ICLR,oral,Models,observed,"Primary: Llama-2-7B-Chat, Mistral-7B-Instruct, Llama3-70B-Instruct. DeepSeek-R1-Distill-Qwen-7B is an appendix ablation.",,,6|26,4.1|C.5
+iclr-2026-ff40de6c7ac1,ICLR,oral,Datasets and tasks,observed,"GPQA, GSM8K, QASC, CSQA, and Writing Prompts span labeled reasoning and creative writing.",,,6|21,4.1|C.1
+iclr-2026-ff40de6c7ac1,ICLR,oral,Baselines,observed,"Primary baselines: top-p, min-p, epsilon, eta, and mirostat. Greedy and beam search appear in C.4.",,,6|24,4.1|C.4
+iclr-2026-ff40de6c7ac1,ICLR,oral,Temperature grid,observed,"Main grid: 0.5, 0.7, 1.0, 1.5, 2.0. Diversity extends p-less to 2.25 and 2.5.",,,21|27,C.1|C.8
+iclr-2026-ff40de6c7ac1,ICLR,oral,Baseline hyperparameters,observed,"top-p=0.9, min-p=0.1, epsilon=eta=0.0002, mirostat=4.0.",,,22,C.2
+iclr-2026-ff40de6c7ac1,ICLR,oral,Hyperparameter sweep,observed,C.6 sweeps alternative baseline settings only for Llama2-7b.,,,26,C.6
+iclr-2026-ff40de6c7ac1,ICLR,oral,Reasoning metrics,observed,Accuracy and normalized area under the accuracy-temperature curve.,,,7,4.2
+iclr-2026-ff40de6c7ac1,ICLR,oral,Creative-writing metric,observed,"Length-controlled win rate on 100 prompts, one generation per method-temperature, default sampling at temperature 1.0 as reference.",,,8|8,4.3|4.3
+iclr-2026-ff40de6c7ac1,ICLR,oral,Human evaluation,observed,Three authors and three non-authors form the pool; four labels per story pair over 100 Llama2-7b prompt pairs.,,,14|14,Appendix A|Appendix A
+iclr-2026-ff40de6c7ac1,ICLR,oral,Seeds,observed,Llama2-7b averages three seeds; Mistral-7b and Llama3-70b use one seed due to compute.,,,23|23,C.3|C.3
+iclr-2026-ff40de6c7ac1,ICLR,oral,Prompting controls,observed,CSQA/GSM8K/QASC use 8-shot CoT; GPQA uses zero-shot CoT; Writing Prompts uses instructional prompting.,,,33|33,C.12.1|C.12.1
+iclr-2026-ff40de6c7ac1,ICLR,oral,Data leakage control,observed,Eight-shot examples come from train/validation splits distinct from test.,,,33,C.12.1
+iclr-2026-ff40de6c7ac1,ICLR,oral,Generation budget and stopping,not_present,Maximum new tokens and a uniform stopping rule are absent.,,,33,C.12
+iclr-2026-ff40de6c7ac1,ICLR,oral,Hardware and software environment,not_present,"GPU/CPU model, accelerator count, precision, and package versions are absent.",,,11,7 Reproducibility Statement
+iclr-2026-ff40de6c7ac1,ICLR,oral,Training budget,not_applicable,The contribution is inference-time decoding; no model training is performed.,,,6,4.1
+iclr-2026-ff40de6c7ac1,ICLR,oral,Implementation source,observed,Figure 15 gives PyTorch code; baseline profiling uses official repositories; the abstract code pointer is unresolved.,,,32|1,C.11|Abstract
+iclr-2026-ff40de6c7ac1,ICLR,oral,Failure handling,not_present,"Answer parsing, malformed outputs, timeouts, and evaluator failures are not specified.",,,22,C.1
+iclr-2026-707ee355091a,ICLR,oral,predeclared_research_questions,not_present,Section 4 直接以 validity comparison 开始，没有列出编号研究问题或假设。,,,7,4 Experiments
+iclr-2026-707ee355091a,ICLR,oral,synthetic_mutually_exciting,observed,"3-variate linear Hawkes；μ_i=0.01；9 个 ground-truth kernels；T∈{2000,3000,5000,7000}；每个 T 10 trials。",,,8|8,4.1.1 Mutually-exciting Scenario|4.1.1 Mutually-exciting Scenario
+iclr-2026-707ee355091a,ICLR,oral,synthetic_refractory,observed,3-variate non-linear soft-plus Hawkes，diagonal short-term inhibition，off-diagonal excitation/zeros；其余条件沿用 mutually-exciting scenario。,,,8|9,4.1.2 Refractory Scenario|4.1.2 Refractory Scenario
+iclr-2026-707ee355091a,ICLR,oral,financial_data,observed,单只股票单日交易，buy/sell 两类；从 100 个长度 3319 的 sequences 随机构造 10 个 train/test pairs。,,,10|10,4.2 Real-world Data|4.2 Real-world Data
+iclr-2026-707ee355091a,ICLR,oral,tasks,observed,synthetic 任务估计 g_ij 并计时；financial 任务以 held-out sequence negative log-likelihood 评价 intensity prediction。,,,7|10,4.1 Synthetic Data|4.2 Real-world Data
+iclr-2026-707ee355091a,ICLR,oral,baselines,observed,Exp、Gau、Ber、Bonnet，覆盖 parametric/nonparametric、linear/non-linear 与 RKHS/non-RKHS。,,,7,4 Experiments
+iclr-2026-707ee355091a,ICLR,oral,metrics,observed,synthetic 主指标 Δ² 与 cpu；financial 主指标 test nll 与 cpu；Appendix H 另以 nll 连接 kernel estimation accuracy 与 prediction。,,,7|10|23,Equation (23)|Table 4|Table 8
+iclr-2026-707ee355091a,ICLR,oral,random_seeds,not_present,正文与 Appendix H 报 trial 数，但未给 seed 值、seed 生成方式或可复用 split identifiers。,,,8|22,Table 1|Table 7
+iclr-2026-707ee355091a,ICLR,oral,hyperparameters,observed,"synthetic 3×3 grid: γ∈{0.1,0.5,1.0}, β∈{0.5,1.0,1.5}；financial 改为 γ∈{0.01,0.1,1.0}, β∈{0.5,1.0,10}；M=100。",,,7|10|5,4.1 Synthetic Data|4.2 Real-world Data|2.3 Construction
+iclr-2026-707ee355091a,ICLR,oral,validation_protocol,observed,"synthetic 在 [0,0.8T] fit、[0.8T,T] 选参；Gau/Ber/Bonnet 用 nll，Ours 用 L_LS。financial 以 separate paired sequence test nll 评价。",,,7|10,4.1 Synthetic Data|4.2 Real-world Data
+iclr-2026-707ee355091a,ICLR,oral,support_window_controls,observed,"common synthetic A=5，financial A=3；Exp 除外；Bonnet discretization node count=max(1000,2|N_i|)。",,,7|10|7,4 Experiments|4.2 Real-world Data|4 Experiments
+iclr-2026-707ee355091a,ICLR,oral,implementation_sources,observed,四个 baseline 使用 Bonnet & Sangnier (2025) MIT-licensed Python code；Ours 使用 TensorFlow 2.10；代码链接在 p.2 footnote。,,,7|7|2,4 Experiments|4 Experiments|Footnote 1
+iclr-2026-707ee355091a,ICLR,oral,hardware,observed,MacBook Pro，12-core Apple M2 Max CPU，GPU disabled。,,,7,4 Experiments
+iclr-2026-707ee355091a,ICLR,oral,training_budget,not_present,Ours 为 closed-form solve；iterative baselines 的 iteration limit、convergence tolerance 与 wall-clock cap 未给。,,,6|7,2.4 Complexity Analysis|4 Experiments
+iclr-2026-707ee355091a,ICLR,oral,data_leakage_control,observed,synthetic validation 使用时间后 20%；financial 训练与测试使用配对的不同 sequences。未描述跨 trial 的共享生成随机性或同日时间切分依赖。,,,7|10,4.1 Synthetic Data|4.2 Real-world Data
+iclr-2026-707ee355091a,ICLR,oral,failure_definition,observed,Ber trial 若 Δ²>1000 被视为 outlier 并从 Table 2 排除；未给被排除的 trial 数。,,,9,4.1.2 Refractory Scenario
+iclr-2026-707ee355091a,ICLR,oral,posthoc_intensity_clipping,observed,linear Ours 预测 intensity 时需要 clipping；financial 用 10^-2，Appendix H.4 用 10^-4。,,,10|23,4.2 Real-world Data|Appendix H.4
+iclr-2026-707ee355091a,ICLR,oral,experiment_order,observed,主文依次给 common setup、两类 synthetic accuracy/runtime、A sensitivity、financial data；Appendix H 再给 larger N、larger U、grid refinement、accuracy–prediction relation。,,,7|21,4 Experiments|Appendix H
+iclr-2026-707ee355091a,ICLR,oral,reproducibility_granularity,observed,正文给 formulas、grids、hardware、library 与代码 URL；未给 seeds、environment lock、exact split IDs 或 baseline convergence settings。,,,11,Reproducibility Statement
+iclr-2026-3dfd982128a2,ICLR,oral,Prelisted research goals,observed,Section 5 预列两项目标：(a) 加速 optimization/neural registration workflows；(b) 解决显著更大的 registration problems。,,,8,5 Experiments
+iclr-2026-3dfd982128a2,ICLR,oral,Clinical workflow benchmark,observed,TransMorph-large 在 LNCC+Dice、MI+Dice、LNCC+scaling-and-squaring+Dice 三配置中比较 vanilla PyTorch 与 FFDP；FireANTs 比较多个 LNCC/MI backends。,,,8|9,5.1 Accelerating existing workflows|Table 1
+iclr-2026-3dfd982128a2,ICLR,oral,Real 100µm multimodal case,observed,250µm in-vivo T1 MRI 注册到 100µm ex-vivo FLASH；composite affine+diffeomorphic transform；8 A6000 GPUs；输出主要为 runtime 与 qualitative slices。,,,8|8,5.2 Registration to a 100 micron volume|5.2 Registration to a 100 micron volume
+iclr-2026-3dfd982128a2,ICLR,oral,Faux-OASIS quantitative benchmark,observed,模拟 250µm isotropic ex-vivo brain MRI；比较 1mm、500µm、250µm；高分辨率 deep baselines 采用 downsample+upsample 或 patchwise mosaicing。,,,9|9,5.3 Comparative Analysis|5.3 Baselines and evaluation
+iclr-2026-3dfd982128a2,ICLR,oral,Baselines,observed,TransMorph、FireANTs、ITK-DReg、CLAIRE、SynthMorph、VFA、unigradICON ± instance optimization、Anatomix+ConvexAdam；Figure 5 另含 unregistered Baseline。,,,8|7,5 Baselines|Figure 5
+iclr-2026-3dfd982128a2,ICLR,oral,Metrics,observed,Dice、inverse-weighted Dice (InvDice)、cumulative-definition AvgHD90；efficiency 采用 wall-clock time 与 GPU-hours。,,,9|9,5.3 Baselines and evaluation|5.3 Baselines and evaluation
+iclr-2026-3dfd982128a2,ICLR,oral,Weak-scaling design,observed,对 H GPUs 构造 700×700×700H synthetic image pairs，分片 image、warp、optimizer state，比较 Ring Sampler on/off。,,,10,5.4 Scalability Analysis
+iclr-2026-3dfd982128a2,ICLR,oral,GP mechanism test,observed,在 fMOST mouse-brain data 上以无 boundary sync 的 DTensor 替换 GP，观察边界 artifacts 与 label overlap。,,,10,5.4 Ablation on GP
+iclr-2026-3dfd982128a2,ICLR,oral,Random seeds,not_present,正文实验页未说明 random seeds。,,,8|10,5 Experiments|5.4 Ablation Studies
+iclr-2026-3dfd982128a2,ICLR,oral,Replicate or pair count,not_present,Figure 5 只写 mean ± std over pairs，未给 pair 数；Table 1 bottom 也未给分母。,,,7|9,Figure 5 caption|Table 1
+iclr-2026-3dfd982128a2,ICLR,oral,Training budget and hyperparameters,unavailable,正文报告 TransMorph training hours，但 epochs、optimizer schedule、完整 hyperparameters 未给出；faux-OASIS details 与 real-case optimization details 分别指向 unavailable Sections K/E.1。,,,9|8,Table 1|5.2 Registration to a 100 micron volume
+iclr-2026-3dfd982128a2,ICLR,oral,Hardware,observed,headline real case 明示 8 NVIDIA A6000 GPUs；正文没有为所有 kernel、training、scaling experiments 给出完整硬件配置。,,,8|10,5.2 Registration to a 100 micron volume|5.4 Scalability Analysis
+iclr-2026-3dfd982128a2,ICLR,oral,Implementation provenance,observed,FireANTs 是 base framework，kernel baselines 标明 PyTorch、VoxelMorph/TransMorph、FastLNCC 与 torch.compile；正文未给 FFDP code URL。,,,3|9,3 Fused Kernels|5.1 Accelerating existing workflows
+iclr-2026-3dfd982128a2,ICLR,oral,Data-leakage control,not_present,正文没有说明 train/validation/test subjects、label-generation separation 或 leakage checks。,,,9,5.3 The faux-OASIS dataset
+iclr-2026-3dfd982128a2,ICLR,oral,Failure determination,observed,容量失败以 out-of-memory 表述；patch-based runs 以 † 明示；正文没有进一步的 timeout 或 numerical-failure protocol。,,,9|7,5.3 Baselines and evaluation|Figure 5 caption
+iclr-2026-82ba4792ed68,ICLR,oral,research_questions,not_present,没有预先编号的 RQ/Hypothesis；六 axes 与 §5 dependency question 构成隐式研究问题。,,,2|7,1 Introduction|5 Dependencies
+iclr-2026-82ba4792ed68,ICLR,oral,primary_task,observed,主任务是 frozen-LLM inference-time node classification。,,,3|14,3 Axes of Variability|A Additional Related Works
+iclr-2026-82ba4792ed68,ICLR,oral,datasets,observed,14 个真实数据集，覆盖 citation、e-commerce、web-link、social networks；Table 12 给规模与 split。,,,4|23,3.2 Dataset Domains|Table 12
+iclr-2026-82ba4792ed68,ICLR,oral,models,observed,o4-mini 为主模型；Appendix B 比较 Llama、DeepSeek R1、GPT-5、Phi-4、Qwen。,,,4|15,3.1 Model Configurations|Tables 4-5
+iclr-2026-82ba4792ed68,ICLR,oral,model_versions_and_decoding,not_present,参数量、checkpoint/API snapshot、temperature、top-p 与 decoding seeds 未报告。,,,10,Reproducibility Statement
+iclr-2026-82ba4792ed68,ICLR,oral,baselines,observed,Random、Majority Label、Label Propagation；Appendix D.4 另比较 GCN/GAT 与四个 hybrid LLM+GNN。,,,5|20,4 Baselines|D.4 Supervised Architectures
+iclr-2026-82ba4792ed68,ICLR,oral,metric,observed,主指标 accuracy；附录另报 tokens/query、wall-clock latency 与 shortest-path MSE。,,,5|16|19,Table 1|Tables 6-7|Table 10
+iclr-2026-82ba4792ed68,ICLR,oral,seeds_and_sampling,observed,"每 seed 抽 1,000 test nodes，五次独立运行取 mean；具体 seed ids 未列。",,,7,5 Additional Setup
+iclr-2026-82ba4792ed68,ICLR,oral,statistical_uncertainty,not_present,Tables 1–5 显示 ±，PDF 未定义其统计量；无区间、检验或多重比较。,,,5|7,Table 1|5 Additional Setup
+iclr-2026-82ba4792ed68,ICLR,oral,input_perturbation,observed,edges/labels 均匀随机删除，features 按 token 百分比截断；网格为 0/25/50/75/90/100%。,,,7|7,5 Additional Setup|Figure 2
+iclr-2026-82ba4792ed68,ICLR,oral,leakage_control,observed,held-out node labels 在 inference 时返回 None。,,,10|22,Ethics Statement|Template 2
+iclr-2026-82ba4792ed68,ICLR,oral,failure_criterion,observed,超出 context window 的条件标为 TokenLimit。,,,6|16,Table 3|C.1 Token Consumption
+iclr-2026-82ba4792ed68,ICLR,oral,training_budget,not_applicable,主方法使用 frozen LLM inference；没有训练预算。,,,14,A Additional Related Works
+iclr-2026-82ba4792ed68,ICLR,oral,hardware,observed,全部实验使用 8 Intel Xeon Platinum 8370C CPUs。,,,23,Appendix F
+iclr-2026-82ba4792ed68,ICLR,oral,implementation_source,not_present,给出完整 templates 与 dataset statistics；未给代码仓库 URL、commit、environment lock 或 raw outputs。,,,10|21,Reproducibility Statement|F Interaction Modes
+iclr-2026-b001d2f886cf,ICLR,oral,Predeclared research questions,not_present,"No numbered RQs or hypotheses; §4 previews construction, validity/quality, and extensibility analyses.",,,6,§4 AdAEM Analysis
+iclr-2026-b001d2f886cf,ICLR,oral,Value ontology,observed,Main experiments instantiate Schwartz ten-value theory; Appendix J instantiates five-dimensional Moral Foundation Theory.,,,6|45,§4.1|Appendix J
+iclr-2026-b001d2f886cf,ICLR,oral,Seed datasets,observed,"Touché23-ValueEval and ValueBench are expanded, filtered, clustered, categorized, sampled, and transformed into 1,535 generic topics.",,,22|24,Appendix B|Appendix B
+iclr-2026-b001d2f886cf,ICLR,oral,Main benchmark configuration,observed,"B=1500, N2=3, P1 has four faster models, P2 has nine cross-cultural/cross-temporal models; output is 12,310 questions.",,,6|6,§4.1|§4.1
+iclr-2026-b001d2f886cf,ICLR,oral,Geographic coverage,observed,The generated dataset covers 106 nation-states.,,,24,Appendix B
+iclr-2026-b001d2f886cf,ICLR,oral,Evaluatee models,observed,Figure 9 reports 16 popular LLMs; Table 3 lists 19 models used across the paper.,,,10|25,Figure 9|Table 3
+iclr-2026-b001d2f886cf,ICLR,oral,Baselines,observed,"SVS, ValueBench, and ValueDCG; Appendix C.5 describes them as fixed/static approaches.",,,30,Appendix C.5
+iclr-2026-b001d2f886cf,ICLR,oral,Question-quality metrics,observed,"Question count, average length, Self-BLEU, Dist-2, average semantic similarity, and t-SNE visualization.",,,32,Appendix C.9
+iclr-2026-b001d2f886cf,ICLR,oral,Human evaluation,observed,"300 question pairs, five annotators, three-point Likert ratings for Rationality, Controversy, and Value Elicitation.",,,32|33,Appendix C.10|Appendix C.10
+iclr-2026-b001d2f886cf,ICLR,oral,Construct-validity intervention,observed,"o3-mini and GPT-5 receive target-value system prompts; target, same-group, and opposite-group outcomes are compared.",,,33|35,Appendix C.11|Appendix C.12
+iclr-2026-b001d2f886cf,ICLR,oral,Value classifier,observed,"GPT-4o-Mini is used during generation and GPT-4o during evaluation; 1,920 target-domain and 14k other-domain test cases audit the classifier.",,,26|26,Appendix C.2|Appendix C.2
+iclr-2026-b001d2f886cf,ICLR,oral,Classifier metric labels,not_present,Table 4 reports slash-separated pairs such as 92.92/93.08 without naming the two metrics.,,,26,Table 4
+iclr-2026-b001d2f886cf,ICLR,oral,Sampling and prompts,observed,Each model produces one response with three ordered points; each point is capped at 250 words. top_p=0.95 and temperature=1.0.,,,25|30,Appendix C.2|Table 6
+iclr-2026-b001d2f886cf,ICLR,oral,Random seeds,not_present,"Five random partitions and random subsamples are used, but a reproducible random seed is not reported.",,,49,Appendix K.3
+iclr-2026-b001d2f886cf,ICLR,oral,Compute hardware,observed,API calls dominate cost; retrieval and deduplication use one NVIDIA A100 80GB GPU.,,,30,Appendix C.6
+iclr-2026-b001d2f886cf,ICLR,oral,API budget and wall-clock,not_present,"The paper reports B and model sets but not API tokens, monetary cost, or elapsed time.",,,30,Appendix C.6
+iclr-2026-b001d2f886cf,ICLR,oral,Hyperparameters,observed,"Table 6 reports ε=0.85, τ=0.5, Nshot=5, N2=3, and tree depth 3; most are defaults rather than exhaustively searched.",,,30|47,Table 6|Appendix K
+iclr-2026-b001d2f886cf,ICLR,oral,Contamination control,observed,"The K examinee LLMs are excluded from optimization; P1/P2 generate and score questions, with deduplication and proposed periodic regeneration.",,,5|31,§3.2|Appendix C.7
+iclr-2026-b001d2f886cf,ICLR,oral,Longitudinal online deployment,not_present,"An online AlpacaEval/ChatArena-like system is proposed as an ideal future deployment, not evaluated longitudinally.",,,31,Appendix C.7
+iclr-2026-b001d2f886cf,ICLR,oral,Failure/stopping rule,observed,Algorithm 2 stops local refinement when score gain does not exceed τ and filters near-duplicates using ε; no measurement-level failure threshold is predeclared.,,,28|30,Algorithm 2|Table 6
+iclr-2026-b001d2f886cf,ICLR,oral,Code and generated questions,observed,The abstract links a repository; the reproducibility statement commits to releasing required data and code.,,,1|11,Abstract|Reproducibility Statement
+iclr-2026-86ded246ec76,ICLR,oral,Research question sequence,observed,章节标题依次询问 divergence prevalence、harm taxonomy 与 mitigation。,,,4,3
+iclr-2026-86ded246ec76,ICLR,oral,MDVP model and sample,observed,Meta-Llama-3-8B-Instruct；100 contexts × 4 positions；layer 10 用于可视化。,,,15,A.1.1
+iclr-2026-86ded246ec76,ICLR,oral,MDVP layer selection,observed,layer 10 因最低 EMD 被选；Figure 2 数值则跨层平均。,,,15,A.1.1
+iclr-2026-86ded246ec76,ICLR,oral,SAE model and sample,observed,"Meta-Llama-3-8B-Instruct layer 25；2,000 reconstructed/natural vectors。",,,15,A.1.1
+iclr-2026-86ded246ec76,ICLR,oral,DAS sample,observed,"Wu et al. model/layer；1,000 intervened/natural vectors。",,,15,A.1.1
+iclr-2026-86ded246ec76,ICLR,oral,Divergence baseline,observed,intervened vectors 的对应 ground-truth natural vectors 构造 natural-natural baseline。,,,16,A.1.2
+iclr-2026-86ded246ec76,ICLR,oral,EMD implementation,observed,GeomLoss Sinkhorn，p=2，blur=0.05，全 vector dimensions。,,,15,A.1.2
+iclr-2026-86ded246ec76,ICLR,oral,Boundless DAS lineage,observed,pyvene tutorial reproduces a Wu et al. main result；authors 加 CL auxiliary loss。,,,18,A.4
+iclr-2026-86ded246ec76,ICLR,oral,Boundless CL-vector construction,observed,原任务 valid CL vectors 很少，故为每个 intervention sample 生成 token sequence sample。,,,18,A.4
+iclr-2026-86ded246ec76,ICLR,oral,Synthetic task,observed,10 grid classes；2 causal dimensions；默认 16 Gaussian noise dimensions。,,,19,A.5.1
+iclr-2026-86ded246ec76,ICLR,oral,MLP architecture,observed,"BatchNorm, hidden 128, ReLU, dropout 0.5, BatchNorm, 10 logits。",,,19,A.5.2
+iclr-2026-86ded246ec76,ICLR,oral,MLP optimizer,unavailable,文本同时写 stochastic gradient descent 与 Adam optimizer，无法唯一恢复。,,,20,A.5.2
+iclr-2026-86ded246ec76,ICLR,oral,MLP budget,observed,learning rate 0.01，最多 300 epochs，early stopping。,,,20,A.5.2
+iclr-2026-86ded246ec76,ICLR,oral,DAS budget,observed,默认 learning rate 0.01、subspace size 1、patience 400；best matrices 分别按 IIA/EMD 选。,,,20,A.5.3
+iclr-2026-86ded246ec76,ICLR,oral,Default partition,observed,每 partition 8/10 classes；alignment 跨 partition 测试。,,,19,A.5.1
+iclr-2026-86ded246ec76,ICLR,oral,OOD partition,observed,两个不重叠 4-class partitions，另排除 2 classes；Dense/Sparse 按 spacing。,,,20,A.5.4
+iclr-2026-86ded246ec76,ICLR,oral,Random seeds,observed,DAS analyses 使用 5 seeds；具体 seed values 未提供。,,,20,A.5.2
+iclr-2026-86ded246ec76,ICLR,oral,Hardware,not_present,正文与 appendix 未给 GPU/CPU、runtime 或 memory。,,,20,A.5.2
+iclr-2026-86ded246ec76,ICLR,oral,Implementation sources,observed,public repository、HuggingFace、SAELens 与 pyvene 均明确。,,,1,Footnote 1
+iclr-2026-86ded246ec76,ICLR,oral,Human evaluation,not_applicable,研究不含 participant study。,,,9,5.2
+iclr-2026-86ded246ec76,ICLR,oral,Failure criterion,not_present,实证部分未预先声明成功/失败阈值；Algorithm 1 epsilon 仅是分类容差。,,,19,Algorithm 1
+iclr-2026-fac989b896c5,ICLR,oral,prelisted_research_questions,not_present,"No numbered RQ or hypothesis list; §6 headings retrospectively organize performance, data-mixture transfer, and harness adaptation.",,,7,§6 Experimental Results
+iclr-2026-fac989b896c5,ICLR,oral,datasets,observed,"13 sources spanning coding, software engineering, API/tool use, and web browsing; raw collection exceeds 1.3M instances.",,,7,§5.1
+iclr-2026-fac989b896c5,ICLR,oral,effective_training_scale,observed,"After sampling and domain filtering, OpenHands/SWE-Agent use about 30K non-web examples and AgentLab about 20K web examples.",,,19|19,Appendix C.1|Appendix C.1
+iclr-2026-fac989b896c5,ICLR,oral,base_models,observed,"Main tables use Qwen2.5-Coder-Instruct at 7B, 14B, and 32B; transfer/equal-scale comparisons also use Qwen2.5-7B-Instruct and Qwen-3-8B.",,,7|9,§5.1|Table 6
+iclr-2026-fac989b896c5,ICLR,oral,agent_harnesses,observed,"OpenHands CodeActAgent, AgentLab, and SWE-Agent provide three distinct action/interface environments.",,,7,§5.1
+iclr-2026-fac989b896c5,ICLR,oral,benchmarks,observed,"SWE-Bench Verified, WebArena, AgentBench OS, and GAIA; availability of evaluation code and agent specialization guide selection.",,,7,§5.2
+iclr-2026-fac989b896c5,ICLR,oral,metric,observed,All main benchmark tables report Accuracy point estimates.,,,8,Table 3
+iclr-2026-fac989b896c5,ICLR,oral,sampling_weights,observed,Per-dataset multiplier w_d controls up/downsampling; the union is shuffled each epoch.,,,18,Appendix C
+iclr-2026-fac989b896c5,ICLR,oral,random_seed,observed,"A fixed seed is stated, but its value and number of repeated runs are not reported.",,,18,Appendix C
+iclr-2026-fac989b896c5,ICLR,oral,domain_filtering,observed,Coding/SWE harnesses exclude web datasets; AgentLab excludes coding/SWE datasets.,,,19|19,Appendix C.1|Appendix C.1
+iclr-2026-fac989b896c5,ICLR,oral,sft_implementation,observed,All models are fine-tuned with the same LLaMA-Factory SFT pipeline.,,,7,§5.1
+iclr-2026-fac989b896c5,ICLR,oral,training_hyperparameters,not_present,"Learning rate, optimizer, batch size, context length, epoch/step count, scheduler, and checkpoint selection are absent from the PDF.",,,7|18,§5.1|Appendix C
+iclr-2026-fac989b896c5,ICLR,oral,training_budget,not_present,"Training tokens, steps, wall time, and compute budget are not reported.",,,7,§5.1
+iclr-2026-fac989b896c5,ICLR,oral,hardware,not_present,Acknowledgement names the CMU FLAME Center but gives no accelerator or node configuration.,,,11,Acknowledgement
+iclr-2026-fac989b896c5,ICLR,oral,matched_controls,observed,Table 6 holds harness+model fixed; Table 10 matches approximate sample count at 30K.,,,9|20,§6.2|§E.1
+iclr-2026-fac989b896c5,ICLR,oral,data_leakage_control,not_present,"No benchmark contamination, repository overlap, or training/evaluation leakage audit is described.",,,7,§5.2
+iclr-2026-fac989b896c5,ICLR,oral,failure_criterion,not_present,"No failed-run, invalid-trajectory, or conversion-failure denominator is reported.",,,5,§3.3 Quality Assurance
+iclr-2026-fac989b896c5,ICLR,oral,human_evaluation,not_applicable,The evaluation consists of automated benchmark accuracy; no human study is claimed.,,,7,§5.2
+iclr-2026-fb08cee992a1,ICLR,oral,predeclared_research_questions,not_present,§5.1 直接从场景与设置开始，没有编号的研究问题或假设。,,,6,§5.1 Experimental Settings
+iclr-2026-fb08cee992a1,ICLR,oral,scenarios_environments_tasks,observed,五类场景分别使用 WebArena、RAG-based Deep Search、TextCraft、BabyAI、SciWorld。,,,6,§5.1 Experimental Settings
+iclr-2026-fb08cee992a1,ICLR,oral,backbone_models,observed,主 backbone 为 Qwen-2.5-3B 与 Qwen-2.5-7B。,,,7,§5.1 Experimental Settings
+iclr-2026-fb08cee992a1,ICLR,oral,baselines,observed,Table 1、5–8 包含 proprietary 与 open-source baselines。,,,7|25,Table 1|Table 5
+iclr-2026-fb08cee992a1,ICLR,oral,agent_paradigm,observed,训练与评估均使用 ReAct。,,,7,§5.1 Experimental Settings
+iclr-2026-fb08cee992a1,ICLR,oral,webarena_data_split,observed,372 training queries、50 testing queries；排除改变网站状态的 Content & Config tasks。,,,29|29,Appendix E.1|Appendix E.1
+iclr-2026-fb08cee992a1,ICLR,oral,webarena_schedule,observed,evaluation/fixed training 15 turns；ScalingInter-RL 8→12→15，每 80 steps。,,,29,Appendix E.1
+iclr-2026-fb08cee992a1,ICLR,oral,deep_search_data,observed,使用七个 QA datasets；文中称从 development sets 随机抽取 400 examples。,,,29,Appendix E.2
+iclr-2026-fb08cee992a1,ICLR,oral,deep_search_schedule,observed,evaluation 10 turns；fixed training 5；ScalingInter-RL 在 steps 200/300 为 5→8→10。,,,29,Appendix E.2
+iclr-2026-fb08cee992a1,ICLR,oral,textcraft_design,observed,按 crafting-tree depth 1–4 分层；evaluation 20、fixed 30、ScalingInter-RL 10→20→30，每 100 steps。,,,30|30,Appendix E.3|Appendix E.3
+iclr-2026-fb08cee992a1,ICLR,oral,babyai_design,observed,六个 goal subsets；evaluation/fixed 20；ScalingInter-RL 6→13→20，每 100 steps。,,,31|31,Appendix E.4|Appendix E.4
+iclr-2026-fb08cee992a1,ICLR,oral,sciworld_design,observed,八个 task subsets；evaluation/fixed 20；ScalingInter-RL 10→15→20，每 200 steps。,,,31|31,Appendix E.5|Appendix E.5
+iclr-2026-fb08cee992a1,ICLR,oral,rl_hyperparameters,observed,主算法为 GRPO；WebArena lr 5e-7，其余 1e-6；KL 1e-3；temperature 1.0。,,,29|31,Appendix E.1|Appendix E.5
+iclr-2026-fb08cee992a1,ICLR,oral,rollout_samples,observed,WebArena 每 query 4 trajectories；其余环境 8。,,,29|31,Appendix E.1|Appendix E.5
+iclr-2026-fb08cee992a1,ICLR,oral,hardware,observed,使用 NVIDIA A100 GPUs 与 Ascend 910B NPUs；未给设备数量或内存。,,,27,Appendix E
+iclr-2026-fb08cee992a1,ICLR,oral,random_seeds,not_present,正文与 Appendix E 没有训练或评估 seed。,,,27,Appendix E
+iclr-2026-fb08cee992a1,ICLR,oral,independent_training_repeats,not_present,未报告独立训练重复；per-query trajectories 属于同次 rollout sampling。,,,29,Appendix E.2
+iclr-2026-fb08cee992a1,ICLR,oral,training_budget,observed,报告部分 horizon transition steps 与 Figure 8 运行曲线；未给统一总 token、episode 或 device-hour budget。,,,29|9,Appendix E.2|Figure 8
+iclr-2026-fb08cee992a1,ICLR,oral,uncertainty_and_tests,not_present,主要图表仅给点估计或单条曲线，没有离散量、区间或假设检验。,,,7,Table 1
+iclr-2026-fb08cee992a1,ICLR,oral,data_leakage_control,not_present,WebArena 排除规则控制网站状态污染；未讨论训练/测试内容泄漏。,,,29,Appendix E.1
+iclr-2026-fb08cee992a1,ICLR,oral,failure_criterion,observed,主要使用环境 outcome reward、accuracy/success 与 task completion；未给跨环境统一失败阈值。,,,3|25,§2.1 Formulation|Table 5
+iclr-2026-fb08cee992a1,ICLR,oral,implementation_source,observed,提供 GitHub 与匿名 code/data ZIP；未给 commit、容器或环境版本。,,,1|11,Abstract|Reproducibility Statement
+iclr-2026-935af26c0a67,ICLR,oral,Predeclared research questions,not_present,正文按三个攻击场景与两个 robustness/ablation 模块组织，但未以 RQ/Hypothesis 编号预列问题。,,,5,4 Evaluation
+iclr-2026-935af26c0a67,ICLR,oral,Threat-model separation,observed,攻击者不知道 victim 数据集或微调细节；FAB 内层固定用 Alpaca，而评估覆盖四个用户数据集。,,,3|5,3 Threat Model|4 General Experimental Setup
+iclr-2026-935af26c0a67,ICLR,oral,Target behaviors,observed,三个主任务为 advertisement injection、jailbreakability 与 over-refusal；附录增加 sudo 条件触发。,,,5|32,4 Evaluation|B Additional Scenario
+iclr-2026-935af26c0a67,ICLR,oral,Models,observed,主实验使用 Llama-3.2-1B、Llama-3.2-3B 与 Phi-2；scale 上限为 3B。,,,6|10,4.1 and 4.2 Setup|5 Limitations
+iclr-2026-935af26c0a67,ICLR,oral,User-finetuning datasets,observed,AlpacaGPT4、CodeAlpaca、OpenMathInstruct、PubMedQA 作为用户微调集；over-refusal 排除 PubMedQA。,,,5|7,4 General Experimental Setup|4.3 Setup
+iclr-2026-935af26c0a67,ICLR,oral,Attacker meta-learning dataset,observed,内层模拟微调固定使用 generic Alpaca，k=50；组件消融还替换为 PM-QA、CA、OMI。,,,5|9,4 General Experimental Setup|4.5 Component Ablation
+iclr-2026-935af26c0a67,ICLR,oral,Baselines and matching,observed,每个 FAB 模型与同架构 instruction-tuned 或 factory-instruct 模型比较，并同时报告微调前与后。,,,5|6,Table 1 and Table 2|Table 3 and Table 4
+iclr-2026-935af26c0a67,ICLR,oral,Advertisement ASR denominator,observed,从 Dolly 采样 1.5k prompts；响应是否包含目标词 McDonald 构成 ASR。,,,6,4.1 Setup
+iclr-2026-935af26c0a67,ICLR,oral,Over-refusal ASR denominator,observed,从 Dolly 采样 1.5k prompts；GPT-4.1 judge 返回 A 或 B 记为 refusal。,,,7|36,4.3 Setup|C.4 Details on Attack Judges
+iclr-2026-935af26c0a67,ICLR,oral,Jailbreak ASR denominator,not_present,使用 Qi et al. harmful dataset 与 GPT-4.1 judge，但 PDF 未报告 harmful-query 精确样本数。,,,7,4.2 Setup
+iclr-2026-935af26c0a67,ICLR,oral,Jailbreak decision rule,observed,judge 评分达到 4 或 5 时计为 jailbreak success。,,,36,C.4 Details on Attack Judges
+iclr-2026-935af26c0a67,ICLR,oral,Utility benchmarks,observed,ARC、MMLU、HellaSwag、TruthfulQA、HumanEval、PubMedQA、GSM8K；使用 EleutherAI LM evaluation harness。,,,5|34,4 General Experimental Setup|C.3 Benchmark Evaluation
+iclr-2026-935af26c0a67,ICLR,oral,Utility metric implementation,observed,多选题报告 normalized log-likelihood accuracy；HumanEval/GSM8K 为 greedy single-sample pass@1，GSM8K 5-shot。,,,34|34,C.3 Benchmark Evaluation|C.3 Benchmark Evaluation
+iclr-2026-935af26c0a67,ICLR,oral,Trigger-finetuning budget,observed,默认 batch 32、sequence length 512、LR 5e-5、linear scheduler、AdamW、2000 steps。,,,34,C.2 Trigger-finetuning Hyperparameters
+iclr-2026-935af26c0a67,ICLR,oral,FAB training budget,observed,outer loop 默认 2000 steps；inner ft 为 50 steps、batch 1；主要 optimizer 与 loss weights 在 App. C.1 给出。,,,33|33,C.1 FAB Hyperparameters|C.1 FAB Hyperparameters
+iclr-2026-935af26c0a67,ICLR,oral,Random repetitions,observed,Table 7 每个 configuration 独立运行 5 次；λreg 消融也训练 5 个独立 FAB models。,,,8|29,4.4 Setup|A.7 Setup
+iclr-2026-935af26c0a67,ICLR,oral,Random seed values,not_present,PDF 报告 repetitions 与 standard deviation，但未列出 seed 数值或固定方式。,,,8,4.4 Results
+iclr-2026-935af26c0a67,ICLR,oral,Hardware,observed,Llama-1B 在单 H100/GH200 上训练；Phi-2 与 Llama-3.2-3B 用单节点四张 GH200。,,,39|39,E.2 Resources|E.2 Resources
+iclr-2026-935af26c0a67,ICLR,oral,Runtime,observed,Llama-1B FAB 平均 3h30m，单数据集用户微调 20m；k=50 的具体总训练时间为 3h32。,,,39|36,E.2 Resources|Figure 35
+iclr-2026-935af26c0a67,ICLR,oral,Implementation source,observed,脚注与 Reproducibility Statement 提供代码链接，许可证为 research-only Open-RAIL。,,,2|10,1 Main Contributions|Reproducibility Statement
+iclr-2026-935af26c0a67,ICLR,oral,Data leakage controls,not_present,论文维持 attacker/victim dataset 分离，但未报告 benchmark contamination 或 de-duplication 检查。,,,33,C.1 FAB Hyperparameters
+iclr-2026-935af26c0a67,ICLR,oral,Failure and success thresholds,observed,主表用相对 baseline 2× 或绝对 ASR 色阶作可视阈值；这些阈值未表述为统计检验。,,,6|8,4.1 Results|Table 7
+iclr-2026-935af26c0a67,ICLR,oral,Main-result sequence,observed,实验先给三种攻击，再做 victim-configuration robustness、FAB component ablation、额外 post-training。,,,5|9,4 Evaluation|4.6 FAB Robustness
+iclr-2026-935af26c0a67,ICLR,oral,Reproduction granularity,observed,正文给 threat model、algorithm 与主设置；App. C 补训练超参数、judge prompt、runtime，资源与许可在 App. E。,,,10|32,Reproducibility Statement|C Extended Experimental Details
+iclr-2026-a6ddc629568b,ICLR,outstanding,predeclared_research_questions,not_present,"No numbered RQ, preregistered hypothesis, or decision rule is stated; §4 moves directly from tasks to metrics and scale.",,,4,§4 Experiment
+iclr-2026-a6ddc629568b,ICLR,outstanding,tasks_and_datasets,observed,"Six main generation tasks: Code (HumanEval/LiveCodeBench), Database (Spider), Actions (BFCL), Math (GSM8K), Data-to-Text (ToTTo), Summary (Summary of a Haystack).",,,5,§4.1
+iclr-2026-a6ddc629568b,ICLR,outstanding,instruction_count,observed,"Approximately 90-120 sharded instructions per task; task-specific appendix reports 100 Code, 107 Database, 105 Actions, 103 Math, 120 Data-to-Text, and 92 Summary.",,,4|32,§4.1|Appendix J
+iclr-2026-a6ddc629568b,ICLR,outstanding,model_scope,observed,"15 LLMs from eight families, spanning small/large, open/closed, and two reasoning models.",,,6|30,§4.3|Appendix I
+iclr-2026-a6ddc629568b,ICLR,outstanding,matched_conditions,observed,"FULL, CONCAT, and SHARDED reuse the same underlying tasks; CONCAT controls for shard rephrasing while removing multi-turn disclosure.",,,4,§3.3
+iclr-2026-a6ddc629568b,ICLR,outstanding,simulation_repetition,observed,"Ten runs per model-instruction-simulation-type pair in the main experiment; more than 200,000 conversations total.",,,6,§4.3
+iclr-2026-a6ddc629568b,ICLR,outstanding,aggregation_and_denominator,observed,"P, A, and U are computed per instruction and then averaged over a corpus; task scores are normalized to 0-100.",,,6|5,§4.2|§4.1
+iclr-2026-a6ddc629568b,ICLR,outstanding,metrics,observed,"P is mean task score; A is the per-instruction 90th percentile; U is the 90th-minus-10th percentile range. Task evaluators include functional accuracy, semantic equivalence, exact match, BLEU, and Joint Score.",,,6|5,§4.2|§4.1
+iclr-2026-a6ddc629568b,ICLR,outstanding,answer_attempt_scoring,observed,"A SHARDED conversation receives the maximum score across per-turn answer attempts, giving it more chances than single-turn baselines.",,,4,§3.2
+iclr-2026-a6ddc629568b,ICLR,outstanding,random_seeds,not_present,The main simulation reports independent stochastic repetitions but no seed values or seed schedule.,,,11,§9 Reproducibility Statement
+iclr-2026-a6ddc629568b,ICLR,outstanding,training_budget,not_applicable,The work evaluates existing LLMs and does not train a model.,,,6,§4.3
+iclr-2026-a6ddc629568b,ICLR,outstanding,inference_budget,observed,"Estimated total API cost is about $5,000; all tasks use under 20k context tokens, most under 8k.",,,6,§4.3
+iclr-2026-a6ddc629568b,ICLR,outstanding,hyperparameters,observed,"Main experiments use temperature 1.0 and default remaining hyperparameters; response cap 1,000 tokens, increased to 10,000 for o3 and Deepseek-R1.",,,29|30,Appendix I|Appendix I
+iclr-2026-a6ddc629568b,ICLR,outstanding,physical_hardware,not_present,"Model providers and local Ollama access are listed, but CPU/GPU hardware is not specified.",,,30,Appendix I
+iclr-2026-a6ddc629568b,ICLR,outstanding,implementation_sources,observed,Appendix J identifies benchmark sources and reuses official or maintained evaluators; the paper states code/data will be released upon acceptance.,,,30|11,§J.1|§9 Reproducibility Statement
+iclr-2026-a6ddc629568b,ICLR,outstanding,data_leakage_control,not_present,No explicit contamination audit is reported. The authors acknowledge that an early correct guess could reflect benchmark memorization.,,,11,§8 Ethics Statement
+iclr-2026-a6ddc629568b,ICLR,outstanding,failure_criteria,observed,"Task-specific success is defined by official evaluators; invalid SQL/code or semantic mismatch yields zero, while refinement tasks use continuous metrics.",,,31|32,§J.2-§J.3|§J.5-§J.6
+iclr-2026-a6ddc629568b,ICLR,outstanding,simulator_validation,observed,"Manual inspection evaluates shard reveal/contextualization, strategy labels, extraction, and overall validity; the prose and table disagree on inspected conversation count.",,,19|20,Appendix D|Table 2
+iclr-2026-a6ddc629568b,ICLR,outstanding,formal_statistical_inference,not_present,"The paper reports means and empirical percentiles but no estimator intervals, hypothesis-test specification, or multiple-comparison procedure.",,,6,§4.2
+iclr-2026-a6ddc629568b,ICLR,outstanding,supplementary_experiments,observed,"Gradual sharding, RECAP/SNOWBALL, system-prompt hinting, temperature, and translation experiments probe granularity, mitigations, and scope.",,,9|26,§5.3-§6|§G.1
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,predeclared research questions,not_present,引言用 prose 提出 succinctness lens，没有编号研究问题或假设。,,,1,§1
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,datasets and tasks,not_applicable,形式语言与复杂度论文；没有 empirical dataset/task。,,,1,Abstract
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,models and baselines,not_applicable,UHAT、LTL、RNN 与 automata 是形式表征类，不是训练模型/实验基线。,,,5,§2.5
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,metrics and aggregation,not_applicable,决策量是 representation size、shortest accepted word、translation blow-up 与 complexity class。,,,5,§2.5
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,random seeds,not_applicable,没有随机实验。,,,,
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,training budget and hyperparameters,not_applicable,没有训练过程。,,,,
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,hardware,not_applicable,没有运行时实验或硬件报告。,,,,
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,implementation source,not_applicable,论文提供数学构造与证明，没有软件实现。,,,,
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,controls and leakage,not_applicable,没有数据采样、匹配或泄漏边界。,,,,
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,formal failure criterion,observed,non-emptiness、equivalence 与 tiling-solution iff 是明确的判定标准。,,,7,"§3, Lemma 8"
+iclr-2026-88c6c50ec3eb,ICLR,outstanding,reproducibility granularity,observed,主文保留关键构造和定理；A.1–A.7 给出完整 proof chain，A.6 明示为 proof sketch。,,,14|20,Appendix A|A.6
