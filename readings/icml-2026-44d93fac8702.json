@@ -1,0 +1,1961 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "icml-2026-44d93fac8702",
+  "bibliography": {
+    "title": "Effective Reasoning Chains Reduce Intrinsic Dimensionality",
+    "conference": "ICML",
+    "year": 2026,
+    "selection_flags": [
+      "spotlight"
+    ]
+  },
+  "source_files": {
+    "pdf": "corpus/preprints/icml-2026-44d93fac8702.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=vCjGjvrIR9",
+    "source_kind": "verified_preprint",
+    "source_url": "https://arxiv.org/pdf/2602.09276"
+  },
+  "page_map": {
+    "pdf_pages": 22,
+    "main_pages": 9,
+    "reference_pages": 3,
+    "appendix_pages": 10,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 181
+      },
+      {
+        "title": "1. Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 760
+      },
+      {
+        "title": "2.1. Background on Intrinsic Dimension",
+        "module": "theory",
+        "start_page": 2,
+        "end_page": 2,
+        "estimated_words": 180
+      },
+      {
+        "title": "2.2. Lower-Dimension Projection for LLMs",
+        "module": "method",
+        "start_page": 2,
+        "end_page": 2,
+        "estimated_words": 330
+      },
+      {
+        "title": "2.3. Measuring Intrinsic Dimension of Reasoning",
+        "module": "method",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 610
+      },
+      {
+        "title": "3. Experimental Setup",
+        "module": "experimental_design",
+        "start_page": 3,
+        "end_page": 5,
+        "estimated_words": 950
+      },
+      {
+        "title": "4.1. Intrinsic Dimension with Gemma-3 4B",
+        "module": "results",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 560
+      },
+      {
+        "title": "4.2. Intrinsic Dimension with Gemma-3 1B",
+        "module": "results",
+        "start_page": 6,
+        "end_page": 6,
+        "estimated_words": 200
+      },
+      {
+        "title": "4.3. Robustness to Threshold Selection",
+        "module": "ablation",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 280
+      },
+      {
+        "title": "4.4. Additional Results and Analysis",
+        "module": "results",
+        "start_page": 7,
+        "end_page": 8,
+        "estimated_words": 520
+      },
+      {
+        "title": "4.5. Generalization to Diverse Reasoning Domains",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 9,
+        "estimated_words": 350
+      },
+      {
+        "title": "5. Related Work",
+        "module": "related_work",
+        "start_page": 9,
+        "end_page": 9,
+        "estimated_words": 340
+      },
+      {
+        "title": "6. Discussion and Conclusion",
+        "module": "conclusion",
+        "start_page": 9,
+        "end_page": 9,
+        "estimated_words": 240
+      },
+      {
+        "title": "Limitations discussed in §6 and Impact Statement",
+        "module": "limitations",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 180
+      },
+      {
+        "title": "Acknowledgments",
+        "module": "other",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 120
+      },
+      {
+        "title": "Impact Statement",
+        "module": "other",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 170
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 10,
+        "end_page": 12,
+        "estimated_words": 1900
+      },
+      {
+        "title": "A. Additional Details on Computing Intrinsic Dimension",
+        "module": "appendix",
+        "start_page": 13,
+        "end_page": 14,
+        "estimated_words": 620
+      },
+      {
+        "title": "A.1. LoRA Sweeps for Computing Intrinsic Dimensions",
+        "module": "appendix",
+        "start_page": 13,
+        "end_page": 13,
+        "estimated_words": 360
+      },
+      {
+        "title": "A.2. Intrinsic Dimension Computation for Gemma-3 1B",
+        "module": "appendix",
+        "start_page": 13,
+        "end_page": 14,
+        "estimated_words": 140
+      },
+      {
+        "title": "B. Size of Training and Test Splits",
+        "module": "appendix",
+        "start_page": 13,
+        "end_page": 14,
+        "estimated_words": 470
+      },
+      {
+        "title": "B.1. GSM8K",
+        "module": "appendix",
+        "start_page": 13,
+        "end_page": 14,
+        "estimated_words": 330
+      },
+      {
+        "title": "C. Reasoning Gym",
+        "module": "appendix",
+        "start_page": 14,
+        "end_page": 15,
+        "estimated_words": 420
+      },
+      {
+        "title": "D. Comparison with LongPPL",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 16,
+        "estimated_words": 230
+      },
+      {
+        "title": "E. Examples of Different Reasoning Strategies",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 21,
+        "estimated_words": 1050
+      },
+      {
+        "title": "F. Detailed Results across all Test Splits",
+        "module": "appendix",
+        "start_page": 21,
+        "end_page": 22,
+        "estimated_words": 450
+      }
+    ],
+    "main_end_page": 9,
+    "reference_start_page": 10,
+    "reference_end_page": 12,
+    "appendix_start_page": 13,
+    "layout_notes": [
+      "Pages 1–9 use two columns; Figure 1 is a wide overview on page 3 and Figure 2 is a single-column plot on page 7.",
+      "Tables 1–5 are in the main text; Figure 3 and Tables 6–9 are in the appendix.",
+      "Page 10 combines Acknowledgments and Impact Statement in the left column with the first References entries in the right column."
+    ]
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 181,
+      "main_word_share": 0.03,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 760,
+      "main_word_share": 0.124,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 340,
+      "main_word_share": 0.055,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 720,
+      "main_word_share": 0.117,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 3
+    },
+    {
+      "module": "theory",
+      "status": "observed",
+      "estimated_words": 220,
+      "main_word_share": 0.036,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 1
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 950,
+      "main_word_share": 0.155,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 1700,
+      "main_word_share": 0.277,
+      "figures": 1,
+      "tables": 3,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 600,
+      "main_word_share": 0.098,
+      "figures": 0,
+      "tables": 2,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 240,
+      "main_word_share": 0.039,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 180,
+      "main_word_share": 0.029,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 3300,
+      "main_word_share": null,
+      "figures": 1,
+      "tables": 4,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 2190,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Chain-of-thought (CoT) reasoning and its variants have substantially improved the performance of language models on complex reasoning tasks, yet the precise mechanisms by which different strategies facilitate generalization remain poorly understood.",
+      "word_count": 31,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "precise mechanisms ... remain poorly understood",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "While current explanations often point to increased test-time computation or structural guidance, establishing a consistent, quantifiable link between these factors and generalization remains challenging.",
+      "word_count": 24,
+      "functions": [
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "consistent, quantifiable link",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "In this work, we identify intrinsic dimensionality as a quantitative measure for characterizing the effectiveness of reasoning chains.",
+      "word_count": 18,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "identify intrinsic dimensionality as a quantitative measure",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "Intrinsic dimensionality quantifies the minimum number of model dimensions needed to reach a given accuracy threshold on a given task.",
+      "word_count": 20,
+      "functions": [
+        "object_scope",
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "minimum number of model dimensions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "By keeping the model architecture fixed and varying the task formulation through different reasoning strategies, we demonstrate that effective reasoning strategies consistently reduce the intrinsic dimensionality of the task.",
+      "word_count": 29,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "keeping the model architecture fixed",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "Validating this on GSM8K with Gemma-3 1B and 4B, we observe a strong inverse correlation between the intrinsic dimensionality of a reasoning strategy and its generalization performance on both in-distribution and out-of-distribution data.",
+      "word_count": 33,
+      "functions": [
+        "experimental_setup",
+        "qualitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "Gemma-3 1B and 4B",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "Our findings suggest that effective reasoning chains facilitate learning by better compressing the task using fewer parameters, offering a new quantitative metric for analyzing reasoning processes.",
+      "word_count": 26,
+      "functions": [
+        "qualitative_result",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "better compressing the task",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context",
+      "estimated_words": 260,
+      "evidence": {
+        "page": 1,
+        "section": "1. Introduction",
+        "anchor": "different reasoning strategies yield varying performance",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "failure_of_prior_work",
+      "estimated_words": 300,
+      "evidence": {
+        "page": 1,
+        "section": "1. Introduction",
+        "anchor": "Existing explanations in prior work suffer from notable limitations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "missing_insight",
+      "estimated_words": 180,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "if a reasoning strategy effectively bridges the logical gap",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "result_preview",
+      "estimated_words": 90,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "strong inverse correlation ... generalization performance",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "gap_creation",
+      "estimated_words": 190,
+      "evidence": {
+        "page": 9,
+        "section": "5. Related Work",
+        "anchor": "many of these explanations are not quantifiable measures",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "nearest_neighbor_contrast + credit_or_foundation",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 9,
+        "section": "5. Related Work",
+        "anchor": "rather than varying the model ... we vary the LoRA rank",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 120,
+      "evidence": {
+        "page": 2,
+        "section": "§2.1 Background on Intrinsic Dimension",
+        "anchor": "θ = θ0 + P(θd)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "contrast_alternative",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 2,
+        "section": "§2.2 Lower-Dimension Projection for LLMs",
+        "anchor": "randomly projected spaces can be challenging and sub-optimal",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "define_component",
+      "estimated_words": 130,
+      "evidence": {
+        "page": 2,
+        "section": "§2.2 Lower-Dimension Projection for LLMs",
+        "anchor": "LoRA represents the weight update",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "state_complexity",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 2,
+        "section": "§2.2 Lower-Dimension Projection for LLMs",
+        "anchor": "total number of trainable parameters",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "derive",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 2,
+        "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+        "anchor": "intrinsic dimension dint is",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "instantiate_algorithm",
+      "estimated_words": 170,
+      "evidence": {
+        "page": 3,
+        "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+        "anchor": "sweep of k LoRA configurations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "connect_to_prediction",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 3,
+        "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+        "anchor": "use a common threshold τ across all strategies",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "connect_to_experiment",
+      "estimated_words": 130,
+      "evidence": {
+        "page": 3,
+        "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+        "anchor": "maximum training accuracy achieved by any strategy at full capacity after one epoch",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "method",
+      "page": 3,
+      "purpose": "Overview from reasoning strategies through LoRA sweep to ID/OOD evaluation and the predicted inverse relationship.",
+      "evidence": {
+        "page": 3,
+        "section": "Figure 1",
+        "anchor": "Figure 1. Overview",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 5,
+      "purpose": "Gemma-3 4B performance and strategy-level correlations for ID, OOD, Overall, intrinsic dimension, KL, token PPL, and length.",
+      "evidence": {
+        "page": 5,
+        "section": "Table 1",
+        "anchor": "Table 1. Performance of Gemma-3 4B",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "results",
+      "page": 6,
+      "purpose": "Gemma-3 1B performance and the same metric correlations across 14 strategies.",
+      "evidence": {
+        "page": 6,
+        "section": "Table 2",
+        "anchor": "Table 2. Performance of Gemma-3 1B",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "ablation",
+      "page": 6,
+      "purpose": "Threshold-selection robustness across epoch-1 train and validation thresholds.",
+      "evidence": {
+        "page": 6,
+        "section": "Table 3",
+        "anchor": "Table 3. Robustness to threshold selection",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "results",
+      "page": 7,
+      "purpose": "Gemma-3 4B monotonic training-accuracy Pareto frontiers and threshold crossings.",
+      "evidence": {
+        "page": 7,
+        "section": "Figure 2",
+        "anchor": "Figure 2. Visualization of intrinsic dimension computation for Gemma-3 4B",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "results",
+      "page": 8,
+      "purpose": "Reasoning Gym algorithmic/cognitive category performance and correlations for four strategies.",
+      "evidence": {
+        "page": 8,
+        "section": "Table 4",
+        "anchor": "Table 4. Performance on Reasoning Gym tasks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "ablation",
+      "page": 8,
+      "purpose": "Effect of 100% versus 50% correct reasoning chains on Gemma-3 4B ID and Overall accuracy.",
+      "evidence": {
+        "page": 8,
+        "section": "Table 5",
+        "anchor": "Table 5. Effect of training data correctness",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "appendix",
+      "page": 14,
+      "purpose": "Gemma-3 1B training-accuracy Pareto frontiers and threshold crossings.",
+      "evidence": {
+        "page": 14,
+        "section": "A.2 Intrinsic Dimension Computation for Gemma-3 1B",
+        "anchor": "Figure 3. Visualization of intrinsic dimension computation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 6",
+      "module": "appendix",
+      "page": 15,
+      "purpose": "Easy/hard/held-out Reasoning Gym task configurations.",
+      "evidence": {
+        "page": 15,
+        "section": "C. Reasoning Gym",
+        "anchor": "Table 6. Algorithmic and cognitive reasoning task configurations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 7",
+      "module": "appendix",
+      "page": 16,
+      "purpose": "LongPPL, token PPL, and intrinsic-dimension Spearman correlations on Gemma-3 4B.",
+      "evidence": {
+        "page": 16,
+        "section": "D. Comparison with LongPPL",
+        "anchor": "Table 7. Spearman rank correlations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 8",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "Gemma-3 4B accuracy for GSM8K and five OOD stress splits with aggregates.",
+      "evidence": {
+        "page": 22,
+        "section": "F. Detailed Results across all Test Splits",
+        "anchor": "Table 8. Detailed Performance of Gemma-3 4B",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 9",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "Gemma-3 1B accuracy for GSM8K and five OOD stress splits with aggregates.",
+      "evidence": {
+        "page": 22,
+        "section": "F. Detailed Results across all Test Splits",
+        "anchor": "Table 9. Detailed Performance of Gemma-3 1B",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "displayed_equation",
+      "label": "θ = θ0 + P(θd)",
+      "module": "theory",
+      "page": 2,
+      "role": "core_chain",
+      "evidence": {
+        "page": 2,
+        "section": "§2.1 Background on Intrinsic Dimension",
+        "anchor": "θ = θ0 + P(θd)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "W = W0 + BA",
+      "module": "method",
+      "page": 2,
+      "role": "core_chain",
+      "evidence": {
+        "page": 2,
+        "section": "§2.2 Lower-Dimension Projection for LLMs",
+        "anchor": "W = W0 + BA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "params(r,LLoRA) = 2 × LLoRA × dmodel × r",
+      "module": "method",
+      "page": 2,
+      "role": "core_chain",
+      "evidence": {
+        "page": 2,
+        "section": "§2.2 Lower-Dimension Projection for LLMs",
+        "anchor": "params(r,LLoRA) = 2 × LLoRA × dmodel × r",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "dint = min{d : A(d) ≥ τ}",
+      "module": "method",
+      "page": 2,
+      "role": "core_chain",
+      "evidence": {
+        "page": 2,
+        "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+        "anchor": "dint = min{d : A(d) ≥ τ",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "research question",
+      "status": "observed",
+      "description": "检验 intrinsic dimensionality 是否预测 reasoning strategy 的泛化，以及哪种 strategy 更有效。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§2.3/§3",
+          "anchor": "goal ... predictive of the generalization performance",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "GSM8K and stress-test datasets",
+      "status": "observed",
+      "description": "使用 GSM8K train/test，并以 GSM-Symbolic Main/P1/P2、GSM-IC、GSM-Hard 构成 OOD stress tests。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§3 Experimental Setup",
+          "anchor": "GSM8K ... several stress test sets",
+          "basis": "explicit"
+        },
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "geometric mean of the 5 stress test sets",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "reasoning-strategy roster",
+      "status": "observed",
+      "description": "比较 14 种策略，覆盖 No CoT、填充 token、自然语言 CoT、distractors、PoT、Plan and Solve、Critical 与 High Review Ratio。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "diverse set of reasoning strategies",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "teacher generation and correctness filtering",
+      "status": "observed",
+      "description": "Gemma-3 27B 或 Gemini-2.5 Flash 生成 rationale；除 Gemini CoT 外按 style prompting，并过滤错误 final answers。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "filtering out generations with incorrect final answers",
+          "basis": "explicit"
+        },
+        {
+          "page": 14,
+          "section": "B.1 GSM8K",
+          "anchor": "prompt a teacher model ... and filter the outputs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "model and optimizer",
+      "status": "observed",
+      "description": "Gemma-3 base 1B/4B；1B 8,000 steps 与 1e-3，4B 6,000 steps 与 1e-4；AdamW、batch size 8，validation checkpoint 用于报告 ID/OOD。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "We train the 1B model for 8,000 steps",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "LoRA capacity sweep",
+      "status": "observed",
+      "description": "1B 使用 k=20、4B 使用 k=30；参数目标在 log scale 均匀分布，从 attention q/v rank 1 到全 attention+MLP full-rank。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+          "anchor": "sweep of k LoRA configurations",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "§3 Experimental Setup",
+          "anchor": "k = 20 (1B) and k = 30 (4B)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "common threshold",
+      "status": "observed",
+      "description": "默认取任一 strategy full-capacity epoch-1 最大 training accuracy 的 90%；4B 为 63.0%，1B 为 24.3%，并在 Table 3 测试替代阈值。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+          "anchor": "common threshold τ across all strategies",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4.4 Additional Results and Analysis",
+          "anchor": "τ = 63.0% for 4B and τ =24.3% for 1B",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "baseline metrics",
+      "status": "observed",
+      "description": "以 trajectory length、token perplexity、sequence KL divergence 作为无需 test-time evaluation 的比较指标；LongPPL 在 Appendix D 追加。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "Baseline Metrics",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "D. Comparison with LongPPL",
+          "anchor": "Token perplexity is length-normalized",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "evaluation aggregation",
+      "status": "observed",
+      "description": "ID 为 GSM8K test accuracy；OOD 为五个 stress split 的 geometric mean；Overall 为六个 split 的 geometric mean。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "report the geometric mean of the 5 stress test sets",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Overall: Geometric mean across all 6 splits",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "strategy-level statistics",
+      "status": "observed",
+      "description": "用 strategy-level Spearman rank correlation 比较预测力；4B Table 1 † 为 p<0.01，1B Table 2 † 为 p<0.05；Table 4 每类四种 strategy。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Spearman correlations ... † denotes statistical significance (p < 0.01)",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "Table 2",
+          "anchor": "† denotes statistical significance (p < 0.05)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "matching and leakage controls",
+      "status": "observed",
+      "description": "GSM8K 各 strategy 共用问题源；Reasoning Gym 对问题文本去重、从 OOD 移除训练问题，held-out task 未见于训练。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+          "anchor": "same set of problems",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "C. Reasoning Gym",
+          "anchor": "All held-out sets are decontaminated",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "training seeds and hardware",
+      "status": "not_present",
+      "description": "Reasoning Gym 数据生成的 fixed/different seed 有报告，但 LoRA sweep 的训练随机种子、GPU/硬件与 wall-clock 未报告。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "LoRA Training Hyperparameters",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 15,
+          "section": "C. Reasoning Gym",
+          "anchor": "with a fixed seed",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "Gemma-3 4B 中 intrinsic dimensionality 是最强 strategy-level predictor。",
+      "value": "Spearman 0.93；token PPL 0.82；length 0.31；KL -0.17。",
+      "comparison": "按低 ID/PPL/KL 对应高 accuracy 的方向重编码，ID 高于所有 baseline。",
+      "statistical_method": "14 个 strategy 的 Spearman rank correlation；Table 1 的 ID/PPL † 标注 p<0.01；未报告区间或 seed dispersion。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1/§4.1",
+          "anchor": "Intrinsic dimensionality exhibits the strongest correlation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Gemma-3 1B 复现 ID 的方向性优势。",
+      "value": "ID 0.75；token PPL 0.63；length 0.24；KL -0.18。",
+      "comparison": "ID 高于三项 baseline correlation，尽管 1B 绝对 accuracy 较低。",
+      "statistical_method": "14 个 strategy 的 Spearman；Table 2 ID † 标注 p<0.05；无区间估计。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 2/§4.2",
+          "anchor": "intrinsic dimensionality maintains a strong correlation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ID 的相对排序对 threshold selection 稳健。",
+      "value": "1B correlation 0.72–0.75；4B 0.93–0.94，覆盖 epoch-1 70/80/90% 与 validation 90%。",
+      "comparison": "不同 threshold 的 ID 重新计算后仍与 generalization 相关。",
+      "statistical_method": "逐阈值 strategy-level Spearman；未报告训练种子变异。",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 3/§4.3",
+          "anchor": "Strong Correlations Persist Across Thresholds",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Executed PoT 在 GSM8K 主实验同时给出低 ID 与高 OOD。",
+      "value": "4B ID 1.49M、OOD 43.40、Overall 46.15；1B ID 1.03M、OOD 11.00、Overall 11.76。",
+      "comparison": "4B Short CoT 为 3.92M/28.99/32.63，Gemma 27B CoT 为 2.05M/38.24/42.04。",
+      "statistical_method": "OOD/Overall 为 geometric mean；没有 strategy 配对显著性检验。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Executed PoT 1.49 43.40 46.15",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "Table 2",
+          "anchor": "Executed PoT 1.03 11.00 11.76",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Length 与 sequence KL 单独预测力较弱。",
+      "value": "4B length 0.31；KL -0.17。",
+      "comparison": "二者均低于 ID 0.93；KL 的负方向与短序列偏好一致。",
+      "statistical_method": "strategy-level Spearman；KL 为 sequence negative log-likelihood 平均值且不按长度归一化。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§4.1 Length and KL Divergence Show Poor Predictive Power",
+          "anchor": "length shows weak correlation (0.31)",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "§4.1 Length and KL Divergence Show Poor Predictive Power",
+          "anchor": "KL divergence exhibits weak or negative correlation (-0.17)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Token PPL 与 ID 相关但较弱。",
+      "value": "4B token PPL 0.82，ID 0.93。",
+      "comparison": "作者将二者联系解释为 base-model likelihood 与较低参数改变量可能共同反映可压缩性。",
+      "statistical_method": "strategy-level Spearman；token-level PPL 对 CoT training data 做平均。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§4.1 Connection between Token Perplexity and Intrinsic Dimensionality",
+          "anchor": "token perplexity achieves a correlation of 0.82",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "模型规模与 strategy 类型存在交互。",
+      "value": "Very Short CoT 的 4B ID 532.81M，而 1B 为 31.45M；effective strategies 在 4B 的更高绝对 accuracy 下常见较低或可比 ID。",
+      "comparison": "阈值分别为 4B 63.0% 与 1B 24.3%，因此绝对 ID 需结合 threshold 读取。",
+      "statistical_method": "Tables 1/2 与 Figures 2/3 的跨模型对照，无独立交互检验。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.4 Additional Results and Analysis",
+          "anchor": "Larger Models Compress Effective Reasoning Strategies More Efficiently",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.4 Additional Results and Analysis",
+          "anchor": "Very Short CoT requires over 500M parameters",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "错误 reasoning chains 同时升高 ID、降低泛化。",
+      "value": "Short CoT 从 ID 3.92M/Overall 32.63 变为 2729.64M/20.61；Gemma 27B CoT 从 2.05M/42.04 变为 257.18M/29.24。",
+      "comparison": "100% correct 与 50% correct/50% incorrect mixed sets 对照。",
+      "statistical_method": "混合训练集的 Overall accuracy 与 ID；未作 instance-level 因果分解。",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5/§4.4",
+          "anchor": "mixing in incorrect reasoning chains substantially increases intrinsic dimensionality",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Reasoning Gym 上 ID 的预测关系延伸到不同 reasoning domain，但类别方向不同。",
+      "value": "Algorithmic 中 Executed PoT ID 0.74M/Overall 73.21，No CoT 532.81M/7.69；Cognitive 中 No CoT 0.40M/49.82 为最佳。",
+      "comparison": "algorithmic 与 cognitive 各自四 strategy；ID correlation 均为 1.00，KL/length 在 cognitive 为 -1.00。",
+      "statistical_method": "任务与 split 间 geometric mean；每类四 strategy 的 Spearman。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 4",
+          "anchor": "Executed PoT 0.74 73.21",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§4.5 Generalization to Diverse Reasoning Domains",
+          "anchor": "No CoT achieves the lowest intrinsic dimensionality",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "LongPPL 没有超过 token PPL 或 ID。",
+      "value": "K=64 为 0.60，K=256 为 0.62；token PPL 0.82；ID 0.93。",
+      "comparison": "两种 long-context weighting 配置均低于 regular PPL 与 ID。",
+      "statistical_method": "Gemma-3 4B strategy-level Spearman；使用原始 α/β。",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Table 7/D. Comparison with LongPPL",
+          "anchor": "Intrinsic Dimensionality (ours) 0.93",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "training-set size 不是主导的表面解释。",
+      "value": "每 strategy 有 6.2K–7.5K valid instances；样本数与 downstream accuracy ρ≈-0.11、p>0.7（1B/4B）。",
+      "comparison": "Executed PoT 样本最少但泛化最高，No CoT 样本最多但效果低。",
+      "statistical_method": "B.1 的 strategy-level Spearman sample-size correlation。",
+      "module": "experimental_design",
+      "evidence": [
+        {
+          "page": 14,
+          "section": "B.1 GSM8K",
+          "anchor": "no statistically significant correlation ... ρ ≈ −0.11, p > 0.7",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "threshold selection",
+      "status": "observed",
+      "description": "用 epoch-1 的 70/80/90% 与 validation 90% 替代默认阈值，检验 ID 排序是否稳定。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 3/§4.3",
+          "anchor": "robustness to threshold selection",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Short CoT distractors",
+      "status": "observed",
+      "description": "向 Short CoT 插入 n=2、4、8 个来自其他问题的无关步骤，测试 irrelevant reasoning 对 ID/OOD 的影响。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "Short CoT with n Distractors",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Short CoT with 8 Distractors",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "incorrect-chain mixture",
+      "status": "observed",
+      "description": "Short CoT 与 Gemma 27B CoT 各构造 50% correct/50% incorrect 训练集，检验 correctness 与 compressibility 的联动。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5/§4.4",
+          "anchor": "Mixed sets consist of 50% correct and 50% incorrect reasoning chains",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "model scale",
+      "status": "observed",
+      "description": "在 Gemma-3 1B 与 4B 上重复 strategy 对照，观察有效/低效 strategy 的规模交互。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.2",
+          "anchor": "same 14 reasoning strategies",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4.4",
+          "anchor": "Comparing intrinsic dimensionality across model sizes",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Reasoning Gym transfer",
+      "status": "observed",
+      "description": "从 GSM8K 数学任务扩展到 algorithmic 与 cognitive 两类 Reasoning Gym，并包含 hard/held-out OOD。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§4.5",
+          "anchor": "algorithmic reasoning and cognitive reasoning",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "LongPPL comparison",
+      "status": "observed",
+      "description": "追加 K=64、K=256 的长上下文 PPL weighting，作为 metric replacement 对照。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "D. Comparison with LongPPL",
+          "anchor": "We evaluate two configurations",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Table 7",
+          "anchor": "LongPPL (K=64)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "component deletion or replacement",
+      "status": "not_present",
+      "description": "没有对同一 strategy 的 LoRA target group、单独 reasoning component 或 chain step 做系统删除/替换；现有变化是完整 strategy、distractor 与 correctness mixture。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.4 Additional Results and Analysis",
+          "anchor": "Additional Results and Analysis",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 13,
+          "section": "A.1 LoRA Sweeps for Computing Intrinsic Dimensions",
+          "anchor": "four groups of target modules",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "training-set-size diagnostic",
+      "status": "observed",
+      "description": "在 Appendix B.1 报告各 strategy 的 valid-example 数量与 sample-size/accuracy correlation，排除样本数的简单解释。",
+      "evidence": [
+        {
+          "page": 14,
+          "section": "B.1 GSM8K",
+          "anchor": "variation in training set size does not account",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "ID 是固定模型下任务的 operational learnable-capacity measure。",
+      "origin": "Abstract/§2.1–2.3",
+      "status": "closed",
+      "method_response": "LoRA parameterization and minimum trainable count crossing common τ。",
+      "evidence_response": "Four display equations, Figures 1–3, and Tables 1–3。",
+      "conclusion_response": "§6 重申 ID 与 reasoning-chain generalization 的关联。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+          "anchor": "minimum number of trainable parameters required",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "有效 reasoning chains 降低 ID 并提高泛化。",
+      "origin": "Abstract/Introduction",
+      "status": "partially_closed",
+      "method_response": "固定 architecture 与问题源，改变 output supervision 并 sweep LoRA capacity。",
+      "evidence_response": "Gemma-3 1B/4B Tables 1–2 与 Exec PoT/Short CoT 对照。",
+      "conclusion_response": "§6 回收为 lower conditional complexity。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Intrinsic dimensionality exhibits the strongest correlation",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§6 Discussion and Conclusion",
+          "anchor": "generalization performance ... correlated with",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ID 比 length、KL、token PPL 更有预测力。",
+      "origin": "Introduction/§3 baseline metrics",
+      "status": "partially_closed",
+      "method_response": "同一 strategy 集合上计算四类 metric。",
+      "evidence_response": "Tables 1–2 与 Appendix D/Table 7。",
+      "conclusion_response": "§6 明确 ID correlates better than perplexity and length。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Spearman Rank Correlation",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Table 7",
+          "anchor": "Intrinsic Dimensionality (ours) 0.93",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "common threshold 的 strategy 排序稳健。",
+      "origin": "§2.3/§4.3",
+      "status": "closed",
+      "method_response": "epoch-1 train 与 validation 多阈值重算 ID。",
+      "evidence_response": "Table 3 给出 1B/4B 的 0.72–0.94 相关范围。",
+      "conclusion_response": "§4.3 称结论不依赖单一 golden threshold。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 3/§4.3",
+          "anchor": "consistency across threshold levels",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ID 反映 reasoning 的 task-level compression。",
+      "origin": "Introduction/§5/§6",
+      "status": "partially_closed",
+      "method_response": "以 LoRA trainable parameter count 作为 compressibility proxy。",
+      "evidence_response": "correct/incorrect mixture、Reasoning Gym 与 PPL 对照支持解释。",
+      "conclusion_response": "Abstract/§6 使用 suggest、compress、conditional complexity。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5/§4.4",
+          "anchor": "coherent, compressible input-output mapping",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§6 Discussion and Conclusion",
+          "anchor": "reduce the conditional complexity",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ID 关系可延伸到 diverse reasoning domains。",
+      "origin": "§4.5",
+      "status": "partially_closed",
+      "method_response": "Reasoning Gym algorithmic/cognitive 的 ID/OOD/held-out 设计。",
+      "evidence_response": "Table 4；cognitive 中 No CoT 的排序构成域内反例。",
+      "conclusion_response": "§4.5 将其概括为跨类别 strongest predictor。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 4",
+          "anchor": "Performance on Reasoning Gym tasks",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§4.5 Generalization to Diverse Reasoning Domains",
+          "anchor": "For cognitive tasks, the pattern is distinctive",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "correctness 是 learnability 机制线索。",
+      "origin": "§4.4",
+      "status": "partially_closed",
+      "method_response": "为两种 strategy 构造 50/50 correct/incorrect mixed set。",
+      "evidence_response": "Table 5 显示 ID 升高及 Overall 下降。",
+      "conclusion_response": "§4.4 用 contradictory signal 解释，未单列结论。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5/§4.4",
+          "anchor": "50% of instances contain incorrect reasoning chains",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ID 可直接指导 annotation、alignment、regularization。",
+      "origin": "Abstract/Introduction",
+      "status": "open",
+      "method_response": "文章提出 practical implications，未实施 intervention。",
+      "evidence_response": "没有 annotation/deployment experiment 或 policy comparison。",
+      "conclusion_response": "§6 仅把更便宜的 alternatives 留给 future work。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1. Introduction",
+          "anchor": "practical implications",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§6 Discussion and Conclusion",
+          "anchor": "Future work could potentially build",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "PEFT projection 提供 intrinsic dimensionality 的 upper bound。",
+      "origin": "§6 theoretical standpoint",
+      "status": "not_testable_here",
+      "method_response": "文章讨论 layer-wise projection/PEFT 与 Kolmogorov complexity 的关系。",
+      "evidence_response": "本文没有 formal theorem、proof 或跨 PEFT 验证。",
+      "conclusion_response": "§6 明确 bound 可能相对 underlying complexity 偏松。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§6 Discussion and Conclusion",
+          "anchor": "any layer-wise projection or PEFT method provides an upper bound",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "A.1 LoRA Sweeps for Computing Intrinsic Dimensions",
+      "category": "extended_method",
+      "start_page": 13,
+      "end_page": 13,
+      "main_text_calls": [
+        "§2.3 refers readers to Appendix A.1 for sweep details",
+        "§3 points to Appendix A.1 for target/actual parameter matching"
+      ],
+      "evidence": [
+        {
+          "page": 13,
+          "section": "A.1 LoRA Sweeps for Computing Intrinsic Dimensions",
+          "anchor": "Configuration Selection Algorithm",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Hyperparameter Selection and Convergence (within A.1)",
+      "category": "hyperparameter",
+      "start_page": 13,
+      "end_page": 13,
+      "main_text_calls": [
+        "supports §3 training steps and learning rates"
+      ],
+      "evidence": [
+        {
+          "page": 13,
+          "section": "A.1 LoRA Sweeps for Computing Intrinsic Dimensions",
+          "anchor": "training accuracy and loss consistently plateaued",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.2 Intrinsic Dimension Computation for Gemma-3 1B",
+      "category": "additional_result",
+      "start_page": 13,
+      "end_page": 14,
+      "main_text_calls": [
+        "§4.2/§4.4 cite Figure 3 and the 1B threshold"
+      ],
+      "evidence": [
+        {
+          "page": 13,
+          "section": "A.2 Intrinsic Dimension Computation for Gemma-3 1B",
+          "anchor": "Figure 3 visualizes",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "B.1 GSM8K",
+      "category": "dataset_detail",
+      "start_page": 13,
+      "end_page": 14,
+      "main_text_calls": [
+        "§3 points to Appendix B.1 for dataset details",
+        "§4.4 relies on sample-size diagnostic"
+      ],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "B.1 GSM8K",
+          "anchor": "Training Splits across Reasoning Strategies",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "C. Reasoning Gym",
+      "category": "dataset_detail",
+      "start_page": 14,
+      "end_page": 15,
+      "main_text_calls": [
+        "§4.5 points to Appendix C for dataset configurations",
+        "Table 4 uses these ID/OOD splits"
+      ],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "C. Reasoning Gym",
+          "anchor": "Held-Out OOD Test Set",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "D. Comparison with LongPPL",
+      "category": "additional_result",
+      "start_page": 15,
+      "end_page": 16,
+      "main_text_calls": [
+        "§3 baseline discussion is extended by Table 7"
+      ],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "D. Comparison with LongPPL",
+          "anchor": "As shown in Table 7",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "E. Examples of Different Reasoning Strategies",
+      "category": "qualitative_example",
+      "start_page": 15,
+      "end_page": 21,
+      "main_text_calls": [
+        "§3 points to Appendix E for all strategy examples"
+      ],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "E. Examples of Different Reasoning Strategies",
+          "anchor": "same base question",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "F. Detailed Results across all Test Splits",
+      "category": "additional_result",
+      "start_page": 21,
+      "end_page": 22,
+      "main_text_calls": [
+        "Tables 1–2 refer to Tables 8–9 for split breakdowns"
+      ],
+      "evidence": [
+        {
+          "page": 22,
+          "section": "F. Detailed Results across all Test Splits",
+          "anchor": "Table 8. Detailed Performance",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "F. Detailed Results across all Test Splits",
+          "anchor": "Table 9. Detailed Performance",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "adapter-sweep compute cost",
+      "status": "observed",
+      "description": "ID 估计需要训练多个不同大小的 adapters；作者称直接用该指标优化 reasoning strategy 的计算成本高。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§6 Discussion and Conclusion",
+          "anchor": "requires fine-tuning adapters of various sizes",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "PEFT upper-bound looseness",
+      "status": "observed",
+      "description": "layer-wise projection/PEFT 形成上界，可能松于底层 Kolmogorov complexity；替代 PEFT 的相对排序留作 future work。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§6 Discussion and Conclusion",
+          "anchor": "the bound may be loose",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "post-training scope",
+      "status": "observed",
+      "description": "主要实证只覆盖给定 reasoning trajectories 的 fine-tuning；其他 post-training settings 未在本文测试。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§6 Discussion and Conclusion",
+          "anchor": "future work could explore other post-training settings",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "model and dataset artifacts",
+      "status": "observed",
+      "description": "Impact Statement 提醒 intrinsic dimensionality 可能反映特定 model family 或 dataset 的 artifacts。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Impact Statement",
+          "anchor": "may reflect artifacts of specific model families or datasets",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "cross-model absolute comparability",
+      "status": "observed",
+      "description": "1B/4B 使用不同 epoch-1 maximum 与 threshold，论文重点解释相对 ordering，绝对 ID 需要谨慎跨模型读取。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§2.3 Measuring Intrinsic Dimension of Reasoning",
+          "anchor": "relative ordering of intrinsic dimensions",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4.4 Additional Results and Analysis",
+          "anchor": "threshold of 63.0% vs 24.3%",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "geometric-mean aggregation",
+      "status": "observed",
+      "description": "正文把五个 OOD stress split 压缩成 geometric mean，逐 split 异质性移到 Appendix F 的 Tables 8–9。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "OOD: Geometric mean of 5 stress test sets",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "F. Detailed Results across all Test Splits",
+          "anchor": "Detailed Performance of Gemma-3 4B",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "thin uncertainty reporting",
+      "status": "observed",
+      "description": "Tables 1–4 报告 strategy-level Spearman 与显著性标记；未给 seed dispersion 或区间估计。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Spearman correlations are computed",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 4",
+          "anchor": "Spearman correlations are computed",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "late placement of compute/bound caveats",
+      "status": "observed",
+      "description": "多 adapter sweep 的 compute cost 与 PEFT upper-bound caveat 出现在 §6，位于 headline result sections 之后。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§4 Main Results and Analysis",
+          "anchor": "Intrinsic Dimension Strongly Predicts Reasoning Effectiveness",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 9,
+          "section": "§6 Discussion and Conclusion",
+          "anchor": "computationally expensive to optimize for directly",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "appendix relocation of training-data details",
+      "status": "observed",
+      "description": "strategy training count、correctness filtering 与 sample-size correlation 在 B.1 展开，正文主表不显示各 strategy 的 6.2K–7.5K count。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3 Experimental Setup",
+          "anchor": "filtering out generations with incorrect final answers",
+          "basis": "explicit"
+        },
+        {
+          "page": 14,
+          "section": "B.1 GSM8K",
+          "anchor": "6.2K and 7.5K valid training instances",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "category-level heterogeneity",
+      "status": "observed",
+      "description": "Table 4 将 algorithmic 的 Executed PoT 优势与 cognitive 的 No CoT 优势放在分组行中；跨域结论需要同时读取两组。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 4",
+          "anchor": "Algorithmic",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§4.5 Generalization to Diverse Reasoning Domains",
+          "anchor": "For cognitive tasks, the pattern is distinctive",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "appendix boundary",
+      "status": "observed",
+      "description": "自动测量的 appendix_start_page_provisional=11；PDF p.11–12 仍为 References，Appendix A 标题在 p.13，因此修正为 13。",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "References",
+          "anchor": "reference entries continue on page 11",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 13,
+          "section": "A. Additional Details on Computing Intrinsic Dimension",
+          "anchor": "A. Additional Details on Computing Intrinsic Dimension",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "table caption count",
+      "status": "observed",
+      "description": "自动测量报告 8 个 table captions；逐页核对可见 Table 1–9 共 9 个，Table 9 位于 p.22，已加入清单。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "F. Detailed Results across all Test Splits",
+          "anchor": "Table 8 ... Table 9 ...",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "固定学生模型与问题源，仅改变 reasoning-chain supervision；用 LoRA trainable-parameter sweep 找达到共同 accuracy threshold 的最小 dint，再检验其对 held-out generalization 的预测力。有效链条被解释为更容易压缩的 task mapping。",
+    "main_body_keeps": "正文保留 dint 定义、LoRA 参数公式、common-threshold 理由、14-strategy 的 1B/4B 主表、Figure 2、threshold robustness、correctness mix、Reasoning Gym transfer 与 PPL/KL/length 对照，足以重建比较逻辑。",
+    "appendix_moves": "附录承载 greedy LoRA configuration、收敛/学习率 sweep、GSM8K/Reasoning Gym split details、LongPPL、策略样例和逐 split Tables 8–9；主结论自足，但替代解释与 OOD 异质性需要附录。",
+    "best_pattern": "Figure 1 画出 strategy→adapter sweep→ID/OOD 路径，Figure 2/3 用共同阈值和 Pareto frontier 把抽象 ID 映射为 crossing，Tables 1/2 把效果和 baseline metrics 并置。",
+    "largest_gap": "strategy-level correlation 被当作 compression mechanism 的主要证据，因果识别、直接 compression measure、seed/hardware 波动和跨 PEFT 一致性仍缺失；实践 guidance 只有 implication。",
+    "transfer_rule": "比较多种输出/推理策略时，固定模型和问题源，预先规定跨策略共同 capability threshold，同时报告 capacity sweep、held-out generalization 和 length/likelihood confounders。",
+    "transfer_boundary": "规则适用于同一任务、模型家族和 fine-tuning/PEFT 框架内的相对 strategy comparison。LoRA ID 是 upper-bound-like operational proxy，不能直接等同于 Kolmogorov complexity；有限的 GSM8K/Reasoning Gym 与两种 Gemma 规模限制外推。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 63,
+    "claims_with_page_evidence": 63,
+    "status": "complete"
+  },
+  "document_boundary": {
+    "abstract_pages": "1",
+    "main_text_pages": "1–9",
+    "references_pages": "10–12",
+    "appendix_pages": "13–22",
+    "acknowledgments_page": "10",
+    "impact_statement_page": "10",
+    "supplementary": "not_present"
+  },
+  "theory_counts": {
+    "displayed_equations": 4,
+    "numbered_equations": 0,
+    "theorem_lemma_proposition_corollary": 0,
+    "proofs": 0,
+    "inline_formula_note": "p.4 sequence-level NLL and Appendix configuration expressions are inline rather than separate display equations."
+  },
+  "statistics_summary": {
+    "aggregation_unit": "reasoning strategy for metric correlations; test instances within each split for accuracy",
+    "central_quantities": "accuracy, geometric means, trainable-parameter threshold, Spearman rank correlation",
+    "uncertainty": "only selected p-value markers; no confidence intervals, bootstrap, Bayesian analysis, or seed-level dispersion reported",
+    "correlation_directions": "ID, KL, and token PPL are sign-adjusted so positive values indicate lower metric predicts higher accuracy; length uses standard correlation"
+  },
+  "rhetorical_profile": {
+    "frequent_terms": [
+      "reasoning strategy",
+      "intrinsic dimensionality",
+      "generalization",
+      "training accuracy",
+      "model/task",
+      "parameter/capacity",
+      "threshold",
+      "correlation",
+      "compressibility"
+    ],
+    "claim_verbs": [
+      "demonstrate",
+      "show",
+      "observe",
+      "suggest",
+      "posit",
+      "provide",
+      "offer"
+    ],
+    "qualification_terms": [
+      "strong",
+      "consistently",
+      "substantially",
+      "potentially",
+      "generally",
+      "however",
+      "in contrast",
+      "notably",
+      "despite"
+    ],
+    "evidence_note": "Counts are contextual observations; raw token counting is delegated to the aggregate script."
+  },
+  "automatic_measurement_reference": {
+    "pdf_pages": 22,
+    "main_end_page_provisional": 9,
+    "appendix_start_page_provisional": 11,
+    "total_words": 11436,
+    "main_words_provisional": 6137,
+    "appendix_words_provisional": 4619,
+    "figure_captions": 3,
+    "table_captions": 8,
+    "algorithm_captions": 0,
+    "numbered_equations_provisional": 0
+  }
+}
