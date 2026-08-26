@@ -50,6 +50,10 @@
 
 项目的首个冻结时间为 `2026-08-26T14:28:58Z`。NeurIPS 2026 官方作者通知计划在 2026-09-24 AoE 发布，因此首版分析只包含 ICLR 与 ICML。报告必须把 NeurIPS 标为 `not_yet_observed`，不得把两会议结果描述为三会议总体结论。
 
+## 阅读停止条件
+
+首个完整分析版本以 `data/processed/analysis_sample.csv` 的 200 篇全部完成为停止条件。两会 Outstanding 全部阅读；其余层采用固定随机样本。760 篇资格总体继续保留，样本之外已完成的论文作为扩展证据，不改变主分析分母。
+
 ## 官方来源
 
 - ICLR 2026 官方论文和日程：<https://iclr.cc/virtual/2026/papers.html>
@@ -61,4 +65,4 @@
 
 ## PDF 版本边界
 
-正文篇幅、页级结构和附录长度以官方 conference PDF 为准。ICLR 使用官方 proceedings PDF。ICML 2026 已预留 [PMLR v306 仓库](https://github.com/mlresearch/v306)，截至冻结日只有模板初始提交，[PMLR v306 页面](https://proceedings.mlr.press/v306/) 尚未发布。OpenReview 直连触发访问挑战时，`data/processed/preprint_sources.csv` 只提供按 OpenReview ID 对齐的 arXiv 临时入口。临时入口由 [ICML2026 数据集](https://huggingface.co/datasets/ai-conferences/ICML2026) 定位，属于次级获取线索。该入口不得静默替代 camera-ready 版本进入最终版面统计。临时深读结果须在官方 PDF 到位后复核页码、章节边界、图表位置和附录长度。
+ICLR 使用官方 proceedings PDF。ICML 2026 已预留 [PMLR v306 仓库](https://github.com/mlresearch/v306)，截至冻结日只有模板初始提交，[PMLR v306 页面](https://proceedings.mlr.press/v306/) 尚未发布。OpenReview 直连触发访问挑战时，`data/processed/preprint_sources.csv` 提供按 OpenReview ID 和标题对齐的 arXiv 入口；入口由 [ICML2026 数据集](https://huggingface.co/datasets/ai-conferences/ICML2026) 定位。已验证的预印本直接进入深读与统计，每篇结果记录实际来源。后续发现新版 PDF 时按需复核，当前分析无需等待 camera-ready。

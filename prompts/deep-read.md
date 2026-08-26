@@ -6,7 +6,7 @@
 
 - `paper_id`
 - 会议、年份和官方等级标记
-- 已验证 PDF 路径
+- 已验证 PDF 路径；可以是官方 proceedings、OpenReview PDF 或与目标论文身份一致的预印本
 - supplementary 路径（如有）
 - OpenReview forum URL
 - 自动测量草稿（如有，仅作核对线索）
@@ -19,6 +19,8 @@
 2. `readings/<paper_id>.md`：面向研究者的中文深读备忘，保留论文术语、方法名、数据集名和统计方法英文原名。
 
 不得改动目录、schema、prompt、其他论文结果或汇总报告。
+
+`source_files` 记录实际读取版本。官方 proceedings 使用 `source_kind=official_pdf`，OpenReview 使用 `openreview_pdf`，arXiv 或作者公开版本使用 `verified_preprint`；`source_url` 写实际下载地址。论文身份须与 `paper_id`、标题和 OpenReview forum 对齐。分析以实际读取版本为准，不等待另一版 PDF。
 
 先完成 Markdown，再在临时位置校验 JSON。确认 schema、页码和证据覆盖后，最后才把 JSON 原子移动到 `readings/<paper_id>.json`。最终路径不得出现半成品 JSON；汇总器以 JSON 最后发布作为单篇完成信号。
 

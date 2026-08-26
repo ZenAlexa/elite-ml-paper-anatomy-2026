@@ -26,6 +26,32 @@ READING_KEYS = {
     "evidence_coverage",
 }
 
+MODULES = {
+    "abstract",
+    "introduction",
+    "related_work",
+    "method",
+    "theory",
+    "experimental_design",
+    "results",
+    "ablation",
+    "conclusion",
+    "limitations",
+    "appendix",
+    "other",
+}
+
+
+def iter_evidence(value: object):
+    if isinstance(value, dict):
+        if {"page", "section", "anchor", "basis"}.issubset(value):
+            yield value
+        for child in value.values():
+            yield from iter_evidence(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from iter_evidence(child)
+
 
 def main() -> None:
     papers = read_csv(PROCESSED / "papers.csv")
@@ -57,6 +83,23 @@ def main() -> None:
                 errors.append(f"reading paper_id mismatch: {row['paper_id']}")
             if not (ROOT / "readings" / f"{row['paper_id']}.md").exists():
                 errors.append(f"reading Markdown missing: {row['paper_id']}")
+            modules = [item.get("module") for item in value.get("module_metrics", [])]
+            if set(modules) != MODULES or len(modules) != len(set(modules)):
+                errors.append(
+                    f"reading {row['paper_id']} must contain each semantic module exactly once"
+                )
+            coverage = value.get("evidence_coverage", {})
+            if coverage.get("status") != "complete" or coverage.get("substantive_claims") != coverage.get(
+                "claims_with_page_evidence"
+            ):
+                errors.append(f"reading {row['paper_id']} has incomplete evidence coverage")
+            pdf_pages = value.get("page_map", {}).get("pdf_pages")
+            if isinstance(pdf_pages, (int, float)):
+                for evidence in iter_evidence(value):
+                    if evidence["page"] > pdf_pages:
+                        errors.append(
+                            f"reading {row['paper_id']} evidence page {evidence['page']} exceeds PDF pages {pdf_pages}"
+                        )
             for issue in validator.iter_errors(value):
                 location = ".".join(str(part) for part in issue.absolute_path) or "<root>"
                 errors.append(f"reading schema error {row['paper_id']} at {location}: {issue.message}")

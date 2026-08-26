@@ -122,11 +122,19 @@ def main() -> None:
         if (PROCESSED / "preprint_auto_metrics.csv").exists()
         else {}
     )
-    readings = {}
+    sample_path = PROCESSED / "analysis_sample.csv"
+    sample_rows = read_csv(sample_path) if sample_path.exists() else []
+    sample_ids = {row["paper_id"] for row in sample_rows}
+    all_readings = {}
     for row in papers:
         reading = load_complete_reading(row["paper_id"])
         if reading is not None:
-            readings[row["paper_id"]] = reading
+            all_readings[row["paper_id"]] = reading
+    readings = (
+        {paper_id: reading for paper_id, reading in all_readings.items() if paper_id in sample_ids}
+        if sample_ids
+        else all_readings
+    )
     catalog = {row["paper_id"]: row for row in papers}
     coverage = []
     for conference in ("ICLR", "ICML", "NeurIPS"):
@@ -141,7 +149,14 @@ def main() -> None:
                 ),
                 "provisional_measurements": sum(row["paper_id"] in preprint_metrics for row in eligible),
                 "automatic_measurements": sum(row["paper_id"] in metrics for row in eligible),
-                "completed_independent_readings": sum(row["paper_id"] in readings for row in eligible),
+                "completed_independent_readings": sum(row["paper_id"] in all_readings for row in eligible),
+                "primary_target_papers": sum(
+                    sample["conference"] == conference for sample in sample_rows
+                ),
+                "primary_completed_readings": sum(
+                    sample["conference"] == conference and sample["paper_id"] in all_readings
+                    for sample in sample_rows
+                ),
                 "status": "not_yet_observed" if conference == "NeurIPS" else "observed",
             }
         )
@@ -156,6 +171,8 @@ def main() -> None:
             "provisional_measurements",
             "automatic_measurements",
             "completed_independent_readings",
+            "primary_target_papers",
+            "primary_completed_readings",
             "status",
         ],
     )
@@ -164,11 +181,12 @@ def main() -> None:
         {
             "schema_version": "analysis-status.v1",
             "coverage": coverage,
-            "aggregate_ready": all(
-                row["completed_independent_readings"] == row["eligible_papers"]
-                for row in coverage
-                if row["status"] == "observed"
-            ),
+            "aggregate_ready": bool(sample_rows)
+            and all(sample["paper_id"] in all_readings for sample in sample_rows),
+            "analysis_set": "primary_stratified_sample" if sample_rows else "all_completed_interim",
+            "primary_target_papers": len(sample_rows),
+            "primary_completed_readings": sum(sample["paper_id"] in all_readings for sample in sample_rows),
+            "extended_completed_readings": len(all_readings),
         },
     )
 
@@ -800,7 +818,11 @@ def main() -> None:
         source_groups: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
         for paper_id, metric in source_metrics.items():
             paper = catalog.get(paper_id)
-            if paper is None or metric.get("status") != "measured":
+            if (
+                paper is None
+                or metric.get("status") != "measured"
+                or (sample_ids and paper_id not in sample_ids)
+            ):
                 continue
             source_groups[(paper["conference"], "all")].append(metric)
             source_groups[(paper["conference"], paper["analysis_stratum"])].append(metric)

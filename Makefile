@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints validate aggregate lexical next
+.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints sample validate aggregate lexical next next-icml
 
 catalog:
 	$(PYTHON) scripts/build_catalog.py
@@ -26,6 +26,9 @@ measure:
 measure-preprints:
 	$(PYTHON) scripts/measure_pdfs.py --preprints
 
+sample:
+	$(PYTHON) scripts/build_analysis_sample.py
+
 validate:
 	uv run --with jsonschema $(PYTHON) scripts/validate.py
 
@@ -37,3 +40,6 @@ lexical:
 
 next:
 	$(PYTHON) scripts/next_batch.py --limit 3
+
+next-icml:
+	$(PYTHON) scripts/next_batch.py --conference ICML --source any --limit 3
