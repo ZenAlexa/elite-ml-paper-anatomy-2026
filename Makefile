@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure validate aggregate
+.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints validate aggregate
 
 catalog:
 	$(PYTHON) scripts/build_catalog.py
@@ -22,6 +22,9 @@ acquire-preprints: resolve-preprints
 
 measure:
 	$(PYTHON) scripts/measure_pdfs.py
+
+measure-preprints:
+	$(PYTHON) scripts/measure_pdfs.py --preprints
 
 validate:
 	$(PYTHON) scripts/validate.py

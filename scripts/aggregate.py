@@ -49,6 +49,11 @@ def main() -> None:
         if (PROCESSED / "preprint_manifest.csv").exists()
         else {}
     )
+    preprint_metrics = (
+        {row["paper_id"]: row for row in read_csv(PROCESSED / "preprint_auto_metrics.csv")}
+        if (PROCESSED / "preprint_auto_metrics.csv").exists()
+        else {}
+    )
     readings = {}
     for row in papers:
         reading = load_complete_reading(row["paper_id"])
@@ -66,6 +71,7 @@ def main() -> None:
                 "provisional_preprints": sum(
                     preprints.get(row["paper_id"], {}).get("status") == "verified" for row in eligible
                 ),
+                "provisional_measurements": sum(row["paper_id"] in preprint_metrics for row in eligible),
                 "automatic_measurements": sum(row["paper_id"] in metrics for row in eligible),
                 "completed_independent_readings": sum(row["paper_id"] in readings for row in eligible),
                 "status": "not_yet_observed" if conference == "NeurIPS" else "observed",
@@ -79,6 +85,7 @@ def main() -> None:
             "eligible_papers",
             "verified_pdfs",
             "provisional_preprints",
+            "provisional_measurements",
             "automatic_measurements",
             "completed_independent_readings",
             "status",

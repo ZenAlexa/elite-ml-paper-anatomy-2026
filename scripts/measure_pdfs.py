@@ -44,11 +44,11 @@ def first_heading_page(pages: list[str], pattern: re.Pattern[str], start: int = 
     return None
 
 
-def measure(row: dict[str, str], refresh: bool) -> dict[str, str]:
+def measure(row: dict[str, str], refresh: bool, text_root: Path = TEXT) -> dict[str, str]:
     output = {field: "" for field in FIELDS}
     output.update({"paper_id": row["paper_id"], "status": "failed", "error": ""})
     pdf = ROOT / row["pdf_path"]
-    text_path = TEXT / f"{row['paper_id']}.txt"
+    text_path = text_root / f"{row['paper_id']}.txt"
     try:
         if refresh or not text_path.exists():
             text_path.parent.mkdir(parents=True, exist_ok=True)
@@ -97,22 +97,32 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--refresh", action="store_true")
     parser.add_argument("--paper-id", action="append", default=[])
+    parser.add_argument("--preprints", action="store_true")
     args = parser.parse_args()
-    rows = [row for row in read_csv(PROCESSED / "papers.csv") if row["pdf_status"] == "verified"]
+    if args.preprints:
+        rows = [row for row in read_csv(PROCESSED / "preprint_manifest.csv") if row["status"] == "verified"]
+        text_root = ROOT / "corpus" / "preprint_text"
+        metrics_path = PROCESSED / "preprint_auto_metrics.csv"
+        failures_path = PROCESSED / "preprint_measurement_failures.json"
+    else:
+        rows = [row for row in read_csv(PROCESSED / "papers.csv") if row["pdf_status"] == "verified"]
+        text_root = TEXT
+        metrics_path = PROCESSED / "auto_metrics.csv"
+        failures_path = PROCESSED / "measurement_failures.json"
     if args.paper_id:
         requested = set(args.paper_id)
         rows = [row for row in rows if row["paper_id"] in requested]
     output: list[dict[str, str]] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
-        futures = [executor.submit(measure, row, args.refresh) for row in rows]
+        futures = [executor.submit(measure, row, args.refresh, text_root) for row in rows]
         for index, future in enumerate(concurrent.futures.as_completed(futures), 1):
             output.append(future.result())
             if index % 50 == 0 or index == len(futures):
                 print(f"measured {index}/{len(futures)}", flush=True)
     output.sort(key=lambda row: row["paper_id"])
-    write_csv(PROCESSED / "auto_metrics.csv", output, FIELDS)
+    write_csv(metrics_path, output, FIELDS)
     failures = {row["paper_id"]: row["error"] for row in output if row["status"] != "measured"}
-    write_json(PROCESSED / "measurement_failures.json", failures)
+    write_json(failures_path, failures)
     if failures:
         raise SystemExit(f"{len(failures)} PDFs failed measurement")
 
