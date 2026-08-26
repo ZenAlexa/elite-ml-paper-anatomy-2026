@@ -1,0 +1,2687 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "icml-2026-d6b2488d4518",
+  "bibliography": {
+    "title": "ReQAT: Achieving Full-Precision Reasoning Accuracy with 4-bit Floating-Point Quantization-Aware Training",
+    "conference": "ICML",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ],
+    "authors": [
+      "Janghwan Lee",
+      "Sihwa Lee",
+      "Jinseok Kim",
+      "Yongjik Kim",
+      "Jieun Lim",
+      "Jinwook Oh",
+      "Jungwook Choi"
+    ],
+    "version_note": "arXiv v1, 2026-06-14; Proceedings of the 43rd International Conference on Machine Learning, PMLR 306."
+  },
+  "source_files": {
+    "pdf": "corpus/preprints/icml-2026-d6b2488d4518.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=aKY52fnzgc",
+    "source_kind": "verified_preprint",
+    "source_url": "https://arxiv.org/pdf/2606.15682"
+  },
+  "page_map": {
+    "pdf_pages": 22,
+    "main_pages": 9,
+    "reference_pages": 5,
+    "appendix_pages": 8,
+    "main_end_page": 9,
+    "reference_start_page": 10,
+    "reference_end_page": 14,
+    "appendix_start_page": 15,
+    "layout": "双栏 letter-size；Fig. 1–7 位于正文，Fig. 8–11、Algorithm 1 和 Tables 8–17 位于附录。p9 结束正文，p10 开始 References，p15 开始 Appendix。",
+    "layout_evidence": [
+      {
+        "page": 9,
+        "section": "8. Conclusion",
+        "anchor": "“8. Conclusion”结束正文",
+        "basis": "layout_observation"
+      },
+      {
+        "page": 10,
+        "section": "References",
+        "anchor": "“References”从 p10 开始",
+        "basis": "layout_observation"
+      },
+      {
+        "page": 15,
+        "section": "Appendix A",
+        "anchor": "“A. Microscaling Formats”",
+        "basis": "layout_observation"
+      }
+    ],
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 161
+      },
+      {
+        "title": "1. Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 781
+      },
+      {
+        "title": "2. Background",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 563
+      },
+      {
+        "title": "2.1. Quantization for Efficient Inference",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 2,
+        "estimated_words": 330
+      },
+      {
+        "title": "2.2. Large Reasoning Models",
+        "module": "related_work",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 233
+      },
+      {
+        "title": "3. Empirical Analysis",
+        "module": "experimental_design",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 700
+      },
+      {
+        "title": "3.1. Semantic Grounding of Token Entropy",
+        "module": "experimental_design",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 221
+      },
+      {
+        "title": "3.2. Quantization Sensitivity via Token Entropy",
+        "module": "experimental_design",
+        "start_page": 4,
+        "end_page": 4,
+        "estimated_words": 330
+      },
+      {
+        "title": "3.3. Low-Entropy Tokens Fail under FP4 Sampling",
+        "module": "experimental_design",
+        "start_page": 4,
+        "end_page": 4,
+        "estimated_words": 149
+      },
+      {
+        "title": "4. Methods",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 6,
+        "estimated_words": 1087
+      },
+      {
+        "title": "4.1. TAQ",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 5,
+        "estimated_words": 445
+      },
+      {
+        "title": "4.2. SEM",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 342
+      },
+      {
+        "title": "4.3. Q-FIT",
+        "module": "method",
+        "start_page": 6,
+        "end_page": 6,
+        "estimated_words": 300
+      },
+      {
+        "title": "5. Experiments",
+        "module": "experimental_design",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 334
+      },
+      {
+        "title": "5.2. Experimental Results",
+        "module": "results",
+        "start_page": 7,
+        "end_page": 7,
+        "estimated_words": 410
+      },
+      {
+        "title": "5.3. Throughput Evaluation",
+        "module": "results",
+        "start_page": 7,
+        "end_page": 8,
+        "estimated_words": 376
+      },
+      {
+        "title": "5.4. Ablation Studies",
+        "module": "ablation",
+        "start_page": 8,
+        "end_page": 9,
+        "estimated_words": 211
+      },
+      {
+        "title": "6. Discussions (mechanism)",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 9,
+        "estimated_words": 252
+      },
+      {
+        "title": "6. Limitations paragraph",
+        "module": "limitations",
+        "start_page": 9,
+        "end_page": 9,
+        "estimated_words": 112
+      },
+      {
+        "title": "7. Related Works",
+        "module": "related_work",
+        "start_page": 9,
+        "end_page": 9,
+        "estimated_words": 260
+      },
+      {
+        "title": "8. Conclusion",
+        "module": "conclusion",
+        "start_page": 9,
+        "end_page": 9,
+        "estimated_words": 91
+      },
+      {
+        "title": "Acknowledgements and Impact Statement",
+        "module": "other",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 59
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 10,
+        "end_page": 14,
+        "estimated_words": 3200
+      },
+      {
+        "title": "A. Microscaling Formats",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 15,
+        "estimated_words": 220
+      },
+      {
+        "title": "B. Details for Token Entropy Analysis in Sec. 3",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 17,
+        "estimated_words": 900
+      },
+      {
+        "title": "C. ReQAT Details",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 19,
+        "estimated_words": 1000
+      },
+      {
+        "title": "D. Experimental Details and More Results",
+        "module": "appendix",
+        "start_page": 20,
+        "end_page": 22,
+        "estimated_words": 1946
+      }
+    ]
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 161,
+      "main_word_share": 0.03,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 781,
+      "main_word_share": 0.146,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 823,
+      "main_word_share": 0.154,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 1087,
+      "main_word_share": 0.204,
+      "figures": 3,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 3
+    },
+    {
+      "module": "theory",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 1034,
+      "main_word_share": 0.194,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 1038,
+      "main_word_share": 0.195,
+      "figures": 2,
+      "tables": 5,
+      "algorithms": 0,
+      "displayed_equations": 1
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 211,
+      "main_word_share": 0.04,
+      "figures": 0,
+      "tables": 2,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 91,
+      "main_word_share": 0.017,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 112,
+      "main_word_share": 0.021,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 4066,
+      "main_word_share": null,
+      "figures": 4,
+      "tables": 10,
+      "algorithms": 1,
+      "displayed_equations": 1
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 3259,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Large Reasoning Models (LRMs) achieve strong problem-solving through long chain-of-thought, but their deployment is constrained by the high cost of full-precision inference and growing KV cache footprints.",
+      "word_count": 27,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "“deployment is constrained by the high cost”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "Microscaled FP4 formats enable efficient FP4 deployment; however, fully quantizing weights, activations, and KV caches (W4A4KV4) causes severe reasoning degradation that existing PTQ and QAT fail to recover.",
+      "word_count": 25,
+      "functions": [
+        "problem_gap",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "“W4A4KV4 causes severe reasoning degradation”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "We identify that FP4 failures concentrate on low-entropy tokens—precise symbolic commitments such as digits and operators—where quantization noise inflates sampling errors that cascade through reasoning traces.",
+      "word_count": 27,
+      "functions": [
+        "core_idea",
+        "qualitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "“FP4 failures concentrate on low-entropy tokens”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "Based on this insight, we propose ReQAT, a reasoning-centric FP4 training framework with three components: (i) Trace-Aligned QAT (TAQ), which revisits identical reasoning traces to focus updates on critical low-entropy decisions; (ii) Selective Entropy Minimization (SEM), which reinforces confidence at low-entropy positions; and (iii) Q-FIT, a quantization-friendly initialization that jointly calibrates RoPE-consistent KV cache transformations to stabilize QAT.",
+      "word_count": 57,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "“three components”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "Under the same training budget, ReQAT not only recovers but surpasses BF16 fine-tuning accuracy, while delivering up to 3.9× throughput speedup on NVIDIA DGX Spark and 3.1× on B200.",
+      "word_count": 25,
+      "functions": [
+        "quantitative_result",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "“up to 3.9× throughput speedup”",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context",
+      "estimated_words": 118,
+      "evidence": {
+        "page": 1,
+        "section": "1. Introduction",
+        "anchor": "“complex multi-step mathematical and logical problems”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "problem",
+      "estimated_words": 155,
+      "evidence": {
+        "page": 1,
+        "section": "1. Introduction",
+        "anchor": "“three critical axes”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "core_idea",
+      "estimated_words": 142,
+      "evidence": {
+        "page": 1,
+        "section": "1. Introduction",
+        "anchor": "“microscaled 4-bit floating-point (FP4) arithmetic”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "failure_of_prior_work",
+      "estimated_words": 170,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "“existing recipes frequently fail to close the gap”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "missing_insight",
+      "estimated_words": 83,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "“quantization failures concentrate on low-entropy tokens”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "method_preview",
+      "estimated_words": 113,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "“three key innovations”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "result_preview",
+      "estimated_words": 82,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "“65.94% AIME accuracy”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "contribution_list",
+      "estimated_words": 101,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "“In this work, we propose ReQAT”",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 2,
+        "section": "2.1. Quantization for Efficient Inference",
+        "anchor": "“MXFP4 and NVFP4”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "limitation_of_prior",
+      "estimated_words": 98,
+      "evidence": {
+        "page": 2,
+        "section": "2.1. Quantization for Efficient Inference",
+        "anchor": "“substantial reasoning accuracy degradation”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 122,
+      "evidence": {
+        "page": 2,
+        "section": "2.1. Quantization for Efficient Inference",
+        "anchor": "“channel-wise outliers in the key cache”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "taxonomy",
+      "estimated_words": 118,
+      "evidence": {
+        "page": 3,
+        "section": "2.2. Large Reasoning Models",
+        "anchor": "“PTQ, QAT and QAD”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "credit_or_foundation",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 3,
+        "section": "2.2. Large Reasoning Models",
+        "anchor": "“token-level entropy”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 116,
+      "evidence": {
+        "page": 9,
+        "section": "7. Related Works",
+        "anchor": "“directly targets them during QAT”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "limitation_of_prior",
+      "estimated_words": 79,
+      "evidence": {
+        "page": 9,
+        "section": "7. Related Works",
+        "anchor": "“prior QAT approaches remain limited”",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "state_problem",
+      "estimated_words": 90,
+      "evidence": {
+        "page": 4,
+        "section": "3.3. Low-Entropy Tokens Fail under FP4 Sampling",
+        "anchor": "“may struggle to fully recover reasoning accuracy”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "setup_notation",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 5,
+        "section": "4. Methods",
+        "anchor": "“Stage-2 QAT is performed on the same reasoning traces”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "define_component",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 5,
+        "section": "4.1. TAQ",
+        "anchor": "“two-stage QAT procedure”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "derive",
+      "estimated_words": 119,
+      "evidence": {
+        "page": 5,
+        "section": "4.1. TAQ",
+        "anchor": "“entropy changes increasingly appear in low-entropy bins”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "connect_to_prediction",
+      "estimated_words": 73,
+      "evidence": {
+        "page": 5,
+        "section": "4.1. TAQ",
+        "anchor": "“same low-entropy token predictions”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "define_component",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 5,
+        "section": "4.2. SEM",
+        "anchor": "“rather than uniformly across all tokens”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "derive",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 6,
+        "section": "4.2. SEM",
+        "anchor": "“L_SEM = L_SFT + λ”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "give_intuition",
+      "estimated_words": 72,
+      "evidence": {
+        "page": 6,
+        "section": "4.2. SEM",
+        "anchor": "“soft weighting”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "state_problem",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 6,
+        "section": "4.3. Q-FIT",
+        "anchor": "“a substantial gap remains”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "define_component",
+      "estimated_words": 87,
+      "evidence": {
+        "page": 6,
+        "section": "4.3. Q-FIT",
+        "anchor": "“jointly calibrates”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 11,
+      "move": "instantiate_algorithm",
+      "estimated_words": 104,
+      "evidence": {
+        "page": 18,
+        "section": "C.2. Detailed Algorithm and Design for Q-FIT",
+        "anchor": "“grid sizes”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 12,
+      "move": "explain_mechanism",
+      "estimated_words": 89,
+      "evidence": {
+        "page": 6,
+        "section": "4.3. Q-FIT",
+        "anchor": "“layer-specific Key cache characteristics”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 13,
+      "move": "contrast_alternative",
+      "estimated_words": 78,
+      "evidence": {
+        "page": 6,
+        "section": "4.3. Q-FIT",
+        "anchor": "“For NVFP4, this step is unnecessary”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 14,
+      "move": "summarize",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 5,
+        "section": "Figure 3",
+        "anchor": "“ReQAT overview”",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "introduction",
+      "page": 1,
+      "purpose": "四联图展示多模型 NVFP4 PTQ accuracy drop、R1-Qwen-14B 的 budget/accuracy、W4A4KV4 recovery 与 accuracy–throughput/storage trade-off。",
+      "evidence": {
+        "page": 1,
+        "section": "Figure 1",
+        "anchor": "“Accuracy–throughput across deployment recipes”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "experimental_design",
+      "page": 3,
+      "purpose": "六联图把低/高熵 token 词义、FP4 probability flattening、entropy-aware routing、logit-noise sensitivity 与 tail-mass/top-1 mismatch 串成 failure diagnosis。",
+      "evidence": {
+        "page": 3,
+        "section": "Figure 2",
+        "anchor": "“Sensitivity of AIME accuracy to logit noise”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "method",
+      "page": 5,
+      "purpose": "展示 BF16 FT、Q-FIT calibration、TAQ+SEM 与 FP4 output 的训练流水线，以及 D_TAQ 子集和低熵权重。",
+      "evidence": {
+        "page": 5,
+        "section": "Figure 3",
+        "anchor": "“ReQAT overview”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "method",
+      "page": 5,
+      "purpose": "比较 FT、QAT 与同/不同 trace 的 FT+QAT 在 entropy percentile bins 上的 entropy change/normalized entropy。",
+      "evidence": {
+        "page": 5,
+        "section": "Figure 4",
+        "anchor": "“Average entropy change across baseline entropy bins”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "method",
+      "page": 6,
+      "purpose": "可视化 pre-/post-RoPE key cache 的 outlier/oscillation pattern、Q-FIT calibration heatmap 与 TAQ/Q-FIT/SEM accuracy。",
+      "evidence": {
+        "page": 6,
+        "section": "Figure 5",
+        "anchor": "“Pre-/Post-RoPE key cache and calibration results”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "results",
+      "page": 8,
+      "purpose": "给出 DGX Spark/B200 的 end-to-end TPS speedup，以及 BF16/NVFP4 在 batch 256 下的 memory breakdown。",
+      "evidence": {
+        "page": 8,
+        "section": "Figure 6",
+        "anchor": "“End-to-end throughput speedup”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 7",
+      "module": "results",
+      "page": 9,
+      "purpose": "随 training step 比较 FT、different-trace FT+QAT 与 same-trace FT+QAT 的 low-entropy gradient contribution ratio。",
+      "evidence": {
+        "page": 9,
+        "section": "Figure 7",
+        "anchor": "“TAQ increases gradient allocation toward vulnerable low-entropy tokens”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 8",
+      "module": "appendix",
+      "page": 16,
+      "purpose": "以 AIME-90 trapezoid 样例和 8 seeds 对照 entropy-aware mixed-precision decoding 的 route 组合。",
+      "evidence": {
+        "page": 16,
+        "section": "Figure 8",
+        "anchor": "“BF16 model produces the correct answer in 6 out of 8 trials”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 9",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "展示 high-entropy noise 改变措辞但保留正确答案、low-entropy noise 造成符号错误并级联失败的 qualitative traces。",
+      "evidence": {
+        "page": 17,
+        "section": "Figure 9",
+        "anchor": "“minor symbolic errors that cascade into incorrect final answers”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 10",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "跨 layer 展示 Q-FIT calibration behavior，并比较 E1M2 KV 与 Q-FIT 对 quantized training loss 的影响。",
+      "evidence": {
+        "page": 19,
+        "section": "Figure 10",
+        "anchor": "“Layer-wise calibration behavior with Q-FIT”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 11",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "展示 MXFP4 block rotation 前后的 activation outlier redistribution，以及 Q-FIT 与 down-projection unquantized 的 loss 对照。",
+      "evidence": {
+        "page": 19,
+        "section": "Figure 11",
+        "anchor": "“Effect of block rotation and Q-FIT in MXFP4 W4A4”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 7,
+      "purpose": "R1-Qwen-14B 在 BF16、MXFP4 W4A16/W4A4、NVFP4 W4A4KV4 下跨 140–350M token 的 AIME accuracy 与 TAQ/Q-FIT/SEM 累加。",
+      "evidence": {
+        "page": 7,
+        "section": "Table 1",
+        "anchor": "“AIME accuracy comparison of quantization methods”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "results",
+      "page": 7,
+      "purpose": "R1-Llama-8B NVFP4 W4A4KV4 在 GSM8K、MATH-500、AIME-120 上比较 baseline/FT/PTQ/QAT/ReQAT variants。",
+      "evidence": {
+        "page": 7,
+        "section": "Table 2",
+        "anchor": "“Results on R1-Llama-8B”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "results",
+      "page": 7,
+      "purpose": "R1-Qwen-14B AIME 上比较 AWQ、QuaRot、FlatQuant、QAD、QAT 与 ReQAT 的 format/group/FT 组合。",
+      "evidence": {
+        "page": 7,
+        "section": "Table 3",
+        "anchor": "“Comparison with existing PTQ methods”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "ablation",
+      "page": 8,
+      "purpose": "隔离 two-stage QAT 与 trace alignment 在 MXFP4 W4A16、不同 token budget 下的作用。",
+      "evidence": {
+        "page": 8,
+        "section": "Table 4",
+        "anchor": "“Effect of two-stage QAT and trace alignment”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "ablation",
+      "page": 8,
+      "purpose": "消融 Q-FIT 的 E1M2 KV、pre-RoPE scale、post-RoPE shift，并同时报告 final loss/AIME。",
+      "evidence": {
+        "page": 8,
+        "section": "Table 5",
+        "anchor": "“Ablation of Q-FIT designs”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 6",
+      "module": "results",
+      "page": 9,
+      "purpose": "按 0–8K、8–16K、16–24K、24–32K response length 报告 AIME acc/#samples。",
+      "evidence": {
+        "page": 9,
+        "section": "Table 6",
+        "anchor": "“Accuracy across response-length ranges”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 7",
+      "module": "results",
+      "page": 9,
+      "purpose": "R1-Qwen-14B LiveCodeBench accuracy，比较 BF16、PTQ、QAT 与 ReQAT variants。",
+      "evidence": {
+        "page": 9,
+        "section": "Table 7",
+        "anchor": "“LiveCodeBench accuracy”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 8",
+      "module": "appendix",
+      "page": 15,
+      "purpose": "汇总 MXFP4/NVFP4 的 element data type、block scale、global scale 与 block size。",
+      "evidence": {
+        "page": 15,
+        "section": "Table 8",
+        "anchor": "“Quantization configurations of MXFP4 and NVFP4”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 9",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "报告 R1-Llama-8B 在增加 FT/QAT epochs 时相对 full-precision FT baseline 的 AIME drop。",
+      "evidence": {
+        "page": 18,
+        "section": "Table 9",
+        "anchor": "“Accuracy drop ∆ under NVFP4 W4A4KV4”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 1",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "伪代码执行按 GQA 复制、RoPE-paired scale 初始化、post-RoPE shift 初始化与 α_s/α_m 网格搜索，返回最小 attention-output MSE 的参数。",
+      "evidence": {
+        "page": 18,
+        "section": "Algorithm 1",
+        "anchor": "“Calibration of Pre-RoPE Paired Scaling and Post-RoPE Key Shift”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 10",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "按 AIME 2022/2023/2024/2025 拆分 R1-Qwen-14B NVFP4 W4A4KV4 accuracy，避免单年结果承担全部结论。",
+      "evidence": {
+        "page": 20,
+        "section": "Table 10",
+        "anchor": "“Year-wise AIME accuracy”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 11",
+      "module": "appendix",
+      "page": 21,
+      "purpose": "列出 max sequence length、RoPE θ、dataset、NLL、AdamW、learning rate、batch、precision 等关键超参。",
+      "evidence": {
+        "page": 21,
+        "section": "Table 11",
+        "anchor": "“Key hyperparameters for training”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 12",
+      "module": "appendix",
+      "page": 21,
+      "purpose": "比较 SEM binary mask 与 soft weighting 在 140M/210M token 的 AIME-90 accuracy。",
+      "evidence": {
+        "page": 21,
+        "section": "Table 12",
+        "anchor": "“SEM binary mask and SEM soft weighting”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 13",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "比较 R1-Llama-8B multi-epoch TAQ 的 70–350M tokens 与 70M-token ReQAT。",
+      "evidence": {
+        "page": 22,
+        "section": "Table 13",
+        "anchor": "“Multi-epoch TAQ vs. ReQAT”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 14",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "并列 AIME-120 与 MMLU，检查 reasoning/non-reasoning task 的量化损失与 ReQAT 增益。",
+      "evidence": {
+        "page": 22,
+        "section": "Table 14",
+        "anchor": "“Results of ReQAT on MMLU benchmark”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 15",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "比较 stochastic sampling 与 greedy decoding 下 R1-Llama-8B 的 FT、FT+PTQ 和 accuracy drop。",
+      "evidence": {
+        "page": 22,
+        "section": "Table 15",
+        "anchor": "“Accuracy under NVFP4 W4A4KV4”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 16",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "在 Q-FIT 开启时扫描 SEM strength λ=.03/.1/.5，并报告 GSM8K、MATH-500、AIME 与平均值。",
+      "evidence": {
+        "page": 22,
+        "section": "Table 16",
+        "anchor": "“Ablation results of λ in SEM”",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 17",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "比较 TAQ 上的 Q-FIT、Block Hadamard 与 no transformation 在 NVFP4 W4A4KV4 的跨 budget AIME。",
+      "evidence": {
+        "page": 22,
+        "section": "Table 17",
+        "anchor": "“Q-FIT vs. RHT on top of TAQ”",
+        "basis": "layout_observation"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (1) L_SEM objective",
+      "module": "method",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "4.2. SEM",
+        "anchor": "“L_SEM = L_SFT + λ · 1/T”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "SEM soft weight w_t",
+      "module": "method",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "4.2. SEM",
+        "anchor": "“w_t = max(0, 1 − …)”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (2) Q-FIT transformations",
+      "module": "method",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "4.3. Q-FIT",
+        "anchor": "“Q̃ = R(Qpre ⊙ s), K̃ = R(Kpre ⊘ s) − m”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (3) scale-aware logit perturbation",
+      "module": "appendix",
+      "page": 16,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 16,
+        "section": "B.2. Controlled Logit-Noise Perturbation",
+        "anchor": "“Z̃ = Z + M ⊙ σ Z ⊙ η”",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "s_t and C_low gradient contribution ratio",
+      "module": "results",
+      "page": 9,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 9,
+        "section": "Mechanism of TAQ",
+        "anchor": "“C_low”",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_count_notes": {
+    "displayed_equations_total": 5,
+    "numbered_equations_total": 3,
+    "inline_formula_examples": [
+      "L_SFT token-level NLL",
+      "H_t Shannon entropy",
+      "M and ρ tail-mass definitions",
+      "RoPE attention expression",
+      "Q-FIT s and m initialization"
+    ],
+    "theorem_lemma_proposition_corollary_proof": 0,
+    "evidence": [
+      {
+        "page": 6,
+        "section": "4.2–4.3",
+        "anchor": "“(1)”、 “(2)”",
+        "basis": "explicit"
+      },
+      {
+        "page": 16,
+        "section": "B.2",
+        "anchor": "“(3)”",
+        "basis": "explicit"
+      },
+      {
+        "page": 9,
+        "section": "Mechanism of TAQ",
+        "anchor": "“C_low”",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "experimental_design": [
+    {
+      "name": "Token-entropy corpus",
+      "status": "observed",
+      "description": "R1-Qwen-14B 在 AIME 2022–2024 的 90 prompts 上生成超过 1.5M tokens，按平均 predictive entropy 分组；高熵约占 20%。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "3. Empirical Analysis",
+          "anchor": "“a small fraction (approximately 20%) have high entropy”",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "B.1. Token Entropy Analysis Settings",
+          "anchor": "“more than 1.5M tokens”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Entropy-aware mixed-precision protocol",
+      "status": "observed",
+      "description": "BF16 与 MXFP4 W4A16 R1-Qwen-14B 每步都 forward；用 BF16 distribution 的 entropy 和 τ=.6 决定从 BF16/FP4 取 next token。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "B.1. Token Entropy Analysis Settings",
+          "anchor": "“τ = 0.6”",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Figure 8",
+          "anchor": "“route low-entropy tokens to the full-precision model”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Controlled logit-noise protocol",
+      "status": "observed",
+      "description": "每个 batched invocation 固定扰动 entropy bottom/top q quantiles，默认 q=25%；比较 R1-Qwen-7B/14B、Qwen3-4B/8B 的 AIME-2025。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2. Quantization Sensitivity via Token Entropy",
+          "anchor": "“top 25% highest-entropy … bottom 25% lowest-entropy”",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "B.2. Controlled Logit-Noise Perturbation",
+          "anchor": "“global perturbation rate is fixed by construction”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "FP4 configurations",
+      "status": "observed",
+      "description": "实验覆盖 MXFP4 W4A16、MXFP4 W4A4、NVFP4 W4A4KV4；每个 Transformer decoder linear layer quantized。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "5. Experiments",
+          "anchor": "“MXFP4 W4A16, MXFP4 W4A4, and NVFP4 W4A4KV4”",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "D.1. Experimental Details",
+          "anchor": "“every linear layer in the Transformer decoder is quantized”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Models, tasks, seeds",
+      "status": "observed",
+      "description": "主模型 R1-Qwen-14B，transfer 模型 R1-Llama-8B；AIME-120（2022–2025）为 primary，GSM8K/MATH-500 complementary；结果平均 8 random seeds。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "5.1. Experimental Settings",
+          "anchor": "“AIME-120 … primary metric”",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "D.1. Experimental Details",
+          "anchor": "“All results are averaged over 8 random seeds”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Baselines and ReQAT variants",
+      "status": "observed",
+      "description": "比较 BF16 baseline/FT、Direct PTQ、FT+PTQ、QAT、QAD、AWQ、QuaRot、FlatQuant；T/TQ/TQS 分别表示 TAQ、TAQ+Q-FIT、完整方法。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "5.1. Experimental Settings",
+          "anchor": "“T, TQ, and TQS denote TAQ only”",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "D.1. Experimental Details",
+          "anchor": "“representative PTQ baselines”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Training and calibration",
+      "status": "observed",
+      "description": "OpenThought-3 Math subset用于训练；Qwen Stage-1 单 epoch，Llama 固定 70M subset 多 epoch；TAQ Stage-2 70M；Q-FIT 用 Wikitext-2 length 512、256 samples、约 7 分钟/H200。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "D.2. Training Details",
+          "anchor": "“fixed 70M-token subset”",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "D.2. Training Details",
+          "anchor": "“input length of 512 and 256 samples”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Throughput protocol",
+      "status": "observed",
+      "description": "trtllm-bench 使用 1K requests、512-token prompts、batch up to 256、8K/16K generation，在 DGX Spark 和 single B200 上报告 output-token TPS。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.3. Throughput Evaluation",
+          "anchor": "“1K requests”",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "D.3. Throughput Evaluation Details",
+          "anchor": "“TensorRT-LLM v1.2.0rc8”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Data split and protocol omissions",
+      "status": "not_present",
+      "description": "指定 PDF 未给出 OpenThought-3 的 train/validation split、逐 seed checkpoint、外部 baseline 的完整版本/采样参数，也没有用户或生产 workload 的独立验证协议。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "D.1–D.3. Experimental Details",
+          "anchor": "“Additional training details and hyperparameters are provided in Table 11”",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 21,
+          "section": "Table 11",
+          "anchor": "“Key hyperparameters for training”",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "PTQ 的 W4A4KV4 drop 跨多种 distilled LRM 出现",
+      "value": "Fig. 1(a) 以 Llama-8B、Qwen-14B、Qwen-32B、Llama-70B 和 GSM8K/MATH-500/AIME-120 展示 accuracy drop",
+      "comparison": "NVFP4 PTQ vs BF16 baseline/full-FT",
+      "statistical_method": "跨模型/benchmark 的图示点结果；无误差表达",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Figure 1(a)",
+          "anchor": "“NVFP4 W4A4KV4 PTQ accuracy drop”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "低熵 token 比高熵 token 对 logit noise 更敏感",
+      "value": "四个模型的 Fig. 2(e) 中低熵 AIME 曲线随 σ 快速下降，高熵曲线影响较小",
+      "comparison": "top/bottom 25% entropy decisions",
+      "statistical_method": "AIME-2025 accuracy vs σ；未报告方差",
+      "module": "experimental_design",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "Figure 2(e)",
+          "anchor": "“low- vs. high-entropy token positions”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "低熵 routing 回 BF16 可恢复较多 quantization loss",
+      "value": "Fig. 2(c–d) 低熵使用 BF16 的 routing 明显优于只把高熵切回 BF16；Fig. 8 代表样例为 BF16 6/8、quantized 1/8",
+      "comparison": "四种 BF16/FP4 token routing policies",
+      "statistical_method": "控制性双模型逐 token intervention；代表性 trial",
+      "module": "experimental_design",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2. Quantization Sensitivity via Token Entropy",
+          "anchor": "“routing low-entropy prediction to BF16 recovers”",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "B.1. Token Entropy Analysis Settings",
+          "anchor": "“correct answer in 6 out of 8 trials”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "FP4 主要增加低熵 token 的 sampling tail mass",
+      "value": "Fig. 2(f) 的低熵 bins 中 top-1 mismatch 接近 0，但 tail-mass ratio 明显高于 1",
+      "comparison": "BF16 vs NVFP4 W4A4KV4 output distributions",
+      "statistical_method": "20 equal-sized entropy quantile bins；ratio/mismatch descriptive curve",
+      "module": "experimental_design",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "Figure 2(f)",
+          "anchor": "“tail-mass ratio and top-1 mismatch rate”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "R1-Qwen-14B 多 regime AIME 恢复/超过 BF16 FT",
+      "value": "BF16 baseline 56.83、BF16 FT 65.46；完整 ReQAT 最佳 MXFP4 W4A16 68.02、MXFP4 W4A4 65.94；NVFP4 W4A4KV4 的 TQ 280M 为 65.94、TQS 350M 为 65.63",
+      "comparison": "Table 1 跨 140–350M token budget 的 BF16/PTQ/QAT/ReQAT variants",
+      "statistical_method": "AIME accuracy；未报告每 seed 离散量",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "“65.94” and “68.02”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "R1-Llama-8B 上 ReQAT 超过 PTQ/QAT 但未超过 BF16 FT",
+      "value": "TQS 为 GSM8K/MATH-500/AIME 89.85/90.53/41.85；BF16 FT 为 91.15/92.18/48.75；QAT AIME 38.34",
+      "comparison": "NVFP4 W4A4KV4、350M budget",
+      "statistical_method": "三个 benchmark aggregate accuracy",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 2",
+          "anchor": "“41.85” and “48.75”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ReQAT 在列出的 PTQ/QAT baselines 中最高",
+      "value": "Table 3 AIME：ReQAT MXFP4 W4A16 68.02、NVFP4 W4A16 68.75、NVFP4 W4A4KV4 65.63；QAT NVFP4 W4A4KV4 58.86",
+      "comparison": "AWQ/QuaRot/FlatQuant/FT+PTQ/QAD/QAT",
+      "statistical_method": "format/group aggregate accuracy；无 paired test",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 3",
+          "anchor": "“ReQAT achieves the highest accuracy across all evaluated settings”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "FP4 throughput gain来自 compute 与 memory capacity",
+      "value": "DGX Spark NVFP4 最高 3.93×、ReQAT 3.90×；B200 NVFP4 3.13×、ReQAT 3.05×；DGX Spark 1K output tokens 约 3.3×",
+      "comparison": "output-token TPS relative to BF16 baseline",
+      "statistical_method": "batch/output-length sweep；无误差表达",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Figure 6",
+          "anchor": "“3.93×”、 “3.90×”、 “3.13×”",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "5.3. Throughput Evaluation",
+          "anchor": "“compute benefit of 4-bit GEMM”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "长 response 下 ReQAT 相对其他 FP4 方法更稳",
+      "value": "24–32K AIME acc/#samples：BF16 FT 17.5/246、QAT 14.2/295、ReQAT 19.3/249、PTQ 6.3/96",
+      "comparison": "response-length bins 0–8K 至 24–32K",
+      "statistical_method": "分 bin accuracy/#samples",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 6",
+          "anchor": "“24–32K … ReQAT 19.3/249”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "数学训练后的 code transfer",
+      "value": "LiveCodeBench：BF16 FT 53.68；TQS MXFP4 W4A16 54.52、NVFP4 W4A4KV4 53.59；PTQ 48.88/47.99",
+      "comparison": "BF16/PTQ/QAT/ReQAT across two FP4 settings",
+      "statistical_method": "单 benchmark aggregate accuracy",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 7",
+          "anchor": "“LiveCodeBench accuracy”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "aligned traces 提高 low-entropy gradient allocation",
+      "value": "Fig. 7 中 same-trace FT+QAT 的 C_low 曲线整体高于 different-trace 变体",
+      "comparison": "FT vs FT+QAT same/different trace",
+      "statistical_method": "gradient contribution ratio vs training step",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 7",
+          "anchor": "“TAQ increases gradient allocation”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "增加 epoch 不能闭合 NVFP4 gap",
+      "value": "Table 9 FT→PTQ drop k=1–5 为 11.05/14.79/15.21/15.42/14.69；FT4-ep→QAT 为 13.02/12.09/12.50/11.88/13.65",
+      "comparison": "相对对应 full-precision FT baseline",
+      "statistical_method": "AIME-120 accuracy drop",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Table 9",
+          "anchor": "“does not close the NVFP4 W4A4KV4 gap”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "跨年 AIME 结果不是单年偶然",
+      "value": "ReQAT 2022/23/24/25 = 67.92/65.42/71.25/59.17，平均 65.94；BF16 FT 平均 65.47、PTQ 50.10",
+      "comparison": "year-wise BF16/PTQ/QAT/ReQAT",
+      "statistical_method": "四年 accuracy mean；无每年方差",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Table 10",
+          "anchor": "“Year-wise AIME accuracy”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "non-reasoning MMLU 的 PTQ drop 较小",
+      "value": "MMLU BF16 baseline 74.96、PTQ 72.12、ReQAT 73.14；AIME 对应 56.83/50.13/65.63",
+      "comparison": "AIME-120 vs MMLU",
+      "statistical_method": "两个 benchmark aggregate accuracy",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Table 14",
+          "anchor": "“substantially smaller accuracy degradation under PTQ”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "greedy decoding 只能缓解部分 PTQ failure",
+      "value": "sampling 下 FT−FT+PTQ drop 为 11.05–15.42，greedy 下为 7.50–15.00；greedy absolute FT accuracy 也下降",
+      "comparison": "T=.6 top-p=.95 vs T=0 top-k=1",
+      "statistical_method": "不同 decoding setting 的 accuracy difference",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Table 15",
+          "anchor": "“decoding strategy alone is insufficient”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Q-FIT/E1M2 改善量化训练 loss",
+      "value": "Fig. 10(b) 中 E1M2 KV loss 更低稳定；Fig. 11(b) block rotation+Q-FIT 接近 down-projection unquantized",
+      "comparison": "TAQ、E1M2、Q-FIT、rotation variants",
+      "statistical_method": "training-loss curves；无不确定性",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Figure 10",
+          "anchor": "“lower and more stable training loss”",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Figure 11",
+          "anchor": "“redistribute information within a block”",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "Trace alignment",
+      "status": "observed",
+      "description": "Table 4：未对齐 FT+QAT 的 gain ≤1%，对齐 FT+QAT 在 140–350M 为 61.15/63.65/65.00/67.29，明显高于未对齐。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 4",
+          "anchor": "“Role of trace alignment in TAQ”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Q-FIT joint components",
+      "status": "observed",
+      "description": "Table 5 中 pre-RoPE scale 或 post-RoPE shift 单独启用不稳定；E1M2+scale+shift 联合时 final loss .7633、AIME 65.94。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5",
+          "anchor": "“jointly calibrating key transformations”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Multi-epoch TAQ versus ReQAT",
+      "status": "observed",
+      "description": "Table 13 multi-epoch TAQ 70–350M 为 38.34/39.27/38.86/39.48/37.71，ReQAT 70M 为 41.85。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Table 13",
+          "anchor": "“ReQAT”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "SEM mask shape",
+      "status": "observed",
+      "description": "Table 12 soft weighting 在 140M/210M 为 61.81/65.14，高于 binary mask 60.14/63.19。",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Table 12",
+          "anchor": "“soft weighting consistently outperforms a hard binary mask”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "SEM regularization strength",
+      "status": "observed",
+      "description": "Table 16 λ=.03/.1/.5 的 Avg 为 73.66/74.11/74.01，均接近或高于 no-SEM/Q-FIT 73.63；λ=.1 最佳平均值。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Table 16",
+          "anchor": "“not highly sensitive to precise hyperparameter tuning”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Q-FIT versus RHT",
+      "status": "observed",
+      "description": "Table 17 Q-FIT 140/210/280/350M 为 59.79/63.44/65.94/65.21，高于 Block Hadamard 58.34/62.50/63.02/62.71。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Table 17",
+          "anchor": "“Q-FIT yields consistently higher accuracy than RHT”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Response-length robustness",
+      "status": "observed",
+      "description": "Table 6 把 accuracy 按四个 response-length ranges 分层，识别长 trace 中 error accumulation。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 6",
+          "anchor": "“accuracy as a function of generated response length”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Non-reasoning benchmark",
+      "status": "observed",
+      "description": "Table 14 将 MMLU 与 AIME 并列，识别 ReQAT benefit 是否集中在 reasoning-intensive task。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Table 14",
+          "anchor": "“ReQAT provides its most pronounced benefits on reasoning-intensive benchmarks”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Decoding strategy",
+      "status": "observed",
+      "description": "Table 15 以 sampling/greedy matched check 识别随机 sampling 是否是唯一解释；greedy 减小部分 drop 但降低 absolute accuracy。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Table 15",
+          "anchor": "“eliminating sampling errors mitigates some”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "MXFP4 activation handling",
+      "status": "observed",
+      "description": "Fig. 11 比较 block rotation 前后的 outlier spread 和 Q-FIT loss，支持 MXFP4 训练路径的工程选择。",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Figure 11",
+          "anchor": "“block rotation effectively spreads extreme activation values”",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "FP4 failure 集中在低熵 symbolic commitments",
+      "origin": "§1–§3 的 failure hypothesis",
+      "status": "closed",
+      "method_response": "TAQ/SEM 显式瞄准 low-entropy token predictions。",
+      "evidence_response": "Fig. 2、Fig. 7、Fig. 8–9 提供 routing、tail mass、gradient 与 qualitative cascade。",
+      "conclusion_response": "§8 回收“targeting low-entropy token failures”。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "3.1–3.3",
+          "anchor": "“low-entropy tokens”",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 7",
+          "anchor": "“low-entropy tokens”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "trace alignment 比增加 QAT budget 更关键",
+      "origin": "§1/§4.1 的 TAQ 机制主张",
+      "status": "partially_closed",
+      "method_response": "Stage-2 使用 D_TAQ ⊆ D_FT，重访同一 trace。",
+      "evidence_response": "Table 4、Fig. 7、Table 9/13 支持 aligned 与 multi-epoch 对照，但仍是 aggregate/proxy。",
+      "conclusion_response": "§6 以 gradient reallocation 解释，§8 未单独回收。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "4.1. TAQ",
+          "anchor": "“same reasoning traces”",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 4",
+          "anchor": "“trace alignment”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "SEM 在低熵位置恢复 confidence",
+      "origin": "§4.2 的 auxiliary loss 主张",
+      "status": "partially_closed",
+      "method_response": "Eq. (1) 与 soft w_t 在 τ 下选择性最小化 entropy。",
+      "evidence_response": "Table 2、12、16 显示 AIME 更明显、mask/λ 有支持，但无 per-token uncertainty。",
+      "conclusion_response": "§8 将 SEM 纳入 ReQAT 总体方法，没有单独的理论 guarantee。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.2. SEM",
+          "anchor": "“selectively minimizing predictive entropy”",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Table 16",
+          "anchor": "“Effect of SEM strength”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Q-FIT 处理 RoPE/KV cache distortion",
+      "origin": "§4.3 的 KV4 motivation",
+      "status": "partially_closed",
+      "method_response": "Eq. (2)、α_s/α_m calibration 和 Algorithm 1 以 attention-output MSE 选变换。",
+      "evidence_response": "Fig. 5、10–11、Table 5/17 支持 loss/accuracy 改善，未给 deployment-level cache error guarantee。",
+      "conclusion_response": "§8 只回收高层 accuracy/efficiency，不回收 Q-FIT 的独立效应。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.3. Q-FIT",
+          "anchor": "“minimizing the distance between BF16 and KV4 attention outputs”",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Algorithm 1",
+          "anchor": "“E ← MSE(Yref, Y)”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "同 budget 下 ReQAT 达到/超越 BF16 或强 baseline",
+      "origin": "Abstract、§1、§5.2",
+      "status": "partially_closed",
+      "method_response": "TAQ + Q-FIT + SEM，Stage-2 设为 70M 并在方法间匹配总 budget。",
+      "evidence_response": "Table 1–3、10：Qwen 常超过 BF16 FT，Llama 主要超过 PTQ/QAT；variant 与预算存在非单调性。",
+      "conclusion_response": "§8 用“matches or surpasses”概括。",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "“same training budget”",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "“AIME accuracy comparison”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "长 reasoning 与 code 仍受益",
+      "origin": "§5.3 的 robustness/generalization 预告",
+      "status": "closed",
+      "method_response": "将 response-length 分层与 LiveCodeBench 接入评测。",
+      "evidence_response": "Table 6 的 24–32K 相对 PTQ 更强，Table 7 的 TQS 达 53.59/54.52。",
+      "conclusion_response": "§8 未逐项回收，但 §5 已给出直接结果。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 6",
+          "anchor": "“24–32K”",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Table 7",
+          "anchor": "“LiveCodeBench accuracy”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "production hardware throughput 改善",
+      "origin": "Abstract、§5.3",
+      "status": "partially_closed",
+      "method_response": "Q-FIT scaling folded into weights，shift 在 inference 固定；TensorRT-LLM benchmark。",
+      "evidence_response": "Fig. 6 给 speedup，Appendix D.3 说明 DGX Spark 是 W4A4KV8、B200 是 W4A4KV4；无真实 production workload。",
+      "conclusion_response": "§8 回收“up to 3.9× throughput”。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Figure 6",
+          "anchor": "“End-to-end throughput speedup”",
+          "basis": "explicit"
+        },
+        {
+          "page": 21,
+          "section": "D.3. Throughput Evaluation Details",
+          "anchor": "“DGX Spark does not support the native NVFP4 KV cache path”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "benefit 更集中在 reasoning tasks",
+      "origin": "§5.4 及附录 D.4",
+      "status": "closed",
+      "method_response": "AIME 为 primary，并增加 MMLU non-reasoning 对照。",
+      "evidence_response": "Table 14 显示 MMLU PTQ drop 小、ReQAT 增益有限。",
+      "conclusion_response": "正文未扩张为所有任务的 universal claim。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Table 14",
+          "anchor": "“non-reasoning tasks”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "SFT supervision quality 是适用边界",
+      "origin": "p9 Limitations 段",
+      "status": "closed",
+      "method_response": "TAQ 建立在 SFT，并依赖同一 reasoning traces。",
+      "evidence_response": "明确说明 weak/noisy traces 可能限制收益；KD 等 supervision 留为 future work。",
+      "conclusion_response": "该限制没有在摘要中出现，但位于正文 conclusion 前的 Limitations 段。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Limitations",
+          "anchor": "“depends on the quality of the supervision signal”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "形式化准确率/收敛保证",
+      "origin": "标题与方法的 accuracy framing",
+      "status": "not_testable_here",
+      "method_response": "论文只给损失/变换定义与 empirical algorithm，没有 theorem。",
+      "evidence_response": "0 theorem/lemma/proposition/corollary/proof。",
+      "conclusion_response": "不应把 empirical recovery 写成 formal guarantee。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Algorithm 1",
+          "anchor": "“Calibration”",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 22,
+          "section": "Appendix D.4",
+          "anchor": "“Ablation Studies”",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "A. Microscaling Formats",
+      "category": "implementation_detail",
+      "start_page": 15,
+      "end_page": 15,
+      "main_text_calls": [
+        "§2.1 says the detailed MXFP4/NVFP4 comparison is in Table 8."
+      ],
+      "content": "Table 8：MXFP4 为 E2M1/FP8 E8M0/block32/no global scale；NVFP4 为 E2M1/FP8 E4M3/block16/global FP32。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "2.1. Quantization for Efficient Inference",
+          "anchor": "“detailed comparison is in Table 8”",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Table 8",
+          "anchor": "“Quantization configurations”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "B. Details for Token Entropy Analysis in Sec. 3",
+      "category": "reproducibility",
+      "start_page": 15,
+      "end_page": 17,
+      "main_text_calls": [
+        "§3 points to Appendix B.1 for visualization/setup/implementation and §3.2 points to B.2 for noise details."
+      ],
+      "content": "B.1 sampling、1.5M tokens、τ=.6、20 bins、Fig. 8；B.2 Eq. (3) 与 q=25% quantile perturbation；B.3 Fig. 9 qualitative high/low entropy failures。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3. Empirical Analysis",
+          "anchor": "“Additional details … Appendix B.1”",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "B.2. Controlled Logit-Noise Perturbation",
+          "anchor": "“q = 25%”",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Figure 9",
+          "anchor": "“entropy-selective logit-noise perturbation”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "C. ReQAT Details",
+      "category": "extended_method",
+      "start_page": 17,
+      "end_page": 19,
+      "main_text_calls": [
+        "§4.3 points to Appendix C.2 for MXFP4 QAT challenges and design details."
+      ],
+      "content": "C.1/Table 9 epoch-vs-quantization negative check；C.2/Algorithm 1 Q-FIT grid search、Fig. 10 layer/loss、Fig. 11 block rotation 与 activation outlier。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.3. Q-FIT",
+          "anchor": "“Challenges in MXFP4 QAT are discussed in Appendix C.2”",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Algorithm 1",
+          "anchor": "“Q-FIT”",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Figure 11",
+          "anchor": "“block rotation and Q-FIT”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "D. Experimental Details and More Results",
+      "category": "additional_result",
+      "start_page": 20,
+      "end_page": 22,
+      "main_text_calls": [
+        "§5.1 calls D.1 for additional details; §5.3 calls D.3 for throughput; §5.4 calls D.4 for ablations."
+      ],
+      "content": "D.1 formats/baselines/models/8 seeds/Table 10；D.2 dataset/training/Table 11；D.3 hardware/software、FP8-KV caveat；D.4 Tables 12–17 的 mask、epoch、MMLU、decoding、λ、RHT checks。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "5.1. Experimental Settings",
+          "anchor": "“Additional details are provided in Appendix D.1”",
+          "basis": "explicit"
+        },
+        {
+          "page": 21,
+          "section": "D.3. Throughput Evaluation Details",
+          "anchor": "“FP8 KV cache”",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "D.4. Ablation Studies",
+          "anchor": "“Effect of SEM strength”",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "SFT supervision dependence",
+      "status": "observed",
+      "description": "TAQ 依赖 SFT dataset 的 supervision signal；若 reasoning traces weak/noisy，收益可能有限。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Limitations",
+          "anchor": "“depends on the quality of the supervision signal”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Weak/noisy reasoning traces",
+      "status": "observed",
+      "description": "作者明确把 trace quality 作为失败条件，而非声称 TAQ 对任意数据都有效。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Limitations",
+          "anchor": "“When the reasoning traces themselves are weak or noisy”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Other supervision paradigms untested",
+      "status": "observed",
+      "description": "知识蒸馏等 supervision paradigm 只作为可能扩展，留待 future work。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Limitations",
+          "anchor": "“applicable to other supervision paradigms such as knowledge distillation”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Math-centered training and limited transfer",
+      "status": "observed",
+      "description": "训练使用 OpenThought-3 Math subset；LiveCodeBench/MMLU 只提供小范围 transfer/task-boundary evidence。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "D.2. Training Details",
+          "anchor": "“Math subset”",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Table 14",
+          "anchor": "“non-reasoning tasks”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "DGX Spark KV precision caveat",
+      "status": "observed",
+      "description": "DGX Spark 不支持 TensorRT-LLM native NVFP4 KV path，吞吐实验使用 FP8 KV（W4A4KV8）；B200 才用 W4A4KV4。",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "D.3. Throughput Evaluation Details",
+          "anchor": "“DGX Spark does not support the native NVFP4 KV cache path”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Aggregate-only uncertainty",
+      "status": "observed",
+      "description": "虽声明平均 8 seeds，表格/曲线未给标准差、置信区间、bootstrap 或 per-seed dispersion。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "D.1. Experimental Details",
+          "anchor": "“averaged over 8 random seeds”",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "“AIME accuracy comparison”",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "No formal guarantee",
+      "status": "not_present",
+      "description": "PDF 没有 theorem/lemma/proof 或收敛/准确率保证；Eq. (1)–(3) 和 Algorithm 1 是定义与校准程序。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.2–4.3",
+          "anchor": "“(1)”、 “(2)”",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 16,
+          "section": "B.2. Controlled Logit-Noise Perturbation",
+          "anchor": "“(3)”",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Independent evaluation separation",
+      "status": "not_present",
+      "description": "模型选择、SEM entropy 与 AIME outcome 的关系被实证检查，但未提供独立 hold-out evaluator 或与训练选择解耦的 human metric。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.2. SEM",
+          "anchor": "“predictive entropy”",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "“AIME accuracy”",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "Appendix migration",
+      "status": "observed",
+      "description": "协议、Eq. (3)、Algorithm 1、8-seed/四年 aggregation、超参、硬件例外和大部分 negative checks 放在 B–D；正文保留结论性摘要。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3. Empirical Analysis",
+          "anchor": "“Additional details … Appendix B.1”",
+          "basis": "explicit"
+        },
+        {
+          "page": 21,
+          "section": "D.3. Throughput Evaluation Details",
+          "anchor": "“FP8 KV cache”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Representative visual examples",
+      "status": "observed",
+      "description": "Fig. 2、5、8、9、10、11 通过代表性词云、样例 trace、layer snapshot 或 outlier heatmap 传达机制，未给全体样本分布或 failure rate。",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "B.1. Token Entropy Analysis Settings",
+          "anchor": "“representative challenging example”",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Figure 9",
+          "anchor": "“Qualitative examples”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Best/up-to framing",
+      "status": "observed",
+      "description": "摘要用“up to” speedup；Table 10 对 fine-tuned methods 报告 best accuracy across training budgets，读者需保留选择规则。",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "“up to 3.9×”",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Table 10",
+          "anchor": "“report the best accuracy across training budgets”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Strong summary versus point estimates",
+      "status": "observed",
+      "description": "“significant milestone”“highest accuracy”等强词与 aggregate point estimates、无 uncertainty 并列；比较对象仍可在 Tables 1–3 核对。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1. Introduction",
+          "anchor": "“significant milestone”",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "5.2. Experimental Results",
+          "anchor": "“highest accuracy across all evaluated settings”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Delayed hardware qualification",
+      "status": "observed",
+      "description": "主文 Fig. 6 报告 NVFP4/ReQAT speedup，DGX Spark 的 FP8-KV 例外只在 Appendix D.3 明示。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Figure 6",
+          "anchor": "“End-to-end throughput speedup”",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 21,
+          "section": "D.3. Throughput Evaluation Details",
+          "anchor": "“uses an FP8 KV cache”",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Non-monotone SEM/component gains",
+      "status": "observed",
+      "description": "Table 1 中 NVFP4 的最高值可来自 TQ 65.94，而完整 TQS 350M 为 65.63；正文用“frequently”而非“always”概括。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "“ReQAT_TQ … 65.94” and “ReQAT_TQS … 65.63”",
+          "basis": "interpretation"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "Boundary detector error",
+      "status": "observed",
+      "description": "自动指标把 main end 识别为 p22、appendix start 为 p11；双栏 References/Appendix heading 导致误判。人工边界为正文 p1–9、References p10–14、Appendix p15–22。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "References",
+          "anchor": "“References”",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "“A. Microscaling Formats”",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Figure/table caption counts",
+      "status": "observed",
+      "description": "自动结果为 9 figures、16 tables；手工逐页核对为 Fig. 1–11 共 11、Table 1–17 共 17，caption 正则漏计复合图注/Table 8。",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Figure 10–11",
+          "anchor": "“Figure 10” and “Figure 11”",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 22,
+          "section": "Table 17",
+          "anchor": "“Table 17”",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Numbered equation count",
+      "status": "observed",
+      "description": "自动结果为 2 个 numbered equations；PDF 明确有 Eq. (1)、(2)、(3) 三个编号公式，另有 soft-weight 与 gradient 两个未编号 displayed equations。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.2–4.3",
+          "anchor": "“(1)”、 “(2)”",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 16,
+          "section": "B.2. Controlled Logit-Noise Perturbation",
+          "anchor": "“(3)”",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Word-count denominator",
+      "status": "observed",
+      "description": "自动 total 13,120 words 包含 References、图内 labels、表格数字和 line-wrap；本读数用主文语义词 5,338、附录可读词约 4,066 计算相对篇幅。",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "“estimated_words”",
+          "basis": "interpretation"
+        },
+        {
+          "page": 22,
+          "section": "Appendix D.4",
+          "anchor": "“Table 17”",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "论文把 FP4 reasoning degradation 重新定位为低熵 symbolic token 的 sampling risk，再用 TAQ 重访同一 trace、SEM 锐化低熵 confidence、Q-FIT 校准 RoPE/KV cache，形成同 budget 的 FP4 QAT 闭环。〔pp. 3–6，interpretation，“low-entropy token predictions”〕",
+    "main_body_keeps": "正文保留 Fig. 2 的机制诊断、Fig. 3–5 的组件管线、Table 1–3 的 accuracy、Fig. 6 的吞吐、Table 4–5 的核心消融和 Fig. 7 的 gradient 回收。〔pp. 3–9，layout_observation，“Table 4”〕",
+    "appendix_moves": "Appendix B–D 放入完整协议、Eq. (3)、Q-FIT Algorithm 1、8-seed/四年 AIME aggregation、hyperparameters、FP8-KV caveat 与 Tables 8–17；复现和硬件主张依赖附录。〔pp. 15–22，interpretation，“FP8 KV cache”〕",
+    "best_pattern": "最有效的是“受控 failure diagnosis → 组件映射 → 同预算累加表”：Fig. 2 将 entropy 机制拆成 routing/noise/tail mass，Fig. 3 接到 training stages，Table 1 对齐 component 与 budget。〔pp. 3、5、7，interpretation，“controlled intervention isolates”〕",
+    "largest_gap": "最大缺口是 aggregate point estimates 与强 summary wording 之间的统计边界，以及 TQ/TQS 非单调、logit-noise proxy/gradient ratio 到最终 accuracy 的识别差距；DGX Spark 的 KV8 例外也被延后。〔pp. 7–8、20–22，interpretation，“up to”〕",
+    "transfer_rule": "对 quantization/system recovery 主张，先用受控 intervention 定位具体 state/token failure，再让每个组件只修复一个可观测 failure，并用同 budget 组件表、机制图和独立 deployment metric 共同验证。〔pp. 3–8，interpretation，“same training budget”〕",
+    "transfer_boundary": "该规则要求 entropy/state 可定义、supervision trace 可复用，且清楚区分 proxy 与 outcome；当 KV precision、hardware path、seed dispersion 或 domain 改变时，不能把单一 benchmark 或“up to speedup”外推成一般保证。〔pp. 15–22，interpretation，“proxy for relative logit distortions”〕"
+  },
+  "abstract_structure": {
+    "sequence": [
+      "object_scope",
+      "problem_gap",
+      "core_idea",
+      "method",
+      "quantitative_result"
+    ],
+    "summary": "背景/部署约束 → W4A4KV4 精度失败 → 低熵机制 → TAQ/SEM/Q-FIT → 同预算 accuracy 与 throughput。",
+    "evidence": [
+      {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "“Based on this insight, we propose ReQAT”",
+        "basis": "explicit"
+      },
+      {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "“Under the same training budget”",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "related_work_summary": {
+    "locations": [
+      "§2.1–§2.2，pp. 2–3",
+      "§7，p. 9"
+    ],
+    "comparison_axes": [
+      "FP4 format/regime",
+      "PTQ/QAT/QAD recovery",
+      "RoPE/KV transformation",
+      "entropy as diagnostic vs training target"
+    ],
+    "summary": "相关工作主要按 taxonomy 与 limitation_of_prior 组织，p9 用 entropy-based analysis 的 nearest-neighbor contrast 回收差异；没有统一预算或跨论文 statistical comparison。",
+    "evidence": [
+      {
+        "page": 2,
+        "section": "2.1. Quantization for Efficient Inference",
+        "anchor": "“primary FP4 inference regimes”",
+        "basis": "explicit"
+      },
+      {
+        "page": 9,
+        "section": "7. Related Works",
+        "anchor": "“Unlike prior entropy-based studies”",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "method_narrative": {
+    "components": [
+      "TAQ",
+      "SEM",
+      "Q-FIT"
+    ],
+    "mapping": {
+      "TAQ": "同 trace/低熵更新位置",
+      "SEM": "低熵 predictive entropy/confidence",
+      "Q-FIT": "RoPE-aware KV4 calibration"
+    },
+    "sequence": "state_problem → setup_notation → define_component → derive → connect_to_prediction → define_component → derive → state_problem → define_component → instantiate_algorithm → explain_mechanism → contrast_alternative → summarize",
+    "evidence": [
+      {
+        "page": 5,
+        "section": "Figure 3",
+        "anchor": "“Stage 1: BF16 FT”",
+        "basis": "explicit"
+      },
+      {
+        "page": 6,
+        "section": "4.3. Q-FIT",
+        "anchor": "“jointly calibrates”",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "theory_assessment": {
+    "status": "not_present",
+    "summary": "无独立理论章节；Eq. (1)–(3) 为 objective/transform/noise definitions，Algorithm 1 为 calibration，Fig. 4/7 为 empirical diagnostics。",
+    "evidence": [
+      {
+        "page": 6,
+        "section": "4.2–4.3",
+        "anchor": "“(1)”、 “(2)”",
+        "basis": "layout_observation"
+      },
+      {
+        "page": 18,
+        "section": "Algorithm 1",
+        "anchor": "“Calibration”",
+        "basis": "layout_observation"
+      }
+    ]
+  },
+  "statistical_assessment": {
+    "aggregation": "AIME/GSM8K/MATH-500/LiveCodeBench/MMLU accuracy、year mean、acc/#samples、ratio、TPS；all results averaged over 8 random seeds。",
+    "uncertainty": "未报告 standard deviation、bootstrap、p-value、Bayesian posterior 或 conventional interval；曲线无 error band。",
+    "evidence": [
+      {
+        "page": 20,
+        "section": "D.1. Experimental Details",
+        "anchor": "“averaged over 8 random seeds”",
+        "basis": "explicit"
+      },
+      {
+        "page": 9,
+        "section": "Table 6",
+        "anchor": "“acc/#samples”",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "lexical_analysis": {
+    "tokenization_note": "主文 p1–9，小写 NFKC token，排除 References/stopwords/URL；标题、页眉、图表 labels 可能抬高计数。",
+    "frequent_words": [
+      {
+        "term": "QAT",
+        "approx_count": 84,
+        "context": "方法名、baseline 和通用训练范畴"
+      },
+      {
+        "term": "accuracy",
+        "approx_count": 64,
+        "context": "主 decision metric"
+      },
+      {
+        "term": "tokens",
+        "approx_count": 59,
+        "context": "budget/entropy corpus"
+      },
+      {
+        "term": "token",
+        "approx_count": 58,
+        "context": "failure unit"
+      },
+      {
+        "term": "reasoning",
+        "approx_count": 57,
+        "context": "task/model framing"
+      },
+      {
+        "term": "low-entropy",
+        "approx_count": 50,
+        "context": "核心 mechanism"
+      },
+      {
+        "term": "entropy",
+        "approx_count": 50,
+        "context": "diagnostic/SEM"
+      },
+      {
+        "term": "ReQAT",
+        "approx_count": 45,
+        "context": "方法/结果"
+      },
+      {
+        "term": "NVFP4",
+        "approx_count": 40,
+        "context": "KV4 deployment"
+      },
+      {
+        "term": "quantization",
+        "approx_count": 40,
+        "context": "problem/method"
+      }
+    ],
+    "bigrams": [
+      "low-entropy tokens",
+      "low-entropy token",
+      "token predictions",
+      "AIME accuracy",
+      "quantization-aware training",
+      "high-entropy tokens",
+      "reasoning accuracy",
+      "full-precision reasoning",
+      "reasoning traces",
+      "DGX Spark"
+    ],
+    "rhetorical_counts": {
+      "we propose": 3,
+      "we introduce": 1,
+      "we find": 1,
+      "we observe": 2,
+      "our results": 1,
+      "we show": 0,
+      "we demonstrate": 0,
+      "however": 7,
+      "in contrast": 7,
+      "suggest": 3,
+      "significantly": 1,
+      "limitation": 1
+    },
+    "evidence": [
+      {
+        "page": 3,
+        "section": "Figure 2",
+        "anchor": "“low-entropy tokens”",
+        "basis": "explicit"
+      },
+      {
+        "page": 9,
+        "section": "Mechanism of TAQ",
+        "anchor": "“gradient contribution ratio”",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "evidence_coverage": {
+    "substantive_claims": 101,
+    "claims_with_page_evidence": 101,
+    "status": "complete",
+    "counting_rule": "Count one per record in abstract_sentences, introduction_moves, related_work_moves, method_moves, experimental_design, result_inventory, ablation_inventory, claim_closure, appendix_inventory, limitations, adverse_presentation_strategies and measurement_disagreements; exclude visual-only records, page-map rows and final_judgment summaries."
+  }
+}
