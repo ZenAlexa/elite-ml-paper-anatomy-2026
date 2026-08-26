@@ -1,0 +1,2409 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-3f0f7132b565",
+  "bibliography": {
+    "title": "Latent Speech-Text Transformer",
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ],
+    "authors": [
+      "Yen-Ju Lu",
+      "Yashesh Gaur",
+      "Wei Zhou",
+      "Benjamin Muller",
+      "Jesus Villalba",
+      "Najim Dehak",
+      "Luke Zettlemoyer",
+      "Gargi Ghosh",
+      "Mike Lewis",
+      "Srinivasan Iyer",
+      "Duc Le"
+    ],
+    "analysis_stratum": "oral",
+    "openreview_id": "krGpQzo8Mz"
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-3f0f7132b565.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=krGpQzo8Mz"
+  },
+  "page_map": {
+    "pdf_pages": 18,
+    "main_pages": 10,
+    "reference_pages": 3,
+    "appendix_pages": 6,
+    "boundary_note": "p.11 contains Ethics Statement plus references; p.13 contains the final references followed by the start of Appendix, so reference and appendix counts overlap on that physical page.",
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 225
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 705
+      },
+      {
+        "title": "2 Background",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 420
+      },
+      {
+        "title": "3 Latent Speech-Text Transformers",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 1050
+      },
+      {
+        "title": "3.1 Patching",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 350
+      },
+      {
+        "title": "4 Experimental Setup",
+        "module": "experimental_design",
+        "start_page": 5,
+        "end_page": 7,
+        "estimated_words": 700
+      },
+      {
+        "title": "5 Results",
+        "module": "results",
+        "start_page": 7,
+        "end_page": 9,
+        "estimated_words": 1250
+      },
+      {
+        "title": "6 Related Work",
+        "module": "related_work",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 700
+      },
+      {
+        "title": "7 Limitations",
+        "module": "limitations",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 170
+      },
+      {
+        "title": "8 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 105
+      },
+      {
+        "title": "Ethics Statement",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 95
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 13,
+        "estimated_words": 1530
+      },
+      {
+        "title": "A.1 Data Construction and Licensing",
+        "module": "appendix",
+        "start_page": 13,
+        "end_page": 14,
+        "estimated_words": 320
+      },
+      {
+        "title": "A.2 Additional Model Details",
+        "module": "appendix",
+        "start_page": 14,
+        "end_page": 15,
+        "estimated_words": 560
+      },
+      {
+        "title": "A.3 Optimization and Training Configuration",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 15,
+        "estimated_words": 250
+      },
+      {
+        "title": "A.4 Fixed-Token Scaling Across Model Sizes",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 15,
+        "estimated_words": 190
+      },
+      {
+        "title": "A.5 Stability Analysis Across Tasks",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 16,
+        "estimated_words": 220
+      },
+      {
+        "title": "A.6 Effect of Speech Proportion",
+        "module": "appendix",
+        "start_page": 16,
+        "end_page": 16,
+        "estimated_words": 275
+      },
+      {
+        "title": "A.7 BPE-Aligned Patching",
+        "module": "appendix",
+        "start_page": 16,
+        "end_page": 17,
+        "estimated_words": 250
+      },
+      {
+        "title": "A.8 SC/TSC Evaluation Sets",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 17,
+        "estimated_words": 185
+      },
+      {
+        "title": "A.9 Fine-Grained Lexical and Syntactic Information",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 17,
+        "estimated_words": 170
+      },
+      {
+        "title": "A.10 Sequence Length, Compute, and Inference Scaling",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 18,
+        "estimated_words": 240
+      },
+      {
+        "title": "A.11 Aligner Quality Robustness",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 18,
+        "estimated_words": 100
+      },
+      {
+        "title": "A.12 LLM Usage",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 18,
+        "estimated_words": 25
+      }
+    ]
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 225,
+      "main_word_share": 0.04,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 705,
+      "main_word_share": 0.13,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 700,
+      "main_word_share": 0.13,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 1820,
+      "main_word_share": 0.24,
+      "figures": 2,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 5
+    },
+    {
+      "module": "theory",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 700,
+      "main_word_share": 0.13,
+      "figures": 0,
+      "tables": 2,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 1250,
+      "main_word_share": 0.22,
+      "figures": 2,
+      "tables": 3,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 380,
+      "main_word_share": 0.07,
+      "figures": 0,
+      "tables": 1,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 105,
+      "main_word_share": 0.02,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 170,
+      "main_word_share": 0.03,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 2950,
+      "main_word_share": null,
+      "figures": 1,
+      "tables": 7,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 1625,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Auto-regressive speech–text models pre-trained on interleaved text tokens and discretized speech tokens demonstrate strong speech understanding and generation, yet remain substantially less compute-efficient than text LLMs, partly due to the much longer sequences of speech tokens relative to text.",
+      "word_count": 40,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "longer sequences of speech tokens relative to text",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "This modality imbalance disproportionately allocates pre-training and inference compute to speech, potentially hindering effective cross-modal alignment and slowing performance scaling by orders of magnitude.",
+      "word_count": 24,
+      "functions": [
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "potentially hindering effective cross-modal alignment",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "We introduce the Latent Speech-Text Transformer (LST), which aggregates speech tokens into latent speech patches that serve as higher-level autoregressive units.",
+      "word_count": 21,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "aggregates speech tokens into latent speech patches",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "This design aligns the sequence-modeling granularity between speech and text while improving computational efficiency.",
+      "word_count": 14,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "aligns the sequence-modeling granularity between speech and text",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "The resulting patches can align with textual units to facilitate cross-modal knowledge transfer and compactly capture recurring acoustic patterns such as silence.",
+      "word_count": 22,
+      "functions": [
+        "method",
+        "qualitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "capture recurring acoustic patterns such as silence",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "Across story-completion benchmarks under both compute-controlled and data-controlled settings, LST consistently improves speech accuracy while also improving text performance, achieving up to +6.5% absolute gain on speech HellaSwag in compute-controlled training (+5.3% in data-controlled training).",
+      "word_count": 37,
+      "functions": [
+        "experimental_setup",
+        "quantitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "up to +6.5% absolute gain on speech HellaSwag",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "Under compute-controlled scaling from 420M to 1.8B parameters in a near compute-optimal regime, gains grow with scale, and improvements persist up to 7B parameters under fixed-token budgets.",
+      "word_count": 28,
+      "functions": [
+        "experimental_setup",
+        "quantitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "scaling from 420M to 1.8B parameters",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "text": "These benefits extend to downstream tasks: LST stabilizes ASR adaptation and reduces the effective autoregressive sequence length during ASR and TTS inference, lowering computational cost without degrading reconstruction quality.",
+      "word_count": 29,
+      "functions": [
+        "method",
+        "qualitative_result",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "without degrading reconstruction quality",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "text": "The code is available at https://github.com/facebookresearch/lst.",
+      "word_count": 10,
+      "functions": [
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "The code is available at https://github.com/facebookresearch/lst",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context / problem",
+      "estimated_words": 221,
+      "previous_question": "How can text-LLM capabilities be approached for speech?",
+      "answer": "GSLM discretizes waveform speech and applies NTP, but the longer speech sequence creates data and inference burdens.",
+      "next_hook": "Recent work must exploit the larger text corpus while closing the speech/text gap.",
+      "evidence": {
+        "page": 1,
+        "section": "1 Introduction",
+        "anchor": "up to three orders of magnitude more data",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "context / failure_of_prior_work",
+      "estimated_words": 484,
+      "previous_question": "Have warm initialization, interleaving, and multi-stream modeling solved the gap?",
+      "answer": "They improve transfer but still leave a modality-performance gap on the same benchmarks.",
+      "next_hook": "A common cause of the remaining gap is needed.",
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "gap between text-to-text and speech-to-speech performance",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "missing_insight",
+      "estimated_words": 82,
+      "previous_question": "Why does cross-modal work still fall short of interchangeability?",
+      "answer": "The speech/text token-density mismatch is proposed as a primary alignment barrier.",
+      "next_hook": "The sequence-modeling granularity must change.",
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "severe information-density mismatch",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "core_idea / method_preview",
+      "estimated_words": 132,
+      "previous_question": "How can the model process more semantic content at the same cost?",
+      "answer": "LST uses an encoder, global speech transformer, and decoder to operate on latent patches and reconstruct speech tokens.",
+      "next_hook": "Explain patch semantics, silence, and cross-modal alignment.",
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "encoder that dynamically groups sequences of speech tokens",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "method_preview",
+      "estimated_words": 98,
+      "previous_question": "Does static compression suffice, and what does alignment cost?",
+      "answer": "Static patching gives an initial gain; word/subword alignment adds synchronization, while curriculum removes inference-time alignment dependence.",
+      "next_hook": "Separate the claims into contributions.",
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "eliminate the need for such alignments during inference",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "contribution_list",
+      "estimated_words": 129,
+      "previous_question": "Which testable promises follow from the preview?",
+      "answer": "The paper promises controlled-budget performance/efficiency, three patching analyses, and 1B–7B scaling.",
+      "next_hook": "Unify them through modeling granularity.",
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "three contributions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "scope_boundary",
+      "estimated_words": 19,
+      "previous_question": "How are the three promises related?",
+      "answer": "Granularity alignment is offered as the common mechanism.",
+      "next_hook": "Proceed to Background.",
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "aligning the autoregressive modeling granularity",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "chronology + nearest_neighbor_contrast",
+      "estimated_words": 240,
+      "previous_question": "How did speech-token LMs evolve?",
+      "answer": "The paragraph traces waveform generation, textless NLP, hierarchical AudioLM, interleaved SpiritLM/Moshi, and scaling-law work.",
+      "next_hook": "Move from speech-token history to textual transfer.",
+      "evidence": {
+        "page": 9,
+        "section": "6 Related Work",
+        "anchor": "LLMs using speech tokens",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "taxonomy + nearest_neighbor_contrast",
+      "estimated_words": 230,
+      "previous_question": "Which transfer routes compete with LST?",
+      "answer": "It contrasts initialization, interleaving, Chain-of-Modality, inner monologue, and parallel decoding, including latency trade-offs.",
+      "next_hook": "Locate the efficiency problem.",
+      "evidence": {
+        "page": 9,
+        "section": "6 Related Work",
+        "anchor": "Transferring textual knowledge into speech LMs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "taxonomy + gap_creation",
+      "estimated_words": 160,
+      "previous_question": "What has been tried to reduce speech sequence cost?",
+      "answer": "Coarser units, hierarchy, parallel streams, acoustic BPE, and dynamic patching are grouped by compression and compute.",
+      "next_hook": "Connect dynamic patching to the proposed speech-text extension.",
+      "evidence": {
+        "page": 9,
+        "section": "6 Related Work",
+        "anchor": "Speech model efficiency",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "taxonomy + positioning_only",
+      "estimated_words": 120,
+      "previous_question": "Which evaluations measure the claimed capability?",
+      "answer": "Zero Resource, sStoryCloze/TSC, and speech HellaSwag are positioned by lexical, syntactic, commonsense, and topic reasoning.",
+      "next_hook": "The appendix will test low-level lexical/syntactic preservation.",
+      "evidence": {
+        "page": 10,
+        "section": "6 Related Work",
+        "anchor": "Speech Understanding Benchmarks",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 115,
+      "previous_question": "What is the conventional spoken-LM decomposition?",
+      "answer": "Speech tokenizer, decoder-only transformer, and vocoder define the baseline pipeline.",
+      "next_hook": "Specify tokenization choices.",
+      "evidence": {
+        "page": 3,
+        "section": "2 Background",
+        "anchor": "three components",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "setup_notation",
+      "estimated_words": 95,
+      "previous_question": "Which representation is used here?",
+      "answer": "The model follows prior work with HuBERT semantic tokens from a 501-entry codebook at 25 Hz.",
+      "next_hook": "State the autoregressive objective.",
+      "evidence": {
+        "page": 3,
+        "section": "Speech tokenization",
+        "anchor": "501 speech tokens at 25Hz",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "derive",
+      "estimated_words": 55,
+      "previous_question": "What objective does the baseline optimize?",
+      "answer": "Equation (1) gives corpus-level next-speech-token log likelihood.",
+      "next_hook": "Explain how interleaving bridges speech and text.",
+      "evidence": {
+        "page": 3,
+        "section": "Sequence Modeling",
+        "anchor": "L(D; θ)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "state_problem",
+      "estimated_words": 180,
+      "previous_question": "How are text and speech placed in one sequence?",
+      "answer": "Aligned text spans replace arbitrary speech spans with modality markers, allowing four input/output directions.",
+      "next_hook": "Introduce latent patching as the compression response.",
+      "evidence": {
+        "page": 3,
+        "section": "Interleaved Data",
+        "anchor": "allows the same model to be used for S→S, S→T, T→S and T→T tasks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "state_problem / summarize",
+      "estimated_words": 110,
+      "previous_question": "What is the architectural change?",
+      "answer": "The global transformer models patches instead of individual speech tokens, while local modules perform token↔patch transformation.",
+      "next_hook": "Detail the encoder.",
+      "evidence": {
+        "page": 4,
+        "section": "3 Latent Speech-Text Transformers",
+        "anchor": "auto-regressively model latent patches of tokens",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "define_component / explain_mechanism",
+      "estimated_words": 130,
+      "previous_question": "How are speech spans compressed?",
+      "answer": "The encoder aggregates only speech spans into local patch representations and avoids hash embeddings.",
+      "next_hook": "Detail token reconstruction.",
+      "evidence": {
+        "page": 4,
+        "section": "Patch Encoder",
+        "anchor": "sliding window self-attention and cross-attention layers",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "define_component / explain_mechanism",
+      "estimated_words": 125,
+      "previous_question": "How are compressed representations decoded?",
+      "answer": "A lightweight decoder attends to generated patches/text plus a sliding 512-token local window for NTP.",
+      "next_hook": "Formalize X, Z, and patch indices.",
+      "evidence": {
+        "page": 4,
+        "section": "Patch Decoder",
+        "anchor": "cross-attention layers inserted between every transformer layer",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "setup_notation",
+      "estimated_words": 95,
+      "previous_question": "What are the patching objects?",
+      "answer": "Speech embeddings X, local index sets Pi, and latent sequence Z define the transformation.",
+      "next_hook": "Instantiate fixed-length patches.",
+      "evidence": {
+        "page": 4,
+        "section": "3.1 Patching",
+        "anchor": "maps X to a shorter sequence of patch embeddings Z",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "instantiate_algorithm",
+      "estimated_words": 90,
+      "previous_question": "How does alignment-free compression work?",
+      "answer": "Non-overlapping segments of length p are encoded as one patch.",
+      "next_hook": "Use text-speech boundaries for semantic synchronization.",
+      "evidence": {
+        "page": 4,
+        "section": "Static Patching",
+        "anchor": "uniform compression ratio independent of alignment information",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "instantiate_algorithm / contrast_alternative",
+      "estimated_words": 135,
+      "previous_question": "How can patches follow semantics?",
+      "answer": "Wav2Vec2+CTC boundaries define word/BPE spans; out-of-span silence is separately patched, at the cost of an inference aligner.",
+      "next_hook": "Remove that deployment dependency with a curriculum.",
+      "evidence": {
+        "page": 5,
+        "section": "Alignment Patching",
+        "anchor": "one patch per text unit and silence segment",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 11,
+      "move": "derive / instantiate_algorithm",
+      "estimated_words": 105,
+      "previous_question": "How is alignment supervision phased out?",
+      "answer": "Alignment is sampled with probability P(u), linearly decreasing from 1 to 0 across training phases.",
+      "next_hook": "Compare the strategies under controlled experiments.",
+      "evidence": {
+        "page": 5,
+        "section": "Curriculum Patching",
+        "anchor": "P(u) ∈ [0, 1]",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 12,
+      "move": "connect_to_prediction",
+      "estimated_words": 80,
+      "previous_question": "Why should compression help?",
+      "answer": "Bounded-context aggregation is claimed to retain local discriminability while reducing redundancy.",
+      "next_hook": "Test efficiency, alignment, and transfer.",
+      "evidence": {
+        "page": 4,
+        "section": "3 Latent Speech-Text Transformers",
+        "anchor": "preserving phonetic discriminability while reducing sequence-level redundancy",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 13,
+      "move": "connect_to_experiment",
+      "estimated_words": 55,
+      "previous_question": "What prediction follows from the schedule?",
+      "answer": "Curriculum should retain alignment benefits while using static patches at inference.",
+      "next_hook": "Evaluate HellaSwag, SC/TSC, ASR, and TTS.",
+      "evidence": {
+        "page": 5,
+        "section": "Curriculum Patching",
+        "anchor": "enabling simple static-only inference",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "introduction",
+      "page": 2,
+      "purpose": "Compare LST and Baseline HellaSwag S→S/T→T under fixed iterations and fixed data budget.",
+      "evidence": {
+        "page": 2,
+        "section": "Figure 1",
+        "anchor": "same number of training iterations and same amount of training data",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "method",
+      "page": 3,
+      "purpose": "Show shared latent flow from BPE/HuBERT tokens through Patch Encoder, global transformer, and Patch Decoder.",
+      "evidence": {
+        "page": 3,
+        "section": "Figure 2",
+        "anchor": "encodes BPE text tokens and HuBERT speech tokens into a shared latent space",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "method",
+      "page": 4,
+      "purpose": "Contrast fixed static segments with Wav2Vec2+CTC word/silence alignment.",
+      "evidence": {
+        "page": 4,
+        "section": "Figure 3",
+        "anchor": "Static patching segments speech into fixed-size patches",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "results",
+      "page": 5,
+      "purpose": "Plot compute-optimal 420M–1.8B scaling and 7B fixed-token training dynamics.",
+      "evidence": {
+        "page": 5,
+        "section": "Figure 4",
+        "anchor": "Scaling behavior on HellaSwag",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "results",
+      "page": 9,
+      "purpose": "Visualize t-SNE clusters of word-level speech patch embeddings across three lexical categories.",
+      "evidence": {
+        "page": 9,
+        "section": "Figure 5",
+        "anchor": "clusters of the same word are tight and well-separated",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "appendix",
+      "page": 16,
+      "purpose": "Measure HellaSwag S→S/T→T as the speech:text token ratio changes.",
+      "evidence": {
+        "page": 16,
+        "section": "A.6 Effect of Speech Proportion",
+        "anchor": "best speech–text trade-off at the 1:2 ratio",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "experimental_design",
+      "page": 6,
+      "purpose": "List speech training hours and HuBERT token totals for four corpora.",
+      "evidence": {
+        "page": 6,
+        "section": "Table 1",
+        "anchor": "Speech training datasets with total speech hours",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "experimental_design",
+      "page": 6,
+      "purpose": "Define evaluation formats and capability focus for HellaSwag, StoryCloze, and TopicStoryCloze.",
+      "evidence": {
+        "page": 6,
+        "section": "Table 2",
+        "anchor": "Evaluation datasets for story completion",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "results",
+      "page": 7,
+      "purpose": "Compare LST strategies and baselines under the same computation budget scheme.",
+      "evidence": {
+        "page": 7,
+        "section": "Table 3",
+        "anchor": "same computation budget scheme",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "results",
+      "page": 7,
+      "purpose": "Compare LST and baselines under the same speech/text token scheme and report compute savings.",
+      "evidence": {
+        "page": 7,
+        "section": "Table 4",
+        "anchor": "same speech/text tokens scheme",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "results",
+      "page": 8,
+      "purpose": "Report 1B ASR WER, TTS CER, context units, and generation units.",
+      "evidence": {
+        "page": 8,
+        "section": "Table 5",
+        "anchor": "LibriSpeech ASR (WER) and TTS (CER) for the 1B model",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 6",
+      "module": "ablation",
+      "page": 10,
+      "purpose": "Compare static, aligned, and curriculum patching at approximately matched patch sizes.",
+      "evidence": {
+        "page": 10,
+        "section": "Table 6",
+        "anchor": "approximately matched patch sizes",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 7",
+      "module": "appendix",
+      "page": 15,
+      "purpose": "Give architecture depth, dimensions, heads, windows, and attention notes.",
+      "evidence": {
+        "page": 15,
+        "section": "A.2.2 Model Architecture",
+        "anchor": "Model architecture configuration",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 8",
+      "module": "appendix",
+      "page": 15,
+      "purpose": "Compare baseline and LST at 1B and 7B under identical processed-token budgets.",
+      "evidence": {
+        "page": 15,
+        "section": "A.4 Fixed-Token Scaling Across Model Sizes",
+        "anchor": "identical processed-token budget",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 9",
+      "module": "appendix",
+      "page": 16,
+      "purpose": "Report three-run averages and standard deviations across three tasks and two directions.",
+      "evidence": {
+        "page": 16,
+        "section": "A.5 Stability Analysis Across Tasks",
+        "anchor": "Average (Ave) and standard deviation (Std) across three runs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 10",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "Compare word-aligned, BPE-aligned, and curriculum patching at a 1:4 ratio.",
+      "evidence": {
+        "page": 17,
+        "section": "A.7 BPE-Aligned Patching",
+        "anchor": "Comparison of aligned patching strategies",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 11",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "Compare original and improved SC/TSC TTS evaluation sets.",
+      "evidence": {
+        "page": 17,
+        "section": "A.8 SC/TSC Evaluation Sets",
+        "anchor": "original and improved SC/TSC TTS sets",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 12",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "Evaluate fine-grained lexical and syntactic information with sWUGGY and sBLIMP.",
+      "evidence": {
+        "page": 17,
+        "section": "A.9 Fine-Grained Lexical and Syntactic Information",
+        "anchor": "fine-grained lexical and syntactic evaluation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 13",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "Account for speech/text units, total sequence length, and derived FLOPs reduction.",
+      "evidence": {
+        "page": 18,
+        "section": "A.10 Sequence Length, Compute, and Inference Scaling",
+        "anchor": "overall sequence length from 3.00 to 2.42",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (1)",
+      "module": "method",
+      "page": 3,
+      "role": "explanation",
+      "evidence": {
+        "page": 3,
+        "section": "Sequence Modeling",
+        "anchor": "L(D; θ) = Σ log pθ(si | s<i)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Patch embedding zi = PatchEnc(XPi)",
+      "module": "method",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "3.1 Patching",
+        "anchor": "zi = PatchEnc(XPi)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Static patch index Pi",
+      "module": "method",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "Static Patching",
+        "anchor": "Pi = {ip, ..., min((i + 1)p − 1, T)}",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Alignment patch Pk",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "Alignment Patching",
+        "anchor": "Pk = {bk, ..., ek}",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Curriculum alignment probability P(u)",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "Curriculum Patching",
+        "anchor": "P(u) ∈ [0, 1]",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "predeclared_hypotheses",
+      "status": "not_present",
+      "description": "没有编号的预注册假设、失败判据或预先锁定的分析计划；研究问题需从 Introduction 与 Section 5 还原。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1 Introduction",
+          "anchor": "To summarize, this paper makes the following contributions",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "text_pretraining_data",
+      "status": "observed",
+      "description": "使用 Llama 2 pre-training collection 的 web/academic 子集，共 1.8T tokens，32K SentencePiece BPE。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "4.1 Training and Evaluation Datasets",
+          "anchor": "totaling 1.8T tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "speech_pretraining_data",
+      "status": "observed",
+      "description": "使用带 transcript 的 HuBERT speech tokens；四个 corpus 的精确小时数与 token 数见 Table 1。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 1",
+          "anchor": "44,174 ... 55,309 hours",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "speech_text_composition",
+      "status": "observed",
+      "description": "约 33% 数据为 speech、67% 为 text；A.6 对 1:4、1:3、1:2、1:1 token ratio 做了扩展检验。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "4.3 Training Settings",
+          "anchor": "33% interleaved and 66% text tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "evaluation_tasks",
+      "status": "observed",
+      "description": "HellaSwag、StoryCloze、TopicStoryCloze 都是 narrative completion multiple-choice 任务，分别关注 commonsense、narrative coherence、topic consistency。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 2",
+          "anchor": "Evaluation datasets for story completion",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "evaluation_directions",
+      "status": "observed",
+      "description": "主评测同时报告 S→S 与 T→T；speech 版本由 Kokoro TTS 生成，HS 的 prompt/response 独立生成并拼接。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.1 Training and Evaluation Datasets",
+          "anchor": "generate the speech for prompts and responses independently",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "models_and_baselines",
+      "status": "observed",
+      "description": "比较 Static、Aligned、Mixed、Curriculum 四种 LST，以及直接处理 speech token 的 Base SpeechLLM 和 1k BPE SpeechLLM。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.2 LST Models and Baselines",
+          "anchor": "We explore four patching strategies for speech tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "compute_control",
+      "status": "observed",
+      "description": "compute-controlled 固定 training iterations 与 per-step sequence budget，并将 baseline token 与 LST patch 作为单位对齐。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "5.1 Performance under Controlled Budgets",
+          "anchor": "same number of training iterations and per-step sequence budget",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "data_control",
+      "status": "observed",
+      "description": "data-controlled 固定 speech/text token 数，观察 LST 在较少 patch tokens 下的收益与节省。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "5.1 Performance under Controlled Budgets",
+          "anchor": "same amounts of speech and text tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "scaling_design",
+      "status": "observed",
+      "description": "420M–1.8B 使用近似 compute-optimal token 配置；7B 在固定 70B processed tokens、低于约 140B optimum 的区间训练。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.2 Scaling Behavior",
+          "anchor": "70B tokens, below the scaling-law optimum",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "asr_tts_transfer_design",
+      "status": "observed",
+      "description": "LibriSpeech clean ASR fine-tune 1k–4k steps；TTS 在 20k steps 比较 CER 与 generation units。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.3 Downstream Transfer and Analysis",
+          "anchor": "fine-tune both models on LibriSpeech clean for 1k–4k iterations",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "metrics",
+      "status": "observed",
+      "description": "故事任务使用 accuracy，ASR 使用 WER，TTS 使用 Whisper transcription CER；表示分析报告相似度与 silhouette。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.3 Downstream Transfer and Analysis",
+          "anchor": "CER is computed from Whisper-based transcriptions",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "repeated_runs",
+      "status": "observed",
+      "description": "A.5 对每项实验运行三次并报告 Ave/Std，但没有给出具体 random seed。",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "A.5 Stability Analysis Across Tasks",
+          "anchor": "repeating each experiment three times",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "random_seeds",
+      "status": "not_present",
+      "description": "PDF 未报告随机种子值、seed 选择规则或逐 seed 原始结果。",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Table 9",
+          "anchor": "Average (Ave) and standard deviation (Std) across three runs",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "optimizer_hardware",
+      "status": "observed",
+      "description": "A.3 报告 AdamW、学习率/warmup、32 H100、bfloat16、FSDP、batch/sequence length 与约 17 小时训练。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "A.3 Optimization and Training Configuration",
+          "anchor": "32 H100 GPUs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "data_leakage_control",
+      "status": "not_present",
+      "description": "评测 TTS prompt/response 的独立生成被说明，但未见 train/eval 去重、样本泄漏审计或数据重叠检测。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.1 Training and Evaluation Datasets",
+          "anchor": "generate the speech for prompts and responses independently",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "sample_denominators",
+      "status": "not_present",
+      "description": "主表未给出各 benchmark 的样本数、accuracy 分母或 WER/CER 评测时长。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 3",
+          "anchor": "Each dataset reports both S→S and T→T",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "failure_criterion",
+      "status": "not_present",
+      "description": "没有预先定义的性能失败阈值、停止规则或 deployment-level failure 判定。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "5 Results",
+          "anchor": "5 Results",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "implementation_source",
+      "status": "observed",
+      "description": "摘要提供 facebookresearch/lst 代码仓库链接。",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "The code is available at https://github.com/facebookresearch/lst",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "Compute-controlled HellaSwag 与跨任务收益",
+      "value": "Curriculum 相对 Base：HellaSwag S→S 39.0→45.5（+6.5），T→T 47.0→52.2（+5.2）；SC S→S/T→T 59.1→61.2/67.8→71.6；TSC 87.5→87.9/95.7→96.1。",
+      "comparison": "Table 3；相同 computation budget scheme，Baseline 与四种 LST 对照。",
+      "statistical_method": "Multiple-choice accuracy；主文报告单值，未报告 seed、标准差、显著性检验或区间。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 3",
+          "anchor": "same computation budget scheme",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "5.1 Performance under Controlled Budgets",
+          "anchor": "Curriculum Patching improves T→T by +5.2",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Data-controlled 性能与 compute-saving",
+      "value": "Curriculum 相对 Base：HellaSwag S→S 40.2→45.5（+5.3），T→T 49.6→52.2（+2.6）；speech-text gap 9.4→6.7；报告 19.7% compute savings。",
+      "comparison": "Table 4；相同 speech/text token 数。",
+      "statistical_method": "Multiple-choice accuracy 与表内 savings；无实际 wall-clock、实测 FLOPs 或不确定性。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 4",
+          "anchor": "same speech/text tokens scheme",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "5.1 Performance under Controlled Budgets",
+          "anchor": "reduces the speech–text performance gap from 9.4 to 6.7",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Compute-optimal scaling",
+      "value": "420M：LST/Baseline speech 29.2/28.4、text 31.6/31.1；1.8B：speech 39.0/35.3、text 46.3/45.7。",
+      "comparison": "Figure 4a；LST 与 baseline 跨 420M–1.8B。",
+      "statistical_method": "各规模点 HellaSwag accuracy 曲线；无跨 seed 区间。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.2 Scaling Behavior",
+          "anchor": "At the smallest scale (420M), LST already outperforms the baseline",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "7B fixed-token scaling",
+      "value": "7B/70B processed tokens：LST 44.2/55.3 对 baseline 42.0/54.8（S→S/T→T）；1B 为 41.3/49.2 对 36.8/47.1。",
+      "comparison": "Figure 4b 与 Appendix Table 8；相同 processed-token budget。",
+      "statistical_method": "HellaSwag accuracy 单值；无标准差。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "A.4 Fixed-Token Scaling Across Model Sizes",
+          "anchor": "At 7B, the advantage remains consistent",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ASR adaptation",
+      "value": "1k steps：Baseline WER clean/other 140/202，LST 6.8/10.4；2k LST 6.0/13.3；LST context units 0.25×。",
+      "comparison": "Table 5；1B baseline 与 LST。",
+      "statistical_method": "WER；无样本分母、时长、区间或错误类型分解。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5",
+          "anchor": "ASR (WER %)",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "5.3 Downstream Transfer and Analysis",
+          "anchor": "LST achieves 6.8% / 10.4% WER at 1k",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "TTS reconstruction 与 generation length",
+      "value": "20k steps：Baseline CER clean/other 14.1/15.1，LST 14.1/16.2；generation units 0.25×。",
+      "comparison": "Table 5；LST 与 baseline。",
+      "statistical_method": "Whisper-based transcription CER；无区间。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5",
+          "anchor": "TTS (CER %)",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "5.3 Downstream Transfer and Analysis",
+          "anchor": "LST matches the baseline in CER",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Word-level patch embedding 诊断",
+      "value": "within-word similarity 约 0.87，between-word 约 0.43，silhouette 0.65–0.68；Figure 5 三类词簇。",
+      "comparison": "Aligned-patching LST 的同词与异词比较。",
+      "statistical_method": "相似度汇总、t-SNE 与 silhouette score；无样本数、重复或区间。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Visualization of Word-Level Speech Patch Embeddings",
+          "anchor": "within-word similarity is high (∼0.87)",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 5",
+          "anchor": "clusters of the same word are tight and well-separated",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Patching strategy ablation",
+      "value": "Align(sil sep.) SC S→S 60.3 对 static size 6 的 58.7；Align(sil merged) HS S→S 38.5 对 static size 9 的 37.2；curriculum HS S→S 41.3。",
+      "comparison": "Table 6；行间平均 patch size 约匹配但并不相同。",
+      "statistical_method": "Multiple-choice accuracy；无区间。",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Table 6",
+          "anchor": "approximately matched patch sizes",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Ablation on Patching Strategies",
+          "anchor": "retaining alignment benefits while matching the shorter-patch evaluation regime",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Stability across tasks",
+      "value": "三次运行：Curriculum HellaSwag S→S 41.4±0.13，T→T 49.1±0.06；StoryCloze T→T 69.5±1.56；Static 与 Baseline 的波动更大。",
+      "comparison": "Appendix Table 9；Curriculum、Static、Baseline。",
+      "statistical_method": "Ave 与 Std across three runs；未给 seed。",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Table 9",
+          "anchor": "Average (Ave) and standard deviation (Std) across three runs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Speech proportion",
+      "value": "1:2 被报告为最佳 speech/text 折中；LST S→S 40.2→41.3（1:3→1:2），1:1 为 41.2 且 T→T 降至 47.2。",
+      "comparison": "Appendix Figure 6；ratio 1:4、1:3、1:2、1:1。",
+      "statistical_method": "HellaSwag accuracy at 200k iterations；无区间。",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "A.6 Effect of Speech Proportion",
+          "anchor": "macro score peaks at 1:2 for both LST and the baseline",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Original/improved TTS evaluation robustness",
+      "value": "Table 11：Baseline SC 58.0/59.1、TSC 78.4/87.5；LST SC 60.8/61.2、TSC 79.5/87.9（orig./ours）。",
+      "comparison": "Appendix original 与 improved SC/TSC sets。",
+      "statistical_method": "Multiple-choice accuracy；无不确定性。",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "A.8 SC/TSC Evaluation Sets",
+          "anchor": "Across all four settings, LST consistently outperforms the baseline",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Fine-grained lexical/syntactic preservation",
+      "value": "sWUGGY 72.8 对 72.5，sBLIMP 59.0 对 58.9。",
+      "comparison": "Appendix Table 12；LST 与 Baseline。",
+      "statistical_method": "Benchmark score 单值；无区间。",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "A.9 Fine-Grained Lexical and Syntactic Information",
+          "anchor": "LST performs on par with the baseline",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Aligner boundary noise robustness",
+      "value": "Wav2Vec2+CTC boundary ±20–40 ms 扰动，在最敏感的纯 alignment 设置中最多约 1% degradation。",
+      "comparison": "Appendix A.11；扰动边界与原 alignment。",
+      "statistical_method": "Accuracy degradation；未给逐任务表格或区间。",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "A.11 Aligner Quality Robustness",
+          "anchor": "perturb Wav2Vec2+CTC boundaries by ±20–40 ms",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "patching_strategy",
+      "status": "observed",
+      "description": "Static、Aligned、Mixed、Curriculum 与 Base/BPE SpeechLLM 对照，识别固定压缩、语义边界和训练调度的作用。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.2 LST Models and Baselines",
+          "anchor": "four patching strategies",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "silence_separation",
+      "status": "observed",
+      "description": "Table 6 比较 Align(sil sep.) 与 Align(sil merged.)，将 silence 作为独立 patch 的影响单独提出。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Table 6",
+          "anchor": "Align (sil sep.) treats silence as separate patches",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "bpe_baseline",
+      "status": "observed",
+      "description": "1k speech-BPE baseline 未超过 vanilla SpeechLLM；5k/10k 配置没有收益。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.2 LST Models and Baselines",
+          "anchor": "larger vocabularies (5k, 10k) showed no benefit",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "word_vs_bpe_alignment",
+      "status": "observed",
+      "description": "A.7 用 word 与 BPE forced-alignment 比较边界粒度；word 在 speech 方向多数更好，BPE 部分 T→T 略好。",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Table 10",
+          "anchor": "Word Align uses word-level forced alignment",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "speech_text_ratio",
+      "status": "observed",
+      "description": "A.6 比较 1:4、1:3、1:2、1:1；1:2 的 speech/text 宏观折中最好，1:1 使 text 下滑。",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "A.6 Effect of Speech Proportion",
+          "anchor": "pushing further to 1:1 does not provide speech gain",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "training_stability",
+      "status": "observed",
+      "description": "A.5 重复三次并报告任务级 Ave/Std；StoryCloze/TSC 波动可超过 1.5。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "A.5 Stability Analysis Across Tasks",
+          "anchor": "repeating each experiment three times",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "tts_quality_variation",
+      "status": "observed",
+      "description": "A.8 在原始与改进 TTS renderings 上重复 SC/TSC，检验 synthesis artifacts 对结论的影响。",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "A.8 SC/TSC Evaluation Sets",
+          "anchor": "noticeable synthesis artifacts and unnatural prosody",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "fine_grained_capability",
+      "status": "observed",
+      "description": "A.9 用 sWUGGY/sBLIMP 检验 patching 是否丢失 lexical/syntactic cues。",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "A.9 Fine-Grained Lexical and Syntactic Information",
+          "anchor": "probe subword discrimination and syntactic sensitivity",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "aligner_noise",
+      "status": "observed",
+      "description": "A.11 对 alignment boundary 加 ±20–40 ms 扰动，报告最多约 1% degradation。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "A.11 Aligner Quality Robustness",
+          "anchor": "at most ∼1% degradation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "wall_clock_efficiency",
+      "status": "not_present",
+      "description": "没有真实端到端 wall-clock、吞吐或部署延迟消融；效率主要由 token accounting 和 units 代理。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "A.10 Sequence Length, Compute, and Inference Scaling",
+          "anchor": "approximately 20%",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "latent patches 压缩 speech autoregressive sequence",
+      "origin": "Abstract/Introduction p.1–2",
+      "status": "closed",
+      "method_response": "Patch Encoder→Global Transformer→Patch Decoder；Static/Aligned/Curriculum 定义于 p.4–5。",
+      "evidence_response": "Tables 3–4、Table 13 与 Table 5 报告 patch、sequence、context/generation units。",
+      "conclusion_response": "Conclusion 回收 shorter effective autoregressive sequence；实际 wall-clock 仍未测。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3 Latent Speech-Text Transformers",
+          "anchor": "model latent patches of tokens",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Table 13",
+          "anchor": "overall sequence length from 3.00 to 2.42",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "同预算下 speech 与 text 性能提高",
+      "origin": "Contribution (1), Introduction p.2",
+      "status": "closed",
+      "method_response": "compute-controlled 固定 iterations/units，data-controlled 固定 speech/text tokens。",
+      "evidence_response": "Table 3–4 覆盖三项 story-completion benchmark 与 S→S/T→T。",
+      "conclusion_response": "Conclusion 概括 controlled-budget gains。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 3",
+          "anchor": "same computation budget scheme",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "Table 4",
+          "anchor": "same speech/text tokens scheme",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "alignment 促进 cross-modal transfer",
+      "origin": "Abstract/Introduction p.1–2",
+      "status": "partially_closed",
+      "method_response": "word/BPE boundary、silence patch 与 curriculum schedule 提供语义对齐路径。",
+      "evidence_response": "Table 6、Figure 5、Table 10 支持 clustering 与部分 aligned gains。",
+      "conclusion_response": "Conclusion 以 modeling granularity 作为统一解释。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Alignment Patching",
+          "anchor": "synchronizing speech and text tokens",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 5",
+          "anchor": "well-separated from others",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "scaling 收益从 1B 保留到 7B 并随规模增长",
+      "origin": "Contribution (3), Abstract p.1–2",
+      "status": "partially_closed",
+      "method_response": "Figure 4 采用 compute-optimal 与 fixed-token 两种规模设计。",
+      "evidence_response": "Figure 4 与 Table 8 给出 420M–1.8B 及 1B/7B HellaSwag。",
+      "conclusion_response": "Conclusion 回收 compute-efficient scaling；任务覆盖集中在 HellaSwag。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.2 Scaling Behavior",
+          "anchor": "gains grow with scale",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Table 8",
+          "anchor": "At 7B, the advantage remains consistent",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "downstream ASR/TTS 更高效且 reconstruction quality 不降",
+      "origin": "Abstract p.1",
+      "status": "partially_closed",
+      "method_response": "local decoder、cross-attention 与 0.25× context/generation units。",
+      "evidence_response": "Table 5 给出 WER/CER 与 units；TTS other CER 为 16.2 对 15.1。",
+      "conclusion_response": "Conclusion 写 reducing inference cost without sacrificing reconstruction quality；wall-clock 未测。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5",
+          "anchor": "generation units 0.25×",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "5.3 Downstream Transfer and Analysis",
+          "anchor": "LST matches the baseline in CER",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "curriculum 去除 inference alignment 依赖",
+      "origin": "Introduction p.2；Section 3.1 p.5",
+      "status": "partially_closed",
+      "method_response": "P(u) 从 alignment 概率 1 过渡到 0，最终 static-only。",
+      "evidence_response": "Curriculum 与 Static/Aligned 的 accuracy 比较，A.11 检验 boundary noise。",
+      "conclusion_response": "Section 7 承认完全 alignment-free 仍是 open challenge；未给部署 latency/错误率。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Curriculum Patching",
+          "anchor": "enabling simple static-only inference",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "7 Limitations",
+          "anchor": "fully alignment-free approaches remain an open challenge",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "lexical/syntactic fidelity 不被压缩牺牲",
+      "origin": "Abstract p.1；A.9 p.17",
+      "status": "closed",
+      "method_response": "局部 512-token reconstruction 与 token-level NTP。",
+      "evidence_response": "sWUGGY 72.8/72.5、sBLIMP 59.0/58.9。",
+      "conclusion_response": "Conclusion 的 reconstruction quality 回收可在这两个低层 benchmark 范围内成立。",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Table 12",
+          "anchor": "Fine-grained lexical and syntactic evaluation",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "A.1.1 Interleaved Data Construction",
+      "category": "dataset_detail",
+      "start_page": 13,
+      "end_page": 14,
+      "main_text_calls": [
+        "p.3: process ... in Appendix A.1.1"
+      ],
+      "evidence": [
+        {
+          "page": 13,
+          "section": "A.1.1 Interleaved Data Construction",
+          "anchor": "Alignment; Span selection; Modality markers; Dynamic sampling",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.1.1 Interleaved Data Construction",
+      "category": "reproducibility",
+      "start_page": 13,
+      "end_page": 14,
+      "main_text_calls": [
+        "p.3: process ... in Appendix A.1.1"
+      ],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "A.1.1 Interleaved Data Construction",
+          "anchor": "different interleaving patterns for better robustness",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.1.2 Dataset Licensing",
+      "category": "dataset_detail",
+      "start_page": 14,
+      "end_page": 14,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "A.1.2 Dataset Licensing",
+          "anchor": "licenses associated with the speech corpora",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.2.1 Local Patch Encoder and Decoder Details",
+      "category": "extended_method",
+      "start_page": 14,
+      "end_page": 14,
+      "main_text_calls": [
+        "p.4: Further architectural details ... Appendix A.2.1"
+      ],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "A.2.1 Local Patch Encoder and Decoder Details",
+          "anchor": "token → latent patch → token information bottleneck",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.2.2 Model Architecture",
+      "category": "extended_method",
+      "start_page": 14,
+      "end_page": 15,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "A.2.2 Model Architecture",
+          "anchor": "block-causal attention with rotary position embeddings (RoPE)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.3 Optimization and Training Configuration",
+      "category": "implementation_detail",
+      "start_page": 15,
+      "end_page": 15,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "A.3 Optimization and Training Configuration",
+          "anchor": "trained for 200k steps",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.4 Fixed-Token Scaling Across Model Sizes",
+      "category": "additional_result",
+      "start_page": 15,
+      "end_page": 15,
+      "main_text_calls": [
+        "p.8: Additional comparisons ... Appendix A.4"
+      ],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "A.4 Fixed-Token Scaling Across Model Sizes",
+          "anchor": "benefits ... persist across model scales",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.5 Stability Analysis Across Tasks",
+      "category": "robustness",
+      "start_page": 15,
+      "end_page": 16,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "A.5 Stability Analysis Across Tasks",
+          "anchor": "HellaSwag results are generally more stable",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.6 Effect of Speech Proportion",
+      "category": "ablation",
+      "start_page": 16,
+      "end_page": 16,
+      "main_text_calls": [
+        "p.7: using 33% interleaved and 66% text tokens yields better performance (see Appendix A.6)"
+      ],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "A.6 Effect of Speech Proportion",
+          "anchor": "macro score peaks at 1:2",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.7 BPE-Aligned Patching",
+      "category": "ablation",
+      "start_page": 16,
+      "end_page": 17,
+      "main_text_calls": [
+        "p.9: report BPE-aligned patching experiments in Appendix A.7"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "A.7 BPE-Aligned Patching",
+          "anchor": "word alignment generally outperforms BPE alignment in S→S",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.8 SC/TSC Evaluation Sets",
+      "category": "additional_result",
+      "start_page": 17,
+      "end_page": 17,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "A.8 SC/TSC Evaluation Sets",
+          "anchor": "released TTS audio ... contains noticeable synthesis artifacts",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.9 Fine-Grained Lexical and Syntactic Information",
+      "category": "additional_result",
+      "start_page": 17,
+      "end_page": 17,
+      "main_text_calls": [
+        "p.10: see Appendix A.9"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "A.9 Fine-Grained Lexical and Syntactic Information",
+          "anchor": "does not discard fine-grained lexical or syntactic information",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.10 Sequence Length, Compute, and Inference Scaling",
+      "category": "additional_result",
+      "start_page": 17,
+      "end_page": 18,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Table 13",
+          "anchor": "FLOPs Reduction",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.11 Aligner Quality Robustness",
+      "category": "robustness",
+      "start_page": 18,
+      "end_page": 18,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "A.11 Aligner Quality Robustness",
+          "anchor": "performance benefits are expected to persist",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.12 LLM Usage",
+      "category": "other",
+      "start_page": 18,
+      "end_page": 18,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "A.12 LLM Usage",
+          "anchor": "used large language models solely for polishing some sentences",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "half_duplex_scope",
+      "status": "observed",
+      "description": "研究聚焦 half-duplex speech-text turns，未覆盖 Moshi 式 full-duplex real-time dialogue。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "7 Limitations",
+          "anchor": "focus on half-duplex speech–text modeling",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "instruction_and_downstream_scope",
+      "status": "observed",
+      "description": "Section 7 写明未探索 instruction fine-tuning 或 downstream adaptation；该句与 p.8 已报告的 ASR/TTS fine-tuning 存在范围张力，应保留作者原文而不替其消解。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "7 Limitations",
+          "anchor": "without exploring instruction fine-tuning or downstream adaptation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "forced_alignment_dependency",
+      "status": "observed",
+      "description": "Aligned/Curriculum 在 pre-training 依赖 forced alignment；curriculum 缓解 inference 依赖，但完全 alignment-free 仍开放。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "7 Limitations",
+          "anchor": "fully alignment-free approaches remain an open challenge",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "modality_scope",
+      "status": "observed",
+      "description": "实验限于 speech-text，未扩展 image 或 video。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "7 Limitations",
+          "anchor": "limited to the speech–text modality",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "tts_data_quality",
+      "status": "observed",
+      "description": "A.8 指出公开 SC/TSC TTS 有 synthesis artifacts 与 unnatural prosody，作者据此重生成评测音频。",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "A.8 SC/TSC Evaluation Sets",
+          "anchor": "noticeable synthesis artifacts and unnatural prosody",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "data_reuse",
+      "status": "observed",
+      "description": "7B 实验中的 speech data 已复用约 6×，作者指出该区间可能从 compute-limited 转向 data-limited。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.2 Scaling Behavior",
+          "anchor": "speech data ... reused for multiple epochs (≈6×)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "wall_clock_measurement",
+      "status": "not_present",
+      "description": "未见端到端 wall-clock latency、吞吐或真实部署功耗；效率结论依赖 sequence/token accounting。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "A.10 Sequence Length, Compute, and Inference Scaling",
+          "anchor": "corresponding compute change of approximately 20%",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "seed_and_denominator_reporting",
+      "status": "not_present",
+      "description": "未报告具体 seed、任务样本数和指标分母，限制了外部复核的统计粒度。",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Table 9",
+          "anchor": "across three runs",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "appendix_migration",
+      "status": "observed",
+      "description": "重复运行、speech ratio、BPE alignment、TTS quality、低层 benchmark、token accounting 和 aligner noise 集中在 p.15–18，正文保留单值主表。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "A.3–A.5",
+          "anchor": "additional model, training, scaling, and stability details",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 7,
+          "section": "5 Results",
+          "anchor": "5 Results",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "aggregate_values_first",
+      "status": "observed",
+      "description": "正文 Tables 3–6 主要给单个 accuracy 数字，三次运行的 Ave/Std 到 A.5 才出现。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Tables 3–6",
+          "anchor": "Main comparison",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 16,
+          "section": "Table 9",
+          "anchor": "Average (Ave) and standard deviation (Std) across three runs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "proxy_efficiency_measure",
+      "status": "observed",
+      "description": "compute savings 主要以 sequence length、context/generation units 和推导 FLOPs 表达，没有 wall-clock。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Table 13",
+          "anchor": "FLOPs Reduction",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "approximately_matched_ablation",
+      "status": "observed",
+      "description": "Table 6 明确使用 approximately matched patch sizes，但平均长度仍从 4 到 9.4；patch length 与 boundary semantics 同时变化。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Table 6",
+          "anchor": "approximately matched patch sizes",
+          "basis": "interpretation"
+        }
+      ]
+    },
+    {
+      "name": "quality_claim_compression",
+      "status": "observed",
+      "description": "正文写「matches the baseline in CER」，但 Table 5 的 other 条件为 LST 16.2、baseline 15.1；clean 条件才相同。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 5",
+          "anchor": "14.1 16.2",
+          "basis": "interpretation"
+        }
+      ]
+    },
+    {
+      "name": "limitations_after_results",
+      "status": "observed",
+      "description": "full-duplex、fine-tuning 范围、forced alignment 和 modality 扩展限制集中在结果后的 Section 7。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "7 Limitations",
+          "anchor": "Our study has several limitations",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "appendix_boundary",
+      "status": "observed",
+      "description": "自动测量把 main_end_page 暂报为 18 且 appendix_start 留空；逐页阅读确定主文结束于 p.10，references 为 p.11–13，Appendix 从 p.13 下半开始。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "8 Conclusion",
+          "anchor": "8 Conclusion",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 13,
+          "section": "A Appendix",
+          "anchor": "A APPENDIX",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "main_word_count_boundary",
+      "status": "observed",
+      "description": "自动测量将 8,365 词全部归入 main；人工章节边界显示 p.11–13 为 references、p.13–18 为 appendix，因此 main_words_provisional 不能作为正文词数。",
+      "evidence": [
+        {
+          "page": 13,
+          "section": "References / A Appendix",
+          "anchor": "A APPENDIX",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "numbered_equation_count",
+      "status": "observed",
+      "description": "自动测量暂报 2 个 numbered equations；视觉检查只看到 p.3 的式（1）有打印编号，p.4–5 的 patch 公式和 P(u) 为未编号 displayed equations。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "Sequence Modeling",
+          "anchor": "(1)",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 5,
+          "section": "Curriculum Patching",
+          "anchor": "P(u) ∈ [0, 1]",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "caption_counts",
+      "status": "observed",
+      "description": "自动测量的 6 个 figure captions 与 13 个 table captions 与逐页清单一致；未发现分歧。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Table 13",
+          "anchor": "Table 13: Token accounting",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "speech token 的高时间密度造成 speech/text 的 autoregressive 粒度不平衡；LST 用局部 latent patch 把 speech 压缩为更接近 text 的 unit，再由 decoder 做 token-level reconstruction。证据在 p.2「information-density mismatch」、p.4–5 组件和 p.7–8 controlled/scaling 结果。",
+    "main_body_keeps": "正文保留 Tables 3–4 的同预算主对照、Figure 4 的 scale 曲线、Table 5 的 ASR/TTS、Table 6 的 patching ablation 与 Figure 2 的架构图，直接回答性能、效率、scale 和迁移。证据：p.3、p.7–10。",
+    "appendix_moves": "optimizer/hardware、完整架构、三次运行方差、speech ratio、BPE alignment、TTS 数据质量、低层 benchmark、token accounting 和 aligner noise 移入 A.1–A.11。方法基本自足，但真实时间效率、样本分母和部署边界仍需补证。证据：p.14–18「A.3–A.11」。",
+    "best_pattern": "Figure 2 将 token→patch→token 变换具象化；Tables 3–4 共享 S→S/T→T 列结构并分离两种 budget；Figure 4 把跨规模趋势与 7B fixed-token 结果并列，形成短证据链。证据：p.3、p.7、p.5。",
+    "largest_gap": "效率主要用 token/context/generation units 与推导 FLOPs 表达，缺少 wall-clock；Table 6 的 approximately matched rows 仍混合长度与 alignment；TTS other CER 的方向差异被「matches」概括；Section 7 关于 downstream adaptation 的范围句与 p.8 fine-tuning 存在张力。证据：p.8、p.10、p.18。",
+    "transfer_rule": "涉及 token/patch 粒度改变的论文，应把同预算主对照、压缩单元可视化、机制替代消融和尺度外推按一条因果链排列，并为每个收益绑定独立证据对象。本文的绑定点是 p.3–5 方法图与公式、p.7–8 主结果。",
+    "transfer_boundary": "该规则适用于存在 autoregressive compute 与多种预算的序列模型；若研究的是无序列成本的纯表示学习，或唯一 estimand 是真实系统 latency，则应以对应部署测量替代 token-level proxy。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 20,
+    "claims_with_page_evidence": 20,
+    "status": "complete"
+  }
+}
