@@ -1,0 +1,31 @@
+name: Fetch OpenReview PDF probe
+
+on:
+  workflow_dispatch:
+    inputs:
+      paper_ids:
+        description: Comma-separated paper ids
+        required: true
+        default: icml-2026-1ef10519dcd7,icml-2026-7f1780627873
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify
+        shell: bash
+        run: |
+          args=()
+          IFS=',' read -ra ids <<< "${{ inputs.paper_ids }}"
+          for id in "${ids[@]}"; do args+=(--paper-id "$id"); done
+          python3 scripts/action_fetch_batch.py --conference ICML --output-dir action-output "${args[@]}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openreview-probe
+          path: action-output/
+          retention-days: 1
+          compression-level: 0

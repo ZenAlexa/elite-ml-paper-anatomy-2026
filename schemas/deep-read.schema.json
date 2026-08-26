@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ZenAlexa/elite-ml-paper-anatomy-2026/schemas/deep-read.schema.json",
+  "title": "Single-paper deep reading",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "paper_id",
+    "bibliography",
+    "source_files",
+    "page_map",
+    "module_metrics",
+    "abstract_sentences",
+    "visual_inventory",
+    "equation_theory_inventory",
+    "experimental_design",
+    "claim_closure",
+    "appendix_inventory",
+    "limitations",
+    "final_judgment",
+    "evidence_coverage"
+  ],
+  "properties": {
+    "schema_version": {"const": "deep-read.v1"},
+    "paper_id": {"type": "string", "minLength": 1},
+    "bibliography": {
+      "type": "object",
+      "required": ["title", "conference", "year", "selection_flags"],
+      "properties": {
+        "title": {"type": "string"},
+        "conference": {"enum": ["ICLR", "ICML", "NeurIPS"]},
+        "year": {"const": 2026},
+        "selection_flags": {"type": "array", "items": {"enum": ["outstanding", "oral", "spotlight"]}, "minItems": 1, "uniqueItems": true}
+      }
+    },
+    "source_files": {
+      "type": "object",
+      "required": ["pdf", "pdf_verified", "openreview_url"],
+      "properties": {
+        "pdf": {"type": "string"},
+        "pdf_verified": {"const": true},
+        "supplementary": {"type": ["string", "null"]},
+        "openreview_url": {"type": "string", "format": "uri"}
+      }
+    },
+    "page_map": {
+      "type": "object",
+      "required": ["pdf_pages", "main_pages", "reference_pages", "appendix_pages", "sections"],
+      "properties": {
+        "pdf_pages": {"type": "number", "minimum": 1},
+        "main_pages": {"type": "number", "minimum": 0},
+        "reference_pages": {"type": "number", "minimum": 0},
+        "appendix_pages": {"type": "number", "minimum": 0},
+        "sections": {"type": "array", "items": {"$ref": "#/$defs/section"}}
+      }
+    },
+    "module_metrics": {"type": "array", "items": {"$ref": "#/$defs/moduleMetric"}, "minItems": 1},
+    "abstract_sentences": {"type": "array", "items": {"$ref": "#/$defs/abstractSentence"}, "minItems": 1},
+    "introduction_moves": {"type": "array", "items": {"$ref": "#/$defs/move"}},
+    "related_work_moves": {"type": "array", "items": {"$ref": "#/$defs/move"}},
+    "method_moves": {"type": "array", "items": {"$ref": "#/$defs/move"}},
+    "visual_inventory": {"type": "array", "items": {"$ref": "#/$defs/visual"}},
+    "equation_theory_inventory": {"type": "array", "items": {"$ref": "#/$defs/theoryItem"}},
+    "experimental_design": {"type": "array", "items": {"$ref": "#/$defs/evidenceItem"}},
+    "result_inventory": {"type": "array", "items": {"$ref": "#/$defs/result"}},
+    "ablation_inventory": {"type": "array", "items": {"$ref": "#/$defs/evidenceItem"}},
+    "claim_closure": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+    "appendix_inventory": {"type": "array", "items": {"$ref": "#/$defs/appendixItem"}},
+    "limitations": {"type": "array", "items": {"$ref": "#/$defs/evidenceItem"}},
+    "adverse_presentation_strategies": {"type": "array", "items": {"$ref": "#/$defs/evidenceItem"}},
+    "measurement_disagreements": {"type": "array", "items": {"$ref": "#/$defs/evidenceItem"}},
+    "final_judgment": {
+      "type": "object",
+      "required": ["single_storyline", "main_body_keeps", "appendix_moves", "best_pattern", "largest_gap", "transfer_rule", "transfer_boundary"],
+      "additionalProperties": {"type": "string"}
+    },
+    "evidence_coverage": {
+      "type": "object",
+      "required": ["substantive_claims", "claims_with_page_evidence", "status"],
+      "properties": {
+        "substantive_claims": {"type": "integer", "minimum": 0},
+        "claims_with_page_evidence": {"type": "integer", "minimum": 0},
+        "status": {"enum": ["complete", "incomplete"]}
+      }
+    }
+  },
+  "$defs": {
+    "status": {"enum": ["observed", "not_present", "not_applicable", "unavailable", "not_yet_observed"]},
+    "evidence": {
+      "type": "object",
+      "required": ["page", "section", "anchor", "basis"],
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "section": {"type": "string"},
+        "anchor": {"type": "string", "maxLength": 220},
+        "basis": {"enum": ["explicit", "layout_observation", "interpretation"]}
+      }
+    },
+    "section": {
+      "type": "object",
+      "required": ["title", "module", "start_page", "end_page"],
+      "properties": {
+        "title": {"type": "string"},
+        "module": {"$ref": "#/$defs/module"},
+        "start_page": {"type": "integer", "minimum": 1},
+        "end_page": {"type": "integer", "minimum": 1},
+        "estimated_words": {"type": "integer", "minimum": 0}
+      }
+    },
+    "module": {"enum": ["abstract", "introduction", "related_work", "method", "theory", "experimental_design", "results", "ablation", "conclusion", "limitations", "appendix", "other"]},
+    "moduleMetric": {
+      "type": "object",
+      "required": ["module", "status", "estimated_words", "main_word_share", "figures", "tables", "algorithms", "displayed_equations"],
+      "properties": {
+        "module": {"$ref": "#/$defs/module"},
+        "status": {"$ref": "#/$defs/status"},
+        "estimated_words": {"type": "integer", "minimum": 0},
+        "main_word_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "figures": {"type": "integer", "minimum": 0},
+        "tables": {"type": "integer", "minimum": 0},
+        "algorithms": {"type": "integer", "minimum": 0},
+        "displayed_equations": {"type": "integer", "minimum": 0}
+      }
+    },
+    "abstractSentence": {
+      "type": "object",
+      "required": ["index", "text", "word_count", "functions", "evidence"],
+      "properties": {
+        "index": {"type": "integer", "minimum": 1},
+        "text": {"type": "string"},
+        "word_count": {"type": "integer", "minimum": 1},
+        "functions": {"type": "array", "items": {"enum": ["object_scope", "problem_gap", "core_idea", "method", "theory", "experimental_setup", "quantitative_result", "qualitative_result", "limitation", "impact_claim"]}, "minItems": 1, "uniqueItems": true},
+        "evidence": {"$ref": "#/$defs/evidence"}
+      }
+    },
+    "move": {
+      "type": "object",
+      "required": ["index", "move", "estimated_words", "evidence"],
+      "properties": {
+        "index": {"type": "integer", "minimum": 1},
+        "move": {"type": "string"},
+        "estimated_words": {"type": "integer", "minimum": 0},
+        "evidence": {"$ref": "#/$defs/evidence"}
+      }
+    },
+    "visual": {
+      "type": "object",
+      "required": ["kind", "label", "module", "page", "purpose", "evidence"],
+      "properties": {
+        "kind": {"enum": ["figure", "table", "algorithm"]},
+        "label": {"type": "string"},
+        "module": {"$ref": "#/$defs/module"},
+        "page": {"type": "integer", "minimum": 1},
+        "purpose": {"type": "string"},
+        "evidence": {"$ref": "#/$defs/evidence"}
+      }
+    },
+    "theoryItem": {
+      "type": "object",
+      "required": ["kind", "label", "module", "page", "role", "evidence"],
+      "properties": {
+        "kind": {"enum": ["displayed_equation", "numbered_equation", "theorem", "lemma", "proposition", "corollary", "proof"]},
+        "label": {"type": "string"},
+        "module": {"$ref": "#/$defs/module"},
+        "page": {"type": "integer", "minimum": 1},
+        "role": {"enum": ["core_chain", "guarantee", "explanation", "diagnostic", "decorative"]},
+        "evidence": {"$ref": "#/$defs/evidence"}
+      }
+    },
+    "evidenceItem": {
+      "type": "object",
+      "required": ["name", "status", "description", "evidence"],
+      "properties": {
+        "name": {"type": "string"},
+        "status": {"$ref": "#/$defs/status"},
+        "description": {"type": "string"},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+      }
+    },
+    "result": {
+      "type": "object",
+      "required": ["claim", "value", "comparison", "statistical_method", "module", "evidence"],
+      "properties": {
+        "claim": {"type": "string"},
+        "value": {"type": "string"},
+        "comparison": {"type": "string"},
+        "statistical_method": {"type": "string"},
+        "module": {"$ref": "#/$defs/module"},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}, "minItems": 1}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": ["claim", "origin", "status", "method_response", "evidence_response", "conclusion_response", "evidence"],
+      "properties": {
+        "claim": {"type": "string"},
+        "origin": {"type": "string"},
+        "status": {"enum": ["closed", "partially_closed", "open", "not_testable_here"]},
+        "method_response": {"type": "string"},
+        "evidence_response": {"type": "string"},
+        "conclusion_response": {"type": "string"},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}, "minItems": 1}
+      }
+    },
+    "appendixItem": {
+      "type": "object",
+      "required": ["title", "category", "start_page", "end_page", "main_text_calls", "evidence"],
+      "properties": {
+        "title": {"type": "string"},
+        "category": {"enum": ["proof", "extended_method", "implementation_detail", "hyperparameter", "dataset_detail", "additional_result", "robustness", "ablation", "failure_case", "ethics_impact", "broader_impact", "reproducibility", "qualitative_example", "review_response_residue", "other"]},
+        "start_page": {"type": "integer", "minimum": 1},
+        "end_page": {"type": "integer", "minimum": 1},
+        "main_text_calls": {"type": "array", "items": {"type": "string"}},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}, "minItems": 1}
+      }
+    }
+  }
+}
