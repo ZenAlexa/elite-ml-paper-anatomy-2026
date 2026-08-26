@@ -1,0 +1,3965 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "icml-2026-c61e72161d50",
+  "bibliography": {
+    "title": "FlashSketch: Sketch-Kernel Co-Design for Fast Sparse Sketching on GPUs",
+    "conference": "ICML",
+    "year": 2026,
+    "selection_flags": [
+      "oral",
+      "spotlight"
+    ],
+    "authors": [
+      "Rajat Vadiraj Dwaraknath",
+      "Sungyoon Kim",
+      "Mert Pilanci"
+    ],
+    "analysis_stratum": "oral"
+  },
+  "source_files": {
+    "pdf": "corpus/preprints/icml-2026-c61e72161d50.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=cCwxV6rSXF",
+    "source_kind": "verified_preprint",
+    "source_url": "https://arxiv.org/pdf/2602.06071"
+  },
+  "document_boundary": {
+    "supplementary_status": "not_present",
+    "acknowledgements_status": "not_present",
+    "main_last_physical_page": 9,
+    "references_first_physical_page": 9,
+    "appendix_first_physical_page": 11,
+    "note": "Physical page 9 contains the final Section 8 paragraphs before References; page-count categories therefore overlap on p. 9."
+  },
+  "page_map": {
+    "pdf_pages": 51,
+    "main_pages": 9,
+    "reference_pages": 2,
+    "appendix_pages": 41,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 194
+      },
+      {
+        "title": "1. Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 1080
+      },
+      {
+        "title": "2. Related work",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 470
+      },
+      {
+        "title": "3. Background",
+        "module": "other",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 660
+      },
+      {
+        "title": "3.1. Notation",
+        "module": "other",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 55
+      },
+      {
+        "title": "3.2. Johnson–Lindenstrauss and Oblivious Subspace Embeddings",
+        "module": "other",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 240
+      },
+      {
+        "title": "3.3. Sparse JL Transforms and OSNAP",
+        "module": "other",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 150
+      },
+      {
+        "title": "3.4. Localized Sketching",
+        "module": "other",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 95
+      },
+      {
+        "title": "3.5. GPUs and the Memory Hierarchy",
+        "module": "other",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 230
+      },
+      {
+        "title": "3.6. GPU bottlenecks for Sparse Sketching",
+        "module": "other",
+        "start_page": 4,
+        "end_page": 4,
+        "estimated_words": 320
+      },
+      {
+        "title": "4. BLOCKPERM-SJLT: A Block-Permuted Sparse JL Transform",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 615
+      },
+      {
+        "title": "5. FLASHSKETCH: CUDA kernel",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 695
+      },
+      {
+        "title": "6. Theory: Permutation-Coupled Localization",
+        "module": "theory",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 660
+      },
+      {
+        "title": "7. Experiments",
+        "module": "experimental_design",
+        "start_page": 7,
+        "end_page": 8,
+        "estimated_words": 600
+      },
+      {
+        "title": "7.2–7.4 results presentations",
+        "module": "results",
+        "start_page": 7,
+        "end_page": 8,
+        "estimated_words": 370
+      },
+      {
+        "title": "8. Limitations and Future Directions",
+        "module": "limitations",
+        "start_page": 8,
+        "end_page": 9,
+        "estimated_words": 345
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 1048
+      },
+      {
+        "title": "A. Additional theory and proofs",
+        "module": "appendix",
+        "start_page": 11,
+        "end_page": 16,
+        "estimated_words": 4519
+      },
+      {
+        "title": "B. Additional details on FLASHSKETCH",
+        "module": "appendix",
+        "start_page": 16,
+        "end_page": 16,
+        "estimated_words": 259
+      },
+      {
+        "title": "C. FLASHBLOCKROW: A Fast but Fragile Alternative",
+        "module": "appendix",
+        "start_page": 16,
+        "end_page": 17,
+        "estimated_words": 580
+      },
+      {
+        "title": "D. Permutation Wiring and On-The-Fly Generation",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 17,
+        "estimated_words": 530
+      },
+      {
+        "title": "E. Additional details on GraSS",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 18,
+        "estimated_words": 620
+      },
+      {
+        "title": "F. Additional Experiments and Ablations for RandNLA Tasks",
+        "module": "ablation",
+        "start_page": 18,
+        "end_page": 35,
+        "estimated_words": 2929
+      },
+      {
+        "title": "G. Additional Experiments and Ablations (RTX A6000)",
+        "module": "ablation",
+        "start_page": 36,
+        "end_page": 51,
+        "estimated_words": 2695
+      }
+    ],
+    "layout": {
+      "columns": "two-column throughout",
+      "main_body": "Compact two-column prose with four figures and one table; Figures 1, 3 and 4/Table 1 are placed before or within results exposition.",
+      "appendix": "A–E are proof/implementation prose; F–G are visual-heavy Pareto grids, with Figures 5–6 providing shared legends.",
+      "readable_area_notes": "p. 23 has large unused right-side/lower-page area after two panels; other ablation pages use 2×2 or asymmetric panel grids.",
+      "basis": "layout_observation"
+    }
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 194,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 1080,
+      "main_word_share": 0.197,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 470,
+      "main_word_share": 0.086,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 1310,
+      "main_word_share": 0.238,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 1,
+      "displayed_equations": 2
+    },
+    {
+      "module": "theory",
+      "status": "observed",
+      "estimated_words": 660,
+      "main_word_share": 0.12,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 6
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 600,
+      "main_word_share": 0.109,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 370,
+      "main_word_share": 0.067,
+      "figures": 2,
+      "tables": 1,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 5624,
+      "main_word_share": 0.0,
+      "figures": 128,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 5
+    },
+    {
+      "module": "conclusion",
+      "status": "not_applicable",
+      "estimated_words": 0,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 345,
+      "main_word_share": 0.063,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 11783,
+      "main_word_share": null,
+      "figures": 130,
+      "tables": 0,
+      "algorithms": 1,
+      "displayed_equations": 64
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 660,
+      "main_word_share": 0.12,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 2
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Sparse sketches such as the sparse Johnson–Lindenstrauss transform are a core primitive in randomized numerical linear algebra because they leverage random sparsity to reduce the arithmetic cost of sketching, while still offering strong approximation guarantees.",
+      "word_count": 35,
+      "functions": [
+        "object_scope",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "reduce the arithmetic cost",
+        "basis": "explicit"
+      },
+      "qualifiers": [],
+      "numbers": [],
+      "comparison_target": null
+    },
+    {
+      "index": 2,
+      "text": "Their random sparsity, however, is at odds with efficient implementations on modern GPUs, since it leads to irregular memory access patterns that degrade memory bandwidth utilization.",
+      "word_count": 26,
+      "functions": [
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "irregular memory access patterns",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "however"
+      ],
+      "numbers": [],
+      "comparison_target": null
+    },
+    {
+      "index": 3,
+      "text": "Motivated by this tension, we pursue a sketch–kernel co-design approach: we design a new family of sparse sketches, BLOCKPERM-SJLT, whose sparsity structure is chosen to enable FLASHSKETCH, a corresponding optimized CUDA kernel that implements these sketches efficiently.",
+      "word_count": 37,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "sketch–kernel co-design",
+        "basis": "explicit"
+      },
+      "qualifiers": [],
+      "numbers": [],
+      "comparison_target": null
+    },
+    {
+      "index": 4,
+      "text": "The design of BLOCKPERM-SJLT introduces a tunable parameter that explicitly trades off the tension between GPU-efficiency and sketching robustness.",
+      "word_count": 19,
+      "functions": [
+        "method",
+        "limitation"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "GPU-efficiency and sketching robustness",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "tunable"
+      ],
+      "numbers": [],
+      "comparison_target": null
+    },
+    {
+      "index": 5,
+      "text": "We provide theoretical guarantees for BLOCKPERM-SJLT under the oblivious subspace embedding (OSE) framework, and also analyze the effect of the tunable parameter on sketching quality.",
+      "word_count": 25,
+      "functions": [
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "theoretical guarantees",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "tunable"
+      ],
+      "numbers": [],
+      "comparison_target": null
+    },
+    {
+      "index": 6,
+      "text": "We empirically evaluate FLASHSKETCH on standard RandNLA benchmarks, as well as an end-to-end ML data attribution pipeline called GraSS.",
+      "word_count": 19,
+      "functions": [
+        "experimental_setup"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "pipeline called GraSS",
+        "basis": "explicit"
+      },
+      "qualifiers": [],
+      "numbers": [],
+      "comparison_target": null
+    },
+    {
+      "index": 7,
+      "text": "FLASHSKETCH pushes the Pareto frontier of sketching quality versus speed, across a range of regimes and tasks, and achieves a global geomean speedup of roughly 1.7× over the prior state-of-the-art GPU sketches.",
+      "word_count": 33,
+      "functions": [
+        "quantitative_result",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "global geomean speedup",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "across a range",
+        "roughly"
+      ],
+      "numbers": [
+        "1.7×"
+      ],
+      "comparison_target": "prior state-of-the-art GPU sketches"
+    }
+  ],
+  "abstract_summary": {
+    "function_order": "object_scope → problem_gap → core_idea/method → limitation/tradeoff → theory → experimental_setup → quantitative_result/impact_claim",
+    "reports_experiment_result": true,
+    "reported_results": "A global geomean speedup of roughly 1.7× and a Pareto-frontier claim.",
+    "reports_theory": true,
+    "reports_limitation": "It names the κ GPU-efficiency/sketching-robustness tradeoff but not the later low-occupancy or distribution-mismatch conditions.",
+    "strongest_claim_position": "Sentence 7, the final sentence."
+  },
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 1,
+        "section": "1. Introduction",
+        "anchor": "Randomized sketching is a standard mechanism",
+        "basis": "explicit"
+      },
+      "previous_question": "Why is sketching useful?",
+      "current_answer": "It reduces dimensions while preserving geometry.",
+      "next_hook": "GPU implementation tension."
+    },
+    {
+      "index": 2,
+      "move": "problem",
+      "estimated_words": 130,
+      "evidence": {
+        "page": 1,
+        "section": "1. Introduction",
+        "anchor": "randomness that underpins the theoretical strength",
+        "basis": "explicit"
+      },
+      "previous_question": "Why are sparse sketches hard on GPUs?",
+      "current_answer": "Irregular memory access and atomic contention disrupt bandwidth.",
+      "next_hook": "Co-design thesis."
+    },
+    {
+      "index": 3,
+      "move": "core_idea",
+      "estimated_words": 95,
+      "evidence": {
+        "page": 1,
+        "section": "1. Introduction",
+        "anchor": "co-designing sparse sketches",
+        "basis": "explicit"
+      },
+      "previous_question": "What resolves the tension?",
+      "current_answer": "Co-design the structured sketch with its GPU kernel.",
+      "next_hook": "Concrete construction preview."
+    },
+    {
+      "index": 4,
+      "move": "method_preview",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "hardware-informed structured randomness",
+        "basis": "explicit"
+      },
+      "previous_question": "What structure enables both objectives?",
+      "current_answer": "Block-locality plus union-of-permutations mixing.",
+      "next_hook": "Kernel mechanism."
+    },
+    {
+      "index": 5,
+      "move": "method_preview",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 2,
+        "section": "1. Introduction",
+        "anchor": "single CUDA thread-block without overlap",
+        "basis": "explicit"
+      },
+      "previous_question": "How does structure become speed?",
+      "current_answer": "Shared-memory accumulation and one global write per tile.",
+      "next_hook": "Contribution list."
+    },
+    {
+      "index": 6,
+      "move": "contribution_list",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 2,
+        "section": "Contributions",
+        "anchor": "hardware-informed sparse sketch family",
+        "basis": "explicit"
+      },
+      "previous_question": "What is the distribution contribution?",
+      "current_answer": "B LOCK P ERM-SJLT uses edge-disjoint block wiring.",
+      "next_hook": "Kernel contribution."
+    },
+    {
+      "index": 7,
+      "move": "contribution_list",
+      "estimated_words": 85,
+      "evidence": {
+        "page": 2,
+        "section": "Contributions",
+        "anchor": "specialized CUDA kernel",
+        "basis": "explicit"
+      },
+      "previous_question": "What implements the distribution?",
+      "current_answer": "F LASH S KETCH tiles by thread block and generates randomness on the fly.",
+      "next_hook": "Theory contribution."
+    },
+    {
+      "index": 8,
+      "move": "theory_preview",
+      "estimated_words": 110,
+      "evidence": {
+        "page": 2,
+        "section": "Contributions",
+        "anchor": "permutation-coupled localization",
+        "basis": "explicit"
+      },
+      "previous_question": "Why should κ improve quality?",
+      "current_answer": "Neighborhood coherence controls an OSE-style guarantee.",
+      "next_hook": "Benchmark contribution."
+    },
+    {
+      "index": 9,
+      "move": "result_preview",
+      "estimated_words": 135,
+      "evidence": {
+        "page": 2,
+        "section": "Contributions",
+        "anchor": "global geomean speedup",
+        "basis": "explicit"
+      },
+      "previous_question": "Does the design win in applications?",
+      "current_answer": "RandNLA and GraSS experiments report quality–speed results.",
+      "next_hook": "Related-work positioning."
+    }
+  ],
+  "introduction_summary": {
+    "progression": "RandNLA value → random-sparsity/GPU conflict → co-design thesis → block-local structured sketch → shared-memory kernel → four contribution previews.",
+    "contribution_list_repeats_abstract": true,
+    "contribution_list_additions": "Section locations, thread-block-local accumulation, µ_nbr and baseline/task scope.",
+    "contribution_list_has_falsifiable_claims": true,
+    "contribution_list_has_numeric_result": true,
+    "contribution_list_has_limitations": false
+  },
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy",
+      "estimated_words": 200,
+      "evidence": {
+        "page": 2,
+        "section": "2. Related work",
+        "anchor": "Sketching in RandNLA",
+        "basis": "explicit"
+      },
+      "previous_question": "What guarantees define the area?",
+      "current_answer": "JL, OSE, CountSketch, SJLT, and OSNAP establish the baseline taxonomy.",
+      "next_hook": "Structured/localized alternatives."
+    },
+    {
+      "index": 2,
+      "move": "taxonomy",
+      "estimated_words": 220,
+      "evidence": {
+        "page": 2,
+        "section": "2. Related work",
+        "anchor": "Structured and localized sketches",
+        "basis": "explicit"
+      },
+      "previous_question": "How has structure traded randomness for speed?",
+      "current_answer": "SRHT, expanders and localized sketches supply comparison families.",
+      "next_hook": "Nearest-neighbor contrast."
+    },
+    {
+      "index": 3,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 130,
+      "evidence": {
+        "page": 3,
+        "section": "2. Related work",
+        "anchor": "generalization of this block-local SJLT",
+        "basis": "explicit"
+      },
+      "previous_question": "What differs from localized SJLT?",
+      "current_answer": "Union-of-permutations improves mixing while retaining block locality.",
+      "next_hook": "GPU implementation gap."
+    },
+    {
+      "index": 4,
+      "move": "limitation_of_prior",
+      "estimated_words": 180,
+      "evidence": {
+        "page": 3,
+        "section": "2. Related work",
+        "anchor": "rely on global atomics",
+        "basis": "explicit"
+      },
+      "previous_question": "Why do sparse GPU kernels lag dense ones?",
+      "current_answer": "Global scatter-add requires atomic collision handling; dense libraries and FHT have different maturity.",
+      "next_hook": "Background and method."
+    }
+  ],
+  "related_work_summary": {
+    "location": "Independent Section 2 on pp. 2–3.",
+    "estimated_words": 470,
+    "main_word_share": 0.086,
+    "citation_clusters": 3,
+    "comparison_dimensions": [
+      "theory/OSE guarantee",
+      "structured/localized mixing",
+      "GPU memory and atomic behaviour"
+    ],
+    "later_argument_roles": "Localized sketching is reused in Section 6; GraSS is reused in Section 7.4 and Appendix E."
+  },
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 170,
+      "evidence": {
+        "page": 4,
+        "section": "4. BLOCKPERM-SJLT",
+        "anchor": "Partition the d input coordinates",
+        "basis": "explicit"
+      },
+      "previous_question": "How is hardware locality exposed?",
+      "current_answer": "Partition input/output coordinates into M blocks.",
+      "next_hook": "Block wiring."
+    },
+    {
+      "index": 2,
+      "move": "define_component",
+      "estimated_words": 230,
+      "evidence": {
+        "page": 4,
+        "section": "4. BLOCKPERM-SJLT",
+        "anchor": "κ edge-disjoint permutations",
+        "basis": "explicit"
+      },
+      "previous_question": "Which blocks connect?",
+      "current_answer": "Each output block has κ distinct input neighbors and the graph is bi-regular.",
+      "next_hook": "Intra-block mixing."
+    },
+    {
+      "index": 3,
+      "move": "define_component",
+      "estimated_words": 190,
+      "evidence": {
+        "page": 4,
+        "section": "4. BLOCKPERM-SJLT",
+        "anchor": "Intra-block SJLT mixing",
+        "basis": "explicit"
+      },
+      "previous_question": "How is fine randomness retained?",
+      "current_answer": "Every nonzero block is an independent sparse JL matrix with s nonzeros per column.",
+      "next_hook": "κ tradeoff and kernel."
+    },
+    {
+      "index": 4,
+      "move": "explain_mechanism",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 5,
+        "section": "4. BLOCKPERM-SJLT",
+        "anchor": "Increasing κ expands each output neighborhood",
+        "basis": "explicit"
+      },
+      "previous_question": "Why is κ a tradeoff?",
+      "current_answer": "It expands mixing while reducing block locality.",
+      "next_hook": "CUDA implementation."
+    },
+    {
+      "index": 5,
+      "move": "state_problem",
+      "estimated_words": 120,
+      "evidence": {
+        "page": 5,
+        "section": "5. FLASHSKETCH: CUDA kernel",
+        "anchor": "two main optimizations",
+        "basis": "explicit"
+      },
+      "previous_question": "What does the implementation need to remove?",
+      "current_answer": "Global atomic traffic and materialized randomness costs.",
+      "next_hook": "Thread-block tiling."
+    },
+    {
+      "index": 6,
+      "move": "instantiate_algorithm",
+      "estimated_words": 330,
+      "evidence": {
+        "page": 5,
+        "section": "5.1. Eliminating Global Atomics",
+        "anchor": "launch a 2D grid of thread blocks",
+        "basis": "explicit"
+      },
+      "previous_question": "How are output tiles computed?",
+      "current_answer": "A private shared sY collects all neighbor updates before a single global write.",
+      "next_hook": "On-the-fly randomness."
+    },
+    {
+      "index": 7,
+      "move": "explain_mechanism",
+      "estimated_words": 175,
+      "evidence": {
+        "page": 5,
+        "section": "5.2. On-The-Fly Randomness Generation",
+        "anchor": "never materializes S",
+        "basis": "explicit"
+      },
+      "previous_question": "How are locations and signs obtained?",
+      "current_answer": "Structured permutations and hashes generate them inside the kernel.",
+      "next_hook": "Prior-kernel comparison."
+    },
+    {
+      "index": 8,
+      "move": "contrast_alternative",
+      "estimated_words": 300,
+      "evidence": {
+        "page": 6,
+        "section": "5.3. Comparison to prior GPU SJLT kernels",
+        "anchor": "Θ(s d n) global atomic updates",
+        "basis": "explicit"
+      },
+      "previous_question": "What differs from GraSS/CountSketch?",
+      "current_answer": "FlashSketch moves scatter-add into private shared memory and uses Θ(k n) global writes.",
+      "next_hook": "Theory of the new structure."
+    }
+  ],
+  "method_summary": {
+    "objects": "A∈R^{d×n}, S∈R^{k×d}, M, Br, Bc, κ, s, Tk, Tn, block neighborhoods N(g), and shared tiles sA/sY.",
+    "input": "Dense input matrix A and kernel tile identifiers (g,j).",
+    "output": "Y=SA, with one global output-tile write after shared-memory accumulation.",
+    "objective": "Trade sketch quality/mixing against GPU locality and memory efficiency through κ.",
+    "assumptions": "d and k are divisible by M in the exposition and are padded in practice; block-wiring permutations are edge-disjoint.",
+    "transition_sequence": "setup_notation → define_component → define_component → explain_mechanism → instantiate_algorithm → explain_mechanism → contrast_alternative → connect_to_prediction",
+    "method_figures": 1,
+    "method_tables": 0,
+    "algorithms": 2
+  },
+  "formula_counts": {
+    "displayed_formula_blocks": 74,
+    "numbered_equations": 57,
+    "unnumbered_displayed_formula_blocks": 17,
+    "counting_rule": "Counts physical display blocks from pp. 3–19, including Appendix E/F metric definitions and excluding inline math and algorithm code lines.",
+    "theorems": 2,
+    "lemmas": 5,
+    "propositions": 2,
+    "corollaries": 0,
+    "definitions": 6
+  },
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "introduction",
+      "page": 2,
+      "purpose": "GPT2-medium Gram-error versus sketch-time Pareto preview; colour maps methods and marker shapes map sketch dimension.",
+      "evidence": {
+        "page": 2,
+        "section": "Figure 1",
+        "anchor": "Figure 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "method",
+      "page": 5,
+      "purpose": "Block-permuted sparsity schematic for M=16, Br=64, Bc=128, κ=4 and s=2.",
+      "evidence": {
+        "page": 5,
+        "section": "Figure 2",
+        "anchor": "Figure 2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 1",
+      "module": "method",
+      "page": 5,
+      "purpose": "One-thread-block F LASH S KETCH pseudocode for private shared-memory accumulation and one global write.",
+      "evidence": {
+        "page": 5,
+        "section": "Algorithm 1",
+        "anchor": "Algorithm 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "results",
+      "page": 7,
+      "purpose": "Qwen2-1.5B sketch-and-ridge residual versus total-time Pareto preview.",
+      "evidence": {
+        "page": 7,
+        "section": "Figure 3",
+        "anchor": "Figure 3",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 8,
+      "purpose": "Four RandNLA-task rows by four baseline columns of geomean speedups.",
+      "evidence": {
+        "page": 8,
+        "section": "Table 1",
+        "anchor": "Table 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "results",
+      "page": 8,
+      "purpose": "MNIST GraSS LDS versus projection time plus per-k speed bars.",
+      "evidence": {
+        "page": 8,
+        "section": "Figure 4",
+        "anchor": "Figure 4",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 2",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "F LASH B LOCK ROW thread-block pseudocode for the gather-only fragile alternative.",
+      "evidence": {
+        "page": 17,
+        "section": "Algorithm 2",
+        "anchor": "Algorithm 2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "Legend mapping marker shapes to sketch dimension k.",
+      "evidence": {
+        "page": 19,
+        "section": "Figure 5",
+        "anchor": "Figure 5",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "Legend mapping line styles and colours to methods and (κ,s) settings.",
+      "evidence": {
+        "page": 19,
+        "section": "Figure 6",
+        "anchor": "Figure 6",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 7",
+      "module": "ablation",
+      "page": 19,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 19,
+        "section": "F.2",
+        "anchor": "Figure 7",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 8",
+      "module": "ablation",
+      "page": 19,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 19,
+        "section": "F.2",
+        "anchor": "Figure 8",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 9",
+      "module": "ablation",
+      "page": 20,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 20,
+        "section": "F.2",
+        "anchor": "Figure 9",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 10",
+      "module": "ablation",
+      "page": 20,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 20,
+        "section": "F.2",
+        "anchor": "Figure 10",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 11",
+      "module": "ablation",
+      "page": 20,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 20,
+        "section": "F.2",
+        "anchor": "Figure 11",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 12",
+      "module": "ablation",
+      "page": 20,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 20,
+        "section": "F.2",
+        "anchor": "Figure 12",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 13",
+      "module": "ablation",
+      "page": 21,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 21,
+        "section": "F.2",
+        "anchor": "Figure 13",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 14",
+      "module": "ablation",
+      "page": 21,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 21,
+        "section": "F.2",
+        "anchor": "Figure 14",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 15",
+      "module": "ablation",
+      "page": 21,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 21,
+        "section": "F.2",
+        "anchor": "Figure 15",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 16",
+      "module": "ablation",
+      "page": 21,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 21,
+        "section": "F.2",
+        "anchor": "Figure 16",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 17",
+      "module": "ablation",
+      "page": 22,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 22,
+        "section": "F.2",
+        "anchor": "Figure 17",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 18",
+      "module": "ablation",
+      "page": 22,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 22,
+        "section": "F.2",
+        "anchor": "Figure 18",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 19",
+      "module": "ablation",
+      "page": 22,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 22,
+        "section": "F.2",
+        "anchor": "Figure 19",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 20",
+      "module": "ablation",
+      "page": 22,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 22,
+        "section": "F.2",
+        "anchor": "Figure 20",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 21",
+      "module": "ablation",
+      "page": 23,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 23,
+        "section": "F.2",
+        "anchor": "Figure 21",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 22",
+      "module": "ablation",
+      "page": 23,
+      "purpose": "NVIDIA GeForce RTX 4090 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 23,
+        "section": "F.2",
+        "anchor": "Figure 22",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 23",
+      "module": "ablation",
+      "page": 24,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 24,
+        "section": "F.3",
+        "anchor": "Figure 23",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 24",
+      "module": "ablation",
+      "page": 24,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 24,
+        "section": "F.3",
+        "anchor": "Figure 24",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 25",
+      "module": "ablation",
+      "page": 24,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 24,
+        "section": "F.3",
+        "anchor": "Figure 25",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 26",
+      "module": "ablation",
+      "page": 24,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 24,
+        "section": "F.3",
+        "anchor": "Figure 26",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 27",
+      "module": "ablation",
+      "page": 25,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 25,
+        "section": "F.3",
+        "anchor": "Figure 27",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 28",
+      "module": "ablation",
+      "page": 25,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 25,
+        "section": "F.3",
+        "anchor": "Figure 28",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 29",
+      "module": "ablation",
+      "page": 25,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 25,
+        "section": "F.3",
+        "anchor": "Figure 29",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 30",
+      "module": "ablation",
+      "page": 25,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 25,
+        "section": "F.3",
+        "anchor": "Figure 30",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 31",
+      "module": "ablation",
+      "page": 26,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 26,
+        "section": "F.3",
+        "anchor": "Figure 31",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 32",
+      "module": "ablation",
+      "page": 26,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 26,
+        "section": "F.3",
+        "anchor": "Figure 32",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 33",
+      "module": "ablation",
+      "page": 26,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 26,
+        "section": "F.3",
+        "anchor": "Figure 33",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 34",
+      "module": "ablation",
+      "page": 26,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 26,
+        "section": "F.3",
+        "anchor": "Figure 34",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 35",
+      "module": "ablation",
+      "page": 27,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 27,
+        "section": "F.3",
+        "anchor": "Figure 35",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 36",
+      "module": "ablation",
+      "page": 27,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 27,
+        "section": "F.3",
+        "anchor": "Figure 36",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 37",
+      "module": "ablation",
+      "page": 27,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 27,
+        "section": "F.3",
+        "anchor": "Figure 37",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 38",
+      "module": "ablation",
+      "page": 27,
+      "purpose": "NVIDIA GeForce RTX 4090 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 27,
+        "section": "F.3",
+        "anchor": "Figure 38",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 39",
+      "module": "ablation",
+      "page": 28,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 28,
+        "section": "F.4",
+        "anchor": "Figure 39",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 40",
+      "module": "ablation",
+      "page": 28,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 28,
+        "section": "F.4",
+        "anchor": "Figure 40",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 41",
+      "module": "ablation",
+      "page": 28,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 28,
+        "section": "F.4",
+        "anchor": "Figure 41",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 42",
+      "module": "ablation",
+      "page": 28,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 28,
+        "section": "F.4",
+        "anchor": "Figure 42",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 43",
+      "module": "ablation",
+      "page": 29,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 29,
+        "section": "F.4",
+        "anchor": "Figure 43",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 44",
+      "module": "ablation",
+      "page": 29,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 29,
+        "section": "F.4",
+        "anchor": "Figure 44",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 45",
+      "module": "ablation",
+      "page": 29,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 29,
+        "section": "F.4",
+        "anchor": "Figure 45",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 46",
+      "module": "ablation",
+      "page": 29,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 29,
+        "section": "F.4",
+        "anchor": "Figure 46",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 47",
+      "module": "ablation",
+      "page": 30,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 30,
+        "section": "F.4",
+        "anchor": "Figure 47",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 48",
+      "module": "ablation",
+      "page": 30,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 30,
+        "section": "F.4",
+        "anchor": "Figure 48",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 49",
+      "module": "ablation",
+      "page": 30,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 30,
+        "section": "F.4",
+        "anchor": "Figure 49",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 50",
+      "module": "ablation",
+      "page": 30,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 30,
+        "section": "F.4",
+        "anchor": "Figure 50",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 51",
+      "module": "ablation",
+      "page": 31,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 31,
+        "section": "F.4",
+        "anchor": "Figure 51",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 52",
+      "module": "ablation",
+      "page": 31,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 31,
+        "section": "F.4",
+        "anchor": "Figure 52",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 53",
+      "module": "ablation",
+      "page": 31,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 31,
+        "section": "F.4",
+        "anchor": "Figure 53",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 54",
+      "module": "ablation",
+      "page": 31,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 31,
+        "section": "F.4",
+        "anchor": "Figure 54",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 55",
+      "module": "ablation",
+      "page": 32,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 32,
+        "section": "F.5",
+        "anchor": "Figure 55",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 56",
+      "module": "ablation",
+      "page": 32,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 32,
+        "section": "F.5",
+        "anchor": "Figure 56",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 57",
+      "module": "ablation",
+      "page": 32,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 32,
+        "section": "F.5",
+        "anchor": "Figure 57",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 58",
+      "module": "ablation",
+      "page": 32,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 32,
+        "section": "F.5",
+        "anchor": "Figure 58",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 59",
+      "module": "ablation",
+      "page": 33,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 33,
+        "section": "F.5",
+        "anchor": "Figure 59",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 60",
+      "module": "ablation",
+      "page": 33,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 33,
+        "section": "F.5",
+        "anchor": "Figure 60",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 61",
+      "module": "ablation",
+      "page": 33,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 33,
+        "section": "F.5",
+        "anchor": "Figure 61",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 62",
+      "module": "ablation",
+      "page": 33,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 33,
+        "section": "F.5",
+        "anchor": "Figure 62",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 63",
+      "module": "ablation",
+      "page": 34,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 34,
+        "section": "F.5",
+        "anchor": "Figure 63",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 64",
+      "module": "ablation",
+      "page": 34,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 34,
+        "section": "F.5",
+        "anchor": "Figure 64",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 65",
+      "module": "ablation",
+      "page": 34,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 34,
+        "section": "F.5",
+        "anchor": "Figure 65",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 66",
+      "module": "ablation",
+      "page": 34,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 34,
+        "section": "F.5",
+        "anchor": "Figure 66",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 67",
+      "module": "ablation",
+      "page": 35,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 35,
+        "section": "F.5",
+        "anchor": "Figure 67",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 68",
+      "module": "ablation",
+      "page": 35,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 35,
+        "section": "F.5",
+        "anchor": "Figure 68",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 69",
+      "module": "ablation",
+      "page": 35,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 35,
+        "section": "F.5",
+        "anchor": "Figure 69",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 70",
+      "module": "ablation",
+      "page": 35,
+      "purpose": "NVIDIA GeForce RTX 4090 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 35,
+        "section": "F.5",
+        "anchor": "Figure 70",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 71",
+      "module": "ablation",
+      "page": 36,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 36,
+        "section": "G.1",
+        "anchor": "Figure 71",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 72",
+      "module": "ablation",
+      "page": 36,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 36,
+        "section": "G.1",
+        "anchor": "Figure 72",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 73",
+      "module": "ablation",
+      "page": 36,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 36,
+        "section": "G.1",
+        "anchor": "Figure 73",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 74",
+      "module": "ablation",
+      "page": 36,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 36,
+        "section": "G.1",
+        "anchor": "Figure 74",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 75",
+      "module": "ablation",
+      "page": 37,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 37,
+        "section": "G.1",
+        "anchor": "Figure 75",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 76",
+      "module": "ablation",
+      "page": 37,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 37,
+        "section": "G.1",
+        "anchor": "Figure 76",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 77",
+      "module": "ablation",
+      "page": 37,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 37,
+        "section": "G.1",
+        "anchor": "Figure 77",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 78",
+      "module": "ablation",
+      "page": 37,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 37,
+        "section": "G.1",
+        "anchor": "Figure 78",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 79",
+      "module": "ablation",
+      "page": 38,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 38,
+        "section": "G.1",
+        "anchor": "Figure 79",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 80",
+      "module": "ablation",
+      "page": 38,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 38,
+        "section": "G.1",
+        "anchor": "Figure 80",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 81",
+      "module": "ablation",
+      "page": 38,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 38,
+        "section": "G.1",
+        "anchor": "Figure 81",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 82",
+      "module": "ablation",
+      "page": 38,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 38,
+        "section": "G.1",
+        "anchor": "Figure 82",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 83",
+      "module": "ablation",
+      "page": 39,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 39,
+        "section": "G.1",
+        "anchor": "Figure 83",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 84",
+      "module": "ablation",
+      "page": 39,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 39,
+        "section": "G.1",
+        "anchor": "Figure 84",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 85",
+      "module": "ablation",
+      "page": 39,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 39,
+        "section": "G.1",
+        "anchor": "Figure 85",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 86",
+      "module": "ablation",
+      "page": 39,
+      "purpose": "NVIDIA RTX A6000 Gram-matrix approximation ablation panel; x-axis is wall-clock sketch time and y-axis is relative Gram Frobenius error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 39,
+        "section": "G.1",
+        "anchor": "Figure 86",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 87",
+      "module": "ablation",
+      "page": 40,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 40,
+        "section": "G.2",
+        "anchor": "Figure 87",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 88",
+      "module": "ablation",
+      "page": 40,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 40,
+        "section": "G.2",
+        "anchor": "Figure 88",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 89",
+      "module": "ablation",
+      "page": 40,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 40,
+        "section": "G.2",
+        "anchor": "Figure 89",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 90",
+      "module": "ablation",
+      "page": 40,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 40,
+        "section": "G.2",
+        "anchor": "Figure 90",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 91",
+      "module": "ablation",
+      "page": 41,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 41,
+        "section": "G.2",
+        "anchor": "Figure 91",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 92",
+      "module": "ablation",
+      "page": 41,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 41,
+        "section": "G.2",
+        "anchor": "Figure 92",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 93",
+      "module": "ablation",
+      "page": 41,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 41,
+        "section": "G.2",
+        "anchor": "Figure 93",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 94",
+      "module": "ablation",
+      "page": 41,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 41,
+        "section": "G.2",
+        "anchor": "Figure 94",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 95",
+      "module": "ablation",
+      "page": 42,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 42,
+        "section": "G.2",
+        "anchor": "Figure 95",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 96",
+      "module": "ablation",
+      "page": 42,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 42,
+        "section": "G.2",
+        "anchor": "Figure 96",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 97",
+      "module": "ablation",
+      "page": 42,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 42,
+        "section": "G.2",
+        "anchor": "Figure 97",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 98",
+      "module": "ablation",
+      "page": 42,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 42,
+        "section": "G.2",
+        "anchor": "Figure 98",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 99",
+      "module": "ablation",
+      "page": 43,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 43,
+        "section": "G.2",
+        "anchor": "Figure 99",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 100",
+      "module": "ablation",
+      "page": 43,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 43,
+        "section": "G.2",
+        "anchor": "Figure 100",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 101",
+      "module": "ablation",
+      "page": 43,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 43,
+        "section": "G.2",
+        "anchor": "Figure 101",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 102",
+      "module": "ablation",
+      "page": 43,
+      "purpose": "NVIDIA RTX A6000 OSE spectral error ablation panel; x-axis is wall-clock sketch time and y-axis is OSE spectral error; exact input shape is in the caption.",
+      "evidence": {
+        "page": 43,
+        "section": "G.2",
+        "anchor": "Figure 102",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 103",
+      "module": "ablation",
+      "page": 44,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 44,
+        "section": "G.3",
+        "anchor": "Figure 103",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 104",
+      "module": "ablation",
+      "page": 44,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 44,
+        "section": "G.3",
+        "anchor": "Figure 104",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 105",
+      "module": "ablation",
+      "page": 44,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 44,
+        "section": "G.3",
+        "anchor": "Figure 105",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 106",
+      "module": "ablation",
+      "page": 44,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 44,
+        "section": "G.3",
+        "anchor": "Figure 106",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 107",
+      "module": "ablation",
+      "page": 45,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 45,
+        "section": "G.3",
+        "anchor": "Figure 107",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 108",
+      "module": "ablation",
+      "page": 45,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 45,
+        "section": "G.3",
+        "anchor": "Figure 108",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 109",
+      "module": "ablation",
+      "page": 45,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 45,
+        "section": "G.3",
+        "anchor": "Figure 109",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 110",
+      "module": "ablation",
+      "page": 45,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 45,
+        "section": "G.3",
+        "anchor": "Figure 110",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 111",
+      "module": "ablation",
+      "page": 46,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 46,
+        "section": "G.3",
+        "anchor": "Figure 111",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 112",
+      "module": "ablation",
+      "page": 46,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 46,
+        "section": "G.3",
+        "anchor": "Figure 112",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 113",
+      "module": "ablation",
+      "page": 46,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 46,
+        "section": "G.3",
+        "anchor": "Figure 113",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 114",
+      "module": "ablation",
+      "page": 46,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 46,
+        "section": "G.3",
+        "anchor": "Figure 114",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 115",
+      "module": "ablation",
+      "page": 47,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 47,
+        "section": "G.3",
+        "anchor": "Figure 115",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 116",
+      "module": "ablation",
+      "page": 47,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 47,
+        "section": "G.3",
+        "anchor": "Figure 116",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 117",
+      "module": "ablation",
+      "page": 47,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 47,
+        "section": "G.3",
+        "anchor": "Figure 117",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 118",
+      "module": "ablation",
+      "page": 47,
+      "purpose": "NVIDIA RTX A6000 sketch-and-ridge regression ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 47,
+        "section": "G.3",
+        "anchor": "Figure 118",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 119",
+      "module": "ablation",
+      "page": 48,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 48,
+        "section": "G.4",
+        "anchor": "Figure 119",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 120",
+      "module": "ablation",
+      "page": 48,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 48,
+        "section": "G.4",
+        "anchor": "Figure 120",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 121",
+      "module": "ablation",
+      "page": 48,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 48,
+        "section": "G.4",
+        "anchor": "Figure 121",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 122",
+      "module": "ablation",
+      "page": 48,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 48,
+        "section": "G.4",
+        "anchor": "Figure 122",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 123",
+      "module": "ablation",
+      "page": 49,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 49,
+        "section": "G.4",
+        "anchor": "Figure 123",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 124",
+      "module": "ablation",
+      "page": 49,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 49,
+        "section": "G.4",
+        "anchor": "Figure 124",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 125",
+      "module": "ablation",
+      "page": 49,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 49,
+        "section": "G.4",
+        "anchor": "Figure 125",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 126",
+      "module": "ablation",
+      "page": 49,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 49,
+        "section": "G.4",
+        "anchor": "Figure 126",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 127",
+      "module": "ablation",
+      "page": 50,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 50,
+        "section": "G.4",
+        "anchor": "Figure 127",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 128",
+      "module": "ablation",
+      "page": 50,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 50,
+        "section": "G.4",
+        "anchor": "Figure 128",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 129",
+      "module": "ablation",
+      "page": 50,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 50,
+        "section": "G.4",
+        "anchor": "Figure 129",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 130",
+      "module": "ablation",
+      "page": 50,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 50,
+        "section": "G.4",
+        "anchor": "Figure 130",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 131",
+      "module": "ablation",
+      "page": 51,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 51,
+        "section": "G.4",
+        "anchor": "Figure 131",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 132",
+      "module": "ablation",
+      "page": 51,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 51,
+        "section": "G.4",
+        "anchor": "Figure 132",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 133",
+      "module": "ablation",
+      "page": 51,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 51,
+        "section": "G.4",
+        "anchor": "Figure 133",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 134",
+      "module": "ablation",
+      "page": 51,
+      "purpose": "NVIDIA RTX A6000 sketch-and-solve ablation panel; x-axis is wall-clock total time and y-axis is relative residual; exact input shape is in the caption.",
+      "evidence": {
+        "page": 51,
+        "section": "G.4",
+        "anchor": "Figure 134",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (1): OSE definition",
+      "module": "other",
+      "page": 3,
+      "role": "guarantee",
+      "evidence": {
+        "page": 3,
+        "section": "3.2",
+        "anchor": "Equation (1)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (2): block coherence",
+      "module": "other",
+      "page": 3,
+      "role": "explanation",
+      "evidence": {
+        "page": 3,
+        "section": "3.4",
+        "anchor": "Equation (2)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (3): neighborhood N(g)",
+      "module": "theory",
+      "page": 6,
+      "role": "explanation",
+      "evidence": {
+        "page": 6,
+        "section": "6.1",
+        "anchor": "Equation (3)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (4): neighborhood coherence",
+      "module": "theory",
+      "page": 6,
+      "role": "explanation",
+      "evidence": {
+        "page": 6,
+        "section": "6.1",
+        "anchor": "Equation (4)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 6.2: OSE for BLOCKPERM-SJLT",
+      "module": "theory",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "6.2",
+        "anchor": "Theorem 6.2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equations (5)–(6): OSE conditions and conclusion",
+      "module": "theory",
+      "page": 6,
+      "role": "guarantee",
+      "evidence": {
+        "page": 6,
+        "section": "6.2",
+        "anchor": "Equations (5)–(6)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (7): deterministic coherence bounds",
+      "module": "theory",
+      "page": 6,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 6,
+        "section": "6.3",
+        "anchor": "Equation (7)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (8): random-permutation smoothing bound",
+      "module": "theory",
+      "page": 7,
+      "role": "guarantee",
+      "evidence": {
+        "page": 7,
+        "section": "6.3",
+        "anchor": "Equation (8)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equations (9)–(10): appendix block construction",
+      "module": "appendix",
+      "page": 11,
+      "role": "explanation",
+      "evidence": {
+        "page": 11,
+        "section": "A.1",
+        "anchor": "Equations (9)–(10)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma A.1: neighborhood energy identity",
+      "module": "appendix",
+      "page": 11,
+      "role": "core_chain",
+      "evidence": {
+        "page": 11,
+        "section": "A.2",
+        "anchor": "Lemma A.1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma A.2: row-partitioned SJLT fixed-vector bound",
+      "module": "appendix",
+      "page": 11,
+      "role": "guarantee",
+      "evidence": {
+        "page": 11,
+        "section": "A.3",
+        "anchor": "Lemma A.2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equations (16)–(24): JL-tail parameter inversion",
+      "module": "appendix",
+      "page": 12,
+      "role": "explanation",
+      "evidence": {
+        "page": 12,
+        "section": "A.3",
+        "anchor": "Equations (16)–(24)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "proposition",
+      "label": "Proposition A.5: fixed-vector JL for BLOCKPERM-SJLT",
+      "module": "appendix",
+      "page": 12,
+      "role": "guarantee",
+      "evidence": {
+        "page": 12,
+        "section": "A.5",
+        "anchor": "Proposition A.5",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma A.7: Bernstein inequality",
+      "module": "appendix",
+      "page": 13,
+      "role": "explanation",
+      "evidence": {
+        "page": 13,
+        "section": "A.5",
+        "anchor": "Lemma A.7",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equations (30)–(43): sub-exponential and Bernstein derivation",
+      "module": "appendix",
+      "page": 13,
+      "role": "explanation",
+      "evidence": {
+        "page": 13,
+        "section": "A.5",
+        "anchor": "Equations (30)–(43)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem A.8: OSE proof via η-net",
+      "module": "appendix",
+      "page": 14,
+      "role": "guarantee",
+      "evidence": {
+        "page": 14,
+        "section": "A.6",
+        "anchor": "Theorem A.8",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "proof",
+      "label": "Appendix A proof chain",
+      "module": "appendix",
+      "page": 11,
+      "role": "core_chain",
+      "evidence": {
+        "page": 11,
+        "section": "A.1–A.8",
+        "anchor": "proofs for the theory in Section 6",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma A.9: neighborhood versus block coherence",
+      "module": "appendix",
+      "page": 15,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 15,
+        "section": "A.7",
+        "anchor": "Lemma A.9",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma A.10: matrix Chernoff upper tail",
+      "module": "appendix",
+      "page": 15,
+      "role": "explanation",
+      "evidence": {
+        "page": 15,
+        "section": "A.8",
+        "anchor": "Lemma A.10",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "proposition",
+      "label": "Proposition A.11: random permutations smooth coherence",
+      "module": "appendix",
+      "page": 15,
+      "role": "guarantee",
+      "evidence": {
+        "page": 15,
+        "section": "A.8",
+        "anchor": "Proposition A.11",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equations (52)–(53): full-cycle affine wiring",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "D",
+        "anchor": "Equations (52)–(53)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equations (54)–(57): GraSS LDS protocol",
+      "module": "appendix",
+      "page": 18,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 18,
+        "section": "E.2",
+        "anchor": "Equations (54)–(57)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Appendix F.1 task metrics",
+      "module": "appendix",
+      "page": 18,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 18,
+        "section": "F.1",
+        "anchor": "Gram/OSE metric definitions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Appendix F.1 ridge/solve residual definitions",
+      "module": "appendix",
+      "page": 19,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 19,
+        "section": "F.1",
+        "anchor": "Ridge Regression Residual",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "Evaluation levels",
+      "status": "observed",
+      "description": "The evaluation first measures primitive sketch runtime/distortion, then standard RandNLA tasks and the GraSS data-attribution pipeline.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7. Experiments",
+          "anchor": "two levels",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Timing and precision",
+      "status": "observed",
+      "description": "CUDA events; mean over 10 post-warm-up iterations; FP32 for sketching and downstream tasks.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7. Experiments",
+          "anchor": "mean over 10 iterations",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "GPU hardware",
+      "status": "observed",
+      "description": "Main results/table run on an NVIDIA RTX 4090; Appendix G is explicitly RTX A6000.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "run on a RTX 4090",
+          "basis": "explicit"
+        },
+        {
+          "page": 36,
+          "section": "G. Additional Experiments",
+          "anchor": "RTX A6000",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Baselines",
+      "status": "observed",
+      "description": "Dense Gaussian/cuBLAS, sparse SJLT/cuSPARSE, SJLT/GraSS kernel, and SRHT/Dao-AILab FHT.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7.1. Baselines",
+          "anchor": "dense and sparse GPU baselines",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Inputs",
+      "status": "observed",
+      "description": "Synthetic Gaussian; synthetic low-rank + noise; SuiteSparse spal_004 at about 1.4% density; GPT2-medium and Qwen2-1.5B stacked weights.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7.3. RandNLA tasks",
+          "anchor": "following datasets for inputs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "RandNLA tasks and metrics",
+      "status": "observed",
+      "description": "Gram approximation, OSE, sketch-and-ridge regression, and sketch-and-solve; exact metrics are defined in Appendix F.1.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7.2–7.3",
+          "anchor": "relative error in the computed Gram matrix",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "F.1",
+          "anchor": "define all error metrics exactly",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Parameter sweep encoding",
+      "status": "observed",
+      "description": "Appendix legends map marker shapes to k and line styles/colours to methods and (κ,s) settings.",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Figures 5–6",
+          "anchor": "Marker shapes indicate sketch dimension k",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Figure 6",
+          "anchor": "methods and parameters",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "GraSS treatment control",
+      "status": "observed",
+      "description": "Only GraSS's SJLT projection kernel is replaced; all other pipeline components and LDS evaluation code path remain identical.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "7.4. End-to-end ML",
+          "anchor": "keeping all other pipeline components fixed",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "E.2",
+          "anchor": "only change to GraSS",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "LDS denominator and aggregation",
+      "status": "observed",
+      "description": "For each z, Spearman correlation is over m=50 retrained 50%-subsampled training sets; reported LDS averages over evaluation examples.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "E.2",
+          "anchor": "m = 50 random subsets",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "E.2",
+          "anchor": "average of LDS(τ,z)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Random seeds",
+      "status": "not_present",
+      "description": "The PDF names 10 timing iterations but provides no random-seed count or seed values for the sketch/benchmark experiments.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7. Experiments",
+          "anchor": "mean over 10 iterations",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Hyperparameter budget",
+      "status": "not_present",
+      "description": "The kernel uses a small menu of templates, yet the exact menu and an exhaustive tuning budget are not given; Appendix B calls the procedure non-exhaustive.",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "B.2. Tuning",
+          "anchor": "not exhaustive",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Data leakage controls",
+      "status": "not_present",
+      "description": "No standalone leakage-control protocol is stated; GraSS describes train-subset retraining but no cross-dataset leakage analysis.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "E.2",
+          "anchor": "Training subsets",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "FlashSketch has a 1.73× global geomean speedup versus the next-best baseline over the listed RandNLA aggregate.",
+      "value": "1.73× global geomean; abstract rounds this to roughly 1.7×.",
+      "comparison": "Table 1 aggregates shapes, datasets and configs over four RandNLA tasks against four dense/sparse baselines.",
+      "statistical_method": "Geometric mean of speedups; the table does not specify configuration weights or an uncertainty interval.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "Global geomean vs next best baseline: 1.73x",
+          "basis": "explicit"
+        },
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "roughly 1.7×",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Primitive Gram/OSE speedups are largest against the FHT baseline in the aggregate table.",
+      "value": "Gram: 2.67/4.17/16.22/7.64×; OSE: 2.69/4.16/16.20/7.63× versus cuSPARSE/GraSS/FHT/cuBLAS.",
+      "comparison": "Dense Gaussian/cuBLAS, SJLT/cuSPARSE, SJLT/GraSS, and SRHT/FHT.",
+      "statistical_method": "Task-level geomean speedups in Table 1; quality is separately plotted as error–time Pareto frontiers.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "Gram matrix approximation",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "OSE",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "End-to-end sketch-and-ridge and sketch-and-solve retain aggregate speedups.",
+      "value": "Ridge: 1.42/1.54/3.94/3.10×; solve: 1.37/1.41/3.33/2.34× versus cuSPARSE/GraSS/FHT/cuBLAS.",
+      "comparison": "Four baseline columns; residual quality is visualized against total wall-clock time in F.4–F.5 and G.3–G.4.",
+      "statistical_method": "Geomean speedups in Table 1 plus configuration-level Pareto panels; no test or interval reported.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "Sketch-and-ridge regression",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "Sketch+Solve",
+          "basis": "explicit"
+        },
+        {
+          "page": 28,
+          "section": "F.4",
+          "anchor": "Sketch-and-ridge-regression",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Replacing only the GraSS projection kernel can reach about 3.2× speedup while retaining LDS on the plotted MNIST setting.",
+      "value": "up to ∼3.2×; k=1024, 2048, 4096 after sketching from dimension 4k.",
+      "comparison": "FlashSketch versus GraSS and three other projection baselines on an MLP trained on MNIST.",
+      "statistical_method": "LDS is an average of per-example Spearman correlations over 50 retraining subsets; Figure 4 plots LDS against projection time per sample.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Figure 4",
+          "anchor": "up to ∼ 3.2× speedup",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "E.2",
+          "anchor": "sketch down from dimension 4k",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "statistical_analysis": {
+    "aggregation_units": [
+      "CUDA-event timing iterations",
+      "task/configuration speedup aggregation",
+      "GraSS evaluation examples",
+      "50 GraSS retraining subsets per example"
+    ],
+    "central_tendency": "Mean of 10 post-warm-up CUDA-event iterations; global/task geomean speedups; average LDS over evaluation examples.",
+    "dispersion_or_intervals": "not_present for timing/configuration uncertainty; no confidence intervals or error-definition text accompanies the main results.",
+    "hypothesis_tests": "not_present",
+    "multiple_comparisons": "not_present",
+    "seed_level": "not_present",
+    "decision_quantities": [
+      "speedup",
+      "relative Gram Frobenius error",
+      "OSE spectral error",
+      "relative residual",
+      "LDS"
+    ],
+    "figure_caption_independence": "Main Figures 1, 3, 4 and Table 1 state axes/task/hardware; the F/G panel captions rely on Figures 5–6 for the method/parameter legend.",
+    "evidence": [
+      {
+        "page": 7,
+        "section": "7. Experiments",
+        "anchor": "mean over 10 iterations",
+        "basis": "explicit"
+      },
+      {
+        "page": 8,
+        "section": "Table 1",
+        "anchor": "Geomean speedups",
+        "basis": "explicit"
+      },
+      {
+        "page": 18,
+        "section": "E.2",
+        "anchor": "average of LDS(τ,z)",
+        "basis": "explicit"
+      },
+      {
+        "page": 19,
+        "section": "Figures 5–6",
+        "anchor": "Legend",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "ablation_inventory": [
+    {
+      "name": "κ and s sensitivity",
+      "status": "observed",
+      "description": "Figures 5–6 define κ,s styles and Figures 7–134 trace their speed–quality positions across task/input/hardware panels.",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Figures 5–6",
+          "anchor": "(κ, s) settings",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "F.2",
+          "anchor": "Figure 7",
+          "basis": "explicit"
+        },
+        {
+          "page": 51,
+          "section": "G.4",
+          "anchor": "Figure 134",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Input/shape heterogeneity",
+      "status": "observed",
+      "description": "The panels cover synthetic Gaussian, low-rank + noise, GPT2/Qwen2 weights and SuiteSparse across d=16,384 through 262,144 and n=512/1,024.",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "F.2",
+          "anchor": "Synthetic Gaussian (d=16384, n=1024)",
+          "basis": "explicit"
+        },
+        {
+          "page": 51,
+          "section": "G.4",
+          "anchor": "d=262144, n=512",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Hardware robustness",
+      "status": "observed",
+      "description": "Appendix F reports RTX 4090 and Appendix G repeats the four task families on RTX A6000.",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "F.2",
+          "anchor": "NVIDIA GeForce RTX 4090",
+          "basis": "explicit"
+        },
+        {
+          "page": 36,
+          "section": "G.1",
+          "anchor": "NVIDIA RTX A6000",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Mechanism alternative: FLASHBLOCKROW",
+      "status": "observed",
+      "description": "Appendix C explains a gather-only alternative that can be fast but can omit columns and lacks an OSE-style guarantee; it appears in the legend used for appendix plots.",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "C. FLASHBLOCKROW",
+          "anchor": "Fast but Fragile Alternative",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Figure 6",
+          "anchor": "FlashBlockRow (Ours)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Component-deletion isolation",
+      "status": "not_present",
+      "description": "No displayed experiment separately removes shared-memory atomics, on-the-fly randomness, or edge-disjoint wiring while holding the other two fixed.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Sections 5.1–5.2",
+          "anchor": "two main optimizations",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 19,
+          "section": "Figures 5–6",
+          "anchor": "methods and parameters",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "B LOCK P ERM-SJLT jointly provides block locality and mixing.",
+      "origin": "Introduction/Contributions, p. 2.",
+      "status": "closed",
+      "method_response": "Section 4 gives edge-disjoint κ-regular block wiring and intra-block SJLT mixing.",
+      "evidence_response": "Figure 2 visualizes the structure; F/G sweep κ,s in task-level Pareto panels.",
+      "conclusion_response": "No conclusion section; Section 8 keeps the κ tradeoff as an explicit scope condition.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "Contributions",
+          "anchor": "preserves block locality while improving mixing",
+          "basis": "explicit"
+        },
+        {
+          "page": 4,
+          "section": "4. BLOCKPERM-SJLT",
+          "anchor": "κ-regular on both sides",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "Figure 2",
+          "anchor": "union of edge-disjoint permutations",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "8. Limitations",
+          "anchor": "κ can be tuned",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The co-designed kernel avoids global atomics and improves realized speed.",
+      "origin": "Introduction/Contributions, p. 2.",
+      "status": "partially_closed",
+      "method_response": "Algorithm 1 makes sY private to a thread block and writes it globally once; Section 5.3 contrasts Θ(sdn) global atomics with Θ(kn) global writes.",
+      "evidence_response": "Figures 1/3, Table 1 and F/G provide quality–speed outcomes.",
+      "conclusion_response": "Section 8 narrows the claim for low occupancy and large κ.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "Contributions",
+          "anchor": "single global write per output tile",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "Algorithm 1",
+          "anchor": "atomicAdd(sY",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "5.3",
+          "anchor": "no global atomics",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "Global geomean",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Increasing κ improves robustness through neighborhood-coherence smoothing.",
+      "origin": "Abstract and theory-preview contribution, pp. 1–2.",
+      "status": "partially_closed",
+      "method_response": "Definition 6.1/Equation (4) defines µ_nbr; Theorem 6.2 and Equation (8) give OSE and smoothing relations.",
+      "evidence_response": "Appendix F/G expose multiple κ,s curves, but do not isolate the theoretical distributional assumption.",
+      "conclusion_response": "Section 8 and Remark A.12 identify the independent-permutation versus structured-distinct implementation mismatch.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "tunable parameter",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "6.1–6.2",
+          "anchor": "neighborhood coherence",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "6.3",
+          "anchor": "smoothing bound",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Remark A.12",
+          "anchor": "Theory vs. Practice",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "FlashSketch improves the Pareto frontier by about 1.7× over prior GPU sketches across tasks.",
+      "origin": "Abstract/Contributions, pp. 1–2.",
+      "status": "partially_closed",
+      "method_response": "The kernel construction is the proposed cause; there is no speed theorem.",
+      "evidence_response": "Table 1 reports 1.73× global geomean and F/G supply configuration panels on two GPUs.",
+      "conclusion_response": "No conclusion section; Section 8 limits the speed regime and κ range.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "roughly 1.7×",
+          "basis": "explicit"
+        },
+        {
+          "page": 2,
+          "section": "Contributions",
+          "anchor": "quality–speed Pareto frontier",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "1.73x",
+          "basis": "explicit"
+        },
+        {
+          "page": 36,
+          "section": "G.1",
+          "anchor": "RTX A6000",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Replacing GraSS's projection kernel retains attribution quality while accelerating projection.",
+      "origin": "Abstract/Contributions, pp. 1–2.",
+      "status": "partially_closed",
+      "method_response": "Section 7.4 fixes all pipeline components other than the SJLT projection kernel; Appendix E defines LDS.",
+      "evidence_response": "Figure 4 gives MNIST LDS–time Pareto and up to ∼3.2× speedup.",
+      "conclusion_response": "Section 8 identifies the need to connect OSE to broader downstream learning performance.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "Contributions",
+          "anchor": "ML pipeline",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "7.4",
+          "anchor": "keeping all other pipeline components fixed",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Figure 4",
+          "anchor": "up to ∼ 3.2× speedup",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "8. Limitations",
+          "anchor": "end-to-end downstream performance",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "A. Additional theory and proofs",
+      "category": "proof",
+      "start_page": 11,
+      "end_page": 16,
+      "main_text_calls": [
+        "p. 6: Section 6 says a detailed proof appears in Section A."
+      ],
+      "evidence": [
+        {
+          "page": 11,
+          "section": "A",
+          "anchor": "proofs for the theory in Section 6",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "6.2",
+          "anchor": "A detailed proof appears in Section A",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "B. Additional details on FLASHSKETCH",
+      "category": "implementation_detail",
+      "start_page": 16,
+      "end_page": 16,
+      "main_text_calls": [
+        "p. 6: Section 5.3 refers tuning and low-occupancy cases to Section B."
+      ],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "B",
+          "anchor": "Split-Bc fallback",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "5.3",
+          "anchor": "Section B",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "C. FLASHBLOCKROW: A Fast but Fragile Alternative",
+      "category": "extended_method",
+      "start_page": 16,
+      "end_page": 17,
+      "main_text_calls": [
+        "p. 6: Section 5.3 refers to a fast but fragile block-row sampling alternative in Section C."
+      ],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "C",
+          "anchor": "Fast but Fragile Alternative",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "5.3",
+          "anchor": "Section C",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "D. Permutation Wiring and On-The-Fly Generation",
+      "category": "implementation_detail",
+      "start_page": 17,
+      "end_page": 17,
+      "main_text_calls": [
+        "p. 5: Section 5.2 directs wiring details to Section D."
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "D",
+          "anchor": "Full-cycle affine construction",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "5.2",
+          "anchor": "Specific details are in Section D",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "E. Additional details on GraSS",
+      "category": "reproducibility",
+      "start_page": 18,
+      "end_page": 18,
+      "main_text_calls": [
+        "p. 8: Section 7.4 directs the reader to Section E.1 for full GraSS details."
+      ],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "E",
+          "anchor": "Details on linear datamodeling score",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "7.4",
+          "anchor": "Section E.1",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "F. Additional Experiments and Ablations for RandNLA Tasks",
+      "category": "ablation",
+      "start_page": 18,
+      "end_page": 35,
+      "main_text_calls": [
+        "p. 7: Section 7.2/7.3 directs extensive ablations and detailed plots to Section F."
+      ],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "F",
+          "anchor": "Additional Experiments and Ablations",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "7.2",
+          "anchor": "Section F",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "G. Additional Experiments and Ablations (RTX A6000)",
+      "category": "robustness",
+      "start_page": 36,
+      "end_page": 51,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 36,
+          "section": "G",
+          "anchor": "Additional Experiments and Ablations (RTX A6000)",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "Low-k occupancy",
+      "status": "observed",
+      "description": "FlashSketch is most advantageous when A is dense and k≪d but large enough to saturate the GPU; low k limits speedups.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "8. Limitations",
+          "anchor": "low occupancy limits speedups",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Large-κ input-read cost",
+      "status": "observed",
+      "description": "Very large κ increases input reads and can limit speedups.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "8. Limitations",
+          "anchor": "very large κ increases input reads",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "κ selection is empirical",
+      "status": "observed",
+      "description": "The paper empirically chooses the Pareto-optimal κ and leaves an adaptive choice for future work.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "8. Limitations",
+          "anchor": "empirically choose the optimal κ",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Theory/implementation permutation mismatch",
+      "status": "observed",
+      "description": "Theory assumes independent uniform permutations, while the kernel samples edge-disjoint distinct structured permutations with dependence between neighborhoods.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "8. Limitations",
+          "anchor": "independent uniform permutations",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Remark A.12",
+          "anchor": "Theory vs. Practice",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "OSE scope",
+      "status": "observed",
+      "description": "The authors do not prove direct guarantees for their Gram-matrix metric or downstream learning performance.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "8. Limitations",
+          "anchor": "Beyond OSE",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Statistical uncertainty reporting",
+      "status": "not_present",
+      "description": "The PDF reports timing means, geomeans, and LDS averages but no confidence interval, hypothesis test, multiple-comparison procedure, or random-seed count.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7. Experiments",
+          "anchor": "mean over 10 iterations",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 8,
+          "section": "Table 1",
+          "anchor": "Geomean speedups",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "Representative-preview framing",
+      "status": "observed",
+      "description": "Figure 1 is explicitly a preview and Figure 3 is explicitly representative; the extensive configuration grid is moved to F/G.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "Figure 1",
+          "anchor": "Pareto frontier (preview)",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "Figure 3",
+          "anchor": "representative quality–speed Pareto frontier",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "F.2",
+          "anchor": "More extensive ablations",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Appendix migration of heterogeneity",
+      "status": "observed",
+      "description": "128 task/input/hardware-specific ablation figures are in F/G; the main text gives Table 1 and refers readers to Section F.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7.3",
+          "anchor": "detailed plots and ablations appear in Section F",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "F.2",
+          "anchor": "Figure 7",
+          "basis": "explicit"
+        },
+        {
+          "page": 51,
+          "section": "G.4",
+          "anchor": "Figure 134",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Active limitation discussion",
+      "status": "observed",
+      "description": "Section 8 precedes References and directly names occupancy, κ, theory-model and OSE-range limits.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "8. Limitations",
+          "anchor": "What regimes does FLASHSKETCH help and fail in?",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "8. Limitations",
+          "anchor": "Beyond OSE",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Weak-baseline claim",
+      "status": "not_present",
+      "description": "There is no direct textual evidence that the authors selected weak baselines; Section 7.1 lists dense and sparse GPU baselines and Section 2 describes their maturity.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "7.1. Baselines",
+          "anchor": "dense and sparse GPU baselines",
+          "basis": "explicit"
+        },
+        {
+          "page": 3,
+          "section": "2. Related work",
+          "anchor": "mature",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "rhetoric": {
+    "frequent_content_terms": [
+      "sparse sketching",
+      "GPU",
+      "block",
+      "SJLT",
+      "permutation",
+      "kernel",
+      "global atomics",
+      "shared memory",
+      "neighborhood coherence"
+    ],
+    "frequent_bigrams": [
+      "sparse sketching",
+      "global atomics",
+      "shared memory",
+      "block locality",
+      "sketch quality"
+    ],
+    "frequent_trigrams": [
+      "union of permutations",
+      "oblivious subspace embedding",
+      "quality–speed Pareto frontier",
+      "on-the-fly randomness"
+    ],
+    "claim_verbs": [
+      "pursue",
+      "design",
+      "implement",
+      "provide",
+      "prove",
+      "benchmark",
+      "compare",
+      "demonstrate"
+    ],
+    "qualifiers": [
+      "roughly",
+      "across a range",
+      "can",
+      "in practice",
+      "leave … to future work"
+    ],
+    "exact_main_text_phrases": {
+      "we show": 1,
+      "we find": 0,
+      "we demonstrate": 0,
+      "we propose": 0,
+      "we observe": 0,
+      "we provide": 3,
+      "we present": 2,
+      "we compare": 5
+    },
+    "interpretation": "Strong claims cluster in Abstract sentence 7, Contributions, Figures 1/3/4 and Table 1; Section 8 uses conditional and future-work language to narrow scope.",
+    "evidence": [
+      {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "roughly 1.7×",
+        "basis": "explicit"
+      },
+      {
+        "page": 2,
+        "section": "Contributions",
+        "anchor": "quality–speed Pareto frontier",
+        "basis": "explicit"
+      },
+      {
+        "page": 8,
+        "section": "8. Limitations",
+        "anchor": "future direction",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "measurement_disagreements": [
+    {
+      "name": "Automatic measurement draft",
+      "status": "not_applicable",
+      "description": "No automatic measurement draft was supplied for this reading. Page ranges, figure/table/algorithm inventory, and formula counts were determined from the verified PDF directly.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Document boundary",
+          "anchor": "verified PDF",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "将 sparse-sketch 随机性组织成 edge-disjoint block permutations，使 CUDA thread block 能私有累积一个 output tile；κ 同时调节 GPU locality、mixing 和由 µ_nbr 表示的 OSE 条件。",
+    "main_body_keeps": "张力、block construction、Algorithm 1、µ_nbr/ Theorem 6.2、baseline/task design、Table 1、Figures 1/3/4、GraSS control 与限制段落。",
+    "appendix_moves": "A 放证明，B–D 放 kernel/alternative/wiring，E 放 GraSS-LDS 细节，F–G 放 128 张配置级 ablation 图；主文可理解机制和聚合结论，细粒度稳健性依赖附录。",
+    "best_pattern": "引言先用一个 Pareto preview 具体化张力，再以 construction → kernel → coherence → benchmark 的四项贡献和一张 task×baseline 表串起论证。",
+    "largest_gap": "理论的 independent-uniform permutation 模型与 structured edge-disjoint runtime wiring 不同；速度机制未做逐组件隔离，主结果也未报告 timing/seed uncertainty。",
+    "transfer_rule": "在随机算法遇到硬件 memory/synchronization 瓶颈时，先寻找可证明的结构化随机中介量，再让 data structure、kernel 与 evaluation 围绕它共同设计。",
+    "transfer_boundary": "仅当结构仍保留任务关键的混合性质、硬件瓶颈已被明确定位、且理论与实现分布之间的近似条件可陈述并可实测时适用。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 93,
+    "claims_with_page_evidence": 93,
+    "status": "complete"
+  }
+}
