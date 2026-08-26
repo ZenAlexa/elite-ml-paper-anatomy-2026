@@ -201,6 +201,10 @@ def main() -> None:
         )
         appendix_words = int(module_by_name.get("appendix", {}).get("estimated_words", 0))
         functions = [function for sentence in reading["abstract_sentences"] for function in sentence["functions"]]
+        main_module_metrics = [item for item in reading["module_metrics"] if item["module"] != "appendix"]
+        appendix_module_metrics = [item for item in reading["module_metrics"] if item["module"] == "appendix"]
+        closed_claims = sum(item["status"] == "closed" for item in reading["claim_closure"])
+        total_claims = len(reading["claim_closure"])
         paper_metrics.append(
             {
                 "paper_id": paper_id,
@@ -220,9 +224,30 @@ def main() -> None:
                 "abstract_has_theory": "theory" in functions,
                 "abstract_has_limitation": "limitation" in functions,
                 "visuals_total": len(reading["visual_inventory"]),
+                "figures_main": sum(item["figures"] for item in main_module_metrics),
+                "tables_main": sum(item["tables"] for item in main_module_metrics),
+                "algorithms_main": sum(item["algorithms"] for item in main_module_metrics),
+                "figures_appendix": sum(item["figures"] for item in appendix_module_metrics),
+                "tables_appendix": sum(item["tables"] for item in appendix_module_metrics),
+                "algorithms_appendix": sum(item["algorithms"] for item in appendix_module_metrics),
+                "displayed_equations_main": sum(item["displayed_equations"] for item in main_module_metrics),
+                "displayed_equations_appendix": sum(
+                    item["displayed_equations"] for item in appendix_module_metrics
+                ),
+                "numbered_equations_total": sum(
+                    item["kind"] == "numbered_equation" for item in reading["equation_theory_inventory"]
+                ),
+                "theorem_statements_total": sum(
+                    item["kind"] in {"theorem", "lemma", "proposition", "corollary"}
+                    for item in reading["equation_theory_inventory"]
+                ),
                 "theory_items_total": len(reading["equation_theory_inventory"]),
-                "claims_closed": sum(item["status"] == "closed" for item in reading["claim_closure"]),
-                "claims_total": len(reading["claim_closure"]),
+                "claims_closed": closed_claims,
+                "claims_total": total_claims,
+                "claim_closure_rate": round(closed_claims / total_claims, 6) if total_claims else "",
+                "appendix_main_text_calls": sum(
+                    len(item["main_text_calls"]) for item in reading["appendix_inventory"]
+                ),
                 "limitations_recorded": len(reading["limitations"]),
             }
         )
@@ -420,9 +445,21 @@ def main() -> None:
             "abstract_has_theory",
             "abstract_has_limitation",
             "visuals_total",
+            "figures_main",
+            "tables_main",
+            "algorithms_main",
+            "figures_appendix",
+            "tables_appendix",
+            "algorithms_appendix",
+            "displayed_equations_main",
+            "displayed_equations_appendix",
+            "numbered_equations_total",
+            "theorem_statements_total",
             "theory_items_total",
             "claims_closed",
             "claims_total",
+            "claim_closure_rate",
+            "appendix_main_text_calls",
             "limitations_recorded",
         ],
     )
@@ -712,7 +749,19 @@ def main() -> None:
         "appendix_word_ratio",
         "abstract_sentences",
         "visuals_total",
+        "figures_main",
+        "tables_main",
+        "algorithms_main",
+        "figures_appendix",
+        "tables_appendix",
+        "algorithms_appendix",
+        "displayed_equations_main",
+        "displayed_equations_appendix",
+        "numbered_equations_total",
+        "theorem_statements_total",
         "theory_items_total",
+        "claim_closure_rate",
+        "appendix_main_text_calls",
         "limitations_recorded",
     ]
     groups: dict[tuple[str, str], list[dict[str, object]]] = defaultdict(list)
