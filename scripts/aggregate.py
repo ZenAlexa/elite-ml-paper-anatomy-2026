@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import statistics
 from collections import Counter, defaultdict
 
@@ -111,6 +112,9 @@ def main() -> None:
     theory_items: list[dict[str, object]] = []
     appendix_items: list[dict[str, object]] = []
     claim_rows: list[dict[str, object]] = []
+    abstract_sequences: list[dict[str, object]] = []
+    move_rows: list[dict[str, object]] = []
+    move_transitions: list[dict[str, object]] = []
     for paper_id, reading in readings.items():
         paper = catalog[paper_id]
         page_map = reading["page_map"]
@@ -160,6 +164,15 @@ def main() -> None:
             )
         sentence_count = len(reading["abstract_sentences"])
         function_counts = Counter(functions)
+        abstract_sequences.append(
+            {
+                "paper_id": paper_id,
+                "conference": paper["conference"],
+                "analysis_stratum": paper["analysis_stratum"],
+                "sentence_count": sentence_count,
+                "sequence": " → ".join("+".join(sentence["functions"]) for sentence in reading["abstract_sentences"]),
+            }
+        )
         for function in sorted(function_counts):
             abstract_functions.append(
                 {
@@ -223,6 +236,41 @@ def main() -> None:
                     "origin": item["origin"],
                 }
             )
+        for move_module, key in (
+            ("introduction", "introduction_moves"),
+            ("related_work", "related_work_moves"),
+            ("method", "method_moves"),
+        ):
+            ordered_moves = sorted(reading.get(key, []), key=lambda item: int(item["index"]))
+            atoms: list[str] = []
+            for item in ordered_moves:
+                item_atoms = [atom.strip() for atom in re.split(r"\s*(?:→|\+|->)\s*", item["move"]) if atom.strip()]
+                for atom_position, atom in enumerate(item_atoms, 1):
+                    atoms.append(atom)
+                    move_rows.append(
+                        {
+                            "paper_id": paper_id,
+                            "conference": paper["conference"],
+                            "analysis_stratum": paper["analysis_stratum"],
+                            "module": move_module,
+                            "paragraph_index": item["index"],
+                            "atom_position": atom_position,
+                            "move": atom,
+                            "estimated_words": item["estimated_words"],
+                        }
+                    )
+            for position, (source, target) in enumerate(zip(atoms, atoms[1:]), 1):
+                move_transitions.append(
+                    {
+                        "paper_id": paper_id,
+                        "conference": paper["conference"],
+                        "analysis_stratum": paper["analysis_stratum"],
+                        "module": move_module,
+                        "transition_index": position,
+                        "source": source,
+                        "target": target,
+                    }
+                )
 
     table_dir = ROOT / "reports" / "tables"
     write_csv(
@@ -277,6 +325,30 @@ def main() -> None:
         table_dir / "claim_closure.csv",
         claim_rows,
         ["paper_id", "conference", "analysis_stratum", "status", "claim", "origin"],
+    )
+    write_csv(
+        table_dir / "abstract_sequences.csv",
+        abstract_sequences,
+        ["paper_id", "conference", "analysis_stratum", "sentence_count", "sequence"],
+    )
+    write_csv(
+        table_dir / "move_inventory.csv",
+        move_rows,
+        [
+            "paper_id",
+            "conference",
+            "analysis_stratum",
+            "module",
+            "paragraph_index",
+            "atom_position",
+            "move",
+            "estimated_words",
+        ],
+    )
+    write_csv(
+        table_dir / "move_transitions.csv",
+        move_transitions,
+        ["paper_id", "conference", "analysis_stratum", "module", "transition_index", "source", "target"],
     )
 
     distributions: list[dict[str, object]] = []
