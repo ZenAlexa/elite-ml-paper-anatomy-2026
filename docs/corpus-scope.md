@@ -61,4 +61,4 @@
 
 ## PDF 版本边界
 
-正文篇幅、页级结构和附录长度以官方 conference PDF 为准。ICLR 使用官方 proceedings PDF。ICML 的 PMLR 卷未上线且 OpenReview 直连触发访问挑战时，`data/processed/preprint_sources.csv` 只提供按 OpenReview ID 对齐的 arXiv 临时入口。临时入口由 [ICML2026 数据集](https://huggingface.co/datasets/ai-conferences/ICML2026) 定位，属于次级获取线索。该入口不得静默替代 camera-ready 版本进入最终版面统计。临时深读结果须在官方 PDF 到位后复核页码、章节边界、图表位置和附录长度。
+正文篇幅、页级结构和附录长度以官方 conference PDF 为准。ICLR 使用官方 proceedings PDF。ICML 2026 已预留 [PMLR v306 仓库](https://github.com/mlresearch/v306)，截至冻结日只有模板初始提交，[PMLR v306 页面](https://proceedings.mlr.press/v306/) 尚未发布。OpenReview 直连触发访问挑战时，`data/processed/preprint_sources.csv` 只提供按 OpenReview ID 对齐的 arXiv 临时入口。临时入口由 [ICML2026 数据集](https://huggingface.co/datasets/ai-conferences/ICML2026) 定位，属于次级获取线索。该入口不得静默替代 camera-ready 版本进入最终版面统计。临时深读结果须在官方 PDF 到位后复核页码、章节边界、图表位置和附录长度。

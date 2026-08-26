@@ -8,7 +8,7 @@
 
 - ICLR 2026 已举办，纳入 224 篇论文：2 篇 Outstanding、222 篇其他 Oral。224 份官方 proceedings PDF 均已下载、验证和完成机器测量。
 - ICML 2026 已举办，纳入 536 篇 Main Track 论文：2 篇 Outstanding、157 篇其他 Oral、377 篇 Spotlight。47 个 Position Paper Track 日程事件单独排除。
-- ICML 的官方 PMLR 卷尚未上线，本机访问 OpenReview PDF 会进入挑战页。项目已按 OpenReview ID 定位并验证 417 份 arXiv 临时版本；119 篇尚无该临时入口。临时版本不进入最终版面统计。
+- ICML 2026 已预留 [PMLR v306 仓库](https://github.com/mlresearch/v306)，当前只有 2025-10-30 的模板初始提交，[卷页面](https://proceedings.mlr.press/v306/) 返回 404。本机访问 OpenReview PDF 会进入挑战页。项目已按 OpenReview ID 定位并验证 417 份 arXiv 临时版本；119 篇尚无该临时入口。临时版本不进入最终版面统计。
 - NeurIPS 2026 的作者通知日期为 2026-09-24 AoE。当前总体状态为 `pending-official-decision`，不使用 NeurIPS 2025 替代。
 
 Outstanding、Oral、Spotlight 可能重叠。`data/processed/papers.csv` 以论文为单位去重，保留 `selection_flags`，并用 `analysis_stratum` 设定互斥分析层级：`outstanding > oral > spotlight`。跨会议分析先计算会议内相对比例，再对会议等权汇总，避免篇幅、样本量和类别命名差异主导结论。
