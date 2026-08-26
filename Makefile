@@ -27,7 +27,7 @@ measure-preprints:
 	$(PYTHON) scripts/measure_pdfs.py --preprints
 
 validate:
-	$(PYTHON) scripts/validate.py
+	uv run --with jsonschema $(PYTHON) scripts/validate.py
 
 aggregate:
 	$(PYTHON) scripts/aggregate.py

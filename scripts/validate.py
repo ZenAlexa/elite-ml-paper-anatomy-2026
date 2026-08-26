@@ -4,6 +4,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import jsonschema
+
 from common import PDFS, PROCESSED, ROOT, read_csv
 
 READING_KEYS = {
@@ -27,6 +29,8 @@ READING_KEYS = {
 
 def main() -> None:
     papers = read_csv(PROCESSED / "papers.csv")
+    schema = json.loads((ROOT / "schemas" / "deep-read.schema.json").read_text(encoding="utf-8"))
+    validator = jsonschema.Draft202012Validator(schema)
     errors: list[str] = []
     ids = [row["paper_id"] for row in papers]
     if len(ids) != len(set(ids)):
@@ -53,12 +57,19 @@ def main() -> None:
                 errors.append(f"reading paper_id mismatch: {row['paper_id']}")
             if not (ROOT / "readings" / f"{row['paper_id']}.md").exists():
                 errors.append(f"reading Markdown missing: {row['paper_id']}")
+            for issue in validator.iter_errors(value):
+                location = ".".join(str(part) for part in issue.absolute_path) or "<root>"
+                errors.append(f"reading schema error {row['paper_id']} at {location}: {issue.message}")
     print(
         json.dumps(
             {
                 "papers": len(papers),
                 "verified_pdfs": sum(row["pdf_status"] == "verified" for row in papers),
-                "completed_readings": sum((ROOT / "readings" / f"{row['paper_id']}.json").exists() for row in papers),
+                "completed_readings": sum(
+                    (ROOT / "readings" / f"{row['paper_id']}.json").exists()
+                    and (ROOT / "readings" / f"{row['paper_id']}.md").exists()
+                    for row in papers
+                ),
                 "errors": errors,
             },
             indent=2,

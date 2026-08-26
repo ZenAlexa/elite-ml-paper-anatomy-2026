@@ -20,6 +20,8 @@
 
 不得改动目录、schema、prompt、其他论文结果或汇总报告。
 
+先完成 Markdown，再在临时位置校验 JSON。确认 schema、页码和证据覆盖后，最后才把 JSON 原子移动到 `readings/<paper_id>.json`。最终路径不得出现半成品 JSON；汇总器以 JSON 最后发布作为单篇完成信号。
+
 ## 证据标准
 
 1. 完整阅读正文、references 前的限制声明、appendix 和 supplementary。
