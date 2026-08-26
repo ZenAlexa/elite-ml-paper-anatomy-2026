@@ -46,7 +46,7 @@ make aggregate     # 更新会议内相对量；总体齐备后生成跨会议�
 
 机器测量用于一致计量与异常发现。语义模块边界、论证推进、负面结果包装、附录职责等结论来自 `prompts/deep-read.md` 约束下的逐篇人工式深读编码。
 
-`reports/tables/module_distributions.csv` 以论文为等权单位，报告各语义模块的正文词数占比、图表算法数、公式数、每千词密度及其在正文中的相对份额。`abstract_function_summary.csv` 汇总摘要功能及句序，`inventory_summaries.csv` 汇总图、表、算法、理论对象、附录职责和主张闭环，实验设计、结果、消融、统计方法、局限与不利信息呈现策略另保留逐项证据表。总体尚未读完时，这些文件属于中间分布，不作为三会议普适结论。
+`reports/tables/module_distributions.csv` 以论文为等权单位，报告各语义模块的正文词数占比、图表算法数、公式数、每千词密度及其在正文中的相对份额。`weighted_module_means.csv` 按逐层纳入概率还原会议内部构成，`conference_equal_module_means.csv` 再对 ICLR 与 ICML 等权。`abstract_function_summary.csv` 汇总摘要功能及句序，`inventory_summaries.csv` 汇总图、表、算法、理论对象、附录职责和主张闭环，实验设计、结果、消融、统计方法、局限与不利信息呈现策略另保留逐项证据表。主分析集尚未读完时，这些文件属于中间分布，不作为最终普适结论。
 
 ## 证据原则
 

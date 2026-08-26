@@ -125,6 +125,7 @@ def main() -> None:
     sample_path = PROCESSED / "analysis_sample.csv"
     sample_rows = read_csv(sample_path) if sample_path.exists() else []
     sample_ids = {row["paper_id"] for row in sample_rows}
+    sample_by_id = {row["paper_id"]: row for row in sample_rows}
     all_readings = {}
     for row in papers:
         reading = load_complete_reading(row["paper_id"])
@@ -176,13 +177,13 @@ def main() -> None:
             "status",
         ],
     )
+    aggregate_ready = bool(sample_rows) and all(sample["paper_id"] in all_readings for sample in sample_rows)
     write_json(
         ROOT / "reports" / "analysis_status.json",
         {
             "schema_version": "analysis-status.v1",
             "coverage": coverage,
-            "aggregate_ready": bool(sample_rows)
-            and all(sample["paper_id"] in all_readings for sample in sample_rows),
+            "aggregate_ready": aggregate_ready,
             "analysis_set": "primary_stratified_sample" if sample_rows else "all_completed_interim",
             "primary_target_papers": len(sample_rows),
             "primary_completed_readings": sum(sample["paper_id"] in all_readings for sample in sample_rows),
@@ -229,6 +230,10 @@ def main() -> None:
                 "conference": paper["conference"],
                 "analysis_stratum": paper["analysis_stratum"],
                 "selection_flags": paper["selection_flags"],
+                "selection_probability": sample_by_id.get(paper_id, {}).get("selection_probability", 1.0),
+                "analysis_weight": round(
+                    1.0 / float(sample_by_id.get(paper_id, {}).get("selection_probability", 1.0)), 9
+                ),
                 "main_pages": page_map["main_pages"],
                 "reference_pages": page_map["reference_pages"],
                 "appendix_pages": page_map["appendix_pages"],
@@ -450,6 +455,8 @@ def main() -> None:
             "conference",
             "analysis_stratum",
             "selection_flags",
+            "selection_probability",
+            "analysis_weight",
             "main_pages",
             "reference_pages",
             "appendix_pages",
@@ -650,6 +657,83 @@ def main() -> None:
             "min",
             "max",
         ],
+    )
+
+    weighted_module_means: list[dict[str, object]] = []
+    for conference in sorted({catalog[paper_id]["conference"] for paper_id in readings}):
+        group = [
+            (paper_id, reading)
+            for paper_id, reading in readings.items()
+            if catalog[paper_id]["conference"] == conference
+        ]
+        for module in MODULES:
+            observations: dict[str, list[tuple[float, float]]] = defaultdict(list)
+            for paper_id, reading in group:
+                item = next(entry for entry in reading["module_metrics"] if entry["module"] == module)
+                weight = 1.0 / float(sample_by_id[paper_id]["selection_probability"])
+                visual_objects = item["figures"] + item["tables"] + item["algorithms"]
+                values = {
+                    "estimated_words": float(item["estimated_words"]),
+                    "main_word_share": (
+                        float(item["main_word_share"]) if item["main_word_share"] is not None else None
+                    ),
+                    "figures": float(item["figures"]),
+                    "tables": float(item["tables"]),
+                    "algorithms": float(item["algorithms"]),
+                    "displayed_equations": float(item["displayed_equations"]),
+                    "visual_objects": float(visual_objects),
+                    "visual_objects_per_1000_words": (
+                        1000.0 * visual_objects / item["estimated_words"] if item["estimated_words"] else None
+                    ),
+                    "equations_per_1000_words": (
+                        1000.0 * item["displayed_equations"] / item["estimated_words"]
+                        if item["estimated_words"]
+                        else None
+                    ),
+                }
+                for metric, value in values.items():
+                    if value is not None:
+                        observations[metric].append((value, weight))
+            for metric, values in observations.items():
+                weight_sum = sum(weight for _, weight in values)
+                weighted_module_means.append(
+                    {
+                        "conference": conference,
+                        "module": module,
+                        "metric": metric,
+                        "n_completed": len(values),
+                        "weight_sum": round(weight_sum, 9),
+                        "weighted_mean": round(
+                            sum(value * weight for value, weight in values) / weight_sum, 9
+                        ),
+                    }
+                )
+    write_csv(
+        table_dir / "weighted_module_means.csv",
+        weighted_module_means,
+        ["conference", "module", "metric", "n_completed", "weight_sum", "weighted_mean"],
+    )
+
+    conference_equal_module_means: list[dict[str, object]] = []
+    by_module_metric: dict[tuple[str, str], list[dict[str, object]]] = defaultdict(list)
+    for row in weighted_module_means:
+        by_module_metric[(str(row["module"]), str(row["metric"]))].append(row)
+    for (module, metric), rows in sorted(by_module_metric.items()):
+        conference_equal_module_means.append(
+            {
+                "module": module,
+                "metric": metric,
+                "conferences_observed": len(rows),
+                "conference_equal_mean": round(
+                    statistics.fmean(float(row["weighted_mean"]) for row in rows), 9
+                ),
+                "status": "complete" if aggregate_ready else "interim",
+            }
+        )
+    write_csv(
+        table_dir / "conference_equal_module_means.csv",
+        conference_equal_module_means,
+        ["module", "metric", "conferences_observed", "conference_equal_mean", "status"],
     )
 
     abstract_function_summary: list[dict[str, object]] = []

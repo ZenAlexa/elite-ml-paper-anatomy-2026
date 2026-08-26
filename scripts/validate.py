@@ -55,6 +55,7 @@ def iter_evidence(value: object):
 
 def main() -> None:
     papers = read_csv(PROCESSED / "papers.csv")
+    catalog = {row["paper_id"]: row for row in papers}
     schema = json.loads((ROOT / "schemas" / "deep-read.schema.json").read_text(encoding="utf-8"))
     validator = jsonschema.Draft202012Validator(schema)
     errors: list[str] = []
@@ -64,6 +65,35 @@ def main() -> None:
     forums = [row["openreview_id"] for row in papers]
     if len(forums) != len(set(forums)):
         errors.append("duplicate OpenReview forum after hydration")
+    sample_path = PROCESSED / "analysis_sample.csv"
+    if sample_path.exists():
+        sample = read_csv(sample_path)
+        sample_ids = [row["paper_id"] for row in sample]
+        if len(sample) != 200 or len(sample_ids) != len(set(sample_ids)):
+            errors.append("analysis sample must contain 200 unique papers")
+        unknown = sorted(set(sample_ids) - set(catalog))
+        if unknown:
+            errors.append(f"analysis sample contains unknown paper ids: {unknown}")
+        expected_groups = {
+            ("ICLR", "outstanding"): 2,
+            ("ICLR", "oral"): 98,
+            ("ICML", "outstanding"): 2,
+            ("ICML", "oral"): 49,
+            ("ICML", "spotlight"): 49,
+        }
+        actual_groups = {
+            group: sum(
+                row["conference"] == group[0] and row["analysis_stratum"] == group[1]
+                for row in sample
+            )
+            for group in expected_groups
+        }
+        if actual_groups != expected_groups:
+            errors.append(f"analysis sample group counts mismatch: {actual_groups}")
+        for sample_row in sample:
+            source_path = ROOT / sample_row["source_path"]
+            if not source_path.exists() or source_path.read_bytes()[:5] != b"%PDF-":
+                errors.append(f"analysis sample source missing or invalid: {sample_row['paper_id']}")
     for row in papers:
         if row["pdf_status"] == "verified":
             path = ROOT / row["pdf_path"]
@@ -81,6 +111,10 @@ def main() -> None:
                 errors.append(f"reading {row['paper_id']} missing keys: {sorted(missing)}")
             if value.get("paper_id") != row["paper_id"]:
                 errors.append(f"reading paper_id mismatch: {row['paper_id']}")
+            source_files = value.get("source_files", {})
+            if str(source_files.get("pdf", "")).startswith("corpus/preprints/"):
+                if source_files.get("source_kind") != "verified_preprint" or not source_files.get("source_url"):
+                    errors.append(f"preprint reading source metadata incomplete: {row['paper_id']}")
             if not (ROOT / "readings" / f"{row['paper_id']}.md").exists():
                 errors.append(f"reading Markdown missing: {row['paper_id']}")
             modules = [item.get("module") for item in value.get("module_metrics", [])]
