@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints sample validate aggregate cohort lexical next next-icml
+.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints sample validate aggregate cohort lexical checkpoint checkpoint-figures next next-icml
 
 catalog:
 	$(PYTHON) scripts/build_catalog.py
@@ -40,6 +40,18 @@ cohort:
 
 lexical:
 	$(PYTHON) scripts/lexical_analysis.py
+
+checkpoint:
+	$(PYTHON) scripts/aggregate.py
+	$(PYTHON) scripts/cohort_analysis.py --bootstrap-replicates 5000
+	$(PYTHON) scripts/lexical_analysis.py
+	$(PYTHON) scripts/checkpoint_analysis.py --target 250
+	$(PYTHON) scripts/checkpoint_design_taxonomy.py --target 250
+	$(PYTHON) scripts/checkpoint_limitation_taxonomy.py --target 250
+	$(PYTHON) scripts/render_checkpoint_figures.py --target 250
+
+checkpoint-figures:
+	$(PYTHON) scripts/render_checkpoint_figures.py --target 250
 
 next:
 	$(PYTHON) scripts/next_batch.py --limit 3
