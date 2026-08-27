@@ -2,73 +2,137 @@
 
 ## 研究问题
 
-分析回答五类问题：
+分析回答七类问题：
 
-1. 各模块占正文和全文的相对篇幅；
-2. 图、表、算法和公式在各模块中的密度与位置；
-3. 摘要、相关工作、方法、理论、实验、消融、结论、局限的高频组织方式；
-4. 正文与附录如何分工并形成前后引用；
-5. 顶级论文常见的叙事策略、证据闭环和反模式。
+1. 摘要、引言、相关工作、方法、理论、实验设计、结果、消融、结论和 Limitations 各占多少正文篇幅；
+2. 图、表、算法和公式如何分布在不同模块；
+3. 摘要功能、引言动作、相关工作动作和方法动作如何推进；
+4. 实验设计展示哪些字段，结果使用哪些统计方法；
+5. 方法、理论、实验、结果和消融如何形成 claim closure；
+6. 局限、不利结果和附录如何组织；
+7. 高频词、短语和修辞动作如何支持叙事。
 
 ## 分析单位
 
-- 论文级：每篇论文一条观测；
-- 模块级：一篇论文中的语义模块；
-- 章节级：PDF 显式 section；
-- 页面级：正文和附录页面；
-- 句子／词项级：摘要功能、叙事动作和词频。
+| 单位 | 用途 |
+|---|---|
+| 论文 | 覆盖率、篇幅、对象总数、附录比例和闭环状态 |
+| 语义模块 | 模块词数、图、表、算法、公式和密度 |
+| 章节与页面 | 正文、参考文献、附录和证据位置 |
+| 句子 | 摘要功能与首次位置 |
+| 段落动作 | 引言、相关工作和方法的推进与转移 |
+| 证据对象 | 结果、统计、消融、理论、局限与附录调用 |
+| 词项 | 单词、二元短语、三元短语和修辞模式 |
 
-## 两阶段分析集
+## 250 篇统计总体
 
-分析集固定为 400 篇，分两个互不重叠的 200 篇队列：
+统计总体采用 250 份完整深读：
 
-- `foundation_200`：ICLR 100 篇、ICML 100 篇。两会 Outstanding 各 2 篇全部纳入；ICLR 另抽取 98 篇 Oral，ICML 另抽取 49 篇 Oral 和 49 篇 Spotlight。固定种子为 `elite-ml-paper-anatomy-2026-primary-v1`。
-- `replication_200`：在首批未入选论文中，抽取 ICLR Oral 100 篇、ICML Oral 50 篇和 ICML Spotlight 50 篇。固定种子为 `elite-ml-paper-anatomy-2026-replication-v1`。
+| 会议 | Outstanding | Oral | Spotlight | 合计 |
+|---|---:|---:|---:|---:|
+| ICLR | 2 | 148 | 0 | 150 |
+| ICML | 2 | 49 | 49 | 100 |
+| 合计 | 4 | 197 | 49 | 250 |
 
-合并 400 篇包含 ICLR 2 篇 Outstanding 和 198 篇 Oral，以及 ICML 2 篇 Outstanding、99 篇 Oral 和 99 篇 Spotlight。逐层候选数、队列目标数、抽取时剩余候选数、条件纳入概率、合并纳入概率和实际来源均保存在 `data/processed/analysis_sample.csv`。
-
-调度器在队列内可以优先读取短论文或低复杂度论文，但默认在 `foundation_200` 完成前不派发 `replication_200`。调度顺序不改变分析集。已完成而未被抽中的论文属于扩展集，只用于敏感性分析和例证，不进入主要比例估计。
+队列结构为 `foundation_200=200`、`replication_200=50`。每篇论文使用同一 Prompt、schema、页码规则和变量定义。
 
 ## 主要变量
 
-- 篇幅：页面占比、词数占比、栏面积占比；
-- 密度：每 1,000 词和每正文页的公式、图、表、算法数量；
-- 模块：`introduction`、`related_work`、`method`、`theory`、`experimental_design`、`results`、`ablation`、`conclusion`、`limitations`、`appendix`；
-- 摘要功能：对象、缺口、核心思想、方法、理论、定量结果、定性结果、局限、影响；
-- 闭环边：问题→方法、理论→预测、实验设计→主张、结果→主张、消融→机制、局限→适用边界；
-- 呈现策略：负面结果位置、限定词、自我设限位置、基线选择、指标选择、附录迁移和标题框架。
+- 篇幅：模块正文词数、逐篇正文占比、正文页数、附录页数；
+- 视觉：图、表、算法及每千词密度；
+- 理论：展示公式、编号公式、定理、引理、命题、证明及角色；
+- 摘要：对象、缺口、洞见、方法、理论、设置、定量结果、定性结果、局限和影响；
+- 写作动作：引言、相关工作、方法动作及相邻转移；
+- 实验：数据、任务、模型、基线、指标、重复、预算、超参数、硬件、控制和人类评测；
+- 统计：中心量、点估计、离散量、区间、检验、多重比较、bootstrap、Bayesian、回归、相关和 effect size；
+- 闭环：对象→缺口→洞见→组件→公式→预测→实验→结果→消融→结论；
+- 附录：证明、扩展方法、实现、数据、追加结果、鲁棒性、消融、失败、复现和案例；
+- 修辞：主张动词、转折词、限定词、贡献词和文档频率。
 
 ## 相对化
 
-不同会议的页数与格式不同。每篇论文先转换为相对量：
+每篇论文先转换为相对量：
 
 ```text
 module_share = module_main_words / total_main_words
 visual_density = visual_count / total_main_pages
-module_visual_density = module_visual_count / module_words * 1000
-appendix_ratio = appendix_pages / main_pages
+module_visual_density = module_visual_count / module_words × 1000
+appendix_page_ratio = appendix_pages / main_pages
+appendix_word_ratio = appendix_words / main_words
 ```
 
-会议内先报告中位数、四分位数、20% 截尾均值、经验分布和论文级 bootstrap。队列内估计使用 `cohort_selection_probability`，合并 400 篇估计使用 `selection_probability`。ICML 的 Oral 与 Spotlight 按逐层纳入概率加权还原；Outstanding 作为全纳层单列。跨会议主结果采用会议等权：先得到每个会议的论文级统计量，再对可观测会议取算术平均。另给论文等权结果作为敏感性分析。Outstanding、Oral、Spotlight 使用互斥 `analysis_stratum` 比较，同时用多标签结果检查重叠影响。
+模块 `main_word_share` 在论文内归一化，使正文模块合计为 100%。正文比例先计算 ICLR 与 ICML 的会议内均值，再取会议等权均值。
 
-同一指标分别在 `foundation_200`、`replication_200` 和 `combined_400` 中计算。两批方向一致、量级接近且合并估计不由单一会议或等级层主导时，才归纳为稳定的普适模式。队列差异本身作为异质性结果保留，不通过改动编码规则消除。
+## 汇总统计
 
-## 推断边界
+连续量报告：
 
-- Outstanding 属于全纳层，直接报告有限总体值；其他层属于固定分层样本，报告估计值与抽样稳定性。
-- bootstrap 在会议与等级层内重采样论文，用于描述论文构成变化时的稳定性。
-- 首批 200 的结果在进入复现批前冻结；复现批使用同一 schema，不回改首批变量定义。
-- NeurIPS 未产生决定前，跨三会估计均记为 `not_yet_observed`。
-- 自动章节分类与 agent 编码的分歧率单独报告；分歧不静默覆盖。
-- 词频先词形归一化，去除参考文献、公式碎片、数据集专名和模板固定语；同时报告每 10,000 正文词的相对频率和文档频率。
+- 论文数 `n`；
+- 均值；
+- 中位数；
+- 第一与第三四分位数；
+- 最小值与最大值；
+- ICLR、ICML 和会议等权均值。
+
+类别变量报告：
+
+- `papers_present / papers`；
+- 论文覆盖率；
+- 会议等权覆盖率；
+- 每篇平均对象数；
+- 每篇对象数中位数。
+
+词汇报告总次数、论文覆盖数、论文覆盖率和每 10,000 正文词频率。动作序列报告论文级出现率与相邻转移率。
+
+## 结构化 taxonomy
+
+实验设计、统计实践、局限类型和呈现策略采用显式 taxonomy：
+
+- 每篇论文对每个类别计一次；
+- 同一论文可进入多个类别；
+- 计数使用 `status=observed` 的结构化记录；
+- 同义字段由版本化正则归并；
+- 归并脚本与汇总 CSV 同步发布。
+
+对应脚本：
+
+- [`checkpoint_design_taxonomy.py`](../scripts/checkpoint_design_taxonomy.py)；
+- [`checkpoint_limitation_taxonomy.py`](../scripts/checkpoint_limitation_taxonomy.py)；
+- [`checkpoint_analysis.py`](../scripts/checkpoint_analysis.py)。
+
+## 证据链
+
+统计结果可沿以下路径回到论文页面：
+
+```text
+主报告数值
+→ checkpoint_250_*.csv
+→ inventory CSV
+→ readings/<paper_id>.json
+→ readings/<paper_id>.md
+→ source_url + PDF page + section + evidence anchor
+```
+
+[`reading_index.md`](../reports/reading_index.md)提供论文级入口。
 
 ## 主要输出
 
-1. 模块占比的会议内分布与会议等权汇总；
-2. 模块×对象类型的图表公式密度矩阵；
-3. 摘要功能组合和句序的高频路径；
-4. 方法段落推进动作的转移矩阵；
-5. 正文—附录职责和引用边；
-6. 高频词、词组、修辞动作及其文档频率；
-7. 可直接用于论文写作的正文／附录决策规则；
-8. 反模式及其真实出现频率、位置和上下文。
+1. 正文模块占比与分布；
+2. 模块 × 图/表/算法/公式矩阵；
+3. 摘要功能、顺序和结果类型；
+4. 引言、相关工作和方法动作转移；
+5. 实验设计字段与统计方法；
+6. claim closure 与模块衔接；
+7. 局限类型与不利信息呈现；
+8. 正文—附录分工与调用；
+9. 高频词、短语和修辞；
+10. 面向未来论文的写作手册。
+
+## 复算
+
+```bash
+make validate
+make checkpoint
+```
+
+`make checkpoint` 重建聚合表、队列比较、词频、250 篇 checkpoint 表、taxonomy、SVG 图和逐篇阅读索引。

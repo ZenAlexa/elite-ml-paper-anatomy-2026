@@ -3,7 +3,7 @@
 ## 0. 读取边界与来源
 
 - **论文**：*Why Low-Precision Transformer Training Fails (An Analysis on Flash Attention)*（Haiquan Qiu、Quanming Yao），ICLR 2026，`oral`。
-- **实际读取版本**：`/Users/zimingwang/Developer/GitHub/elite-ml-paper-anatomy-2026/corpus/pdfs/iclr-2026-ced84acacce8.pdf`；配套抽取文本为 `/Users/zimingwang/Developer/GitHub/elite-ml-paper-anatomy-2026/corpus/text/iclr-2026-ced84acacce8.txt`。`pdfinfo` 显示 24 页、letter、未加密。来源是 ICLR 官方 proceedings PDF；OpenReview forum 为 [0jHyEKHDyx](https://openreview.net/forum?id=0jHyEKHDyx)，实际 PDF URL 为 [proceedings.iclr.cc/paper_files/.../Paper-Conference.pdf](https://proceedings.iclr.cc/paper_files/paper/2026/file/733209a1f12071a7ec979e8ffaeb1d99-Paper-Conference.pdf)。
+- **实际读取版本**：`corpus/pdfs/iclr-2026-ced84acacce8.pdf`；配套抽取文本为 `corpus/text/iclr-2026-ced84acacce8.txt`。`pdfinfo` 显示 24 页、letter、未加密。来源是 ICLR 官方 proceedings PDF；OpenReview forum 为 [0jHyEKHDyx](https://openreview.net/forum?id=0jHyEKHDyx)，实际 PDF URL 为 [proceedings.iclr.cc/paper_files/.../Paper-Conference.pdf](https://proceedings.iclr.cc/paper_files/paper/2026/file/733209a1f12071a7ec979e8ffaeb1d99-Paper-Conference.pdf)。
 - **完整阅读范围**：物理页 1–10 为正文（含摘要、Acknowledgment 之前的正文），11–13 为参考文献，14–21 为附录 A–F 及附图 10，22 为 LLM disclosure，23–24 为附加图。没有独立 supplementary 文件；附录与附图均已阅读。
 - **版面**：正文与参考文献采用双栏排版，图 1–7 为正文浮动体，图 4、7 占据近整栏宽度；附录算法、图 8–13 主要使用整页或跨栏布局。第 6 页图 4 的六个热图几乎占满页面，第 23 页图 11 纵向热图占据页面主体；第 24 页图 12 占据上半页、图 13 位于下半页。图轴、算法行和公式会显著增加抽取 token，不能把原始抽取词数直接当作论证词数。
 

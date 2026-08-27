@@ -4,7 +4,7 @@
 
 - **论文**：Latent Fourier Transform（Mason L. Wang、Cheng-Zhi Anna Huang）
 - **会议/年份/等级**：ICLR 2026；`oral`
-- **PDF**：`/Users/zimingwang/Developer/GitHub/elite-ml-paper-anatomy-2026/corpus/pdfs/iclr-2026-4ddcea898ef4.pdf`
+- **PDF**：`corpus/pdfs/iclr-2026-4ddcea898ef4.pdf`
 - **物理页数**：32 页；正文至第 10 页；references 为第 11–16 页；appendix 为第 17–32 页。
 - **身份定位**：OpenReview forum `ogMxCjdCCq`；官方 proceedings PDF 与论文标题、作者一致。
 - **supplementary**：本地未提供独立 supplementary 文件；论文把音频示例指向 website，并在第 11 页声明 GitHub 代码。

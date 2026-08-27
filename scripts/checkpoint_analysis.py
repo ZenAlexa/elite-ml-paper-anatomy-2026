@@ -646,6 +646,8 @@ def main() -> None:
                 f"reports/tables/checkpoint_{args.target}_experimental_design_summary.csv",
                 f"reports/tables/checkpoint_{args.target}_limitation_type_summary.csv",
                 f"reports/tables/checkpoint_{args.target}_packaging_strategy_summary.csv",
+                "reports/tables/reading_index.csv",
+                "reports/reading_index.md",
             ],
         },
     )

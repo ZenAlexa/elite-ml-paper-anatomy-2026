@@ -1,68 +1,164 @@
 # Elite ML Paper Anatomy 2026
 
-本项目解剖 ICLR、ICML、NeurIPS 2026 年官方 `Outstanding`、`Oral`、`Spotlight` 论文的正文、附录、统计表达、图表组织和叙事结构。分析总体只来自这三个会议的官方 2026 年记录，不混入往届论文、普通 poster、workshop、journal track 或 position paper track。
+本项目从 **250 篇 ICLR/ICML 2026 Outstanding、Oral、Spotlight 论文**中提取可复用的写作结构、图表组织、实验设计、理论表达、证据闭环和附录分工。每篇论文均有独立中文深读备忘、schema-valid JSON、PDF 页码证据和来源链接；聚合结果进一步形成统计报告与论文写作手册。
 
-## 当前样本边界
+## 从这里开始
 
-截至 2026-08-27：
+| 目标 | 入口 |
+|---|---|
+| 阅读全部统计结论 | [250 篇统计报告](reports/statistical_analysis_250.md) |
+| 按顶会高频模式设计论文 | [250 篇顶会论文写作手册](docs/writing-playbook.md) |
+| 查找某篇论文的深读与结构化数据 | [逐篇深读索引](reports/reading_index.md) |
+| 查看统一阅读标准 | [单篇论文独立深读协议](prompts/deep-read.md) |
+| 查看统计定义与加权方法 | [统计分析方案](docs/statistical-analysis-plan.md) |
+| 查看会议、层级与来源口径 | [语料范围与分层口径](docs/corpus-scope.md) |
+| 复算全部报告和图 | [复现命令](#复现) |
+| 提交新阅读或分析改进 | [贡献指南](CONTRIBUTING.md) |
 
-- ICLR 2026 已举办，纳入 224 篇论文：2 篇 Outstanding、222 篇其他 Oral。224 份官方 proceedings PDF 均已下载、验证和完成机器测量。
-- ICML 2026 已举办，纳入 536 篇 Main Track 论文：2 篇 Outstanding、157 篇其他 Oral、377 篇 Spotlight。47 个 Position Paper Track 日程事件单独排除。
-- ICML 2026 已预留 [PMLR v306 仓库](https://github.com/mlresearch/v306)，当前显示 2025-10-30 的模板初始提交，[卷页面](https://proceedings.mlr.press/v306/) 返回 404。本机访问 OpenReview PDF 会进入挑战页。项目已按 OpenReview ID 定位并验证 417 份 arXiv 版本；这些版本直接进入深读与统计，119 篇尚无公开 PDF 入口。
-- NeurIPS 2026 的作者通知日期为 2026-09-24 AoE。当前总体状态为 `pending-official-decision`，不使用 NeurIPS 2025 替代。
+![250 篇论文的正文篇幅分配](reports/figures/checkpoint_250_module_shares.svg)
 
-Outstanding、Oral、Spotlight 可能重叠。`data/processed/papers.csv` 以论文为单位去重，保留 `selection_flags`，并用 `analysis_stratum` 设定互斥分析层级：`outstanding > oral > spotlight`。跨会议分析先计算会议内相对比例，再对会议等权汇总，避免篇幅、样本量和类别命名差异主导结论。
+## 核心发现
 
-抽样框包含两个连续队列，共 400 篇。`foundation_200` 包含 ICLR 100 篇和 ICML 100 篇，两会 4 篇 Outstanding 全部纳入；`replication_200` 再从未入选论文中抽取 ICLR 100 篇和 ICML 100 篇。队列、种子、条件纳入概率和合并纳入概率均保存在 `data/processed/analysis_sample.csv`。
+| 维度 | 250 篇高频模式 |
+|---|---|
+| 正文篇幅 | 方法 23.83%、结果 17.01%、引言 14.84%、理论 10.15%、实验设计 9.83%、相关工作 8.43%、消融 5.38% |
+| 摘要 | 平均 188 词、7.97 句；98.0% 写方法，98.0% 至少给出一种结果，55.6% 给出定量结果 |
+| 相关工作 | 中位数 507 词、正文占比中位数 8.42%；高频链为「分类轴 → 最近邻 → 明确差异 → 方法缺口」 |
+| 方法与理论 | 方法平均 1.21 图、0.39 算法、5.52 公式；理论平均 5.97 公式 |
+| 结果与消融 | 结果平均 2.34 图、2.09 表；消融平均 1.67 图、0.90 表 |
+| 证据闭环 | 30.8% 形成「对象 → 缺口 → 洞见 → 组件 → 公式 → 预测 → 实验 → 结果 → 消融 → 结论」完整链 |
+| 附录 | 附录/正文页数比中位数 1.40，词数比中位数 0.84；追加结果、实现细节、扩展方法和证明最常见 |
+| 修辞 | `we introduce`、`we propose`、`we show`、`we find`、`however`、`in contrast` 构成高频主张与转折语言 |
 
-本轮统计总体采用其中 250 篇统一深读结果：完整 `foundation_200` 加 `replication_200` 的前 50 篇。组成是 ICLR 150 篇（2 Outstanding、148 Oral）与 ICML 100 篇（2 Outstanding、49 Oral、49 Spotlight）。每篇论文由一个独立子智能体按同一 Prompt、schema、证据页码规则和统计变量完成全文阅读；达到 250 篇后停止派发。另有 3 篇扩展阅读保留在仓库中，不进入本报告。完整分析见 [`reports/statistical_analysis_250.md`](reports/statistical_analysis_250.md)。
+统计报告同时给出论文覆盖率、会议等权比例、中位数、四分位数、图表公式计数、动作转移和逐篇案例。
 
-## 目录
+## 如何使用
+
+### 设计一篇论文
+
+从[写作手册](docs/writing-playbook.md)建立 claim map、正文比例、摘要功能链、方法组件模板、实验协议表、图表职责和正文—附录分工。手册中的每项建议均连接 250 篇统计结果。
+
+### 审阅一篇论文
+
+按以下链条检查每项贡献：
 
 ```text
-data/raw/official/       官方页面和结构化响应快照
-data/processed/          去重目录、排除项、获取状态和测量表
-corpus/pdfs/             本地 PDF 缓存，不提交 Git
-corpus/text/             本地正文提取缓存，不提交 Git
-prompts/                 一文一 agent 的统一深读协议
-schemas/                 结构化深读结果 schema
-readings/                每篇论文的独立深读结果
-reports/                 汇总报告、图和表
-scripts/                 目录、下载、测量、校验与汇总脚本
+claim → method object → equation or guarantee → prediction
+→ experiment → result → ablation → conclusion → appendix evidence
 ```
 
-## 运行
+使用 [`claim_closure.csv`](reports/tables/claim_closure.csv) 对照闭环状态，使用 [`checkpoint_250_module_summary.csv`](reports/tables/checkpoint_250_module_summary.csv) 对照篇幅、图表、算法和公式配置。
+
+### 研究某篇顶会论文
+
+在[逐篇深读索引](reports/reading_index.md)中按标题或会议查找论文。每篇记录包含：
+
+- 中文全文深读备忘；
+- 结构化 JSON；
+- PDF 来源与 OpenReview 页面；
+- 摘要逐句功能；
+- 引言、相关工作和方法动作；
+- 图、表、算法、公式与理论对象；
+- 实验、统计、消融、局限、附录和 claim closure；
+- PDF 物理页码、章节和证据短语。
+
+### 复算统计
+
+`make checkpoint` 从逐篇 JSON 重建聚合表、taxonomy、词频、图形和索引。所有主报告数值均来自 `reports/tables/`。
+
+## 数据与方法
+
+### 统计总体
+
+250 篇统计总体包含：
+
+- ICLR 150 篇：2 Outstanding、148 Oral；
+- ICML 100 篇：2 Outstanding、49 Oral、49 Spotlight；
+- `foundation_200` 完整队列 200 篇；
+- `replication_200` 前 50 篇。
+
+仓库另收录 3 篇扩展阅读。候选目录共 760 篇 ICLR/ICML 2026 Main Track Outstanding、Oral、Spotlight 论文。样本、等级、纳入概率和来源记录位于 [`analysis_sample.csv`](data/processed/analysis_sample.csv) 与 [`papers.csv`](data/processed/papers.csv)。
+
+### 统一深读
+
+每个阅读单元完整处理一篇论文，并按 [`deep-read.schema.json`](schemas/deep-read.schema.json) 编码 12 个语义模块：
+
+```text
+abstract · introduction · related_work · method · theory
+experimental_design · results · ablation · conclusion
+limitations · appendix · other
+```
+
+编码覆盖摘要功能、段落动作、实验设计、统计方法、图表公式、主张闭环、局限类型、不利信息呈现和附录职责。逐项判断连接 PDF 页码、章节与证据锚点。
+
+### 相对化与汇总
+
+不同会议先在论文内转换为相对量，再计算会议内分布与会议等权结果：
+
+```text
+module_share = module_main_words / total_main_words
+module_visual_density = module_visual_count / module_words × 1000
+appendix_ratio = appendix_pages / main_pages
+```
+
+正文篇幅报告会议等权均值；论文特征报告 `n/N` 与覆盖率；长尾计数同时报告均值、中位数和四分位数。摘要功能、段落动作、实验字段、统计方法、局限和附录类别均保留论文级数据。
+
+## 产物索引
+
+### 结论与指南
+
+- [`reports/statistical_analysis_250.md`](reports/statistical_analysis_250.md)：完整统计分析、案例和写作研判；
+- [`docs/writing-playbook.md`](docs/writing-playbook.md)：可直接用于未来论文的写作与设计手册；
+- [`reports/reading_index.md`](reports/reading_index.md)：253 篇深读的论文级索引；
+- [`docs/corpus-scope.md`](docs/corpus-scope.md)：语料、分层与来源；
+- [`docs/statistical-analysis-plan.md`](docs/statistical-analysis-plan.md)：统计单位、相对化与汇总方法。
+
+### 核心统计表
+
+- [`checkpoint_250_module_summary.csv`](reports/tables/checkpoint_250_module_summary.csv)：模块篇幅、覆盖率、图、表、算法和公式；
+- [`checkpoint_250_abstract_summary.csv`](reports/tables/checkpoint_250_abstract_summary.csv)：摘要功能与首次位置；
+- [`checkpoint_250_move_summary.csv`](reports/tables/checkpoint_250_move_summary.csv)：引言、相关工作和方法动作；
+- [`checkpoint_250_transition_summary.csv`](reports/tables/checkpoint_250_transition_summary.csv)：段落动作转移；
+- [`checkpoint_250_experimental_design_summary.csv`](reports/tables/checkpoint_250_experimental_design_summary.csv)：15 类实验设计字段；
+- [`checkpoint_250_limitation_type_summary.csv`](reports/tables/checkpoint_250_limitation_type_summary.csv)：局限类型；
+- [`checkpoint_250_packaging_strategy_summary.csv`](reports/tables/checkpoint_250_packaging_strategy_summary.csv)：不利信息呈现策略；
+- [`checkpoint_250_categorical_summary.csv`](reports/tables/checkpoint_250_categorical_summary.csv)：理论、视觉、统计、附录和闭环类别；
+- [`reading_index.csv`](reports/tables/reading_index.csv)：论文、等级、队列、来源与深读文件。
+
+### 逐项证据表
+
+- [`result_inventory.csv`](reports/tables/result_inventory.csv)：实验结果、比较、统计方法和作者解释；
+- [`visual_inventory.csv`](reports/tables/visual_inventory.csv)：图、表、算法及其模块职责；
+- [`theory_inventory.csv`](reports/tables/theory_inventory.csv)：公式、定理、引理、证明及角色；
+- [`ablation_inventory.csv`](reports/tables/ablation_inventory.csv)：组件、敏感性、失败和机制消融；
+- [`appendix_inventory.csv`](reports/tables/appendix_inventory.csv)：附录类别、页码和正文调用；
+- [`limitation_inventory.csv`](reports/tables/limitation_inventory.csv)：局限、位置和证据；
+- [`adverse_strategy_inventory.csv`](reports/tables/adverse_strategy_inventory.csv)：分母、聚合、案例、语气和位置策略；
+- [`lexical_frequencies.csv`](reports/tables/lexical_frequencies.csv)、[`ngram_frequencies.csv`](reports/tables/ngram_frequencies.csv)、[`rhetorical_patterns.csv`](reports/tables/rhetorical_patterns.csv)：词、短语和修辞频率。
+
+### 项目结构
+
+```text
+data/processed/     论文目录、样本、来源和自动测量
+corpus/             论文来源文件与版面文本
+prompts/            单篇独立深读协议
+schemas/            结构化结果 schema
+readings/           每篇论文的 Markdown 与 JSON
+reports/            统计报告、阅读索引、图和表
+docs/               写作手册、语料与统计方法
+scripts/            获取、测量、验证、聚合与渲染
+```
+
+## 复现
 
 ```bash
-make catalog       # 从官方 2026 页面重建去重目录
-make hydrate       # 获取每篇论文的 OpenReview forum/PDF URL
-make acquire       # 下载并用 %PDF、pdfinfo 验证 PDF
-make resolve-preprints  # 建立 ICML arXiv 临时入口，不替代官方 PDF
-make acquire-preprints  # 下载并验证可定位的临时版本
-make measure       # 提取版面文本和初步结构测量
-make sample        # 重建两个固定队列，共 400 篇
-make validate      # 校验目录、PDF 和一文一读结果
-make next          # 按已验证 PDF、预计阅读成本和模型路由给出下一批三篇
-make aggregate     # 更新会议内相对量；总体齐备后生成跨会议等权结果
-make cohort        # 比较首批 200、复现批 200 和合并 400
-make lexical       # 按队列、会议和等级更新词频与修辞模式
-make checkpoint    # 复算 250 篇统计、实验/局限 taxonomy 和全部报告图
+make validate       # 校验目录、来源和 253 份深读结果
+make checkpoint     # 重建 250 篇统计、词频、图和阅读索引
+make index          # 单独更新逐篇深读索引
 ```
 
-机器测量用于一致计量与异常发现。语义模块边界、论证推进、负面结果包装、附录职责等结论来自 `prompts/deep-read.md` 约束下的逐篇人工式深读编码。每个子智能体只处理一篇论文，写入该论文独立的 Markdown 和 JSON 后停止。
+完整流程入口位于 [`Makefile`](Makefile)：`catalog → hydrate → resolve → acquire → measure → sample → validate → checkpoint`。
 
-`reports/tables/module_distributions.csv` 以论文为等权单位，报告各语义模块的正文词数占比、图表算法数、公式数、每千词密度及其在正文中的相对份额。`weighted_module_means.csv` 按逐层纳入概率还原会议内部构成，`conference_equal_module_means.csv` 再对 ICLR 与 ICML 等权。`cohort_module_comparison.csv`、`cohort_paper_comparison.csv` 和 `cohort_categorical_comparison.csv` 保留队列比较，`cohort_phase_stability.csv` 对共同等级层执行论文级 bootstrap。250 篇主报告使用 `checkpoint_250_*.csv`：摘要功能、模块比例、段落动作、实验设计、局限包装、附录职责、图表公式和主张闭环均有独立表，逐篇证据继续保留在 inventory 与 reading JSON 中。
+## 贡献与许可
 
-## 证据原则
-
-1. 样本资格以会议官方页面为准。
-2. 论文内容只从身份对齐且已验证的 PDF、supplementary 和 OpenReview 公开记录提取；实际版本写入每篇 `source_files`。
-3. 每个论文级结论附页码、章节或原文短语定位。
-4. 缺失数据显式编码为 `not_present`、`not_applicable`、`unavailable` 或 `not_yet_observed`。
-5. 自动计数与 agent 编码分别保留，聚合前报告分歧。
-
-PDF 是可重建的本地缓存，不提交 Git。`data/processed/pdf_manifest.csv` 与 `preprint_manifest.csv` 记录来源、状态、字节数和页数。统计对应实际读取版本；同一论文获得新版 PDF 时可以复核并更新，不阻塞当前分析。
-
-本地已下载的 ICLR 与 ICML PDF 缓存约 4.3 GiB。400 篇分析集的来源文件已经在缓存中，后续阅读不会重复下载；新增空间主要来自 Markdown、JSON 和小型 CSV。空间不足时可删除分析集以外的 PDF 或文本缓存，再按 manifest 重建。
-
-详细口径见 [`docs/corpus-scope.md`](docs/corpus-scope.md) 和 [`docs/statistical-analysis-plan.md`](docs/statistical-analysis-plan.md)。
+贡献格式、证据标准和验证命令见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。项目采用 [MIT License](LICENSE)。论文来源链接、标题、作者和短证据锚点继续指向各自原始出版页面。
