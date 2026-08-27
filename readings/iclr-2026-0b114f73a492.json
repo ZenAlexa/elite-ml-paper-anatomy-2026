@@ -1,0 +1,2809 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-0b114f73a492",
+  "bibliography": {
+    "title": "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ],
+    "authors": [
+      "Akshat Ramachandran",
+      "Marina Neseem",
+      "Charbel Sakr",
+      "Rangharajan Venkatesan",
+      "Brucek Khailany",
+      "Tushar Krishna"
+    ]
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-0b114f73a492.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=M3CeHnZKNC",
+    "source_kind": "official_pdf",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b2b502c3629beadda06311386d2c6f73-Paper-Conference.pdf",
+    "text_extraction": "corpus/text/iclr-2026-0b114f73a492.txt"
+  },
+  "page_map": {
+    "pdf_pages": 35,
+    "main_pages": 10,
+    "reference_pages": 5,
+    "appendix_pages": 20,
+    "sections": [
+      {
+        "title": "Title, authors, and Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 151
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 660
+      },
+      {
+        "title": "1.1 Related Work and Limitations of Existing Compression Techniques",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 2,
+        "estimated_words": 320
+      },
+      {
+        "title": "1.2 Contributions",
+        "module": "introduction",
+        "start_page": 2,
+        "end_page": 2,
+        "estimated_words": 220
+      },
+      {
+        "title": "2 Why Quantization+Eviction?",
+        "module": "theory",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 260
+      },
+      {
+        "title": "3 Motivating Analyses",
+        "module": "theory",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 580
+      },
+      {
+        "title": "3.1 Attention Sparsity for Dynamic Thought Decomposition",
+        "module": "theory",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 300
+      },
+      {
+        "title": "3.2 LRM Thought Importance",
+        "module": "theory",
+        "start_page": 4,
+        "end_page": 4,
+        "estimated_words": 180
+      },
+      {
+        "title": "3.3 LRM Thought Association",
+        "module": "theory",
+        "start_page": 4,
+        "end_page": 4,
+        "estimated_words": 180
+      },
+      {
+        "title": "4 ThinKV Methodology",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 6,
+        "estimated_words": 1060
+      },
+      {
+        "title": "4.1 Attention Sparsity Guided Construction of phi",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 290
+      },
+      {
+        "title": "4.2 Think Before You Quantize (TBQ)",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 5,
+        "estimated_words": 360
+      },
+      {
+        "title": "4.3 Think Before You Evict (TBE)",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 410
+      },
+      {
+        "title": "5 ThinKV System Implementation",
+        "module": "method",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 520
+      },
+      {
+        "title": "5.1 The Cost of Gather-Based Compaction",
+        "module": "theory",
+        "start_page": 6,
+        "end_page": 6,
+        "estimated_words": 260
+      },
+      {
+        "title": "5.2 Continuous Thinking (CT)",
+        "module": "method",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 260
+      },
+      {
+        "title": "6.1 Experimental Setup",
+        "module": "experimental_design",
+        "start_page": 7,
+        "end_page": 8,
+        "estimated_words": 415
+      },
+      {
+        "title": "6.2 Main Results",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 9,
+        "estimated_words": 660
+      },
+      {
+        "title": "6.3 Discussions and Ablations",
+        "module": "ablation",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 740
+      },
+      {
+        "title": "7 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 104
+      },
+      {
+        "title": "Acknowledgements",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 42
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 15,
+        "estimated_words": 2400
+      },
+      {
+        "title": "Appendix table of contents",
+        "module": "appendix",
+        "start_page": 16,
+        "end_page": 16,
+        "estimated_words": 128
+      },
+      {
+        "title": "Appendix A: Overview of Mathematic Notation",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 17,
+        "estimated_words": 95
+      },
+      {
+        "title": "Appendix B: Extended Related Works",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 18,
+        "estimated_words": 980
+      },
+      {
+        "title": "Appendix C: Supplementary Background",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 21,
+        "estimated_words": 1280
+      },
+      {
+        "title": "Appendix D: Supplementary Details on ThinKV",
+        "module": "appendix",
+        "start_page": 21,
+        "end_page": 24,
+        "estimated_words": 1160
+      },
+      {
+        "title": "Appendix E: Extended Evaluations",
+        "module": "appendix",
+        "start_page": 24,
+        "end_page": 33,
+        "estimated_words": 5560
+      },
+      {
+        "title": "Appendix F: Limitations",
+        "module": "limitations",
+        "start_page": 34,
+        "end_page": 34,
+        "estimated_words": 61
+      },
+      {
+        "title": "Appendix G: Impact Statement",
+        "module": "appendix",
+        "start_page": 34,
+        "end_page": 34,
+        "estimated_words": 145
+      },
+      {
+        "title": "Appendix H: LLM Usage Statement",
+        "module": "other",
+        "start_page": 35,
+        "end_page": 35,
+        "estimated_words": 37
+      }
+    ]
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 151,
+      "main_word_share": 0.0294,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 660,
+      "main_word_share": 0.1287,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 320,
+      "main_word_share": 0.0624,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 1240,
+      "main_word_share": 0.2417,
+      "figures": 2,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "theory",
+      "status": "observed",
+      "estimated_words": 840,
+      "main_word_share": 0.1637,
+      "figures": 4,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 415,
+      "main_word_share": 0.0809,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 660,
+      "main_word_share": 0.1287,
+      "figures": 2,
+      "tables": 3,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 740,
+      "main_word_share": 0.1442,
+      "figures": 2,
+      "tables": 2,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 104,
+      "main_word_share": 0.0203,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 61,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 9430,
+      "main_word_share": null,
+      "figures": 7,
+      "tables": 10,
+      "algorithms": 2,
+      "displayed_equations": 14
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 2450,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "module_metric_basis": "Main-word-share denominator is estimated prose in Abstract plus pp. 1–10; references, appendix, and pure visual/table text are excluded.",
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "The long-output context generation of large reasoning models enables extended chain of thought (CoT) but also drives rapid growth of the key–value (KV) cache, quickly overwhelming GPU memory.",
+      "word_count": 29,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "quickly overwhelming GPU memory",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "long-output",
+        "quickly"
+      ],
+      "numbers": [],
+      "comparison": "none",
+      "transition": "opens the scope and resource bottleneck"
+    },
+    {
+      "index": 2,
+      "text": "To address this challenge, we propose ThinKV, a thought-adaptive KV cache compression framework.",
+      "word_count": 13,
+      "functions": [
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "we propose ThinKV",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "thought-adaptive"
+      ],
+      "numbers": [],
+      "comparison": "none",
+      "transition": "names the response to sentence 1"
+    },
+    {
+      "index": 3,
+      "text": "ThinKV is based on the observation that attention sparsity reveals distinct thought types with varying importance within the CoT.",
+      "word_count": 19,
+      "functions": [
+        "core_idea"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "attention sparsity reveals distinct thought types",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "distinct",
+        "varying"
+      ],
+      "numbers": [],
+      "comparison": "none",
+      "transition": "states the mechanism used by the named method"
+    },
+    {
+      "index": 4,
+      "text": "It applies a hybrid quantization–eviction strategy, assigning token precision by thought importance and progressively evicting tokens from less critical thoughts as reasoning trajectories evolve.",
+      "word_count": 25,
+      "functions": [
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "hybrid quantization–eviction strategy",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "hybrid",
+        "progressively",
+        "less critical"
+      ],
+      "numbers": [],
+      "comparison": "thought importance orders precision and eviction",
+      "transition": "operationalizes sentence 3"
+    },
+    {
+      "index": 5,
+      "text": "Furthermore, to implement ThinKV, we design a kernel that extends PagedAttention to enable efficient reuse of evicted tokens’ memory slots, eliminating compaction overheads.",
+      "word_count": 23,
+      "functions": [
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "extends PagedAttention",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "efficient"
+      ],
+      "numbers": [],
+      "comparison": "avoids compaction",
+      "transition": "adds the system realization after the algorithm"
+    },
+    {
+      "index": 6,
+      "text": "Extensive experiments on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason across mathematics and coding benchmarks show that ThinKV achieves near-lossless accuracy with less than 5% of the original KV cache, while improving performance with up to 5.8× higher inference throughput over SoTA baselines.",
+      "word_count": 42,
+      "functions": [
+        "experimental_setup",
+        "quantitative_result",
+        "qualitative_result",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "less than 5% of the original KV cache",
+        "basis": "explicit"
+      },
+      "qualifiers": [
+        "Extensive",
+        "near-lossless",
+        "up to"
+      ],
+      "numbers": [
+        "<5%",
+        "5.8×"
+      ],
+      "comparison": "over SoTA baselines",
+      "transition": "closes with the empirical headline"
+    }
+  ],
+  "abstract_analysis": {
+    "functional_order": "object_scope/problem_gap → method → core_idea → method → method → experimental_setup/result/impact",
+    "reports_experiment": "yes",
+    "reported_results": "<5% original KV cache and up to 5.8× higher throughput over SoTA baselines",
+    "theory_in_abstract": "not_present",
+    "limitation_in_abstract": "not_present",
+    "strongest_claim_location": "sentence 6, PDF p. 1",
+    "evidence": [
+      {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "up to 5.8× higher inference throughput",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context",
+      "estimated_words": 224,
+      "evidence": {
+        "page": 1,
+        "section": "1 Introduction",
+        "anchor": "Long-context modeling",
+        "basis": "explicit"
+      },
+      "first_sentence_function": "establishes long-context modeling as an LLM capability",
+      "previous_question": "none",
+      "current_answer": "long-output LRMs create a decode KV-cache bottleneck",
+      "next_hook": "why existing compression is insufficient"
+    },
+    {
+      "index": 2,
+      "move": "failure_of_prior_work",
+      "estimated_words": 104,
+      "evidence": {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "ill-suited for LRMs",
+        "basis": "explicit"
+      },
+      "first_sentence_function": "taxonomizes prior compression methods",
+      "previous_question": "can existing compression solve the bottleneck?",
+      "current_answer": "mostly prefill-oriented or greedy/uniform decode methods fail for LRMs",
+      "next_hook": "which LRM-aware methods remain inadequate"
+    },
+    {
+      "index": 3,
+      "move": "failure_of_prior_work",
+      "estimated_words": 137,
+      "evidence": {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "operate at the token level",
+        "basis": "explicit"
+      },
+      "first_sentence_function": "contrasts RaaS, LazyEviction, R-KV, and PM-KVQ",
+      "previous_question": "do reasoning-aware baselines solve it?",
+      "current_answer": "their token-level decisions miss broader semantic structure",
+      "next_hook": "system-level fragmentation"
+    },
+    {
+      "index": 4,
+      "move": "failure_of_prior_work",
+      "estimated_words": 85,
+      "evidence": {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "gather, sharply increases time per output token",
+        "basis": "explicit"
+      },
+      "first_sentence_function": "states the dynamic-eviction systems cost",
+      "previous_question": "can non-contiguous eviction run efficiently?",
+      "current_answer": "gather compaction contends for HBM bandwidth",
+      "next_hook": "a joint algorithm-system question"
+    },
+    {
+      "index": 5,
+      "move": "missing_insight",
+      "estimated_words": 45,
+      "evidence": {
+        "page": 2,
+        "section": "1.2 Contributions",
+        "anchor": "go beyond token-level heuristics",
+        "basis": "explicit"
+      },
+      "first_sentence_function": "poses the research question",
+      "previous_question": "how to preserve critical reasoning at high compression?",
+      "current_answer": "seek a thought-level framework plus efficiency",
+      "next_hook": "four components"
+    },
+    {
+      "index": 6,
+      "move": "contribution_list",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 2,
+        "section": "1.2 Contributions",
+        "anchor": "four key components",
+        "basis": "explicit"
+      },
+      "first_sentence_function": "enumerates Thought Decomposition, TBQ, TBE, and CT",
+      "previous_question": "what concretely composes the framework?",
+      "current_answer": "four section-addressable components",
+      "next_hook": "joint headline result"
+    },
+    {
+      "index": 7,
+      "move": "result_preview",
+      "estimated_words": 50,
+      "evidence": {
+        "page": 2,
+        "section": "1.2 Contributions",
+        "anchor": "up to 5.80× higher throughput",
+        "basis": "explicit"
+      },
+      "first_sentence_function": "previews compression and system outcomes",
+      "previous_question": "what does the co-design deliver?",
+      "current_answer": "under 5% cache, lower TPOT, and higher throughput",
+      "next_hook": "Section 2 mechanism"
+    }
+  ],
+  "introduction_analysis": {
+    "move_sequence": "context → failure_of_prior_work → failure_of_prior_work → failure_of_prior_work → missing_insight → contribution_list → result_preview",
+    "move_word_shares": {
+      "context": 0.294,
+      "failure_of_prior_work": 0.427,
+      "missing_insight": 0.059,
+      "contribution_list": 0.157,
+      "result_preview": 0.065
+    },
+    "contribution_list_repeats_abstract": "yes; it adds section-addressable component decomposition",
+    "falsifiable_claims": "yes: thought decomposition, thought-adaptive precision/eviction, and CT system benefit",
+    "numeric_preview": "under 5% cache, up to 1.68× lower TPOT, up to 5.80× higher throughput",
+    "scope_boundary_in_introduction": "not_present",
+    "evidence": [
+      {
+        "page": 2,
+        "section": "1.2 Contributions",
+        "anchor": "four key components",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy",
+      "estimated_words": 55,
+      "evidence": {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "quantization, eviction, low-rank approximation, and hybrids",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "compression family and prefill versus decode phase"
+    },
+    {
+      "index": 2,
+      "move": "gap_creation",
+      "estimated_words": 66,
+      "evidence": {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "focus on the prefill phase",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "fitness for long-output LRM generation"
+    },
+    {
+      "index": 3,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 101,
+      "evidence": {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "RaaS, LazyEviction, R-KV",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "reasoning awareness versus token-level granularity"
+    },
+    {
+      "index": 4,
+      "move": "limitation_of_prior",
+      "estimated_words": 74,
+      "evidence": {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "suboptimal accuracy–efficiency trade-offs",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "critical-token preservation under high compression"
+    },
+    {
+      "index": 5,
+      "move": "limitation_of_prior",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "gather-based compaction",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "non-contiguous eviction and HBM cost"
+    },
+    {
+      "index": 6,
+      "move": "taxonomy",
+      "estimated_words": 980,
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "Compression approaches generally fall into four categories",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "eviction, quantization, merging, low-rank, long-reasoning, and systems extensions"
+    }
+  ],
+  "related_work_analysis": {
+    "locations": "standalone §1.1 in main text and Appendix B",
+    "main_text_estimated_words": 320,
+    "main_text_share": 0.0624,
+    "main_text_citation_clusters": 3,
+    "appendix_taxonomy_clusters": 7,
+    "avoids_method_repetition": "main text creates the phase/granularity/system gap; Appendix B provides the expanded taxonomy",
+    "citations_reused_as_argument": "yes: H2O, R-KV, RaaS, LazyEviction, KIVI, PM-KVQ, and PagedAttention recur in §§5–6",
+    "evidence": [
+      {
+        "page": 2,
+        "section": "1.1 Related Work",
+        "anchor": "For additional details refer §B",
+        "basis": "explicit"
+      },
+      {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "Extended Related Works",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "state_problem",
+      "estimated_words": 128,
+      "evidence": {
+        "page": 3,
+        "section": "2 Why Quantization+Eviction?",
+        "anchor": "Accuracy-compression tradeoff",
+        "basis": "explicit"
+      },
+      "transition_to": "derive"
+    },
+    {
+      "index": 2,
+      "move": "derive",
+      "estimated_words": 132,
+      "evidence": {
+        "page": 3,
+        "section": "2 Why Quantization+Eviction?",
+        "anchor": "Pareto-optimal frontier",
+        "basis": "explicit"
+      },
+      "transition_to": "setup_notation"
+    },
+    {
+      "index": 3,
+      "move": "setup_notation",
+      "estimated_words": 165,
+      "evidence": {
+        "page": 3,
+        "section": "3.1 Attention Sparsity",
+        "anchor": "Definition 1",
+        "basis": "explicit"
+      },
+      "transition_to": "connect_to_prediction"
+    },
+    {
+      "index": 4,
+      "move": "connect_to_prediction",
+      "estimated_words": 154,
+      "evidence": {
+        "page": 3,
+        "section": "3.1 Attention Sparsity",
+        "anchor": "Observation 1a",
+        "basis": "explicit"
+      },
+      "transition_to": "give_intuition"
+    },
+    {
+      "index": 5,
+      "move": "connect_to_prediction",
+      "estimated_words": 180,
+      "evidence": {
+        "page": 4,
+        "section": "3.2 LRM Thought Importance",
+        "anchor": "Observation 2",
+        "basis": "explicit"
+      },
+      "transition_to": "connect_to_prediction"
+    },
+    {
+      "index": 6,
+      "move": "connect_to_prediction",
+      "estimated_words": 180,
+      "evidence": {
+        "page": 4,
+        "section": "3.3 LRM Thought Association",
+        "anchor": "Observation 3",
+        "basis": "explicit"
+      },
+      "transition_to": "define_component"
+    },
+    {
+      "index": 7,
+      "move": "define_component",
+      "estimated_words": 235,
+      "evidence": {
+        "page": 4,
+        "section": "4.1 Attention Sparsity Guided Construction of phi",
+        "anchor": "Offline Calibration",
+        "basis": "explicit"
+      },
+      "transition_to": "instantiate_algorithm"
+    },
+    {
+      "index": 8,
+      "move": "instantiate_algorithm",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 5,
+        "section": "4.1 Attention Sparsity Guided Construction of phi",
+        "anchor": "refresh interval of τ = 128",
+        "basis": "explicit"
+      },
+      "transition_to": "define_component"
+    },
+    {
+      "index": 9,
+      "move": "define_component",
+      "estimated_words": 360,
+      "evidence": {
+        "page": 5,
+        "section": "4.2 Think Before You Quantize",
+        "anchor": "Problem Formulation 1",
+        "basis": "explicit"
+      },
+      "transition_to": "define_component"
+    },
+    {
+      "index": 10,
+      "move": "define_component",
+      "estimated_words": 410,
+      "evidence": {
+        "page": 5,
+        "section": "4.3 Think Before You Evict",
+        "anchor": "Problem Formulation 2",
+        "basis": "explicit"
+      },
+      "transition_to": "instantiate_algorithm"
+    },
+    {
+      "index": 11,
+      "move": "instantiate_algorithm",
+      "estimated_words": 132,
+      "evidence": {
+        "page": 6,
+        "section": "4.3 Think Before You Evict",
+        "anchor": "K-means clustering",
+        "basis": "explicit"
+      },
+      "transition_to": "state_problem"
+    },
+    {
+      "index": 12,
+      "move": "state_problem",
+      "estimated_words": 260,
+      "evidence": {
+        "page": 6,
+        "section": "5.1 The Cost of Gather-Based Compaction",
+        "anchor": "Observation 4a",
+        "basis": "explicit"
+      },
+      "transition_to": "define_component"
+    },
+    {
+      "index": 13,
+      "move": "define_component",
+      "estimated_words": 260,
+      "evidence": {
+        "page": 6,
+        "section": "5.2 Continuous Thinking",
+        "anchor": "Block Table",
+        "basis": "explicit"
+      },
+      "transition_to": "connect_to_experiment"
+    },
+    {
+      "index": 14,
+      "move": "connect_to_experiment",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 7,
+        "section": "5.2 Continuous Thinking",
+        "anchor": "seamless integration with serving frameworks",
+        "basis": "explicit"
+      },
+      "transition_to": "evaluation"
+    }
+  ],
+  "method_theory_analysis": {
+    "formal_objects": "M, D, T, L*, theta, tau, B, rho, psi, k, pi, R, per-layer KV cache, block-table fields, and masks",
+    "components_and_prior_problem": [
+      {
+        "component": "Thought Decomposition",
+        "solves": "token-level heuristics lack thought-level semantic structure",
+        "evidence": {
+          "page": 4,
+          "section": "4.1 Attention Sparsity Guided Construction of phi",
+          "anchor": "dynamically identify thought types",
+          "basis": "explicit"
+        }
+      },
+      {
+        "component": "TBQ",
+        "solves": "uniform quantization ignores thought importance",
+        "evidence": {
+          "page": 5,
+          "section": "4.2 Think Before You Quantize",
+          "anchor": "assign R, E, and T",
+          "basis": "explicit"
+        }
+      },
+      {
+        "component": "TBE",
+        "solves": "token eviction misses trajectory changes and evicts too finely",
+        "evidence": {
+          "page": 6,
+          "section": "4.3 Think Before You Evict",
+          "anchor": "proactive eviction scheme",
+          "basis": "explicit"
+        }
+      },
+      {
+        "component": "CT",
+        "solves": "non-contiguous eviction requires costly gather compaction",
+        "evidence": {
+          "page": 6,
+          "section": "5.2 Continuous Thinking",
+          "anchor": "in-place memory reuse",
+          "basis": "explicit"
+        }
+      }
+    ],
+    "formal_relation_count_approx": 26,
+    "displayed_equation_count_approx": 14,
+    "numbered_equation_count": 4,
+    "theorem_count": 1,
+    "lemma_count": 0,
+    "proposition_count": 0,
+    "corollary_count": 0,
+    "proof_location": "Appendix C.3, pp. 19–20",
+    "algorithm_count": 2,
+    "algorithm_invariant": "Calibration retains layers with the target number of KDE modes across prompts; CT reuses only reclaimable same-thought slots.",
+    "complexity_statement": "not_present: no asymptotic complexity statement is provided for the full ThinKV algorithm or CT kernel.",
+    "method_figure_count": 2,
+    "method_table_count": 0,
+    "paragraph_action_sequence": "state_problem → derive → setup_notation → connect_to_prediction → define_component → instantiate_algorithm → contrast_alternative → connect_to_experiment",
+    "theory_role_summary": "Observations are empirical core-chain evidence; Theorem 1 is a local CT guarantee; Appendix background equations are explanatory.",
+    "evidence": [
+      {
+        "page": 19,
+        "section": "Appendix C.3",
+        "anchor": "Theorem 1",
+        "basis": "explicit"
+      },
+      {
+        "page": 20,
+        "section": "Appendix D.1",
+        "anchor": "Algorithm 1",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "introduction",
+      "page": 1,
+      "purpose": "Contrasts existing token-level compression with ThinKV and plots accuracy against TPOT for GPT-OSS-20B.",
+      "evidence": {
+        "page": 1,
+        "section": "Introduction",
+        "anchor": "Figure 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "theory",
+      "page": 3,
+      "purpose": "Shows quantization, eviction, and hybrid accuracy-compression trade-offs.",
+      "evidence": {
+        "page": 3,
+        "section": "2 Why Quantization+Eviction?",
+        "anchor": "Figure 2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "theory",
+      "page": 3,
+      "purpose": "Shows layer-wise attention sparsity versus decode steps for two LRMs.",
+      "evidence": {
+        "page": 3,
+        "section": "3.1 Attention Sparsity",
+        "anchor": "Figure 3",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "theory",
+      "page": 4,
+      "purpose": "Boxplots counterfactual thought importance on AIME and LiveCodeBench.",
+      "evidence": {
+        "page": 4,
+        "section": "3.2 LRM Thought Importance",
+        "anchor": "Figure 4",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "theory",
+      "page": 4,
+      "purpose": "Heatmap visualizes directed pairwise thought association.",
+      "evidence": {
+        "page": 4,
+        "section": "3.3 LRM Thought Association",
+        "anchor": "Figure 5",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "method",
+      "page": 5,
+      "purpose": "Walks through TBQ, TBE, logical/physical blocks, and CT metadata.",
+      "evidence": {
+        "page": 5,
+        "section": "4 ThinKV Methodology",
+        "anchor": "Figure 6",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 7",
+      "module": "method",
+      "page": 6,
+      "purpose": "Diagnoses sequential and overlapped gather costs by batch size.",
+      "evidence": {
+        "page": 6,
+        "section": "5.1 The Cost of Gather-Based Compaction",
+        "anchor": "Figure 7",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 8",
+      "module": "results",
+      "page": 7,
+      "purpose": "Compares pass@1 accuracy across models, tasks, token budgets, and FullKV-memory shares.",
+      "evidence": {
+        "page": 7,
+        "section": "6.2 Main Results",
+        "anchor": "Figure 8",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 8,
+      "purpose": "Compares ThinKV with KIVI and PM-KVQ accuracy for R1-Qwen-14B and QwQ-32B.",
+      "evidence": {
+        "page": 8,
+        "section": "6.2 Main Results",
+        "anchor": "Table 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "results",
+      "page": 8,
+      "purpose": "Reports memory footprint, max batch, and A100/GH200 throughput, including iso-batch control.",
+      "evidence": {
+        "page": 8,
+        "section": "6.2 Main Results",
+        "anchor": "Table 2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "results",
+      "page": 8,
+      "purpose": "Compares FullKV and ThinKV max batch and throughput at a 2048-token budget.",
+      "evidence": {
+        "page": 8,
+        "section": "6.2 Main Results",
+        "anchor": "Table 3",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 9",
+      "module": "results",
+      "page": 9,
+      "purpose": "Plots vLLM system throughput against user latency under concurrent requests.",
+      "evidence": {
+        "page": 9,
+        "section": "6.2 Main Results",
+        "anchor": "Figure 9",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 10",
+      "module": "ablation",
+      "page": 9,
+      "purpose": "Six ablations cover attention-token recall, eviction, refresh, length, block size, and thought mix.",
+      "evidence": {
+        "page": 9,
+        "section": "6.3 Discussions and Ablations",
+        "anchor": "Figure 10",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "ablation",
+      "page": 9,
+      "purpose": "Separates FullKV, TBQ, TBE budgets, and ThinKV on accuracy, throughput, and latency.",
+      "evidence": {
+        "page": 9,
+        "section": "6.3 Discussions and Ablations",
+        "anchor": "Table 4",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "ablation",
+      "page": 10,
+      "purpose": "Reports per-layer operation time breakdown and decode-step call rate.",
+      "evidence": {
+        "page": 10,
+        "section": "6.3 Discussions and Ablations",
+        "anchor": "Table 5",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 11",
+      "module": "ablation",
+      "page": 10,
+      "purpose": "Ablates selected layers, thought types, minimum retention, and precision assignment.",
+      "evidence": {
+        "page": 10,
+        "section": "6.3 Discussions and Ablations",
+        "anchor": "Figure 11",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 6",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "Defines notation used in the paper.",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Table 6",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 12",
+      "module": "appendix",
+      "page": 21,
+      "purpose": "Illustrates K-means representative-key eviction.",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix D.4",
+        "anchor": "Figure 12",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 7",
+      "module": "appendix",
+      "page": 21,
+      "purpose": "Lists illustrative keywords for reasoning, transition, and execution thoughts.",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix D.2",
+        "anchor": "Table 7",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 1",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "Specifies offline calibration of layer subset and sparsity thresholds.",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix D.1",
+        "anchor": "Algorithm 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Listing 1",
+      "module": "appendix",
+      "page": 23,
+      "purpose": "Gives the ThinKV generation loop with refresh, TBQ, TBE, and attention.",
+      "evidence": {
+        "page": 23,
+        "section": "Appendix D.5",
+        "anchor": "Listing 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 13",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "Shows attention maps for the three thought types.",
+      "evidence": {
+        "page": 24,
+        "section": "Appendix E.3",
+        "anchor": "Figure 13",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 14",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "Shows additional layer-wise sparsity traces across models and datasets.",
+      "evidence": {
+        "page": 25,
+        "section": "Appendix E.4",
+        "anchor": "Figure 14",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 15",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "Shows additional pairwise thought-association maps.",
+      "evidence": {
+        "page": 25,
+        "section": "Appendix E.5",
+        "anchor": "Figure 15",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 16",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "Shows K/V quantization sensitivity by thought type.",
+      "evidence": {
+        "page": 26,
+        "section": "Appendix E.9",
+        "anchor": "Figure 16",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 8",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "Compares MobileLLM-R1-950M GSM8K compression and accuracy.",
+      "evidence": {
+        "page": 26,
+        "section": "Appendix E.6",
+        "anchor": "Table 8",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 9",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "Compares ThinKV and FullKV by GPT-OSS-120B reasoning effort.",
+      "evidence": {
+        "page": 26,
+        "section": "Appendix E.7",
+        "anchor": "Table 9",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 10",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "Ablates NVFP4/ternary against INT4/INT2 data formats.",
+      "evidence": {
+        "page": 26,
+        "section": "Appendix E.8",
+        "anchor": "Table 10",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 11",
+      "module": "appendix",
+      "page": 27,
+      "purpose": "Compares LLM long-response accuracy under cache budgets.",
+      "evidence": {
+        "page": 27,
+        "section": "Appendix E.10",
+        "anchor": "Table 11",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 17",
+      "module": "appendix",
+      "page": 27,
+      "purpose": "Plots Pareto accuracy against KV-cache size for R1-Llama-70B.",
+      "evidence": {
+        "page": 27,
+        "section": "Appendix E.11",
+        "anchor": "Figure 17",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 12",
+      "module": "appendix",
+      "page": 27,
+      "purpose": "Reports vLLM throughput at batch sizes 8 and 256.",
+      "evidence": {
+        "page": 27,
+        "section": "Appendix E.12",
+        "anchor": "Table 12",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 13",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "Compares Qwen3 thinking, non-thinking, and ThinKV-enabled thinking.",
+      "evidence": {
+        "page": 28,
+        "section": "Appendix E.13",
+        "anchor": "Table 13",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 18",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "Breaks latency into attention, MLP, TBE, and thought refresh across batch sizes.",
+      "evidence": {
+        "page": 28,
+        "section": "Appendix E.14",
+        "anchor": "Figure 18",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 14",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "Compares time-per-request, accuracy, and Intelligence/Watt.",
+      "evidence": {
+        "page": 28,
+        "section": "Appendix E.15",
+        "anchor": "Table 14",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 15",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "Ablates prefill SnapKV plus decode ThinKV hybrid settings.",
+      "evidence": {
+        "page": 28,
+        "section": "Appendix E.16",
+        "anchor": "Table 15",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "displayed_equation",
+      "label": "Definition 1: thought decomposition",
+      "module": "theory",
+      "page": 3,
+      "role": "core_chain",
+      "evidence": {
+        "page": 3,
+        "section": "3.1 Attention Sparsity",
+        "anchor": "Definition 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Problem Formulation 1: thought-adaptive quantization",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "4.2 Think Before You Quantize",
+        "anchor": "Problem Formulation 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Problem Formulation 2: thought-adaptive eviction",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "4.3 Think Before You Evict",
+        "anchor": "Problem Formulation 2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "K-means retention rule",
+      "module": "method",
+      "page": 6,
+      "role": "explanation",
+      "evidence": {
+        "page": 6,
+        "section": "4.3 Think Before You Evict",
+        "anchor": "K= min(|S|,R)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "pass@1 aggregation",
+      "module": "experimental_design",
+      "page": 8,
+      "role": "explanation",
+      "evidence": {
+        "page": 8,
+        "section": "6.1 Experimental Setup",
+        "anchor": "pass@1 = 1/k Σ p_i",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (1): MHA attention",
+      "module": "appendix",
+      "page": 19,
+      "role": "explanation",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C.2",
+        "anchor": "(1)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (2): GQA per-query score",
+      "module": "appendix",
+      "page": 19,
+      "role": "explanation",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C.2",
+        "anchor": "(2)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (3): GQA max pooling",
+      "module": "appendix",
+      "page": 19,
+      "role": "explanation",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C.2",
+        "anchor": "(3)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (4): GQA renormalization",
+      "module": "appendix",
+      "page": 19,
+      "role": "explanation",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C.2",
+        "anchor": "(4)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 1: KV Permutation Invariance of Attention",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C.3",
+        "anchor": "Theorem 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 1",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C.3",
+        "anchor": "Equivariance Property",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Group quantization relation",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix C.4",
+        "anchor": "X-hat_Gi = round",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "Research question and prelisted hypotheses",
+      "status": "observed",
+      "description": "The introduction asks whether a framework can preserve reasoning-critical information under high compression while maximizing efficiency; it does not list preregistered hypotheses.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1.2 Contributions",
+          "anchor": "Can a KV cache compression framework",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Models and benchmarks",
+      "status": "observed",
+      "description": "Evaluates DeepSeek-R1-Distill, GPT-OSS, QwQ, AceReason-Nemotron, and MobileLLM-R1 on AIME, MATH-500, GSM8K, and LiveCodeBench.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "6.1 Experimental Setup",
+          "anchor": "Models and Datasets",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Calibration data",
+      "status": "observed",
+      "description": "Randomly samples 100 prompts from s1K for calibration.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "6.1 Experimental Setup",
+          "anchor": "randomly sample 100 prompts",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Fixed hyperparameters",
+      "status": "observed",
+      "description": "Uses |T|=3, |L*|=4, tau=128, group size 16, R={64,32,16,8,4}, and CT block size 8.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "6.1 Experimental Setup",
+          "anchor": "Hyperparameters",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Baselines",
+      "status": "observed",
+      "description": "Uses H2O, RaaS, R-KV, LazyEviction, KIVI, and PM-KVQ; system results also split R-KV sequential and overlapped gather.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "6.1 Experimental Setup",
+          "anchor": "Baselines",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Hardware and generation budget",
+      "status": "observed",
+      "description": "Runs on one NVIDIA A100 80GB GPU and one NVIDIA GH200 Superchip, with maximum generation length 32K tokens.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "6.1 Experimental Setup",
+          "anchor": "1×NVIDIA A100 80GB",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Accuracy aggregation",
+      "status": "observed",
+      "description": "For each question, generates 8 independent responses and computes pass@1 as the mean correctness indicator.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.1 Experimental Setup",
+          "anchor": "8 independent responses",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Performance aggregation",
+      "status": "observed",
+      "description": "Throughput and latency are averages across 3 independent runs.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.1 Experimental Setup",
+          "anchor": "averaging across 3 independent runs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Matched controls",
+      "status": "observed",
+      "description": "Reports max-batch results and an iso-batch, iso-compression comparison with ThinKV without TBQ.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "Iso-batch, Iso-compression comparison",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Random seeds",
+      "status": "not_present",
+      "description": "The read PDF does not state random-seed values or a seed policy.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "6.1 Experimental Setup",
+          "anchor": "Evaluation Setup",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Implementation reproducibility granularity",
+      "status": "observed",
+      "description": "Appendix E.2 identifies Transformers, a modified Triton PagedAttention implementation, vLLM v1, and the touched components, but gives no code URL in the PDF.",
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix E.2",
+          "anchor": "proof of concept",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "experimental_design_analysis": {
+    "data_leakage_control": "not_present",
+    "failure_criterion": "Complete eviction minR=0 and loss of reasoning trajectory are treated as a failure case, but no global preregistered criterion is stated.",
+    "main_to_appendix_split": "Main text provides models, tasks, baselines, hardware, core hyperparameters and aggregation; Appendix E provides dataset construction, implementation integration, and additional settings.",
+    "order_alignment": "Main results follow the introduction contributions: accuracy, system throughput/latency, then component and hyperparameter ablations.",
+    "evidence": [
+      {
+        "page": 7,
+        "section": "6.1 Experimental Setup",
+        "anchor": "Refer Appendix E",
+        "basis": "explicit"
+      },
+      {
+        "page": 9,
+        "section": "6.3 Discussions and Ablations",
+        "anchor": "Impact of ThinKV Components",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "results_statistics_analysis": {
+    "aggregation_unit_and_denominator": "Accuracy is per question over k=8 independent responses; dynamic serving uses B concurrent requests; throughput/latency are averaged across 3 runs.",
+    "central_and_dispersion": "Means/point estimates are reported; dispersion, intervals, and error bars are not reported.",
+    "seed_task_dataset_levels": "Task/dataset/model levels are named; seed values are not present.",
+    "decision_quantities": "pass@1 accuracy, cache memory share/compression, token budget, TPOT, tokens/s, request/s, latency, max batch, Top-10 recall, and operation call rate.",
+    "statistical_tests": "not_present",
+    "uncertainty_reporting": "not_present",
+    "caption_self_containment": "mostly observed: captions name objects and setting, but main text supplies many interpretation and aggregation details.",
+    "significance_vs_mechanism": "No formal significance claims are made; mechanism evidence is separated into sparsity/association/ablation figures and system diagnostics.",
+    "evidence": [
+      {
+        "page": 8,
+        "section": "6.1 Experimental Setup",
+        "anchor": "averaging across 3 independent runs",
+        "basis": "explicit"
+      },
+      {
+        "page": 9,
+        "section": "6.3 Discussions and Ablations",
+        "anchor": "Top-10 attention scores",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "result_inventory": [
+    {
+      "claim": "ThinKV reaches competitive accuracy at substantially smaller KV memory shares than eviction baselines on the Figure 8 grid.",
+      "value": "At 1024 tokens: <3.67% of FullKV memory; other methods require >12% for similar accuracy. On AIME, R1-Llama-8B and AceReason-14B have <4% drop at about 1.3% cache.",
+      "comparison": "H2O, RaaS, R-KV, LazyEviction, and FullKV across AIME, LiveCodeBench, and MATH-500.",
+      "statistical_method": "Pass@1 mean over 8 independent responses per question; no interval or test reported.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "6.2 Main Results",
+          "anchor": "Figure 8",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "< 3.67% of FullKV memory",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "Hybrid, thought-adaptive compression preserves important reasoning information.",
+      "alternative_explanation": "Model-, budget-, and task-specific curves are not a single fully matched setting.",
+      "treatment_of_alternative": "Uses a common budget grid and multiple model/task panels but reports no uncertainty bands."
+    },
+    {
+      "claim": "ThinKV loses less accuracy than uniform/progressive quantization baselines at similar reported average precision.",
+      "value": "R1-Qwen-14B AIME: FullKV 53.33, KIVI 40.00, PM-KVQ 43.33, ThinKV 50.00; LiveCodeBench: 47.90, 34.56, 41.97, 45.84.",
+      "comparison": "KIVI and PM-KVQ on R1-Qwen-14B; Table 1 also contains QwQ-32B.",
+      "statistical_method": "Accuracy point estimates; no interval or test reported.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "Table 1",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "TBQ gives precision according to thought-type importance.",
+      "alternative_explanation": "Precision and eviction budget differ by method.",
+      "treatment_of_alternative": "Table reports bit width and ThinKV k=1024, but does not fully normalize every method parameter."
+    },
+    {
+      "claim": "ThinKV increases throughput on A100 and GH200 at a 1024-token budget.",
+      "value": "A100: 8,412.2 tokens/s; GH200: 10,578.5 tokens/s; claimed up to 5.8× over R-KV sequential and 3.6× over R-KV overlapped.",
+      "comparison": "FullKV, R-KV sequential, and R-KV overlapped on R1-Llama-8B.",
+      "statistical_method": "Mean throughput across 3 independent runs; maximum feasible batch reported.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "Table 2",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "up to 5.8× over R-KV",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "Higher compression permits larger batch inference and CT avoids gather compaction.",
+      "alternative_explanation": "Max-batch capacity can drive a substantial part of the gain.",
+      "treatment_of_alternative": "Adds iso-batch, iso-compression rows at batch 256."
+    },
+    {
+      "claim": "At a conservative 2048-token budget, ThinKV allows a much larger batch with the same reported accuracy-preserving intent.",
+      "value": "FullKV: max batch 13 and 297.5 tokens/s; ThinKV: max batch 290 and 4,688.4 tokens/s; stated 15.8× throughput gain.",
+      "comparison": "FullKV and ThinKV on R1-Llama-8B, A100-80GB, 32K generation.",
+      "statistical_method": "Throughput point estimate; no interval reported.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "Table 3",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "Memory reduction expands the feasible batch size.",
+      "alternative_explanation": "This is one model/hardware/budget configuration.",
+      "treatment_of_alternative": "The main text separately shows multiple models in Figure 8."
+    },
+    {
+      "claim": "ThinKV improves concurrent serving latency and request throughput.",
+      "value": "At B=8, up to 58% lower latency; at B=256, 38% higher request/s and 27% lower latency than R-KV.",
+      "comparison": "FullKV and R-KV on randomly sampled AIME prompts, R1-Llama-8B, A100-80GB.",
+      "statistical_method": "Average end-to-end latency and system request/s; no dispersion reported.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "6.2 Main Results",
+          "anchor": "Figure 9",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "6.2 Main Results",
+          "anchor": "58% lower latency",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "Compression supports greater active-user concurrency.",
+      "alternative_explanation": "Prompt sampling and concurrent load distribution may affect the curve.",
+      "treatment_of_alternative": "Uses iso-batch comparisons at B=8 and B=256."
+    },
+    {
+      "claim": "The method extends to a lightweight LRM on GSM8K.",
+      "value": "MobileLLM-R1-950M: ThinKV 24× compression and 60.1 GSM8K; R-KV 6× and 60.8; FullKV 67.5.",
+      "comparison": "FullKV and R-KV at the stated MobileLLM setting.",
+      "statistical_method": "Accuracy point estimates; no interval reported.",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "Appendix E.6",
+          "anchor": "Table 8",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "Thought-adaptive compression sustains quality at high compression.",
+      "alternative_explanation": "The accuracy is below FullKV.",
+      "treatment_of_alternative": "Reports both FullKV and R-KV values in the table."
+    },
+    {
+      "claim": "The method tracks FullKV on GPT-OSS-120B across two reasoning-effort settings.",
+      "value": "High: 67.5 versus 69.4; medium: 59.3 versus 61.8.",
+      "comparison": "ThinKV versus FullKV at k=1024 on LiveCodeBench.",
+      "statistical_method": "Accuracy point estimates; no interval reported.",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "Appendix E.7",
+          "anchor": "Table 9",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "ThinKV sustains accuracy despite longer high-effort generations.",
+      "alternative_explanation": "Drops of 1.9 and 2.5 points remain.",
+      "treatment_of_alternative": "States the point drops directly."
+    },
+    {
+      "claim": "ThinKV is reported to generalize to non-reasoning LLM long responses with |T|=1.",
+      "value": "LongWriter: Llama-8B 67.9 at 3.75% cache versus H2O 68.1 at 5%; Phi-14B 63.8 versus 61.5.",
+      "comparison": "FullKV, H2O (5%), and ThinKV (3.75%) on LongWriter.",
+      "statistical_method": "LLM-based judge, Mistral-Large-123B, across multiple criteria; no uncertainty reported.",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "Appendix E.10",
+          "anchor": "Table 11",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "Appendix E.10",
+          "anchor": "LLM-based judge",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "Hybrid compression can operate with a single token category.",
+      "alternative_explanation": "The evaluator is itself an LLM judge and categories no longer match LRM thoughts.",
+      "treatment_of_alternative": "The section states |T|=1 and the judge choice but no further evaluator analysis."
+    },
+    {
+      "claim": "vLLM integration preserves a throughput advantage at low and high batch sizes.",
+      "value": "Batch 8: ThinKV 346.9 versus FullKV 228.5 and R-KV overlapped 331.9; batch 256: 6,622.4 versus 4,883.3.",
+      "comparison": "FullKV and R-KV overlapped in vLLM on A100-80GB.",
+      "statistical_method": "Throughput point estimates; no interval reported.",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "Appendix E.12",
+          "anchor": "Table 12",
+          "basis": "explicit"
+        }
+      ],
+      "author_explanation": "Eliminating gather and obtaining higher compression improves scalability.",
+      "alternative_explanation": "Appendix E.2 labels the integration a proof of concept targeting vLLM v1.",
+      "treatment_of_alternative": "Reports the framework version and implementation scope."
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "TBQ, TBE, and hybrid component ablation",
+      "status": "observed",
+      "description": "Table 4 separates accuracy, normalized throughput, and latency: TBQ 77.8 accuracy but 1.1× throughput; TBE 512 has 62.5 accuracy and 1.78× throughput; ThinKV has 76.4, 1.51×, and 0.42×.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "Table 4",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Thought-adaptive versus token-level heuristic",
+      "status": "observed",
+      "description": "Figure 10(a) uses recall of Top-10 attention-score tokens to compare ThinKV, R-KV, and LazyEviction.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "Figure 10(a)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Generation-length inflation",
+      "status": "observed",
+      "description": "Figure 10(d) shows pure quantization can inflate generation length up to 5.1×; ThinKV is said to avoid this behavior.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "up to 5.1×",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Refresh-rate sensitivity",
+      "status": "observed",
+      "description": "Figure 10(c) varies tau on GPT-OSS-20B LiveCodeBench; tau=128 is chosen as the accuracy-overhead trade-off.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "τ = 128",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Selected-layer and thought-type sensitivity",
+      "status": "observed",
+      "description": "Figure 11(a) varies |L*|, |T|, and minR; |L*|=4 and |T|=3 are selected.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "Figure 11(a)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Minimum-retention failure case",
+      "status": "observed",
+      "description": "Complete eviction minR=0 severely degrades accuracy and causes endless reasoning loops; minR=4 is retained.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "minR = 0",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Precision assignment",
+      "status": "observed",
+      "description": "Figure 11(b) varies R/E/T precision and motivates R4E4T2.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "R4E4T2",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Eviction and gather overhead",
+      "status": "observed",
+      "description": "Table 5 contrasts ThinKV 4.59% TBE call rate with R-KV 82.93% eviction/gather call rate.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "Table 5",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Block size and thought distribution",
+      "status": "observed",
+      "description": "Figure 10(e) varies block size; Figure 10(f) shows thought-type mix by dataset.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "Figure 10(e)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Data-format ablation",
+      "status": "observed",
+      "description": "Table 10 replaces NVFP4/ternary with INT4/INT2 and reports lower AIME and LiveCodeBench accuracy.",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "Appendix E.8",
+          "anchor": "Table 10",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Quantization sensitivity by K/V and thought type",
+      "status": "observed",
+      "description": "Figure 16 varies INT precision for one K or V thought type while fixing all others at 8-bit.",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "Appendix E.9",
+          "anchor": "Figure 16",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_analysis": {
+    "main_body_share_estimate": 0.1442,
+    "main_body_visual_count": 4,
+    "identification_goals": [
+      "component contribution",
+      "mechanism recall",
+      "generation-length alternative",
+      "hyperparameter sensitivity",
+      "format sensitivity",
+      "system overhead"
+    ],
+    "negative_results": "TBQ alone inflates generation length; low TBE budget lowers accuracy; minR=0 leads to loops; INT formats reduce accuracy.",
+    "evidence": [
+      {
+        "page": 9,
+        "section": "6.3 Discussions and Ablations",
+        "anchor": "substantial generation-length inflation",
+        "basis": "explicit"
+      },
+      {
+        "page": 10,
+        "section": "6.3 Discussions and Ablations",
+        "anchor": "minR = 0",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "claim_closure": [
+    {
+      "claim": "Attention sparsity supports a three-type thought decomposition.",
+      "origin": "Introduction contribution: Thought Decomposition",
+      "status": "partially_closed",
+      "method_response": "Definition 1 and KDE thresholds operationalize phi; decode refresh uses selected layers.",
+      "evidence_response": "Figures 3 and 14 plus Figure 11(a) show the empirical structure and |T| ablation.",
+      "conclusion_response": "Conclusion restates decomposition into reasoning, execution, and transition segments.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1.2 Contributions",
+          "anchor": "Thought Decomposition",
+          "basis": "explicit"
+        },
+        {
+          "page": 3,
+          "section": "3.1 Attention Sparsity",
+          "anchor": "Observation 1a",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "|T| = 3",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix E.4",
+          "anchor": "ambiguous or poorly defined boundaries",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Thought importance should control KV precision.",
+      "origin": "Introduction contribution: Think Before you Quantize",
+      "status": "closed",
+      "method_response": "TBQ maps R/E/T importance to precision formats.",
+      "evidence_response": "Figure 4, Figure 11(b), Figure 16, and Table 10 connect importance/sensitivity to formats and accuracy.",
+      "conclusion_response": "Conclusion says thought-aware quantization sustains accuracy under high compression.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1.2 Contributions",
+          "anchor": "Think Before you Quantize",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "4.2 Think Before You Quantize",
+          "anchor": "ρ(R) = 2",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix E.9",
+          "anchor": "Figure 16",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "7 Conclusion",
+          "anchor": "thought-aware quantization",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Transition-thought dynamics justify progressive segment-level eviction.",
+      "origin": "Introduction contribution: Think Before You Evict",
+      "status": "partially_closed",
+      "method_response": "TBE uses transition thought ct and an annealing retention schedule.",
+      "evidence_response": "Figure 5 presents associations; Figure 10(b) and Table 5 present eviction behavior and call rate.",
+      "conclusion_response": "Conclusion includes thought-aware eviction in the mechanism summary.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1.2 Contributions",
+          "anchor": "Think Before You Evict",
+          "basis": "explicit"
+        },
+        {
+          "page": 4,
+          "section": "3.3 LRM Thought Association",
+          "anchor": "Observation 3",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "4.3 Think Before You Evict",
+          "anchor": "progressively shrunk",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "4.59% compared to R-KV",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "CT avoids expensive compaction during non-contiguous eviction.",
+      "origin": "Introduction contribution: Continuous Thinking",
+      "status": "closed",
+      "method_response": "CT soft-marks evictions and reuses same-thought physical slots through masks and start indices.",
+      "evidence_response": "Figure 7 measures gather cost; Theorem 1 explains no reordering; Tables 2, 5, and 12 provide system comparisons.",
+      "conclusion_response": "Conclusion says CT manages memory without costly compactions.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1.2 Contributions",
+          "anchor": "Continuous Thinking",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "5.2 Continuous Thinking",
+          "anchor": "soft-marked in the eviction mask",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix C.3",
+          "anchor": "Theorem 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "Table 2",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ThinKV delivers near-lossless accuracy with under 5% original KV cache and up to 5.8× throughput.",
+      "origin": "Abstract and Introduction result preview",
+      "status": "partially_closed",
+      "method_response": "Combines thought decomposition, TBQ, TBE, and CT.",
+      "evidence_response": "Figure 8, Tables 1–3, Figure 9, and Table 4 provide task, baseline, and control evidence.",
+      "conclusion_response": "Conclusion repeats <5% cache and up to 5.8× throughput.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "less than 5%",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "Figure 8",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "Table 2",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "7 Conclusion",
+          "anchor": "up to 5.8× throughput",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "Appendix table of contents",
+      "category": "other",
+      "start_page": 16,
+      "end_page": 16,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix",
+          "anchor": "D Supplementary Details on ThinKV",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A Overview of Mathematic Notation",
+      "category": "other",
+      "start_page": 17,
+      "end_page": 17,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix A",
+          "anchor": "Table 6",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "B Extended Related Works",
+      "category": "other",
+      "start_page": 17,
+      "end_page": 18,
+      "main_text_calls": [
+        "p. 2, §1.1: “For additional details refer §B.”"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix B",
+          "anchor": "Extended Related Works",
+          "basis": "explicit"
+        },
+        {
+          "page": 2,
+          "section": "1.1 Related Work",
+          "anchor": "refer §B",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "C Supplementary Background",
+      "category": "extended_method",
+      "start_page": 18,
+      "end_page": 21,
+      "main_text_calls": [
+        "p. 7, §5.2: “attention is permutation-invariant (§C.3)”"
+      ],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix C",
+          "anchor": "Supplementary Background",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "5.2 Continuous Thinking",
+          "anchor": "permutation-invariant (§C.3)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "D Supplementary Details on ThinKV",
+      "category": "implementation_detail",
+      "start_page": 21,
+      "end_page": 24,
+      "main_text_calls": [
+        "p. 4, §4.1: “Refer §D.1 for algorithm.”",
+        "p. 5, §4.2: “see §D.3”",
+        "p. 6, §4.3: “provided in §D.4”",
+        "p. 6, §5.2: “see §D.6”"
+      ],
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix D",
+          "anchor": "Supplementary Details on ThinKV",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "E Extended Evaluations",
+      "category": "additional_result",
+      "start_page": 24,
+      "end_page": 33,
+      "main_text_calls": [
+        "p. 8, §6.1: “Refer Appendix E for additional details.”",
+        "p. 4, §3.1: “ambiguous boundaries (§E.4)”",
+        "p. 4, §3.2: “example in §E.17”"
+      ],
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Appendix E",
+          "anchor": "Extended Evaluations",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "6.1 Experimental Setup",
+          "anchor": "Refer Appendix E",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "F Limitations",
+      "category": "other",
+      "start_page": 34,
+      "end_page": 34,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 34,
+          "section": "Appendix F",
+          "anchor": "LIMITATIONS",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "G Impact Statement",
+      "category": "broader_impact",
+      "start_page": 34,
+      "end_page": 34,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 34,
+          "section": "Appendix G",
+          "anchor": "IMPACT STATEMENT",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "H LLM Usage Statement",
+      "category": "other",
+      "start_page": 35,
+      "end_page": 35,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 35,
+          "section": "Appendix H",
+          "anchor": "LLM USAGE STATEMENT",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_analysis": {
+    "appendix_to_main_length_ratio_approx": 1.8,
+    "claims_depending_on_appendix": "The exact calibration algorithm, CT permutation-invariance guarantee, data formats, pseudo-code, extended generalization, and detailed failure trace.",
+    "decision_content_kept_in_main": "Core method diagrams, primary accuracy/throughput results, component ablation, and headline conclusion.",
+    "self_sufficiency_judgment": "The main story is understandable alone; rigorous judgment of CT correctness and implementation-level reproducibility requires Appendix C/D/E.",
+    "evidence": [
+      {
+        "page": 16,
+        "section": "Appendix",
+        "anchor": "D Supplementary Details on ThinKV",
+        "basis": "explicit"
+      },
+      {
+        "page": 10,
+        "section": "7 Conclusion",
+        "anchor": "algorithm–system co-design",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "limitations": [
+    {
+      "name": "Long-input scope boundary",
+      "status": "observed",
+      "description": "ThinKV is not directly applicable to settings dominated by long input contexts.",
+      "evidence": [
+        {
+          "page": 34,
+          "section": "Appendix F Limitations",
+          "anchor": "not directly applicable",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Ambiguous sparsity regimes",
+      "status": "observed",
+      "description": "Some layers have more than three sparsity regimes or ambiguous boundaries; Appendix E.4 highlights difficult GPT-OSS-20B cases.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.1 Attention Sparsity",
+          "anchor": "ambiguous boundaries",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix E.4",
+          "anchor": "difficult to distinguish",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Minimum retention failure",
+      "status": "observed",
+      "description": "Complete eviction minR=0 severely degrades accuracy; the trace says removing or 0-bit quantizing transition thoughts can yield an endless loop.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "6.3 Discussions and Ablations",
+          "anchor": "minR = 0",
+          "basis": "explicit"
+        },
+        {
+          "page": 33,
+          "section": "Appendix E.17",
+          "anchor": "endless loop",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Serving-framework maturity boundary",
+      "status": "observed",
+      "description": "The Transformers/PagedAttention integration is labeled a proof of concept and the vLLM integration targets v1.",
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix E.2",
+          "anchor": "proof of concept",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Uncertainty and seed reporting",
+      "status": "not_present",
+      "description": "The PDF states averages across 3 runs and 8 responses but gives no seed values, error bars, intervals, or hypothesis tests.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.1 Experimental Setup",
+          "anchor": "averaging across 3 independent runs",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "6.1 Experimental Setup",
+          "anchor": "Evaluation Setup",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "Formal limitation placement",
+      "status": "observed",
+      "description": "The dedicated F Limitations section appears in Appendix on p. 34; the p. 10 conclusion restates headline benefits without an explicit scope boundary.",
+      "evidence": [
+        {
+          "page": 34,
+          "section": "Appendix F Limitations",
+          "anchor": "LIMITATIONS",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 10,
+          "section": "7 Conclusion",
+          "anchor": "7 CONCLUSION",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Appendix placement of ambiguous-boundary examples",
+      "status": "observed",
+      "description": "The main text briefly flags ambiguity, while the model-specific GPT-OSS difficult-to-distinguish examples appear in Appendix E.4.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.1 Attention Sparsity",
+          "anchor": "ambiguous boundaries",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix E.4",
+          "anchor": "difficult to distinguish",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Positive matched-control presentation",
+      "status": "observed",
+      "description": "System throughput includes iso-batch and iso-compression rows, a direct control for max-batch and compression confounds.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.2 Main Results",
+          "anchor": "Iso-batch, Iso-compression comparison",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [],
+  "lexical_rhetoric": {
+    "scope": "Main-text raw scan, pp. 1–10, includes figure captions and table text; global aggregation owns canonical token counts.",
+    "high_frequency_content_terms_raw": {
+      "ThinKV": 74,
+      "thought_or_thoughts": 97,
+      "compression": 29,
+      "accuracy": 47,
+      "throughput": 24,
+      "memory": 20
+    },
+    "high_frequency_ngrams_contextual": [
+      "KV cache",
+      "thought types",
+      "token budget",
+      "hybrid quantization–eviction"
+    ],
+    "claim_verb_counts": {
+      "we show": 3,
+      "we find": 3,
+      "we demonstrate": 0,
+      "we propose": 2,
+      "we observe": 1,
+      "we present": 4,
+      "we design": 2,
+      "we introduce": 2
+    },
+    "claim_verb_modules": {
+      "we propose": [
+        "abstract",
+        "introduction"
+      ],
+      "we show": [
+        "introduction",
+        "ablation"
+      ],
+      "we observe": [
+        "theory"
+      ],
+      "we present": [
+        "introduction",
+        "theory",
+        "method"
+      ],
+      "we design": [
+        "abstract",
+        "introduction"
+      ],
+      "we introduce": [
+        "introduction",
+        "method"
+      ]
+    },
+    "qualifiers": {
+      "near-lossless": 3,
+      "up to": 13,
+      "however": 8,
+      "while": 17
+    },
+    "strong_vs_weak_claim_pattern": "Strong numeric claims cluster in Abstract, §1.2, §6.2, and Conclusion; scope and uncertainty qualifications occur mainly in §6, Appendix E, and Appendix F.",
+    "tokenization_risks": "R/E/T/b/x are formula or legend symbols; Figure 8 repeats model labels and ThinKV Avg. Prec., inflating raw counts.",
+    "evidence": [
+      {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "up to 5.8×",
+        "basis": "explicit"
+      },
+      {
+        "page": 10,
+        "section": "7 Conclusion",
+        "anchor": "under <5%",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "conclusion_analysis": {
+    "moves": [
+      "restates problem",
+      "restates method",
+      "restates system component",
+      "recovers results"
+    ],
+    "new_claims": "not_present",
+    "new_numbers": "not_present; it repeats <5% and 5.8×.",
+    "boundary_or_future_work": "not_present in the conclusion; limitation is Appendix F.",
+    "evidence": [
+      {
+        "page": 10,
+        "section": "7 Conclusion",
+        "anchor": "up to 5.8× throughput",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "final_judgment": {
+    "single_storyline": "ThinKV treats thought-level sparsity as the bridge from LRM reasoning structure to hybrid KV compression, then makes non-contiguous eviction executable through CT slot reuse.",
+    "main_body_keeps": "The main body keeps the resource bottleneck, four components, CT data structure, models/baselines/hardware, primary accuracy-throughput evidence, and core ablations.",
+    "appendix_moves": "The appendix moves proofs, background, calibration algorithm, formats, pseudo-code, extended models/tasks, vLLM details, and long reasoning traces; this leaves the narrative understandable but makes CT correctness and reproduction details appendix-dependent.",
+    "best_pattern": "Figure 6 turns the algorithm-system coupling into one traceable object, while Table 2 pairs maximum-batch data with an iso-batch iso-compression control.",
+    "largest_gap": "No seed values, error bars, intervals, or hypothesis tests accompany headline system and accuracy values; the explicit long-input limitation appears only in Appendix F.",
+    "transfer_rule": "For a paper claiming both algorithmic and systems gains, pair the component causal diagram with a matched control that separates capacity effects from kernel-cost effects.",
+    "transfer_boundary": "Use that rule when a resource path and matched systems baseline exist; theory-only work needs comparable assumption and proof controls instead."
+  },
+  "final_judgment_evidence": [
+    {
+      "name": "Storyline",
+      "status": "observed",
+      "description": "Sparsity, TBQ, TBE, and CT are introduced in causal order.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1.2 Contributions",
+          "anchor": "four key components",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "5.2 Continuous Thinking",
+          "anchor": "in-place memory reuse",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Largest gap",
+      "status": "observed",
+      "description": "The PDF reports 3-run averages and no further uncertainty presentation; F Limitations is on p. 34.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "6.1 Experimental Setup",
+          "anchor": "averaging across 3 independent runs",
+          "basis": "explicit"
+        },
+        {
+          "page": 34,
+          "section": "Appendix F Limitations",
+          "anchor": "not directly applicable",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "evidence_coverage": {
+    "substantive_claims": 63,
+    "claims_with_page_evidence": 63,
+    "status": "complete"
+  }
+}
