@@ -1,0 +1,2302 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-ced84acacce8",
+  "bibliography": {
+    "title": "Why Low-Precision Transformer Training Fails: An Analysis on Flash Attention",
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ]
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-ced84acacce8.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=0jHyEKHDyx",
+    "source_kind": "official_pdf",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/733209a1f12071a7ec979e8ffaeb1d99-Paper-Conference.pdf"
+  },
+  "page_map": {
+    "pdf_pages": 24,
+    "main_pages": 10,
+    "reference_pages": 3,
+    "appendix_pages": 11,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 162
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 397
+      },
+      {
+        "title": "2 Preliminary",
+        "module": "method",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 675
+      },
+      {
+        "title": "3 Root Causes of Instability in Flash Attention",
+        "module": "theory",
+        "start_page": 3,
+        "end_page": 9,
+        "estimated_words": 0
+      },
+      {
+        "title": "3.1 The Failure Case of Low-Precision Flash Attention",
+        "module": "experimental_design",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 431
+      },
+      {
+        "title": "3.2 Isolating the Source of Failure within Flash Attention",
+        "module": "results",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 637
+      },
+      {
+        "title": "3.3.1 Cause 1. Similar Low-Rank Matrices Bias Weight Updates",
+        "module": "theory",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 716
+      },
+      {
+        "title": "3.3.2 Cause 2. Biased Rounding Error Leads to Positive Coefficient",
+        "module": "theory",
+        "start_page": 6,
+        "end_page": 9,
+        "estimated_words": 1421
+      },
+      {
+        "title": "4 Experiment: Mitigate Bias in Rounding Error",
+        "module": "ablation",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 528
+      },
+      {
+        "title": "5 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 373
+      },
+      {
+        "title": "Acknowledgment",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 19
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 13,
+        "estimated_words": 1399
+      },
+      {
+        "title": "Appendix A Related Work",
+        "module": "appendix",
+        "start_page": 14,
+        "end_page": 15,
+        "estimated_words": 900
+      },
+      {
+        "title": "Appendix B BF16 Addition",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 17,
+        "estimated_words": 820
+      },
+      {
+        "title": "Appendix C Design Considerations for Mitigating Biased Rounding Error",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 17,
+        "estimated_words": 350
+      },
+      {
+        "title": "Appendix D Similar Patterns Discovered in Llama-3.1-8B",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 19,
+        "estimated_words": 320
+      },
+      {
+        "title": "Appendix E Other Details",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 20,
+        "estimated_words": 1130
+      },
+      {
+        "title": "Appendix F Suggestions for Handling Failure in Low-Precision Training",
+        "module": "appendix",
+        "start_page": 20,
+        "end_page": 21,
+        "estimated_words": 500
+      },
+      {
+        "title": "The Use of Large Language Models",
+        "module": "other",
+        "start_page": 22,
+        "end_page": 22,
+        "estimated_words": 40
+      },
+      {
+        "title": "Additional Figures 11–13",
+        "module": "appendix",
+        "start_page": 23,
+        "end_page": 24,
+        "estimated_words": 1530
+      }
+    ]
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 162,
+      "main_word_share": 0.0303,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 397,
+      "main_word_share": 0.0743,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 675,
+      "main_word_share": 0.1264,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "theory",
+      "status": "observed",
+      "estimated_words": 2137,
+      "main_word_share": 0.4002,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 3
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 431,
+      "main_word_share": 0.0807,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 637,
+      "main_word_share": 0.1193,
+      "figures": 3,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 3
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 528,
+      "main_word_share": 0.0989,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 1
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 75,
+      "main_word_share": 0.014,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 52,
+      "main_word_share": 0.0097,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 5650,
+      "main_word_share": null,
+      "figures": 6,
+      "tables": 0,
+      "algorithms": 3,
+      "displayed_equations": 5
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 246,
+      "main_word_share": 0.0461,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "The pursuit of computational efficiency has driven the adoption of low-precision formats for training transformer models.",
+      "word_count": 16,
+      "functions": [
+        "object_scope"
+      ],
+      "qualifiers": [
+        "has driven"
+      ],
+      "numbers": [],
+      "comparators": [],
+      "relation": "sets the training/efficiency scope",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "adoption of low-precision formats",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "However, this progress is often hindered by notorious training instabilities.",
+      "word_count": 10,
+      "functions": [
+        "problem_gap"
+      ],
+      "qualifiers": [
+        "often",
+        "notorious"
+      ],
+      "numbers": [],
+      "comparators": [],
+      "relation": "contrasts efficiency benefit with instability",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "hindered by notorious training instabilities",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "This paper provides the first mechanistic explanation for a long-standing and unresolved failure case where training with flash attention in low-precision settings leads to catastrophic loss explosion.",
+      "word_count": 27,
+      "functions": [
+        "problem_gap",
+        "core_idea",
+        "impact_claim"
+      ],
+      "qualifiers": [
+        "first",
+        "long-standing",
+        "unresolved",
+        "catastrophic"
+      ],
+      "numbers": [],
+      "comparators": [
+        "first mechanistic explanation"
+      ],
+      "relation": "names the unresolved target and stakes",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "first mechanistic explanation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "Our in-depth analysis reveals that the failure is not a random artifact but caused by two intertwined phenomena: the emergence of similar low-rank representations within the attention mechanism and the compounding effect of biased rounding errors inherent in low-precision arithmetic.",
+      "word_count": 40,
+      "functions": [
+        "core_idea",
+        "theory"
+      ],
+      "qualifiers": [
+        "two intertwined phenomena"
+      ],
+      "numbers": [
+        "two"
+      ],
+      "comparators": [],
+      "relation": "replaces artifact framing with a two-part mechanism",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "similar low-rank representations and biased rounding errors",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "We demonstrate how these factors create a vicious cycle of error accumulation that corrupts weight updates, ultimately derailing the training dynamics.",
+      "word_count": 21,
+      "functions": [
+        "theory",
+        "qualitative_result"
+      ],
+      "qualifiers": [
+        "ultimately"
+      ],
+      "numbers": [],
+      "comparators": [],
+      "relation": "connects factors to training derailment",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "vicious cycle of error accumulation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "To validate our findings, we introduce a minimal modification to the flash attention that mitigates the bias in rounding errors.",
+      "word_count": 20,
+      "functions": [
+        "method",
+        "experimental_setup"
+      ],
+      "qualifiers": [
+        "minimal"
+      ],
+      "numbers": [],
+      "comparators": [],
+      "relation": "moves from mechanism to intervention",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "minimal modification ... mitigates the bias",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "This simple change stabilizes the training process, confirming our analysis and offering a practical solution to this persistent problem.",
+      "word_count": 19,
+      "functions": [
+        "qualitative_result",
+        "impact_claim"
+      ],
+      "qualifiers": [
+        "simple",
+        "confirming",
+        "persistent"
+      ],
+      "numbers": [],
+      "comparators": [],
+      "relation": "closes intervention with stability claim",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "stabilizes the training process",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "text": "Code is available at https://github.com/ucker/why-low-precision-training-fails.",
+      "word_count": 9,
+      "functions": [
+        "impact_claim"
+      ],
+      "qualifiers": [],
+      "numbers": [],
+      "comparators": [],
+      "relation": "artifact availability",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "Code is available at https://github.com/ucker/why-low-precision-training-fails",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context",
+      "estimated_words": 75,
+      "paragraph": 1,
+      "question_left": "Transformer scaling creates compute pressure.",
+      "answer": "Low precision promises lower memory footprint and faster training.",
+      "next_hook": "Attention is especially sensitive to numerical precision.",
+      "sequence": "context",
+      "evidence": {
+        "page": 1,
+        "section": "Introduction",
+        "anchor": "substantial reductions in memory footprint and significant boosts in training speed",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "problem",
+      "estimated_words": 109,
+      "paragraph": 1,
+      "question_left": "Which operations expose the precision risk?",
+      "answer": "Industry uses BF16 for memory-bound Flash Attention and FP8 for compute-bound FFNs; existing stabilization techniques leave a mechanism gap.",
+      "next_hook": "A persistent Flash Attention failure becomes the concrete target.",
+      "sequence": "context → problem",
+      "evidence": {
+        "page": 1,
+        "section": "Introduction",
+        "anchor": "the path to further reducing precision is often blocked by a lack of understanding",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "failure_of_prior_work",
+      "estimated_words": 93,
+      "paragraph": 1,
+      "question_left": "What failure is still unresolved?",
+      "answer": "Community reports identify a reproducible BF16 Flash Attention loss explosion unresolved for over two years.",
+      "next_hook": "The paper will provide a mechanistic explanation.",
+      "sequence": "problem → failure_of_prior_work → missing_insight",
+      "evidence": {
+        "page": 1,
+        "section": "Introduction",
+        "anchor": "remained unresolved for over two years",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "core_idea/method_preview/result_preview",
+      "estimated_words": 120,
+      "paragraph": 1,
+      "question_left": "How can numerical error be connected to loss explosion?",
+      "answer": "Similar low-rank representations and biased rounding make a biased weight update; a minimal modification lets low-rank updates cancel and stabilizes training.",
+      "next_hook": "Notations and Preliminary define the objects.",
+      "sequence": "missing_insight → core_idea → method_preview → result_preview",
+      "evidence": {
+        "page": 1,
+        "section": "Introduction",
+        "anchor": "two intertwined phenomena",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "credit_or_foundation",
+      "estimated_words": 270,
+      "location": "Appendix A.1",
+      "comparison_dimension": "FP16/BF16 format, exponent range, mixed-precision master copy",
+      "evidence": {
+        "page": 14,
+        "section": "Appendix A.1",
+        "anchor": "BF16 format retains the wide dynamic range of FP32 while halving storage cost",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "limitation_of_prior",
+      "estimated_words": 90,
+      "location": "Appendix A.1",
+      "comparison_dimension": "divergence rate under pure BF16 versus TF32",
+      "evidence": {
+        "page": 14,
+        "section": "Appendix A.1",
+        "anchor": "roughly 10% of GPT-2 pretraining runs diverged under pure BF16",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "taxonomy",
+      "estimated_words": 300,
+      "location": "Appendix A.2",
+      "comparison_dimension": "gradient scaling, FP8/INT8 scaling, optimizer/gradient, activation/architecture",
+      "evidence": {
+        "page": 14,
+        "section": "Appendix A.2",
+        "anchor": "Gradient Scaling ... Ultra-Low-Precision ... Optimizer and Gradient Stabilization",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "credit_or_foundation",
+      "estimated_words": 220,
+      "location": "Appendix A.3",
+      "comparison_dimension": "Flash Attention IO-awareness, tiling, online softmax, O(N^2) to O(N)",
+      "evidence": {
+        "page": 15,
+        "section": "Appendix A.3",
+        "anchor": "memory complexity from O(N^2) to O(N)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "positioning_only",
+      "estimated_words": 20,
+      "location": "Introduction",
+      "comparison_dimension": "causal chain from numerical error to loss explosion",
+      "evidence": {
+        "page": 1,
+        "section": "Introduction",
+        "anchor": "absence of a clear causal chain from numerical error to loss explosion",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 115,
+      "detail": "Defines dW, dQ, δ, diag(v), ◦, lp/hp and broadcasting/indexing.",
+      "evidence": {
+        "page": 2,
+        "section": "Notations",
+        "anchor": "Subscripts lp and hp distinguish between low-precision (BF16) and high-precision (FP32) computations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "state_problem",
+      "estimated_words": 170,
+      "detail": "Explains BF16 precision, rounding-to-nearest ties-to-even, and possible distribution-dependent bias.",
+      "evidence": {
+        "page": 2,
+        "section": "2.1 Low-Precision Training",
+        "anchor": "a sequence of operations on data with a specific distribution could lead to a biased rounding error",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "define_component",
+      "estimated_words": 210,
+      "detail": "Defines Flash Attention 2 online softmax, block state m/ℓ, unnormalized P̄V and backward δ.",
+      "evidence": {
+        "page": 2,
+        "section": "2.2 Flash Attention",
+        "anchor": "backward pass ... computes the key intermediate term, δ = rowsum(dO ◦ O)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "instantiate_algorithm",
+      "estimated_words": 80,
+      "detail": "Calls Algorithms 1 and 2; full block loops are in Appendix B.",
+      "evidence": {
+        "page": 3,
+        "section": "2.2 Flash Attention",
+        "anchor": "The forward pass ... using an online softmax method (Algorithm 1)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "state_problem",
+      "estimated_words": 160,
+      "detail": "Reproduces the BF16 GPT-2 failure and explains deterministic replay.",
+      "evidence": {
+        "page": 3,
+        "section": "3.1 Failure Case",
+        "anchor": "catastrophic loss explosion",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "connect_to_experiment",
+      "estimated_words": 190,
+      "detail": "Uses tiling disablement, layer isolation and equivalent δ formulations to localize the source.",
+      "evidence": {
+        "page": 4,
+        "section": "3.2 Isolating the Source",
+        "anchor": "Failure Originates in a Single Layer",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "derive",
+      "estimated_words": 190,
+      "detail": "Derives dQ and dWQ gradient differences from δlp−δhp.",
+      "evidence": {
+        "page": 5,
+        "section": "3.3.1 Cause 1",
+        "anchor": "This formulation reveals that the gradient error is directly proportional to the error in δ",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "explain_mechanism",
+      "estimated_words": 330,
+      "detail": "Uses common R and positive cumulative coefficients to explain norm growth.",
+      "evidence": {
+        "page": 6,
+        "section": "3.3.1 Cause 1",
+        "anchor": "this sum is consistently positive, indicating a systematic bias",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "connect_to_prediction",
+      "estimated_words": 300,
+      "detail": "Traces positive δ difference to dO/output-error signs, P̄=1, negative V and BF16 addition.",
+      "evidence": {
+        "page": 7,
+        "section": "3.3.2 Cause 2",
+        "anchor": "both dO and the output error Olp − Ohp are consistently negative",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "instantiate_algorithm",
+      "estimated_words": 150,
+      "detail": "Defines conditional dynamic maximum with β and ε.",
+      "evidence": {
+        "page": 9,
+        "section": "4 Experiment",
+        "anchor": "dynamically adjust the normalization factor m only when a row ... contains multiple identical maximum values",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 11,
+      "move": "connect_to_experiment",
+      "estimated_words": 180,
+      "detail": "Tests stabilized Flash Attention with AdamW, Muon and a larger GPT-2M.",
+      "evidence": {
+        "page": 10,
+        "section": "4 Experiment",
+        "anchor": "successfully stabilizes training for both optimizers and larger model",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "method",
+      "page": 3,
+      "purpose": "Reverse causal map: δ/O localization → low-rank R and positive bias → dynamic maximum → loss explosion.",
+      "evidence": {
+        "page": 3,
+        "section": "Figure 1",
+        "anchor": "traces the causal chain of training failure ... in reverse",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "experimental_design",
+      "page": 3,
+      "purpose": "Contrasts BF16 low-precision FA and high-precision FA validation-loss trajectories.",
+      "evidence": {
+        "page": 3,
+        "section": "Figure 2",
+        "anchor": "sudden loss explosion, while the stable configuration converges",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "results",
+      "page": 4,
+      "purpose": "Layer-1 head-wise WQ spectral norm; head 8 is selected as the largest.",
+      "evidence": {
+        "page": 4,
+        "section": "Figure 3",
+        "anchor": "WQ of attention head 8 has the largest spectral norm",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "theory",
+      "page": 6,
+      "purpose": "Heatmaps for PK, X and (PK)[T]^T X[T] at two batch/step examples; similar columns 546 and 678.",
+      "evidence": {
+        "page": 6,
+        "section": "Figure 4",
+        "anchor": "show that (PK)[T]^T X[T] ... have some similar columns in input features 546 and 678",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "results",
+      "page": 7,
+      "purpose": "Cumulative δ difference and sign-aligned dO/output error at features 20 and 29.",
+      "evidence": {
+        "page": 7,
+        "section": "Figure 5",
+        "anchor": "Analysis of δ = rowsum(dO ◦ O)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "results",
+      "page": 7,
+      "purpose": "P̄/V and cumulative Ō error, with a detailed view of token positions around the negative jump.",
+      "evidence": {
+        "page": 7,
+        "section": "Figure 6",
+        "anchor": "Analysis of P̄V",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 7",
+      "module": "ablation",
+      "page": 9,
+      "purpose": "Classical versus stabilized FA for GPT-2S+AdamW, GPT-2S+Muon and GPT-2M+AdamW.",
+      "evidence": {
+        "page": 9,
+        "section": "Figure 7",
+        "anchor": "Validation losses for classical flash attention and the stablized flash attention",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 8",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "Llama-3.1-8B structural similarity at different tokens; panels c–f show similar columns.",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix D.1",
+        "anchor": "Similar (PK)[T]^T X[T] discovered at different tokens in Llama-3.1-8B",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 9",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "Six Llama attention-probability examples with multiple maxima and first-token sink.",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix D.2",
+        "anchor": "Two maxima observed in Llama-3.1-8B",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 10",
+      "module": "appendix",
+      "page": 21,
+      "purpose": "Two independent GPT-2 BF16 FA loss curves reported in nanoGPT issues #303 and #524.",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix F",
+        "anchor": "Loss curves of two independent runs of GPT-2 training with flash attention in BF16",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 11",
+      "module": "appendix",
+      "page": 23,
+      "purpose": "Spectral norm heatmap across layers and training steps.",
+      "evidence": {
+        "page": 23,
+        "section": "Figure 11",
+        "anchor": "Spectral norm across layers and training steps",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 12",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "Token difference heatmap with D_diff Values color scale; scientific interpretation is limited by PDF text artifact.",
+      "evidence": {
+        "page": 24,
+        "section": "Figure 12",
+        "anchor": "Token difference visualization",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 13",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "Dual-axis validation loss and number of activated SFA conditions over training steps.",
+      "evidence": {
+        "page": 24,
+        "section": "Figure 13",
+        "anchor": "Correlation between multiple maxima occurrences and loss curve",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 1",
+      "module": "appendix",
+      "page": 16,
+      "purpose": "FA2 forward block loops, online m/ℓ updates, unnormalized output and final normalization.",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix B",
+        "anchor": "Algorithm 1 Flash Attention: Forward Pass",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 2",
+      "module": "appendix",
+      "page": 16,
+      "purpose": "FA2 backward δ computation and block-wise dQ/dK/dV accumulation.",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix B",
+        "anchor": "Algorithm 2 Flash Attention: Backward Pass",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 3",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "Stabilized forward pass with rm/rs/β/ε conditional maximum adjustment.",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix E.2",
+        "anchor": "Algorithm 3 Stabilized Flash Attention by Mitigating Biased Rounding Error: Forward Pass",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (1)",
+      "module": "theory",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "3.3.1 Cause 1",
+        "anchor": "dQhp − dQlp = (αP ◦ (δlp − δhp)) K",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (2)",
+      "module": "theory",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "3.3.1 Cause 1",
+        "anchor": "total gradient error is a weighted sum of rank-1 matrices",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (3)",
+      "module": "theory",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "3.3.1 Cause 1",
+        "anchor": "dWhp − dWlp ≈ α Σ (δlp − δhp)[T]R",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (4)",
+      "module": "results",
+      "page": 7,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 7,
+        "section": "3.3.2 Cause 2",
+        "anchor": "Ōlp[T,i] − Ōhp[T,i] = (P̄lp[T,:]V[:,i])lp − (P̄hp[T,:]V[:,i])hp",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (5)",
+      "module": "results",
+      "page": 7,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 7,
+        "section": "3.3.2 Cause 2",
+        "anchor": "Ōerror(t) accumulates the lp and hp token-prefix products",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Safe-softmax chain",
+      "module": "results",
+      "page": 7,
+      "role": "core_chain",
+      "evidence": {
+        "page": 7,
+        "section": "3.3.2 Cause 2",
+        "anchor": "P̄ = exp(S − rowmax(S)), Ō = P̄V, O = Ō/rowsum(P̄)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Dynamic-maximum update",
+      "module": "ablation",
+      "page": 9,
+      "role": "core_chain",
+      "evidence": {
+        "page": 9,
+        "section": "4 Experiment",
+        "anchor": "rm = rowmax(S), rs = rowsum(rm − S ≤ ε)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (6)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix E.2",
+        "anchor": "dQ = dSK",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (7)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix E.2",
+        "anchor": "dS = αP ◦ (dP − δ)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (8)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix E.2",
+        "anchor": "dQhp − dQlp = (dShp − dSlp) K",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (9)",
+      "module": "appendix",
+      "page": 19,
+      "role": "explanation",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix E.2",
+        "anchor": "dQhp − dQlp = [(αP ◦ (dP − δhp)) − (αP ◦ (dP − δlp))] K",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (10)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix E.2",
+        "anchor": "dQhp − dQlp = α diag(δlp − δhp)(PK)",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "target_failure_case",
+      "status": "observed",
+      "description": "GPT-2 BF16 Flash Attention loss explosion is the target; Fig. 2 gives a stable high-precision comparison.",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "3.1 Failure Case",
+          "anchor": "catastrophic loss explosion",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "model_and_data",
+      "status": "observed",
+      "description": "GPT-2 has 12 layers, 12 heads, embedding dimension 768 and context length 1024; data are OpenWebText.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.1 Failure Case",
+          "anchor": "GPT-2 architecture with 12 layers, 12 attention heads ... OpenWebText dataset",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "deterministic_replay",
+      "status": "observed",
+      "description": "The exact batch sequence from a run that failed is recorded and reused to isolate data-order randomness.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.1 Failure Case",
+          "anchor": "recording and reusing the exact sequence of data batches",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "optimizer_schedule",
+      "status": "observed",
+      "description": "AdamW β1=0.9, β2=0.95, zero weight decay; 2,000-step warmup, peak 1×10^-3, cosine decay to 1×10^-5; global clip 1.0.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.1 Failure Case",
+          "anchor": "learning rate follows a cosine schedule with a 2000-iteration linear warmup",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "hardware_parallelism",
+      "status": "observed",
+      "description": "4 NVIDIA A100 80GB GPUs, PyTorch DDP, BF16 forward and FP32 backward, micro-batch 32/GPU, four-step accumulation, 524,288 tokens per optimization step.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.1 Failure Case",
+          "anchor": "4 NVIDIA A100 (80GB) GPUs ... effective global batch size is 524,288 tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "isolation_interventions",
+      "status": "observed",
+      "description": "Tiling, layer 2, alternative δ, FP32 O/PV and selected heads are changed in targeted substitutions.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "systematically modify the algorithm ... selectively replacing flash attention",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "mechanism_probes",
+      "status": "observed",
+      "description": "Head 8, selected batch/step/token/feature slices and low-level BF16 addition are used as mechanism probes.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "3.3.1 Cause 1",
+          "anchor": "Since head 8 shows the largest spectral norm, we focus our subsequent analysis on this head",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "mitigation_validation",
+      "status": "observed",
+      "description": "Stabilized FA is trained 600K steps for GPT-2S with AdamW/Muon and 100K steps for GPT-2M with AdamW; β=2.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "4 Experiment",
+          "anchor": "pre-train the GPT-2S model for 600K steps ... GPT-2M model ... 100K steps",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "matched_controls",
+      "status": "observed",
+      "description": "Fixed data order and same Section 3.1 hyperparameters provide local matching for the principal comparison.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "4 Experiment",
+          "anchor": "AdamW configuration uses the same hyperparameters as described in Section 3.1",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "seeds_and_uncertainty",
+      "status": "not_present",
+      "description": "No author-run seed count, independent replication count, error bars, intervals, or hypothesis tests are stated.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.1 Failure Case",
+          "anchor": "exact sequence of data batches from an initial run",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 10,
+          "section": "4 Experiment",
+          "anchor": "as shown in Fig. 7",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "leakage_and_failure_threshold",
+      "status": "not_present",
+      "description": "No data deduplication/validation construction, preregistered threshold, or formal failure threshold is reported.",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "3.1 Failure Case",
+          "anchor": "sudden loss explosion after several thousand training steps",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "BF16 Flash Attention reproduces a sudden loss explosion.",
+      "value": "Fig. 2 shows a jump around 7,000 steps from roughly 3–4 to roughly 7–8; the high-precision curve continues downward.",
+      "comparison": "low-precision FA versus high-precision FA",
+      "statistical_method": "single deterministic replay curve; no seed-level aggregation or interval",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "3.1 Failure Case",
+          "anchor": "sudden loss explosion",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 21,
+          "section": "Appendix F / Figure 10",
+          "anchor": "two independent runs ... reported in the Github issue",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Tiling is not the source and layer 2 localizes the failure.",
+      "value": "Full-sequence block size still fails; FA only in layer 2 reproduces failure, while standard attention in layer 2 restores stability.",
+      "comparison": "tiled/non-tiled and Flash/standard attention",
+      "statistical_method": "targeted substitution decisions; no factorial replication",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "Tiling is not the Source of Failure",
+          "basis": "explicit"
+        },
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "Failure Originates in a Single Layer",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The direct numerical source is low-precision δ through O.",
+      "value": "Equivalent δ=rowsum(dP◦P), backward FP32 PV, or forward FP32 O each restores stability.",
+      "comparison": "δlp/Olp path versus mathematically equivalent or FP32 substitutions",
+      "statistical_method": "binary stability outcome on the fixed replay; no loss table or repeated rate",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "replacing the efficient computation with this alternative formulation restored training stability",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "3.2 Isolating the Source",
+          "anchor": "numerical errors introduced when computing O in BF16 are the direct cause",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Similar rank-1 directions permit cross-step/token accumulation.",
+      "value": "Fig. 4 visually aligns PK, X and their rank-1 products; caption identifies similar input-feature columns 546 and 678; Eq. (3) uses common R.",
+      "comparison": "two selected batch/step/token slices",
+      "statistical_method": "heatmap inspection and an empirical approximation; no rank/similarity distribution",
+      "module": "theory",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "3.3.1 Cause 1",
+          "anchor": "structurally consistent ... approximate the total gradient difference",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "Figure 4",
+          "anchor": "similar columns in input features 546 and 678",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The δ coefficient is positively biased before failure.",
+      "value": "Cumulative Σ_T(δlp−δhp)[T] from steps 6580–6680 remains positive and approaches the plotted 4×10^-4 scale.",
+      "comparison": "low-precision versus high-precision δ",
+      "statistical_method": "single cumulative trajectory; no uncertainty or cross-run estimate",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "3.3.1 Cause 1",
+          "anchor": "training steps (6580 to 6680)",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "Figure 5",
+          "anchor": "Positively-biased (δlp−δhp)[T]",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "claim": "Positive δ error is aligned with dO and output error at selected features.",
+      "value": "For T=718 and features 20/29, dO and Olp−Ohp are both negative, making their product positive.",
+      "comparison": "dO versus Olp−Ohp at selected token/features",
+      "statistical_method": "selected-token sign inspection; no full-token distribution",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "3.3.2 Cause 2",
+          "anchor": "both dO and the output error Olp − Ohp are consistently negative",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "BF16 P̄V rounding creates a negative output error in the examined case.",
+      "value": "P̄=1 positions coincide with negative jumps; the bit-level example gives exact FP32 −4.703990459442139, BF16 −4.71875 and error −0.014759540557861328.",
+      "comparison": "low-precision dot product versus all-FP32 dot product",
+      "statistical_method": "cumulative plot plus one explicit arithmetic example; no event-frequency distribution",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "3.3.2 Cause 2",
+          "anchor": "rounding error dominated by the rounding up, resulting in negative rounding error",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "3.3.2 Cause 2",
+          "anchor": "error introduced by this single addition is −0.014759540557861328",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Dynamic maximum stabilizes the reported training configurations.",
+      "value": "SFA β=2 remains stable for GPT-2S/AdamW and GPT-2S/Muon over 600K steps and GPT-2M/AdamW over 100K; classical FA explodes.",
+      "comparison": "classical FA versus stabilized FA",
+      "statistical_method": "three validation-loss curves; no final-loss table, seed replication or overhead measurement",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 7",
+          "anchor": "GPT-2S+AdamW",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 10,
+          "section": "4 Experiment",
+          "anchor": "stabilizes training for both optimizers and larger model",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The structural phenomena occur in Llama-3.1-8B without establishing Llama failure.",
+      "value": "Fig. 8 captions report cosine similarities 0.999994/0.999993; Fig. 9 shows multiple maxima and a first-token sink.",
+      "comparison": "selected Llama tokens/heads/queries; no BF16 training comparison",
+      "statistical_method": "qualitative visual examples and caption values",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix D",
+          "anchor": "this section is not meant to say Llama 3.1-8B will definitely fail in BF16 training",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Figure 9",
+          "anchor": "The first token has maxima due to the attention sink",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Multiple-maxima activation leads the loss explosion in the shown run.",
+      "value": "Fig. 13/E.1 show condition counts rising before the loss jump around 7,000 steps.",
+      "comparison": "activated SFA condition count versus validation loss",
+      "statistical_method": "single dual-axis temporal plot; no lag estimate or predictive evaluation",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix E.1",
+          "anchor": "begins to increase before the loss explodes",
+          "basis": "explicit"
+        },
+        {
+          "page": 24,
+          "section": "Figure 13",
+          "anchor": "Correlation between multiple maxima occurrences and loss curve",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "tiling_disablement",
+      "status": "observed",
+      "description": "Setting block size equal to sequence length still fails, ruling out tiling as the direct cause.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "disabled tiling by setting the block size equal to the sequence length",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "layer2_flash_attention",
+      "status": "observed",
+      "description": "FA only in layer 2 is sufficient for failure; standard attention in layer 2 restores stability.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "using flash attention only in layer 2 was sufficient",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "delta_formula_substitution",
+      "status": "observed",
+      "description": "The mathematically equivalent dP/P formulation of δ stabilizes training.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "alternative formulation restored training stability",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "output_precision_substitution",
+      "status": "observed",
+      "description": "FP32 recomputation of PV in backward or O in forward stabilizes while other operations remain BF16.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "recompute it as PV in FP32 within the backward pass",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "head_precision_substitution",
+      "status": "observed",
+      "description": "Computing O in FP32 for heads 1, 7, 8, 9, 11 and 12 restores stability; head 8 is then analyzed.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "3.2 Isolating the Source",
+          "anchor": "outlier heads (1, 7, 8, 9, 11, and 12)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "pv_only_fp32",
+      "status": "observed",
+      "description": "FP32 only for the unnormalized P̄V product is sufficient to stabilize.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "3.3.2 Cause 2",
+          "anchor": "computing only this product in FP32 is sufficient to stabilize training",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "dynamic_maximum_conditions",
+      "status": "observed",
+      "description": "Appendix C rejects fixed offset, restricts adjustment to repeated maxima, and selects m=0 for negative repeated maxima; β is stated in [2,8] and set to 2 in Fig. 7.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "4 Experiment",
+          "anchor": "β ∈ [2, 8]",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Appendix C",
+          "anchor": "Dynamic Maximum is Applied Conditionally",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "optimizer_and_model_extension",
+      "status": "observed",
+      "description": "The intervention is shown with AdamW, Muon and the larger GPT-2M, but only as curves.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "4 Experiment",
+          "anchor": "both optimizers and larger model",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "negative_cases_and_cost",
+      "status": "not_present",
+      "description": "No reported mitigation failure case, runtime/memory overhead, or comprehensive alternative-source stress test.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Limitations",
+          "anchor": "may not address other sources of numerical instability",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "4 Experiment",
+          "anchor": "minimal modification",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "BF16 Flash Attention has a reproducible loss-explosion failure.",
+      "origin": "Abstract/Introduction and Section 3.1",
+      "status": "closed",
+      "method_response": "GPT-2 replay with high/low precision and attention substitutions.",
+      "evidence_response": "Fig. 2 plus community curves in Fig. 10 show the failure trajectory.",
+      "conclusion_response": "Conclusion restates the notorious low-precision Flash Attention loss explosion.",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "3.1 Failure Case",
+          "anchor": "catastrophic loss explosion",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "notorious loss explosion in low-precision flash attention training",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The direct numerical source is δlp through the BF16 O path.",
+      "origin": "Section 3.2 / Claim 1",
+      "status": "closed",
+      "method_response": "Replace δ formulation or compute O/PV in FP32 while holding other operations fixed.",
+      "evidence_response": "Each targeted substitution restores stability in the reported replay.",
+      "conclusion_response": "p.10 says the root cause has been pinpointed to the mechanism chain.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2 Isolating the Source",
+          "anchor": "Failure is Linked to the Computation of δ",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "Claim 1",
+          "anchor": "Low-precision δlp = rowsum(dO ◦ Olp) causes training failure",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Structurally similar rank-1 matrices and positive δ coefficients accumulate a biased weight update.",
+      "origin": "Section 3.3.1 / Claim 2",
+      "status": "partially_closed",
+      "method_response": "Eq. (2) decomposes dWQ error; Eq. (3) introduces common R.",
+      "evidence_response": "Fig. 4 and Fig. 5(a) support selected examples and one cumulative trajectory, but no rank/similarity distribution or error bound is given.",
+      "conclusion_response": "Discussion attributes spectral-norm growth to low-rank error accumulation.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "3.3.1 Cause 1",
+          "anchor": "structurally consistent ... low-rank error direction R",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "Figure 5",
+          "anchor": "Positively-biased (δlp−δhp)[T]",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "claim": "Repeated maxima, negative V and BF16 rounding yield negative O error and positive δ difference.",
+      "origin": "Section 3.3.2 / Claim 3",
+      "status": "partially_closed",
+      "method_response": "Eq. (4)–(5), cumulative error plot and explicit overflow/sticky-bit example.",
+      "evidence_response": "Mechanism is traced for selected token/feature and one addition; population frequency and hardware-wide distribution are absent.",
+      "conclusion_response": "Conclusion recovers biased BF16 rounding as part of the root cause.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "3.3.2 Cause 2",
+          "anchor": "systematic negative bias in the computation of Ō is the ultimate source",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Claim 3",
+          "anchor": "more than one P̄[T,t] = 1 and negative V[t,i]",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Dynamic maximum is a practical stabilization intervention.",
+      "origin": "Section 4",
+      "status": "partially_closed",
+      "method_response": "Algorithm 3 conditionally changes row normalization with β and ε; backward is unchanged.",
+      "evidence_response": "Fig. 7 shows three stable configurations against classical FA, but no seed replication, final-value table or overhead.",
+      "conclusion_response": "Conclusion calls it a minimal targeted modification that restores stability.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "4 Experiment",
+          "anchor": "ensuring all elements of P̄ are strictly less than 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 7",
+          "anchor": "preventing the loss explosion seen in the original implementation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The mechanism generalizes to Llama, larger architectures and other low-precision formats.",
+      "origin": "Introduction/Conclusion impact framing",
+      "status": "open",
+      "method_response": "Appendix D only visualizes Llama structure and attention maxima; no Llama training failure or FP8 study.",
+      "evidence_response": "D explicitly says Llama will not definitely fail; p.10 Limitations requests further investigation.",
+      "conclusion_response": "Future Work names FP8, larger models and other architectures.",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix D",
+          "anchor": "not meant to say Llama 3.1-8B will definitely fail in BF16 training",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Limitations",
+          "anchor": "generalizability ... requires further investigation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Multiple maxima can serve as a leading indicator.",
+      "origin": "Appendix E.1",
+      "status": "partially_closed",
+      "method_response": "Plots condition count and loss over the same training timeline.",
+      "evidence_response": "Fig. 13 supplies temporal precedence in one run, without a predictive threshold or independent evaluation.",
+      "conclusion_response": "Future Work suggests automated tools but no operational detector is given.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix E.1",
+          "anchor": "leading indicator of the impending training failure",
+          "basis": "explicit"
+        },
+        {
+          "page": 24,
+          "section": "Figure 13",
+          "anchor": "Correlation between multiple maxima occurrences and loss curve",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "QK normalization and Gated Attention work by disrupting structural similarity.",
+      "origin": "Section 5 Discussion",
+      "status": "not_testable_here",
+      "method_response": "No dedicated intervention or comparison tests these explanations.",
+      "evidence_response": "Discussion uses “We posit” and supplies no independent result.",
+      "conclusion_response": "Presented as a plausible explanation for established techniques, not a tested contribution.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Discussion",
+          "anchor": "We posit that a root cause of training failure is the structural similarity",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "A Related Work (A.1–A.3)",
+      "category": "other",
+      "start_page": 14,
+      "end_page": 15,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "Appendix A",
+          "anchor": "Related Work",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "B BF16 Addition",
+      "category": "implementation_detail",
+      "start_page": 15,
+      "end_page": 17,
+      "main_text_calls": [
+        "p.2: “See Appendix B for details of BF16 addition.”"
+      ],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix B",
+          "anchor": "The addition of two bfloat16 numbers ... follows the standard procedure",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Algorithms 1–2: Flash Attention forward/backward",
+      "category": "extended_method",
+      "start_page": 16,
+      "end_page": 16,
+      "main_text_calls": [
+        "p.2–3: Algorithm 1 and Algorithm 2"
+      ],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix B",
+          "anchor": "Algorithm 1 Flash Attention: Forward Pass",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix B",
+          "anchor": "Algorithm 2 Flash Attention: Backward Pass",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "C Design Considerations for Mitigating Biased Rounding Error",
+      "category": "robustness",
+      "start_page": 17,
+      "end_page": 17,
+      "main_text_calls": [
+        "p.9: “see Appendix C”"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix C",
+          "anchor": "Use Dynamic Maximum Value Rather Than Fixed Offset",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "D Similar Patterns Discovered in Llama-3.1-8B (D.1–D.2)",
+      "category": "additional_result",
+      "start_page": 17,
+      "end_page": 19,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix D",
+          "anchor": "not meant to say Llama 3.1-8B will definitely fail in BF16 training",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "E.1 Relation Between Multiple Maxima and Loss",
+      "category": "additional_result",
+      "start_page": 18,
+      "end_page": 24,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix E.1",
+          "anchor": "multiple maxima begins to increase before the loss explodes",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "E.2 Deriving Equation 1",
+      "category": "proof",
+      "start_page": 18,
+      "end_page": 20,
+      "main_text_calls": [
+        "p.5: Eq. (1) is expanded in Appendix E.2"
+      ],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix E.2",
+          "anchor": "The following equations are prepared to derive equation 1 in the main text",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Algorithm 3: Stabilized Flash Attention forward pass",
+      "category": "extended_method",
+      "start_page": 20,
+      "end_page": 20,
+      "main_text_calls": [
+        "p.9: “line with magenta in Algorithm 3”"
+      ],
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix E.2",
+          "anchor": "Algorithm 3 Stabilized Flash Attention by Mitigating Biased Rounding Error: Forward Pass",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "F Suggestions for Handling Failure in Low-Precision Training",
+      "category": "reproducibility",
+      "start_page": 20,
+      "end_page": 21,
+      "main_text_calls": [
+        "p.10: future-work diagnostic workflow is echoed here"
+      ],
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix F",
+          "anchor": "blueprint for diagnosing numerical instabilities",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Figure 10: community failure curves",
+      "category": "failure_case",
+      "start_page": 21,
+      "end_page": 21,
+      "main_text_calls": [
+        "p.3: Fig. 10 is cited for the reported failure"
+      ],
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix F",
+          "anchor": "Loss curves of two independent runs of GPT-2 training with flash attention in BF16",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "The Use of Large Language Models",
+      "category": "other",
+      "start_page": 22,
+      "end_page": 22,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 22,
+          "section": "LLM disclosure",
+          "anchor": "polishing the language of the paper and assistant code implementation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Figure 11: spectral norm across layers and training steps",
+      "category": "additional_result",
+      "start_page": 23,
+      "end_page": 23,
+      "main_text_calls": [
+        "p.4 and p.6: Fig. 11 is cited for layer/norm growth"
+      ],
+      "evidence": [
+        {
+          "page": 23,
+          "section": "Figure 11",
+          "anchor": "Spectral norm across layers and training steps",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Figures 12–13: token difference and multiple-maxima/loss",
+      "category": "additional_result",
+      "start_page": 24,
+      "end_page": 24,
+      "main_text_calls": [
+        "p.18: E.1 calls Fig. 13"
+      ],
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Figures 12–13",
+          "anchor": "Correlation between multiple maxima occurrences and loss curve",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "specific_case_scope",
+      "status": "observed",
+      "description": "The analysis focuses on one specific GPT-2 failure case.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Limitations",
+          "anchor": "focuses on a specific failure case in a GPT-2 model",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "generalization_scope",
+      "status": "observed",
+      "description": "Other architectures, larger scales and FP8 generalizability remain for further investigation.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Limitations",
+          "anchor": "generalizability ... requires further investigation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "mitigation_scope",
+      "status": "observed",
+      "description": "The mitigation is tailored to the identified rounding error and may miss other instability sources.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Limitations",
+          "anchor": "may not address other sources of numerical instability",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "llama_boundary",
+      "status": "observed",
+      "description": "Llama observations are structural; Appendix D does not claim Llama BF16 training will fail.",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix D",
+          "anchor": "not meant to say Llama 3.1-8B will definitely fail in BF16 training",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "seed_uncertainty",
+      "status": "not_present",
+      "description": "No independent seed count, confidence interval, or test is reported for the author experiments.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.1 Failure Case",
+          "anchor": "exact sequence of data batches from an initial run",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 10,
+          "section": "4 Experiment",
+          "anchor": "as shown in Fig. 7",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "runtime_cost",
+      "status": "not_present",
+      "description": "No runtime, memory or throughput overhead measurement is reported for dynamic maximum.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "4 Experiment",
+          "anchor": "minimal modification",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "representative_slice",
+      "status": "observed",
+      "description": "Mechanism figures select head 8, T=718, features 20/29 and two batch/step examples rather than reporting all heads/tokens.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "3.3.1 Cause 1",
+          "anchor": "we focus on this head",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "3.3.2 Cause 2",
+          "anchor": "focus on a token position T = 718",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "single_trajectory",
+      "status": "observed",
+      "description": "Failure, cumulative bias and stabilization are shown primarily as individual curves without uncertainty bands.",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "Figure 2",
+          "anchor": "failure case using BF16 and flash attention",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 9,
+          "section": "Figure 7",
+          "anchor": "Validation losses",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "external_case_background",
+      "status": "observed",
+      "description": "Community issue plots are used as context for persistence, while the principal mechanism is developed on a fixed GPT-2 replay.",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Figure 10",
+          "anchor": "reported in the Github issue",
+          "basis": "explicit"
+        },
+        {
+          "page": 4,
+          "section": "3.1 Failure Case",
+          "anchor": "exact sequence of data batches from an initial run",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "appendix_migration",
+      "status": "observed",
+      "description": "Algorithms, bit arithmetic, Llama examples and extended curves are deferred to p.14–24; this preserves a short main causal chain but raises reproduction cost.",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix B",
+          "anchor": "Algorithm 1 Flash Attention: Forward Pass",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix E.2",
+          "anchor": "Algorithm 3 Stabilized Flash Attention",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "scope_weakening",
+      "status": "observed",
+      "description": "The Llama extension is explicitly weakened to an existence observation, and Discussion uses “We posit” for QK normalization/Gated Attention.",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix D",
+          "anchor": "will not definitely fail in BF16 training",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Discussion",
+          "anchor": "We posit that a root cause",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "cost_omission",
+      "status": "not_present",
+      "description": "No runtime/memory cost or mitigation failure case is shown.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Limitations",
+          "anchor": "may not address other sources of numerical instability",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "appendix_boundary",
+      "status": "observed",
+      "description": "Automatic metrics report main through p.24 and no appendix start; visible References begins p.11 and Appendix A begins p.14. Corrected boundary is main 1–10, references 11–13, appendix 14–24.",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "References",
+          "anchor": "REFERENCES",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 14,
+          "section": "Appendix A",
+          "anchor": "RELATED WORK",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "figure_count",
+      "status": "observed",
+      "description": "Automatic caption count is 11, while the PDF visibly contains Figures 1–13; Figures 12–13 are on p.24 and were missed by extraction.",
+      "evidence": [
+        {
+          "page": 23,
+          "section": "Figure 11",
+          "anchor": "Spectral norm across layers and training steps",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 24,
+          "section": "Figures 12–13",
+          "anchor": "Token difference visualization",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "equation_count",
+      "status": "observed",
+      "description": "Automatic numbered-equation provisional count is 6; physical reading finds Eq. (1)–(10), with five main equations and five Appendix E.2 derivation equations.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "3.3.1 Cause 1",
+          "anchor": "(1) and (2)",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 20,
+          "section": "Appendix E.2",
+          "anchor": "(10)",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "theorem_count",
+      "status": "observed",
+      "description": "Automatic theorem count 0 agrees with the PDF: Claim 1–3 are boxed claims, not theorem/lemma/proposition/corollary environments.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Claim 1",
+          "anchor": "Claim 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Claim 3",
+          "anchor": "Claim 3",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "page24_text_artifact",
+      "status": "observed",
+      "description": "p.24 visual layout is a token-difference heatmap plus Figure 13, while text extraction contains garbled unrelated-looking prose and Sum: 1.81e-06; lexical interpretation is restricted to visible captions/axes.",
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Figure 12",
+          "anchor": "Token difference visualization",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "word_count_noise",
+      "status": "observed",
+      "description": "Raw extracted words include headers, figure axes, formula fragments and p.24 artifacts; module estimates therefore remain estimates rather than raw lexical totals.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Figure 4",
+          "anchor": "Features",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 24,
+          "section": "Figure 12",
+          "anchor": "D_diff Values",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "在固定 GPT-2 failure replay 中，δ=rowsum(dO◦O) 的 BF16 误差通过跨 token/step 相似的 rank-1 方向 R 与正偏差累积，推高权重/激活 spectral norm；重复 row maxima 令 P̄=1，负 V 与 BF16 overflow/sticky-bit round-up 产生负 Ō error；dynamic maximum 让 P̄<1 并恢复所测配置稳定（p.3–10，Claims 1–3）。",
+    "main_body_keeps": "正文保留 Fig.2、layer/δ/O substitutions、Eq.(1)–(5)、Fig.3–6 机制证据与 Fig.7 三组干预曲线，分别承担 failure、localization、mechanism、mitigation 决策（p.3–10）。",
+    "appendix_moves": "Algorithm 1–3、BF16 bit arithmetic、Eq.(1) 长推导、Llama 现象、社区曲线和 Figures 11–13 移至 p.14–24；正文可读主线，但复现 block invariant、β/ε edge case 与外推范围需回看附录。",
+    "best_pattern": "用 precision substitution 锁定 arithmetic boundary，再做 gradient-error decomposition、位级 sign/rounding explanation，最后用 minimal intervention 回测；Fig.1 与 Claim 1–3 将长机制链切成三个节点（p.3–10）。",
+    "largest_gap": "R 的共同低秩结构、正偏差累积、跨硬件一致性和 QK normalization/Gated Attention 解释缺少全体分布、重复 seed、成本测量或独立干预；后者在 Discussion 仅以 “We posit” 出现（p.6–10、p.23）。",
+    "transfer_rule": "低精度稳定性研究应把 precision substitution → gradient-error decomposition → arithmetic sign/bit mechanism → minimal intervention 串成可证伪链，并只改变目标 arithmetic 边界（p.4–10、Appendix F p.20–21）。",
+    "transfer_boundary": "该规则适用于可重放轨迹、可替换单个算术边界且可观察更新方向的 failure；不能替代跨架构/跨格式训练、seed-level uncertainty、成本测量或其他数值源验证（p.10、p.17）。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 42,
+    "claims_with_page_evidence": 42,
+    "status": "complete"
+  }
+}
