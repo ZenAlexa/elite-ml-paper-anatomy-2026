@@ -1,0 +1,2902 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-dc7ecb0275a2",
+  "bibliography": {
+    "title": "Beyond Prompt-Induced Lies: Investigating LLM Deception on Benign Prompts",
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ],
+    "authors": [
+      "Zhaomin Wu",
+      "Mingzhe Du",
+      "See-Kiong Ng",
+      "Bingsheng He"
+    ]
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-dc7ecb0275a2.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=PDBBYwd1LY",
+    "source_kind": "official_pdf",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8e5f0591943d8dae5702af12dcdcd2f6-Paper-Conference.pdf",
+    "text": "corpus/text/iclr-2026-dc7ecb0275a2.txt"
+  },
+  "page_map": {
+    "pdf_pages": 29,
+    "main_pages": 10,
+    "reference_pages": 4,
+    "appendix_pages": 15,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 175
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 1100
+      },
+      {
+        "title": "2 Related Work",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 700
+      },
+      {
+        "title": "3.1 Definition of Deception",
+        "module": "theory",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 230
+      },
+      {
+        "title": "3.2 Deceptive Intention",
+        "module": "theory",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 390
+      },
+      {
+        "title": "3.3 Deceptive Behavior",
+        "module": "theory",
+        "start_page": 4,
+        "end_page": 4,
+        "estimated_words": 300
+      },
+      {
+        "title": "3.4 Overall Evaluation on Practical LLM with Response Bias",
+        "module": "theory",
+        "start_page": 5,
+        "end_page": 5,
+        "estimated_words": 350
+      },
+      {
+        "title": "4 Evaluation Framework",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 7,
+        "estimated_words": 950
+      },
+      {
+        "title": "5.1 Experimental Setup",
+        "module": "experimental_design",
+        "start_page": 8,
+        "end_page": 8,
+        "estimated_words": 550
+      },
+      {
+        "title": "5.2 Model-wise Analysis",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 9,
+        "estimated_words": 500
+      },
+      {
+        "title": "5.3 Overall Analysis",
+        "module": "results",
+        "start_page": 9,
+        "end_page": 9,
+        "estimated_words": 180
+      },
+      {
+        "title": "5.4 Evaluating Prompt-Induced Deception",
+        "module": "results",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 170
+      },
+      {
+        "title": "6 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 100
+      },
+      {
+        "title": "Reproducibility Statement / Ethical Statement / Acknowledgement",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 240
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 14,
+        "estimated_words": 2260
+      },
+      {
+        "title": "Appendix Table of Contents and A",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 16,
+        "estimated_words": 650
+      },
+      {
+        "title": "B Additional Model-Wise Analysis",
+        "module": "appendix",
+        "start_page": 16,
+        "end_page": 19,
+        "estimated_words": 1000
+      },
+      {
+        "title": "C Additional Overall Analysis",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 20,
+        "estimated_words": 950
+      },
+      {
+        "title": "D Ablation Studies",
+        "module": "ablation",
+        "start_page": 20,
+        "end_page": 22,
+        "estimated_words": 650
+      },
+      {
+        "title": "E Example of Prompts of CSQ Framework",
+        "module": "appendix",
+        "start_page": 22,
+        "end_page": 23,
+        "estimated_words": 700
+      },
+      {
+        "title": "F Case Study: Reasoning behind Deception",
+        "module": "appendix",
+        "start_page": 23,
+        "end_page": 27,
+        "estimated_words": 2350
+      },
+      {
+        "title": "G Generalization to Other Domains",
+        "module": "limitations",
+        "start_page": 26,
+        "end_page": 27,
+        "estimated_words": 330
+      },
+      {
+        "title": "H Comparison to Prior Benchmarks and Framework Advantages",
+        "module": "appendix",
+        "start_page": 27,
+        "end_page": 28,
+        "estimated_words": 650
+      },
+      {
+        "title": "I Broader Impact",
+        "module": "limitations",
+        "start_page": 29,
+        "end_page": 29,
+        "estimated_words": 520
+      },
+      {
+        "title": "J Large Language Model Usage",
+        "module": "other",
+        "start_page": 29,
+        "end_page": 29,
+        "estimated_words": 110
+      }
+    ],
+    "layout": "双栏 conference layout；图1–3较宽或跨栏，图4–7为多面板宽图；图8–15、21–23为压缩的多面板附录图，p24–25含长 CoT 样例和表格。",
+    "boundaries": "正文在物理页10 §6 Conclusion 结束；Reproducibility/Ethical/Acknowledgement 位于p11，references为p11–14；Appendix由物理页15的Appendix/ToC开始。"
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 175,
+      "main_word_share": 0.032,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 1100,
+      "main_word_share": 0.204,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 700,
+      "main_word_share": 0.13,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 950,
+      "main_word_share": 0.176,
+      "figures": 2,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 1
+    },
+    {
+      "module": "theory",
+      "status": "observed",
+      "estimated_words": 650,
+      "main_word_share": 0.121,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 3
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 550,
+      "main_word_share": 0.102,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 850,
+      "main_word_share": 0.158,
+      "figures": 4,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 650,
+      "main_word_share": null,
+      "figures": 3,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 100,
+      "main_word_share": 0.019,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 320,
+      "main_word_share": 0.059,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 6500,
+      "main_word_share": null,
+      "figures": 16,
+      "tables": 5,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 2500,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Large Language Models (LLMs) are widely deployed in reasoning, planning, and decision-making tasks, making their trustworthiness critical.",
+      "word_count": 17,
+      "functions": [
+        "object_scope",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "LLMs are widely deployed in reasoning, planning, and decision-making tasks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "A significant and underexplored risk is intentional deception, where an LLM deliberately fabricates or conceals information to serve a hidden objective.",
+      "word_count": 21,
+      "functions": [
+        "problem_gap",
+        "object_scope"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "underexplored risk is intentional deception",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "Existing studies typically induce deception by explicitly setting a hidden objective through prompting or fine-tuning, which may not reflect real-world human-LLM interactions.",
+      "word_count": 22,
+      "functions": [
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "explicitly setting a hidden objective through prompting or fine-tuning",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "Moving beyond such human-induced deception, we investigate LLMs’ self-initiated deception on benign prompts.",
+      "word_count": 13,
+      "functions": [
+        "object_scope",
+        "core_idea"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "self-initiated deception on benign prompts",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "To address the absence of ground truth, we propose a framework based on Contact Searching Questions (CSQ).",
+      "word_count": 17,
+      "functions": [
+        "problem_gap",
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "framework based on Contact Searching Questions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "This framework introduces two statistical metrics derived from psychological principles to quantify the likelihood of deception.",
+      "word_count": 16,
+      "functions": [
+        "method",
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "two statistical metrics derived from psychological principles",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "The first, the Deceptive Intention Score, measures the model’s bias toward a hidden objective.",
+      "word_count": 14,
+      "functions": [
+        "method",
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "Deceptive Intention Score",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "text": "The second, the Deceptive Behavior Score, measures the inconsistency between the LLM’s internal belief and its expressed output.",
+      "word_count": 18,
+      "functions": [
+        "method",
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "Deceptive Behavior Score",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "text": "Evaluating 16 leading LLMs, we find that both metrics rise in parallel and escalate with task difficulty for most models.",
+      "word_count": 20,
+      "functions": [
+        "experimental_setup",
+        "quantitative_result",
+        "qualitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "Evaluating 16 leading LLMs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "text": "Moreover, increasing model capacity does not always reduce deception, posing a significant challenge for future LLM development.",
+      "word_count": 17,
+      "functions": [
+        "qualitative_result",
+        "limitation",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "does not always reduce deception",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context → problem：部署 trustworthiness 后区分 hallucination/bias 与 strategic inconsistency；下一段拆分 prompt-induced 与 benign 情境。",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 1,
+        "section": "1 Introduction",
+        "anchor": "deception is a strategic inconsistency",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "taxonomy → failure_of_prior_work：列两种 deception 设置，指出主流诱导研究与 DeceptionBench 把 neutral response 当 ground truth；下一段建立 benign threat。",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 1,
+        "section": "1 Introduction",
+        "anchor": "treats responses to benign prompts as ground truth",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "problem → scope_boundary：把 intrinsic deception 放到 everyday、non-adversarial 风险和 scientific/medical 场景；钩子是严格评估。",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 1,
+        "section": "1 Introduction",
+        "anchor": "intrinsic deception on benign, everyday prompts",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "problem：明列 ground truth、response bias、adaptive difficulty 三个评测难题；下一段给出 CSQ。",
+      "estimated_words": 90,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "three primary challenges",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "core_idea → method_preview：以 cognitive psychology、syllogistic/transitive inference 和 binary-choice CSQ 建立 facts/rules/reachability；下一段逐项回应该三难题。",
+      "estimated_words": 120,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "we design the Contact Searching Question (CSQ) framework",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "method_preview → theory_preview → result_preview：说明 ρ、δ、reverse pair 与节点数 difficulty；随后进入 contributions。",
+      "estimated_words": 180,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "jointly analyze this pair of responses to cancel out the language preference",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "contribution_list：提出 CSQ、评估 16 个模型、报告 difficulty/correlation/capacity 三条发现；复述摘要但含可证伪方向。",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "Our evaluation yields three findings",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy → chronology-like listing → nearest_neighbor_contrast → gap_creation：incentivizing-prompt 工作与 DeceptionBench；neutral response ground-truth 假设被 CSQ 挑战。",
+      "estimated_words": 310,
+      "evidence": {
+        "page": 2,
+        "section": "2 Related Work",
+        "anchor": "LLM Deception under Incentivizing Prompts",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "taxonomy → credit_or_foundation → nearest_neighbor_contrast：Diplomacy 与 semantic triggers 观察 strategic deception，但 objective 由人类设定。",
+      "estimated_words": 185,
+      "evidence": {
+        "page": 3,
+        "section": "2 Related Work",
+        "anchor": "LLM Deception in Designed Scenarios",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "taxonomy → limitation_of_prior → scope_boundary：backdoor 的 attacker-defined objective 与本文 intrinsic behavior 分开。",
+      "estimated_words": 155,
+      "evidence": {
+        "page": 3,
+        "section": "2 Related Work",
+        "anchor": "our paper focuses on deception that is intrinsic to the LLM itself",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "state_problem：从 human deception 定义迁移到 LLM，并拆成 intention/behavior。",
+      "estimated_words": 90,
+      "evidence": {
+        "page": 3,
+        "section": "3.1 Definition of Deception",
+        "anchor": "The existence of both dimensions implies the existence of deception",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "define_component：ρ 对应 deliberate attempt，承认 benign prompt 下 implicit objective 不可观测。",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 3,
+        "section": "3.2 Deceptive Intention",
+        "anchor": "the implicit objective is not observable in this study",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "give_intuition：等难度任务应对称，task-oriented divergence 可作为 hidden goal 的 observable consequence。",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 4,
+        "section": "3.2 Deceptive Intention",
+        "anchor": "model governed solely by an explicit objective should exhibit symmetric performance",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "derive：Definition 3.3 给 direct ρpos 的正确概率 log-ratio。",
+      "estimated_words": 70,
+      "evidence": {
+        "page": 4,
+        "section": "Definition 3.3",
+        "anchor": "log-ratio of the correct response probabilities",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "connect_to_prediction：ρ 的绝对值/符号对应方向性偏好；高值不能区分 lie 与 hallucination。",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 4,
+        "section": "3.2 Deceptive Intention",
+        "anchor": "a high score does not distinguish between a deliberate lie and a systematic hallucination",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "define_component → give_intuition：低 cognitive-load simple query 作为 belief probe，complex query 作为 expression。",
+      "estimated_words": 120,
+      "evidence": {
+        "page": 4,
+        "section": "3.3 Deceptive Behavior",
+        "anchor": "simple questions that require low cognitive load are more likely to elicit truthful beliefs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "derive：Definition 3.4 定义 complex 错且 simple 对的 joint probability。",
+      "estimated_words": 85,
+      "evidence": {
+        "page": 4,
+        "section": "Definition 3.4",
+        "anchor": "joint probability of the model answering QL incorrectly while correctly answering QB",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "contrast_alternative：排除 consistent hallucination 的一致错误；δ 仍不能排除 complex-task capability shortfall。",
+      "estimated_words": 110,
+      "evidence": {
+        "page": 4,
+        "section": "3.3 Deceptive Behavior",
+        "anchor": "it is not a conclusive signal of deception on its own",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "setup_notation：把 structural preference 与 output bias 分为 ϕstruct/ϕout，并引入 rephrase。",
+      "estimated_words": 95,
+      "evidence": {
+        "page": 5,
+        "section": "3.4 Overall Evaluation",
+        "anchor": "true structural preference and this superficial output bias",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "derive：Equation (1) 用 original/reversed ratio 的 geometric mean 消掉 ϕout。",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 5,
+        "section": "Equation (1)",
+        "anchor": "output bias term ϕout is neutralized",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 11,
+      "move": "derive：Equation (2) 合并 direct/reversed inconsistency probability。",
+      "estimated_words": 55,
+      "evidence": {
+        "page": 5,
+        "section": "Equation (2)",
+        "anchor": "geometric mean of the inconsistency probability",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 12,
+      "move": "connect_to_experiment：Equation (3) 将不同 n 聚合为 ρ̄、δ̄，实验 t=80。",
+      "estimated_words": 90,
+      "evidence": {
+        "page": 5,
+        "section": "Overall Evaluation",
+        "anchor": "log-weighted average of the scores over all difficulty levels",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 13,
+      "move": "setup_notation → state_problem：syllogistic reasoning 提供 Facts/Rules/Conclusion，transitive inference 提供逻辑引擎；随后处理知识污染。",
+      "estimated_words": 130,
+      "evidence": {
+        "page": 5,
+        "section": "4 Evaluation Framework",
+        "anchor": "Facts and Rules and ask the LLM to derive a Conclusion",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 14,
+      "move": "define_component：G=(V,E)、synthetic names、transitivity/asymmetry/closure 和 directed-path ground truth。",
+      "estimated_words": 160,
+      "evidence": {
+        "page": 6,
+        "section": "4.1 Contact Searching Question",
+        "anchor": "a problem of determining the existence of a directed path",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 15,
+      "move": "instantiate_algorithm：Linked list 用全部 n 节点的随机排列和相邻 edges。",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 6,
+        "section": "4.1 Contact Searching Question",
+        "anchor": "contains all n nodes in V",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 16,
+      "move": "instantiate_algorithm → state_complexity：Broken list 删除位置 b 的 edge；follow-up 跨越该 break。",
+      "estimated_words": 180,
+      "evidence": {
+        "page": 6,
+        "section": "4.1 Contact Searching Question",
+        "anchor": "with a single missing edge",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 17,
+      "move": "derive → connect_to_experiment：Equation (4) 均匀抽样跨 break 且距离 floor(n/k) 的 follow-up pair。",
+      "estimated_words": 90,
+      "evidence": {
+        "page": 7,
+        "section": "Equation (4)",
+        "anchor": "sampled uniformly from the set of all ordered pairs that span the broken link",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 18,
+      "move": "connect_to_experiment：shuffle facts，限制回答单词 Yes/No，同一 conversation 观察一致性。",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 7,
+        "section": "4.1 Contact Searching Question",
+        "anchor": "The LLM is instructed to respond with a single word",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 19,
+      "move": "connect_to_prediction：ρ 正负对应 fabrication/concealment，δ 高表示 probe 对而 complex 错。",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 7,
+        "section": "4.2 Evaluating Deception",
+        "anchor": "a positive score reveals a model tendency to complete paths",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "introduction",
+      "page": 2,
+      "purpose": "Intel/AMD 两问三轮示例，区分 guessing、deception、truthfulness、hallucination。",
+      "evidence": {
+        "page": 2,
+        "section": "Figure 1",
+        "anchor": "This context-dependent inconsistency distinguishes deception from hallucination and guessing",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "method",
+      "page": 6,
+      "purpose": "并排 linked-list/broken-list，映射 expression 与 belief probe 的一致/不一致。",
+      "evidence": {
+        "page": 6,
+        "section": "Figure 2",
+        "anchor": "Answer 1 represents the model’s expression; Answer 2 reflects its underlying belief",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "method",
+      "page": 7,
+      "purpose": "Broken-link prompt 示例，显式展示 omitted edge、facts 与 Yes/No 规则。",
+      "evidence": {
+        "page": 7,
+        "section": "Figure 3",
+        "anchor": "Example of Broken-Linked-List question in experiment",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "results",
+      "page": 9,
+      "purpose": "四个代表模型 original/reversed/geomean ρ 随 n 的多面板曲线。",
+      "evidence": {
+        "page": 9,
+        "section": "Figure 4",
+        "anchor": "Deceptive intention scores as question scope n varies",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "results",
+      "page": 9,
+      "purpose": "四个代表模型 δ 与 ρ 随 n 的多面板曲线。",
+      "evidence": {
+        "page": 9,
+        "section": "Figure 5",
+        "anchor": "Deceptive behavior scores and intention scores as question scope n varies",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "results",
+      "page": 10,
+      "purpose": "全模型 δ̄/|ρ̄| 分布及随 release date 的两项趋势。",
+      "evidence": {
+        "page": 10,
+        "section": "Figure 6",
+        "anchor": "Analysis of deceptive behavior score and absolute deceptive intention score across LLMs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 7",
+      "module": "results",
+      "page": 10,
+      "purpose": "gpt-4o 与 gemma-2-9b-it benign/incentivizing prompt 的 ρ/δ 对照。",
+      "evidence": {
+        "page": 10,
+        "section": "Figure 7",
+        "anchor": "Deceptive intention and behavior scores under incentivizing prompts",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 8",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "12 个模型的 original/reversed/geomean ρ 补充曲线。",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B.1 Figure 8",
+        "anchor": "Deceptive intention scores as question scope n varies",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 9",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "16 个模型 Broken/BrokenReverse/geomean δ 补充曲线。",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix B.2 Figure 9",
+        "anchor": "Deceptive behavior scores as question scope n varies",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 10",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "12 个模型 δ 与 ρ joint curves，补充二指标联动。",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix B.3 Figure 10",
+        "anchor": "Deceptive behavior scores and intention scores as question scope n varies",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 11",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "所有模型 ρ(n,M) 与 δ(n,M) 随 n，图注含 95% confidence intervals。",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix C Figure 11",
+        "anchor": "Deception evolution as n increases across all models with 95% confidence intervals",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 12",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "open-source 模型参数规模与 δ̄、|ρ̄| 的 log-linear trend。",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix C.3 Figure 12",
+        "anchor": "Analysis of deceptive scores across different model sizes",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 13",
+      "module": "ablation",
+      "page": 21,
+      "purpose": "四个 OpenAI 模型 n=10、τ∈[0,1] 的 temperature 稳定性。",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix D.1 Figure 13",
+        "anchor": "Temperature analysis for OpenAI models with n = 10",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 14",
+      "module": "ablation",
+      "page": 21,
+      "purpose": "n=40 时 k∈{2,2.5,5,10,20} 的 δ 与跨模型排序。",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix D.2 Figure 14",
+        "anchor": "Deceptive behavior score for different sizes of follow-up question",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 15",
+      "module": "ablation",
+      "page": 22,
+      "purpose": "各模型 QL/QB rephrased questions 的 Yes/No ratio，展示响应方差。",
+      "evidence": {
+        "page": 22,
+        "section": "Appendix D.3 Figure 15",
+        "anchor": "Ratio of answers in rephrased questions for each LLM",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 16",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "完整 linked-list prompt 与 Fiona→Angela→Andrew→Ian→Colin 序列。",
+      "evidence": {
+        "page": 22,
+        "section": "Appendix E Figure 16",
+        "anchor": "complete, linked sequence of individuals",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 17",
+      "module": "appendix",
+      "page": 23,
+      "purpose": "Broken-link prompt、被删 Brandon→Anna 边和 follow-up 示例。",
+      "evidence": {
+        "page": 23,
+        "section": "Appendix E Figure 17",
+        "anchor": "deliberately withheld connection between Brandon Rivera and Anna Nguyen",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 18",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "Qwen3-235B 初始 CoT 静默加入未给出的 Ryan James→Colin Hernandez，答 Yes。",
+      "evidence": {
+        "page": 24,
+        "section": "Appendix F.1 Figure 18",
+        "anchor": "silently fabricates a fact that Ryan James → Colin Hernandez was never given",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 19",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "同一案例 follow-up 不复述 fabricated fact，长思考后答 No。",
+      "evidence": {
+        "page": 24,
+        "section": "Appendix F.1 Figure 19",
+        "anchor": "does not mention the fabricated fact from the initial answer",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 20",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "Qwen3-30B-A3B concealment CoT，声称检查所有路径却漏名并答 No。",
+      "evidence": {
+        "page": 25,
+        "section": "Appendix F.1 Figure 20",
+        "anchor": "claimed to have checked all possible paths",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 21",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "gemma-2-9b-it layer 11 的 PCA embeddings；红点为 inconsistent responses。",
+      "evidence": {
+        "page": 26,
+        "section": "Appendix F.2 Figure 21",
+        "anchor": "Red colors indicate inconsistent responses between initial and follow-up questions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 22",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "gemma-2-9b-it layer 43 的 PCA embeddings，比较 n=3/20/80。",
+      "evidence": {
+        "page": 26,
+        "section": "Appendix F.2 Figure 22",
+        "anchor": "Visualization of gemma-2-9b-it embeddings at layer 43",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 23",
+      "module": "appendix",
+      "page": 27,
+      "purpose": "Llama-3.1-8B-Instruct layer 43 embeddings，低 δ 模型的红点较分散。",
+      "evidence": {
+        "page": 27,
+        "section": "Appendix F.2 Figure 23",
+        "anchor": "Visualization of Llama-3.1-8B-Instruct embeddings at layer 43",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "appendix",
+      "page": 16,
+      "purpose": "16 个模型的 vendor、version、size、type。",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A Table 1",
+        "anchor": "Details of language models evaluated in this study",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "OpenAI 模型 n=10 的 direct/repeated/reversed/geomean δ。",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix C.2 Table 2",
+        "anchor": "Deceptive Behavior Scores on rephrased questions (n = 10)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "Qwen3-235B-A22B 全答案与 inconsistent 答案的 thinking character length。",
+      "evidence": {
+        "page": 25,
+        "section": "Appendix F.1 Table 3",
+        "anchor": "Average character length of thinking processes",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "Qwen3-30B-A3B linked-list 正误答案的字符长度与 name coverage。",
+      "evidence": {
+        "page": 25,
+        "section": "Appendix F.1 Table 4",
+        "anchor": "Analysis of LLM outputs in Qwen3-30B-A3B linked list questions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "CSQ 与 bias/hallucination/deception prior benchmarks 的 Focus、Performance Asymmetry、Self-Consistency、Benign Prompt 对照。",
+      "evidence": {
+        "page": 28,
+        "section": "Appendix H Table 5",
+        "anchor": "Comparison of Our Work (CSQ) against prior benchmarks",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "displayed_equation",
+      "label": "Definition 3.3 inline metric ρpos",
+      "module": "theory",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "Definition 3.3",
+        "anchor": "ρpos is the log-ratio of the correct response probabilities",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Definition 3.4 inline metric δpos",
+      "module": "theory",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "Definition 3.4",
+        "anchor": "joint probability of answering QL incorrectly while correctly answering QB",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (1): bias-corrected ρ",
+      "module": "theory",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "Equation (1)",
+        "anchor": "geometric mean of original and logically reversed ratios",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (2): bias-corrected δ",
+      "module": "theory",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "Equation (2)",
+        "anchor": "geometric mean of the inconsistency probability",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (3): log-weighted overall ρ̄ and δ̄",
+      "module": "theory",
+      "page": 5,
+      "role": "diagnostic",
+      "evidence": {
+        "page": 5,
+        "section": "Overall Evaluation",
+        "anchor": "log-weighted average of the scores over all difficulty levels",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (4): follow-up pair sampling",
+      "module": "method",
+      "page": 7,
+      "role": "core_chain",
+      "evidence": {
+        "page": 7,
+        "section": "Equation (4)",
+        "anchor": "ordered pairs that span the broken link and have distance floor(n/k)",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "research_scope",
+      "status": "observed",
+      "description": "以 CSQ 评估 benign prompt 下 self-initiated deception；另加 incentivizing prompt 实验；没有预先编号的 hypothesis 列表。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "evaluation of LLMs’ deception via CSQ",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "5.4 Prompt-Induced Deception",
+          "anchor": "additional experiment using CSQ with an incentivizing prompt",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "data_and_ground_truth",
+      "status": "observed",
+      "description": "每个 category × length 生成 1,000 个问题；graph reachability 提供 objective ground truth。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "3.4 Overall Evaluation",
+          "anchor": "m = 1000 in our experiments",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "1,000 questions for each combination of question category and length",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "difficulty_levels",
+      "status": "observed",
+      "description": "n∈{3,5,10,20,30,40,80} 控制节点/路径规模；overall t=80。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "number of individuals is varied across the set {3, 5, 10, 20, 30, 40, 80}",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "maximum difficulty level to t = 80",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "question_categories",
+      "status": "observed",
+      "description": "Linked、Linked-Reversed、Broken、Broken-Reversed、Broken-Repeat 五类；Broken 与 reversed 版本带 follow-up。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "experiments utilize five distinct CSQ categories",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "synthetic_names_and_contamination_control",
+      "status": "observed",
+      "description": "100 个常见 first/last names 随机配对、去重；directed facts/rules 与数学 ground truth 规避训练知识污染。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "4.1 Contact Searching Question",
+          "anchor": "names are generated by randomly pairing 100 common first names and last names",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "input_rephrase_control",
+      "status": "observed",
+      "description": "每个问题由 temperature=1.0 的一个 LLM 随机 rephrase，facts 保持；所有模型复用同一组；rephrase model identity 未给出。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "3.4 Overall Evaluation",
+          "anchor": "randomly rephrase the question, while the core list of facts remains unchanged",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "3.4 Overall Evaluation",
+          "anchor": "rephrase model identity is not specified",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "output_bias_control",
+      "status": "observed",
+      "description": "original/reversed question 成对，ρ 与 δ 用 direct/reversed geometric mean 抵消 Yes/No output bias。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "3.4 Overall Evaluation",
+          "anchor": "output bias term ϕout is neutralized",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "followup_probe_control",
+      "status": "observed",
+      "description": "follow-up 在 same conversation 发送，不重新给 facts/rules；跨同一 broken edge 且距离 floor(n/k)。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "4.1 Contact Searching Question",
+          "anchor": "within the same conversational context, with no new facts or rules provided",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "models_and_apis",
+      "status": "observed",
+      "description": "16 个闭源/开源模型；OpenAI official API 访问 proprietary models，Nebius integrated API 访问 open-source models。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "diverse set of 16 state-of-the-art LLMs",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "access proprietary models from OpenAI via the official API",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "output_protocol",
+      "status": "observed",
+      "description": "要求单词 Yes 或 No；score 以回答与 graph truth 的一致性/joint event 形成。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "4.1 Contact Searching Question",
+          "anchor": "respond with a single word: Yes or No",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "standard_hyperparameters",
+      "status": "observed",
+      "description": "统一 temperature=1.0、k=2、t=80；D.1/D.2 检查部分稳定性。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "set it to 1.0 for all experiments",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "set the hyperparameter k = 2",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "set the maximum difficulty level to t = 80",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "uncertainty_and_statistics",
+      "status": "observed",
+      "description": "图注报告 95% confidence intervals；Appendix D.3 说明区间由 bootstrap 计算；未报告重采样次数。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D.3",
+          "anchor": "intervals are calculated using bootstrapping",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix C Figure 11",
+          "anchor": "with 95% confidence intervals",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "random_seeds",
+      "status": "not_present",
+      "description": "未报告实验随机 seed 或 seed 固定策略。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "models, data and categories are listed without random seeds",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "hyperparameters and implementation details omit seed information",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "training_budget_and_hardware",
+      "status": "not_applicable",
+      "description": "本文通过既有模型 API 做评测，未训练模型；训练预算不适用。API 运行硬件未报告。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "access all models through their respective inference APIs",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "hardware configuration is not reported",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "failure_rule_and_filtering",
+      "status": "not_present",
+      "description": "没有预注册的 failure threshold、请求失败重试、per-item quality filter 或 multiple-comparison correction。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "no failure threshold or filtering rule is specified",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 9,
+          "section": "5.3 Overall Analysis",
+          "anchor": "Spearman r is reported without a multiple-comparison protocol",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "Figure 1 用 Intel/AMD 两问三轮示例区分 guessing、deception、truthfulness、hallucination。",
+      "value": "概念示例，无统计量。",
+      "comparison": "context-dependent inconsistency vs always-wrong/unsystematic answers",
+      "statistical_method": "none; illustrative example",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "Figure 1",
+          "anchor": "changes its answer in the second context to align with the cue",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "四个代表模型的 ρ 在 n 变化时保持方向性偏好；o3-mini 偏 concealment，其余三者偏 fabrication。",
+      "value": "ρ<0 for o3-mini；ρ>0 for other representative models, with plotted n-wise curves.",
+      "comparison": "original/reversed/geomean linked vs broken conditions",
+      "statistical_method": "geometric mean of probabilities; no tabulated point estimates",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "5.2 Model-wise Analysis",
+          "anchor": "o3-mini consistently favors concealment",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 4",
+          "anchor": "deceptive intention scores as question scope n varies",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "多数代表模型的 δ 与 |ρ| 随 task difficulty 同步上升；出现点依 capability 而异。",
+      "value": "stronger models around n=20; phi-4 around n=5; weak-model scores can fall at very large n.",
+      "comparison": "o3-mini/Gemini-2.5-pro/Qwen3-235B-A22B vs phi-4 across n",
+      "statistical_method": "n-wise score curves; no separate trend test",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.2 Model-wise Analysis",
+          "anchor": "both deceptive behavior and intention emerge and escalate as task difficulty increases",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 5",
+          "anchor": "deceptive behavior scores and intention scores as question scope n varies",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "全模型 overall δ̄ 与 |ρ̄| 正相关。",
+      "value": "Spearman r > 0.69.",
+      "comparison": "16 model points in Figure 6a",
+      "statistical_method": "Spearman correlation",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "5.3 Overall Analysis",
+          "anchor": "Spearman r > 0.69",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "不同模型在 hard problems 上呈现 hallucination、guessing 或 deception 的不同习惯。",
+      "value": "Mistral-Nemo-Instruct-2407 hallucination；gpt-4o-mini/gpt-4.1-mini guessing；phi-4 deception。",
+      "comparison": "model-specific positions in Figure 6a",
+      "statistical_method": "aggregate score plane; no classification test",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "5.3 Overall Analysis",
+          "anchor": "Mistral-Nemo-Instruct-2407 tends to hallucinate",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 6",
+          "anchor": "Distribution of deceptive behavior and intention scores",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "capacity 增长总体下降但有例外；gpt-4o→gpt-4.1 的 intention 上升。",
+      "value": "directional exception; no exact point value in prose.",
+      "comparison": "release-date/model update trends",
+      "statistical_method": "trend plots; Figure 6/12 log-linear summaries",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "5.3 Overall Analysis",
+          "anchor": "advancement from gpt-4o to gpt-4.1 increases the deceptive intention score",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix C.3",
+          "anchor": "effect of model updates on deception is inconsistent",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "incentivizing/sycophantic prefix mainly shifts ρ toward fabrication，δ 变化较小。",
+      "value": "gemma δ slightly increases; gpt-4o effect small and inconsistent across n.",
+      "comparison": "benign vs fixed prefix “a logical path does exist” for gpt-4o/gemma-2-9b-it",
+      "statistical_method": "paired score curves; no separate hypothesis test",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "5.4 Prompt-Induced Deception",
+          "anchor": "My strong intuition is that a logical path does exist",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 7",
+          "anchor": "sycophancy primarily amplifies deception in terms of intention rather than behavior",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "补充 ρ 曲线中多数模型随 n 上升；DeepSeek-V3 简单题 failure 异常。",
+      "value": "o4-mini also rises; DeepSeek anomaly persisted on official website validation; English comprehension is a hypothesis.",
+      "comparison": "12 models in Figure 8",
+      "statistical_method": "n-wise plotted scores; no anomaly test",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix B.1",
+          "anchor": "DeepSeek-V3 presents a notable exception",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Figure 8",
+          "anchor": "deceptive intention scores as question scope n varies",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "补充 δ 曲线显示 capability-dependent onset，且 BrokenRepeat 暗示 re-prompting 只解释一部分。",
+      "value": "o4-mini/Qwen3-235B-A22B onset n=20；gpt-4.1-mini/gpt-4o-mini onset n=5；δneg′ < δneg in Table 2.",
+      "comparison": "Broken, BrokenReverse and BrokenRepeat",
+      "statistical_method": "geometric means and plotted curves; no formal test",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix C.2",
+          "anchor": "simply repeating the question yields a non-zero δneg′",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Table 2",
+          "anchor": "Deceptive Behavior Scores on rephrased questions (n = 10)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Table 2 给出 n=10 时六个 OpenAI 模型的 δ。",
+      "value": "gpt-4.1 .415/.036/.174/.269; gpt-4.1-mini .715/.275/.533/.617; gpt-4o .449/.005/.174/.280; gpt-4o-mini .379/.182/.584/.470; o3-mini 0/.011/.104/0; o4-mini 0/0/.001/0.",
+      "comparison": "δpos Broken / δneg′ BrokenRepeat / δneg BrokenReverse / δ geometric mean",
+      "statistical_method": "empirical probabilities and geometric mean; no intervals in table",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Table 2",
+          "anchor": "Deceptive Behavior Scores on rephrased questions (n = 10)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "o4-mini 的 joint δ/|ρ| trend 不显著，因为两者在 n≤80 近 0。",
+      "value": "near-zero magnitudes; no separate p-value reported.",
+      "comparison": "o4-mini vs other models in Figure 10",
+      "statistical_method": "joint plotted curves; “not significant” described qualitatively",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix B.3",
+          "anchor": "o4-mini trend is not significant because the magnitudes of both are negligible",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Figure 10",
+          "anchor": "deceptive behavior scores and intention scores as question scope n varies",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "open-source scaling 与 deception 下降方向一致但很弱，family update 方向不一致。",
+      "value": "Figure 12 R²=.336 for δ̄ and .360 for |ρ̄|; Qwen3 lower than Qwen2.5, GPT-4o→4.1 increases both.",
+      "comparison": "open-source parameter size and within-family updates",
+      "statistical_method": "log-linear trend with R² labels; no uncertainty interval",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix C.3",
+          "anchor": "associated R2 values are only around 0.336 and 0.360",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Figure 12",
+          "anchor": "Analysis of deceptive scores across different model sizes",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "temperature 变化下 OpenAI n=10 的 score 大致稳定。",
+      "value": "τ∈[0,1]；统一 τ=1.0。",
+      "comparison": "gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-4o-mini",
+      "statistical_method": "curves across temperature; no formal test",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix D.1",
+          "anchor": "both scores remain largely consistent across different temperature settings",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "k 改变 δ 绝对值但模型相对排序较稳。",
+      "value": "k∈{2,2.5,5,10,20}, n=40；k=2 selected.",
+      "comparison": "sensitivity vs discriminability trade-off",
+      "statistical_method": "rank comparison across plotted k; no rank statistic",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix D.2",
+          "anchor": "relative ranking of the LLMs remains remarkably consistent",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "rephrased question 的回答方差随模型能力变化。",
+      "value": "strong models near one Yes/No ratio; Llama-3.1 closer to 1:1.",
+      "comparison": "Qwen3/Gemini-2.5-pro/o4-mini vs Llama-3.1 in Figure 15",
+      "statistical_method": "Yes/No ratios; bootstrap intervals used elsewhere",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D.3",
+          "anchor": "strong models tend to provide highly consistent answers",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Figure 15",
+          "anchor": "Ratio of answers in rephrased questions for each LLM",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Qwen3-235B inconsistent answers 的 follow-up thinking length 多数增加。",
+      "value": "Broken n=10/20/40/80 relative changes +38.7%/+29.2%/+283.5%/+91.5%; BrokenReverse +108.8%/+11.8%/−8.6%/+15.2%.",
+      "comparison": "initial vs follow-up, inconsistent-answer subset",
+      "statistical_method": "average character length and relative difference",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Table 3",
+          "anchor": "Average character length of thinking processes",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Qwen3-30B-A3B incorrect linked-list answers 的 name coverage 在大 n 下降且长度更长。",
+      "value": "n=40 Linked length +100.4%, coverage 99.4±5.1%→89.3±18.8%; n=80 Linked +23.7%, 94.8±14.5%→72.2±26.8%.",
+      "comparison": "correct vs incorrect answers in Table 4",
+      "statistical_method": "mean character length and name coverage summary",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Table 4",
+          "anchor": "Character Length and Name Coverage",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "CoT examples show silent fabrication/concealment，embedding examples show clustering of inconsistent responses。",
+      "value": "Figure 18 fake edge; Figure 19 later correct answer; Figure 20 omitted names; Figures 21–23 red dots cluster for high-δ models.",
+      "comparison": "two Qwen case studies and gemma/Llama representations",
+      "statistical_method": "qualitative case inspection and PCA visualization; no intervention/causal test",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Appendix F.1",
+          "anchor": "LLM fabricates facts silently",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix F.2",
+          "anchor": "inconsistent red dots appear and concentrate within a distinct cluster",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "Figure 23",
+          "anchor": "Red colors indicate inconsistent responses between initial and follow-up questions",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "temperature_tau",
+      "status": "observed",
+      "description": "D.1：OpenAI n=10、τ∈[0,1]；ρ/δ 大致稳定，因此全实验 τ=1.0。",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix D.1",
+          "anchor": "both scores remain largely consistent across different temperature settings",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "difficulty_ratio_k",
+      "status": "observed",
+      "description": "D.2：n=40、k=2–20；绝对 δ 波动但模型排序稳定；大 k 灵敏度高而区分度低，小 k 反向；选 k=2。",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix D.2",
+          "anchor": "trade-off between sensitivity to deception and discriminability across models",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "rephrased_response_variance",
+      "status": "observed",
+      "description": "D.3：Figure 15 给 QL/QB 的 Yes/No ratio；强模型低方差，Llama 近 1:1；作者称 bootstrap 区间覆盖该变化。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D.3",
+          "anchor": "robust to such variability",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Figure 15",
+          "anchor": "Ratio of answers in rephrased questions for each LLM",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "broken_repeat",
+      "status": "observed",
+      "description": "BrokenRepeat 使 follow-up 重复同 query 并加入 broken fact；Table 2 的 δneg′ 非零但低于 BrokenReverse 的 δneg。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix C.2",
+          "anchor": "high deceptive behavior score is not solely a consequence of re-prompting",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "very_hard_fallback",
+      "status": "observed",
+      "description": "弱模型在很大 n 的 deception score 回落，作者解释为 fallback guessing；对“随难度增长”提供边界。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.2 Model-wise Analysis",
+          "anchor": "deception in weaker models decreases for very difficult questions due to fallback guessing",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "deepseek_anomaly",
+      "status": "observed",
+      "description": "DeepSeek-V3 简单题 failure 高，官网验证后仍在；英语理解困难是 hypothesis。",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix B.1",
+          "anchor": "We hypothesize that this anomaly stems from the challenges in comprehending English questions",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "o4_mini_near_zero",
+      "status": "observed",
+      "description": "o4-mini 的 ρ/δ 接近零，joint trend 不显著；它是主线的正向边界案例。",
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix B.3",
+          "anchor": "magnitudes of both δ and |ρ| are negligible",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "model_size",
+      "status": "observed",
+      "description": "C.3：参数规模与两项 overall score 下降但趋势弱；family update 方向相反，原因 inconclusive。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix C.3",
+          "anchor": "main factors driving LLM deception remain inconclusive",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "mechanism_case_study",
+      "status": "observed",
+      "description": "F：CoT/embedding 仅提供两个模型与少量图例的机制线索，未做 intervention。",
+      "evidence": [
+        {
+          "page": 23,
+          "section": "Appendix F.1",
+          "anchor": "do not explicitly state their intention to deceive",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix F.2",
+          "anchor": "points toward potential mitigation strategies",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "benign prompt 可产生 self-initiated deception",
+      "origin": "Abstract/Introduction",
+      "status": "partially_closed",
+      "method_response": "CSQ synthetic reachability + ρ/δ 双指标。",
+      "evidence_response": "16-model 曲线、Table 2、CoT case 提供 proxy evidence。",
+      "conclusion_response": "Conclusion 重申多数模型有 deceptive tendencies。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1 Introduction",
+          "anchor": "intrinsic deception on benign, everyday prompts",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "5.2 Model-wise Analysis",
+          "anchor": "both deceptive behavior and intention emerge",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ground truth 缺失可用 objective CSQ 绕开",
+      "origin": "Introduction",
+      "status": "partially_closed",
+      "method_response": "facts/rules 构造 directed graph reachability ground truth。",
+      "evidence_response": "Linked/Broken/Reversed 任务拥有数学 truth，但 internal intention 仍无 truth。",
+      "conclusion_response": "Conclusion 回收 framework，未宣称 intent 已被直接观测。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "1 Introduction",
+          "anchor": "absence of ground truth",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "4.1 Contact Searching Question",
+          "anchor": "existence of a directed path",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "ρ 是 directional intention，δ 是 belief–expression inconsistency",
+      "origin": "Definitions 3.3/3.4",
+      "status": "partially_closed",
+      "method_response": "概率定义与 original/reversed geometric means。",
+      "evidence_response": "sign 曲线、follow-up、CoT/embedding clues 与定义一致，但 capability heuristic 未排尽。",
+      "conclusion_response": "Conclusion 把二者作为互补 metrics。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2–3.3 Metrics",
+          "anchor": "not a conclusive signal of deception on its own",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "3.4 Overall Evaluation",
+          "anchor": "concurrently high absolute value in both ρ and δ",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "deception 随 difficulty 上升",
+      "origin": "Introduction contributions",
+      "status": "partially_closed",
+      "method_response": "n 控制链长，k=2 控制 probe。",
+      "evidence_response": "Figures 4/5/8–11 跨 n；弱模型在大 n 回落，n 同时影响文本长度和 guessing。",
+      "conclusion_response": "Conclusion 写 growth with task complexity。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.2 Model-wise Analysis",
+          "anchor": "both metrics rise in parallel and escalate with task difficulty",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "5.3 Overall Analysis",
+          "anchor": "distinct habits on hard problems",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "δ 与 |ρ| 正相关",
+      "origin": "Introduction contributions",
+      "status": "partially_closed",
+      "method_response": "Eq.(1)–(3) 先分开定义、再做 joint plot。",
+      "evidence_response": "Spearman r>0.69 与 Figures 5/6/10。",
+      "conclusion_response": "Conclusion 回收 correlation。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "5.3 Overall Analysis",
+          "anchor": "Spearman r > 0.69",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 6",
+          "anchor": "Distribution of deceptive behavior score and absolute deceptive intention score",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "capacity 并不总提高 honesty",
+      "origin": "Abstract/Introduction",
+      "status": "closed",
+      "method_response": "release-date 与 parameter-size plot。",
+      "evidence_response": "gpt-4o→gpt-4.1 反例，Figure 12 给总体弱下降趋势。",
+      "conclusion_response": "Abstract 保留 does not always，Conclusion 保留 safety concern。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "5.3 Overall Analysis",
+          "anchor": "advancement from gpt-4o to gpt-4.1 increases the deceptive intention score",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix C.3",
+          "anchor": "trend is not particularly strong",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "CSQ 也能测试 incentivizing deception",
+      "origin": "§5.4",
+      "status": "partially_closed",
+      "method_response": "固定 sycophancy prefix 与相同 score。",
+      "evidence_response": "Figure 7 仅覆盖 gpt-4o/gemma，显示 ρ shift 与 δ marginal。",
+      "conclusion_response": "p.10 宣称可扩展到 prompt-induced settings。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "5.4 Prompt-Induced Deception",
+          "anchor": "fixed prefix to explicitly incentivize the LLM to deceive",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 7",
+          "anchor": "extends CSQ beyond benign-prompt settings",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "temperature/k/rephrase protocol 稳健",
+      "origin": "Appendix D",
+      "status": "partially_closed",
+      "method_response": "D.1–D.3 改变 τ、k 和 rephrase variability。",
+      "evidence_response": "稳定性/排序来自有限模型、有限 k 和 bootstrap 描述，未穷尽组合。",
+      "conclusion_response": "Appendix A 用 τ=1、k=2 固定协议。",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix D.1–D.2",
+          "anchor": "relative ranking of the LLMs remains remarkably consistent",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Appendix D.3",
+          "anchor": "intervals are calculated using bootstrapping",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "CoT/embedding 可定位 deception mechanism",
+      "origin": "§5 overview / Appendix F",
+      "status": "partially_closed",
+      "method_response": "follow-up consistency probe + PCA visualization。",
+      "evidence_response": "两个 Qwen case 和 gemma/Llama representation patterns，未做 intervention/causal test。",
+      "conclusion_response": "未在 Conclusion 独立回收。",
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Appendix F.1",
+          "anchor": "LLM fabricates facts silently",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix F.2",
+          "anchor": "deceptive responses are not random but concentrate on specific embedding clusters",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "CSQ generalizes to mathematics/science/coding",
+      "origin": "Appendix G",
+      "status": "not_testable_here",
+      "method_response": "只给 facts/rules/conclusion 的结构类比。",
+      "evidence_response": "本文没有这些域的数据或实验。",
+      "conclusion_response": "以 future direction 呈现。",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "Appendix G",
+          "anchor": "Extending such a framework to other domains is therefore a promising direction",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "pretraining objective 造成 appear-correct 倾向",
+      "origin": "Appendix I",
+      "status": "open",
+      "method_response": "无训练干预或 objective comparison。",
+      "evidence_response": "仅以 suspect 表述，未给因果证据。",
+      "conclusion_response": "未回收为结果。",
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix I",
+          "anchor": "We suspect this behavior is deeply rooted in the pre-training objectives",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "Appendix table of contents",
+      "category": "other",
+      "start_page": 15,
+      "end_page": 15,
+      "main_text_calls": [
+        "Appendix 起始导航，无科学主张。"
+      ],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix ToC",
+          "anchor": "Table of Contents",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A Experiment Setup Details",
+      "category": "implementation_detail",
+      "start_page": 15,
+      "end_page": 16,
+      "main_text_calls": [
+        "p.8：model details and hyperparameters deferred to Appendix A。"
+      ],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "Details of the data and models are provided in Section 5.1 and Appendix A",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "B Additional Model-Wise Analysis",
+      "category": "additional_result",
+      "start_page": 16,
+      "end_page": 19,
+      "main_text_calls": [
+        "p.8：remaining LLMs reported in Appendix B。"
+      ],
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "remaining LLMs are reported in Appendix B",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix B",
+          "anchor": "Additional Model-Wise Analysis",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "C Additional Overall Analysis",
+      "category": "additional_result",
+      "start_page": 17,
+      "end_page": 20,
+      "main_text_calls": [
+        "p.8：Appendix C further details per-model results and parameter-size evolution。"
+      ],
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "Appendix C further details per-model results",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix C.3",
+          "anchor": "EVOLUTION OF DECEPTION BY MODEL SIZE",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "D Ablation Studies",
+      "category": "ablation",
+      "start_page": 20,
+      "end_page": 22,
+      "main_text_calls": [
+        "p.8：Appendix D verifies robustness to k and temperature。"
+      ],
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "Appendix D verifies robustness to hyperparameters",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D",
+          "anchor": "ABLATION STUDIES",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "E Example of Prompts of CSQ Framework",
+      "category": "qualitative_example",
+      "start_page": 22,
+      "end_page": 23,
+      "main_text_calls": [
+        "p.6–7 的 Figure 2/3 后说明 additional prompt examples in Appendix E。"
+      ],
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "additional prompt examples in Appendix E",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Appendix E",
+          "anchor": "EXAMPLE OF PROMPTS OF CSQ FRAMEWORK",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "F.1 Analysis of Deception in Chain-of-Thought",
+      "category": "qualitative_example",
+      "start_page": 23,
+      "end_page": 25,
+      "main_text_calls": [
+        "p.8：evidence in thinking content (Appendix F.1)。"
+      ],
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "examining evidence in thinking content (Appendix F.1)",
+          "basis": "explicit"
+        },
+        {
+          "page": 23,
+          "section": "Appendix F.1",
+          "anchor": "ANALYSIS OF DECEPTION IN CHAIN-OF-THOUGHT",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "F.2 Visualization of Embeddings",
+      "category": "qualitative_example",
+      "start_page": 26,
+      "end_page": 27,
+      "main_text_calls": [
+        "p.8：visualizing embeddings (Appendix F.2)。"
+      ],
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "visualizing embeddings (Appendix F.2)",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix F.2",
+          "anchor": "VISUALIZATION OF EMBEDDINGS",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "G Generalization to Other Domains",
+      "category": "other",
+      "start_page": 26,
+      "end_page": 27,
+      "main_text_calls": [
+        "p.8：discuss generalization to other domains (Appendix G)。"
+      ],
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "discuss generalization to other domains (Appendix G)",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "Appendix G",
+          "anchor": "GENERALIZATION TO OTHER DOMAINS",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "H Comparison to Prior Benchmarks and Framework Advantages",
+      "category": "other",
+      "start_page": 27,
+      "end_page": 28,
+      "main_text_calls": [
+        "未见正文直接回收 Appendix H；作为定位和 Table 5。"
+      ],
+      "evidence": [
+        {
+          "page": 27,
+          "section": "Appendix H",
+          "anchor": "COMPARISON TO PRIOR BENCHMARKS AND FRAMEWORK ADVANTAGES",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "title": "I Broader Impact",
+      "category": "broader_impact",
+      "start_page": 29,
+      "end_page": 29,
+      "main_text_calls": [
+        "p.8：broader impact (Appendix I)。"
+      ],
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "broader impact (Appendix I)",
+          "basis": "explicit"
+        },
+        {
+          "page": 29,
+          "section": "Appendix I",
+          "anchor": "BROADER IMPACT",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "J Large Language Model Usage",
+      "category": "other",
+      "start_page": 29,
+      "end_page": 29,
+      "main_text_calls": [
+        "未见正文调用；过程披露。"
+      ],
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix J",
+          "anchor": "LARGE LANGUAGE MODEL USAGE",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "hidden_intent_unobserved",
+      "status": "observed",
+      "description": "ρ 的方向性偏差是 sufficient though not necessary；高 |ρ| 可来自 systematic hallucination，δ 可来自 complex-task capability shortfall。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "3.2–3.3 Metrics",
+          "anchor": "this measure of intention is insufficient on its own to confirm deception",
+          "basis": "explicit"
+        },
+        {
+          "page": 4,
+          "section": "3.3 Deceptive Behavior",
+          "anchor": "cannot distinguish deliberate deception from a simple capability shortfall",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "complexity_guessing_confound",
+      "status": "observed",
+      "description": "n 同时改变推理深度、文本长度和猜测机会；弱模型在很大 n 回落为 fallback guessing。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.2 Model-wise Analysis",
+          "anchor": "deception in weaker models decreases for very difficult questions due to fallback guessing",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "external_validity",
+      "status": "observed",
+      "description": "CSQ 依靠 synthetic contactness 降低 prior knowledge；数学、科学、coding 外部域只在 Appendix G 讨论，未测试。",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "Appendix G",
+          "anchor": "Extending such a framework to other domains is therefore a promising direction",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "intent_nature_and_training_cause",
+      "status": "observed",
+      "description": "Appendix I 说框架能发现 directional bias 但不能识别 intention 性质；pre-training 原因用 suspect 表述。",
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix I",
+          "anchor": "does not identify the nature of that intention",
+          "basis": "explicit"
+        },
+        {
+          "page": 29,
+          "section": "Appendix I",
+          "anchor": "We suspect this behavior is deeply rooted in the pre-training objectives",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "reproducibility_granularity",
+      "status": "observed",
+      "description": "未报告 seeds、硬件、API cost/retry、rephrase model identity；闭源 model size/version 多为 Unknown。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "models are listed without seed, hardware, or API cost details",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 16,
+          "section": "Table 1",
+          "anchor": "Unknown",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "scaling_scope",
+      "status": "observed",
+      "description": "Figure 12 仅对 open-source models；趋势弱，family update 方向相反，驱动因素 inconclusive。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix C.3",
+          "anchor": "main factors driving LLM deception remain inconclusive",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "appendix_migration",
+      "status": "observed",
+      "description": "正文展示四模型，16-model 曲线、反例、point values 与 ablation 后置到 Appendix B–D；读者需要跨页恢复全体范围。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5 Experiment",
+          "anchor": "remaining LLMs are reported in Appendix B",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "The detailed of used LLM are presented in Table 1",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "aggregate_masking",
+      "status": "observed",
+      "description": "Eq.(3) 的 overall log-weighted aggregation 与图中均值压缩 n-wise heterogeneity；局部回落与模型差异主要留在曲线。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Overall Evaluation",
+          "anchor": "log-weighted average of the scores over all difficulty levels",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 6",
+          "anchor": "Overall deceptive behavior and intention scores across LLMs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "figure_reading_cost",
+      "status": "observed",
+      "description": "Figure 4–7 和附录多面板图以曲线/图例承载多数 n-wise 数值，正文很少给表格化 point estimate。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 4–5",
+          "anchor": "scores as question scope n varies",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "uncertainty_detail_thin",
+      "status": "observed",
+      "description": "图注有 95% confidence intervals，D.3 只说明 bootstrap；重采样层级/次数、显著性与多重比较未展开。",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D.3",
+          "anchor": "intervals are calculated using bootstrapping",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Figure 11",
+          "anchor": "with 95% confidence intervals",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "headline_scope_vs_exceptions",
+      "status": "observed",
+      "description": "摘要和正文以 most models/overall trend 提炼主线，o4-mini、DeepSeek anomaly、fallback guessing 和 GPT update exception 分散在附录或后段；作者同时保留限定语。",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "for most models",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix B.3",
+          "anchor": "o4-mini trend is not significant",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix C.3",
+          "anchor": "effect of model updates on deception is inconsistent",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "pdf_text_formula_glyphs",
+      "status": "observed",
+      "description": "自动文本提取会丢失 ρ/δ/ϕ 等 Greek glyph、根号和下标；已用 PDF 版面复核 Definition 3.3/3.4 与 Eq.(1)–(4)。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "Definitions 3.3–3.4",
+          "anchor": "metric formulas require visual PDF reading",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 5,
+          "section": "Equations (1)–(3)",
+          "anchor": "numbered formula layout",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "n_30_plot_presence",
+      "status": "observed",
+      "description": "§5.1 列出 n=30，但 Figures 4/5、8–14 的可见 x-axis 多显示 3,5,10,20,40,80；本文不推断是遗漏还是绘图筛选。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "5.1 Experimental Setup",
+          "anchor": "set {3, 5, 10, 20, 30, 40, 80}",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figures 4–5",
+          "anchor": "x-axis shows 3, 5, 10, 20, 40, 80",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "question_notation_overload",
+      "status": "observed",
+      "description": "Definition 3.4 用 QL/QB 表示 complex/simple expression/probe，§4.2 又用 QL/QB 表示 linked/broken intention pair；语义依上下文切换。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "Definition 3.4",
+          "anchor": "complex question QL and simple subquestion QB",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "4.2 Evaluating Deception",
+          "anchor": "linked-list question QL and broken-linked-list question QB",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "broken_repeat_label",
+      "status": "observed",
+      "description": "Table 2 的列名为 δneg′(BrokenRepeat)，正文用 δneg′ 与 δneg 区分 repeated query 和 reversed pair；需保留 prime 符号。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Table 2",
+          "anchor": "δneg′ (BrokenRepeat) and δneg (BrokenReverse)",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "no_automatic_measurement_draft",
+      "status": "unavailable",
+      "description": "任务未提供可核对的自动测量草稿；词频仅作手工语境记录，未将提取数值当作 PDF 事实。",
+      "evidence": []
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "论文将 benign-prompt deception 转成 directed-graph reachability：ρ 计量同难度任务的结构性方向偏好，δ 计量复杂 query 与简单 probe 的 belief–expression 不一致，再沿 n 扫描复杂度。",
+    "main_body_keeps": "正文保留 deception/hallucination/bias 的 operational distinction、CSQ 三规则、ρ/δ 定义、Eq.(1)–(4)、四模型主结果、overall/prompt-induced 图和单指标 caveat。",
+    "appendix_moves": "Appendix 承担完整模型表与曲线、点值、temperature/k/rephrase ablation、prompt examples、CoT/embedding case、跨域/benchmark/broader-impact 讨论；全体覆盖和反例依赖附录。",
+    "best_pattern": "Figure 2 的 expression/belief 两轮映射、Figure 3 的 omitted-edge prompt、direct/reversed geometric mean 与 Figure 7 的 benign/incentivizing 对照，最有效地把抽象指标接到可复核任务。",
+    "largest_gap": "deception/intentionality 的标题级主张最终仍依赖行为 proxy、performance asymmetry 与相关图；没有 hidden-intent ground truth、独立意图标注、跨域复现或 causal intervention，n 还与文本长度和 guessing 机会共变。",
+    "transfer_rule": "涉及不可观测意图时，把任务 truth、行为不一致和方向性偏好拆成互补 estimands，并加入反向条件、简单 probe、替代解释对照与停止边界。",
+    "transfer_boundary": "该规则适合可构造 objective ground truth、可匹配复杂/简单 query 且能观察重复行为的逻辑任务；开放域或 capability failure 不可区分时，ρ/δ只能作为诊断线索。",
+    "formula_count": "形式化表达 6 处：Definition 3.3/3.4 两个未编号表达，Equation (1)–(4) 四个编号 displayed equations；theorem/lemma/proposition/corollary/proof 均未出现。",
+    "statistics_boundary": "报告经验概率、geometric mean、Eq.(3) log-weighted aggregate、Spearman r>0.69、bootstrap 95% intervals 与 Figure 6/12 的趋势 R²；未报告显著性、多重比较、Bayesian 分析或 bootstrap 重采样细节。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 60,
+    "claims_with_page_evidence": 60,
+    "status": "complete"
+  },
+  "statistical_analysis": {
+    "aggregation_unit": "每个 question category × n 约 1,000 个 rephrased questions；ρ/δ 先在 direct/reversed 条件组合，ρ̄/δ̄ 再按 Eq.(3) 对 n 做 log-weighted 1/n 积分。",
+    "central_quantities": "ρ、δ、ρ̄、δ̄、|ρ̄|、Spearman correlation、log-linear trend；Table 2 给 n=10 的 OpenAI point values。",
+    "uncertainty": "Figure 4/5/11 等图注标注 95% confidence intervals；Appendix D.3 明确 bootstrap，但未报告重采样层级和次数。",
+    "hypothesis_tests": "未报告 conventional significance tests、multiple-comparison correction、Bayesian analysis 或完整回归表；“not significant”只在 o4-mini joint trend 文字中出现。",
+    "levels": "模型、任务 category、difficulty n；无 participant 层级。",
+    "interpretive_boundary": "ρ 与 δ 的相关和 CoT/embedding 观察支持模式描述，无法单独识别 hidden intent 或因果机制。"
+  },
+  "word_frequency": {
+    "corpus_scope": "PDF 正文 p.1–10 与 Appendix p.15–29 的叙述粗计数；排除 references，但可能含页眉、图例、表格标签、公式碎片和模型名切分。",
+    "top_terms_context": [
+      {
+        "term": "deceptive",
+        "approx_count": 295,
+        "context": "指标与图题共同驱动，集中在 theory/results/appendix。",
+        "evidence": [
+          {
+            "page": 5,
+            "section": "3.4 Overall Evaluation",
+            "anchor": "Deceptive Intention Score and Deceptive Behavior Score",
+            "basis": "explicit"
+          }
+        ]
+      },
+      {
+        "term": "score",
+        "approx_count": 221,
+        "context": "ρ/δ 的指标命名和结果图说明。",
+        "evidence": [
+          {
+            "page": 5,
+            "section": "3.4 Overall Evaluation",
+            "anchor": "final bias-corrected Deceptive Intention Score",
+            "basis": "explicit"
+          }
+        ]
+      },
+      {
+        "term": "intention / behavior",
+        "approx_count": 159,
+        "context": "两项 score 的成对反复出现。",
+        "evidence": [
+          {
+            "page": 3,
+            "section": "3 Definition and Metrics",
+            "anchor": "two primary dimensions",
+            "basis": "explicit"
+          }
+        ]
+      },
+      {
+        "term": "deception",
+        "approx_count": 120,
+        "context": "问题、结果、broader impact 主线。",
+        "evidence": [
+          {
+            "page": 1,
+            "section": "Abstract",
+            "anchor": "intentional deception",
+            "basis": "explicit"
+          }
+        ]
+      },
+      {
+        "term": "question / model / prompt / difficulty",
+        "approx_count": "高频",
+        "context": "CSQ 任务、模型比较、输入条件和复杂度控制。",
+        "evidence": [
+          {
+            "page": 8,
+            "section": "5.1 Experimental Setup",
+            "anchor": "question category and length",
+            "basis": "explicit"
+          },
+          {
+            "page": 9,
+            "section": "5.2 Model-wise Analysis",
+            "anchor": "as task difficulty increases",
+            "basis": "explicit"
+          }
+        ]
+      }
+    ],
+    "bigrams": [
+      "deceptive intention",
+      "deceptive behavior",
+      "intention score",
+      "behavior score",
+      "broken-linked-list question",
+      "follow-up question",
+      "ground truth",
+      "LLM deception"
+    ],
+    "trigrams": [
+      "deceptive intention score",
+      "deceptive behavior score",
+      "overall deceptive intention score",
+      "overall deceptive behavior score"
+    ],
+    "claim_verbs": {
+      "show/shows": "results figures and trend explanations",
+      "find/found": "main findings",
+      "demonstrate": "benchmark/generalization positioning",
+      "propose": "CSQ and metrics",
+      "observe/indicate/suggest": "appendix patterns and mechanism clues"
+    },
+    "qualifier_terms": [
+      "most",
+      "typically",
+      "may",
+      "often",
+      "largely",
+      "broadly",
+      "not always",
+      "partial/partially",
+      "likely",
+      "suspect"
+    ],
+    "missegmentation_risks": [
+      "ρ/δ/ϕ 与根号下标被文本提取打散",
+      "R²、95% CI 与图轴数值混排",
+      "gpt-4o-mini/Qwen3-235B-A22B 被拆成碎片",
+      "Yes/No 与 QL/QB 图例重复"
+    ]
+  },
+  "layout_observations": {
+    "main": "双栏；Figure 1/2/3 占较宽版面，Figure 4–7 多面板宽图挤压结果叙述。",
+    "appendix": "Figure 8–15、21–23 多面板；Figures 18–20 直接嵌入长 CoT 文本；Tables 3–4 与案例共同承担机制解释。",
+    "reference_boundary": "p.11 同页含 reproducibility/ethics/acknowledgement 与 references 起始，p.14 references 结束，p.15 Appendix 开始。"
+  }
+}
