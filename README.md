@@ -6,6 +6,7 @@
 
 | 目标 | 入口 |
 |---|---|
+| 直接起草一篇完整 ICLR 论文 | [ICLR 全文写作蓝图](docs/iclr-full-paper-blueprint.md) |
 | 阅读全部统计结论 | [250 篇统计报告](reports/statistical_analysis_250.md) |
 | 按顶会高频模式设计论文 | [250 篇顶会论文写作手册](docs/writing-playbook.md) |
 | 查找某篇论文的深读与结构化数据 | [逐篇深读索引](reports/reading_index.md) |
@@ -29,6 +30,7 @@
 | 证据闭环 | 30.8% 形成「对象 → 缺口 → 洞见 → 组件 → 公式 → 预测 → 实验 → 结果 → 消融 → 结论」完整链 |
 | 附录 | 附录/正文页数比中位数 1.40，词数比中位数 0.84；追加结果、实现细节、扩展方法和证明最常见 |
 | 修辞 | `we introduce`、`we propose`、`we show`、`we find`、`however`、`in contrast` 构成高频主张与转折语言 |
+| ICLR 起稿配置 | 10 页正文，以 105 个向上取整写作单位起稿；正文预留 7 图、4 表、1 算法、13 个展示公式 |
 
 统计报告同时给出论文覆盖率、会议等权比例、中位数、四分位数、图表公式计数、动作转移和逐篇案例。
 
@@ -36,7 +38,7 @@
 
 ### 设计一篇论文
 
-从[写作手册](docs/writing-playbook.md)建立 claim map、正文比例、摘要功能链、方法组件模板、实验协议表、图表职责和正文—附录分工。手册中的每项建议均连接 250 篇统计结果。
+从 [ICLR 全文写作蓝图](docs/iclr-full-paper-blueprint.md)取得逐节整数预算、9 句摘要模板、方法与理论结构、实验协议表、结果与消融写法、17 页附录架构和完稿检查表。再用[写作手册](docs/writing-playbook.md)建立 claim map、正文比例、图表职责和正文—附录分工。
 
 ### 审阅一篇论文
 
@@ -108,6 +110,7 @@ appendix_ratio = appendix_pages / main_pages
 ### 结论与指南
 
 - [`reports/statistical_analysis_250.md`](reports/statistical_analysis_250.md)：完整统计分析、案例和写作研判；
+- [`docs/iclr-full-paper-blueprint.md`](docs/iclr-full-paper-blueprint.md)：全部数值向上取整的 ICLR 全文起稿与定稿规范；
 - [`docs/writing-playbook.md`](docs/writing-playbook.md)：可直接用于未来论文的写作与设计手册；
 - [`reports/reading_index.md`](reports/reading_index.md)：253 篇深读的论文级索引；
 - [`docs/corpus-scope.md`](docs/corpus-scope.md)：语料、分层与来源；
@@ -123,6 +126,7 @@ appendix_ratio = appendix_pages / main_pages
 - [`checkpoint_250_limitation_type_summary.csv`](reports/tables/checkpoint_250_limitation_type_summary.csv)：局限类型；
 - [`checkpoint_250_packaging_strategy_summary.csv`](reports/tables/checkpoint_250_packaging_strategy_summary.csv)：不利信息呈现策略；
 - [`checkpoint_250_categorical_summary.csv`](reports/tables/checkpoint_250_categorical_summary.csv)：理论、视觉、统计、附录和闭环类别；
+- [`iclr_full_paper_blueprint.csv`](reports/tables/iclr_full_paper_blueprint.csv)：正文比例、词数和图表算法公式的整数上包络；
 - [`reading_index.csv`](reports/tables/reading_index.csv)：论文、等级、队列、来源与深读文件。
 
 ### 逐项证据表
@@ -155,6 +159,7 @@ scripts/            获取、测量、验证、聚合与渲染
 make validate       # 校验目录、来源和 253 份深读结果
 make checkpoint     # 重建 250 篇统计、词频、图和阅读索引
 make index          # 单独更新逐篇深读索引
+make blueprint      # 重建 ICLR 全文整数预算表
 ```
 
 完整流程入口位于 [`Makefile`](Makefile)：`catalog → hydrate → resolve → acquire → measure → sample → validate → checkpoint`。

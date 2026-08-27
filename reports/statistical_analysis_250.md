@@ -4,7 +4,7 @@
 
 篇幅比较先在论文内归一化，再分别计算 ICLR 和 ICML 的会议内结果，报告中的「会议等权」为两会均值的平均。比例型结论采用论文覆盖率与逐篇篇幅比例；长尾计数同时报告中位数、四分位数和均值。完整数据位于 [`reports/tables/`](tables/)。
 
-快速入口：[写作手册](../docs/writing-playbook.md) · [逐篇深读索引](reading_index.md) · [统一深读协议](../prompts/deep-read.md) · [统计分析方案](../docs/statistical-analysis-plan.md)
+快速入口：[ICLR 全文写作蓝图](../docs/iclr-full-paper-blueprint.md) · [写作手册](../docs/writing-playbook.md) · [逐篇深读索引](reading_index.md) · [统一深读协议](../prompts/deep-read.md) · [统计分析方案](../docs/statistical-analysis-plan.md)
 
 ![正文篇幅分配](figures/checkpoint_250_module_shares.svg)
 

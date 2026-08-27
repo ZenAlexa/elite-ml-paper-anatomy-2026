@@ -1,6 +1,6 @@
 # 250 篇顶会论文写作手册
 
-本手册把 250 篇 ICLR/ICML 2026 Outstanding、Oral、Spotlight 论文的统计结果转换成论文设计动作。完整统计、案例页码和逐篇证据见 [`statistical_analysis_250.md`](../reports/statistical_analysis_250.md)。
+本手册把 250 篇 ICLR/ICML 2026 Outstanding、Oral、Spotlight 论文的统计结果转换成论文设计动作。需要逐节整数预算、9 句摘要、10 页正文配置、17 页附录架构和完整完稿标准时，直接使用 [`iclr-full-paper-blueprint.md`](iclr-full-paper-blueprint.md)。完整统计、案例页码和逐篇证据见 [`statistical_analysis_250.md`](../reports/statistical_analysis_250.md)。
 
 ## 1. 先建立一条证据主线
 
