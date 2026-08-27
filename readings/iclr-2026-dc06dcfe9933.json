@@ -1,0 +1,5251 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-dc06dcfe9933",
+  "bibliography": {
+    "title": "Global Resolution: Optimal Multi-Draft Speculative Sampling via Convex Minimization",
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ],
+    "authors": [
+      "Rahul Krishna Thomas",
+      "Arka Pal"
+    ]
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-dc06dcfe9933.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=gpsczXOsHn",
+    "source_kind": "official_pdf",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/83995c2acef585ae0f0d647154cfdd85-Paper-Conference.pdf",
+    "text": "corpus/text/iclr-2026-dc06dcfe9933.txt"
+  },
+  "page_map": {
+    "pdf_pages": 34,
+    "main_pages": 10,
+    "reference_pages": 3,
+    "appendix_pages": 21,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 265
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 739
+      },
+      {
+        "title": "2 Related Work",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 228
+      },
+      {
+        "title": "3 Background on Multi-Draft Speculative Sampling",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 565
+      },
+      {
+        "title": "4 Canonical Decomposition by Relaxed LP",
+        "module": "theory",
+        "start_page": 4,
+        "end_page": 4,
+        "estimated_words": 115
+      },
+      {
+        "title": "5 Optimal Multi-Draft Speculative Sampling by Max-Flow",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 1009
+      },
+      {
+        "title": "6 Near-Linear Sampling via Global Resolution",
+        "module": "theory",
+        "start_page": 5,
+        "end_page": 8,
+        "estimated_words": 1796
+      },
+      {
+        "title": "7 Experiments (setup and questions)",
+        "module": "experimental_design",
+        "start_page": 8,
+        "end_page": 8,
+        "estimated_words": 75
+      },
+      {
+        "title": "7.1 Optimal Acceptance for Increasing k and n",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 9,
+        "estimated_words": 300
+      },
+      {
+        "title": "7.2 OTLP Solve Time Experiments",
+        "module": "results",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 285
+      },
+      {
+        "title": "7.3 Temperature Experiments",
+        "module": "results",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 150
+      },
+      {
+        "title": "7.4 Multi-Step Experiments",
+        "module": "results",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 170
+      },
+      {
+        "title": "8 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 76
+      },
+      {
+        "title": "Reproducibility Statement",
+        "module": "other",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 121
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 13,
+        "estimated_words": 1193
+      },
+      {
+        "title": "Appendix A Review of Single-Step Speculative Sampling",
+        "module": "appendix",
+        "start_page": 14,
+        "end_page": 14,
+        "estimated_words": 430
+      },
+      {
+        "title": "Appendix B Equivalence of Canonical Decomposition and Relaxed LP",
+        "module": "appendix",
+        "start_page": 14,
+        "end_page": 15,
+        "estimated_words": 620
+      },
+      {
+        "title": "Appendix C Computing H* for Independent Drafts is Submodular Minimization",
+        "module": "appendix",
+        "start_page": 15,
+        "end_page": 16,
+        "estimated_words": 470
+      },
+      {
+        "title": "Appendix D Computing H* for n=2 Independent Drafts is Submodular QPBO",
+        "module": "appendix",
+        "start_page": 16,
+        "end_page": 16,
+        "estimated_words": 360
+      },
+      {
+        "title": "Appendix E Complementary Slackness Derivation",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 18,
+        "estimated_words": 1100
+      },
+      {
+        "title": "Appendix F Max-Flow Transformation Derivation",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 18,
+        "estimated_words": 480
+      },
+      {
+        "title": "Appendix G Proofs of Residual LPs",
+        "module": "appendix",
+        "start_page": 19,
+        "end_page": 19,
+        "estimated_words": 500
+      },
+      {
+        "title": "Appendix H Greedy Polymatroid Algorithm for Outer Residual LP",
+        "module": "appendix",
+        "start_page": 19,
+        "end_page": 20,
+        "estimated_words": 700
+      },
+      {
+        "title": "Appendix I Global Outer Solution",
+        "module": "appendix",
+        "start_page": 20,
+        "end_page": 23,
+        "estimated_words": 1500
+      },
+      {
+        "title": "Appendix J Global Inner Solution",
+        "module": "appendix",
+        "start_page": 23,
+        "end_page": 25,
+        "estimated_words": 1200
+      },
+      {
+        "title": "Appendix K Truncated Solver Details",
+        "module": "appendix",
+        "start_page": 26,
+        "end_page": 26,
+        "estimated_words": 520
+      },
+      {
+        "title": "Appendix L Approximation Guarantees",
+        "module": "appendix",
+        "start_page": 26,
+        "end_page": 27,
+        "estimated_words": 900
+      },
+      {
+        "title": "Appendix M Experimental Setup",
+        "module": "experimental_design",
+        "start_page": 28,
+        "end_page": 28,
+        "estimated_words": 390
+      },
+      {
+        "title": "Appendix N Top-k Sampling for the Relaxed OTLP",
+        "module": "method",
+        "start_page": 28,
+        "end_page": 28,
+        "estimated_words": 220
+      },
+      {
+        "title": "Appendix O Greedy vs. I.I.D. Acceptance Rates",
+        "module": "ablation",
+        "start_page": 28,
+        "end_page": 29,
+        "estimated_words": 220
+      },
+      {
+        "title": "Appendix P Gemma-2 Solve Time Comparison",
+        "module": "results",
+        "start_page": 30,
+        "end_page": 30,
+        "estimated_words": 280
+      },
+      {
+        "title": "Appendix Q Temperature Ablations",
+        "module": "ablation",
+        "start_page": 30,
+        "end_page": 31,
+        "estimated_words": 800
+      },
+      {
+        "title": "Appendix R Multi-Step Experiments",
+        "module": "results",
+        "start_page": 32,
+        "end_page": 33,
+        "estimated_words": 1150
+      },
+      {
+        "title": "Appendix S Generalizing to Non-IID Drafts",
+        "module": "limitations",
+        "start_page": 33,
+        "end_page": 34,
+        "estimated_words": 800
+      }
+    ],
+    "boundary_notes": "Physical PDF pages 1–10 contain abstract and numbered main sections through the Reproducibility Statement; pages 11–13 are References; Appendix A starts on page 14 and Appendix S ends on page 34. The document is two-column throughout, with full-width algorithm/table/figure floats and appendix figures/tables."
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 265,
+      "main_word_share": 0.043,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 739,
+      "main_word_share": 0.121,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 228,
+      "main_word_share": 0.037,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 1794,
+      "main_word_share": 0.293,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 7
+    },
+    {
+      "module": "theory",
+      "status": "observed",
+      "estimated_words": 1911,
+      "main_word_share": 0.312,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 1,
+      "displayed_equations": 10
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 465,
+      "main_word_share": 0.076,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 1335,
+      "main_word_share": 0.218,
+      "figures": 3,
+      "tables": 4,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 1020,
+      "main_word_share": null,
+      "figures": 4,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 76,
+      "main_word_share": 0.012,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 800,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 1,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 9238,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 127
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 1314,
+      "main_word_share": 0.021,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Speculative sampling reduces the latency of autoregressive decoding for target model LLMs without sacrificing inference quality, by using a cheap draft model to suggest a candidate token and a verification criterion to accept or resample this token.",
+      "word_count": 37,
+      "functions": [
+        "object_scope",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "speculative sampling reduces the latency",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "To improve acceptance and decoding efficiency, recent work has explored the multi-draft extension, where at each step n draft tokens are generated, and the verification criterion is a distribution conditioned on these.",
+      "word_count": 32,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "the multi-draft extension",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "When this criterion maximizes the probability of accepting some draft token, it is called the optimal transport (OT).",
+      "word_count": 18,
+      "functions": [
+        "object_scope",
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "maximizes the probability of accepting some draft token",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "However, finding the OT is difficult, as it is the solution of a linear program (OTLP) in over V^n variables, with V being the vocabulary size.",
+      "word_count": 27,
+      "functions": [
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "OTLP in over V^n variables",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "Two recent theoretical works have reframed the OTLP in terms of importance sampling or subset selection.",
+      "word_count": 16,
+      "functions": [
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "importance sampling or subset selection",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "In this work, we prove that these formulations are equivalent to an exponentially large relaxed OTLP, so it remains infeasible to solve.",
+      "word_count": 22,
+      "functions": [
+        "theory",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "equivalent to an exponentially large relaxed OTLP",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "Then, we reverse engineer subset selection to formulate the OTLP as a max-flow problem.",
+      "word_count": 14,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "formulate the OTLP as a max-flow problem",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "text": "With a novel application of polymatroid theory, we reduce the exponentially large OTLP to a convex optimization problem in at most V variables.",
+      "word_count": 23,
+      "functions": [
+        "core_idea",
+        "theory",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "reduce the exponentially large OTLP to a convex optimization problem",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "text": "This allows us to devise an algorithm for optimal n-draft speculative sampling when the n tokens are chosen i.i.d. from a single draft model, which can be tuned to arbitrary accuracy.",
+      "word_count": 33,
+      "functions": [
+        "method",
+        "theory",
+        "limitation"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "n tokens are chosen i.i.d. from a single draft model",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "text": "Finally, we measure acceptance rates and algorithm runtimes for various n and top-k draft sampling settings.",
+      "word_count": 16,
+      "functions": [
+        "experimental_setup"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "measure acceptance rates and algorithm runtimes",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 11,
+      "text": "Our findings give the first multi-draft algorithm with 90% acceptance and under 100 ms of overhead per generated token with negligible deviation from the target model distribution.",
+      "word_count": 25,
+      "functions": [
+        "quantitative_result",
+        "qualitative_result",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "90% acceptance and under 100 ms",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context",
+      "estimated_words": 120,
+      "evidence": {
+        "page": 1,
+        "section": "1 Introduction",
+        "anchor": "autoregressive decoding leads to significant computational bottlenecks",
+        "basis": "explicit"
+      },
+      "previous_question": "The application context leaves a latency bottleneck.",
+      "current_answer": "LLM autoregressive decoding is sequential and memory-bandwidth dominated at large scale.",
+      "next_hook": "Speculative sampling addresses expensive target inference."
+    },
+    {
+      "index": 2,
+      "move": "problem",
+      "estimated_words": 90,
+      "evidence": {
+        "page": 1,
+        "section": "1 Introduction",
+        "anchor": "The greatest speedup is obtained by maximizing the acceptance probability",
+        "basis": "explicit"
+      },
+      "previous_question": "The reader needs the acceptance event that controls speedup.",
+      "current_answer": "Single-draft speculative sampling reduces target cost when a candidate is accepted.",
+      "next_hook": "The paper can extend the event to multiple drafts."
+    },
+    {
+      "index": 3,
+      "move": "method_preview",
+      "estimated_words": 110,
+      "evidence": {
+        "page": 1,
+        "section": "1 Introduction",
+        "anchor": "n draft tokens are generated at the single draft sequence position",
+        "basis": "explicit"
+      },
+      "previous_question": "The acceptance objective must be defined for a conditional verification distribution.",
+      "current_answer": "The single-step multi-draft setting draws n candidates and computes target logits in parallel.",
+      "next_hook": "The verification distribution is called OT when it maximizes acceptance."
+    },
+    {
+      "index": 4,
+      "move": "failure_of_prior_work",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "This LP has a number of variables exponential in the vocabulary size",
+        "basis": "explicit"
+      },
+      "previous_question": "The exact target is computationally inaccessible in ordinary form.",
+      "current_answer": "OTLP exactly characterizes optimal multi-draft verification but has exponential size.",
+      "next_hook": "Compact reformulations are introduced as prior progress."
+    },
+    {
+      "index": 5,
+      "move": "failure_of_prior_work",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "they do not solve the OTLP",
+        "basis": "explicit"
+      },
+      "previous_question": "The gap is solving the verification criterion, not only its objective value.",
+      "current_answer": "Canonical decomposition and subset selection can compute optimal acceptance, yet the paper says they do not recover the OT itself.",
+      "next_hook": "The lack of an efficient exact OT solver motivates the contribution."
+    },
+    {
+      "index": 6,
+      "move": "failure_of_prior_work",
+      "estimated_words": 70,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "K-SEQ has a (1 − 1/e)-approximation guarantee",
+        "basis": "explicit"
+      },
+      "previous_question": "Approximation quality and guarantees remain uneven.",
+      "current_answer": "Existing approximations include K-SEQ, MSS, RSD, and truncation; only K-SEQ has a stated 1−1/e guarantee.",
+      "next_hook": "The paper narrows to an exact-to-arbitrary-accuracy iid algorithm."
+    },
+    {
+      "index": 7,
+      "move": "core_idea",
+      "estimated_words": 75,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "the first efficient algorithm to compute the OT to arbitrary accuracy",
+        "basis": "explicit"
+      },
+      "previous_question": "This states the operative scope and the new capability.",
+      "current_answer": "The proposed algorithm targets iid n-draft sampling from one draft model and arbitrary accuracy.",
+      "next_hook": "Three contributions detail equivalence, flow/polymatroid/convex reduction, and measurements."
+    },
+    {
+      "index": 8,
+      "move": "contribution_list",
+      "estimated_words": 55,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "canonical decomposition ... exactly equivalent to LP relaxation",
+        "basis": "explicit"
+      },
+      "previous_question": "The first contribution unifies two theoretical descriptions.",
+      "current_answer": "Contribution 1: canonical decomposition is equivalent to relaxed-LP relaxation.",
+      "next_hook": "Contribution 2 supplies a constructive flow route."
+    },
+    {
+      "index": 9,
+      "move": "contribution_list",
+      "estimated_words": 70,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "greedy polymatroid algorithm",
+        "basis": "explicit"
+      },
+      "previous_question": "The second contribution connects the exact LP to global resolution.",
+      "current_answer": "Contribution 2: complementary slackness yields max-flow structure, polymatroid source flows, and truncated convex minimization.",
+      "next_hook": "Contribution 3 tests acceptance and runtime."
+    },
+    {
+      "index": 10,
+      "move": "contribution_list",
+      "estimated_words": 75,
+      "evidence": {
+        "page": 2,
+        "section": "1 Introduction",
+        "anchor": "acceptance rates are over 90% and average runtime is under 100 ms/token",
+        "basis": "explicit"
+      },
+      "previous_question": "The empirical claim gives a concrete operating target.",
+      "current_answer": "Contribution 3: iid top-k experiments report over-90% acceptance and under-100-ms overhead in practical settings.",
+      "next_hook": "Section 2 positions the work among multi-step and multi-draft methods."
+    }
+  ],
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy",
+      "estimated_words": 45,
+      "evidence": {
+        "page": 2,
+        "section": "2 Related Work",
+        "anchor": "most theoretical extensions ... split into multi-step and multi-draft",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "The related-work section separates multi-step from multi-draft changes to drafting or verification.",
+      "previous_question": "Which design axis organizes the field?",
+      "next_hook": "The section then gives drafting examples."
+    },
+    {
+      "index": 2,
+      "move": "chronology",
+      "estimated_words": 45,
+      "evidence": {
+        "page": 2,
+        "section": "2 Related Work",
+        "anchor": "the draft model autoregressively generates a sequence of candidate tokens",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "It credits the original speculative-sampling proposals for autoregressive draft sequences and prefix acceptance.",
+      "previous_question": "Where did multi-step speculation originate?",
+      "next_hook": "The text lists smarter drafting mechanisms."
+    },
+    {
+      "index": 3,
+      "move": "taxonomy",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 2,
+        "section": "2 Related Work",
+        "anchor": "focused on improving acceptance through smarter drafting",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "It clusters retrieval, cascading, hierarchical drafting, distillation, layer skipping, and multi-token heads as acceptance-oriented drafting changes.",
+      "previous_question": "What prior work changes candidate generation?",
+      "next_hook": "Verification-protocol work forms the second cluster."
+    },
+    {
+      "index": 4,
+      "move": "taxonomy",
+      "estimated_words": 55,
+      "evidence": {
+        "page": 2,
+        "section": "2 Related Work",
+        "anchor": "new verification protocols",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "It lists tree Monte Carlo and block verification, then notes tree-based attention frameworks for multi-draft decoding.",
+      "previous_question": "What prior work changes verification or structures drafts?",
+      "next_hook": "The nearest contrast is the single-step focus."
+    },
+    {
+      "index": 5,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 55,
+      "evidence": {
+        "page": 3,
+        "section": "2 Related Work",
+        "anchor": "Our work instead focuses on the single-step, multi-draft setting",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "The paper focuses on a single-step multi-draft OTLP solver because it can improve multi-step SpecTr, rather than presenting a new tree-attention framework.",
+      "previous_question": "Where does this paper enter the field?",
+      "next_hook": "Section 3 formalizes the OTLP and subset-selection objects."
+    },
+    {
+      "index": 6,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 30,
+      "evidence": {
+        "page": 3,
+        "section": "2 Related Work",
+        "anchor": "By improving the single-step OTLP solver, we see efficiency gains in multi-step SpecTr",
+        "basis": "explicit"
+      },
+      "comparison_dimension": "SpecTr can use any single-step solver, so a better solver supplies an efficiency gain to that framework.",
+      "previous_question": "Why does the narrow solver contribution matter?",
+      "next_hook": "The method section starts with the OTLP."
+    }
+  ],
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 3,
+        "section": "§3.1",
+        "anchor": "target model distribution p over the vocabulary V",
+        "basis": "explicit"
+      },
+      "description": "§3.1 fixes target p over vocabulary V, iid/general n-token draft distribution p_draft over V^n, and incidence set A_i."
+    },
+    {
+      "index": 2,
+      "move": "state_problem",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 3,
+        "section": "§3.1",
+        "anchor": "the optimal transport linear program (OTLP)",
+        "basis": "explicit"
+      },
+      "description": "The exact OTLP maximizes mass on target tokens that occur in the drafted tuple while enforcing p and p_draft marginals."
+    },
+    {
+      "index": 3,
+      "move": "define_component",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 3,
+        "section": "§3.1",
+        "anchor": "The optimal transport (OT) is the induced conditional distribution",
+        "basis": "explicit"
+      },
+      "description": "The optimal objective is α*; C* is a joint coupling π(i, i), and its conditional π(i|i) is the verification criterion."
+    },
+    {
+      "index": 4,
+      "move": "state_problem",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 3,
+        "section": "§3.2",
+        "anchor": "They form a relaxed OTLP in nonnegative variables",
+        "basis": "explicit"
+      },
+      "description": "The relaxed OTLP replaces both marginal equalities with upper bounds and keeps incidence-zero constraints."
+    },
+    {
+      "index": 5,
+      "move": "derive",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 3,
+        "section": "§3.2",
+        "anchor": "One can get an OTLP solution C* from a relaxed OTLP solution S* with residuals",
+        "basis": "explicit"
+      },
+      "description": "Residual target and draft masses repair an optimal relaxed solution into an OTLP coupling C*."
+    },
+    {
+      "index": 6,
+      "move": "derive",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 3,
+        "section": "§3.2",
+        "anchor": "The optimal acceptance rate α* can be computed as",
+        "basis": "explicit"
+      },
+      "description": "Dualization gives α*=1+min_H ψ(H), with ψ(H)=p(H)−p_draft(H^n), reducing objective computation to subset selection."
+    },
+    {
+      "index": 7,
+      "move": "define_component",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 3,
+        "section": "§4",
+        "anchor": "one samples a token in set(i) using an importance-weighted distribution",
+        "basis": "explicit"
+      },
+      "description": "Canonical decomposition samples within the drafted set using β and then runs single-draft speculative sampling."
+    },
+    {
+      "index": 8,
+      "move": "contrast_alternative",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 4,
+        "section": "§4",
+        "anchor": "Thus, canonical decomposition provides no computational advantage",
+        "basis": "explicit"
+      },
+      "description": "Theorem 4.1 normalizes S* columns for nondegenerate tuples and uses a uniform split for zero columns; canonical decomposition therefore has the relaxed-LP computational burden."
+    },
+    {
+      "index": 9,
+      "move": "state_problem",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 4,
+        "section": "§5.3",
+        "anchor": "through complementary slackness",
+        "basis": "explicit"
+      },
+      "description": "The paper asks whether H* can reduce the enormous relaxed-LP flow network."
+    },
+    {
+      "index": 10,
+      "move": "instantiate_algorithm",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 4,
+        "section": "§5.2",
+        "anchor": "Define a bipartite network Ω with source s",
+        "basis": "explicit"
+      },
+      "description": "The relaxed OTLP is a bipartite max-flow network: source-to-token capacity p(i), incidence edges of infinite capacity, and tuple-to-sink capacity p_draft."
+    },
+    {
+      "index": 11,
+      "move": "derive",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 5,
+        "section": "§5.3",
+        "anchor": "if and only if it is an optimal solution to the relaxed OTLP",
+        "basis": "explicit"
+      },
+      "description": "Complementary slackness partitions the optimal S* into outer and inner systems indexed by H* and (H*)^n."
+    },
+    {
+      "index": 12,
+      "move": "explain_mechanism",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 5,
+        "section": "§5.3",
+        "anchor": "by independence of the outer and inner systems",
+        "basis": "explicit"
+      },
+      "description": "The outer and inner systems are independent restricted max-flow problems; residual equalities make the OT slice sparse."
+    },
+    {
+      "index": 13,
+      "move": "setup_notation",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 5,
+        "section": "§6",
+        "anchor": "when p_draft is formed by i.i.d. sampling from a draft model q",
+        "basis": "explicit"
+      },
+      "description": "Global resolution specializes p_draft to n iid samples from q and uses the three-step H*, outer-residual, convex-solve pipeline."
+    },
+    {
+      "index": 14,
+      "move": "instantiate_algorithm",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 4,
+        "section": "§5.1; p.6",
+        "anchor": "select the prefix of this list which minimizes ψ",
+        "basis": "explicit"
+      },
+      "description": "Step 1 recovers H* by sorting q(i)/p(i) and scanning prefixes; the claimed iid cost is O(V log V)."
+    },
+    {
+      "index": 15,
+      "move": "derive",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 6,
+        "section": "§6.1",
+        "anchor": "0 ≤ p_i ≤ p(i) ... are feasible",
+        "basis": "explicit"
+      },
+      "description": "The outer residual LP characterizes feasible p_i by subset inequalities; equality at V\\H* supplies the total outer mass."
+    },
+    {
+      "index": 16,
+      "move": "derive",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 6,
+        "section": "§6.1",
+        "anchor": "closed-form solution by taking consecutive differences",
+        "basis": "explicit"
+      },
+      "description": "Submodularity and polymatroid intersection turn those exponentially many constraints into consecutive differences of minimum ψ values."
+    },
+    {
+      "index": 17,
+      "move": "derive",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 6,
+        "section": "§6.1",
+        "anchor": "each call can be made O(V log V)",
+        "basis": "explicit"
+      },
+      "description": "For iid q, Lemma 6.3 restricts each constrained minimization to prefixes sorted by q/p, and cumulative minima recover all p_i in O(V log V)."
+    },
+    {
+      "index": 18,
+      "move": "define_component",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 7,
+        "section": "§6.2",
+        "anchor": "Define Φ_T",
+        "basis": "explicit"
+      },
+      "description": "The truncated outer objective Φ_T is a LogSumExp weighted by p_draft over tuples touching H*∪T, minus p_i α_i."
+    },
+    {
+      "index": 19,
+      "move": "connect_to_prediction",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 7,
+        "section": "§6.2",
+        "anchor": "with at most ... total L1 deviation",
+        "basis": "explicit"
+      },
+      "description": "The outer truncation error ε_T is the draft mass outside H*∪T; a near-zero gradient bounds target-marginal deviation."
+    },
+    {
+      "index": 20,
+      "move": "define_component",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 7,
+        "section": "§6.2",
+        "anchor": "the function now includes a slack term",
+        "basis": "explicit"
+      },
+      "description": "The inner objective Θ_T adds a slack term for unsolved inner residuals and uses variables on T⊂H*."
+    },
+    {
+      "index": 21,
+      "move": "connect_to_prediction",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 7,
+        "section": "§6.2",
+        "anchor": "γ_T =",
+        "basis": "explicit"
+      },
+      "description": "The inner truncation error γ_T compares q-mass of H*^n and T^n; softmax flows satisfy tuple inequalities and approximate token equalities."
+    },
+    {
+      "index": 22,
+      "move": "instantiate_algorithm",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 8,
+        "section": "Algorithm 1",
+        "anchor": "Algorithm 1: Global Resolution",
+        "basis": "explicit"
+      },
+      "description": "Algorithm 1 computes H*, outer residuals, selects the branch by whether the sampled tuple lies in H*^n, and minimizes the corresponding truncated objective."
+    },
+    {
+      "index": 23,
+      "move": "derive",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 8,
+        "section": "§6.3",
+        "anchor": "at most α + 2β total L1 deviation",
+        "basis": "explicit"
+      },
+      "description": "Equation (18) fills residual mass to form approximate C; Lemma 6.6 transfers outer/inner deviations α,β to OTLP and acceptance errors."
+    },
+    {
+      "index": 24,
+      "move": "connect_to_prediction",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 8,
+        "section": "§6.3",
+        "anchor": "deviate by at most 15τ ... at most 10τ",
+        "basis": "explicit"
+      },
+      "description": "Setting gradient stops at 5τ and choosing ε_T or γ_T≤τ gives ≤15τ target-distribution L1 error and ≤10τ acceptance error."
+    },
+    {
+      "index": 25,
+      "move": "state_complexity",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 26,
+        "section": "Appendix K",
+        "anchor": "both Φ_T, Θ_T have at most",
+        "basis": "explicit"
+      },
+      "description": "Appendix K groups LogSumExp coefficients with inclusion–exclusion, caps variables at about |T|^n/n!, and uses L-BFGS-B for 25 iterations."
+    },
+    {
+      "index": 26,
+      "move": "summarize",
+      "estimated_words": 65,
+      "evidence": {
+        "page": 6,
+        "section": "§6",
+        "anchor": "we terminate global resolution early",
+        "basis": "explicit"
+      },
+      "description": "The method closes the chain from subset objective to residual flows, convex approximation, and a normalized OT slice, while early termination remains a runtime condition."
+    }
+  ],
+  "visual_inventory": [
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 1",
+      "module": "theory",
+      "page": 8,
+      "purpose": "Executable global-resolution branch logic: recover H*, compute p_i, select inner/outer T, optimize a truncated convex objective, then normalize C.",
+      "evidence": {
+        "page": 8,
+        "section": "§7",
+        "anchor": "Algorithm 1: Global Resolution",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "results",
+      "page": 9,
+      "purpose": "Aggregate optimal acceptance versus draft count n and top-k k for Gemma-2 27B/2B and Llama-3 70B/8B.",
+      "evidence": {
+        "page": 9,
+        "section": "§7",
+        "anchor": "Increasing k improves acceptance rate significantly up to k = 1000",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 9,
+      "purpose": "Llama-3 average solver times and global-resolution success rates across (k,n); red entries are lower bounds or OOM.",
+      "evidence": {
+        "page": 9,
+        "section": "§7",
+        "anchor": "Average Llama-3 solve times (ms/token)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "results",
+      "page": 10,
+      "purpose": "Best acceptance under 10 and 100 ms/token limits for general LP, max-flow, and global resolution on both model pairs.",
+      "evidence": {
+        "page": 10,
+        "section": "§7",
+        "anchor": "Best acceptance rates ... under average solve time limits",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "ablation",
+      "page": 29,
+      "purpose": "Heat map of iid-minus-greedy optimal acceptance for Gemma-2 across n and top-k.",
+      "evidence": {
+        "page": 29,
+        "section": "§figure",
+        "anchor": "I.I.D. Minus Greedy Optimal Acceptances for Gemma-2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "ablation",
+      "page": 29,
+      "purpose": "Heat map of iid-minus-greedy optimal acceptance for Llama-3 across n and top-k.",
+      "evidence": {
+        "page": 29,
+        "section": "§figure",
+        "anchor": "I.I.D. Minus Greedy Optimal Acceptances for Llama-3",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "results",
+      "page": 30,
+      "purpose": "Gemma-2 counterpart of solver-time comparison, including global-resolution success rates and lower-bound markers.",
+      "evidence": {
+        "page": 30,
+        "section": "§table",
+        "anchor": "Average Gemma-2 solve times (ms/token)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "ablation",
+      "page": 30,
+      "purpose": "Four-panel target-temperature acceptance curves for Gemma-2 under top-k draft sampling.",
+      "evidence": {
+        "page": 30,
+        "section": "§figure",
+        "anchor": "Optimal acceptance rates ... for various target temperature settings",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "ablation",
+      "page": 31,
+      "purpose": "Four-panel global-resolution solve times and failure rates versus target temperature for k∈{10,100,1000,10000} and n∈{2,3,4,5}.",
+      "evidence": {
+        "page": 31,
+        "section": "§figure",
+        "anchor": "Solve times and failure rates of global resolution",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "results",
+      "page": 32,
+      "purpose": "SpecTr end-to-end block efficiency and walltime speedup for K=2,3,4 iid paths with L=8.",
+      "evidence": {
+        "page": 32,
+        "section": "§table",
+        "anchor": "Block efficiency ... and walltime speedup",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "limitations",
+      "page": 33,
+      "purpose": "Three-step tractability matrix for no-replacement and independent distinct-draft extensions.",
+      "evidence": {
+        "page": 33,
+        "section": "§table",
+        "anchor": "Extending global resolution to three non-i.i.d. drafting regimes",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (1)",
+      "module": "method",
+      "page": 3,
+      "role": "core_chain",
+      "evidence": {
+        "page": 3,
+        "section": "equation inventory",
+        "anchor": "Equation (1)",
+        "basis": "explicit"
+      },
+      "summary": "exact OTLP objective with p and p_draft marginal equalities"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (2)",
+      "module": "method",
+      "page": 3,
+      "role": "core_chain",
+      "evidence": {
+        "page": 3,
+        "section": "equation inventory",
+        "anchor": "Equation (2)",
+        "basis": "explicit"
+      },
+      "summary": "relaxed OTLP with upper bounds and incidence zeros"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (3)",
+      "module": "method",
+      "page": 3,
+      "role": "core_chain",
+      "evidence": {
+        "page": 3,
+        "section": "equation inventory",
+        "anchor": "Equation (3)",
+        "basis": "explicit"
+      },
+      "summary": "residual coupling that repairs S* to C*"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (4)",
+      "module": "method",
+      "page": 3,
+      "role": "core_chain",
+      "evidence": {
+        "page": 3,
+        "section": "equation inventory",
+        "anchor": "Equation (4)",
+        "basis": "explicit"
+      },
+      "summary": "subset-selection objective α*=1+min ψ(H)"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (5)",
+      "module": "method",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "equation inventory",
+        "anchor": "Equation (5)",
+        "basis": "explicit"
+      },
+      "summary": "canonical β from normalized S* or a uniform degenerate split"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (7)",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "equation inventory",
+        "anchor": "Equation (7)",
+        "basis": "explicit"
+      },
+      "summary": "zero residual classes implied by complementary slackness"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (8)",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "equation inventory",
+        "anchor": "Equation (8)",
+        "basis": "explicit"
+      },
+      "summary": "sparse OT slice conditioned on a drafted tuple"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (9)",
+      "module": "theory",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "equation inventory",
+        "anchor": "Equation (9)",
+        "basis": "explicit"
+      },
+      "summary": "outer-residual feasibility inequalities"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (10)",
+      "module": "theory",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "equation inventory",
+        "anchor": "Equation (10)",
+        "basis": "explicit"
+      },
+      "summary": "polymatroid consecutive-difference solution for p_vi"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (11)",
+      "module": "theory",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "equation inventory",
+        "anchor": "Equation (11)",
+        "basis": "explicit"
+      },
+      "summary": "iid prefix reduction for constrained ψ minimization"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (12)",
+      "module": "theory",
+      "page": 7,
+      "role": "core_chain",
+      "evidence": {
+        "page": 7,
+        "section": "equation inventory",
+        "anchor": "Equation (12)",
+        "basis": "explicit"
+      },
+      "summary": "truncated outer convex objective Φ_T"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (13)",
+      "module": "theory",
+      "page": 7,
+      "role": "guarantee",
+      "evidence": {
+        "page": 7,
+        "section": "equation inventory",
+        "anchor": "Equation (13)",
+        "basis": "explicit"
+      },
+      "summary": "outer gradient bound and tunable error ε_T"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (14)",
+      "module": "theory",
+      "page": 7,
+      "role": "core_chain",
+      "evidence": {
+        "page": 7,
+        "section": "equation inventory",
+        "anchor": "Equation (14)",
+        "basis": "explicit"
+      },
+      "summary": "outer softmax flow variables"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (15)",
+      "module": "theory",
+      "page": 7,
+      "role": "core_chain",
+      "evidence": {
+        "page": 7,
+        "section": "equation inventory",
+        "anchor": "Equation (15)",
+        "basis": "explicit"
+      },
+      "summary": "truncated inner convex objective Θ_T"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (16)",
+      "module": "theory",
+      "page": 7,
+      "role": "guarantee",
+      "evidence": {
+        "page": 7,
+        "section": "equation inventory",
+        "anchor": "Equation (16)",
+        "basis": "explicit"
+      },
+      "summary": "inner gradient bound and tunable error γ_T"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (17)",
+      "module": "theory",
+      "page": 7,
+      "role": "core_chain",
+      "evidence": {
+        "page": 7,
+        "section": "equation inventory",
+        "anchor": "Equation (17)",
+        "basis": "explicit"
+      },
+      "summary": "inner softmax flow variables"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (18)",
+      "module": "theory",
+      "page": 8,
+      "role": "guarantee",
+      "evidence": {
+        "page": 8,
+        "section": "equation inventory",
+        "anchor": "Equation (18)",
+        "basis": "explicit"
+      },
+      "summary": "approximate OT coupling C from S and residual fill"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (19)",
+      "module": "appendix",
+      "page": 14,
+      "role": "explanation",
+      "evidence": {
+        "page": 14,
+        "section": "equation inventory",
+        "anchor": "Equation (19)",
+        "basis": "explicit"
+      },
+      "summary": "canonical-decomposition β optimization"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (20)",
+      "module": "appendix",
+      "page": 15,
+      "role": "explanation",
+      "evidence": {
+        "page": 15,
+        "section": "equation inventory",
+        "anchor": "Equation (20)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (21)",
+      "module": "appendix",
+      "page": 15,
+      "role": "explanation",
+      "evidence": {
+        "page": 15,
+        "section": "equation inventory",
+        "anchor": "Equation (21)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (22)",
+      "module": "appendix",
+      "page": 15,
+      "role": "explanation",
+      "evidence": {
+        "page": 15,
+        "section": "equation inventory",
+        "anchor": "Equation (22)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (23)",
+      "module": "appendix",
+      "page": 15,
+      "role": "explanation",
+      "evidence": {
+        "page": 15,
+        "section": "equation inventory",
+        "anchor": "Equation (23)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (24)",
+      "module": "appendix",
+      "page": 15,
+      "role": "explanation",
+      "evidence": {
+        "page": 15,
+        "section": "equation inventory",
+        "anchor": "Equation (24)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (25)",
+      "module": "appendix",
+      "page": 15,
+      "role": "explanation",
+      "evidence": {
+        "page": 15,
+        "section": "equation inventory",
+        "anchor": "Equation (25)",
+        "basis": "explicit"
+      },
+      "summary": "definitions of P(H) and Q(H)"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (26)",
+      "module": "appendix",
+      "page": 15,
+      "role": "explanation",
+      "evidence": {
+        "page": 15,
+        "section": "equation inventory",
+        "anchor": "Equation (26)",
+        "basis": "explicit"
+      },
+      "summary": "iid factorization of Q(H)"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (27)",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "equation inventory",
+        "anchor": "Equation (27)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (28)",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "equation inventory",
+        "anchor": "Equation (28)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (29)",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "equation inventory",
+        "anchor": "Equation (29)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (30)",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "equation inventory",
+        "anchor": "Equation (30)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (31)",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "equation inventory",
+        "anchor": "Equation (31)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (32)",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "equation inventory",
+        "anchor": "Equation (32)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (33)",
+      "module": "appendix",
+      "page": 16,
+      "role": "core_chain",
+      "evidence": {
+        "page": 16,
+        "section": "equation inventory",
+        "anchor": "Equation (33)",
+        "basis": "explicit"
+      },
+      "summary": "n=2 subset objective"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (34)",
+      "module": "appendix",
+      "page": 16,
+      "role": "core_chain",
+      "evidence": {
+        "page": 16,
+        "section": "equation inventory",
+        "anchor": "Equation (34)",
+        "basis": "explicit"
+      },
+      "summary": "dense QPBO objective"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (35)",
+      "module": "appendix",
+      "page": 17,
+      "role": "core_chain",
+      "evidence": {
+        "page": 17,
+        "section": "equation inventory",
+        "anchor": "Equation (35)",
+        "basis": "explicit"
+      },
+      "summary": "dual LP"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (36)",
+      "module": "appendix",
+      "page": 17,
+      "role": "core_chain",
+      "evidence": {
+        "page": 17,
+        "section": "equation inventory",
+        "anchor": "Equation (36)",
+        "basis": "explicit"
+      },
+      "summary": "binary dual variables from H"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (38)",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "equation inventory",
+        "anchor": "Equation (38)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (39)",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "equation inventory",
+        "anchor": "Equation (39)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (40)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "equation inventory",
+        "anchor": "Equation (40)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (41)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "equation inventory",
+        "anchor": "Equation (41)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (42)",
+      "module": "appendix",
+      "page": 18,
+      "role": "core_chain",
+      "evidence": {
+        "page": 18,
+        "section": "equation inventory",
+        "anchor": "Equation (42)",
+        "basis": "explicit"
+      },
+      "summary": "reduced optimality system"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (43)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "equation inventory",
+        "anchor": "Equation (43)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (44)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "equation inventory",
+        "anchor": "Equation (44)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (45)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "equation inventory",
+        "anchor": "Equation (45)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (46)",
+      "module": "appendix",
+      "page": 19,
+      "role": "explanation",
+      "evidence": {
+        "page": 19,
+        "section": "equation inventory",
+        "anchor": "Equation (46)",
+        "basis": "explicit"
+      },
+      "summary": "Gale feasibility inequalities"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (47)",
+      "module": "appendix",
+      "page": 19,
+      "role": "explanation",
+      "evidence": {
+        "page": 19,
+        "section": "equation inventory",
+        "anchor": "Equation (47)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (48)",
+      "module": "appendix",
+      "page": 19,
+      "role": "core_chain",
+      "evidence": {
+        "page": 19,
+        "section": "equation inventory",
+        "anchor": "Equation (48)",
+        "basis": "explicit"
+      },
+      "summary": "outer-system equality constraints"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (49)",
+      "module": "appendix",
+      "page": 19,
+      "role": "core_chain",
+      "evidence": {
+        "page": 19,
+        "section": "equation inventory",
+        "anchor": "Equation (49)",
+        "basis": "explicit"
+      },
+      "summary": "outer residual feasibility conditions"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (50)",
+      "module": "appendix",
+      "page": 19,
+      "role": "explanation",
+      "evidence": {
+        "page": 19,
+        "section": "equation inventory",
+        "anchor": "Equation (50)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (51)",
+      "module": "appendix",
+      "page": 19,
+      "role": "core_chain",
+      "evidence": {
+        "page": 19,
+        "section": "equation inventory",
+        "anchor": "Equation (51)",
+        "basis": "explicit"
+      },
+      "summary": "reduced outer residual LP"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (52)",
+      "module": "appendix",
+      "page": 20,
+      "role": "core_chain",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (52)",
+        "basis": "explicit"
+      },
+      "summary": "submodular ϕ(S)"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (53)",
+      "module": "appendix",
+      "page": 20,
+      "role": "core_chain",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (53)",
+        "basis": "explicit"
+      },
+      "summary": "extended polymatroid"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (54)",
+      "module": "appendix",
+      "page": 20,
+      "role": "core_chain",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (54)",
+        "basis": "explicit"
+      },
+      "summary": "box-polymatroid intersection function"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (55)",
+      "module": "appendix",
+      "page": 20,
+      "role": "core_chain",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (55)",
+        "basis": "explicit"
+      },
+      "summary": "extended-polymatroid optimization"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (56)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (56)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (57)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (57)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (58)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (58)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (59)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (59)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (60)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (60)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (61)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (61)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (62)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "equation inventory",
+        "anchor": "Equation (62)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (63)",
+      "module": "appendix",
+      "page": 21,
+      "role": "core_chain",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (63)",
+        "basis": "explicit"
+      },
+      "summary": "bipartite equality system"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (64)",
+      "module": "appendix",
+      "page": 21,
+      "role": "core_chain",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (64)",
+        "basis": "explicit"
+      },
+      "summary": "convex transport function Φ"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (65)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (65)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (66)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (66)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (67)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (67)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (68)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (68)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (69)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (69)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (70)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (70)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (71)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (71)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (72)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (72)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (73)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (73)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (74)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (74)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (75)",
+      "module": "appendix",
+      "page": 21,
+      "role": "explanation",
+      "evidence": {
+        "page": 21,
+        "section": "equation inventory",
+        "anchor": "Equation (75)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (76)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (76)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (77)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (77)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (78)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (78)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (79)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (79)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (80)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (80)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (81)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (81)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (82)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (82)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (83)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (83)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (84)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (84)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (85)",
+      "module": "appendix",
+      "page": 22,
+      "role": "explanation",
+      "evidence": {
+        "page": 22,
+        "section": "equation inventory",
+        "anchor": "Equation (85)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (86)",
+      "module": "appendix",
+      "page": 23,
+      "role": "explanation",
+      "evidence": {
+        "page": 23,
+        "section": "equation inventory",
+        "anchor": "Equation (86)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (87)",
+      "module": "appendix",
+      "page": 23,
+      "role": "explanation",
+      "evidence": {
+        "page": 23,
+        "section": "equation inventory",
+        "anchor": "Equation (87)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (88)",
+      "module": "appendix",
+      "page": 23,
+      "role": "explanation",
+      "evidence": {
+        "page": 23,
+        "section": "equation inventory",
+        "anchor": "Equation (88)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (89)",
+      "module": "appendix",
+      "page": 23,
+      "role": "explanation",
+      "evidence": {
+        "page": 23,
+        "section": "equation inventory",
+        "anchor": "Equation (89)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (90)",
+      "module": "appendix",
+      "page": 23,
+      "role": "explanation",
+      "evidence": {
+        "page": 23,
+        "section": "equation inventory",
+        "anchor": "Equation (90)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (91)",
+      "module": "appendix",
+      "page": 23,
+      "role": "explanation",
+      "evidence": {
+        "page": 23,
+        "section": "equation inventory",
+        "anchor": "Equation (91)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (92)",
+      "module": "appendix",
+      "page": 23,
+      "role": "core_chain",
+      "evidence": {
+        "page": 23,
+        "section": "equation inventory",
+        "anchor": "Equation (92)",
+        "basis": "explicit"
+      },
+      "summary": "inner-system equality/inequality transport system"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (93)",
+      "module": "appendix",
+      "page": 23,
+      "role": "core_chain",
+      "evidence": {
+        "page": 23,
+        "section": "equation inventory",
+        "anchor": "Equation (93)",
+        "basis": "explicit"
+      },
+      "summary": "convex transport function Θ"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (94)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (94)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (95)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (95)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (96)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (96)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (97)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (97)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (98)",
+      "module": "appendix",
+      "page": 24,
+      "role": "core_chain",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (98)",
+        "basis": "explicit"
+      },
+      "summary": "full inner convex objective Θ"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (99)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (99)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (100)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (100)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (101)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (101)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (102)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (102)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (103)",
+      "module": "appendix",
+      "page": 24,
+      "role": "explanation",
+      "evidence": {
+        "page": 24,
+        "section": "equation inventory",
+        "anchor": "Equation (103)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (104)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (104)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (105)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (105)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (106)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (106)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (107)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (107)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (108)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (108)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (109)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (109)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (110)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (110)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (111)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (111)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (112)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (112)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (113)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (113)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (114)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (114)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (115)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (115)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (116)",
+      "module": "appendix",
+      "page": 25,
+      "role": "explanation",
+      "evidence": {
+        "page": 25,
+        "section": "equation inventory",
+        "anchor": "Equation (116)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (117)",
+      "module": "appendix",
+      "page": 26,
+      "role": "explanation",
+      "evidence": {
+        "page": 26,
+        "section": "equation inventory",
+        "anchor": "Equation (117)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (118)",
+      "module": "appendix",
+      "page": 26,
+      "role": "explanation",
+      "evidence": {
+        "page": 26,
+        "section": "equation inventory",
+        "anchor": "Equation (118)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (119)",
+      "module": "appendix",
+      "page": 26,
+      "role": "explanation",
+      "evidence": {
+        "page": 26,
+        "section": "equation inventory",
+        "anchor": "Equation (119)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (120)",
+      "module": "appendix",
+      "page": 26,
+      "role": "explanation",
+      "evidence": {
+        "page": 26,
+        "section": "equation inventory",
+        "anchor": "Equation (120)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (121)",
+      "module": "appendix",
+      "page": 26,
+      "role": "guarantee",
+      "evidence": {
+        "page": 26,
+        "section": "equation inventory",
+        "anchor": "Equation (121)",
+        "basis": "explicit"
+      },
+      "summary": "grouped LogSumExp term count"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (122)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (122)",
+        "basis": "explicit"
+      },
+      "summary": "draft marginal reconstruction"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (123)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (123)",
+        "basis": "explicit"
+      },
+      "summary": "tuple marginal equality"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (124)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (124)",
+        "basis": "explicit"
+      },
+      "summary": "outer tuple equality"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (125)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (125)",
+        "basis": "explicit"
+      },
+      "summary": "inner token row sum"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (126)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (126)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (127)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (127)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (128)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (128)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (129)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (129)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (130)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (130)",
+        "basis": "explicit"
+      },
+      "summary": "target-marginal reconstruction"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (131)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (131)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (132)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (132)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (133)",
+      "module": "appendix",
+      "page": 27,
+      "role": "guarantee",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (133)",
+        "basis": "explicit"
+      },
+      "summary": "α+2β bound"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (134)",
+      "module": "appendix",
+      "page": 27,
+      "role": "explanation",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (134)",
+        "basis": "explicit"
+      },
+      "summary": "acceptance as sum of row masses"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (135)",
+      "module": "appendix",
+      "page": 27,
+      "role": "guarantee",
+      "evidence": {
+        "page": 27,
+        "section": "equation inventory",
+        "anchor": "Equation (135)",
+        "basis": "explicit"
+      },
+      "summary": "optimal acceptance identity"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (136)",
+      "module": "appendix",
+      "page": 28,
+      "role": "core_chain",
+      "evidence": {
+        "page": 28,
+        "section": "equation inventory",
+        "anchor": "Equation (136)",
+        "basis": "explicit"
+      },
+      "summary": "top-k relaxed OTLP"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (137)",
+      "module": "appendix",
+      "page": 28,
+      "role": "core_chain",
+      "evidence": {
+        "page": 28,
+        "section": "equation inventory",
+        "anchor": "Equation (137)",
+        "basis": "explicit"
+      },
+      "summary": "top-k restricted LP"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (138)",
+      "module": "appendix",
+      "page": 32,
+      "role": "guarantee",
+      "evidence": {
+        "page": 32,
+        "section": "equation inventory",
+        "anchor": "Equation (138)",
+        "basis": "explicit"
+      },
+      "summary": "one-step telescoping difference bound"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (139)",
+      "module": "appendix",
+      "page": 32,
+      "role": "explanation",
+      "evidence": {
+        "page": 32,
+        "section": "equation inventory",
+        "anchor": "Equation (139)",
+        "basis": "explicit"
+      },
+      "summary": "proof or derivation algebra; see the numbered equation in the cited appendix"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (140)",
+      "module": "appendix",
+      "page": 32,
+      "role": "explanation",
+      "evidence": {
+        "page": 32,
+        "section": "equation inventory",
+        "anchor": "Equation (140)",
+        "basis": "explicit"
+      },
+      "summary": "factorized joint-distribution difference"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (141)",
+      "module": "appendix",
+      "page": 32,
+      "role": "explanation",
+      "evidence": {
+        "page": 32,
+        "section": "equation inventory",
+        "anchor": "Equation (141)",
+        "basis": "explicit"
+      },
+      "summary": "single-coordinate conditional difference"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (142)",
+      "module": "appendix",
+      "page": 33,
+      "role": "explanation",
+      "evidence": {
+        "page": 33,
+        "section": "equation inventory",
+        "anchor": "Equation (142)",
+        "basis": "explicit"
+      },
+      "summary": "summed multi-step difference"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (143)",
+      "module": "appendix",
+      "page": 33,
+      "role": "explanation",
+      "evidence": {
+        "page": 33,
+        "section": "equation inventory",
+        "anchor": "Equation (143)",
+        "basis": "explicit"
+      },
+      "summary": "factorized sum after substitution"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (144)",
+      "module": "appendix",
+      "page": 33,
+      "role": "explanation",
+      "evidence": {
+        "page": 33,
+        "section": "equation inventory",
+        "anchor": "Equation (144)",
+        "basis": "explicit"
+      },
+      "summary": "sum over the next token"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (145)",
+      "module": "appendix",
+      "page": 33,
+      "role": "explanation",
+      "evidence": {
+        "page": 33,
+        "section": "equation inventory",
+        "anchor": "Equation (145)",
+        "basis": "explicit"
+      },
+      "summary": "factored conditional L1 sum"
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Equation (146)",
+      "module": "appendix",
+      "page": 33,
+      "role": "guarantee",
+      "evidence": {
+        "page": 33,
+        "section": "equation inventory",
+        "anchor": "Equation (146)",
+        "basis": "explicit"
+      },
+      "summary": "15τ one-step bound"
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 3.1",
+      "module": "theory",
+      "page": 3,
+      "role": "core_chain",
+      "evidence": {
+        "page": 3,
+        "section": "§3.1",
+        "anchor": "The optimal acceptance rate α* can be computed as",
+        "basis": "explicit"
+      },
+      "summary": "Subset selection computes α*=1+min_H ψ(H) for arbitrary p_draft."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 4.1",
+      "module": "theory",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "§4.1",
+        "anchor": "The optimal importance sampling parameters",
+        "basis": "explicit"
+      },
+      "summary": "The canonical β optimization is solved by normalizing an optimal relaxed-LP S* except for uniform splits on degenerate tuples."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 5.1",
+      "module": "theory",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "§5.1",
+        "anchor": "if and only if it is an optimal solution to the relaxed OTLP",
+        "basis": "explicit"
+      },
+      "summary": "The displayed outer/inner/zero-variable system is equivalent to optimality of relaxed-OTLP S*."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 6.1",
+      "module": "theory",
+      "page": 6,
+      "role": "guarantee",
+      "evidence": {
+        "page": 6,
+        "section": "§6.1",
+        "anchor": "Outer Residuals",
+        "basis": "explicit"
+      },
+      "summary": "Outer p_i are feasible exactly under the subset inequalities and equality at V\\H*."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 6.2",
+      "module": "theory",
+      "page": 6,
+      "role": "guarantee",
+      "evidence": {
+        "page": 6,
+        "section": "§6.2",
+        "anchor": "Suppose ψ is submodular",
+        "basis": "explicit"
+      },
+      "summary": "For submodular ψ, greedy polymatroid consecutive differences give feasible p_vi."
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma 6.3",
+      "module": "theory",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "§6.3",
+        "anchor": "Suppose p_draft is formed by sampling i.i.d. from q",
+        "basis": "explicit"
+      },
+      "summary": "For iid q, constrained ψ minima are attained at prefixes sorted by decreasing q/p."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 6.4",
+      "module": "theory",
+      "page": 7,
+      "role": "guarantee",
+      "evidence": {
+        "page": 7,
+        "section": "§6.4",
+        "anchor": "Outer Convex Solver",
+        "basis": "explicit"
+      },
+      "summary": "The truncated outer convex objective has a near-zero-gradient point and its softmax variables approximate the outer equalities."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 6.5",
+      "module": "theory",
+      "page": 7,
+      "role": "guarantee",
+      "evidence": {
+        "page": 7,
+        "section": "§6.5",
+        "anchor": "Inner Convex Solver",
+        "basis": "explicit"
+      },
+      "summary": "The truncated inner convex objective with slack gives an analogous gradient and equality-deviation guarantee."
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma 6.6",
+      "module": "theory",
+      "page": 8,
+      "role": "guarantee",
+      "evidence": {
+        "page": 8,
+        "section": "§6.6",
+        "anchor": "Approximation Guarantee",
+        "basis": "explicit"
+      },
+      "summary": "Outer and inner deviations α,β yield α+2β target-marginal error and α+β acceptance error for C."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem B.1",
+      "module": "appendix",
+      "page": 14,
+      "role": "guarantee",
+      "evidence": {
+        "page": 14,
+        "section": "Appendix B",
+        "anchor": "Define variables β(i|i)",
+        "basis": "explicit"
+      },
+      "summary": "The canonical β optimization objective attains the optimal acceptance rate."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem C.1",
+      "module": "appendix",
+      "page": 15,
+      "role": "core_chain",
+      "evidence": {
+        "page": 15,
+        "section": "Appendix C",
+        "anchor": "When p_draft independently samples from q1",
+        "basis": "explicit"
+      },
+      "summary": "Independent draft distributions make ψ submodular."
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma F.1",
+      "module": "appendix",
+      "page": 18,
+      "role": "core_chain",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix F",
+        "anchor": "Bipartite-Flow Equivalence",
+        "basis": "explicit"
+      },
+      "summary": "A bipartite equality/inequality transport system is equivalent to a maximal flow."
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma G.1",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix G",
+        "anchor": "Gale’s feasibility theorem",
+        "basis": "explicit"
+      },
+      "summary": "Gale-type neighborhood inequalities characterize feasibility of the bipartite supply-demand system."
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma I.1",
+      "module": "appendix",
+      "page": 21,
+      "role": "guarantee",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix I",
+        "anchor": "Convex Transport Solver 1",
+        "basis": "explicit"
+      },
+      "summary": "A feasible equality transport system induces a convex nonnegative LogSumExp objective with arbitrarily small gradient."
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma J.1",
+      "module": "appendix",
+      "page": 23,
+      "role": "core_chain",
+      "evidence": {
+        "page": 23,
+        "section": "Appendix J",
+        "anchor": "Convex Transport Solver 2",
+        "basis": "explicit"
+      },
+      "summary": "Adding a slack vertex gives the convex nonnegative objective for equality/inequality transport."
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem R.1",
+      "module": "appendix",
+      "page": 32,
+      "role": "guarantee",
+      "evidence": {
+        "page": 32,
+        "section": "Appendix R",
+        "anchor": "Multi-Step Error",
+        "basis": "explicit"
+      },
+      "summary": "Multi-step global-resolution error is at most 15Lτ in L1 after L draft-block positions."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 4.1",
+      "module": "appendix",
+      "page": 15,
+      "role": "core_chain",
+      "evidence": {
+        "page": 15,
+        "section": "Appendix T",
+        "anchor": "Proof. We first show these satisfy the constraints",
+        "basis": "explicit"
+      },
+      "summary": "Appendix B proves the normalized or uniform β construction satisfies its constraints and reaches α*."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem C.1",
+      "module": "appendix",
+      "page": 15,
+      "role": "core_chain",
+      "evidence": {
+        "page": 15,
+        "section": "Appendix T",
+        "anchor": "the set function ψ in submodular",
+        "basis": "explicit"
+      },
+      "summary": "Appendix C expands products and proves Q is supermodular, hence ψ=P−Q is submodular."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 3.1 / subset-selection reduction",
+      "module": "appendix",
+      "page": 17,
+      "role": "core_chain",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix T",
+        "anchor": "Dualizing the relaxed OTLP gives the dual LP",
+        "basis": "explicit"
+      },
+      "summary": "Appendix E dualizes the relaxed LP, invokes total unimodularity, and obtains the binary H subset formulation."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 5.1",
+      "module": "appendix",
+      "page": 17,
+      "role": "core_chain",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix T",
+        "anchor": "complementary slackness constraints become",
+        "basis": "explicit"
+      },
+      "summary": "Appendix E applies complementary slackness to derive the outer/inner system and removes redundant inequalities."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Lemma F.1",
+      "module": "appendix",
+      "page": 18,
+      "role": "core_chain",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix",
+        "anchor": "This means flow conservation holds",
+        "basis": "explicit"
+      },
+      "summary": "Appendix F proves flow conservation and maximality in both directions."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Lemma G.1",
+      "module": "appendix",
+      "page": 19,
+      "role": "core_chain",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix",
+        "anchor": "The first part follows from the equivalence",
+        "basis": "explicit"
+      },
+      "summary": "Appendix G invokes Gale feasibility and total supply-demand equality."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 6.1",
+      "module": "appendix",
+      "page": 19,
+      "role": "core_chain",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix T",
+        "anchor": "To solve for the residuals in the outer system",
+        "basis": "explicit"
+      },
+      "summary": "Appendix G derives the outer residual LP and rewrites its neighborhood condition as ψ(V\\S)."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 6.2",
+      "module": "appendix",
+      "page": 20,
+      "role": "core_chain",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix T",
+        "anchor": "Because ψ(S) is submodular",
+        "basis": "explicit"
+      },
+      "summary": "Appendix H uses box-polymatroid intersection and greedy consecutive differences, then proves nonnegativity."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Lemma I.1",
+      "module": "appendix",
+      "page": 21,
+      "role": "guarantee",
+      "evidence": {
+        "page": 21,
+        "section": "Appendix",
+        "anchor": "We will use the Hall-type conditions",
+        "basis": "explicit"
+      },
+      "summary": "Appendix I proves convexity/nonnegativity from Hall-type conditions and ordered LogSumExp lower bounds."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 6.4",
+      "module": "appendix",
+      "page": 22,
+      "role": "guarantee",
+      "evidence": {
+        "page": 22,
+        "section": "Appendix T",
+        "anchor": "We first show that",
+        "basis": "explicit"
+      },
+      "summary": "Appendix I bounds the truncated/full gradient difference by ε_T and translates gradients to flow deviation."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Lemma J.1",
+      "module": "appendix",
+      "page": 23,
+      "role": "core_chain",
+      "evidence": {
+        "page": 23,
+        "section": "Appendix",
+        "anchor": "We add a vertex a0",
+        "basis": "explicit"
+      },
+      "summary": "Appendix J adds a0 to turn inequalities into equalities and restricts the convex objective."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 6.5",
+      "module": "appendix",
+      "page": 24,
+      "role": "guarantee",
+      "evidence": {
+        "page": 24,
+        "section": "Appendix T",
+        "anchor": "We first show that",
+        "basis": "explicit"
+      },
+      "summary": "Appendix J bounds γ_T and the inner equality deviation via the slack LogSumExp."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Lemma 6.6",
+      "module": "appendix",
+      "page": 26,
+      "role": "guarantee",
+      "evidence": {
+        "page": 26,
+        "section": "Appendix",
+        "anchor": "Define the row-wise sums",
+        "basis": "explicit"
+      },
+      "summary": "Appendix L reconstructs tuple marginals, bounds target-row deviation by α+2β, and acceptance by α+β."
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem R.1",
+      "module": "appendix",
+      "page": 32,
+      "role": "guarantee",
+      "evidence": {
+        "page": 32,
+        "section": "Appendix T",
+        "anchor": "For each j = 0, . . . , L",
+        "basis": "explicit"
+      },
+      "summary": "Appendix R telescopes L one-step conditional errors to obtain 15Lτ."
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "research_questions",
+      "status": "observed",
+      "description": "The experiment section asks whether iid optimal acceptance grows with n and top-k k, whether global resolution is faster than LP/max-flow, and whether temperature/multi-step integration remains useful.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§7",
+          "anchor": "we empirically test the efficacy of our new algorithms",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "target_and_draft_models",
+      "status": "observed",
+      "description": "Gemma-2 27B/2B and Llama-3 70B/8B are the target/draft pairs; temperature 1 is used for the principal runs.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§7.1",
+          "anchor": "Gemma-2 27B/2B and Llama-3 70B/8B",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "datasets_and_prompt_sampling",
+      "status": "observed",
+      "description": "Five benchmarks are used: GSM8K, HumanEval, IfEval, PopQA, and WildJailbreak; the setup states 500 random eval prompts, with HumanEval contributing only 164 total.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "500 random eval prompts from GSM8K, HumanEval, IfEval, PopQA, and WildJailbreak",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "leakage_control",
+      "status": "observed",
+      "description": "Prompts are taken from evaluation splits to avoid test-set contamination.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "We take prompts only from the eval split to avoid test set contamination",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "acceptance_aggregation",
+      "status": "observed",
+      "description": "Acceptance is token-averaged per dataset and then simply averaged across datasets.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "compute token-averaged acceptances per dataset, and perform a simple average",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "solve_time_sampling",
+      "status": "observed",
+      "description": "Solve-time measurements use 40 random prompts from each dataset, motivated by prompt-agnostic times.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "select 40 random prompts from each dataset",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "solver_baselines",
+      "status": "observed",
+      "description": "The five solver columns are general LP, max-flow, optimized max-flow, global resolution τ=0.001, and global resolution τ=0.0001.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§7.2",
+          "anchor": "for five methods",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "software_and_hardware",
+      "status": "observed",
+      "description": "HiGHS in SciPy, graph-tool, L-BFGS-B in SciPy, NumPy CPU arrays, Paperspace machines, 4×A6000 or A100-80GB, and listed Xeon CPUs are specified.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "All solvers are only run on the CPU with numpy arrays",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "parameter_sweeps",
+      "status": "observed",
+      "description": "Principal acceptance sweeps use n≤10 and k∈{10,100,…,10^⌊log V⌋,V}; solver tables focus on listed (k,n) pairs.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§7.1",
+          "anchor": "We test n ≤ 10 and k ∈ {10, 100",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "temperature_design",
+      "status": "observed",
+      "description": "Appendix Q varies target temperature over 0.2, 0.4, 0.6, 0.8 while draft temperature remains 1.0.",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix Q",
+          "anchor": "test temperature 0.2, 0.4, 0.6, 0.8",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "multi_step_design",
+      "status": "observed",
+      "description": "SpecTr uses K∈{2,3,4} iid paths of length L=8, k=100 draft top-k, and p-sampling on global-resolution failure.",
+      "evidence": [
+        {
+          "page": 32,
+          "section": "Appendix R",
+          "anchor": "K = 2, 3, 4 and L = 8",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "random_seeds",
+      "status": "not_present",
+      "description": "The setup reports random prompt sampling but gives no random seed or seed aggregation protocol.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "No random seed is reported in the experimental setup",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "training_budget",
+      "status": "not_applicable",
+      "description": "The paper evaluates inference-time solvers and does not train a new model.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "The experiments use fixed target and draft model pairs",
+          "basis": "interpretation"
+        }
+      ]
+    },
+    {
+      "name": "participant_or_human_evaluation",
+      "status": "not_applicable",
+      "description": "No human-participant evaluation is part of this inference-solver study.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "five diverse benchmarks spanning math reasoning, coding, instruction following, knowledge retrieval, and safety",
+          "basis": "interpretation"
+        }
+      ]
+    },
+    {
+      "name": "uncertainty_and_significance",
+      "status": "not_present",
+      "description": "No confidence intervals, bootstrap intervals, hypothesis tests, or standard deviations are reported; tables use averages and success rates.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§7.2",
+          "anchor": "empirical average solve times",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "implementation_source",
+      "status": "not_present",
+      "description": "The reproducibility statement specifies algorithms, solvers, thresholds, and machines but contains no code repository URL.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Reproducibility Statement",
+          "anchor": "we provide all necessary information to reproduce the gradient descent approach",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "Increasing k and n raises optimal iid acceptance, with diminishing returns beyond k≈10000.",
+      "value": "Figure 1 reports qualitative curves; text highlights 0.80→0.95 as nearly 10% more tokens and says gains level after k≥10000.",
+      "comparison": "Gemma-2 27B/2B and Llama-3 70B/8B across n≤10 and top-k k.",
+      "statistical_method": "Token-averaged acceptance per dataset, then simple average across five datasets; no uncertainty interval.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§7.1",
+          "anchor": "a marginal increase from 0.8 to 0.95",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 1",
+          "anchor": "Increasing k improves acceptance rate significantly up to k = 1000",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Global resolution is frequently much faster than LP and max-flow and stays under 100 ms/token for the included Llama-3 pairs.",
+      "value": "Table 1: at (k,n)=(100,3), Llama-3 global resolution is 30.52 ms/token (τ=10−3, 23% success) and 38.44 ms/token (τ=10−4, 14% success), versus 200000+ ms for max-flow and 400000+ ms for LP.",
+      "comparison": "General LP, max-flow, optimized max-flow, and two τ settings.",
+      "statistical_method": "Mean solve time over 40 random prompts per dataset; red values are small-scale lower bounds, not full runs.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 1",
+          "anchor": "Average Llama-3 solve times (ms/token)",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§7.2",
+          "anchor": "runtimes always under 100 ms/token",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Under a 100 ms/token limit, global resolution gives the highest reported acceptance for both model pairs.",
+      "value": "Llama-3: 90.04% (τ=10−3) and 89.46% (τ=10−4); Gemma-2: 86.60% and 86.07%. Under 10 ms, corresponding values are 85.65%, 85.10%, 81.90%, 81.35%.",
+      "comparison": "Best admissible settings for general LP, max-flow, optimized max-flow, and global resolution.",
+      "statistical_method": "Best aggregate acceptance among settings whose average runtime meets each limit; no uncertainty interval.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Table 2",
+          "anchor": "Best acceptance rates ... under average solve time limits",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§7.2",
+          "anchor": "1.03% and 0.47% higher acceptances",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Lower target temperature makes top-k truncation more effective and makes global resolution more feasible.",
+      "value": "At temperature 0.2/0.4, k=10 is essentially highest across n; at 0.8, k=10 is worse as n grows. For k>10, Figure 5 shows failure rates increase with temperature.",
+      "comparison": "Gemma-2 27B/2B, target temperatures 0.2–0.8, draft temperature 1.0.",
+      "statistical_method": "Curve and failure-rate/solve-time plots; no significance test despite text saying one difference is not significant.",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix Q",
+          "anchor": "the k = 10 setting achieves essentially the highest acceptance rate",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Figure 5",
+          "anchor": "failure rates increase significantly with temperature",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The iid draft construction beats greedy for k≥100 in the appendix comparison, while losing at k=10.",
+      "value": "Appendix O reports nearly 2% iid gains for most n≥4 at larger k; the advantage decreases with n at high k for Llama-3 but not Gemma-2.",
+      "comparison": "iid versus Hu et al. greedy construction on Gemma-2 and Llama-3.",
+      "statistical_method": "Acceptance heat maps (Figures 2–3); aggregate curves, no uncertainty interval.",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix O",
+          "anchor": "i.i.d. performs worse than greedy for k = 10",
+          "basis": "explicit"
+        },
+        {
+          "page": 29,
+          "section": "Figures 2–3",
+          "anchor": "I.I.D. Minus Greedy Optimal Acceptances",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Global resolution gives similar Gemma-2 solve-time behavior, with high success at small k and much lower success at large k.",
+      "value": "Table 3: at (10,2), τ=10−3 is 7.46 ms/token with 98.87% success; at (1000,2), it is 60.05 ms/token with 27.5% success; generic LP is OOM.",
+      "comparison": "Gemma-2 solver baselines and τ settings.",
+      "statistical_method": "Mean solve time over the Appendix M prompt sample; success rate is early-termination completion fraction.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Table 3",
+          "anchor": "Average Gemma-2 solve times (ms/token)",
+          "basis": "explicit"
+        },
+        {
+          "page": 30,
+          "section": "Appendix P",
+          "anchor": "global resolution can hundreds of thousands times faster",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Global resolution integrated into SpecTr nearly doubles walltime speed over vanilla decoding in the tested setting.",
+      "value": "For L=8, K=2/3/4 gives block efficiency 2.23/2.54/2.65 tokens per target call and walltime speedup 1.84/1.89/1.98.",
+      "comparison": "SpecTr with global resolution, k=100, Gemma-2 27B/2B, target temperature 1.0; failures fall back to p sampling.",
+      "statistical_method": "End-to-end aggregate walltime and block efficiency; no uncertainty interval.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 32,
+          "section": "Table 4",
+          "anchor": "Block efficiency ... and walltime speedup",
+          "basis": "explicit"
+        },
+        {
+          "page": 32,
+          "section": "Appendix R",
+          "anchor": "Our walltime speedups in the best setting (K = 4) are nearly 2×",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "component_deletion",
+      "status": "not_present",
+      "description": "No ablation deletes polymatroid residual recovery, complementary-slackness partitioning, or either convex solver.",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix Q",
+          "anchor": "Temperature Ablations",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "draft_construction",
+      "status": "observed",
+      "description": "Appendix O compares iid sampling with the greedy construction, identifying the acceptance effect of drafting choice.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix O",
+          "anchor": "compare acceptance rates for the i.i.d. and greedy",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "top_k_and_n",
+      "status": "observed",
+      "description": "Figure 1 and Appendix N/O vary top-k k and draft count n, exposing acceptance/complexity trade-offs.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§7.1",
+          "anchor": "n ≤ 10 and k ∈ {10, 100",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "temperature",
+      "status": "observed",
+      "description": "Appendix Q varies target temperature and reports acceptance, solve time, and failure-rate changes.",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix Q",
+          "anchor": "test temperature 0.2, 0.4, 0.6, 0.8",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "tolerance_tau",
+      "status": "observed",
+      "description": "Tables 1–3 compare τ=10−3 and τ=10−4, trading accuracy bounds against runtime and success rate.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 1",
+          "anchor": "global resolution (τ = 10−3, 10−4)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "mechanism_alternatives",
+      "status": "observed",
+      "description": "General LP, max-flow, optimized max-flow, and p-sampling fallback supply solver alternatives, though no component-isolation experiment is reported.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§7.2",
+          "anchor": "for five methods",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "failure_and_compute",
+      "status": "observed",
+      "description": "Red lower bounds, OOM entries, and global-resolution success rates expose compute limits and early termination.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 1",
+          "anchor": "Red numbers are lower bounds from small scale tests",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "robustness_non_iid",
+      "status": "observed",
+      "description": "Appendix S gives a theoretical tractability matrix for no-replacement and distinct-draft regimes; it is not an empirical robustness test.",
+      "evidence": [
+        {
+          "page": 33,
+          "section": "Appendix S",
+          "anchor": "Yes means the extension is immediate",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "per_dataset_heterogeneity",
+      "status": "not_present",
+      "description": "The setup aggregates five datasets but the main figures/tables do not show per-dataset acceptance or runtime breakdowns.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "perform a simple average across datasets",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "The OTLP is the exact optimal verification criterion for single-step multi-draft sampling.",
+      "origin": "§1–3",
+      "status": "closed",
+      "method_response": "Eq. (1) defines the coupling and acceptance objective; Appendix A supplies the procedure.",
+      "evidence_response": "The OTLP formulation and acceptance interpretation are explicit on p.3.",
+      "conclusion_response": "§8 returns to solving the OT parameters.",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§3.1",
+          "anchor": "the OT is the induced conditional distribution π(i|i)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Canonical decomposition and subset-selection relaxation describe the same optimum.",
+      "origin": "§1 contribution 1; §4",
+      "status": "closed",
+      "method_response": "Theorem 4.1 maps S* to β and says canonical decomposition has no computational advantage.",
+      "evidence_response": "Appendix B proves feasibility and objective equality.",
+      "conclusion_response": "§8 treats the result as a building block for the solver.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§4",
+          "anchor": "mathematically equivalent to solving the relaxed OTLP",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Appendix B",
+          "anchor": "our defined β are optimal",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "H* enables a max-flow OT solver for arbitrary p_draft.",
+      "origin": "§1 contribution 2; §5",
+      "status": "closed",
+      "method_response": "Theorem 5.1 partitions the relaxed solution into outer and inner flow systems.",
+      "evidence_response": "Appendix E derives complementary slackness and Appendix F proves flow equivalence.",
+      "conclusion_response": "§8 states that the complementary-slackness system solves OT parameters.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§5.3",
+          "anchor": "outer system and inner system",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix F",
+          "anchor": "Bipartite-Flow Equivalence",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Global resolution has an iid O(V log V) front end.",
+      "origin": "§6",
+      "status": "closed",
+      "method_response": "H* prefix scanning, polymatroid residual recovery, and cumulative minima are specified.",
+      "evidence_response": "Theorem 6.2 and Lemma 6.3 provide the reductions; Appendix H proves the greedy step.",
+      "conclusion_response": "§8 names global resolution as the speedup mechanism.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§6.1",
+          "anchor": "using cumulative minimums, we can get all min ψ terms in O(V log V)",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix H",
+          "anchor": "greedy algorithm",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The truncated convex solvers approximate the exact OT to arbitrary accuracy.",
+      "origin": "Abstract; §6.2–6.3",
+      "status": "partially_closed",
+      "method_response": "Φ_T/Θ_T and Algorithm 1 choose truncation sets and gradient thresholds.",
+      "evidence_response": "Lemma 6.6 and Appendix L prove 15τ target L1 and 10τ acceptance bounds.",
+      "conclusion_response": "§8 reports high acceptance with little overhead, but runtime can terminate early.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§6.2",
+          "anchor": "we can approximate the true complementary slackness solution to arbitrary accuracy",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§6.3",
+          "anchor": "deviate by at most 15τ from the true target distribution",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Global resolution achieves high acceptance under practical runtime limits.",
+      "origin": "Abstract; §7",
+      "status": "partially_closed",
+      "method_response": "The algorithm is instantiated with top-k iid drafts and two τ values.",
+      "evidence_response": "Table 2 reports the best acceptance under 10 and 100 ms/token; Tables 1 and 3 show success-rate dependence.",
+      "conclusion_response": "The paper calls it state of the art for the tested setup.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Table 2",
+          "anchor": "90.04%",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Table 1",
+          "anchor": "success rates for global resolution",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The method transfers to multi-step SpecTr with near-2× speedup.",
+      "origin": "§7.4; Appendix R",
+      "status": "partially_closed",
+      "method_response": "SpecTr uses global resolution at each tree node with k=100.",
+      "evidence_response": "Table 4 reports K=2–4 and Theorem R.1 bounds error as 15Lτ.",
+      "conclusion_response": "The main text calls the estimates conservative because failure fallback is naive.",
+      "evidence": [
+        {
+          "page": 32,
+          "section": "Appendix R",
+          "anchor": "walltime speedup",
+          "basis": "explicit"
+        },
+        {
+          "page": 33,
+          "section": "Theorem R.1",
+          "anchor": "∥pL − pcL∥1 ≤ 15Lτ",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The approach extends broadly to non-iid drafting regimes.",
+      "origin": "Appendix S",
+      "status": "not_testable_here",
+      "method_response": "Appendix S decomposes extension into H*, outer residual, and convex-solver steps.",
+      "evidence_response": "The tractability table marks n≥3 distinct independent drafts as No for steps 1–2 and Possible for step 3; no empirical test is run.",
+      "conclusion_response": "The paper leaves n≥3 distinct drafts as an intractable bottleneck requiring a different approach.",
+      "evidence": [
+        {
+          "page": 33,
+          "section": "Table 5",
+          "anchor": "n ≥ 3 independent and distinct",
+          "basis": "explicit"
+        },
+        {
+          "page": 34,
+          "section": "Appendix S",
+          "anchor": "seems intractable due to the higher-degree submodular minimization bottleneck",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The reported solver comparisons establish a general state-of-the-art.",
+      "origin": "§7.2",
+      "status": "partially_closed",
+      "method_response": "Five CPU solver variants are compared over selected k,n pairs.",
+      "evidence_response": "Tables 1–3 provide model-specific aggregate averages and red lower bounds.",
+      "conclusion_response": "The title claim is supported within two model pairs and the tested time limits.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§7.2",
+          "anchor": "Thus, global resolution is the state-of-the-art OTLP solver",
+          "basis": "explicit"
+        },
+        {
+          "page": 30,
+          "section": "Table 3",
+          "anchor": "environment setup differences (CPU-only)",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "Appendix A Review of Single-Step Speculative Sampling",
+      "category": "extended_method",
+      "start_page": 14,
+      "end_page": 14,
+      "main_text_calls": [
+        "§3"
+      ],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "Appendix",
+          "anchor": "A Review of Single-Step Speculative Sampling",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix B Equivalence of Canonical Decomposition and Relaxed LP",
+      "category": "proof",
+      "start_page": 14,
+      "end_page": 15,
+      "main_text_calls": [
+        "§4"
+      ],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "Appendix",
+          "anchor": "B Equivalence of Canonical Decomposition and Relaxed LP",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix C Computing H* for Independent Drafts is Submodular Minimization",
+      "category": "proof",
+      "start_page": 15,
+      "end_page": 16,
+      "main_text_calls": [
+        "§5.1"
+      ],
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix",
+          "anchor": "C Computing H* for Independent Drafts is Submodular Minimization",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix D Computing H* for n=2 Independent Drafts is Submodular QPBO",
+      "category": "proof",
+      "start_page": 16,
+      "end_page": 16,
+      "main_text_calls": [
+        "§5.1"
+      ],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix",
+          "anchor": "D Computing H* for n=2 Independent Drafts is Submodular QPBO",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix E Complementary Slackness Derivation",
+      "category": "proof",
+      "start_page": 17,
+      "end_page": 18,
+      "main_text_calls": [
+        "§5.3"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix",
+          "anchor": "E Complementary Slackness Derivation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix F Max-Flow Transformation Derivation",
+      "category": "proof",
+      "start_page": 18,
+      "end_page": 18,
+      "main_text_calls": [
+        "§5.3"
+      ],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix",
+          "anchor": "F Max-Flow Transformation Derivation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix G Proofs of Residual LPs",
+      "category": "proof",
+      "start_page": 19,
+      "end_page": 19,
+      "main_text_calls": [
+        "§6.1"
+      ],
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix",
+          "anchor": "G Proofs of Residual LPs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix H Greedy Polymatroid Algorithm for Outer Residual LP",
+      "category": "proof",
+      "start_page": 19,
+      "end_page": 20,
+      "main_text_calls": [
+        "§6.1"
+      ],
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix",
+          "anchor": "H Greedy Polymatroid Algorithm for Outer Residual LP",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix I Global Outer Solution",
+      "category": "proof",
+      "start_page": 20,
+      "end_page": 23,
+      "main_text_calls": [
+        "§6.2"
+      ],
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix",
+          "anchor": "I Global Outer Solution",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix J Global Inner Solution",
+      "category": "proof",
+      "start_page": 23,
+      "end_page": 25,
+      "main_text_calls": [
+        "§6.2"
+      ],
+      "evidence": [
+        {
+          "page": 23,
+          "section": "Appendix",
+          "anchor": "J Global Inner Solution",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix K Truncated Solver Details",
+      "category": "implementation_detail",
+      "start_page": 26,
+      "end_page": 26,
+      "main_text_calls": [
+        "§6.2"
+      ],
+      "evidence": [
+        {
+          "page": 26,
+          "section": "Appendix",
+          "anchor": "K Truncated Solver Details",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix L Approximation Guarantees",
+      "category": "proof",
+      "start_page": 26,
+      "end_page": 27,
+      "main_text_calls": [
+        "§6.3"
+      ],
+      "evidence": [
+        {
+          "page": 26,
+          "section": "Appendix",
+          "anchor": "L Approximation Guarantees",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix M Experimental Setup",
+      "category": "dataset_detail",
+      "start_page": 28,
+      "end_page": 28,
+      "main_text_calls": [
+        "§7",
+        "Reproducibility Statement"
+      ],
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix",
+          "anchor": "M Experimental Setup",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix N Top-k Sampling for the Relaxed OTLP",
+      "category": "extended_method",
+      "start_page": 28,
+      "end_page": 28,
+      "main_text_calls": [
+        "§7.1"
+      ],
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix",
+          "anchor": "N Top-k Sampling for the Relaxed OTLP",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix O Greedy vs. I.I.D. Acceptance Rates",
+      "category": "additional_result",
+      "start_page": 28,
+      "end_page": 29,
+      "main_text_calls": [
+        "§7.1"
+      ],
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix",
+          "anchor": "O Greedy vs. I.I.D. Acceptance Rates",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix P Gemma-2 Solve Time Comparison",
+      "category": "additional_result",
+      "start_page": 30,
+      "end_page": 30,
+      "main_text_calls": [
+        "§7.2"
+      ],
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix",
+          "anchor": "P Gemma-2 Solve Time Comparison",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix Q Temperature Ablations",
+      "category": "ablation",
+      "start_page": 30,
+      "end_page": 31,
+      "main_text_calls": [
+        "§7.3"
+      ],
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix",
+          "anchor": "Q Temperature Ablations",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix R Multi-Step Experiments",
+      "category": "additional_result",
+      "start_page": 32,
+      "end_page": 33,
+      "main_text_calls": [
+        "§7.4"
+      ],
+      "evidence": [
+        {
+          "page": 32,
+          "section": "Appendix",
+          "anchor": "R Multi-Step Experiments",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix S Generalizing to Non-IID Drafts",
+      "category": "robustness",
+      "start_page": 33,
+      "end_page": 34,
+      "main_text_calls": [
+        "§6",
+        "§7.4"
+      ],
+      "evidence": [
+        {
+          "page": 33,
+          "section": "Appendix",
+          "anchor": "S Generalizing to Non-IID Drafts",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "scope_iid_single_step",
+      "status": "observed",
+      "description": "The algorithm’s efficient global-resolution route assumes n iid tokens from one draft distribution q and the single-step setting.",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "§1",
+          "anchor": "when n ≥ 2 draft tokens are i.i.d. sampled from a draft model",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "§6",
+          "anchor": "we can exploit additional structure",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "arbitrary_pdraft_runtime",
+      "status": "observed",
+      "description": "For arbitrary p_draft, max-flow is exact but the network remains enormous; the paper does not claim a generally faster route.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§5.2",
+          "anchor": "the max-flow network is enormous",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "§6",
+          "anchor": "we should not expect to be able to compute C* in less time",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "early_termination",
+      "status": "observed",
+      "description": "Global resolution can stop when T exceeds fixed limits or L-BFGS-B misses the gradient threshold; large T is usually the failure cause.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§6",
+          "anchor": "we terminate global resolution early",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix K",
+          "anchor": "|T| being too large is usually the reason for failure",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "temperature_and_k",
+      "status": "observed",
+      "description": "High temperature and k>10 increase failure rates; low temperature is the favorable regime.",
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix Q",
+          "anchor": "global resolution is most applicable at low temperature settings",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "multistep_fallback",
+      "status": "observed",
+      "description": "The SpecTr speedup is conservative because failure falls back to p-sampling with poor acceptance; solver selection is left open.",
+      "evidence": [
+        {
+          "page": 32,
+          "section": "Appendix R",
+          "anchor": "when it fails, we resort to standard sampling from p",
+          "basis": "explicit"
+        },
+        {
+          "page": 32,
+          "section": "Appendix R",
+          "anchor": "these numbers are highly conservative estimates",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "non_iid_n_ge_3",
+      "status": "observed",
+      "description": "For n≥3 independent distinct drafts, computing H* and outer residuals hits a higher-degree submodular-minimization bottleneck.",
+      "evidence": [
+        {
+          "page": 33,
+          "section": "Appendix S",
+          "anchor": "n ≥ 3 independent and distinct",
+          "basis": "explicit"
+        },
+        {
+          "page": 34,
+          "section": "Appendix S",
+          "anchor": "appears an intractable roadblock",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "empirical_generality",
+      "status": "observed",
+      "description": "Empirical evidence covers two model pairs, five benchmarks, and CPU-only solver measurements; no broader architecture or deployment sweep is reported.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "For Llama-3 70/8B",
+          "basis": "explicit"
+        },
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "five diverse benchmarks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "statistical_reporting",
+      "status": "not_present",
+      "description": "Averages and success rates are reported without intervals, dispersion, seeds, or formal tests; the paper’s “significant” wording is not accompanied by a test.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "perform a simple average across datasets",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§7.2",
+          "anchor": "empirical average solve times",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "code_and_ethics",
+      "status": "not_present",
+      "description": "The reproducibility statement gives implementation prose but no code URL; no separate ethics or broader-impact discussion appears.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Reproducibility Statement",
+          "anchor": "all necessary information to reproduce the gradient descent approach",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 34,
+          "section": "Appendix S",
+          "anchor": "This completes the three-step analysis",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "appendix_migration",
+      "status": "observed",
+      "description": "Experimental setup, Gemma-2 solve-time results, temperature figures, and multi-step results are deferred to appendices while the main body keeps aggregate conclusions.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§7.3–7.4",
+          "anchor": "In Appendix Q",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§7.4",
+          "anchor": "Our results are shown in Appendix R",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "conservative_fallback_disclosure",
+      "status": "observed",
+      "description": "The multi-step claim is paired with an explicit statement that p-sampling fallback has poor acceptance and that the numbers are conservative.",
+      "evidence": [
+        {
+          "page": 32,
+          "section": "Appendix R",
+          "anchor": "simple p-sampling heuristic (which is a valid OTLP solver, but has poor acceptances)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "lower_bound_marking",
+      "status": "observed",
+      "description": "Tables mark excessive-runtime values as red lower bounds from small-scale tests and expose global-resolution success rates.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 1",
+          "anchor": "Red numbers are lower bounds from small scale tests",
+          "basis": "explicit"
+        },
+        {
+          "page": 30,
+          "section": "Table 3",
+          "anchor": "We include success rates for global resolution",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "scope_qualification",
+      "status": "observed",
+      "description": "The abstract and Section 6 qualify the efficient algorithm with iid single-draft sampling; Appendix S explicitly lists non-iid obstacles.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "chosen i.i.d. from a single draft model",
+          "basis": "explicit"
+        },
+        {
+          "page": 34,
+          "section": "Appendix S",
+          "anchor": "n ≥ 3 distinct drafts seems intractable",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "aggregation_mask",
+      "status": "observed",
+      "description": "Per-dataset token averages are collapsed to a simple dataset average, so the main acceptance curves do not show benchmark heterogeneity.",
+      "evidence": [
+        {
+          "page": 28,
+          "section": "Appendix M",
+          "anchor": "perform a simple average across datasets",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "main_boundary_measurement",
+      "status": "observed",
+      "description": "Automatic heading detection reports main_end_page_provisional=34 and no appendix start because the PDF spells headings with spaced small capitals. Manual PDF reading places main text at pages 1–10, references at 11–13, appendix at 14–34.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§8/Reproducibility Statement",
+          "anchor": "R EPRODUCIBILITY S TATEMENT",
+          "basis": "explicit"
+        },
+        {
+          "page": 14,
+          "section": "Appendix A",
+          "anchor": "A    R EVIEW OF S INGLE -S TEP S PECULATIVE S AMPLING",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "word_count",
+      "status": "observed",
+      "description": "The local extraction totals 16,564 alphabetic words, matching auto_metrics; its main/appendix split is not trusted because the automatic appendix heading pattern misses spaced headings.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "document boundary",
+          "anchor": "Published as a conference paper at ICLR 2026",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "equation_count",
+      "status": "observed",
+      "description": "The automatic 144 count is the 144 bare numeric labels (1–146 excluding 6 and 37). The PDF additionally presents grouped lettered systems (6a–c and 37a–c); these are recorded as subequation groups, not extra numeric labels.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§5.3",
+          "anchor": "(6a), (6b), (6c)",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Appendix E",
+          "anchor": "(37a), (37b), (37c)",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "theory_count",
+      "status": "observed",
+      "description": "The automatic theorem-item count is 52 textual theorem/lemma/proposition/corollary mentions. Manual inventory separates 16 named statements and 14 proof blocks; the remainder are cross-references, including cited Theorem 44.3.",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix H",
+          "anchor": "Theorem 44.3 in Schrijver et al.",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 32,
+          "section": "Appendix R",
+          "anchor": "Theorem R.1",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "visual_count",
+      "status": "observed",
+      "description": "The local PDF contains Algorithm 1, Figures 1–5, and Tables 1–5; tables and figures that are visually separated from text are assigned to their semantic module.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Algorithm 1",
+          "anchor": "Algorithm 1: Global Resolution",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 1/Table 1",
+          "anchor": "Figure 1: Optimal acceptance rates",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "在单步多 draft speculative sampling 中，最优验证准则是指数规模 OTLP。论文先证明 canonical decomposition 与 relaxed LP 等价，再把 relaxed LP 反向写成 max-flow 的 complementary-slackness 系统，随后在 iid 单 draft 分布下用 submodularity/polymatroid 计算外部残差、用截断 LogSumExp 凸优化求内外流，最后以 15τ 分布误差和 10τ acceptance 误差保证把近似流还原为 OT；实验证明该路径在部分 k,n 与两组模型上取得高 acceptance 和低 CPU 求解时间。证据：p.3–8, Eqs. (1)–(18); p.9–10, Tables 1–2。",
+    "main_body_keeps": "正文保留了问题定义、H* subset objective、canonical/relaxed-LP 等价、max-flow 与 complementary slackness、三步 global resolution、Algorithm 1、截断误差保证和主要 acceptance/solve-time 结果。每个决策节点都能回接前文的指数规模瓶颈。证据：p.3–8, §§3–7。",
+    "appendix_moves": "附录承载完整证明链（B–L）、LogSumExp 系数聚合与 L-BFGS-B 细节（K）、硬件/数据集/聚合口径（M）、top-k 化简和 iid/greedy/温度/SpecTr 结果（N–R），以及非 iid 适用性矩阵（S）。正文通过显式“see Appendix”调用它们；篇幅迁移保住正文主线，但复现梯度和判断失败条件需读附录。证据：p.6–10; p.14–34。",
+    "best_pattern": "最有效的结构是“目标值先可计算、解本身后可恢复”：Theorem 3.1 先给 H* 的 acceptance 目标，Theorem 5.1 再用 complementary slackness 找完整流，Theorems 6.4–6.5 最后给凸函数、截断误差和软最大流，Lemma 6.6 把局部误差合成为 OT 级保证。Algorithm 1 将这条链压缩成可执行分支。证据：p.3, p.5–8。",
+    "largest_gap": "最明显的未闭合处是实用边界：global resolution 的“任意精度”是条件性理论保证，实际实现依赖 T 大小、25 次 L-BFGS-B 迭代和早停；高 k/高温及多步失败会显著降低成功率，n≥3 非 iid 扩展出现难以处理的 submodular bottleneck。实验还缺少 seed、区间、逐 benchmark 异质性和代码链接。证据：p.6, p.26, p.31, p.33–34。",
+    "transfer_rule": "若最优目标可由结构化对偶或集合函数先求出，应把“目标值计算”和“见证解恢复”分成两个闭环，并让每个近似步骤拥有可组合的误差预算；正文先展示闭环接口，附录证明每个接口。证据：p.3–8, Theorems 3.1, 5.1, 6.1–6.5, Lemma 6.6。",
+    "transfer_boundary": "这条规则适用于存在可行耦合、子模性或其他可计算结构且误差能通过总变差/L1 等指标组合的优化型推断问题；当 draft 分布破坏 iid 结构、集合函数最小化本身不可行，或部署成本由 GPU/批处理而非 CPU solver 主导时，不能把 O(V log V) 前端或 15τ/10τ 保证外推为端到端优势。证据：p.5–6, Appendix D, S。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 20,
+    "claims_with_page_evidence": 20,
+    "status": "complete"
+  },
+  "document_audit": {
+    "pages_read": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34
+    ],
+    "reading_complete": true,
+    "main_page_range": "1–10",
+    "reference_page_range": "11–13",
+    "appendix_page_range": "14–34",
+    "total_words_local_extraction": 16564,
+    "main_words_manual_estimate": 6133,
+    "appendix_words_local_extraction": 9238,
+    "layout": "two-column; full-width floats; no supplementary file present"
+  },
+  "formula_counts": {
+    "automatic_numbered_equations": 144,
+    "numeric_equation_labels": "1–146 excluding 6 and 37",
+    "lettered_system_groups": [
+      "6a–c",
+      "37a–c"
+    ],
+    "displayed_equation_blocks_manual_note": "Lettered groups are grouped systems; the 144 count follows the project auto-metric convention."
+  },
+  "theory_counts": {
+    "automatic_theorem_item_mentions": 52,
+    "named_theorem_lemma_statements": 16,
+    "explicit_proof_blocks": 14,
+    "propositions_and_corollaries": "not_present as named items"
+  },
+  "algorithm_inventory": {
+    "count": 1,
+    "labels": [
+      "Algorithm 1"
+    ],
+    "input": "V,p,q,n,τ, drafted tuple ω",
+    "output": "optimal transport slice π(·|ω)",
+    "critical_invariant": "outer/inner flow constraints and residual reconstruction respect the 15τ/10τ approximation budget"
+  },
+  "statistics_visualization": {
+    "aggregation_unit": "token-averaged acceptance per dataset then simple dataset mean; solve time mean over 40 random prompts per dataset",
+    "uncertainty": "not_present",
+    "hypothesis_tests": "not_present",
+    "effect_size": "not_present",
+    "plots": "Figures 1–5; Figures 2–5 are appendices",
+    "tables": "Tables 1–5; Tables 3–5 are appendices",
+    "negative_evidence": "OOM/lower-bound cells and global-resolution success rates remain visible"
+  },
+  "lexical_analysis": {
+    "scope": "正文页1–10；排除 references、公式碎片、表格数值和重复页眉后做小写化与停用词过滤。",
+    "high_frequency_terms": [
+      {
+        "term": "draft",
+        "count": 46,
+        "context": "draft model/tokens and iid construction"
+      },
+      {
+        "term": "OTLP",
+        "count": 46,
+        "context": "exact, relaxed, and solver formulations"
+      },
+      {
+        "term": "optimal",
+        "count": 39,
+        "context": "optimal transport/acceptance"
+      },
+      {
+        "term": "acceptance",
+        "count": 38,
+        "context": "objective and empirical curves"
+      },
+      {
+        "term": "sampling",
+        "count": 37,
+        "context": "speculative/multi-draft/top-k"
+      },
+      {
+        "term": "outer",
+        "count": 32,
+        "context": "outer system/residuals"
+      },
+      {
+        "term": "solve",
+        "count": 30,
+        "context": "solver runtime and convex solve"
+      },
+      {
+        "term": "max-flow",
+        "count": 30,
+        "context": "network reduction and baselines"
+      },
+      {
+        "term": "global",
+        "count": 29,
+        "context": "global resolution"
+      },
+      {
+        "term": "resolution",
+        "count": 26,
+        "context": "method name and accuracy"
+      }
+    ],
+    "bigrams": [
+      {
+        "phrase": "global resolution",
+        "count": 26,
+        "context": "method name and algorithm references"
+      },
+      {
+        "phrase": "optimal acceptance",
+        "count": 19,
+        "context": "objective and figure/table claims"
+      },
+      {
+        "phrase": "speculative sampling",
+        "count": 16,
+        "context": "problem domain"
+      },
+      {
+        "phrase": "outer system",
+        "count": 16,
+        "context": "complementary-slackness construction"
+      },
+      {
+        "phrase": "relaxed OTLP",
+        "count": 15,
+        "context": "LP relaxation and proofs"
+      },
+      {
+        "phrase": "draft model",
+        "count": 11,
+        "context": "target/draft setup"
+      }
+    ],
+    "trigrams": [
+      {
+        "phrase": "multi-draft speculative sampling",
+        "count": 6,
+        "context": "problem scope"
+      },
+      {
+        "phrase": "optimal acceptance rate",
+        "count": 5,
+        "context": "objective and results"
+      },
+      {
+        "phrase": "single-draft speculative sampling",
+        "count": 4,
+        "context": "background contrast"
+      },
+      {
+        "phrase": "global resolution algorithm",
+        "count": 3,
+        "context": "method references"
+      }
+    ],
+    "claim_verbs": {
+      "show/showed/shows": 13,
+      "find/found": 9,
+      "demonstrate/demonstrated": 3,
+      "propose/proposed": 1,
+      "observe": 1,
+      "compute/computes": 20,
+      "prove/proves": 2,
+      "allow/allows": 6,
+      "obtain": 5,
+      "derive/derived": 1
+    },
+    "rhetorical_reading": "高频词由对象名词（OTLP、acceptance、draft、outer）和方法动作（solve、compute、show）共同驱动；“show/find/compute”承担结果与证明回收，“however/while/although”标出复杂度、失败率与范围限定。i.i.d.、OTLP、p_draft 等切分会使自动词频与语义词频存在偏差。"
+  },
+  "narrative_closure": {
+    "main_contribution_claims": 7,
+    "closed": 4,
+    "partially_closed": 3,
+    "open": 0,
+    "not_testable_here": 1,
+    "note": "Closure is assessed claim-by-claim with explicit page evidence; scope-limited empirical claims are partially closed rather than generalized."
+  }
+}
