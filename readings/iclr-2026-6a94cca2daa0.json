@@ -1,0 +1,2952 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-6a94cca2daa0",
+  "bibliography": {
+    "title": "In-Place Test-Time Training",
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ],
+    "authors": [
+      "Guhao Feng",
+      "Shengjie Luo",
+      "Kai Hua",
+      "Ge Zhang",
+      "Wenhao Huang",
+      "Di He",
+      "Tianle Cai"
+    ],
+    "affiliations": [
+      "ByteDance Seed",
+      "State Key Laboratory of General Artificial Intelligence, Peking University"
+    ],
+    "author_notes": "Guhao Feng and Shengjie Luo are marked equal contribution; Wenhao Huang and Di He are correspondence authors (PDF p.1).",
+    "identity_evidence": {
+      "page": 1,
+      "section": "Title page",
+      "anchor": "Published as a conference paper at ICLR 2026",
+      "basis": "explicit"
+    }
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-6a94cca2daa0.pdf",
+    "text": "corpus/text/iclr-2026-6a94cca2daa0.txt",
+    "pdf_verified": true,
+    "supplementary": null,
+    "supplementary_status": "not_present",
+    "openreview_url": "https://openreview.net/forum?id=dTWfCLSoyl",
+    "source_kind": "official_pdf",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ba6f5879d7f382241316f7dda7e6b8ac-Paper-Conference.pdf",
+    "source_identity_note": "Read the local official proceedings PDF in full; title, authors, venue and page-1 conference line align with the paper id and OpenReview forum."
+  },
+  "page_map": {
+    "pdf_pages": 21,
+    "main_pages": 10,
+    "reference_pages": 5,
+    "appendix_pages": 6,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 231
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 848
+      },
+      {
+        "title": "2 Preliminary: Test-Time Training",
+        "module": "other",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 694
+      },
+      {
+        "title": "3 In-Place Test-Time Training overview",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 111
+      },
+      {
+        "title": "3.1 Overall Framework",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 657
+      },
+      {
+        "title": "3.2 LM-Aligned Objective",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 5,
+        "estimated_words": 248
+      },
+      {
+        "title": "3.3 Theoretical Analysis",
+        "module": "theory",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 635
+      },
+      {
+        "title": "3.4 Implementation Details",
+        "module": "method",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 402
+      },
+      {
+        "title": "4 Experiments and research questions",
+        "module": "experimental_design",
+        "start_page": 7,
+        "end_page": 7,
+        "estimated_words": 151
+      },
+      {
+        "title": "4.1 In-Place TTT as a Drop-in Enhancement for Pre-trained LLMs",
+        "module": "experimental_design",
+        "start_page": 7,
+        "end_page": 8,
+        "estimated_words": 499
+      },
+      {
+        "title": "4.2 Pre-training from Scratch: A Comparative Analysis",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 10,
+        "estimated_words": 788
+      },
+      {
+        "title": "4.3 Ablation Studies: Impact of Key Design Choices",
+        "module": "ablation",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 315
+      },
+      {
+        "title": "5 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 104
+      },
+      {
+        "title": "Ethics Statement",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 53
+      },
+      {
+        "title": "Reproducibility Statement",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 63
+      },
+      {
+        "title": "Acknowledgement",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 34
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 15,
+        "estimated_words": 1971
+      },
+      {
+        "title": "Appendix A: Related Work",
+        "module": "related_work",
+        "start_page": 16,
+        "end_page": 16,
+        "estimated_words": 644
+      },
+      {
+        "title": "Appendix B: Proof of Theorem 1",
+        "module": "appendix",
+        "start_page": 16,
+        "end_page": 18,
+        "estimated_words": 560
+      },
+      {
+        "title": "Appendix C: Context Parallel Algorithm for In-Place TTT",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 18,
+        "estimated_words": 167
+      },
+      {
+        "title": "Appendix D: Experiment Details",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 21,
+        "estimated_words": 1035
+      },
+      {
+        "title": "D.1 Details of Datasets",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 19,
+        "estimated_words": 195
+      },
+      {
+        "title": "D.2 Details of Training and Evaluation",
+        "module": "appendix",
+        "start_page": 19,
+        "end_page": 20,
+        "estimated_words": 354
+      },
+      {
+        "title": "D.3 Details of Model Configuration",
+        "module": "appendix",
+        "start_page": 20,
+        "end_page": 21,
+        "estimated_words": 413
+      },
+      {
+        "title": "Appendix E: Usage of LLMs",
+        "module": "other",
+        "start_page": 21,
+        "end_page": 21,
+        "estimated_words": 36
+      }
+    ],
+    "main_end_page": 10,
+    "references_start_page": 11,
+    "references_end_page": 15,
+    "appendix_start_page": 16,
+    "boundary_note": "正文主段落在 p.10 conclusion 结束；p.11 先有 Ethics/Reproducibility/Acknowledgement，再进入 references。Appendix A 从 p.16 开始。",
+    "layout": {
+      "columns": "single-column throughout",
+      "full_width_figures": [
+        "Figure 1 p.6",
+        "Figure 2 p.8",
+        "Figure 3 p.9",
+        "Figure 4 p.10"
+      ],
+      "table_pages": [
+        "p.7–10",
+        "p.19–20"
+      ],
+      "readability_effect": "Full-width figures/tables reduce local prose area; no two-column reading order is introduced."
+    },
+    "raw_word_count_basis": "Section estimates are extracted-text estimates corrected for physical page boundaries and front matter; references/formula fragments are not used as main-prose denominator."
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 231,
+      "main_word_share": 0.04138,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 848,
+      "main_word_share": 0.15189,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 644,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 1418,
+      "main_word_share": 0.25399,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 1
+    },
+    {
+      "module": "theory",
+      "status": "observed",
+      "estimated_words": 635,
+      "main_word_share": 0.11374,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 2
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 550,
+      "main_word_share": 0.09851,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 788,
+      "main_word_share": 0.14114,
+      "figures": 1,
+      "tables": 3,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 315,
+      "main_word_share": 0.05642,
+      "figures": 2,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 104,
+      "main_word_share": 0.01863,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 1798,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 5,
+      "algorithms": 1,
+      "displayed_equations": 13
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 694,
+      "main_word_share": 0.12431,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 1
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "The static “train then deploy” paradigm fundamentally limits Large Language Models (LLMs) from dynamically adapting their weights in response to continuous streams of new information inherent in real-world tasks.",
+      "word_count": 29,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "static train then deploy paradigm fundamentally limits",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "Test-Time Training (TTT) offers a compelling alternative by updating a subset of model parameters (fast weights) at inference time, yet its potential in the current LLM ecosystem is hindered by critical barriers including architectural incompatibility, computational inefficiency and misaligned fast weight objectives for language modeling.",
+      "word_count": 45,
+      "functions": [
+        "core_idea",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "architectural incompatibility, computational inefficiency",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "In this work, we introduce In-Place Test-Time Training (In-Place TTT), a framework that seamlessly endows LLMs with Test-Time Training ability.",
+      "word_count": 20,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "we introduce In-Place Test-Time Training",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "In-Place TTT treats the final projection matrix of the ubiquitous MLP blocks as its adaptable fast weights, enabling a “drop-in” enhancement for LLMs without costly retraining from scratch.",
+      "word_count": 28,
+      "functions": [
+        "method",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "final projection matrix of the ubiquitous MLP blocks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "Furthermore, we replace TTT’s generic reconstruction objective with a tailored, theoretically-grounded objective explicitly aligned with the Next-Token-Prediction task governing autoregressive language modeling.",
+      "word_count": 23,
+      "functions": [
+        "method",
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "aligned with the Next-Token-Prediction task",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "This principled objective, combined with an efficient chunk-wise update mechanism, results in a highly scalable algorithm compatible with context parallelism.",
+      "word_count": 20,
+      "functions": [
+        "method",
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "compatible with context parallelism",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "Extensive experiments validate our framework’s effectiveness: as an in-place enhancement, it enables a 4B-parameter model to achieve superior performance on tasks with contexts up to 128k, and when pretrained from scratch, it consistently outperforms competitive TTT-related approaches.",
+      "word_count": 37,
+      "functions": [
+        "experimental_setup",
+        "quantitative_result",
+        "qualitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "contexts up to 128k",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "text": "Ablation study results further provide deeper insights on our design choices.",
+      "word_count": 11,
+      "functions": [
+        "experimental_setup",
+        "qualitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "Ablation study results",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "text": "Collectively, our results establish In-Place TTT as a promising step towards a paradigm of continual learning in LLMs.",
+      "word_count": 18,
+      "functions": [
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "towards a paradigm of continual learning",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "abstract_summary": {
+    "function_order": [
+      "object_scope/problem_gap",
+      "core_idea/problem_gap",
+      "method",
+      "theory",
+      "experimental_setup/quantitative_result",
+      "qualitative_result",
+      "impact_claim"
+    ],
+    "reports_experimental_results": true,
+    "reported_numbers": [
+      "4B-parameter model",
+      "contexts up to 128k"
+    ],
+    "reports_theory": false,
+    "reports_limitation": false,
+    "strongest_claim_location": "final sentence broadens the result to a promising continual-learning paradigm; the most testable claim is sentence 7.",
+    "evidence": [
+      {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "contexts up to 128k",
+        "basis": "explicit"
+      },
+      {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "promising step towards a paradigm of continual learning",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context → problem_gap",
+      "estimated_words": 241,
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "once deployed, the model’s weights cannot be updated",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "context → failure_of_prior_work",
+      "estimated_words": 205,
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "its effectiveness is tethered to the model’s context window",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "failure_of_prior_work",
+      "estimated_words": 184,
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "critical barriers: (i)…(ii)…(iii)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "missing_insight → core_idea",
+      "estimated_words": 172,
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "repurpose existing MLP blocks",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "method_preview → theory_preview",
+      "estimated_words": 160,
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "bespoke adaptation mechanism for language modeling",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "result_preview → scope_boundary",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "Through relatively cheap continual training",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_summary": {
+    "chain": "context → problem_gap → failure_of_prior_work → missing_insight → core_idea → method_preview → theory_preview → result_preview → scope_boundary",
+    "contribution_list_repeats_abstract": "partially",
+    "falsifiable_claims_present": true,
+    "numeric_result_present": true,
+    "limitation_present": false,
+    "evidence": [
+      {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "critical barriers",
+        "basis": "explicit"
+      },
+      {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "Through relatively cheap continual training",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy → chronology → nearest_neighbor_contrast → gap_creation",
+      "estimated_words": 230,
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A: Related Work",
+        "anchor": "prior work has not addressed how to seamlessly integrate TTT",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "taxonomy → nearest_neighbor_contrast",
+      "estimated_words": 210,
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A: Related Work",
+        "anchor": "These architectural advances are complementary to our framework",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "taxonomy → credit_or_foundation → positioning_only",
+      "estimated_words": 204,
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A: Related Work",
+        "anchor": "TTT represents a powerful instance of this latter category",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_summary": {
+    "locations": [
+      "Appendix A"
+    ],
+    "estimated_words": 644,
+    "main_word_share": 0.0,
+    "citation_cluster_count": 3,
+    "comparison_dimensions": [
+      "TTT objective/optimizer/parallelism",
+      "sparse/linear/SSM long-context architecture",
+      "persistent vs transient memory"
+    ],
+    "paragraph_encoding": [
+      "taxonomy",
+      "chronology",
+      "nearest_neighbor_contrast",
+      "gap_creation",
+      "credit_or_foundation",
+      "positioning_only"
+    ],
+    "later_citation_role": "Main method and experiments cite chunk-wise TTT, MLP memory, YaRN and baselines; Appendix A supplies the taxonomy rather than repeating algorithm details.",
+    "evidence": [
+      {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "prior work has not addressed how to seamlessly integrate TTT",
+        "basis": "explicit"
+      },
+      {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "These architectural advances are complementary to our framework",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 2,
+        "section": "§2 Preliminary",
+        "anchor": "query (qi), a key (ki), and a value (vi)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "state_problem",
+      "estimated_words": 190,
+      "evidence": {
+        "page": 3,
+        "section": "§2 Preliminary",
+        "anchor": "Architectural Compatibility",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "derive",
+      "estimated_words": 121,
+      "evidence": {
+        "page": 3,
+        "section": "§2 Preliminary",
+        "anchor": "Given a learning rate η, the update rule is",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "define_component → explain_mechanism",
+      "estimated_words": 430,
+      "evidence": {
+        "page": 4,
+        "section": "§3.1 Overall Framework",
+        "anchor": "repurposing the final projection matrix, Wdown, as the adaptable fast weights",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "instantiate_algorithm",
+      "estimated_words": 220,
+      "evidence": {
+        "page": 4,
+        "section": "§3.1 Overall Framework",
+        "anchor": "For each chunk i…two sequential operations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "derive → connect_to_prediction",
+      "estimated_words": 248,
+      "evidence": {
+        "page": 5,
+        "section": "§3.2 LM-Aligned Objective",
+        "anchor": "the amount of future token information can be controlled",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "derive → give_intuition",
+      "estimated_words": 160,
+      "evidence": {
+        "page": 5,
+        "section": "§3.2 LM-Aligned Objective",
+        "anchor": "gradient with respect to the fast weights",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "setup_notation → contrast_alternative",
+      "estimated_words": 190,
+      "evidence": {
+        "page": 5,
+        "section": "§3.3 Theoretical Analysis",
+        "anchor": "We compare two choices for the TTT target",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "connect_to_prediction",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 6,
+        "section": "§3.3 Theoretical Analysis",
+        "anchor": "Correct logit increases",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "instantiate_algorithm → state_complexity → connect_to_experiment",
+      "estimated_words": 402,
+      "evidence": {
+        "page": 6,
+        "section": "§3.4 Implementation Details",
+        "anchor": "mathematically equivalent to a sequential update",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_summary": {
+    "formal_objects": [
+      "X/token sequence",
+      "H hidden representation",
+      "Z gated-MLP intermediate activation",
+      "Wup/Wgate frozen slow weights",
+      "Wdown fast-weight state",
+      "V̂ future-token target",
+      "O chunk output",
+      "C chunk size",
+      "η learning rate"
+    ],
+    "first_locations": {
+      "Wdown": "p.4 §3.1",
+      "Vhat": "p.5 §3.2",
+      "Theorem 1 setting": "p.5 §3.3",
+      "parallel scan": "p.6–7 §3.4"
+    },
+    "component_problem_mapping": {
+      "in_place_Wdown": "architectural compatibility",
+      "chunkwise_update": "computational efficiency",
+      "Conv1D_Wtarget": "NTP objective alignment",
+      "causal_padding_boundary_reset": "strict causality/context isolation"
+    },
+    "complexity_status": "not_present",
+    "complexity_note": "No asymptotic complexity, FLOP decomposition or communication cost is stated; efficiency is empirically illustrated by Figure 4.",
+    "action_sequence": "state_problem → define_component → explain_mechanism → instantiate_algorithm → derive → give_intuition → connect_to_prediction → connect_to_experiment",
+    "evidence": [
+      {
+        "page": 4,
+        "section": "§3.1",
+        "anchor": "final projection matrix, Wdown, as the adaptable fast weights",
+        "basis": "explicit"
+      },
+      {
+        "page": 5,
+        "section": "§3.2",
+        "anchor": "target V̂ = Conv1D(X0)Wtarget",
+        "basis": "explicit"
+      },
+      {
+        "page": 7,
+        "section": "§3.4",
+        "anchor": "mathematically equivalent to a sequential update",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "method",
+      "page": 6,
+      "purpose": "展示 Attention、gated MLP、chunk split、apply/update、Conv1D/projection 的整体因果流程。",
+      "evidence": {
+        "page": 6,
+        "section": "§3.1–§3.4",
+        "anchor": "apply-then-update cycle",
+        "basis": "explicit"
+      },
+      "size": "full text width; schematic",
+      "comparison": "architectural path",
+      "encoding": "arrows and labeled boxes",
+      "uncertainty": "not_applicable"
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 7,
+      "purpose": "比较 Qwen3-4B-Base 与 In-Place TTT 在 RULER 4k–256k 的平均 accuracy。",
+      "evidence": {
+        "page": 7,
+        "section": "§4.1",
+        "anchor": "Evaluation results on the RULER benchmark",
+        "basis": "explicit"
+      },
+      "size": "centered table",
+      "comparison": "Baseline vs In-Place TTT plus listed reference models",
+      "encoding": "context columns; bold best values",
+      "uncertainty": "none shown"
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "results",
+      "page": 8,
+      "purpose": "检查 LLaMA-3.1-8B 与 Qwen3-14B-Base 的跨模型及 YaRN 组合效果。",
+      "evidence": {
+        "page": 8,
+        "section": "§4.1",
+        "anchor": "Extension of In-Place TTT to LLaMA-3.1-8B and Qwen3-14B-Base",
+        "basis": "explicit"
+      },
+      "size": "centered table",
+      "comparison": "Baseline vs In-Place TTT",
+      "encoding": "model/context columns; bold best values",
+      "uncertainty": "none shown"
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "results",
+      "page": 8,
+      "purpose": "绘出 500M/1.5B 在 Pile validation 上的 sliding-window perplexity 随 context length 的变化。",
+      "evidence": {
+        "page": 8,
+        "section": "§4.2",
+        "anchor": "Sliding Window Perplexity at varying context lengths",
+        "basis": "explicit"
+      },
+      "size": "two panels; full text width",
+      "comparison": "In-Place TTT, SWA, GLA, DeltaNet, LaCT",
+      "encoding": "lines and markers",
+      "uncertainty": "no error band"
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "results",
+      "page": 9,
+      "purpose": "比较 4B Full Attention/SWA baseline 与 I.P. TTT 的 common-sense 与 RULER 分数。",
+      "evidence": {
+        "page": 9,
+        "section": "§4.2",
+        "anchor": "Evaluation results of 4B models",
+        "basis": "explicit"
+      },
+      "size": "centered table",
+      "comparison": "Baseline vs I.P. TTT under Full Attn. and SWA",
+      "encoding": "task columns; bold best values",
+      "uncertainty": "none shown"
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "ablation",
+      "page": 9,
+      "purpose": "以三面板柱状图检验 state size、chunk size 与 LM-Aligned objective 组件。",
+      "evidence": {
+        "page": 9,
+        "section": "§4.3",
+        "anchor": "Ablation studies on the key design choices",
+        "basis": "explicit"
+      },
+      "size": "three panels; full text width",
+      "comparison": "state/chunk/objective variants",
+      "encoding": "grouped bars",
+      "uncertainty": "no error bar"
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "ablation",
+      "page": 10,
+      "purpose": "比较 SWA/Full 下 8k/32k/128k 的 prefill throughput 与 peak memory overhead。",
+      "evidence": {
+        "page": 10,
+        "section": "§4.3",
+        "anchor": "Efficiency analysis of In-Place TTT",
+        "basis": "explicit"
+      },
+      "size": "four panels; full text width",
+      "comparison": "Baseline vs TTT under SWA and Full",
+      "encoding": "bars",
+      "uncertainty": "no error bar"
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 1",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "给出 single-layer context-parallel implementation 的并行计算、CUMSUM、状态应用和 boundary reset。",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix C",
+        "anchor": "Effective weight for chunk i uses updates from chunks < i",
+        "basis": "explicit"
+      },
+      "size": "full-width pseudocode block",
+      "comparison": "sequential semantics vs parallel scan",
+      "encoding": "two parallel loops and comments",
+      "uncertainty": "not_applicable"
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "列出 500M/1.5B from-scratch optimizer、batch、token budget、sequence/window 设置。",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix D.2",
+        "anchor": "Training hyperparameters for 500M and 1.5B models",
+        "basis": "explicit"
+      },
+      "size": "centered table",
+      "comparison": "500M vs 1.5B",
+      "encoding": "hyperparameter rows",
+      "uncertainty": "not_applicable"
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "列出 1.7B/4B pretraining 的共享训练配置。",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix D.2",
+        "anchor": "Training hyperparameters for 1.7B models and 4B models pretraining",
+        "basis": "explicit"
+      },
+      "size": "centered table",
+      "comparison": "shared configuration",
+      "encoding": "hyperparameter rows",
+      "uncertainty": "not_applicable"
+    },
+    {
+      "kind": "table",
+      "label": "Table 6",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "列出 Qwen3-4B 两阶段 continual pretraining 的 context、token、YaRN 和 Conv size。",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix D.2",
+        "anchor": "Hyperparameters for two-stage continual pre-training",
+        "basis": "explicit"
+      },
+      "size": "centered table",
+      "comparison": "Stage 1 vs Stage 2",
+      "encoding": "hyperparameter rows",
+      "uncertainty": "not_applicable"
+    },
+    {
+      "kind": "table",
+      "label": "Table 7",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "列出 LLaMA-3.1-8B/Qwen3-14B continual training 配置。",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix D.2",
+        "anchor": "Hyperparameters for continual pre-training",
+        "basis": "explicit"
+      },
+      "size": "centered table",
+      "comparison": "two base models",
+      "encoding": "hyperparameter rows",
+      "uncertainty": "not_applicable"
+    },
+    {
+      "kind": "table",
+      "label": "Table 8",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "列出 500M/1.5B architectural configuration。",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix D.3",
+        "anchor": "Model architectural configurations for 500M and 1.5B Model",
+        "basis": "explicit"
+      },
+      "size": "centered table",
+      "comparison": "500M vs 1.5B",
+      "encoding": "architecture rows",
+      "uncertainty": "not_applicable"
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "displayed_equation",
+      "label": "Unnumbered generic TTT update",
+      "module": "other",
+      "page": 3,
+      "role": "explanation",
+      "evidence": {
+        "page": 3,
+        "section": "§2",
+        "anchor": "Given a learning rate η, the update rule is",
+        "basis": "explicit"
+      },
+      "formula": "Wi ← Wi−1 − η∇W L(fWi−1(ki), vi)",
+      "equation_number": null
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (1)",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "§3.2",
+        "anchor": "gradient with respect to the fast weights",
+        "basis": "explicit"
+      },
+      "formula": "Wdown(i) = Wdown(i−1) + η Vhat[i]ᵀ Z[i]",
+      "equation_number": 1
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (2)",
+      "module": "theory",
+      "page": 6,
+      "role": "guarantee",
+      "evidence": {
+        "page": 6,
+        "section": "§3.3",
+        "anchor": "Correct logit increases",
+        "basis": "explicit"
+      },
+      "formula": "E[Δℓn[v*]] ≥ λlr · c²norm · calign",
+      "equation_number": 2
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (3)",
+      "module": "theory",
+      "page": 6,
+      "role": "guarantee",
+      "evidence": {
+        "page": 6,
+        "section": "§3.3",
+        "anchor": "Other logits almost unchanged",
+        "basis": "explicit"
+      },
+      "formula": "|E[Δℓn[w]]| ≤ λlr · ε · calign, ∀w ≠ v*",
+      "equation_number": 3
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (4)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "Correct logit increases",
+        "basis": "explicit"
+      },
+      "formula": "E[Δℓn[v*]] ≥ λlr · c²norm · calign",
+      "equation_number": 4
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (5)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "Other logits almost unchanged",
+        "basis": "explicit"
+      },
+      "formula": "|E[Δℓn[w]]| ≤ λlr · ε · calign, ∀w ≠ v*",
+      "equation_number": 5
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (6)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "reconstruction target…negligible",
+        "basis": "explicit"
+      },
+      "formula": "|E[Δℓn[v*]]| ≤ λlr · ε · calign",
+      "equation_number": 6
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (7)",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "resulting change in the logit",
+        "basis": "explicit"
+      },
+      "formula": "Δℓn[w] = eᵀw(ΔWdown)zn = λlr Σt eᵀw(vt zᵀt)zn",
+      "equation_number": 7
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (8)",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "we can rearrange the terms",
+        "basis": "explicit"
+      },
+      "formula": "Δℓn[w] = λlr Σt (eᵀw vt)(zᵀt zn)",
+      "equation_number": 8
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (9)",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "Applying the linearity of expectation",
+        "basis": "explicit"
+      },
+      "formula": "E[Δℓn[w]] = λlr Σt E[(eᵀw vt)(zᵀt zn)]",
+      "equation_number": 9
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (10)",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "factor them out of the expectation",
+        "basis": "explicit"
+      },
+      "formula": "E[Δℓn[w]] = λlr Σt eᵀw E[vt zᵀt zn]",
+      "equation_number": 10
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (11)",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "simplifies the summation to a single term",
+        "basis": "explicit"
+      },
+      "formula": "E[Δℓn[w]] = λlr · E[(eᵀw vt*) · (zᵀt* zn)]",
+      "equation_number": 11
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (12)",
+      "module": "appendix",
+      "page": 17,
+      "role": "explanation",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "Case 1: NTP-Aligned Target",
+        "basis": "explicit"
+      },
+      "formula": "E[Δℓn[v*]] = λlr · E[(eᵀv* ev*) · (zᵀt* zn)]",
+      "equation_number": 12
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (13)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "This gives us the lower bound",
+        "basis": "explicit"
+      },
+      "formula": "E[Δℓn[v*]] ≥ λlr · calign · c²norm",
+      "equation_number": 13
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (14)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B",
+        "anchor": "applying Assumption 1",
+        "basis": "explicit"
+      },
+      "formula": "|E[Δℓn[w]]| ≤ λlr · calign · ε",
+      "equation_number": 14
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (15)",
+      "module": "appendix",
+      "page": 18,
+      "role": "explanation",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix B",
+        "anchor": "Case 2: Reconstruction Target",
+        "basis": "explicit"
+      },
+      "formula": "E[Δℓn[v*]] = E[(eᵀk* ev*) · (zᵀt* zn)]",
+      "equation_number": 15
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (16)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix B",
+        "anchor": "Taking the absolute value gives the bound",
+        "basis": "explicit"
+      },
+      "formula": "|E[Δℓn[v*]]| ≤ λlr · calign · ε",
+      "equation_number": 16
+    },
+    {
+      "kind": "proposition",
+      "label": "Assumption bundle 1–2",
+      "module": "theory",
+      "page": 5,
+      "role": "explanation",
+      "evidence": {
+        "page": 5,
+        "section": "§3.3 Theoretical Analysis",
+        "anchor": "Approximate Orthogonality of Embeddings; Key-Query Alignment",
+        "basis": "explicit"
+      },
+      "object_type": "assumptions",
+      "details": "Embedding near-orthogonality/magnitude and query-key alignment/noise conditions"
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 1 (main statement)",
+      "module": "theory",
+      "page": 6,
+      "role": "guarantee",
+      "evidence": {
+        "page": 6,
+        "section": "§3.3 Theoretical Analysis",
+        "anchor": "Logit-wise Effect of LM-Aligned Target v.s. Reconstruction Target",
+        "basis": "explicit"
+      },
+      "object_type": "main_theorem"
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 1 (restated)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix B: Proof of Theorem 1",
+        "anchor": "Theorem 1…(Restated)",
+        "basis": "explicit"
+      },
+      "object_type": "restatement"
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 1",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix B: Proof of Theorem 1",
+        "anchor": "The results from these two cases establish the claims in Theorem 1",
+        "basis": "explicit"
+      },
+      "object_type": "proof"
+    }
+  ],
+  "equation_counts": {
+    "formula_count": 17,
+    "numbered_formula_count": 16,
+    "unnumbered_formula_count": 1,
+    "theory_object_count": 4,
+    "inventory_total": 21,
+    "counting_note": "Sixteen labels Eq. (1)–(16) plus the displayed generic TTT update in §2; the p.6 reconstruction inequality repeats Eq. (6)."
+  },
+  "experimental_design": [
+    {
+      "name": "Q1–Q3 research questions",
+      "status": "observed",
+      "description": "正文明确提出 drop-in、from-scratch comparison、design-choice effects 三个问题；未预先给出方向性阈值。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4 Experiments",
+          "anchor": "Q1: How effectively can In-Place TTT enhance pre-trained LLMs",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4 Experiments",
+          "anchor": "Q2…trained from scratch…prior TTT approaches",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4 Experiments",
+          "anchor": "Q3: What are the effects of key design choices",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Qwen3-4B drop-in control",
+      "status": "observed",
+      "description": "Qwen3-4B-Base 与 +In-Place TTT 使用相同 continual-training curriculum，保持模型/预算的对照关系。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.1",
+          "anchor": "Both models undergo the exact same continual training curriculum",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Two-stage continual training",
+      "status": "observed",
+      "description": "Stage 1 约 20B/32k，Stage 2 约 15B/128k，第二阶段使用 YaRN；RULER 评估到 256k。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§4.1",
+          "anchor": "initial phase of ∼20B tokens with 32k context length",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.1",
+          "anchor": "The 256k setting specifically measures…extrapolate",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix D.2",
+          "anchor": "Hyperparameters for two-stage continual pre-training",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Cross-model extension",
+      "status": "observed",
+      "description": "LLaMA-3.1-8B 与 Qwen3-14B-Base 采用同一类型 continual protocol，并测试 Qwen3-14B 的 64k+YaRN。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 2",
+          "anchor": "Extension of In-Place TTT to LLaMA-3.1-8B and Qwen3-14B-Base",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "From-scratch baselines",
+      "status": "observed",
+      "description": "500M/1.5B 对照包括 SWA、GLA、DeltaNet、LaCT；In-Place TTT 与 LaCT 建在 SWA backbone 上，序列长度 32k。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "standard Transformer with sliding window attention",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "Various competitive baselines are compared",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "4B scale design",
+      "status": "observed",
+      "description": "4B 模型比较 Full Attention/SWA 及其 TTT counterparts，训练 120B tokens、8k context。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "These models are trained for 120B tokens with an 8k context length",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix D.2",
+          "anchor": "Training hyperparameters for 1.7B models and 4B models pretraining",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Datasets and tasks",
+      "status": "observed",
+      "description": "Sliding Window Perplexity 使用 Pile 与 Proof-Pile-2 validation；下游包括 HellaSwag、ARC-E、ARC-C、MMLU、PIQA、RULER。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "validation set comprised of Pile and Proof-Pile-2",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "common sense reasoning benchmarks…RULER benchmark",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Metrics and aggregation",
+      "status": "observed",
+      "description": "RULER/common-sense 报 average accuracy (%)；Figure 2 报 fixed final block 的 sliding-window perplexity；Figure 4 报 prefill TPS 与 peak memory。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "We report the average accuracy (%)",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "This metric measures perplexity on a fixed final block",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 4",
+          "anchor": "prefill throughput and peak memory",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Hardware and evaluation frameworks",
+      "status": "observed",
+      "description": "训练与评估使用 Nvidia H800；commonsense 使用 lm-evaluation-harness，长上下文使用 opencompass。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "lm-evaluation-harness",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "All evaluation are conducted on Nvidia H800 GPUs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Optimization and budgets",
+      "status": "observed",
+      "description": "from-scratch 使用 AdamW；500M/1.5B 分别训练 20B/60B，4B 训练 120B；continual learning rate 为 5e-6。",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Tables 4–6",
+          "anchor": "Tokens Trained",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Table 6",
+          "anchor": "Learning Rate 5e-6",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Seeds and repeats",
+      "status": "not_present",
+      "description": "未报告 random seed、run 数、重复聚合或 seed-level dispersion。",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Tables 4–6",
+          "anchor": "detailed training hyperparameters listed",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "All evaluation are conducted on Nvidia H800 GPUs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Leakage and data split control",
+      "status": "not_present",
+      "description": "未给 train/validation 去重、泄漏检测或 document split protocol；自建数据只描述大类组成。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "validation set comprised of Pile and Proof-Pile-2",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix D.1",
+          "anchor": "dataset collected by ourselves",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Failure criterion",
+      "status": "not_present",
+      "description": "Q1–Q3 是研究问题，不是带方向性阈值的预注册失败判定或停止规则。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4 Experiments",
+          "anchor": "research questions",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Uncertainty reporting",
+      "status": "not_present",
+      "description": "表格和图没有 error bars、置信区间或显著性检验，数值以聚合分数或曲线呈现。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "average accuracy (%)",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Table 3",
+          "anchor": "Best performance is in bold",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 4",
+          "anchor": "metrics are presented",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Inference clipping",
+      "status": "observed",
+      "description": "Qwen3-4B 评估将超出 τ=1e-5 的 `||ΔWdown(i)||F` rescale，以抑制长上下文累计增长。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "This prevents the accumulated updates from growing unboundedly",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "Qwen3-4B drop-in 在中长上下文取得增益，但 4k 有轻微回落。",
+      "value": "RULER average accuracy: 4k 96.6→96.1; 8k 94.1→95.6; 16k 92.1→92.7; 32k 88.7→89.3; 64k 74.3→78.7; 128k 74.8→77.0; 256k 41.7→43.9。",
+      "comparison": "Qwen3-4B-Base Baseline vs In-Place TTT under same continual curriculum",
+      "statistical_method": "RULER task aggregation 的 average accuracy (%)；未报告 seed、方差、区间或显著性。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "Evaluation results on the RULER benchmark",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.1",
+          "anchor": "advantage is maintained when extrapolating to a 256k context",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "In-Place TTT 的跨模型增益在 LLaMA-3.1-8B 与 Qwen3-14B-Base 上延续，并与 YaRN 组合。",
+      "value": "LLaMA gains +0.5/+0.9/+0.8/+0.6/+2.1 at 4k/8k/16k/32k/64k; Qwen3-14B gains +0.4/+0.7/+0.6/+0.5/+2.7/+1.2 at 4k/8k/16k/32k/64k/64k+YaRN。",
+      "comparison": "Baseline vs In-Place TTT for each base model",
+      "statistical_method": "average accuracy (%)；无 dispersion 或假设检验。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 2",
+          "anchor": "Extension of In-Place TTT to LLaMA-3.1-8B and Qwen3-14B-Base",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.1",
+          "anchor": "gains are particularly pronounced at longer contexts",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "500M 与 1.5B from-scratch 模型的 sliding-window perplexity 曲线在展示范围内低于竞争 baseline。",
+      "value": "Figure 2 显示两种规模在 2k–32k context length 上 In-Place TTT 曲线最低且随 context 增加下降；未提供可抄录的原始点表。",
+      "comparison": "In-Place TTT vs SWA, GLA, DeltaNet, LaCT",
+      "statistical_method": "Pile/Proof-Pile-2 validation fixed-final-block perplexity 曲线；无误差带、重复数或数值表。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Figure 2",
+          "anchor": "Our In-Place TTT consistently achieves lower perplexity",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "performance steadily improving up to the full 32k context",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "4B downstream 长上下文分数提升明显，但 common-sense 单元并非全部提升。",
+      "value": "Full Attn RULER 4k/8k/16k: 45.77/38.09/6.58→49.98/43.82/19.99; SWA: 14.77/9.91/5.07→28.33/26.80/7.57。Full ARC-C 33.19→32.34、SWA PIQA 72.58→72.03 回落。",
+      "comparison": "Baseline vs I.P. TTT under Full Attention and SWA",
+      "statistical_method": "逐任务 accuracy (%)；无 seed-level uncertainty 或显著性。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 3",
+          "anchor": "Evaluation results of 4B models",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§4.2",
+          "anchor": "RULER-16k score is improved from 6.58 to 19.99",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "State size、chunk size 与 LM-Aligned objective 的组件消融给出方向性机制证据。",
+      "value": "state 越大分数越高；C=512/1024 竞争性最好且 C=1024 更高效；Conv 与 Wtarget 同时保留最好，Conv 偏 long context、Wtarget 偏 short context。",
+      "comparison": "Figure 3(a–c) variant bars",
+      "statistical_method": "RULER score 柱状图；未给原始表值、误差或重复数。",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 3",
+          "anchor": "Ablation studies on the key design choices",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§4.3",
+          "anchor": "both of them are necessary for performance guarantee",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "In-Place TTT 的运行开销被作者描述为 negligible。",
+      "value": "Figure 4 展示 4B SWA/Full 在 8k/32k/128k 的 prefill TPS 与 peak memory 柱形；正文未列精确数值。",
+      "comparison": "Baseline vs TTT under SWA and Full",
+      "statistical_method": "batch size 1 的 throughput/memory 测量；无重复统计或误差。",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Figure 4",
+          "anchor": "introduces negligible overhead in practical scenarios",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "batch size of 1",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "State size",
+      "status": "observed",
+      "description": "通过启用层数控制 fast-weight state；更大 state 对 RULER 分数更有利。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 3(a)",
+          "anchor": "State size",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§4.3",
+          "anchor": "performance improves as the state size scales",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Chunk size",
+      "status": "observed",
+      "description": "比较 C=256/512/1024/2048；C=512 与 C=1024 方向性最佳，C=1024 更高效。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 3(b)",
+          "anchor": "Chunk size",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§4.3",
+          "anchor": "both C = 512 and C = 1024 competitively achieve better performance",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "LM-Aligned objective components",
+      "status": "observed",
+      "description": "比较 Conv1D 与 Wtarget 的删除组合；两者都保留时最好，Conv 与 Wtarget 的长/短上下文作用不同。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 3(c)",
+          "anchor": "LM-Aligned Objective",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§4.3",
+          "anchor": "Conv1D plays an essential role on long context",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Efficiency overhead",
+      "status": "observed",
+      "description": "Figure 4 对照 throughput/memory；结论为 overhead negligible，但图中缺少精确数值与误差。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Figure 4",
+          "anchor": "prefill throughput and peak memory",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "batch size of 1",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Negative downstream cells",
+      "status": "observed",
+      "description": "Full-Attn ARC-C 与 SWA PIQA 低于各自 baseline；没有单独 failure-case analysis。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 3",
+          "anchor": "ARC-C",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Table 3",
+          "anchor": "PIQA",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Optimizer/loss substitution",
+      "status": "not_present",
+      "description": "作者称核心原则与 loss/optimizer 正交，但未提供替代 optimizer 或 loss 的消融。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§3.4",
+          "anchor": "an exploration we leave as a promising direction for future work",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Online deployment/interference",
+      "status": "not_present",
+      "description": "没有交互 stream、forgetting、interference 或 deployment latency 实验。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4",
+          "anchor": "language modeling tasks of various scales as a practical proxy",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Direct theory mechanism test",
+      "status": "not_present",
+      "description": "没有直接测量 calign、embedding orthogonality 或 logit intervention。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§3.3",
+          "anchor": "two mild assumptions",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Appendix B",
+          "anchor": "applying Assumption 1",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "MLP final projection 可作为 drop-in fast weights。",
+      "origin": "Introduction barrier i; §3.1",
+      "status": "partially_closed",
+      "method_response": "冻结 Wup/Wgate，in-place 更新 Wdown 并保留 attention。",
+      "evidence_response": "Table 1–2 覆盖 Qwen3、LLaMA 与 Qwen3-14B；需要 continual pretraining 和新增模块初始化。",
+      "conclusion_response": "结论以 drop-in enhancement 回收。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.1",
+          "anchor": "repurposing the final projection matrix, Wdown",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 2",
+          "anchor": "Extension of In-Place TTT",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "chunk-wise/CP 既提升效率又保持严格因果。",
+      "origin": "Introduction barrier ii; §3.4",
+      "status": "partially_closed",
+      "method_response": "parallel deltas + prefix sum + causal padding + boundary reset；Algorithm 1 明确前序 state。",
+      "evidence_response": "Figure 4 给出 throughput/memory 方向，未给具体数值、重复或通信分解。",
+      "conclusion_response": "结论称 scalable solution。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§3.4",
+          "anchor": "mathematically equivalent to a strictly causal sequential process",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix C",
+          "anchor": "Effective weight for chunk i uses updates from chunks < i",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 4",
+          "anchor": "Efficiency analysis of In-Place TTT",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "LM-Aligned objective 对 NTP 比 reconstruction 更有预测价值。",
+      "origin": "Introduction barrier iii; §3.2–§3.3",
+      "status": "partially_closed",
+      "method_response": "用 Conv1D(X0)Wtarget 产生未来 target，Eq. (1) 形成 fast-weight update。",
+      "evidence_response": "Theorem 1/Appendix B 给出条件期望界，Figure 3(c) 支持组件作用；未做 direct mechanism test。",
+      "conclusion_response": "结论以 theoretically-grounded objective 回收。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§3.2",
+          "anchor": "target V̂ = Conv1D(X0)Wtarget",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "§3.3",
+          "anchor": "Correct logit increases",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 3(c)",
+          "anchor": "LM-Aligned Objective",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Qwen3-4B 长上下文能力可延伸至 128k 并在 256k 保持优势。",
+      "origin": "Abstract sentence 7; Q1",
+      "status": "closed",
+      "method_response": "two-stage continual training + YaRN + inference clipping。",
+      "evidence_response": "Table 1 直接给出 4k–256k RULER average accuracy。",
+      "conclusion_response": "结论回收 long-context validation。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "In-Place TTT",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.1",
+          "anchor": "advantage is maintained when extrapolating to a 256k context",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "方法跨模型族和 YaRN 组合仍有效。",
+      "origin": "§4.1 Extension to More Models",
+      "status": "closed",
+      "method_response": "保持同一 MLP integration、target 与 continual protocol。",
+      "evidence_response": "Table 2 覆盖 LLaMA-3.1-8B、Qwen3-14B 与 64k+YaRN。",
+      "conclusion_response": "结论将其概括为 broadly applicable drop-in enhancement。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Table 2",
+          "anchor": "LLaMA-3.1-8B",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 2",
+          "anchor": "Qwen3-14B",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.1",
+          "anchor": "orthogonal to RoPE extension techniques",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "from-scratch In-Place TTT 胜过竞争 TTT/efficient-attention 方法。",
+      "origin": "Abstract sentence 7; Q2",
+      "status": "partially_closed",
+      "method_response": "500M/1.5B 以 SWA backbone 对比 SWA、GLA、DeltaNet、LaCT；4B 再比较 Full/SWA。",
+      "evidence_response": "Figure 2 支持曲线排序，Table 3 支持 4B 长上下文增益；原始曲线数值与不确定性缺失，且 Table 3 存在回落单元。",
+      "conclusion_response": "结论称 outperforms strong baselines。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 2",
+          "anchor": "lower perplexity than all competitive baselines",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Table 3",
+          "anchor": "Best performance is in bold",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Table 3",
+          "anchor": "across most common sense reasoning tasks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "state/chunk/objective 是关键设计选择。",
+      "origin": "Abstract sentence 8; Q3",
+      "status": "closed",
+      "method_response": "分别改变启用层数、chunk C 与 Conv/Proj 组件。",
+      "evidence_response": "Figure 3 三面板给出方向性柱状证据。",
+      "conclusion_response": "结论未逐项复述，但主文 §4.3 已收束。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Figure 3",
+          "anchor": "Ablation studies on the key design choices",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§4.3",
+          "anchor": "deeper insights into our design choices",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Theorem 1 的 LM-Aligned logit guarantee 成立。",
+      "origin": "§3.3 Theoretical Analysis",
+      "status": "closed",
+      "method_response": "在 induction-head setting 下定义 target、embedding 与 activation。",
+      "evidence_response": "Appendix B 由 Eq. (7)–(16) 完成证明；结论范围限于指定 assumptions 和 expectation。",
+      "conclusion_response": "主文以 theoretically-grounded objective 回收，未把它扩展为无条件任务保证。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§3.3",
+          "anchor": "Assumptions",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "§3.3",
+          "anchor": "Theorem 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Appendix B",
+          "anchor": "The results from these two cases establish the claims in Theorem 1",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "In-Place TTT 开启 continual-learning paradigm。",
+      "origin": "Abstract sentence 9; §5",
+      "status": "partially_closed",
+      "method_response": "fast weights 随 incoming context 更新并 reset 于 document boundaries。",
+      "evidence_response": "语言建模 tasks 被用作 proxy；无 streaming interaction、forgetting、interference 或真实 deployment 证据。",
+      "conclusion_response": "结论使用 “promising step” 的限定语。",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Abstract",
+          "anchor": "promising step towards a paradigm of continual learning",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4",
+          "anchor": "language modeling tasks…as a practical proxy",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§5 Conclusion",
+          "anchor": "new paradigm of more dynamic, continual learning",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "Appendix A: Related Work",
+      "category": "other",
+      "start_page": 16,
+      "end_page": 16,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix A",
+          "anchor": "Test-Time Training (TTT)",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix A",
+          "anchor": "These architectural advances are complementary to our framework",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix B: Proof of Theorem 1",
+      "category": "proof",
+      "start_page": 16,
+      "end_page": 18,
+      "main_text_calls": [
+        "§3.3: “The proof is provided in Appendix B.”",
+        "Reproducibility Statement: complete proof in Appendix B"
+      ],
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§3.3",
+          "anchor": "The proof is provided in Appendix B",
+          "basis": "explicit"
+        },
+        {
+          "page": 11,
+          "section": "Reproducibility Statement",
+          "anchor": "The theoretical claims are supported by a complete proof in Appendix B",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix C: Context Parallel Algorithm for In-Place TTT",
+      "category": "extended_method",
+      "start_page": 18,
+      "end_page": 18,
+      "main_text_calls": [
+        "§3.4: final context parallel algorithm is presented in Algorithm 1 in Appendix C",
+        "Reproducibility Statement: pseudocode in Appendix C"
+      ],
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§3.4",
+          "anchor": "The final context parallel algorithm is presented in Algorithm 1 in Appendix C",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix C",
+          "anchor": "Algorithm 1 In-Place TTT with Context Parallelism",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix D: Experiment Details",
+      "category": "reproducibility",
+      "start_page": 18,
+      "end_page": 21,
+      "main_text_calls": [
+        "§4: detailed descriptions in Appendix D",
+        "§4.2: datasets/model/training procedures in Appendix D.1, D.3, D.2",
+        "§4.3: settings in Appendix D.3 and D.2",
+        "Reproducibility Statement: comprehensive experimental details in Appendix D"
+      ],
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4",
+          "anchor": "Due to space limits, we present detailed descriptions of experimental settings in Appendix D",
+          "basis": "explicit"
+        },
+        {
+          "page": 11,
+          "section": "Reproducibility Statement",
+          "anchor": "comprehensive details on all experimental settings",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix D.1: Details of Datasets",
+      "category": "dataset_detail",
+      "start_page": 18,
+      "end_page": 19,
+      "main_text_calls": [
+        "§4.2 dataset description",
+        "Appendix D overview"
+      ],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix D.1",
+          "anchor": "From Scratch Pretraining Dataset",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix D.1",
+          "anchor": "Continual Pretraining Dataset",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix D.2: Details of Training and Evaluation",
+      "category": "hyperparameter",
+      "start_page": 19,
+      "end_page": 20,
+      "main_text_calls": [
+        "§4.1 training details",
+        "§4.2 detailed training/evaluation details",
+        "§4.3 detailed settings"
+      ],
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix D.2",
+          "anchor": "Training hyperparameters",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "Evaluation Details",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix D.3: Details of Model Configuration",
+      "category": "implementation_detail",
+      "start_page": 20,
+      "end_page": 21,
+      "main_text_calls": [
+        "§4.2 model configuration call",
+        "§4.3 ablation configuration call"
+      ],
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix D.3",
+          "anchor": "Model architectural configurations",
+          "basis": "explicit"
+        },
+        {
+          "page": 21,
+          "section": "Appendix D.3",
+          "anchor": "Initialization of In-Place TTT Modules",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix E: Usage of LLMs",
+      "category": "other",
+      "start_page": 21,
+      "end_page": 21,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix E",
+          "anchor": "LLMs was used to check grammar and improve readability",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "Proxy scope",
+      "status": "observed",
+      "description": "实验将 language-modeling tasks 当作 long-horizon evolving task 的 practical proxy，未直接测试 agent stream。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4",
+          "anchor": "language modeling tasks of various scales as a practical proxy",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Theory assumptions",
+      "status": "observed",
+      "description": "Theorem 1 依赖近似正交 embedding、非零 magnitude 与 key-query alignment/noise 假设，结论是期望 logit effect。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§3.3",
+          "anchor": "Approximate Orthogonality of Embeddings",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "§3.3",
+          "anchor": "Key-Query Alignment",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "§3.3",
+          "anchor": "expected change in logits",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Data disclosure",
+      "status": "observed",
+      "description": "自建 pretraining/continual mixture 只给语言、代码、数学、检索增强等大类，未给比例、规模、去重和公开版本。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix D.1",
+          "anchor": "dataset collected by ourselves",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix D.1",
+          "anchor": "natural data…synthetic data",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Compute budget",
+      "status": "observed",
+      "description": "最高 from-scratch budget 为 120B tokens，continual 为约 20B+15B，训练/评估使用 H800。",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Table 5",
+          "anchor": "Tokens Trained 120B",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Table 6",
+          "anchor": "Tokens Trained ∼20B",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Table 6",
+          "anchor": "Tokens Trained ∼15B",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "Nvidia H800 GPUs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Statistical uncertainty",
+      "status": "observed",
+      "description": "没有 seed、重复、error bars、置信区间或显著性检验。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "average accuracy (%)",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 3",
+          "anchor": "Ablation studies",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Figure 4",
+          "anchor": "metrics are presented",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Task granularity",
+      "status": "observed",
+      "description": "RULER 结果为平均 accuracy，未给 task-level 分解或失败案例。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "We report the average accuracy (%) as scores",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 2",
+          "anchor": "average accuracy (%)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Deployment/generalization",
+      "status": "observed",
+      "description": "仅覆盖 decoder-only Transformer、SwiGLU/RoPE 和列出的 model families；efficient backbone 集成留待 future work。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix D.3",
+          "anchor": "All models are decoder-only Transformer architectures",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix A",
+          "anchor": "We leave these as the future work",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Inference stability condition",
+      "status": "observed",
+      "description": "Qwen3-4B 评估引入 `τ=1e-5` 的 update clipping；该运行条件限制了“无额外条件”的 deployment 解释。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "this threshold was set to τ = 1e-5",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Online forgetting/interference",
+      "status": "not_present",
+      "description": "没有持续流式任务、跨文档遗忘、干扰或状态持久化评估。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4",
+          "anchor": "language modeling tasks…as a practical proxy",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix C",
+          "anchor": "At document boundaries: Reset fast weights",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Ethics boundary",
+      "status": "observed",
+      "description": "Ethics Statement 将本文定位为 foundational architecture，承认 training-data bias 与 responsible deployment 风险。",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "Ethics Statement",
+          "anchor": "potential biases inherited from training data",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "附录迁移",
+      "status": "observed",
+      "description": "正文以 space limits 将训练、数据、模型、初始化和伪代码后置；主文决策链保留，复现细节需跨页查找。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4",
+          "anchor": "Due to space limits, we present detailed descriptions…in Appendix D",
+          "basis": "explicit"
+        },
+        {
+          "page": 11,
+          "section": "Reproducibility Statement",
+          "anchor": "comprehensive details…in Appendix D",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "聚合掩盖异质性",
+      "status": "observed",
+      "description": "Table 1–2 以 average accuracy 汇总 RULER，未展示 task-level 分布或 seed variation。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Table 1",
+          "anchor": "average accuracy (%) as scores",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Table 2",
+          "anchor": "average accuracy (%)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "曲线替代精确差值",
+      "status": "observed",
+      "description": "Figure 2 只展示排序与趋势，未提供每个 context length 的原始 perplexity 表。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Figure 2",
+          "anchor": "Sliding Window Perplexity",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§4.2",
+          "anchor": "performance steadily improving",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "“consistent”措辞的范围压缩",
+      "status": "observed",
+      "description": "正文写 across most common-sense tasks，Table 3 同时存在 Full-Attn ARC-C 与 SWA PIQA 回落；作者未展开回落机制。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Table 3",
+          "anchor": "ARC-C",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§4.2",
+          "anchor": "across most common sense reasoning tasks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "未来工作化",
+      "status": "observed",
+      "description": "loss/optimizer 替代与 efficient backbone integration 被留到 future work，未在本文承担比较证据。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§3.4",
+          "anchor": "an exploration we leave…for future work",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix A",
+          "anchor": "We leave these as the future work",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "效率结论缺少可读数字",
+      "status": "observed",
+      "description": "Figure 4 的 negligible overhead 由柱形图支持，但 caption/正文没有具体 TPS、GB 或重复统计。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Figure 4",
+          "anchor": "introduces negligible overhead in practical scenarios",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D.2",
+          "anchor": "batch size of 1",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "Automatic section boundary",
+      "status": "observed",
+      "description": "自动 regex 由于 “R EFERENCES” 等 spaced small caps 未识别 references，provisional main_end=21、appendix_start=15；人工按版面修正为正文 1–10、refs 11–15、appendix 16–21。",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "References boundary",
+          "anchor": "REFERENCES",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 16,
+          "section": "Appendix A",
+          "anchor": "A RELATED WORK",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Automatic visual counts",
+      "status": "observed",
+      "description": "自动 caption 计数的 Figures=4、Tables=8、Algorithms=1 与 PDF 人工清单一致。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Figure 1",
+          "anchor": "Figure 1",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 18,
+          "section": "Appendix C",
+          "anchor": "Algorithm 1",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 20,
+          "section": "Appendix D.3",
+          "anchor": "Table 8",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Equation count convention",
+      "status": "observed",
+      "description": "自动 numbered_equations_provisional=17 实际来自 labels 0–16，(0) 是状态上标；本读人工保留 Eq.1–16 并加入 p.3 generic update，得到 17 个公式；p.6 reconstruction bound 与 Eq.6 为同一不等式的正文重复。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§2 Preliminary",
+          "anchor": "Given a learning rate η, the update rule is",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "§3.3",
+          "anchor": "In contrast, for the reconstruction target",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Appendix B",
+          "anchor": "(4)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Theory object count",
+      "status": "observed",
+      "description": "自动 theorem_items=4 是四次 “Theorem 1” 字符串提及；人工按职责整理为 assumptions、main theorem、restatement、proof 四项理论对象。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§3.3",
+          "anchor": "two mild assumptions",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "§3.3",
+          "anchor": "Theorem 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix B",
+          "anchor": "Theorem 1…(Restated)",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix B",
+          "anchor": "completes the proof",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Word-count boundary",
+      "status": "observed",
+      "description": "自动全文约 10,284 词包含 references、公式碎片和表格；本读节词数按物理页/标题作估计，不把该总数当作正文分母。",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "References",
+          "anchor": "REFERENCES",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 16,
+          "section": "Appendix A",
+          "anchor": "A RELATED WORK",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "lexical_notes": {
+    "high_frequency_terms": [
+      "TTT",
+      "fast weights",
+      "LLM",
+      "MLP",
+      "context",
+      "token",
+      "chunk",
+      "objective",
+      "attention",
+      "target",
+      "update",
+      "long-context",
+      "parallelism"
+    ],
+    "bigrams": [
+      "In-Place TTT",
+      "fast weights",
+      "LM-Aligned objective",
+      "Next-Token Prediction",
+      "chunk-wise update",
+      "context parallelism",
+      "pre-trained LLMs",
+      "long-context evaluation",
+      "sliding window perplexity"
+    ],
+    "claim_verbs": {
+      "introduce": [
+        "abstract",
+        "introduction"
+      ],
+      "repurpose": [
+        "§3.1"
+      ],
+      "replace": [
+        "§3.2"
+      ],
+      "align": [
+        "§3.2–§3.3"
+      ],
+      "validate": [
+        "§4"
+      ],
+      "demonstrate": [
+        "§4"
+      ],
+      "confirm": [
+        "§4.3"
+      ],
+      "establish": [
+        "abstract",
+        "conclusion"
+      ]
+    },
+    "qualifiers": [
+      "typically",
+      "often",
+      "potentially",
+      "in particular",
+      "crucially",
+      "consistently",
+      "superior",
+      "negligible",
+      "promising"
+    ],
+    "causal_terms": [
+      "therefore",
+      "consequently",
+      "to tackle",
+      "to achieve",
+      "grounded in",
+      "enabling",
+      "leading to"
+    ],
+    "strong_vs_weak_claims": "Strong terms are concentrated in barrier, theorem and result sentences; weak terms include promising step, practical proxy and future-work deferrals.",
+    "tokenization_risks": [
+      "In-Place",
+      "Test-Time",
+      "Next-Token",
+      "long-context",
+      "from-scratch",
+      "LM-Aligned",
+      "Wdown",
+      "Conv1D",
+      "RULER",
+      "YaRN"
+    ],
+    "evidence": [
+      {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "critical barriers",
+        "basis": "explicit"
+      },
+      {
+        "page": 10,
+        "section": "§4.3",
+        "anchor": "strongly supporting our motivation",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "conclusion_analysis": {
+    "paragraph_actions": [
+      "restate_problem",
+      "restate_method",
+      "recover_results",
+      "scope",
+      "impact"
+    ],
+    "new_claims_or_numbers": false,
+    "evidence": [
+      {
+        "page": 10,
+        "section": "§5 Conclusion",
+        "anchor": "We introduced In-Place Test-Time Training",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "final_judgment": {
+    "single_storyline": "把 MLP final projection Wdown 变成在线 fast weights，以 in-place 兼容性承接预训练 LLM；再用 future-token Conv1D + Wtarget、chunk-wise update 和 CP 扫描把动态记忆接入 NTP（pp.4–7, §§3.1–3.4）。",
+    "main_body_keeps": "三项 barrier、MLP/Wdown 选择、Eq. (1)、Theorem 1、Figure 1、Q1–Q3、Table 1–3、Figure 2–4 和消融方向性结论留在正文（pp.2, 5–10）。",
+    "appendix_moves": "proof、Algorithm 1、数据/训练/架构/初始化和相关工作后置；正文调用点清楚，复现实验与 theorem assumptions 的边界仍需查阅 Appendix B–D（pp.6–7, 11, 16–21）。",
+    "best_pattern": "barrier → component → update equation → direct benchmark 的一一对应链，加上 context-length 表、组件消融和运行代价图，覆盖能力、机制和成本（pp.2, 5, 7–10）。",
+    "largest_gap": "理论只覆盖 induction-head、近似正交 embedding 与期望 logit effect；实验缺少 direct mechanism measurement、seed uncertainty、泄漏协议、online forgetting/interference 和真实 stream evaluation（pp.5–7, 9–11, 17–20）。",
+    "transfer_rule": "在线适配论文应先固定“更新哪个既有参数、更新是否严格因果、target 是否对应最终预测”三个接口，再让各接口拥有可定位公式、机制消融和运行代价结果（pp.4–7, 9–10）。",
+    "transfer_boundary": "该规则适用于有明确状态转移与预测目标的序列模型；外部检索、非自回归、交互式 reward 或跨模态状态需要重新定义 target、因果边界和机制检验，不能直接外推 NTP/induction-head guarantee（pp.5–7, 16）。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 78,
+    "claims_with_page_evidence": 78,
+    "status": "complete",
+    "counting_rule": "摘要句、引言动作、方法/理论对象、实验设计、结果、消融、限制、闭环与测量分歧均计入；重复说明共享其物理对象证据。"
+  }
+}
