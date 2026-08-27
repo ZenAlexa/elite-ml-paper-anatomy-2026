@@ -1,0 +1,2959 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-09d94b8d6d44",
+  "bibliography": {
+    "title": "Visual symbolic mechanisms: Emergent symbol processing in Vision Language Models",
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ],
+    "authors": [
+      "Rim Assouel",
+      "Declan Campbell",
+      "Yoshua Bengio",
+      "Taylor Webb"
+    ]
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-09d94b8d6d44.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=3RQ863cRbx",
+    "source_kind": "official_pdf",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ffffd32092164225bb302d438cacbc61-Paper-Conference.pdf",
+    "text": "corpus/text/iclr-2026-09d94b8d6d44.txt"
+  },
+  "page_map": {
+    "pdf_pages": 32,
+    "main_pages": 10,
+    "reference_pages": 3,
+    "appendix_pages": 19,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 168
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 867
+      },
+      {
+        "title": "2 Related Work",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 576
+      },
+      {
+        "title": "3 Symbolic Mechanisms for Visual Binding in VLMs",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 6,
+        "estimated_words": 1259
+      },
+      {
+        "title": "3.1 Scene Description Task",
+        "module": "experimental_design",
+        "start_page": 3,
+        "end_page": 3,
+        "estimated_words": 150
+      },
+      {
+        "title": "3.2 Position ID Architecture",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 398
+      },
+      {
+        "title": "3.3 Representational Analyses",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 354
+      },
+      {
+        "title": "3.4 Identifying Attention Heads via Causal Mediation Analysis",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 507
+      },
+      {
+        "title": "4 Results",
+        "module": "results",
+        "start_page": 6,
+        "end_page": 10,
+        "estimated_words": 1877
+      },
+      {
+        "title": "4.1 Are Position IDs Relative or Absolute?",
+        "module": "results",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 232
+      },
+      {
+        "title": "4.2 Position IDs Generalize to Visually Complex Settings",
+        "module": "results",
+        "start_page": 6,
+        "end_page": 8,
+        "estimated_words": 676
+      },
+      {
+        "title": "4.3 Position IDs Are Localized within Visual Object Patches",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 8,
+        "estimated_words": 279
+      },
+      {
+        "title": "4.4 Position IDs Are Reused Across Tasks",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 9,
+        "estimated_words": 415
+      },
+      {
+        "title": "4.5 Binding Error Analysis",
+        "module": "results",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 275
+      },
+      {
+        "title": "5 Conclusion and Future Work",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 400
+      },
+      {
+        "title": "Emergentness caveat within Section 5",
+        "module": "limitations",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 115
+      },
+      {
+        "title": "6 Reproducibility Statement",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 66
+      },
+      {
+        "title": "7 Acknowledgments",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 50
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 13,
+        "estimated_words": 1072
+      },
+      {
+        "title": "A Appendix A.1–A.5",
+        "module": "appendix",
+        "start_page": 14,
+        "end_page": 29,
+        "estimated_words": 5250
+      },
+      {
+        "title": "B Generalization of Position IDs to Real-World Settings",
+        "module": "appendix",
+        "start_page": 29,
+        "end_page": 30,
+        "estimated_words": 647
+      },
+      {
+        "title": "C Involvement of Visual Symbolic Mechanisms in Counting",
+        "module": "ablation",
+        "start_page": 30,
+        "end_page": 31,
+        "estimated_words": 356
+      },
+      {
+        "title": "D Binding Error Interventions",
+        "module": "appendix",
+        "start_page": 31,
+        "end_page": 32,
+        "estimated_words": 279
+      }
+    ],
+    "layout_notes": "双栏 LaTeX；Figure 1、2–7 和 Appendix 多面板图有浮动体，页 21–22 的 CMA heatmaps 占主要可读面积。正文语义结束于页 10；页 11–13 为复现/致谢/参考文献，Appendix 标题位于页 14。"
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 168,
+      "main_word_share": 0.0284,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 867,
+      "main_word_share": 0.1464,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 576,
+      "main_word_share": 0.0973,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 1259,
+      "main_word_share": 0.2126,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 5
+    },
+    {
+      "module": "theory",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 660,
+      "main_word_share": 0.1114,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 1877,
+      "main_word_share": 0.317,
+      "figures": 6,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 356,
+      "main_word_share": null,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 400,
+      "main_word_share": 0.0675,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "observed",
+      "estimated_words": 115,
+      "main_word_share": 0.0194,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 6261,
+      "main_word_share": null,
+      "figures": 39,
+      "tables": 1,
+      "algorithms": 0,
+      "displayed_equations": 4
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 1185,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "To accurately process a visual scene, observers must bind features together to represent individual objects.",
+      "word_count": 16,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "bind features together",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "This capacity is necessary, for instance, to distinguish an image containing a red square and a blue circle from an image containing a blue square and a red circle.",
+      "word_count": 29,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "red square and a blue circle",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "Recent work has found that language models solve this ‘binding problem’ via a set of symbol-like, content-independent indices, but it is unclear whether similar mechanisms are employed by Vision Language Models (VLMs).",
+      "word_count": 33,
+      "functions": [
+        "problem_gap",
+        "theory"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "it is unclear whether similar mechanisms",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "This question is especially relevant, given the persistent failures of VLMs on tasks that require binding.",
+      "word_count": 16,
+      "functions": [
+        "problem_gap",
+        "object_scope"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "persistent failures of VLMs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "Here, we identify a previously unknown set of emergent symbolic mechanisms that support binding specifically in VLMs, via a content-independent, spatial indexing scheme.",
+      "word_count": 23,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "content-independent, spatial indexing scheme",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "Moreover, we find that binding errors, when they occur, can be traced directly to failures in these mechanisms.",
+      "word_count": 18,
+      "functions": [
+        "qualitative_result",
+        "limitation"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "traced directly to failures",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "Taken together, these results shed light on the mechanisms that support symbol-like processing in VLMs, and suggest possible avenues for reducing the number of binding failures exhibited by these models.",
+      "word_count": 31,
+      "functions": [
+        "impact_claim",
+        "qualitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "suggest possible avenues",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context → problem",
+      "estimated_words": 258,
+      "evidence": {
+        "page": 1,
+        "section": "Sec.1 Introduction",
+        "anchor": "compositional coding approach ... binding problem",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "failure_of_prior_work → missing_insight",
+      "estimated_words": 205,
+      "evidence": {
+        "page": 2,
+        "section": "Sec.1 Introduction",
+        "anchor": "open question whether VLMs employ similar mechanisms",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "problem → failure_of_prior_work",
+      "estimated_words": 161,
+      "evidence": {
+        "page": 2,
+        "section": "Sec.1 Introduction",
+        "anchor": "shortcomings of VLMs are directly related",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "core_idea → method_preview → result_preview",
+      "estimated_words": 181,
+      "evidence": {
+        "page": 2,
+        "section": "Sec.1 Introduction",
+        "anchor": "visual space as a content-independent scaffold",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "contribution_list",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 2,
+        "section": "Sec.1 Introduction",
+        "anchor": "Our specific contributions are as follows",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy → gap_creation",
+      "estimated_words": 185,
+      "evidence": {
+        "page": 2,
+        "section": "Sec.2 Related Work",
+        "anchor": "it has not yet been established whether VLMs possess",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "nearest_neighbor_contrast → credit_or_foundation → gap_creation",
+      "estimated_words": 178,
+      "evidence": {
+        "page": 3,
+        "section": "Sec.2 Related Work",
+        "anchor": "different circuit altogether",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "limitation_of_prior → gap_creation",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 3,
+        "section": "Sec.2 Related Work",
+        "anchor": "difficulty with binding object features and relations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "credit_or_foundation → positioning_only",
+      "estimated_words": 108,
+      "evidence": {
+        "page": 3,
+        "section": "Sec.2 Related Work",
+        "anchor": "interesting parallels",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 75,
+      "evidence": {
+        "page": 3,
+        "section": "Sec.3.1 Scene Description Task",
+        "anchor": "model must identify and describe the missing object",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "state_problem",
+      "estimated_words": 75,
+      "evidence": {
+        "page": 3,
+        "section": "Sec.3.1 Scene Description Task",
+        "anchor": "parse the visual scene ... retrieve its features",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "define_component",
+      "estimated_words": 110,
+      "evidence": {
+        "page": 3,
+        "section": "Sec.3.2 Position ID Architecture",
+        "anchor": "three-stage architecture",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "explain_mechanism",
+      "estimated_words": 190,
+      "evidence": {
+        "page": 4,
+        "section": "Sec.3.2 Position ID Architecture",
+        "anchor": "pointer to its location",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "give_intuition",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 4,
+        "section": "Sec.3.3 Representational Analyses",
+        "anchor": "layer 19 ... layer 27",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "connect_to_prediction",
+      "estimated_words": 210,
+      "evidence": {
+        "page": 5,
+        "section": "Sec.3.3 Representational Analyses",
+        "anchor": "position ... layers 14-17 ... features ... 23-26",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "derive",
+      "estimated_words": 170,
+      "evidence": {
+        "page": 5,
+        "section": "Sec.3.4 Causal Mediation Analysis",
+        "anchor": "measure the causal mediation score",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "instantiate_algorithm",
+      "estimated_words": 250,
+      "evidence": {
+        "page": 5,
+        "section": "Sec.3.4 Causal Mediation Analysis",
+        "anchor": "CMA scores are averaged across 50 samples",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "connect_to_experiment",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 6,
+        "section": "Sec.3.4 Causal Mediation Analysis",
+        "anchor": "ID retrieval heads ... layers 12-16",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "derive",
+      "estimated_words": 180,
+      "evidence": {
+        "page": 8,
+        "section": "Sec.4.2 PUG intervention",
+        "anchor": "õh (x) = oh (x) + α ∗ (dt − do)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 11,
+      "move": "connect_to_experiment",
+      "estimated_words": 130,
+      "evidence": {
+        "page": 8,
+        "section": "Sec.4.3 Localization",
+        "anchor": "before the RoPE embedding module",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 12,
+      "move": "summarize",
+      "estimated_words": 120,
+      "evidence": {
+        "page": 9,
+        "section": "Sec.4.5 Binding Error Analysis",
+        "anchor": "lower entropy leads to less accurate ID retrieval",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "method",
+      "page": 4,
+      "purpose": "三阶段 position-ID architecture 与 PCA、RSA、CMA supporting evidence 的总览",
+      "evidence": {
+        "page": 4,
+        "section": "Figure 1",
+        "anchor": "三阶段 position-ID architecture 与 PCA、RSA、CMA supporting evidence 的总览",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "results",
+      "page": 7,
+      "purpose": "3x3/2x2 grid 下 relative、absolute position 与 feature 的 RSA 对比",
+      "evidence": {
+        "page": 7,
+        "section": "Figure 2",
+        "anchor": "3x3/2x2 grid 下 relative、absolute position 与 feature 的 RSA 对比",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "results",
+      "page": 7,
+      "purpose": "PUG photorealistic 图像上对三类 heads 的 position-ID intervention 与跨模型 accuracy",
+      "evidence": {
+        "page": 7,
+        "section": "Figure 3",
+        "anchor": "PUG photorealistic 图像上对三类 heads 的 position-ID intervention 与跨模型 accuracy",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "results",
+      "page": 8,
+      "purpose": "visual object patch keys 的 ID swap 对 color retrieval 的 intervention accuracy",
+      "evidence": {
+        "page": 8,
+        "section": "Figure 4",
+        "anchor": "visual object patch keys 的 ID swap 对 color retrieval 的 intervention accuracy",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "results",
+      "page": 9,
+      "purpose": "把 scene-description position IDs 注入 spatial reasoning 的 before/after accuracy",
+      "evidence": {
+        "page": 9,
+        "section": "Figure 5",
+        "anchor": "把 scene-description position IDs 注入 spatial reasoning 的 before/after accuracy",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "results",
+      "page": 9,
+      "purpose": "high/low feature entropy stimuli 与 prompt/last-token position RSA",
+      "evidence": {
+        "page": 9,
+        "section": "Figure 6",
+        "anchor": "high/low feature entropy stimuli 与 prompt/last-token position RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 7",
+      "module": "results",
+      "page": 10,
+      "purpose": "entropy 条件下 position-ID mechanism failure 与 binding-error accuracy 的总体联系",
+      "evidence": {
+        "page": 10,
+        "section": "Figure 7",
+        "anchor": "entropy 条件下 position-ID mechanism failure 与 binding-error accuracy 的总体联系",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 8",
+      "module": "appendix",
+      "page": 14,
+      "purpose": "relative/absolute position coding 的四种 grid stimulus condition",
+      "evidence": {
+        "page": 14,
+        "section": "Figure 8",
+        "anchor": "relative/absolute position coding 的四种 grid stimulus condition",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 9",
+      "module": "appendix",
+      "page": 15,
+      "purpose": "binding-error 数据集的 2x2/3x3 high-entropy 与 low-entropy 配置",
+      "evidence": {
+        "page": 15,
+        "section": "Figure 9",
+        "anchor": "binding-error 数据集的 2x2/3x3 high-entropy 与 low-entropy 配置",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 10",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "识别 ID retrieval heads 的 clean/modified CMA patching 条件",
+      "evidence": {
+        "page": 17,
+        "section": "Figure 10",
+        "anchor": "识别 ID retrieval heads 的 clean/modified CMA patching 条件",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 11",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "识别 ID selection heads 的 clean/modified CMA patching 条件",
+      "evidence": {
+        "page": 17,
+        "section": "Figure 11",
+        "anchor": "识别 ID selection heads 的 clean/modified CMA patching 条件",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 12",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "识别 feature retrieval heads 的 target-feature CMA patching 条件",
+      "evidence": {
+        "page": 18,
+        "section": "Figure 12",
+        "anchor": "识别 feature retrieval heads 的 target-feature CMA patching 条件",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 13",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "relative/absolute position intervention 的 source/target prompt 与 patched ID",
+      "evidence": {
+        "page": 18,
+        "section": "Figure 13",
+        "anchor": "relative/absolute position intervention 的 source/target prompt 与 patched ID",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 14",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "Qwen2.5-VL-3B 的 target position/features RSA across layers",
+      "evidence": {
+        "page": 19,
+        "section": "Figure 14",
+        "anchor": "Qwen2.5-VL-3B 的 target position/features RSA across layers",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 15",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "Qwen2.5-VL-7B 的 target position/features RSA across layers",
+      "evidence": {
+        "page": 19,
+        "section": "Figure 15",
+        "anchor": "Qwen2.5-VL-7B 的 target position/features RSA across layers",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 16",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "Qwen2.5-VL-32B 的 target position/features RSA across layers",
+      "evidence": {
+        "page": 19,
+        "section": "Figure 16",
+        "anchor": "Qwen2.5-VL-32B 的 target position/features RSA across layers",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 17",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "Llava1.5-7B 的 target position/features RSA across layers",
+      "evidence": {
+        "page": 20,
+        "section": "Figure 17",
+        "anchor": "Llava1.5-7B 的 target position/features RSA across layers",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 18",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "LlavaOnevision-7B 的 target position/features RSA across layers",
+      "evidence": {
+        "page": 20,
+        "section": "Figure 18",
+        "anchor": "LlavaOnevision-7B 的 target position/features RSA across layers",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 19",
+      "module": "appendix",
+      "page": 20,
+      "purpose": "Idefics2-8B 的 target position/features RSA across layers",
+      "evidence": {
+        "page": 20,
+        "section": "Figure 19",
+        "anchor": "Idefics2-8B 的 target position/features RSA across layers",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 20",
+      "module": "appendix",
+      "page": 21,
+      "purpose": "Qwen2.5-VL-3B 的三类 CMA head heatmaps",
+      "evidence": {
+        "page": 21,
+        "section": "Figure 20",
+        "anchor": "Qwen2.5-VL-3B 的三类 CMA head heatmaps",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 21",
+      "module": "appendix",
+      "page": 21,
+      "purpose": "Qwen2.5-VL-7B 的三类 CMA head heatmaps",
+      "evidence": {
+        "page": 21,
+        "section": "Figure 21",
+        "anchor": "Qwen2.5-VL-7B 的三类 CMA head heatmaps",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 22",
+      "module": "appendix",
+      "page": 21,
+      "purpose": "Qwen2.5-VL-32B 的三类 CMA head heatmaps",
+      "evidence": {
+        "page": 21,
+        "section": "Figure 22",
+        "anchor": "Qwen2.5-VL-32B 的三类 CMA head heatmaps",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 23",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "Llava-1.5-7B 的三类 CMA head heatmaps",
+      "evidence": {
+        "page": 22,
+        "section": "Figure 23",
+        "anchor": "Llava-1.5-7B 的三类 CMA head heatmaps",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 24",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "Llava-1.5-13B 的三类 CMA head heatmaps",
+      "evidence": {
+        "page": 22,
+        "section": "Figure 24",
+        "anchor": "Llava-1.5-13B 的三类 CMA head heatmaps",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 25",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "Llava-OneVision 的三类 CMA head heatmaps",
+      "evidence": {
+        "page": 22,
+        "section": "Figure 25",
+        "anchor": "Llava-OneVision 的三类 CMA head heatmaps",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 26",
+      "module": "appendix",
+      "page": 23,
+      "purpose": "Qwen2-VL 的 PCA：all objects 与 central object 的 relative/absolute/feature coding",
+      "evidence": {
+        "page": 23,
+        "section": "Figure 26",
+        "anchor": "Qwen2-VL 的 PCA：all objects 与 central object 的 relative/absolute/feature coding",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 27",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "Qwen2.5-VL-3B/7B/32B relative、absolute、feature RSA",
+      "evidence": {
+        "page": 24,
+        "section": "Figure 27",
+        "anchor": "Qwen2.5-VL-3B/7B/32B relative、absolute、feature RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 28",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "Qwen2-VL 与 Llava1.5-7B/13B relative、absolute、feature RSA",
+      "evidence": {
+        "page": 24,
+        "section": "Figure 28",
+        "anchor": "Qwen2-VL 与 Llava1.5-7B/13B relative、absolute、feature RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 29",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "Idefics2-8B relative、absolute、feature RSA",
+      "evidence": {
+        "page": 24,
+        "section": "Figure 29",
+        "anchor": "Idefics2-8B relative、absolute、feature RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 30",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "多模型 relative versus absolute position patching performance",
+      "evidence": {
+        "page": 25,
+        "section": "Figure 30",
+        "anchor": "多模型 relative versus absolute position patching performance",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 31",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "Qwen2-VL high/low entropy 的 prompt-token 与 last-token RSA",
+      "evidence": {
+        "page": 25,
+        "section": "Figure 31",
+        "anchor": "Qwen2-VL high/low entropy 的 prompt-token 与 last-token RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 32",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "Qwen2.5-VL-3B high/low entropy RSA",
+      "evidence": {
+        "page": 25,
+        "section": "Figure 32",
+        "anchor": "Qwen2.5-VL-3B high/low entropy RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 33",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "Qwen2.5-VL-7B high/low entropy RSA",
+      "evidence": {
+        "page": 26,
+        "section": "Figure 33",
+        "anchor": "Qwen2.5-VL-7B high/low entropy RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 34",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "Qwen2.5-VL-32B high/low entropy RSA",
+      "evidence": {
+        "page": 26,
+        "section": "Figure 34",
+        "anchor": "Qwen2.5-VL-32B high/low entropy RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 35",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "Llava1.5-7B high/low entropy RSA",
+      "evidence": {
+        "page": 26,
+        "section": "Figure 35",
+        "anchor": "Llava1.5-7B high/low entropy RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 36",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "Llava1.5-13B high/low entropy RSA",
+      "evidence": {
+        "page": 26,
+        "section": "Figure 36",
+        "anchor": "Llava1.5-13B high/low entropy RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 37",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "LlavaOne-7B high/low entropy RSA",
+      "evidence": {
+        "page": 26,
+        "section": "Figure 37",
+        "anchor": "LlavaOne-7B high/low entropy RSA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 38",
+      "module": "appendix",
+      "page": 27,
+      "purpose": "Qwen2.5-VL-3B 三类 heads 的 K/alpha intervention sweep",
+      "evidence": {
+        "page": 27,
+        "section": "Figure 38",
+        "anchor": "Qwen2.5-VL-3B 三类 heads 的 K/alpha intervention sweep",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 39",
+      "module": "appendix",
+      "page": 27,
+      "purpose": "Qwen2.5-VL-7B 三类 heads 的 K/alpha intervention sweep",
+      "evidence": {
+        "page": 27,
+        "section": "Figure 39",
+        "anchor": "Qwen2.5-VL-7B 三类 heads 的 K/alpha intervention sweep",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 40",
+      "module": "appendix",
+      "page": 27,
+      "purpose": "Qwen2.5-VL-32B 三类 heads 的 K/alpha intervention sweep",
+      "evidence": {
+        "page": 27,
+        "section": "Figure 40",
+        "anchor": "Qwen2.5-VL-32B 三类 heads 的 K/alpha intervention sweep",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 41",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "Qwen2-VL 三类 heads 的 K/alpha intervention sweep",
+      "evidence": {
+        "page": 28,
+        "section": "Figure 41",
+        "anchor": "Qwen2-VL 三类 heads 的 K/alpha intervention sweep",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 42",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "Llava-1.5-7B 三类 heads 的 K/alpha intervention sweep",
+      "evidence": {
+        "page": 28,
+        "section": "Figure 42",
+        "anchor": "Llava-1.5-7B 三类 heads 的 K/alpha intervention sweep",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 43",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "Llava-1.5-13B 三类 heads 的 K/alpha intervention sweep",
+      "evidence": {
+        "page": 28,
+        "section": "Figure 43",
+        "anchor": "Llava-1.5-13B 三类 heads 的 K/alpha intervention sweep",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 44",
+      "module": "appendix",
+      "page": 28,
+      "purpose": "Llava-OneVision 三类 heads 的 K/alpha intervention sweep",
+      "evidence": {
+        "page": 28,
+        "section": "Figure 44",
+        "anchor": "Llava-OneVision 三类 heads 的 K/alpha intervention sweep",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 45",
+      "module": "appendix",
+      "page": 29,
+      "purpose": "COCO source/target object-order ID estimation 与 target intervention protocol",
+      "evidence": {
+        "page": 29,
+        "section": "Figure 45",
+        "anchor": "COCO source/target object-order ID estimation 与 target intervention protocol",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 46",
+      "module": "appendix",
+      "page": 30,
+      "purpose": "COCO top-50/100/200 ID-selection-head intervention 的 mean accuracy",
+      "evidence": {
+        "page": 30,
+        "section": "Figure 46",
+        "anchor": "COCO top-50/100/200 ID-selection-head intervention 的 mean accuracy",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 47",
+      "module": "ablation",
+      "page": 30,
+      "purpose": "Qwen2.5-32B counting 中 top-K 与 bottom-K CMA-ranked heads ablation",
+      "evidence": {
+        "page": 30,
+        "section": "Figure 47",
+        "anchor": "Qwen2.5-32B counting 中 top-K 与 bottom-K CMA-ranked heads ablation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "appendix",
+      "page": 31,
+      "purpose": "四个模型 high-entropy、low-entropy no/with intervention accuracy 与 improvement",
+      "evidence": {
+        "page": 31,
+        "section": "Appendix D",
+        "anchor": "Performance (accuracy) on high vs. low entropy scene description",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "numbered_equation",
+      "label": "(1) CMA score s",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "Sec.3.4 Causal Mediation Analysis",
+        "anchor": "causal mediation score as defined by",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Position-ID intervention õ_h(x)",
+      "module": "method",
+      "page": 8,
+      "role": "core_chain",
+      "evidence": {
+        "page": 8,
+        "section": "Sec.4.2 Position IDs Generalize",
+        "anchor": "õh (x) = oh (x) + α ∗ (dt − do)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "ID prototype d_i",
+      "module": "method",
+      "page": 8,
+      "role": "explanation",
+      "evidence": {
+        "page": 8,
+        "section": "Sec.4.2 Position IDs Generalize",
+        "anchor": "d_i = E_x∈X_i [o_h(x)]",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Visual-patch key swap K̃",
+      "module": "method",
+      "page": 8,
+      "role": "core_chain",
+      "evidence": {
+        "page": 8,
+        "section": "Sec.4.3 Localization",
+        "anchor": "K̃_l o0 = K_l o0 + α(d_l1 − d_l0)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "displayed_equation",
+      "label": "Cross-task ID injection",
+      "module": "method",
+      "page": 8,
+      "role": "core_chain",
+      "evidence": {
+        "page": 8,
+        "section": "Sec.4.4 Reuse Across Tasks",
+        "anchor": "õh (x) = oh (x) + α ∗ d_i^desc",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "(2) Position target RSM",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A.2.3 Target RSM Construction",
+        "anchor": "RSMpos ... normalized Euclidean distances",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "(3) Color target RSM",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A.2.3 Target RSM Construction",
+        "anchor": "RSMcolor ... color equality",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "(4) Shape target RSM",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A.2.3 Target RSM Construction",
+        "anchor": "RSMshape ... shape equality",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "(5) Combined feature RSM",
+      "module": "appendix",
+      "page": 16,
+      "role": "explanation",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A.2.3 Target RSM Construction",
+        "anchor": "RSMfeat ... combined",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "研究问题与假设",
+      "status": "observed",
+      "description": "Position IDs 是否存在；三类 heads 是否按阶段工作；coding 是否 relative；是否跨 image/task reuse；机制退化是否解释 binding error。",
+      "evidence": [
+        {
+          "page": 2,
+          "section": "Sec.1 Introduction",
+          "anchor": "content-independent scaffold to bind features",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "Sec.4 Results",
+          "anchor": "characterize these mechanisms",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Scene description task",
+      "status": "observed",
+      "description": "图像含多个对象，prompt 描述部分对象，模型生成 missing object；成功需 parse、match、target selection 和 feature retrieval。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "Sec.3.1 Scene Description Task",
+          "anchor": "parse the visual scene",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Synthetic scene dataset",
+      "status": "observed",
+      "description": "每个对象占 56×56 px、对应 2×2 个 28×28 patches；2×2/3×3 grid；每个 object identity × grid position 生成 K trials。PCA 另用 3×2、392×932 px、7,200 trials。",
+      "evidence": [
+        {
+          "page": 14,
+          "section": "Appendix A.1.1",
+          "anchor": "200 trials/combination",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Relative/absolute grid design",
+      "status": "observed",
+      "description": "四种 2×2 sub-arrangement 放入 3×3 大网格，中心 object 保持相同 absolute location；RSA 和 patching 对比 relative/absolute。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Sec.4.1",
+          "anchor": "four separate 2×2 configurations",
+          "basis": "explicit"
+        },
+        {
+          "page": 14,
+          "section": "Appendix A.1.2",
+          "anchor": "same absolute position",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "PUG photorealistic design",
+      "status": "observed",
+      "description": "PUG 生成有 3D、occlusion、lighting/shadows 的场景；两只 distinct-color animals，200 images，3 animals × 3 colors × 3 environments，保证 leftmost/rightmost。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Sec.4.2",
+          "anchor": "clear leftmost and rightmost animal",
+          "basis": "explicit"
+        },
+        {
+          "page": 15,
+          "section": "Appendix A.1.3",
+          "anchor": "200 images with 3 different animals",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Model coverage",
+      "status": "observed",
+      "description": "核心七个模型为 Qwen2.5-VL 3B/7B/32B、Qwen2-VL、LLaVA-1.5 7B/13B、LLaVA-OneVision-7B；Idefics2-8B 仅追加 RSA。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Sec.3.4",
+          "anchor": "Qwen2.5-VL-3B ... Llava-OneVision-7B",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix A.5.1",
+          "anchor": "Idefics2-8b",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "PCA/RSA protocol",
+      "status": "observed",
+      "description": "PCA 用 last-token top-2 PCs；RSA 用 comma prompt tokens 与 last token，比较 residual-stream model RSM 和 position/feature target RSM。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "Sec.3.3 Representational Analyses",
+          "anchor": "projected on to the top 2 principal components",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix A.2",
+          "anchor": "pairwise cosine similarities",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "CMA protocol",
+      "status": "observed",
+      "description": "clean c1、modified c2 和 patched c1*；prompt token patch 识别 ID retrieval，last-token patch 识别 ID selection/feature retrieval；每条件 50 samples 平均。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Sec.3.4",
+          "anchor": "CMA scores are averaged across 50 samples",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Appendix A.3",
+          "anchor": "Causal mediation procedure",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "PUG intervention sweep",
+      "status": "observed",
+      "description": "用平均 position-ID prototypes，对三类 top-K heads 干预；feature retrieval heads 改 queries；α/K sweep 后主文取最佳参数。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.2",
+          "anchor": "top K heads ... optimized ... sweeping",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "Appendix A.5.5",
+          "anchor": "number of top-K heads",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "RoPE-independent localization control",
+      "status": "observed",
+      "description": "在 RoPE 前对 object patch keys 做对称 ID swap，α=2，作用于 top-20 feature-retrieval-head layers。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.3",
+          "anchor": "before the RoPE embedding module",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Cross-task spatial reasoning",
+      "status": "observed",
+      "description": "先由 scene description 估计 ID，再注入 above/below/left/right spatial-relation task 的 top-100 ID-selection heads；两模型 ceiling。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.4",
+          "anchor": "assessing the extent to which position IDs are reused",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Sec.4.4",
+          "anchor": "already at ceiling-level performance",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Entropy/error design",
+      "status": "observed",
+      "description": "2×2 low entropy 为 2 colors × 2 shapes，high entropy 为 4 distinct conjunctions，均 1,600 total；3×3 每 condition 4,050 trials，shared vs unique conjunctions。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix A.1.4",
+          "anchor": "4,050 per condition",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Sec.4.5",
+          "anchor": "varying feature entropy",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "COCO extension",
+      "status": "observed",
+      "description": "COCO 2017 validation；source/target 三个 random splits；从模型 open-ended enumeration 的前两个 objects 估计 ID，patch top 50/100/200 selection heads。",
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix B",
+          "anchor": "3 random splits for the source and target sets",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Counting extension",
+      "status": "observed",
+      "description": "3–8 unique objects，四种 shapes 与四种 colors，位置随机于 3×3；按三阶段每 head 最大 CMA score 排序，top/bottom-K output 置零。",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix C",
+          "anchor": "between 3 and 8 unique objects",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Appendix C",
+          "anchor": "sorted the attention heads",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Statistical quantities",
+      "status": "observed",
+      "description": "PCA、Pearson RSA、CMA logits difference、accuracy/proportion correct/mean accuracy；无 pooled model effect。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Sec.3.3",
+          "anchor": "correlation between these similarities",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix A.2.4",
+          "anchor": "Pearson correlations",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Seeds, training budget, hardware and implementation",
+      "status": "not_present",
+      "description": "仅 COCO 明确三次 random splits；训练 seed、训练预算、硬件、完整 inference hyperparameters 和当前代码版本未提供，复现声明称代码将 release。",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "Reproducibility Statement",
+          "anchor": "Datasets, analysis and intervention code will be released",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Independent baseline and uncertainty",
+      "status": "not_present",
+      "description": "没有独立 baseline 表，也没有 error bars、confidence intervals、p-values 或多重比较细节；主要对照为条件、头排序和干预前后。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.2",
+          "anchor": "best performing parameters",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Appendix D",
+          "anchor": "Performance (accuracy)",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "三阶段在表征层面按 position → feature 推进",
+      "value": "Prompt object position layers 14–17；last-token target position 18–21；target features 23–26。PCA layer 19 position 分离、layer 27 feature 分离。",
+      "comparison": "position/feature target RSM 与不同 token source 的跨层对比",
+      "statistical_method": "Pearson RSA correlation；PCA top-2 projection；未报告区间",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "Sec.3.3",
+          "anchor": "layer 19 ... layer 27",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "Sec.3.3",
+          "anchor": "layers 14-17 ... 18-21 ... 23-26",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "三类 attention-head sets 可由 CMA 局部化",
+      "value": "Qwen2-VL ID retrieval layers 12–16、ID selection 18–19、feature retrieval 20–27；每条件平均 50 samples。",
+      "comparison": "clean/modified/patched context 的 expected counterfactual answer",
+      "statistical_method": "CMA Eq. (1) 的 logits 差分；无不确定性",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Sec.3.4",
+          "anchor": "CMA scores are averaged across 50 samples",
+          "basis": "explicit"
+        },
+        {
+          "page": 6,
+          "section": "Sec.3.4",
+          "anchor": "layers 12-16 ... 18-19 ... 20-27",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Position-ID steering 可改变 PUG 复杂图像输出",
+      "value": ">79% efficacy for all 3 head types and all models；每模型精确值在图中。",
+      "comparison": "original ID 与 target ID 的 additive intervention",
+      "statistical_method": "accuracy/proportion correct；α/K sweep 后取 best parameters",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.2",
+          "anchor": "> 79% efficacy",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "Figure 3",
+          "anchor": "Photorealistic intervention results",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Qwen 的 position code 偏向 relative，LLaVA 差异较弱",
+      "value": "Qwen family relative RSA 高于 absolute；LLaVA 差异 less pronounced；Idefics2 与 Qwen 相似。",
+      "comparison": "relative versus absolute position target RSM 与 patching",
+      "statistical_method": "Pearson RSA；position patching accuracy；未报告区间",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Sec.4.1",
+          "anchor": "clear preference for a relative coding scheme",
+          "basis": "explicit"
+        },
+        {
+          "page": 24,
+          "section": "Appendix A.5.3",
+          "anchor": "Qwen family ... difference was less pronounced for the Llava family",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Position IDs 泛化到 photorealistic PUG",
+      "value": "200 images、两只 3D animals；三类 stage intervention 均产生可控 color prediction。",
+      "comparison": "ID 0/1 prototype swap across ID retrieval/selection/feature retrieval",
+      "statistical_method": "accuracy；正文不给误差范围",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Sec.4.2",
+          "anchor": "three-dimensional structure, occlusion, and lighting/shadows",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Figure 3",
+          "anchor": "highly effective",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Position IDs 局部存储在 visual object patch keys",
+      "value": "所有模型的 color retrieval key swap intervention accuracy 较高；α=2，top-20 feature-retrieval layers。",
+      "comparison": "object o0/o1 keys 对称交换，RoPE 前干预",
+      "statistical_method": "before/after intervention accuracy；未报告 raw values",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.3",
+          "anchor": "confirming that position IDs are stored locally",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Figure 4",
+          "anchor": "Color Retrieval Intervention Accuracy",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Position IDs 在 spatial reasoning 中复用",
+      "value": "5/7 模型呈现 before→after 提升；Qwen2.5-32B 与 LLaVA-OneVision 因 ceiling 未纳入 informative intervention。",
+      "comparison": "scene-description ID prototype 注入 above/below/left/right task",
+      "statistical_method": "top-100 selection heads、α=2、accuracy；无区间",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Sec.4.4",
+          "anchor": "transferring position IDs from the scene description task",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 5",
+          "anchor": "Intervention performance on spatial reasoning task",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "低 feature entropy 伴随 ID retrieval/selection 退化",
+      "value": "Low entropy 的 prompt-token 与 last-token position RSA 和行为 accuracy 均低于 high entropy；逐层全模型曲线在 Appendix。",
+      "comparison": "high versus low feature entropy scene description",
+      "statistical_method": "Pearson RSA 与 accuracy；未报告检验",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Sec.4.5",
+          "anchor": "lower entropy leads to less accurate ID retrieval",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 6",
+          "anchor": "effect of feature entropy",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "跨模型表征与 CMA 方向一致",
+      "value": "Figures 14–19 覆盖 7 个 RSA model entries（含 Idefics2 representational-only）；Figures 20–25 覆盖 6 组 CMA heatmaps。",
+      "comparison": "model families/scales 的 layer/RSA/CMA pattern",
+      "statistical_method": "Pearson RSA 与 CMA heatmaps；无 pooled estimate",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix A.5.1",
+          "anchor": "convergent evidence for the same two stage processing",
+          "basis": "explicit"
+        },
+        {
+          "page": 21,
+          "section": "Appendix A.5.2",
+          "anchor": "CMA results for Qwen-2.5-VL-3b",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "COCO 上可用 source 估计的 ID 诱导对象复述",
+      "value": "Figure 46 比较 top 50/100/200 selection-head intervention mean accuracy；正文未列柱值。",
+      "comparison": "source-derived ID prototype 与 target image scene description",
+      "statistical_method": "3 random splits；mean accuracy",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix B",
+          "anchor": "prediction ... cause the model to repeat O0",
+          "basis": "explicit"
+        },
+        {
+          "page": 30,
+          "section": "Figure 46",
+          "anchor": "COCO intervention results",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "CMA 高分 heads 对 counting 的影响强于低分 heads",
+      "value": "Qwen2.5-32B top-250 ablation 后 accuracy 0%；bottom-500 后接近 70%；总 heads 2,560。",
+      "comparison": "top-K versus bottom-K heads ranked by max CMA score",
+      "statistical_method": "counting accuracy；单一 best-performing model",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Figure 47",
+          "anchor": "total of 2,560 attention heads",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Appendix C",
+          "anchor": "performance falling to 0% ... close to 70%",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "High-entropy ID prototype 改善 low-entropy binding error",
+      "value": "LLaVA1.5-7B 27.50→32.10 (+4.60 pp)；13B 41.20→51.60 (+10.40 pp)；Qwen2.5-VL-3B 69.00→80.10 (+11.10 pp)；7B 51.20→62.30 (+11.10 pp)。",
+      "comparison": "low entropy no intervention versus high-entropy prototype intervention；high entropy baselines 70.30/75.00/91.20/89.90%",
+      "statistical_method": "accuracy；activation patching；论文未给 hypothesis test 或区间",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix D",
+          "anchor": "Performance (accuracy) on high vs. low entropy scene description",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Table 1",
+          "anchor": "Improvement",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "Top-K versus bottom-K head ablation",
+      "status": "observed",
+      "description": "检验 CMA 高分 heads 是否对 counting 更关键；Qwen2.5-32B top-250 后为 0%，bottom-500 后接近 70%。",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Appendix C",
+          "anchor": "Ablation of top- vs. bottom-K heads",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Appendix C",
+          "anchor": "ablating the lowest-scoring 500 heads",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Alpha and K intervention sweep",
+      "status": "observed",
+      "description": "PUG intervention 的三类 heads 分别展示 top-K 与 intervention magnitude 的曲线，正文取最佳参数。",
+      "evidence": [
+        {
+          "page": 27,
+          "section": "Appendix A.5.5",
+          "anchor": "magnitude of the intervention coefficient α",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Sec.4.2",
+          "anchor": "best performing parameters",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Relative versus absolute position patching",
+      "status": "observed",
+      "description": "用同一 absolute position 与同一 relative position 的 missing target 做 mechanism alternative test。",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.4",
+          "anchor": "prediction of the absolute vs. relative position hypotheses",
+          "basis": "explicit"
+        },
+        {
+          "page": 25,
+          "section": "Figure 30",
+          "anchor": "Position Patching Performance",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "High versus low entropy",
+      "status": "observed",
+      "description": "通过 shared versus distinct feature conjunctions 诊断 position-ID collapse，并用 high-entropy prototype 做恢复性 patch。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix A.1.4",
+          "anchor": "low entropy ... high entropy",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Appendix D",
+          "anchor": "replacing the activations ... high-entropy trials",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Model and scale replication",
+      "status": "observed",
+      "description": "RSA 跨 Qwen、LLaVA、Idefics2 与多个 scale；CMA heatmaps 跨六组 core models。",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix A.5.1",
+          "anchor": "different open-source VLMs",
+          "basis": "explicit"
+        },
+        {
+          "page": 21,
+          "section": "Appendix A.5.2",
+          "anchor": "CMA results",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "独立三阶段组件 deletion",
+      "status": "not_present",
+      "description": "未报告分别删除 ID retrieval、ID selection、feature retrieval 后的单独行为表；已有 activation patching 与 aggregate head ablation。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Sec.3.4",
+          "anchor": "three different conditions",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Appendix C",
+          "anchor": "top-K or bottom-K heads",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "VLM 用 position IDs 绑定对象特征",
+      "origin": "Introduction binding gap",
+      "status": "closed",
+      "method_response": "三阶段 architecture 与 PCA/RSA/CMA",
+      "evidence_response": "Figure 1；Qwen2-VL 阶段峰值与 CMA layers",
+      "conclusion_response": "Conclusion 段 1 回收 content-independent spatial indices",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "Sec.3.2",
+          "anchor": "spatial indices serving as symbolic variables",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "position IDs as content-independent spatial indices",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "三类 attention heads 具有分工",
+      "origin": "Introduction contribution 1",
+      "status": "closed",
+      "method_response": "三个 CMA conditions 与 counterfactual patch",
+      "evidence_response": "Figure 1d 与 Figures 20–25",
+      "conclusion_response": "Conclusion 段 2 重述三类 heads",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Sec.3.4",
+          "anchor": "ID retrieval heads ... ID selection heads ... feature retrieval heads",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "ID retrieval heads ... ID selection heads",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Position IDs 为 relative coding",
+      "origin": "Sec.4.1 research question",
+      "status": "partially_closed",
+      "method_response": "3×3/2×2 arrangement、RSA、position patch",
+      "evidence_response": "Qwen 方向清楚，LLaVA 较弱，Idefics2 追加 RSA",
+      "conclusion_response": "Conclusion 段 2 概括 relative coding",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Sec.4.1",
+          "anchor": "clear preference for a relative coding scheme",
+          "basis": "explicit"
+        },
+        {
+          "page": 24,
+          "section": "Appendix A.5.3",
+          "anchor": "difference was less pronounced for the Llava family",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "机制泛化到复杂和真实图像",
+      "origin": "Contributions 2–3",
+      "status": "partially_closed",
+      "method_response": "PUG intervention 与 COCO source/target ID estimate",
+      "evidence_response": "Figure 3；Figure 46 追加自然图像结果",
+      "conclusion_response": "Conclusion 只明确回收 photorealistic generalization",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Sec.4.2",
+          "anchor": "naturalistic images",
+          "basis": "explicit"
+        },
+        {
+          "page": 29,
+          "section": "Appendix B",
+          "anchor": "real-world settings",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Position IDs 局部位于 object patches",
+      "origin": "Sec.4.3",
+      "status": "closed",
+      "method_response": "RoPE 前 visual-patch key swap",
+      "evidence_response": "Figure 4 全模型 intervention accuracy",
+      "conclusion_response": "Conclusion 段 2 回收 localized within image patches",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.3",
+          "anchor": "stored locally in the keys of the image patches",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "localized within the image patches",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Position IDs 跨任务复用",
+      "origin": "Sec.4.4",
+      "status": "partially_closed",
+      "method_response": "scene-description ID prototype 注入 spatial reasoning",
+      "evidence_response": "5/7 模型 before/after，2/7 ceiling",
+      "conclusion_response": "Conclusion 段 2 回收 reusable across different tasks",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Sec.4.4",
+          "anchor": "same position IDs are used across tasks",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "reusable across different tasks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "机制失效造成 binding errors",
+      "origin": "Abstract/Introduction binding-failure claim",
+      "status": "partially_closed",
+      "method_response": "entropy RSA 对比与 high→low activation patch",
+      "evidence_response": "Figures 6–7、Table 1；四模型 improvement +4.6–11.1 pp",
+      "conclusion_response": "Conclusion 段 3 将失败归因于 position-ID representation",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Sec.4.5",
+          "anchor": "effect of feature entropy on position ID mechanisms",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Appendix D",
+          "anchor": "causal evidence that position ID failures are responsible",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "机制是 emergent 而非架构直接编码",
+      "origin": "Conclusion caveat",
+      "status": "open",
+      "method_response": "没有 architecture/training-distribution disentangling design",
+      "evidence_response": "无对应控制实验",
+      "conclusion_response": "Conclusion 段 4 明确为 open question",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "open question whether the emergence",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "机制参与 counting",
+      "origin": "Appendix C extension",
+      "status": "partially_closed",
+      "method_response": "CMA-ranked top/bottom-K head ablation",
+      "evidence_response": "单一 Qwen2.5-32B：top-250 为 0%，bottom-500 约 70%",
+      "conclusion_response": "正文结论未专门回收",
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix C",
+          "anchor": "important role in more complex tasks that require binding",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "A.1 Dataset Generation Details",
+      "category": "dataset_detail",
+      "start_page": 14,
+      "end_page": 15,
+      "main_text_calls": [
+        "Sec.4.1 cites Appendix A.1.2",
+        "Sec.4.2 cites Appendix A",
+        "Sec.4.5 cites Appendix A.5.4"
+      ],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "Appendix A.1",
+          "anchor": "Dataset generation protocol",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.2 Representational Similarity Analysis Protocol",
+      "category": "extended_method",
+      "start_page": 16,
+      "end_page": 16,
+      "main_text_calls": [
+        "Sec.3.3 refers to RSA protocol",
+        "Reproducibility Statement refers to A.2"
+      ],
+      "evidence": [
+        {
+          "page": 16,
+          "section": "Appendix A.2",
+          "anchor": "quantifies representational alignment",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.3 Illustration of CMA Conditions",
+      "category": "extended_method",
+      "start_page": 17,
+      "end_page": 18,
+      "main_text_calls": [
+        "Sec.3.4 refers to schematic illustration in Appendix A.3"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix A.3",
+          "anchor": "different CMA conditions",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.4 Illustration of absolute vs. relative position intervention",
+      "category": "extended_method",
+      "start_page": 18,
+      "end_page": 18,
+      "main_text_calls": [
+        "Sec.4.1 cites Appendix A.1.2 and Figures 13 and 30"
+      ],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.4",
+          "anchor": "ID for the target object ... was patched",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.5.1 Representational Analyses",
+      "category": "additional_result",
+      "start_page": 19,
+      "end_page": 20,
+      "main_text_calls": [
+        "Sec.3.3 says similar RSA results are in Appendix A.5.1"
+      ],
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix A.5.1",
+          "anchor": "same two stage processing across all models",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.5.2 Causal Mediation Analyses",
+      "category": "additional_result",
+      "start_page": 21,
+      "end_page": 22,
+      "main_text_calls": [
+        "Sec.3.4 reports all-model CMA in Figures 20–25"
+      ],
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix A.5.2",
+          "anchor": "CMA results for Qwen-2.5-VL-3b",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.5.3 Additional Results for relative vs. absolute spatial coding",
+      "category": "additional_result",
+      "start_page": 23,
+      "end_page": 25,
+      "main_text_calls": [
+        "Sec.4.1 refers to Appendix A.5.1 and intervention Figures 13 and 30"
+      ],
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Appendix A.5.3",
+          "anchor": "Qwen family ... relative position coding",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.5.4 Binding Errors",
+      "category": "additional_result",
+      "start_page": 25,
+      "end_page": 26,
+      "main_text_calls": [
+        "Sec.4.5 refers to layer-wise RSA in Appendix A.5.4"
+      ],
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix A.5.4",
+          "anchor": "low vs. high entropy conditions",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.5.5 Optimizing Hyperparameters for Position ID Intervention",
+      "category": "hyperparameter",
+      "start_page": 27,
+      "end_page": 28,
+      "main_text_calls": [
+        "Sec.4.2 refers to Appendix A.5.5 for all alpha/K values"
+      ],
+      "evidence": [
+        {
+          "page": 27,
+          "section": "Appendix A.5.5",
+          "anchor": "hyperparameter sweep results",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "B Generalization of Position IDs to Real-World Settings",
+      "category": "additional_result",
+      "start_page": 29,
+      "end_page": 30,
+      "main_text_calls": [
+        "Sec.4.2 refers to section B for COCO results"
+      ],
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix B",
+          "anchor": "use of position IDs generalizes to real-world images",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "C Involvement of Visual Symbolic Mechanisms in Counting",
+      "category": "ablation",
+      "start_page": 30,
+      "end_page": 31,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix C",
+          "anchor": "identified visual symbolic mechanisms play an important role",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "D Binding Error Interventions",
+      "category": "additional_result",
+      "start_page": 31,
+      "end_page": 32,
+      "main_text_calls": [
+        "Sec.4.5 refers to Appendix D for causal relation"
+      ],
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix D",
+          "anchor": "activation patching intervention",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "Emergentness source",
+      "status": "observed",
+      "description": "作者承认 position embeddings、Q/K/V indirection 和 training distribution 可能驱动机制，尚未区分。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "open question whether the emergence",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Synthetic/PUG scope",
+      "status": "observed",
+      "description": "主文复杂图像证据来自 PUG 的两动物可控场景；COCO real-world 扩展在 Appendix，且 ID order 由模型 enumeration 推断。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Sec.4.2",
+          "anchor": "dataset was comprised of images",
+          "basis": "explicit"
+        },
+        {
+          "page": 29,
+          "section": "Appendix B",
+          "anchor": "we do not know the assignment of IDs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Family heterogeneity",
+      "status": "observed",
+      "description": "Qwen 的 relative coding 方向清楚，LLaVA 差异 less pronounced；作者只提出 position embeddings 或训练集大小的可能解释。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Sec.4.1",
+          "anchor": "effects were less pronounced for models from the LLava family",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Ceiling exclusion",
+      "status": "observed",
+      "description": "Spatial reasoning 的 Qwen2.5-32B 与 LLaVA-OneVision 已接近 ceiling，干预信息量有限。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Sec.4.4",
+          "anchor": "already at ceiling-level performance",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Model scope",
+      "status": "observed",
+      "description": "正文七个 core models 的 CMA/intervention 与 Appendix Idefics2 representational-only 不能代表所有 VLM。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Sec.3.4",
+          "anchor": "all models",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix A.5.1",
+          "anchor": "Idefics2-8b",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Statistical reporting",
+      "status": "not_present",
+      "description": "没有 error bars、confidence intervals、p-values 或多重比较说明；文本使用 significantly improved 但未说明检验。",
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix D",
+          "anchor": "significantly improved performance",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Implementation/deployment",
+      "status": "not_present",
+      "description": "代码、训练硬件、完整运行配置和部署验证未在 PDF 提供；复现声明写作将 release。",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "Reproducibility Statement",
+          "anchor": "code will be released",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "Appendix migration",
+      "status": "observed",
+      "description": "全模型 RSA/CMA、sweep、COCO、counting 和 binding-error 数字主要放在 Appendix，正文保留方向性总结。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.2",
+          "anchor": "results ... shown in the Appendix",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Best-parameter selection",
+      "status": "observed",
+      "description": "PUG 正文报告 sweep 后 best parameters，完整 K/alpha curves 后置到 A.5.5。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.2",
+          "anchor": "best performing parameters",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "Appendix A.5.5",
+          "anchor": "sweep results",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Ceiling exclusion",
+      "status": "observed",
+      "description": "两模型 ceiling 被排除在 informative spatial-reasoning intervention 之外；作者在文字中明示原因。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Sec.4.4",
+          "anchor": "making an intervention uninformative",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Metric without uncertainty",
+      "status": "observed",
+      "description": ">79% efficacy、accuracy 图和 Table 1 百分比未附 error bars、CI 或 test details。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "Sec.4.2",
+          "anchor": "> 79% efficacy",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Table 1",
+          "anchor": "Performance (accuracy)",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "Qualified alternative",
+      "status": "observed",
+      "description": "LLaVA family 差异以 may be a result of position embeddings/training set 形式提出，未写成确定原因。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Sec.4.1",
+          "anchor": "may be a result of differences",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Model-derived ground truth",
+      "status": "observed",
+      "description": "COCO source ID order 由模型自己的 open-ended description order 估计，缺少独立 object-order label。",
+      "evidence": [
+        {
+          "page": 29,
+          "section": "Appendix B",
+          "anchor": "we do not know the assignment of IDs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "Single best model",
+      "status": "observed",
+      "description": "Counting ablation 只报告 best-performing Qwen2.5-32B，未在其他模型复现。",
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix C",
+          "anchor": "best performing model",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "main_end_page_provisional",
+      "status": "observed",
+      "description": "auto_metrics 将 main_end_page 记为 32；按 PDF headings，正文 Section 5 结束于物理页 10，页 11–13 是复现/致谢/参考文献。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "5 CONCLUSION AND FUTURE WORK",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 11,
+          "section": "Reproducibility Statement",
+          "anchor": "6 REPRODUCIBILITY STATEMENT",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "appendix_start_page_provisional",
+      "status": "observed",
+      "description": "auto_metrics 将 appendix_start_page 记为 5；PDF 的 Appendix A 标题明确出现在物理页 14。",
+      "evidence": [
+        {
+          "page": 14,
+          "section": "Appendix A",
+          "anchor": "A APPENDIX",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "figure_caption_count",
+      "status": "observed",
+      "description": "auto_metrics 计 46 个 figure captions；逐个核对 Figure 1–47 后为 47，caption 抽取漏掉一项。",
+      "evidence": [
+        {
+          "page": 30,
+          "section": "Figure 47",
+          "anchor": "Ablation of top- vs. bottom-K heads",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "word_measurement",
+      "status": "observed",
+      "description": "自动 main/appendix word estimates 受双栏图轴、heatmap 标签和 appendix layout 干扰；本读数改用去页眉后的段落语义估计，并在 page_map 注明。",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix A.5.2",
+          "anchor": "CMA Score",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 14,
+          "section": "Appendix A.1",
+          "anchor": "Dataset generation protocol",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "limitation_mentions",
+      "status": "observed",
+      "description": "auto_metrics 报 main limitation mentions 为 0；PDF 页 10 最后一段明确写出 emergentness open question，故 limitations 模块记录为 observed。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Conclusion",
+          "anchor": "it is an open question",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "论文把 multi-object visual binding 还原为 content-independent spatial indexing：ID retrieval heads 取 prompt object 的位置，ID selection heads 选 target，feature retrieval heads 取回 features；PCA/RSA、CMA、steering、key swap 与 entropy patch 依次连接表征、机制和错误（pp.3–10，Secs.3–4）。",
+    "main_body_keeps": "正文保留 scene-description 定义、三阶段架构、Qwen2-VL 阶段证据、CMA score/head layers、PUG >79% intervention、relative 方向、patch localization、spatial-reasoning reuse 和 entropy failure（pp.3–10）。",
+    "appendix_moves": "数据生成、RSA 数学定义、CMA 条件图、全模型 heatmaps、relative/absolute 全量结果、entropy 曲线、alpha/K sweep、COCO、counting 和 Table 1 后置；机制主线可读，但广度与 binding-error 数值复核需回看 Appendix（pp.11、14–32）。",
+    "best_pattern": "Figure 1 在一张图中并列 architecture、PCA、RSA、CMA，随后用 position swap、feature swap、task transfer 和 high→low entropy patch 把抽象 ID 变成可操纵变量（pp.4–9）。",
+    "largest_gap": "没有独立 theory/complexity guarantee；emergentness 的架构偏置与训练分布未拆分；模型级结果缺不确定性；relative 结论受 family 差异，COCO 使用模型派生 order，counting 只有单一 best model（pp.6、9–10、27–32）。",
+    "transfer_rule": "每个机制主张同时给出可命名的表征预测、局部 counterfactual intervention 和行为任务，并在相邻图表中显示方向一致性（pp.4–9）。",
+    "transfer_boundary": "该规则适用于可访问 activation 且有明确对象/关系任务的 generative VLM；开放世界 grounding、无独立对象标签或不可 patch 的系统，需要另行验证 ID 的可识别性（pp.7、29–30）。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 76,
+    "claims_with_page_evidence": 76,
+    "status": "complete"
+  },
+  "lexical_profile": {
+    "scope": "正文物理页 1–10；排除 references、公式碎片、表格数值和页眉；频次为文本核对估计。",
+    "frequent_content_words": {
+      "object": 83,
+      "position": 82,
+      "heads": 53,
+      "binding": 50,
+      "mechanisms": 49,
+      "features": 45,
+      "models": 37,
+      "visual": 34,
+      "retrieval": 33,
+      "VLMs": 32,
+      "results": 32,
+      "intervention": 32,
+      "target": 29,
+      "prompt": 28,
+      "image": 21,
+      "spatial": 20,
+      "symbolic": 19,
+      "attention": 18,
+      "entropy": 10
+    },
+    "frequent_bigrams": [
+      "position IDs (28)",
+      "target object (24)",
+      "retrieval heads (20)",
+      "feature retrieval (15)",
+      "symbolic mechanisms (14)",
+      "causal mediation (11)",
+      "object features (11)",
+      "binding errors (8)",
+      "last token (8)",
+      "scene description (7)"
+    ],
+    "frequent_trigrams": [
+      "feature retrieval heads (12)",
+      "features target object (8)",
+      "emergent symbolic mechanisms (7)",
+      "scene description task (6)",
+      "visual symbolic mechanisms (3)"
+    ],
+    "claim_phrase_counts": {
+      "we show": 3,
+      "we find": 4,
+      "we demonstrate": 1,
+      "we propose": 0,
+      "we observe": 0
+    },
+    "claim_phrase_modules": {
+      "we show": [
+        "introduction",
+        "method",
+        "results",
+        "conclusion"
+      ],
+      "we find": [
+        "abstract",
+        "introduction",
+        "results",
+        "conclusion"
+      ],
+      "we demonstrate": [
+        "conclusion"
+      ],
+      "we propose": [],
+      "we observe": []
+    },
+    "qualifiers_and_contrasts": [
+      "unclear",
+      "open question",
+      "may",
+      "appears",
+      "generally",
+      "possible",
+      "less pronounced",
+      "ceiling-level",
+      "relative vs. absolute",
+      "high vs. low entropy",
+      "before/after",
+      "top vs. bottom-K"
+    ],
+    "strong_to_weak_ratio": "摘要/引言/结论 22 个主张句的解释性标注为强 14、带显式限定 8，约 1.75:1；非全文自动统计。",
+    "interpretation": "position IDs、heads、binding、intervention 等领域词驱动真实机制动作；red square/blue circle 等模板词主要服务任务示例。"
+  },
+  "theory_summary": {
+    "displayed_equations_total": 9,
+    "numbered_equations": 5,
+    "theorem_items": 0,
+    "lemma_items": 0,
+    "propositions": 0,
+    "corollaries": 0,
+    "proofs": 0,
+    "complexity_statement": "not_present",
+    "role": "公式定义机制/统计表征和干预，未形成独立可证明理论。"
+  },
+  "statistical_reporting": {
+    "aggregation_units": [
+      "trial",
+      "object identity × grid position",
+      "model",
+      "COCO source/target split"
+    ],
+    "central_quantities": [
+      "Pearson correlation",
+      "CMA logits score",
+      "accuracy",
+      "proportion correct",
+      "mean accuracy"
+    ],
+    "dispersion_or_intervals": "not_present",
+    "hypothesis_tests": "not_present",
+    "multiple_comparisons": "not_present",
+    "bootstrap": "not_present",
+    "bayesian": "not_present",
+    "regression": "not_present",
+    "error_bars": "not_present",
+    "figure_note": "Figure 5/7/46 numerical bar values remain graphical; Table 1 is text-readable."
+  },
+  "algorithm_inventory": {
+    "count": 0,
+    "status": "not_present",
+    "evidence": [
+      {
+        "page": 11,
+        "section": "Reproducibility Statement",
+        "anchor": "Datasets, analysis and intervention code will be released",
+        "basis": "explicit"
+      }
+    ],
+    "note": "No pseudocode or algorithm caption; intervention equations and prose specify operations."
+  },
+  "negative_results": [
+    {
+      "item": "LLaVA relative/absolute contrast",
+      "description": "relative coding effect less pronounced than Qwen; cause offered only as possible position-embedding/training-size explanation.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Sec.4.1",
+          "anchor": "effects were less pronounced",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "item": "Spatial-reasoning ceiling",
+      "description": "Qwen2.5-32B and LLaVA-OneVision at ceiling, making intervention uninformative.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Sec.4.4",
+          "anchor": "ceiling-level performance",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "item": "Low-entropy collapse",
+      "description": "shared features reduce position-ID accuracy/ambiguity; patch recovers only part of low-entropy accuracy.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "Sec.4.5",
+          "anchor": "less accurate ID retrieval",
+          "basis": "explicit"
+        },
+        {
+          "page": 31,
+          "section": "Appendix D",
+          "anchor": "attenuate binding errors",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "item": "Counting top-K failure",
+      "description": "best model drops to 0% after top-250 ablation; this is a negative behavioral result used as mechanism evidence.",
+      "evidence": [
+        {
+          "page": 31,
+          "section": "Appendix C",
+          "anchor": "performance falling to 0%",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ]
+}
