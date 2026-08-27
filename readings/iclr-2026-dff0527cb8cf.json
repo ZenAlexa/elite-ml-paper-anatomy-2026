@@ -1,0 +1,3639 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-dff0527cb8cf",
+  "bibliography": {
+    "title": "Q-RAG: Long Context Multi-Step Retrieval via Value-Based Embedder Training",
+    "conference": "ICLR",
+    "year": 2026,
+    "selection_flags": [
+      "oral"
+    ],
+    "authors": [
+      "Artyom Sorokin",
+      "Nazar Buzun",
+      "Alexander Anokhin",
+      "Egor Vedernikov",
+      "Petr Anokhin",
+      "Mikhail Burtsev",
+      "Evgeny Burnaev"
+    ]
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-dff0527cb8cf.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=MS9nWFY7LG",
+    "source_kind": "official_pdf",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/372dee09e0c3c17df69d990b4735adac-Paper-Conference.pdf"
+  },
+  "page_map": {
+    "pdf_pages": 26,
+    "main_pages": 10,
+    "reference_pages": 3,
+    "appendix_pages": 13,
+    "main_end_page": 10,
+    "references_start_page": 11,
+    "appendix_start_page": 14,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 140
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 2,
+        "estimated_words": 520
+      },
+      {
+        "title": "2 Related Work",
+        "module": "related_work",
+        "start_page": 2,
+        "end_page": 3,
+        "estimated_words": 560
+      },
+      {
+        "title": "3 Methods",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 6,
+        "estimated_words": 1650
+      },
+      {
+        "title": "3.1 Preliminaries",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 360
+      },
+      {
+        "title": "3.2 Value-Based RL for Embedder Fine-Tuning",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 760
+      },
+      {
+        "title": "3.3 Temporal Reasoning for Long-Context Search",
+        "module": "method",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 330
+      },
+      {
+        "title": "4 Experiments",
+        "module": "experimental_design",
+        "start_page": 6,
+        "end_page": 10,
+        "estimated_words": 120
+      },
+      {
+        "title": "4.1 Experimental Setup",
+        "module": "experimental_design",
+        "start_page": 6,
+        "end_page": 6,
+        "estimated_words": 240
+      },
+      {
+        "title": "4.2 Commonsense Reasoning on Ultra-Long Contexts",
+        "module": "results",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 210
+      },
+      {
+        "title": "4.3 Needle-in-a-Haystack and Long Context QA",
+        "module": "results",
+        "start_page": 7,
+        "end_page": 8,
+        "estimated_words": 330
+      },
+      {
+        "title": "4.4 Open-Domain Question Answering",
+        "module": "results",
+        "start_page": 8,
+        "end_page": 8,
+        "estimated_words": 300
+      },
+      {
+        "title": "5 Ablation Study",
+        "module": "ablation",
+        "start_page": 8,
+        "end_page": 10,
+        "estimated_words": 390
+      },
+      {
+        "title": "5.1 Sensitivity to Retrieval Budget",
+        "module": "ablation",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 170
+      },
+      {
+        "title": "6 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 180
+      },
+      {
+        "title": "Reproducibility Statement",
+        "module": "other",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 90
+      },
+      {
+        "title": "Acknowledgments",
+        "module": "other",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 80
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 13,
+        "estimated_words": 1131
+      },
+      {
+        "title": "Appendix A Inner Product Approximation for Q-Function",
+        "module": "appendix",
+        "start_page": 14,
+        "end_page": 20,
+        "estimated_words": 3187
+      },
+      {
+        "title": "Appendix B Early Stopping Experiments",
+        "module": "appendix",
+        "start_page": 21,
+        "end_page": 23,
+        "estimated_words": 680
+      },
+      {
+        "title": "Appendix C Planning for Multi-Step Retrieval",
+        "module": "appendix",
+        "start_page": 23,
+        "end_page": 23,
+        "estimated_words": 150
+      },
+      {
+        "title": "Appendix D Method Complexity and Efficiency",
+        "module": "appendix",
+        "start_page": 23,
+        "end_page": 24,
+        "estimated_words": 610
+      },
+      {
+        "title": "Appendix E Extra QA Results",
+        "module": "appendix",
+        "start_page": 25,
+        "end_page": 25,
+        "estimated_words": 190
+      },
+      {
+        "title": "Appendix F Training Details",
+        "module": "appendix",
+        "start_page": 25,
+        "end_page": 25,
+        "estimated_words": 250
+      },
+      {
+        "title": "Appendix G Evaluation Details",
+        "module": "appendix",
+        "start_page": 25,
+        "end_page": 26,
+        "estimated_words": 430
+      }
+    ],
+    "layout_notes": "双栏 letter 页面；Figure 1/2 跨栏，公式和表格多为栏内浮动体；p. 26 Table 8 后留有大块空白。"
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 140,
+      "main_word_share": 0.029106,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 520,
+      "main_word_share": 0.108108,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 560,
+      "main_word_share": 0.116424,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 1650,
+      "main_word_share": 0.343035,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 1,
+      "displayed_equations": 7
+    },
+    {
+      "module": "theory",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 240,
+      "main_word_share": 0.049896,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 960,
+      "main_word_share": 0.199584,
+      "figures": 1,
+      "tables": 2,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 560,
+      "main_word_share": 0.116424,
+      "figures": 1,
+      "tables": 2,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 180,
+      "main_word_share": 0.037422,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 5482,
+      "main_word_share": null,
+      "figures": 3,
+      "tables": 4,
+      "algorithms": 0,
+      "displayed_equations": 58
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 1302,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "counting_notes": {
+    "word_estimate_basis": "模块词数为英文词粗估，排除 references、表格数字和公式碎片；物理主区约 4953，叙事正文约 4810。",
+    "displayed_equations_total": 65,
+    "numbered_equations_total": 65,
+    "main_displayed_equations": 7,
+    "appendix_displayed_equations": 58,
+    "formal_theory_statements": 3,
+    "formal_proof_blocks": 3,
+    "formal_theory_blocks_total": 6,
+    "lexical_theory_matches": 9,
+    "visual_totals": {
+      "figures": 6,
+      "tables": 8,
+      "algorithms": 1
+    },
+    "section_mapping_note": "Appendix A 物理上属于 appendix，语义上由 theory inventory 标记 formal guarantees；module_metrics 仍按物理边界把 58 个公式计入 appendix，theory module 在正文中为 not_present。"
+  },
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Retrieval-Augmented Generation (RAG) methods enhance LLM performance by efficiently filtering relevant context for LLMs, reducing hallucinations and inference cost.",
+      "word_count": 19,
+      "functions": [
+        "object_scope"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "enhance LLM performance",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "However, most existing RAG methods focus on single-step retrieval, which is often insufficient for answering complex questions that require multi-step search.",
+      "word_count": 21,
+      "functions": [
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "single-step retrieval",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "Recently, multi-step retrieval approaches have emerged, typically involving the fine-tuning of small LLMs to perform multi-step retrieval.",
+      "word_count": 17,
+      "functions": [
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "fine-tuning of small LLMs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "This type of fine-tuning is highly resource-intensive and does not enable the use of larger LLMs.",
+      "word_count": 16,
+      "functions": [
+        "limitation"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "highly resource-intensive",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "text": "In this work, we propose Q-RAG, a novel approach that fine-tunes the Embedder model for multi-step retrieval using reinforcement learning (RL).",
+      "word_count": 21,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "fine-tunes the Embedder model",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "text": "Q-RAG offers a competitive, resource-efficient alternative to existing multi-step retrieval methods for open-domain question answering and achieves state-of-the-art results on the popular long-context benchmarks BabiLong and RULER for contexts up to 10M tokens.",
+      "word_count": 33,
+      "functions": [
+        "quantitative_result",
+        "qualitative_result"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "contexts up to 10M tokens",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "text": "Code is available at: https://github.com/griver/Q-RAG.",
+      "word_count": 5,
+      "functions": [
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "Code is available",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "abstract_summary": {
+    "function_order": [
+      "object_scope",
+      "problem_gap",
+      "problem_gap",
+      "limitation",
+      "core_idea",
+      "method",
+      "quantitative_result",
+      "qualitative_result",
+      "impact_claim"
+    ],
+    "sentence_count": 7,
+    "reports_experiments": true,
+    "reports_theory": false,
+    "reports_limitation": true,
+    "reported_results": "BabiLong/RULER state-of-the-art claim up to 10M tokens and competitive open-domain QA.",
+    "strongest_claim_location": "第 6 句的 10M-token result claim。"
+  },
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context + problem",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "static knowledge; attention dilution; hallucinations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "context + failure_of_prior_work",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "single-step retrieval; multi-step interaction",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "failure_of_prior_work + missing_insight",
+      "estimated_words": 92,
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "noisy or inaccurate retrieved passages",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "failure_of_prior_work + scope_boundary",
+      "estimated_words": 80,
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "expensive fine-tuning of the LLM itself",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "core_idea + method_preview",
+      "estimated_words": 70,
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "latent space of text chunk embeddings",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "result_preview",
+      "estimated_words": 62,
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "contexts up to 10 million tokens",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "contribution_list",
+      "estimated_words": 32,
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "training a multi-step retrieval agent",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "contribution_list + scope_boundary",
+      "estimated_words": 44,
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "incorporate temporal information",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_analysis": {
+    "word_estimate": 520,
+    "action_sequence": [
+      "context",
+      "problem",
+      "failure_of_prior_work",
+      "missing_insight",
+      "core_idea",
+      "method_preview",
+      "result_preview",
+      "contribution_list"
+    ],
+    "next_hook_chain": "LLM limitations → RAG shortening → single-step gap → graph/agent/LLM fine-tuning costs → embedder RL → scaling results → contributions",
+    "contribution_repetition": "摘要与贡献列表都说 resource-efficient multi-step retrieval；贡献列表新增 temporal mechanism 这一可检验对象。",
+    "falsifiable_claims": [
+      "TD reinforcement learning for retrieval agent",
+      "state-of-the-art on ultra-long benchmarks",
+      "temporal information in the embedder"
+    ],
+    "missing_items": [
+      "explicit research questions",
+      "predeclared hypotheses",
+      "failure decision rule"
+    ]
+  },
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy + limitation_of_prior",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 2,
+        "section": "§2 Related Work",
+        "anchor": "fine-tuning-free LLM Agents; knowledge graphs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "chronology + nearest_neighbor_contrast",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 2,
+        "section": "§2 Related Work",
+        "anchor": "freeze the embedder and fine-tune the LLM",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "nearest_neighbor_contrast + gap_creation",
+      "estimated_words": 130,
+      "evidence": {
+        "page": 2,
+        "section": "§2 Related Work",
+        "anchor": "did not address multi-step reasoning",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "taxonomy + credit_or_foundation",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 2,
+        "section": "§2 Related Work",
+        "anchor": "combine recurrence with the Transformer architecture",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 55,
+      "evidence": {
+        "page": 3,
+        "section": "§2 Related Work",
+        "anchor": "outperforms all of these models on contexts beyond 1M tokens",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "positioning_only + credit_or_foundation",
+      "estimated_words": 40,
+      "evidence": {
+        "page": 3,
+        "section": "§2 Related Work",
+        "anchor": "RoPE rescaling and mixed-window training",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_analysis": {
+    "location": "独立 §2，p. 2–3。",
+    "word_estimate": 560,
+    "body_share_estimate": 0.116424,
+    "citation_cluster_count": 5,
+    "clusters": [
+      {
+        "name": "fine-tuning-free agents and graphs",
+        "works": [
+          "Search-o1",
+          "GraphReader",
+          "HippoRAG",
+          "AriGraph"
+        ],
+        "dimension": "training cost and inference-time full-context processing"
+      },
+      {
+        "name": "LLM/LRM fine-tuning for multi-step retrieval",
+        "works": [
+          "IM-RAG",
+          "R1-Searcher",
+          "Search-R1",
+          "RAG-RL",
+          "ReSearcher"
+        ],
+        "dimension": "frozen embedder versus trained LLM, PPO/GRPO cost"
+      },
+      {
+        "name": "retriever/reranker fine-tuning",
+        "works": [
+          "RePlug",
+          "BeamRetriever"
+        ],
+        "dimension": "feedback, multi-step capability, dot-product versus trajectory transformer"
+      },
+      {
+        "name": "recurrent long-context models",
+        "works": [
+          "Mamba",
+          "RMT",
+          "Titans",
+          "MemUP",
+          "ATLAS",
+          "ARMT"
+        ],
+        "dimension": "recurrence, memory and context scaling"
+      },
+      {
+        "name": "positional encoding extension",
+        "works": [
+          "LongRoPE2"
+        ],
+        "dimension": "RoPE scaling and effective context window"
+      }
+    ],
+    "avoids_method_repetition": true,
+    "later_citation_role": "主要在实验中承担 baseline 归属和 reported-score 来源说明。"
+  },
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 100,
+      "evidence": {
+        "page": 3,
+        "section": "§3.1 Preliminaries",
+        "anchor": "dataset of triples (C, q, y)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "state_problem",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 3,
+        "section": "§3.1 Preliminaries",
+        "anchor": "finite-horizon Markov Decision Process",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "define_component",
+      "estimated_words": 110,
+      "evidence": {
+        "page": 3,
+        "section": "§3.1 Preliminaries",
+        "anchor": "states are ordered lists",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "define_component + connect_to_prediction",
+      "estimated_words": 70,
+      "evidence": {
+        "page": 4,
+        "section": "§3.1 Preliminaries",
+        "anchor": "sparse terminal reward",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "derive",
+      "estimated_words": 110,
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "soft Qπ and Vπ",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "define_component + explain_mechanism",
+      "estimated_words": 150,
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "Q values are then estimated by an inner product",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "derive + instantiate_algorithm",
+      "estimated_words": 145,
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "Boltzmann policy",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "contrast_alternative + state_complexity",
+      "estimated_words": 155,
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "PQN removes the need for a replay buffer",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "derive + connect_to_experiment",
+      "estimated_words": 120,
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "λ-return is used to improve stability",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "instantiate_algorithm",
+      "estimated_words": 130,
+      "evidence": {
+        "page": 5,
+        "section": "Algorithm 1 Q-RAG",
+        "anchor": "Update target parameters",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 11,
+      "move": "state_problem + give_intuition",
+      "estimated_words": 95,
+      "evidence": {
+        "page": 5,
+        "section": "§3.3 Temporal Reasoning for Long-Context Search",
+        "anchor": "temporal information",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 12,
+      "move": "define_component + derive",
+      "estimated_words": 105,
+      "evidence": {
+        "page": 5,
+        "section": "§3.3 Temporal Reasoning for Long-Context Search",
+        "anchor": "partition the document into k+1 disjoint intervals",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 13,
+      "move": "connect_to_prediction + connect_to_experiment",
+      "estimated_words": 70,
+      "evidence": {
+        "page": 6,
+        "section": "§3.3 Temporal Reasoning for Long-Context Search",
+        "anchor": "exploit the spatial relation of candidates",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_analysis": {
+    "formal_objects_first_locations": [
+      {
+        "object": "D={(C,q,y)}",
+        "location": "p. 3 §3.1",
+        "purpose": "dataset triple"
+      },
+      {
+        "object": "C={c(i)}",
+        "location": "p. 3 §3.1",
+        "purpose": "non-overlapping document chunks"
+      },
+      {
+        "object": "MDP (S,A,p,r,γ)",
+        "location": "p. 3 §3.1",
+        "purpose": "finite-horizon retrieval environment"
+      },
+      {
+        "object": "st=ord([q,a0,...,at−1])",
+        "location": "p. 3 §3.1",
+        "purpose": "permutation-invariant ordered state"
+      },
+      {
+        "object": "Es,Ea,Qθ",
+        "location": "p. 4 §3.2",
+        "purpose": "state/action embedding factorization"
+      },
+      {
+        "object": "ρt(i)",
+        "location": "p. 5 §3.3",
+        "purpose": "state-dependent temporal relative position"
+      }
+    ],
+    "component_problem_map": [
+      {
+        "component": "MDP state/action removal",
+        "prior_problem": "single-step retrieval misses compositional evidence",
+        "mechanism": "ordered state carries query and selected chunks; selected action leaves At"
+      },
+      {
+        "component": "support-fact terminal reward",
+        "prior_problem": "need a trainable retrieval correctness signal",
+        "mechanism": "reward 1 only when all support facts are in final state"
+      },
+      {
+        "component": "soft-Q and Boltzmann policy",
+        "prior_problem": "long-context exploration",
+        "mechanism": "entropy regularization and annealed temperature"
+      },
+      {
+        "component": "PQN plus target network and λ-return",
+        "prior_problem": "replay re-embedding cost and unstable TD updates",
+        "mechanism": "on-policy parallel rollout, slow target critic, multi-step target"
+      },
+      {
+        "component": "relative positional mapping",
+        "prior_problem": "narrative chunks require temporal relation",
+        "mechanism": "interval-aware position ρt(i) fed to action embedder"
+      }
+    ],
+    "transition_sequence": "setup_notation → state_problem → define_component → explain_mechanism → derive → instantiate_algorithm → connect_to_prediction → connect_to_experiment",
+    "algorithm_details": {
+      "count": 1,
+      "name": "Algorithm 1 Q-RAG",
+      "inputs": [
+        "K",
+        "T",
+        "α",
+        "λ",
+        "τ"
+      ],
+      "parallelism": "K environments in parallel",
+      "invariants": [
+        "At+1=At\\{at}",
+        "state is query plus selected chunks in document order"
+      ],
+      "updates": [
+        "θ by mean-squared λ-return Q loss",
+        "θ′←τθ+(1−τ)θ′"
+      ]
+    },
+    "complexity_summary": "Appendix D gives action embedding O(N), state embedding O(1) in document length, naive all-action search O(N), storage O(N), and answerer O(1) in original N.",
+    "prediction_connection": "relative position is expected to help narrative temporal search; QA3 is the closest matching result, but no isolating ablation is present."
+  },
+  "equation_theory_inventory": [
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (1)",
+      "module": "method",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "Eq. (1)",
+        "basis": "explicit"
+      },
+      "formula_summary": "soft Qπ Bellman recursion with deterministic transition p",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (2)",
+      "module": "method",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "Eq. (2)",
+        "basis": "explicit"
+      },
+      "formula_summary": "maximum-entropy state value Vπ with temperature α",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (3)",
+      "module": "method",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "Eq. (3)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Boltzmann action policy over available chunks, centered by q=max Q",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (4)",
+      "module": "method",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "Eq. (4)",
+        "basis": "explicit"
+      },
+      "formula_summary": "soft state value computed by log-sum-exp of target Q values",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (5)",
+      "module": "method",
+      "page": 4,
+      "role": "core_chain",
+      "evidence": {
+        "page": 4,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "Eq. (5)",
+        "basis": "explicit"
+      },
+      "formula_summary": "mean-squared Q loss against λ-return targets",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (6)",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "evidence": {
+        "page": 5,
+        "section": "§3.3 Temporal Reasoning for Long-Context Search",
+        "anchor": "Eq. (6)",
+        "basis": "explicit"
+      },
+      "formula_summary": "relative positional mapping ρt(i) from interval index and within-interval position",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (7)",
+      "module": "method",
+      "page": 6,
+      "role": "core_chain",
+      "evidence": {
+        "page": 6,
+        "section": "§3.3 Temporal Reasoning for Long-Context Search",
+        "anchor": "Eq. (7)",
+        "basis": "explicit"
+      },
+      "formula_summary": "replace absolute action position i with state-dependent relative position ρt(i)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (8)",
+      "module": "appendix",
+      "page": 14,
+      "role": "guarantee",
+      "evidence": {
+        "page": 14,
+        "section": "Appendix A",
+        "anchor": "Eq. (8)",
+        "basis": "explicit"
+      },
+      "formula_summary": "real block-rotation score F′ for state/action encoders",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (9)",
+      "module": "appendix",
+      "page": 14,
+      "role": "guarantee",
+      "evidence": {
+        "page": 14,
+        "section": "Appendix A",
+        "anchor": "Eq. (9)",
+        "basis": "explicit"
+      },
+      "formula_summary": "complex-diagonal score class F with positional function algebra Φ",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (10)",
+      "module": "appendix",
+      "page": 14,
+      "role": "guarantee",
+      "evidence": {
+        "page": 14,
+        "section": "Appendix A",
+        "anchor": "Eq. (10)",
+        "basis": "explicit"
+      },
+      "formula_summary": "real-to-complex identification ρ:R2m→Cm",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (11)",
+      "module": "appendix",
+      "page": 14,
+      "role": "guarantee",
+      "evidence": {
+        "page": 14,
+        "section": "Appendix A",
+        "anchor": "Eq. (11)",
+        "basis": "explicit"
+      },
+      "formula_summary": "equivalence of real block-rotation inner product and complex diagonal form",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (12)",
+      "module": "appendix",
+      "page": 15,
+      "role": "guarantee",
+      "evidence": {
+        "page": 15,
+        "section": "Appendix A",
+        "anchor": "Eq. (12)",
+        "basis": "explicit"
+      },
+      "formula_summary": "definition of the complex inner-product function class AΦ",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (13)",
+      "module": "appendix",
+      "page": 15,
+      "role": "guarantee",
+      "evidence": {
+        "page": 15,
+        "section": "Appendix A",
+        "anchor": "Eq. (13)",
+        "basis": "explicit"
+      },
+      "formula_summary": "uniform approximation inequality for any real continuous f",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (14)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Eq. (14)",
+        "basis": "explicit"
+      },
+      "formula_summary": "inner product representation of a separable sum b(x,y,t)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (15)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Eq. (15)",
+        "basis": "explicit"
+      },
+      "formula_summary": "real-part approximation error bounded by complex error",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (16)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Eq. (16)",
+        "basis": "explicit"
+      },
+      "formula_summary": "existence of L2 feature maps h and g for Sobolev kernel approximation",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (17)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Eq. (17)",
+        "basis": "explicit"
+      },
+      "formula_summary": "d−s/D low-rank L2 error bound for a Sobolev kernel",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (18)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Eq. (18)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Sobolev extension operator E:Hs(Ω)→Hs(RD)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (19)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Eq. (19)",
+        "basis": "explicit"
+      },
+      "formula_summary": "extension norm bound",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (20)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Eq. (20)",
+        "basis": "explicit"
+      },
+      "formula_summary": "cut-off multiplication norm bound",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (21)",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Eq. (21)",
+        "basis": "explicit"
+      },
+      "formula_summary": "periodic extension uper on the torus",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (22)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (22)",
+        "basis": "explicit"
+      },
+      "formula_summary": "periodisation Hs norm bound",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (23)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (23)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Fourier coefficient characterization of the torus Hs norm",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (24)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (24)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Fourier expansion of the periodised function",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (25)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (25)",
+        "basis": "explicit"
+      },
+      "formula_summary": "truncated Fourier sum PN",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (26)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (26)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Parseval L2 tail error after truncation",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (27)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (27)",
+        "basis": "explicit"
+      },
+      "formula_summary": "weighted Fourier tail bound",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (28)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (28)",
+        "basis": "explicit"
+      },
+      "formula_summary": "square-root Fourier tail rate N−s",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (29)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (29)",
+        "basis": "explicit"
+      },
+      "formula_summary": "combined extension/truncation estimate",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (30)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (30)",
+        "basis": "explicit"
+      },
+      "formula_summary": "restriction from torus error to Ω error",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (31)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (31)",
+        "basis": "explicit"
+      },
+      "formula_summary": "number of retained Fourier modes d=(2N+1)D",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (32)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (32)",
+        "basis": "explicit"
+      },
+      "formula_summary": "d−s/D low-rank error after mode counting",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (33)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (33)",
+        "basis": "explicit"
+      },
+      "formula_summary": "coordinate feature maps hj and gj",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (34)",
+      "module": "appendix",
+      "page": 17,
+      "role": "guarantee",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A",
+        "anchor": "Eq. (34)",
+        "basis": "explicit"
+      },
+      "formula_summary": "inner product of feature maps recovers PN",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (35)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (35)",
+        "basis": "explicit"
+      },
+      "formula_summary": "regularity assumptions for Theorem 2",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (36)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (36)",
+        "basis": "explicit"
+      },
+      "formula_summary": "definition of aggregate regularity norm M",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (37)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (37)",
+        "basis": "explicit"
+      },
+      "formula_summary": "unitary diagonal RoPE-type matrix with integer frequencies",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (38)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (38)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Theorem 2 L2 approximation rate with β=s/(D+1)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (39)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (39)",
+        "basis": "explicit"
+      },
+      "formula_summary": "temporal Fourier coefficients ak",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (40)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (40)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Fourier expansion of f in t",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (41)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (41)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Parseval identity for f",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (42)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (42)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Parseval identity for ∂t^s f",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (43)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (43)",
+        "basis": "explicit"
+      },
+      "formula_summary": "temporal Fourier truncation f(N)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (44)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (44)",
+        "basis": "explicit"
+      },
+      "formula_summary": "squared temporal truncation error bound",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (45)",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Eq. (45)",
+        "basis": "explicit"
+      },
+      "formula_summary": "temporal truncation L2 error rate",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (46)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (46)",
+        "basis": "explicit"
+      },
+      "formula_summary": "Parseval-type Hs coefficient norm relation",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (47)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (47)",
+        "basis": "explicit"
+      },
+      "formula_summary": "rank-r approximation bound for each spatial coefficient",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (48)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (48)",
+        "basis": "explicit"
+      },
+      "formula_summary": "approximate truncated function f̃(N)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (49)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (49)",
+        "basis": "explicit"
+      },
+      "formula_summary": "orthogonal Fourier-mode spatial approximation error",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (50)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (50)",
+        "basis": "explicit"
+      },
+      "formula_summary": "global spatial approximation bound",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (51)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (51)",
+        "basis": "explicit"
+      },
+      "formula_summary": "global feature dimension d′=(2N+1)r",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (52)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (52)",
+        "basis": "explicit"
+      },
+      "formula_summary": "concatenation of frequency-specific h and g maps",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (53)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (53)",
+        "basis": "explicit"
+      },
+      "formula_summary": "block-diagonal global RoPE operator Λ(t)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (54)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (54)",
+        "basis": "explicit"
+      },
+      "formula_summary": "inner product recovers f̃(N)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (55)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (55)",
+        "basis": "explicit"
+      },
+      "formula_summary": "triangle inequality for total approximation error",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (56)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (56)",
+        "basis": "explicit"
+      },
+      "formula_summary": "temporal plus spatial error bound before balancing",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (57)",
+      "module": "appendix",
+      "page": 19,
+      "role": "guarantee",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A",
+        "anchor": "Eq. (57)",
+        "basis": "explicit"
+      },
+      "formula_summary": "balanced cutoff error rate d−s/(D+1)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (58)",
+      "module": "appendix",
+      "page": 20,
+      "role": "guarantee",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix A",
+        "anchor": "Eq. (58)",
+        "basis": "explicit"
+      },
+      "formula_summary": "final real-part L2 bound of Theorem 2",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (59)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix A",
+        "anchor": "Eq. (59)",
+        "basis": "explicit"
+      },
+      "formula_summary": "uniform L∞ approximation target",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (60)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix A",
+        "anchor": "Eq. (60)",
+        "basis": "explicit"
+      },
+      "formula_summary": "L∞ low-rank bound under Sobolev embedding",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (61)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix A",
+        "anchor": "Eq. (61)",
+        "basis": "explicit"
+      },
+      "formula_summary": "ε-loss L∞ rate under minimal spatial regularity",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (62)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix A",
+        "anchor": "Eq. (62)",
+        "basis": "explicit"
+      },
+      "formula_summary": "uniform RoPE rate with βε",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (63)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix A",
+        "anchor": "Eq. (63)",
+        "basis": "explicit"
+      },
+      "formula_summary": "stronger C(T;Hs+σ) regularity assumption",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (64)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix A",
+        "anchor": "Eq. (64)",
+        "basis": "explicit"
+      },
+      "formula_summary": "uniform bound under stronger smoothness",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (65)",
+      "module": "appendix",
+      "page": 20,
+      "role": "explanation",
+      "evidence": {
+        "page": 20,
+        "section": "Appendix A",
+        "anchor": "Eq. (65)",
+        "basis": "explicit"
+      },
+      "formula_summary": "optimized exponent β=sσ/(Ds+σ)",
+      "displayed": true,
+      "numbered": true
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 1",
+      "module": "appendix",
+      "page": 15,
+      "role": "guarantee",
+      "evidence": {
+        "page": 15,
+        "section": "Appendix A",
+        "anchor": "Theorem 1",
+        "basis": "explicit"
+      },
+      "formal_role": "statement",
+      "end_page": 15,
+      "assumptions": "X,Y,T compact; Φ self-adjoint, contains constants, separates points of T",
+      "conclusion": "AΦ is dense in C(K,R) in uniform norm",
+      "proof_location": "pp. 15–16"
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 1",
+      "module": "appendix",
+      "page": 15,
+      "role": "guarantee",
+      "evidence": {
+        "page": 15,
+        "section": "Appendix A",
+        "anchor": "Proof. Consider the set B",
+        "basis": "explicit"
+      },
+      "formal_role": "proof",
+      "end_page": 16,
+      "proof_location": "pp. 15–16"
+    },
+    {
+      "kind": "lemma",
+      "label": "Lemma 1",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Lemma 1",
+        "basis": "explicit"
+      },
+      "formal_role": "statement",
+      "end_page": 16,
+      "assumptions": "X,Y bounded Lipschitz domains; a∈Hs(X×Y)",
+      "conclusion": "rank-d feature maps attain C d−s/D ||a||Hs L2 error",
+      "proof_location": "pp. 16–17"
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Lemma 1",
+      "module": "appendix",
+      "page": 16,
+      "role": "guarantee",
+      "evidence": {
+        "page": 16,
+        "section": "Appendix A",
+        "anchor": "Proof. Consider the bounded Lipschitz domain",
+        "basis": "explicit"
+      },
+      "formal_role": "proof",
+      "end_page": 17,
+      "proof_location": "pp. 16–17"
+    },
+    {
+      "kind": "theorem",
+      "label": "Theorem 2",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Theorem 2",
+        "basis": "explicit"
+      },
+      "formal_role": "statement",
+      "end_page": 18,
+      "assumptions": "s integer; spatial Hs and temporal ∂t^s regularity in L2",
+      "conclusion": "RoPE-type feature maps achieve C M d−s/(D+1) L2 error",
+      "proof_location": "pp. 18–20"
+    },
+    {
+      "kind": "proof",
+      "label": "Proof of Theorem 2",
+      "module": "appendix",
+      "page": 18,
+      "role": "guarantee",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A",
+        "anchor": "Proof. We begin by expanding f",
+        "basis": "explicit"
+      },
+      "formal_role": "proof",
+      "end_page": 20,
+      "proof_location": "pp. 18–20"
+    }
+  ],
+  "theory_summary": {
+    "formal_statements": 3,
+    "formal_proofs": 3,
+    "lexical_theorem_lemma_matches": 9,
+    "statement_labels": [
+      "Theorem 1",
+      "Lemma 1",
+      "Theorem 2"
+    ],
+    "proof_labels": [
+      "Proof of Theorem 1",
+      "Proof of Lemma 1",
+      "Proof of Theorem 2"
+    ],
+    "formal_results": [
+      {
+        "label": "Theorem 1",
+        "assumptions": "compact X,Y,T; self-adjoint Φ with constants and point separation",
+        "conclusion": "AΦ dense in C(K,R) under uniform norm",
+        "pages": "15–16",
+        "empirical_link": "justifies expressivity of diagonal positional inner-product factorization; no direct approximation-rate experiment"
+      },
+      {
+        "label": "Lemma 1",
+        "assumptions": "bounded Lipschitz X,Y and Sobolev a",
+        "conclusion": "rank-d L2 error C d−s/(dx+dy)",
+        "pages": "16–17",
+        "empirical_link": "supplies spatial low-rank step for Theorem 2; rate not fitted on benchmark data"
+      },
+      {
+        "label": "Theorem 2",
+        "assumptions": "integer s, spatial Hs and temporal derivative regularity",
+        "conclusion": "RoPE-type feature maps achieve L2 rate C M d−s/(D+1)",
+        "pages": "18–20",
+        "empirical_link": "supports scalable embedding form; experiments test task accuracy rather than theorem rate"
+      }
+    ],
+    "role": "core representational guarantee and explanation of positional factorization; not a measured causal mechanism.",
+    "L_infinity_boundary": "Eq. (59)–(65) state that uniform bounds need Sobolev embedding or stronger smoothness; clean L2 exponent does not transfer automatically."
+  },
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "method",
+      "page": 3,
+      "purpose": "展示 Q-RAG agent 在 long-context environment 中由 state/action embedder、Q values、policy 和 reward 组成的多步检索数据流。",
+      "evidence": {
+        "page": 3,
+        "section": "§3 Methods",
+        "anchor": "Figure 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "results",
+      "page": 6,
+      "purpose": "比较 BabiLong 平均 Q1–QA5 与最难 QA3 在 context length 变化下的 answer accuracy；实线与虚线区分 fine-tuned 和 zero-shot。",
+      "evidence": {
+        "page": 6,
+        "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+        "anchor": "Figure 2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 7,
+      "purpose": "报告 RULER 在 4K、16K、32K、128K、1M 的 NIAH 子任务、SH QA 和 MH QA。",
+      "evidence": {
+        "page": 7,
+        "section": "§4.3 Needle-in-a-Haystack and Long Context QA",
+        "anchor": "Table 1",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "results",
+      "page": 8,
+      "purpose": "比较 HotPotQA 与 MuSiQue OOD 的 fact retrieval 和 answer-generation 指标，并加入 Plan Q-RAG。",
+      "evidence": {
+        "page": 8,
+        "section": "§4.4 Open-Domain Question Answering",
+        "anchor": "Table 2",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "ablation",
+      "page": 9,
+      "purpose": "展示 soft-Q temperature α、λ-return 参数 λ 的 sensitivity，以及 inference runtime 随 context length 的变化。",
+      "evidence": {
+        "page": 9,
+        "section": "§5 Ablation Study",
+        "anchor": "Figure 3",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "ablation",
+      "page": 9,
+      "purpose": "在 BabiLong QA3 的多种 context length 上比较完整 Q-RAG、去 soft-Q、去 target、SFT 和无 fine-tuning。",
+      "evidence": {
+        "page": 9,
+        "section": "§5 Ablation Study",
+        "anchor": "Table 3",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "ablation",
+      "page": 10,
+      "purpose": "在 1,000 个 HotPotQA samples 上改变 retrieval steps，记录事实和三种 Qwen3 answer metrics。",
+      "evidence": {
+        "page": 10,
+        "section": "§5.1 Sensitivity to Retrieval Budget",
+        "anchor": "Table 4",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "在 HotPotQA 和 BabiLong QA2 上拆分 early/late errors、perfect stop 比例和平均 episode length。",
+      "evidence": {
+        "page": 22,
+        "section": "Appendix B",
+        "anchor": "Figure 4",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "按 HotPotQA Q-value threshold 报告 stop 类型、TPR/FPR、episode length、Fact/Ans EM/F1。",
+      "evidence": {
+        "page": 22,
+        "section": "Appendix B",
+        "anchor": "Table 5",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "appendix",
+      "page": 23,
+      "purpose": "用 HotPotQA 与 BabiLong QA2 的 ROC 曲线概括 Q-value early-stopping trade-off，并标出 oracle point。",
+      "evidence": {
+        "page": 23,
+        "section": "Appendix B",
+        "anchor": "Figure 5",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 6",
+      "module": "appendix",
+      "page": 23,
+      "purpose": "按 BabiLong QA2 threshold 报告 stop 类型、episode length、Fact EM/F1 与 Ans EM/F1。",
+      "evidence": {
+        "page": 23,
+        "section": "Appendix B",
+        "anchor": "Table 6",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "appendix",
+      "page": 24,
+      "purpose": "展示 HotPotQA 与 BabiLong QA2 的 average episodic return 随训练时间的学习曲线。",
+      "evidence": {
+        "page": 24,
+        "section": "Appendix D",
+        "anchor": "Figure 6",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 7",
+      "module": "appendix",
+      "page": 25,
+      "purpose": "补充 HotPotQA-distractors、MuSiQue in-distribution 和 OOD 的 retrieval/answer 结果。",
+      "evidence": {
+        "page": 25,
+        "section": "Appendix E",
+        "anchor": "Table 7",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 8",
+      "module": "appendix",
+      "page": 26,
+      "purpose": "汇总各数据集的 chunk size、retrieval budget T、backbone retriever 和 answering LLM。",
+      "evidence": {
+        "page": 26,
+        "section": "Appendix G",
+        "anchor": "Table 8",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 1",
+      "module": "method",
+      "page": 5,
+      "purpose": "给出并行 environments、action embedding、softmax rollout、λ-return targets、Q update 与 EMA target update。",
+      "evidence": {
+        "page": 5,
+        "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+        "anchor": "Algorithm 1 Q-RAG",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "experimental_design": [
+    {
+      "name": "task_suite",
+      "status": "observed",
+      "description": "覆盖 commonsense reasoning、temporal reasoning、NIAH、long-context QA 和 open-domain multi-hop QA。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.1 Experimental Setup",
+          "anchor": "tasks that cover commonsense reasoning, temporal reasoning",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "datasets",
+      "status": "observed",
+      "description": "使用 BabiLong、RULER、HotPotQA 与 MuSiQue；BabiLong/RULER 为长上下文，HotPotQA/MuSiQue 为短上下文。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.1 Experimental Setup",
+          "anchor": "BabiLong benchmark; RULER benchmark; HotPotQA; MuSiQue",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "context_lengths",
+      "status": "observed",
+      "description": "主结果覆盖 4K 至 1M 表格长度，BabiLong Figure 2 延伸至 10M tokens。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.1 Experimental Setup",
+          "anchor": "4k tokens to 10M tokens per sample",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4.3 Needle-in-a-Haystack and Long Context QA",
+          "anchor": "1M tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "baseline_provenance",
+      "status": "observed",
+      "description": "基线按 ablation、reproduced、reported 三类标记；许多主结果直接取自原论文。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.1 Experimental Setup",
+          "anchor": "Ablation; Reproduced; Reported",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "retrieval_and_answer_models",
+      "status": "observed",
+      "description": "open-domain 使用 multilingual-e5-large 或 gte-multilingual-base，长上下文使用 facebook/contriever；答案生成使用 QwQ-32B 或 Qwen3-4B。",
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix G",
+          "anchor": "LLM Models for generation",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix G",
+          "anchor": "Retrieval and generation configuration",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "training_budget",
+      "status": "observed",
+      "description": "AdamW、schedule、gradient accumulation、关键 γ/α/λ/τ 与单 A100-80GB、12 小时上限在 Appendix F 给出。",
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix F",
+          "anchor": "single A100-80GB GPU",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "random_seeds",
+      "status": "observed",
+      "description": "组件消融结果明确平均 3 个 random seeds；其他主结果没有统一 seed 报告。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "averaged over 3 runs with different seeds",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "sample_denominator",
+      "status": "observed",
+      "description": "retrieval-budget 分析明确使用 1,000 个 HotPotQA samples；早停表格未在正文给出样本分母。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5.1 Sensitivity to Retrieval Budget",
+          "anchor": "1000 samples from the HotPotQA dataset",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "support_fact_supervision",
+      "status": "observed",
+      "description": "所有报告实验依赖 support-fact signal，不使用 LLM-based reward。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.1 Preliminaries",
+          "anchor": "all reported experiments rely on the support-fact signal",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "predeclared_hypotheses",
+      "status": "not_present",
+      "description": "正文没有列出预先编号的研究问题或假设。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4 Experiments",
+          "anchor": "4 Experiments begins with setup rather than a hypothesis list",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "leakage_control",
+      "status": "not_present",
+      "description": "正文与附录没有说明独立的数据泄漏控制或统一 split 审计。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.1 Experimental Setup",
+          "anchor": "experimental settings often differ for the same benchmarks",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "failure_criterion",
+      "status": "not_present",
+      "description": "没有预先定义任务失败阈值；失败信息以 Beam Retriever QA3 不能解决任务的结果句出现。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+          "anchor": "this method failed to solve the task",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "statistical_testing",
+      "status": "not_present",
+      "description": "没有 hypothesis test、multiple-comparison procedure、bootstrap、Bayesian analysis 或 regression。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "All values are averaged over 3 runs with different seeds",
+          "basis": "interpretation"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "Q-RAG 在 BabiLong 的 1M–10M-token 曲线达到最高平均性能，并在 QA3 上几乎不随长度下降。",
+      "value": "Figure 2a/2b 为折线图；正文报告 highest average、virtually no degradation，未给出逐点表格数字。",
+      "comparison": "Titans、Atlas、ARMT、RMT、proprietary LLMs、LLM agents 及其他 long-context approaches；QA3 的 Beam Retriever 额外 fine-tuning 失败。",
+      "statistical_method": "按任务/长度的 answer accuracy 曲线；无误差带，且多数 baseline 为 reported numbers。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+          "anchor": "Figure 2",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+          "anchor": "virtually no degradation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Q-RAG 在 RULER 的 NIAH retrieval 接近满分，并将 4K 训练的 embedder 泛化到 1M。",
+      "value": "NIAH Avg 为 4K/16K/32K/128K 的 100，1M 为 99.7；MH QA 为 67/64/65/65/61。",
+      "comparison": "Beam Retriever 的 MH QA 为 39（4K）和 35（16K）；LongRoPE2 为 60/58/55/50（4K–128K）。",
+      "statistical_method": "Table 1 为点估计，缺失项记为 n/a；未报告 seed、区间或显著性。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.3 Needle-in-a-Haystack and Long Context QA",
+          "anchor": "Table 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.3 Needle-in-a-Haystack and Long Context QA",
+          "anchor": "generalizes to context lengths up to 1M tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Q-RAG 在 HotPotQA 与 MuSiQue OOD 上保持 competitive answer retrieval，且 OOD 表现高于所列 alternatives。",
+      "value": "HotPotQA Fact F1/EM=0.93/0.89、Ans F1/EM=0.76/0.59；MuSiQue OOD Fact F1/EM=0.71/0.55、Ans F1/EM=0.52/0.37。",
+      "comparison": "Beam Retriever 的 HotPotQA fact=0.97/0.94；Search-R1 的 OOD Ans F1/EM=0.51/0.39；Beam Retriever 使用 gold hop count。",
+      "statistical_method": "Table 2 的单次聚合 Fact/Ans EM/F1；报告来源混合，未给出不确定性。",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§4.4 Open-Domain Question Answering",
+          "anchor": "Table 2",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.4 Open-Domain Question Answering",
+          "anchor": "gold hop count",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Fact EM 对“覆盖全部 gold facts 但含额外噪声”的预测给满分，Fact F1 才记录噪声。",
+      "value": "Fact-EM=1 iff S_gt⊆S_pred；具体定义在 Appendix G。",
+      "comparison": "Table 4 中 retrieval steps 增加时 Fact EM 与 Fact F1 可朝相反方向变化。",
+      "statistical_method": "集合包含关系与 F1；无抽样不确定性。",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "Appendix G",
+          "anchor": "Fact-EM",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§5.1 Sensitivity to Retrieval Budget",
+          "anchor": "F1 accounts for the inclusion of noise",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Q-value early stopping 在适中 threshold 可缩短 episode，同时保留较高 retrieval/answer quality。",
+      "value": "HotPotQA threshold 0.2 的 Fact F1=0.917、perfect stop=0.892、episode length=2.13、TPR/FPR=0.937/0.032、AUC=0.961；BabiLong QA2 的 AUC=0.970。",
+      "comparison": "threshold 接近 1.0 时 early-stop 比例升高且性能下降；oracle point 作为 trade-off 上界。",
+      "statistical_method": "按 threshold 的比例、平均 episode length、Fact/Ans EM/F1、TPR/FPR 和 ROC AUC；无区间。",
+      "module": "appendix",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix B",
+          "anchor": "best Fact F1 is achieved at Qthreshold = 0.2",
+          "basis": "explicit"
+        },
+        {
+          "page": 23,
+          "section": "Appendix B",
+          "anchor": "area under the curve (AUC) is 0.96",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "RL_fine_tuning",
+      "status": "observed",
+      "description": "在 BabiLong QA3 上，完整 Q-RAG 的 F1 为 96.5–97.8；无 FT 为 15.34–16.38，SFT 为 18.30–20.87。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "Table 3",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "effect of RL",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "target_network",
+      "status": "observed",
+      "description": "移除 target network 后 F1 约 75.9–79.2，且表中 ±26.0–28.2 显示高波动；作者将其用于稳定性识别。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "Q-RAG w.o. target",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "79.2 ± 26.0",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "soft_Q",
+      "status": "observed",
+      "description": "移除 soft-Q 后 F1 约 93.3–95.9，低于完整模型；Figure 3 还改变 α。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "Q-RAG w.o. Soft-Q",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "policy entropy coefficient",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "temperature_and_lambda",
+      "status": "observed",
+      "description": "Figure 3 给出 α 与 λ 的 sensitivity 曲线，但没有逐点表格或误差带。",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "sensitivity of Q-RAG to the λ-return parameter",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "retrieval_budget",
+      "status": "observed",
+      "description": "Table 4 在 2–5 retrieval steps 上测 Fact EM/F1 与三种 Qwen3 answer metrics；2→3 步提高三种 LLM 的 Ans F1。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§5.1 Sensitivity to Retrieval Budget",
+          "anchor": "increasing the number of retrieval steps from 2 to 3",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "relative_temporal_position",
+      "status": "not_present",
+      "description": "相对位置机制没有单独删除或替代对照；QA3 结果与机制语义一致，但无法隔离其因果贡献。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§3.3 Temporal Reasoning for Long-Context Search",
+          "anchor": "relative positional encoding of chunks",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "following baselines were compared against Q-RAG",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "negative_result",
+      "status": "observed",
+      "description": "Beam Retriever 专门 fine-tuned 到 BabiLong QA3 后仍 failed to solve the task。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+          "anchor": "this method failed to solve the task",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "early_stopping",
+      "status": "observed",
+      "description": "Appendix B 分别观察 early、late、perfect stop，并量化 episode length 和 ROC trade-off。",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix B",
+          "anchor": "three outcomes",
+          "basis": "explicit"
+        },
+        {
+          "page": 23,
+          "section": "Appendix B",
+          "anchor": "ROC curves for the early-stopping rule",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "multi-step retrieval 需要带历史 evidence 的搜索式 state。",
+      "origin": "§1 Introduction，p. 1",
+      "status": "closed",
+      "method_response": "MDP、ordered state、action removal 与 STOP/预算终止。",
+      "evidence_response": "Figure 1 与 BabiLong QA3 体现多事实轨迹。",
+      "conclusion_response": "p. 10 回收 latent-space multi-step retrieval。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§3.1 Preliminaries",
+          "anchor": "states are ordered lists",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+          "anchor": "at least three different facts",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "fine-tuning LLM 的成本和模型尺寸限制可由 embedder-only training 缓解。",
+      "origin": "Abstract、§1，pp. 1–2",
+      "status": "partially_closed",
+      "method_response": "只训练 state/action embedders，LLM Answerer 冻结。",
+      "evidence_response": "Appendix F 给 single A100-80GB 与 12-hour bound，但缺少同条件基线 wall-clock。",
+      "conclusion_response": "结论回收 compute efficiency 和 proprietary LLM pairing。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+          "anchor": "two embedders for states and actions",
+          "basis": "explicit"
+        },
+        {
+          "page": 25,
+          "section": "Appendix F",
+          "anchor": "did not exceed 12 hours",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "temporal context 需要相对位置。",
+      "origin": "§1 contribution 3，p. 2",
+      "status": "partially_closed",
+      "method_response": "ρt(i) 按 selected facts 划分 intervals，并替换 absolute position。",
+      "evidence_response": "QA3 图有 temporal reasoning 任务结果，但没有 relative-position ablation。",
+      "conclusion_response": "结论提到 strengthening temporal reasoning，未回收独立因果效果。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§3.3 Temporal Reasoning for Long-Context Search",
+          "anchor": "relative positional mapping",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "following baselines were compared against Q-RAG",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "claim": "Q-RAG 可在 ultra-long context 上保持性能。",
+      "origin": "Abstract、§1，pp. 1–2",
+      "status": "partially_closed",
+      "method_response": "全 context chunk embedding，state/action inner-product scoring，answerer 只接收选中 chunks。",
+      "evidence_response": "Figure 2 覆盖至 10M，Table 1 覆盖至 1M；主比较含 reported 与不同训练设置。",
+      "conclusion_response": "结论回收 minimal degradation，但没有统一重跑所有 baseline。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+          "anchor": "1 to 10 million tokens",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§4.3 Needle-in-a-Haystack and Long Context QA",
+          "anchor": "Table 1",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "soft-Q 与 target network 是 Q-RAG 的有效训练改动。",
+      "origin": "§3.2，p. 4",
+      "status": "closed",
+      "method_response": "soft V、target critic、λ-return 写入目标和 Algorithm 1。",
+      "evidence_response": "Table 3 在五个长度和 3 seeds 上比较去除版本。",
+      "conclusion_response": "§6 概括 strong retrieval，但没有重复列数字。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+          "anchor": "soft value functions and target networks",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "Table 3",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "retrieval correctness 是 answer quality 的主要驱动。",
+      "origin": "§5.1，p. 10",
+      "status": "partially_closed",
+      "method_response": "Fact EM/F1 与 selected chunks 作为 retrieval-level signal。",
+      "evidence_response": "Table 4 为 1,000 HotPotQA samples、三种 LLM；只覆盖一个数据集与有限 budget。",
+      "conclusion_response": "正文称 noise 在合理 retrieval count 内不损害答案，但范围有限。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§5.1 Sensitivity to Retrieval Budget",
+          "anchor": "final answer accuracy is primarily dependent on the retrieval of correct chunks",
+          "basis": "explicit"
+        },
+        {
+          "page": 10,
+          "section": "§5.1 Sensitivity to Retrieval Budget",
+          "anchor": "1000 samples",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Q-RAG 可 transfer 到 open-domain multi-hop QA。",
+      "origin": "§1、§4.4，pp. 2, 8",
+      "status": "closed",
+      "method_response": "HotPotQA fine-tuning、MuSiQue OOD evaluation、Plan Q-RAG planning variant。",
+      "evidence_response": "Table 2 和 Appendix E Table 7 同时给 fact 与 answer metrics。",
+      "conclusion_response": "§6 回收 MuSiQue/HotPotQA competitive results。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§4.4 Open-Domain Question Answering",
+          "anchor": "MuSiQue for out-of-distribution testing",
+          "basis": "explicit"
+        },
+        {
+          "page": 25,
+          "section": "Appendix E",
+          "anchor": "Table 7",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Q-value threshold 可实现动态 stop。",
+      "origin": "§5.1，p. 10",
+      "status": "closed",
+      "method_response": "Appendix B 定义 tstop、tearliest 及 early/late/perfect。",
+      "evidence_response": "Tables 5–6 与 Figures 4–5 显示 threshold、episode length、ROC trade-off。",
+      "conclusion_response": "正文指向 Appendix B，没有把动态 stop 当作主结果。",
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix B",
+          "anchor": "tstop",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Appendix B",
+          "anchor": "best Fact F1 is achieved at Qthreshold = 0.2",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "inner-product positional class 具 universal approximation 与 rate guarantee。",
+      "origin": "§3.2 对 Appendix A 的引用，p. 4",
+      "status": "closed",
+      "method_response": "Theorem 1、Lemma 1、Theorem 2 及其 proofs。",
+      "evidence_response": "Eq. (12)–(13)、(17)、(38)/(58) 给 density 和 L2 rates；L∞ 限制在 Eq. (59)–(65) 明示。",
+      "conclusion_response": "结论不逐项回收理论 rate，但没有否定其形式保证。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "Theorem 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix A",
+          "anchor": "Theorem 2",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix A",
+          "anchor": "Theorem 2 only requires",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "Appendix A Inner Product Approximation for Q-Function",
+      "category": "proof",
+      "start_page": 14,
+      "end_page": 20,
+      "main_text_calls": [
+        "§3.2 says the factorization is theoretically grounded and has explicit rates in Appendix A."
+      ],
+      "evidence": [
+        {
+          "page": 14,
+          "section": "Appendix A",
+          "anchor": "Inner Product Approximation for Q-Function",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix B Early Stopping Experiments",
+      "category": "additional_result",
+      "start_page": 21,
+      "end_page": 23,
+      "main_text_calls": [
+        "§5.1 says a detailed Q-value-based early-stopping analysis is in Appendix B."
+      ],
+      "evidence": [
+        {
+          "page": 21,
+          "section": "Appendix B",
+          "anchor": "Early Stopping Experiments",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix C Planning for Multi-Step Retrieval",
+      "category": "extended_method",
+      "start_page": 23,
+      "end_page": 23,
+      "main_text_calls": [
+        "§4.4 points to Appendix C for Plan Q-RAG."
+      ],
+      "evidence": [
+        {
+          "page": 23,
+          "section": "Appendix C",
+          "anchor": "planning at the multi-step retrieval stage",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix D Method Complexity and Efficiency",
+      "category": "implementation_detail",
+      "start_page": 23,
+      "end_page": 24,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 23,
+          "section": "Appendix D",
+          "anchor": "Method Complexity and Efficiency",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix E Extra QA Results",
+      "category": "additional_result",
+      "start_page": 25,
+      "end_page": 25,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix E",
+          "anchor": "Extra QA Results",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix F Training Details",
+      "category": "hyperparameter",
+      "start_page": 25,
+      "end_page": 25,
+      "main_text_calls": [
+        "Reproducibility Statement says hyperparameters and training schedules are in Appendix F."
+      ],
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix F",
+          "anchor": "Training Details",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "Appendix G Evaluation Details",
+      "category": "reproducibility",
+      "start_page": 25,
+      "end_page": 26,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 25,
+          "section": "Appendix G",
+          "anchor": "Evaluation Details",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix G",
+          "anchor": "Fact-level metrics",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_analysis": {
+    "physical_pages": 13,
+    "main_pages": 10,
+    "page_ratio": 1.3,
+    "estimated_words": 5482,
+    "word_ratio_to_narrative_main": 1.14054,
+    "duties": [
+      "proof",
+      "early stopping",
+      "planning",
+      "complexity",
+      "extra QA",
+      "hyperparameter",
+      "evaluation configuration",
+      "Fact EM definition"
+    ],
+    "self_containment": "正文方法方向可独立理解；理论条件、运行配置、动态停止和 Fact EM 语义必须回读 appendix 才能核查。",
+    "main_claims_depending_on_appendix": [
+      "inner-product expressivity/rates",
+      "compute efficiency",
+      "early stopping value",
+      "OOD extra results",
+      "Fact EM interpretation"
+    ],
+    "left_in_main_body": [
+      "MDP/reward",
+      "soft Q and target choices",
+      "relative positional map",
+      "main benchmark tables",
+      "component ablation",
+      "retrieval-budget main table"
+    ]
+  },
+  "limitations": [
+    {
+      "name": "standalone_limitations_section",
+      "status": "not_present",
+      "description": "论文没有独立的 Limitations 标题；限制分散在方法、结果、结论和 Appendix G。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§6 Conclusion",
+          "anchor": "6 Conclusion is followed by Reproducibility Statement",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "reward_scope",
+      "status": "observed",
+      "description": "所有报告实验使用 support-fact terminal reward；LLM-based answer reward 留作 future work。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.1 Preliminaries",
+          "anchor": "we do not pursue LLM-based rewards",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "baseline_heterogeneity",
+      "status": "observed",
+      "description": "基线分为 reported、reproduced、ablation，训练资源和 benchmark setting 并不统一。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.1 Experimental Setup",
+          "anchor": "Computing a uniform set of baselines across all datasets is difficult",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "missing_subtask_breakdowns",
+      "status": "observed",
+      "description": "Titans 和 Atlas 没有 Figure 2b 所需的 QA3 breakdown，因此未纳入该图。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+          "anchor": "did not report detailed breakdowns by subtask",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "missing_uncertainty",
+      "status": "observed",
+      "description": "除 Table 3 的未定义 ± 外，主结果没有误差表达、样本分母或统计检验。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.3 Needle-in-a-Haystack and Long Context QA",
+          "anchor": "Table 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "averaged over 3 runs with different seeds",
+          "basis": "interpretation"
+        }
+      ]
+    },
+    {
+      "name": "temporal_mechanism_identification",
+      "status": "observed",
+      "description": "relative positional encoding 有 QA3 语义动机，但没有独立 ablation 或替代 positional encoding 对照。",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§3.3 Temporal Reasoning for Long-Context Search",
+          "anchor": "relative positional encoding of chunks",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§5 Ablation Study",
+          "anchor": "following baselines were compared against Q-RAG",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "metric_scope",
+      "status": "observed",
+      "description": "Fact EM 使用集合包含关系，额外 irrelevant chunks 不扣满分；Fact F1 才反映 noise。",
+      "evidence": [
+        {
+          "page": 26,
+          "section": "Appendix G",
+          "anchor": "does not require the predicted and ground-truth sets to be exactly equal",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "theory_scope",
+      "status": "observed",
+      "description": "Theorem 2 直接给 L2 error rate；uniform L∞ 需要额外 regularity 或较慢 rate。",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix A",
+          "anchor": "Uniform-in-(x,y,t) bounds typically require additional regularity",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "source_stratification",
+      "status": "observed",
+      "description": "表格用 ×、✓、◦ 区分 ablation、reproduced、reported，直接提示比较来源不同。",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§4.1 Experimental Setup",
+          "anchor": "we report three types of baselines",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "missing_values_explicit",
+      "status": "observed",
+      "description": "原论文未报告的指标用 n/a、短横线或空白占位，没有填充推测数字。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.3 Needle-in-a-Haystack and Long Context QA",
+          "anchor": "n/a",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§4.4 Open-Domain Question Answering",
+          "anchor": "Missing entries indicate metrics not reported",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "negative_result_in_main_text",
+      "status": "observed",
+      "description": "Beam Retriever 在 QA3 失败被放入主结果叙述，同时给出其 open-domain 强表现作为背景。",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§4.2 Commonsense Reasoning on Ultra-Long Contexts",
+          "anchor": "this method failed to solve the task",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "appendix_migration",
+      "status": "observed",
+      "description": "early-stopping trade-off、extra QA、complexity、hyperparameters 与 metric definition 放在 appendix，正文只做指向。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§5.1 Sensitivity to Retrieval Budget",
+          "anchor": "detailed analysis ... is presented in Appendix B",
+          "basis": "explicit"
+        },
+        {
+          "page": 25,
+          "section": "Appendix F",
+          "anchor": "Training Details",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "oracle_comparison",
+      "status": "observed",
+      "description": "Beam Retriever 的 open-domain 评估使用 oracle gold hop count；Appendix B 另以 oracle stopping point 标出 trade-off 上界。",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§4.4 Open-Domain Question Answering",
+          "anchor": "oracle number of supporting facts",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Appendix B",
+          "anchor": "oracle stopping policy",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "lexical_rhetorical_analysis": {
+    "token_scope": "正文 p. 1–10，排除 references、公式碎片、表格数值和固定页眉；原始 token 计数由汇总脚本统一完成。",
+    "high_frequency_terms": [
+      {
+        "term": "Q-RAG",
+        "approx_count": 47,
+        "context": "method name and result subject"
+      },
+      {
+        "term": "retrieval",
+        "approx_count": 43,
+        "context": "problem, method, result and metric"
+      },
+      {
+        "term": "multi-step",
+        "approx_count": 29,
+        "context": "gap and core method"
+      },
+      {
+        "term": "methods",
+        "approx_count": 25,
+        "context": "prior-work and baseline comparison"
+      },
+      {
+        "term": "performance",
+        "approx_count": 22,
+        "context": "result claims"
+      },
+      {
+        "term": "context",
+        "approx_count": 22,
+        "context": "long-context scope and scaling"
+      },
+      {
+        "term": "results",
+        "approx_count": 22,
+        "context": "result preview and tables"
+      },
+      {
+        "term": "embedder",
+        "approx_count": 17,
+        "context": "method ownership boundary"
+      },
+      {
+        "term": "long-context",
+        "approx_count": 16,
+        "context": "task family and scaling"
+      },
+      {
+        "term": "reasoning",
+        "approx_count": 16,
+        "context": "multi-step and temporal task"
+      },
+      {
+        "term": "baselines",
+        "approx_count": 16,
+        "context": "provenance and comparison"
+      },
+      {
+        "term": "training",
+        "approx_count": 15,
+        "context": "resource efficiency"
+      },
+      {
+        "term": "state",
+        "approx_count": 15,
+        "context": "MDP and state embedder"
+      },
+      {
+        "term": "chunks",
+        "approx_count": 15,
+        "context": "retrieval unit"
+      }
+    ],
+    "bigrams": [
+      "multi-step retrieval",
+      "long-context tasks",
+      "retrieval agent",
+      "state embedder",
+      "action embedder",
+      "open-domain QA",
+      "supporting facts",
+      "context length",
+      "answer accuracy",
+      "target networks"
+    ],
+    "trigrams": [
+      "multi-step retrieval methods",
+      "long-context multi-step retrieval",
+      "multi-hop question answering",
+      "value-based RL methods",
+      "Q-value threshold",
+      "ground-truth supporting facts"
+    ],
+    "claim_verbs": [
+      {
+        "pattern": "propose",
+        "approx_count": 2,
+        "modules": [
+          "abstract",
+          "introduction"
+        ]
+      },
+      {
+        "pattern": "achieve/attain",
+        "approx_count": 7,
+        "modules": [
+          "introduction",
+          "results",
+          "conclusion"
+        ]
+      },
+      {
+        "pattern": "show/demonstrate",
+        "approx_count": 7,
+        "modules": [
+          "results",
+          "ablation",
+          "appendix"
+        ]
+      },
+      {
+        "pattern": "compare/evaluate/report",
+        "approx_count": 12,
+        "modules": [
+          "experimental_design",
+          "results",
+          "ablation"
+        ]
+      },
+      {
+        "pattern": "enable/allow/generalize",
+        "approx_count": 10,
+        "modules": [
+          "method",
+          "results",
+          "conclusion"
+        ]
+      }
+    ],
+    "qualifiers": [
+      "typically",
+      "often",
+      "some",
+      "primarily",
+      "virtually",
+      "around",
+      "competitive",
+      "significantly",
+      "near-perfect"
+    ],
+    "contrast_words": [
+      "however",
+      "still",
+      "although",
+      "in contrast",
+      "while",
+      "whereas"
+    ],
+    "causal_words": [
+      "therefore",
+      "consequently",
+      "because",
+      "due to",
+      "enabling",
+      "motivated by"
+    ],
+    "strong_claim_examples": [
+      "state-of-the-art",
+      "highest average",
+      "outperforms",
+      "minimal degradation"
+    ],
+    "weak_claim_examples": [
+      "competitive",
+      "similar performance",
+      "promising directions",
+      "can be reduced"
+    ],
+    "interpretation": "高频项主要是领域名词和方法名，模板语言集中在 baseline provenance、figure/table reporting 和 future work；主张动词通常由图表、表格或附录配置紧跟支撑。"
+  },
+  "measurement_disagreements": [
+    {
+      "name": "page_boundary_auto_measurement",
+      "status": "observed",
+      "description": "自动正则未识别带空格的 R EFERENCES 标题，provisional main_end_page 为 26；按版面人工修正为正文 p. 1–10、references p. 11–13、appendix p. 14–26。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§6 Conclusion",
+          "anchor": "ACKNOWLEDGMENTS",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 11,
+          "section": "References",
+          "anchor": "REFERENCES",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 14,
+          "section": "Appendix A",
+          "anchor": "A Inner Product Approximation for Q-Function",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "word_boundary_measurement",
+      "status": "observed",
+      "description": "自动 total_words=11566 把 references 纳入 main provisional；按物理边界人工估计主区约 4953、references 约 1131、appendix 约 5482。",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§6 Conclusion",
+          "anchor": "page 10 ends the main paper",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 11,
+          "section": "References",
+          "anchor": "REFERENCES",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "visual_counts",
+      "status": "observed",
+      "description": "自动计数的 6 figures、8 tables、1 algorithm 与 PDF 逐项核对一致。",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§3 Methods",
+          "anchor": "Figure 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 26,
+          "section": "Appendix G",
+          "anchor": "Table 8",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "equation_counts",
+      "status": "observed",
+      "description": "自动计数与逐页核对均得到 65 个 numbered displayed equations，主文 7 个，Appendix A 58 个。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.2 Value-Based RL for Embedder Fine-Tuning",
+          "anchor": "Eq. (1)",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix A",
+          "anchor": "Eq. (65)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "theory_count",
+      "status": "observed",
+      "description": "自动 theorem/lemma 正则得到 9 次 lexical matches；逐项去重后为 Theorem 1、Lemma 1、Theorem 2 三个 statements 加三个 proof blocks，无 proposition/corollary。",
+      "evidence": [
+        {
+          "page": 15,
+          "section": "Appendix A",
+          "anchor": "Theorem 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 16,
+          "section": "Appendix A",
+          "anchor": "Lemma 1",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix A",
+          "anchor": "Theorem 2",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "limitation_count",
+      "status": "observed",
+      "description": "自动 main limitation mention 只反映正文显式词形；人工阅读还识别了 reward、baseline、metric、uncertainty、temporal ablation 与 L∞ 边界。",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§3.1 Preliminaries",
+          "anchor": "future work",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix A",
+          "anchor": "Uniform-in-(x,y,t) bounds typically require additional regularity",
+          "basis": "interpretation"
+        }
+      ]
+    }
+  ],
+  "final_judgment": {
+    "single_storyline": "Q-RAG 将 multi-step retrieval 的策略学习从 LLM query generation 移到 value-based state/action embedder；RL 更新 embedder，dot-product Q 评分候选，relative position 为 narrative temporal search 提供状态相关坐标，冻结 LLM 只接收选中 chunks。",
+    "main_body_keeps": "MDP 与 support-fact reward、soft Q/target/λ-return、relative positional mapping、BabiLong/RULER/HotPotQA/MuSiQue 主结果、组件消融、retrieval budget 与 baseline 来源标签。",
+    "appendix_moves": "表达能力和收敛 proof、L∞ 边界、early stopping ROC、Plan Q-RAG、复杂度、训练曲线、extra QA、hyperparameters、模型/分块配置及 Fact EM 定义被移入 Appendix A–G。",
+    "best_pattern": "Figure 1 先固定 state/action/environment 数据流，Eq. (1)–(7) 随后引入训练对象；Table 3 在同一长度轴上并列删除 RL、target 和 soft-Q；Appendix B 将 stop 错误拆成三类并与 ROC 对齐。",
+    "largest_gap": "relative temporal mechanism 没有独立 ablation；10M claim 主要依赖折线图与异源 baseline；reported、reproduced、oracle hop-count 设置不完全同质；主文缺少完整 seed、分母、uncertainty 与独立 limitations 节。",
+    "transfer_rule": "长上下文系统应把检索状态如何形成、context length 如何变化、结果以什么分母比较、失败和计算代价放在同一条证据链，并为每个新增机制配置隔离对照或可证伪预测。",
+    "transfer_boundary": "该规则适合有检索轨迹和 context-scaling 轴的系统论文；纯生成或定性案例工作需要改用答案生成误差、轨迹可观测性和任务级分母。"
+  },
+  "evidence_coverage": {
+    "substantive_claims": 42,
+    "claims_with_page_evidence": 42,
+    "status": "complete"
+  }
+}
