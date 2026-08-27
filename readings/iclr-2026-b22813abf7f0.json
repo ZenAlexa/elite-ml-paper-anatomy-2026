@@ -1,0 +1,2586 @@
+{
+  "schema_version": "deep-read.v1",
+  "paper_id": "iclr-2026-b22813abf7f0",
+  "bibliography": {
+    "title": "MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent",
+    "conference": "ICLR",
+    "year": 2026,
+    "authors": [
+      "Hongli Yu",
+      "Tinghong Chen",
+      "Jiangtao Feng",
+      "Jiangjie Chen",
+      "Weinan Dai",
+      "Qiying Yu",
+      "Ya-Qin Zhang",
+      "Wei-Ying Ma",
+      "Jingjing Liu",
+      "Mingxuan Wang",
+      "Hao Zhou"
+    ],
+    "selection_flags": [
+      "oral"
+    ],
+    "official_event_id": "10007826",
+    "analysis_stratum": "oral"
+  },
+  "source_files": {
+    "pdf": "corpus/pdfs/iclr-2026-b22813abf7f0.pdf",
+    "pdf_verified": true,
+    "supplementary": null,
+    "openreview_url": "https://openreview.net/forum?id=k5nIOvYGCL",
+    "source_kind": "official_pdf",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/4264ee4376776907c0b87ed70b959585-Paper-Conference.pdf"
+  },
+  "page_map": {
+    "pdf_pages": 29,
+    "main_pages": 11,
+    "reference_pages": 5,
+    "appendix_pages": 13,
+    "sections": [
+      {
+        "title": "Abstract",
+        "module": "abstract",
+        "start_page": 1,
+        "end_page": 1,
+        "estimated_words": 120
+      },
+      {
+        "title": "1 Introduction",
+        "module": "introduction",
+        "start_page": 1,
+        "end_page": 3,
+        "estimated_words": 795
+      },
+      {
+        "title": "2 Methodology",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 6,
+        "estimated_words": 1315
+      },
+      {
+        "title": "2.1 The MemAgent Workflow: RL-Shaped Memory for Unbounded Contexts",
+        "module": "method",
+        "start_page": 3,
+        "end_page": 4,
+        "estimated_words": 420
+      },
+      {
+        "title": "2.2 Training MemAgent with Multi-Conv RL",
+        "module": "method",
+        "start_page": 4,
+        "end_page": 5,
+        "estimated_words": 340
+      },
+      {
+        "title": "2.3 Rethinking MemAgent from Autoregressive Modeling Perspectives",
+        "module": "theory",
+        "start_page": 5,
+        "end_page": 6,
+        "estimated_words": 390
+      },
+      {
+        "title": "3 Experiments",
+        "module": "experimental_design",
+        "start_page": 6,
+        "end_page": 10,
+        "estimated_words": 2070
+      },
+      {
+        "title": "3.1 Experimental Setup",
+        "module": "experimental_design",
+        "start_page": 6,
+        "end_page": 7,
+        "estimated_words": 725
+      },
+      {
+        "title": "3.2 Main Results",
+        "module": "results",
+        "start_page": 7,
+        "end_page": 8,
+        "estimated_words": 735
+      },
+      {
+        "title": "3.3 Ablation Study",
+        "module": "ablation",
+        "start_page": 8,
+        "end_page": 10,
+        "estimated_words": 610
+      },
+      {
+        "title": "4 Related Work",
+        "module": "related_work",
+        "start_page": 9,
+        "end_page": 10,
+        "estimated_words": 520
+      },
+      {
+        "title": "5 Conclusion",
+        "module": "conclusion",
+        "start_page": 10,
+        "end_page": 10,
+        "estimated_words": 145
+      },
+      {
+        "title": "Reproducibility Statement",
+        "module": "other",
+        "start_page": 11,
+        "end_page": 11,
+        "estimated_words": 50
+      },
+      {
+        "title": "References",
+        "module": "other",
+        "start_page": 12,
+        "end_page": 16,
+        "estimated_words": 2395
+      },
+      {
+        "title": "A Implementation Details",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 19,
+        "estimated_words": 1040
+      },
+      {
+        "title": "A.1 Prompt Template",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 17,
+        "estimated_words": 175
+      },
+      {
+        "title": "A.2 Algorithm",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 17,
+        "estimated_words": 250
+      },
+      {
+        "title": "A.3 Training",
+        "module": "appendix",
+        "start_page": 17,
+        "end_page": 18,
+        "estimated_words": 390
+      },
+      {
+        "title": "A.4 Evaluation",
+        "module": "appendix",
+        "start_page": 18,
+        "end_page": 19,
+        "estimated_words": 225
+      },
+      {
+        "title": "B Computation Complexity",
+        "module": "appendix",
+        "start_page": 19,
+        "end_page": 20,
+        "estimated_words": 250
+      },
+      {
+        "title": "C Case Study",
+        "module": "appendix",
+        "start_page": 20,
+        "end_page": 21,
+        "estimated_words": 700
+      },
+      {
+        "title": "D Supplementary Experiments",
+        "module": "appendix",
+        "start_page": 22,
+        "end_page": 23,
+        "estimated_words": 370
+      },
+      {
+        "title": "D.1 Ablation Study on Context Size and Memory Size",
+        "module": "appendix",
+        "start_page": 22,
+        "end_page": 22,
+        "estimated_words": 190
+      },
+      {
+        "title": "D.2 Agent Baselines",
+        "module": "appendix",
+        "start_page": 22,
+        "end_page": 23,
+        "estimated_words": 180
+      },
+      {
+        "title": "E LLM Usage",
+        "module": "appendix",
+        "start_page": 23,
+        "end_page": 23,
+        "estimated_words": 70
+      },
+      {
+        "title": "F Failure Pattern Study",
+        "module": "appendix",
+        "start_page": 24,
+        "end_page": 29,
+        "estimated_words": 2600
+      },
+      {
+        "title": "F.1 Information Overwritten",
+        "module": "appendix",
+        "start_page": 24,
+        "end_page": 26,
+        "estimated_words": 880
+      },
+      {
+        "title": "F.2 Missing Critical Information",
+        "module": "appendix",
+        "start_page": 27,
+        "end_page": 27,
+        "estimated_words": 540
+      },
+      {
+        "title": "F.3 Primacy Bias",
+        "module": "appendix",
+        "start_page": 28,
+        "end_page": 29,
+        "estimated_words": 1180
+      }
+    ],
+    "boundaries": {
+      "main_end_page": 11,
+      "references_start_page": 12,
+      "references_end_page": 16,
+      "appendix_start_page": 17,
+      "appendix_end_page": 29,
+      "physical_page_basis": "PDF physical pages from 1; page 11 is the reproducibility statement before References."
+    },
+    "layout_analysis": {
+      "column_layout": "ICLR two-column template; title/abstract and wide floats use full-width space.",
+      "float_behavior": "Tables 1-3 float to pages 5-6 before the experimental section; Table 4 is at the top of page 10; Figure 6-7 are paired single-column plots.",
+      "readability": "Method diagrams and heatmaps are legible, while wide tables and the boxed memory diffs in pages 24-29 are dense.",
+      "estimated_section_area_share": [
+        {
+          "module": "abstract",
+          "share": 0.0242,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "introduction",
+          "share": 0.1601,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "related_work",
+          "share": 0.1047,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "method",
+          "share": 0.1863,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "theory",
+          "share": 0.0786,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "experimental_design",
+          "share": 0.146,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "results",
+          "share": 0.148,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "ablation",
+          "share": 0.1229,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "conclusion",
+          "share": 0.0292,
+          "basis": "layout_observation"
+        },
+        {
+          "module": "limitations",
+          "share": 0.0,
+          "basis": "layout_observation"
+        }
+      ],
+      "word_count_note": "Estimated prose words exclude references, table numbers, formula fragments and repeated headers; semantic assignment resolves float placement."
+    }
+  },
+  "module_metrics": [
+    {
+      "module": "abstract",
+      "status": "observed",
+      "estimated_words": 120,
+      "main_word_share": 0.0242,
+      "figures": 1,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "introduction",
+      "status": "observed",
+      "estimated_words": 795,
+      "main_word_share": 0.1601,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "related_work",
+      "status": "observed",
+      "estimated_words": 520,
+      "main_word_share": 0.1047,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "method",
+      "status": "observed",
+      "estimated_words": 925,
+      "main_word_share": 0.1863,
+      "figures": 3,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 3
+    },
+    {
+      "module": "theory",
+      "status": "observed",
+      "estimated_words": 390,
+      "main_word_share": 0.0786,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 1
+    },
+    {
+      "module": "experimental_design",
+      "status": "observed",
+      "estimated_words": 725,
+      "main_word_share": 0.146,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "results",
+      "status": "observed",
+      "estimated_words": 735,
+      "main_word_share": 0.148,
+      "figures": 1,
+      "tables": 3,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "ablation",
+      "status": "observed",
+      "estimated_words": 610,
+      "main_word_share": 0.1229,
+      "figures": 4,
+      "tables": 1,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "conclusion",
+      "status": "observed",
+      "estimated_words": 145,
+      "main_word_share": 0.0292,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "limitations",
+      "status": "not_present",
+      "estimated_words": 0,
+      "main_word_share": 0.0,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    },
+    {
+      "module": "appendix",
+      "status": "observed",
+      "estimated_words": 5030,
+      "main_word_share": null,
+      "figures": 1,
+      "tables": 7,
+      "algorithms": 1,
+      "displayed_equations": 0
+    },
+    {
+      "module": "other",
+      "status": "observed",
+      "estimated_words": 2445,
+      "main_word_share": null,
+      "figures": 0,
+      "tables": 0,
+      "algorithms": 0,
+      "displayed_equations": 0
+    }
+  ],
+  "abstract_sentences": [
+    {
+      "index": 1,
+      "text": "Despite improvements by length extrapolation, efficient attention and memory modules, handling infinitely long documents without performance degradation during extrapolation remains the ultimate challenge in long-text processing.",
+      "word_count": 26,
+      "functions": [
+        "object_scope",
+        "problem_gap"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "handling infinitely long documents without performance degradation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "text": "To solve this problem, we introduce a novel agent workflow, MEMAGENT, which processes text in segments and updates memory through an overwrite strategy, addressing the challenge of long-context task through enhanced memory management.",
+      "word_count": 33,
+      "functions": [
+        "core_idea",
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "processes text in segments and updates memory through an overwrite strategy",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "text": "We further extend the DAPO algorithm to directly optimize memory ability in an end-to-end fashion, facilitating training via independent-context multi-conversation generation.",
+      "word_count": 21,
+      "functions": [
+        "method"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "extend the DAPO algorithm",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "text": "Experimental results demonstrate that MEMAGENT has superb long-context capabilities, being able to extrapolate from an 8K context to a 3.5M QA task with a performance loss of less than 10% and achieving over 95% on the 512K NIAH test.",
+      "word_count": 40,
+      "functions": [
+        "experimental_setup",
+        "quantitative_result",
+        "qualitative_result",
+        "impact_claim"
+      ],
+      "evidence": {
+        "page": 1,
+        "section": "Abstract",
+        "anchor": "8K context to a 3.5M QA task",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "introduction_moves": [
+    {
+      "index": 1,
+      "move": "context",
+      "estimated_words": 125,
+      "first_sentence_function": "context",
+      "previous_question": "LLMs can perform complex tasks, but the paper has not scoped the long-context problem.",
+      "current_answer": "Books, long reasoning chains and agent memory overflow ordinary context windows.",
+      "next_hook": "Classify existing long-context approaches.",
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "how to handle long contexts effectively",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "problem",
+      "estimated_words": 110,
+      "first_sentence_function": "problem",
+      "previous_question": "Why does an ordinary context window fail in deployed tasks?",
+      "current_answer": "Overflowing text creates a capacity and processing bottleneck.",
+      "next_hook": "Review three prior-work families.",
+      "evidence": {
+        "page": 1,
+        "section": "§1 Introduction",
+        "anchor": "overflowing text that quickly explodes",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "failure_of_prior_work",
+      "estimated_words": 270,
+      "first_sentence_function": "failure_of_prior_work",
+      "previous_question": "Can extrapolation, sparse/linear attention or compression solve the bottleneck alone?",
+      "current_answer": "Each family carries degradation, quadratic cost, retraining, hand-designed patterns or compatibility/parallelization costs.",
+      "next_hook": "State the trinity of desired properties.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "Existing approaches to long-context tasks are three-pronged",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "missing_insight",
+      "estimated_words": 110,
+      "first_sentence_function": "missing_insight",
+      "previous_question": "What principle could satisfy all three properties?",
+      "current_answer": "Human note-taking keeps revealing concepts and discards redundant information.",
+      "next_hook": "Turn selective abstraction into a memory state.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "we tend to abstract out the main revealing conceptions",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "core_idea",
+      "estimated_words": 120,
+      "first_sentence_function": "core_idea",
+      "previous_question": "How is selective abstraction implemented in an LLM?",
+      "current_answer": "A dynamically updated fixed-length memory is overwritten as chunks are read.",
+      "next_hook": "Explain how to train the read-write behavior.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "dynamically updated fixed-length ‘memory’",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "method_preview",
+      "estimated_words": 105,
+      "first_sentence_function": "method_preview",
+      "previous_question": "How can multiple memory updates receive credit from a final answer?",
+      "current_answer": "Each context-independent conversation is treated as an optimization objective and shares the sample outcome.",
+      "next_hook": "Introduce Multi-Conv DAPO.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "treats each context-independent conversation as an optimization objective",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "method_preview",
+      "estimated_words": 75,
+      "first_sentence_function": "method_preview",
+      "previous_question": "What training algorithm implements the independent-context objective?",
+      "current_answer": "Multi-Conv DAPO extends DAPO with verifiable outcome reward.",
+      "next_hook": "Give the finite-window training result.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "implement the Multi-Conv DAPO",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "result_preview",
+      "estimated_words": 95,
+      "first_sentence_function": "result_preview",
+      "previous_question": "Does the proposed memory work beyond the training length?",
+      "current_answer": "An 8K window trained on 60K-length documents is reported to answer QA up to 3.5M tokens.",
+      "next_hook": "Enumerate contributions.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "trained on 60K length documents",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "contribution_list",
+      "estimated_words": 135,
+      "first_sentence_function": "contribution_list",
+      "previous_question": "What concrete contributions follow from the preview?",
+      "current_answer": "The first two bullets state arbitrary-length/linear inference and the workflow plus end-to-end Multi-Conv DAPO training.",
+      "next_hook": "Close with empirical evidence.",
+      "evidence": {
+        "page": 2,
+        "section": "§1 Introduction",
+        "anchor": "Our major contributions are threefold",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "contribution_list",
+      "estimated_words": 50,
+      "first_sentence_function": "contribution_list",
+      "previous_question": "Is the mechanism empirically demonstrated?",
+      "current_answer": "The third bullet claims minimal degradation in RL-trained extrapolation.",
+      "next_hook": "Enter Methodology.",
+      "evidence": {
+        "page": 3,
+        "section": "§1 Introduction",
+        "anchor": "empirically demonstrate",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "related_work_moves": [
+    {
+      "index": 1,
+      "move": "taxonomy",
+      "estimated_words": 210,
+      "comparison_dimension": "architecture and context-scaling family",
+      "evidence": {
+        "page": 9,
+        "section": "§4 Related Work / Long Context LLMs",
+        "anchor": "Extrapolation methods for RoPE-based LLMs",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "nearest_neighbor_contrast",
+      "estimated_words": 170,
+      "comparison_dimension": "external memory/database or retrieval versus RL-shaped internal memory",
+      "evidence": {
+        "page": 10,
+        "section": "§4 Related Work / Memory Mechanism",
+        "anchor": "use reinforcement learning to enable LLM itself the ability to memorize",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "chronology",
+      "estimated_words": 140,
+      "comparison_dimension": "human preference to rule-based RL and multi-turn/multiple-context agents",
+      "evidence": {
+        "page": 10,
+        "section": "§4 Related Work / Reinforcement Learning for LLMs",
+        "anchor": "multiple independent contexts in agent training",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "method_moves": [
+    {
+      "index": 1,
+      "move": "setup_notation",
+      "estimated_words": 130,
+      "description": "At each step the model sees the next chunk and a compact fixed-length memory.",
+      "evidence": {
+        "page": 3,
+        "section": "§2.1",
+        "anchor": "the next chunk of text and a compact, fixed-length memory",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 2,
+      "move": "state_problem",
+      "estimated_words": 115,
+      "description": "Memory overwrite is cast as retaining useful facts and discarding distractors for a later reward.",
+      "evidence": {
+        "page": 3,
+        "section": "§2.1",
+        "anchor": "rewarded for retaining information and for discarding distractors",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 3,
+      "move": "define_component",
+      "estimated_words": 145,
+      "description": "Context-Processing repeatedly updates memory; Answer-Generation uses problem and memory to produce the final boxed answer.",
+      "evidence": {
+        "page": 4,
+        "section": "§2.1",
+        "anchor": "two modules",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 4,
+      "move": "explain_mechanism",
+      "estimated_words": 120,
+      "description": "Constant memory yields constant per-chunk cost and leaves the base tokenizer/attention layout unchanged.",
+      "evidence": {
+        "page": 3,
+        "section": "§2.1",
+        "anchor": "memory length never grows",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 5,
+      "move": "instantiate_algorithm",
+      "estimated_words": 100,
+      "description": "RLVR and DAPO are used so one sample can generate several context-independent conversations.",
+      "evidence": {
+        "page": 4,
+        "section": "§2.2",
+        "anchor": "multiple context-independent conversations",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 6,
+      "move": "setup_notation",
+      "estimated_words": 100,
+      "description": "Group, conversation and token indices separate the final answer from preceding writes.",
+      "evidence": {
+        "page": 4,
+        "section": "§2.2",
+        "anchor": "The advantage value is derived from the conversation that contains the final answer",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 7,
+      "move": "derive",
+      "estimated_words": 150,
+      "description": "Eq. (1) defines group-centered advantage; Eq. (2) defines token-normalized clipped DAPO with KL.",
+      "evidence": {
+        "page": 5,
+        "section": "§2.2",
+        "anchor": "we do not devide the advantage by the standard deviation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 8,
+      "move": "define_component",
+      "estimated_words": 45,
+      "description": "Eq. (3) defines a binary rule-based answer-equivalence reward.",
+      "evidence": {
+        "page": 5,
+        "section": "§2.2",
+        "anchor": "R(ŷ, y) = 1is equiv(y,ŷ)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 9,
+      "move": "connect_to_prediction",
+      "estimated_words": 110,
+      "description": "Eq. (4) introduces latent memories and decomposes autoregressive likelihood into read/write factors.",
+      "evidence": {
+        "page": 5,
+        "section": "§2.3",
+        "anchor": "Introducing the latent sequence m1:K−1 decomposes the original likelihood",
+        "basis": "explicit"
+      }
+    },
+    {
+      "index": 10,
+      "move": "summarize",
+      "estimated_words": 60,
+      "description": "The MDP view unifies a reward-maximizing memory trajectory with long-text modeling.",
+      "evidence": {
+        "page": 6,
+        "section": "§2.3",
+        "anchor": "learning an optimal distribution over memory states",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "visual_inventory": [
+    {
+      "kind": "figure",
+      "label": "Figure 1",
+      "module": "abstract",
+      "page": 1,
+      "purpose": "RULER-HQA accuracy curves across context length; highlights the slower RL-MemAgent decline.",
+      "evidence": {
+        "page": 1,
+        "section": "Abstract/§1",
+        "anchor": "Accuracy scores of RULER-HQA",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 2",
+      "module": "method",
+      "page": 3,
+      "purpose": "Chunk-by-chunk document processing, memory updates and final answer workflow.",
+      "evidence": {
+        "page": 3,
+        "section": "§2.1",
+        "anchor": "M EM AGENT is inspired by the way humans process long documents",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 3",
+      "module": "method",
+      "page": 3,
+      "purpose": "Contrasts vanilla GRPO with Multi-Conv DAPO and shows shared advantage computation.",
+      "evidence": {
+        "page": 3,
+        "section": "§2.2",
+        "anchor": "Comparison between vanilla GRPO and Multi-Conv DAPO",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 4",
+      "module": "method",
+      "page": 4,
+      "purpose": "MemAgent read/write architecture and latent graphical model.",
+      "evidence": {
+        "page": 4,
+        "section": "§2.1",
+        "anchor": "architecture and graphic model of M EM AGENT",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 1",
+      "module": "results",
+      "page": 5,
+      "purpose": "RULER-HQA accuracy from 7K to 3.5M for MemAgent and baselines.",
+      "evidence": {
+        "page": 5,
+        "section": "Results float / §3.2",
+        "anchor": "Main experimental results comparing model performance across various context lengths",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 2",
+      "module": "results",
+      "page": 6,
+      "purpose": "LongBench-SUM ROUGE-1/2/L recall and averages for GovReport and QMSum.",
+      "evidence": {
+        "page": 6,
+        "section": "Results float / §3.2",
+        "anchor": "Model performance on LongBench-SUM",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 3",
+      "module": "results",
+      "page": 6,
+      "purpose": "LongBench-QA scores on five datasets and their average.",
+      "evidence": {
+        "page": 6,
+        "section": "Results float / §3.2",
+        "anchor": "Model performance on LongBench-QA",
+        "basis": "layout_observation"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 5",
+      "module": "results",
+      "page": 7,
+      "purpose": "NIAH Level 1–3 and average heatmaps across 8K–512K.",
+      "evidence": {
+        "page": 7,
+        "section": "§3.2 NIAH",
+        "anchor": "Performance heatmaps on NIAH benchmark across different context lengths",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 6",
+      "module": "ablation",
+      "page": 8,
+      "purpose": "RULER-HQA length curves for 7B/14B backbone, no-RL MemAgent and RL MemAgent.",
+      "evidence": {
+        "page": 8,
+        "section": "§3.3.1",
+        "anchor": "Ablation result of RL training on RULER-HQA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 7",
+      "module": "ablation",
+      "page": 8,
+      "purpose": "LongBench-QA bars comparing RL removal and backbone models.",
+      "evidence": {
+        "page": 8,
+        "section": "§3.3.1",
+        "anchor": "Ablation result of RL training on Longbench-QA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 8",
+      "module": "ablation",
+      "page": 9,
+      "purpose": "NIAH performance for memory lengths 256–4096.",
+      "evidence": {
+        "page": 9,
+        "section": "§3.3.2",
+        "anchor": "Ablation result of memory-length on NIAH",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 9",
+      "module": "ablation",
+      "page": 9,
+      "purpose": "LongBench-QA performance for memory-length settings.",
+      "evidence": {
+        "page": 9,
+        "section": "§3.3.2",
+        "anchor": "Ablation result of memory-length on Longbench",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 4",
+      "module": "ablation",
+      "page": 10,
+      "purpose": "Context-distribution probe; random is absolute accuracy and other rows are differences from random.",
+      "evidence": {
+        "page": 10,
+        "section": "§3.3.3",
+        "anchor": "other rows show the performance difference relative to random",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 5",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "Context-processing and final-answer prompt templates.",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A.1",
+        "anchor": "Template of M EM AGENT for context processing and final answer generation",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "algorithm",
+      "label": "Algorithm 1",
+      "module": "appendix",
+      "page": 17,
+      "purpose": "Multi-conv DAPO rollout, verifier, group normalization and clipped update.",
+      "evidence": {
+        "page": 17,
+        "section": "Appendix A.2",
+        "anchor": "Algorithm 1 Multi-conv DAPO",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 6",
+      "module": "appendix",
+      "page": 18,
+      "purpose": "Baseline context length and input/output generation configurations.",
+      "evidence": {
+        "page": 18,
+        "section": "Appendix A.4",
+        "anchor": "Generation configurations of baseline models",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 7",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "NIAH level 1–3 synthetic YAML configurations.",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix A.4",
+        "anchor": "Synthetic Configuration used for NIAH task",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "figure",
+      "label": "Figure 10",
+      "module": "appendix",
+      "page": 19,
+      "purpose": "FLOP estimator comparison for baseline and Memory Agent from 8K to 4M.",
+      "evidence": {
+        "page": 19,
+        "section": "Appendix B",
+        "anchor": "Floating point operations across context lengths from 8K to 4M",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 8",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "Joint memory-size/context-size ablation on NIAH.",
+      "evidence": {
+        "page": 22,
+        "section": "Appendix D.1",
+        "anchor": "Ablation result of memory-size and context-size on NIAH",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 9",
+      "module": "appendix",
+      "page": 22,
+      "purpose": "Joint memory-size/context-size ablation on LongBench-QA.",
+      "evidence": {
+        "page": 22,
+        "section": "Appendix D.1",
+        "anchor": "Ablation result of memory-size and context-size on Longbench-QA",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 10",
+      "module": "appendix",
+      "page": 23,
+      "purpose": "RAG top-K comparison on RULER-HQA.",
+      "evidence": {
+        "page": 23,
+        "section": "Appendix D.2",
+        "anchor": "Result versus RAG Agent in RULER-HQA with different top-K settings",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "table",
+      "label": "Table 11",
+      "module": "appendix",
+      "page": 23,
+      "purpose": "RAG chunk-size/top-K comparison on LongBench-QA.",
+      "evidence": {
+        "page": 23,
+        "section": "Appendix D.2",
+        "anchor": "Result versus RAG Agent in Longbench-QA with different top-K and Context size settings",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "equation_theory_inventory": [
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (1)",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "purpose": "Group-centered advantage applied to all conversations from one sample.",
+      "evidence": {
+        "page": 5,
+        "section": "§2.2",
+        "anchor": "Âi,j,t = Ri − mean({Ri}G i=1)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (2)",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "purpose": "Multi-Conv DAPO clipped objective with token normalization and reference KL.",
+      "evidence": {
+        "page": 5,
+        "section": "§2.2",
+        "anchor": "JDAPO (θ)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (3)",
+      "module": "method",
+      "page": 5,
+      "role": "core_chain",
+      "purpose": "Binary rule-based verifier reward for answer equivalence.",
+      "evidence": {
+        "page": 5,
+        "section": "§2.2",
+        "anchor": "R(ŷ, y) = 1is equiv(y,ŷ)",
+        "basis": "explicit"
+      }
+    },
+    {
+      "kind": "numbered_equation",
+      "label": "Eq. (4)",
+      "module": "theory",
+      "page": 5,
+      "role": "explanation",
+      "purpose": "Latent-memory read/write factorization of the autoregressive likelihood.",
+      "evidence": {
+        "page": 5,
+        "section": "§2.3",
+        "anchor": "p(x1:N) = sum over m1:K−1",
+        "basis": "explicit"
+      }
+    }
+  ],
+  "formula_theory_summary": {
+    "displayed_equations": 4,
+    "numbered_equations": 4,
+    "theorem_count": 0,
+    "lemma_count": 0,
+    "proposition_count": 0,
+    "corollary_count": 0,
+    "proof_count": 0,
+    "theory_status": "No theorem-like statement or proof is present; Eq. (4) and O(N) are explanatory/formal complexity arguments.",
+    "assumptions": [
+      "Each chunk has bounded length C and each memory has fixed length M.",
+      "A normal decoder runs on (chunk, previous memory), and a verifier can score the final answer.",
+      "The complexity claim counts FLOPs per fixed-window step and total chunk count, not hardware latency."
+    ]
+  },
+  "experimental_design": [
+    {
+      "name": "research_question",
+      "status": "observed",
+      "description": "The main question is whether an 8K bounded workflow extrapolates to long QA; §3.3.3 separately probes overwrite and lost-in-the-middle positions.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§3.3.3",
+          "anchor": "Our hypothesis is that overcoming such problem is a natural result of end-to-end optimization",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "backbone_and_framework",
+      "status": "observed",
+      "description": "Qwen2.5-7B-Instruct and Qwen2.5-14B-Instruct are used as backbones; multi-conversation training is based on verl.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§3.1 Training Details",
+          "anchor": "we choose Qwen2.5-7B-Instruct and Qwen2.5-14B-Instruct",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "curriculum",
+      "status": "observed",
+      "description": "Stage I learns fundamental memory capabilities; Stage II transfers them to diverse contexts and difficult tasks, with the switch after roughly 400 steps.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§3.1",
+          "anchor": "two-stage curriculum RL strategy",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix A.3",
+          "anchor": "stage I are fully converged, which takes about 400 steps",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "window_budget",
+      "status": "observed",
+      "description": "The 8K budget is query 1024, context chunk 5000, memory 1024 and output 1024, with remaining tokens for the chat template.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§3.1",
+          "anchor": "This 8K window is allocated as follows",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "stage_I_data",
+      "status": "observed",
+      "description": "32,768 synthetic QA instances are built from HotpotQA-style golden paragraphs and distractors; 80,000 training samples are filtered and roughly half removed because a no-context Best-Of-2 score is 100%.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.3",
+          "anchor": "approximately 50% of the data are filtered out",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "stage_II_data",
+      "status": "observed",
+      "description": "2,560 instances with maximum length 60K combine DocQA-RL-1.6K with Stage I data.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.3",
+          "anchor": "2,560 training instances with a maximum length of 60K tokens",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "extrapolation_test_sets",
+      "status": "observed",
+      "description": "Synthetic tests use 50 to 6400 wiki items, corresponding to approximately 7K to 3.5M tokens.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.3",
+          "anchor": "wiki items ranges from 50 up to 6400",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "benchmarks",
+      "status": "observed",
+      "description": "RULER-HQA, LongBench-QA, NIAH levels 1–3 and LongBench-SUM GovReport/QMSum cover moderate-density QA, high-density QA, low-density retrieval and summary.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§3.1 Benchmarks",
+          "anchor": "We conduct comprehensive evaluations on several long-text benchmarks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "baselines",
+      "status": "observed",
+      "description": "DeepSeek-R1-Distill-Qwen, Qwen2.5-Instruct-1M, Qwen2.5-Instruct and QwenLong-L1 are main baselines; RAG and Mem0 are added in Appendix D.2.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "§3.1 Baselines",
+          "anchor": "We use DeepSeek-R1-Distill-Qwen",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "metrics_and_scoring",
+      "status": "observed",
+      "description": "Accuracy is used for QA/NIAH; summary uses ROUGE-1/2/L recall. Answers are regex-extracted, normalized and scored with sub-em; multi-part answers use the proportion of correct parts.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.4",
+          "anchor": "We employ the sub em score for all benchmarks",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "generation_controls",
+      "status": "observed",
+      "description": "Baseline context and input/output generation lengths are listed in Table 6; MemAgent uses the fixed workflow budget.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.4",
+          "anchor": "Generation configurations of baseline models",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "random_seeds",
+      "status": "not_present",
+      "description": "No random seed, repeat count or seed aggregation is reported in the main text or Appendix A.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.4",
+          "anchor": "Before evaluating the answers, we normalize both the ground truth and the extracted responses",
+          "basis": "interpretation"
+        }
+      ]
+    },
+    {
+      "name": "training_hyperparameters",
+      "status": "observed",
+      "description": "Appendix A.3 gives KL 1×10^-3, no entropy loss, AdamW, learning rate 1×10^-6, warm-up 20, rollout batch 256, group 16 and off-policy ratio 16.",
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix A.3",
+          "anchor": "KL factor of 1 × 10−3 and disabling the entropy loss",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "hardware_and_wall_clock",
+      "status": "not_present",
+      "description": "Appendix B gives a FLOP estimator but no GPU/TPU, parallelism, memory, wall-clock or throughput.",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix B",
+          "anchor": "The results are shown in Figure 10",
+          "basis": "interpretation"
+        }
+      ]
+    },
+    {
+      "name": "leakage_control",
+      "status": "observed",
+      "description": "Questions already solved without context are filtered, but article-level train/validation deduplication or contamination audit is not described.",
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.3",
+          "anchor": "filtering out questions where Qwen2.5-7B-Base or Qwen2.5-7B-Instruct achieves 100 %",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "failure_and_uncertainty_rule",
+      "status": "observed",
+      "description": "The rule-based verifier supplies a binary outcome, while reported tables/figures give point values without error expression or hypothesis testing.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§2.2",
+          "anchor": "rule-based verifier",
+          "basis": "explicit"
+        },
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "All values represent accuracy (%)",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "result_inventory": [
+    {
+      "claim": "RL-MemAgent preserves RULER-HQA accuracy over much longer inputs than listed baselines.",
+      "value": "14B: 80.47 at 7K to 71.09 at 3.5M; 7B: 81.25 to 71.88. QwenLong-L1-32B falls from 72.66 at 7K to 11.72 at 896K; Qwen2.5-Instruct-14B-1M is 0.00 at 896K and N/A thereafter.",
+      "comparison": "MemAgent is the only listed model with values at 1.75M and 3.5M; baselines degrade or become N/A earlier.",
+      "statistical_method": "Accuracy point estimates per context length; no seed-level uncertainty or significance test. Figure 1 is a trend line.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Main experimental results comparing model performance across various context lengths",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§3.2 RULER-HQA",
+          "anchor": "extend the evaluation to ultra-long contexts of 1.75M and 3.5M",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "MemAgent has the highest or near-highest average among the listed LongBench-QA baselines at its corresponding scale.",
+      "value": "MemAgent-14B AVG 51.0 versus QwenLong-L1-32B 50.7 and DS-Distill-Qwen-32B 49.0; MemAgent-7B AVG 48.2 versus Qwen2.5-Instruct-7B 34.7 and Qwen2.5-Instruct-7B-1M 39.5, but below DS-Distill-Qwen-32B 49.0.",
+      "comparison": "Five-task averages and per-dataset accuracy compare QA generalization, not only retrieval length.",
+      "statistical_method": "Arithmetic AVG of five accuracy columns; no variance, sample counts or significance test.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 3",
+          "anchor": "Model performance on LongBench-QA",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§3.2 LongBench-QA",
+          "anchor": "memory capabilities acquired through reinforcement learning are generalizable",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "RL-MemAgent remains highly accurate on the synthetic NIAH retrieval stress test through 512K.",
+      "value": "NIAH average at 512K is 98.18 for 14B and 96.62 for 7B; the 14B level values are 94.53/95.31/100.00 and 7B values are 92.97/96.88/96.88.",
+      "comparison": "Most baselines drop at 128K–512K, while RL-MemAgent average loss from 8K to 512K is 1.56 points (14B) or 3.38 points (7B).",
+      "statistical_method": "Heatmap accuracy over context-length × NIAH-level cells; no error bars.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Figure 5 / §3.2 NIAH",
+          "anchor": "Performance heatmaps on NIAH benchmark across different context lengths",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§3.2 NIAH",
+          "anchor": "evaluation at 512K involves more than 100 turns of dialogue",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The learned memory policy transfers beyond QA to LongBench-SUM.",
+      "value": "14B GovReport ROUGE-1/2/L 37.16/12.03/16.23, AVG 21.80; QMSum AVG 31.39. 7B averages are 19.34 and 31.27.",
+      "comparison": "14B exceeds the best listed QMSum baseline AVG 29.84 and the listed GovReport averages near 19.34.",
+      "statistical_method": "ROUGE recall point estimates and arithmetic AVG across ROUGE-1/2/L; no uncertainty.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 2",
+          "anchor": "Model performance on LongBench-SUM",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§3.2 LongBench-SUM",
+          "anchor": "learned general memory and context management capabilities",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The context-distribution probe shows no catastrophic position pattern in the tested synthetic setup.",
+      "value": "14B relative-to-random AVG: +1.90, +2.79, 0.00, −0.11, +0.67 for (0%,20%), (0%,100%), (20%,80%), (40%,60%), (80%,100%); 7B: +2.35, +2.23, +0.56, +1.45, +1.00.",
+      "comparison": "The rows are differences from a random baseline rather than absolute scores; only two key-information groups and distractors are tested.",
+      "statistical_method": "Accuracy differences at seven context lengths plus a reported AVG; no uncertainty.",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Table 4",
+          "anchor": "other rows show the performance difference relative to random",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "§3.3.3",
+          "anchor": "remains consistently robust across all patterns",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The complexity argument predicts linear total FLOPs for fixed-window MemAgent versus quadratic baseline processing.",
+      "value": "Appendix B Figure 10 estimates both methods over 8K–4M with q=1024, o=1024, N=5000; the text labels baseline O(n²) and MemAgent O(n).",
+      "comparison": "MemAgent pays a fixed per-chunk window cost and grows in the number of chunks; the baseline processes the full context.",
+      "statistical_method": "FLOP estimator, not a hardware runtime or throughput measurement.",
+      "module": "results",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix B",
+          "anchor": "baseline model exhibits an O(n2) complexity, while M EM AGENT achieves an O(n) complexity",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix B",
+          "anchor": "We set q = 1024, o = 1024, N = 5000",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Removing RL destroys the long-context robustness that appears in the direct MemAgent workflow.",
+      "value": "Figure 6 shows no-RL curves falling with length; Figure 7 shows only marginal or negative LongBench-QA changes without RL, while RL variants improve both settings.",
+      "comparison": "Backbone and no-RL MemAgent are compared with RL-MemAgent at 7B/14B.",
+      "statistical_method": "Line/bar point estimates without error bars or repeated-run information.",
+      "module": "ablation",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§3.3.1",
+          "anchor": "directly applying M EM AGENT leads to only marginal or even negative improvements",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "Figure 6–7",
+          "anchor": "Ablation result of RL training",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "ablation_inventory": [
+    {
+      "name": "RL training removal",
+      "status": "observed",
+      "description": "No-RL MemAgent is stronger than the backbone at short lengths but declines at long lengths; RL-MemAgent improves both RULER-HQA and LongBench-QA.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§3.3.1",
+          "anchor": "reinforcement learning training is essential to develop generalizable and robust memory abilities",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "memory length 256–4096",
+      "status": "observed",
+      "description": "Figures 8–9 show broad robustness across memory capacities; 1024 memory with 5000-token chunks is called a reasonable sweet spot, but no predeclared selection rule is supplied.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§3.3.2",
+          "anchor": "memory length ranging from 256 to 4096",
+          "basis": "explicit"
+        },
+        {
+          "page": 9,
+          "section": "Figure 8–9",
+          "anchor": "Ablation result of memory-length",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "context distribution",
+      "status": "observed",
+      "description": "Five placements of two key-information groups test overwrite and lost-in-the-middle; relative changes stay small in the synthetic probe.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§3.3.3",
+          "anchor": "We constructed five settings",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "joint memory/chunk allocation",
+      "status": "observed",
+      "description": "Holding total turn length constant, Appendix D.1 compares m4096/m3072/m2048/m1024 with corresponding chunks; m1024-c5000 has LongBench AVG 51.0 (14B) and 48.2 (7B).",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D.1",
+          "anchor": "keep the total length of memory size + context chunk size constant",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "RAG and Mem0 agents",
+      "status": "observed",
+      "description": "D.2 compares Mem0 and RAG top-K/chunk choices; RL-MemAgent is higher in the listed tables, but Mem0 uses GPT-5.1 and text-embedding-3-large.",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D.2",
+          "anchor": "compare MemAgent against an advanced memory-agent method, Mem0",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "failure trajectories",
+      "status": "observed",
+      "description": "Appendix F gives concrete overwrite, missing prerequisite and primacy-bias failures rather than only aggregate scores.",
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Appendix F.1",
+          "anchor": "INFORMATION OVERWRITTEN",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "Appendix F.2",
+          "anchor": "MISSING CRITICAL INFORMATION",
+          "basis": "explicit"
+        },
+        {
+          "page": 28,
+          "section": "Appendix F.3",
+          "anchor": "PRIMACY BIAS",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "claim_closure": [
+    {
+      "claim": "Finite-window streaming handles arbitrarily long input at linear cost.",
+      "origin": "§1 contribution 1",
+      "status": "partially_closed",
+      "method_response": "Chunk stream, overwrite memory, Eq. (4) and fixed C+M per step.",
+      "evidence_response": "Table 1 reaches 3.5M and Figure 10 estimates to 4M, but no arbitrary/infinite runtime experiment.",
+      "conclusion_response": "Conclusion repeats 8K-to-3.5M scalability.",
+      "evidence": [
+        {
+          "page": 3,
+          "section": "§2.1",
+          "anchor": "end-to-end complexity is strictly linear",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix B",
+          "anchor": "Floating point operations across context lengths from 8K to 4M",
+          "basis": "explicit"
+        },
+        {
+          "page": 24,
+          "section": "Appendix F.1",
+          "anchor": "information has already been lost",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "RL learns selective memory updates.",
+      "origin": "§1 contribution 2 and abstract",
+      "status": "partially_closed",
+      "method_response": "Multi-Conv DAPO shares final outcome advantage across conversations.",
+      "evidence_response": "RL/no-RL figures and the Big Stone Gap trajectory support behavior, but no memory-fidelity metric or seed variance.",
+      "conclusion_response": "Conclusion calls RL training critical.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§2.2",
+          "anchor": "advantage value is derived from the conversation that contains the final answer",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§3.3.1",
+          "anchor": "RL-M EM AGENT achieves significant improvements",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Memory generalizes to high-density QA.",
+      "origin": "§1 result preview",
+      "status": "closed",
+      "method_response": "Question and memory are retained while diverse material is streamed.",
+      "evidence_response": "Table 3 reports five LongBench-QA datasets and averages for both scales.",
+      "conclusion_response": "Conclusion states state-of-the-art performance across diverse tasks.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 3",
+          "anchor": "Model performance on LongBench-QA",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§3.2 LongBench-QA",
+          "anchor": "generalizable",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "The method is not QA-specific and transfers to summarization.",
+      "origin": "§3.2 LongBench-SUM",
+      "status": "partially_closed",
+      "method_response": "The workflow has a generic final-answer module, but the reward formulation is still answer-verifier based.",
+      "evidence_response": "Table 2 covers GovReport and QMSum using ROUGE recall.",
+      "conclusion_response": "Conclusion groups the result under diverse long-context tasks without discussing summary-specific limitations.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "Table 2",
+          "anchor": "Model performance on LongBench-SUM",
+          "basis": "explicit"
+        },
+        {
+          "page": 8,
+          "section": "§3.2 LongBench-SUM",
+          "anchor": "rather than abilities specific to the QA task",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Position and overwrite robustness is learned by end-to-end RL.",
+      "origin": "§3.3.3 hypothesis",
+      "status": "partially_closed",
+      "method_response": "Memory is overwritten after every fixed chunk and trained from the final outcome.",
+      "evidence_response": "Table 4 tests five synthetic distributions; Appendix F supplies counterexamples.",
+      "conclusion_response": "Conclusion does not discuss position failures.",
+      "evidence": [
+        {
+          "page": 9,
+          "section": "§3.3.3",
+          "anchor": "trial and error are not tied to any particular context pattern",
+          "basis": "explicit"
+        },
+        {
+          "page": 28,
+          "section": "Appendix F.3",
+          "anchor": "primacy bias",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Memory capacity has a usable trade-off with chunk size.",
+      "origin": "§3.3.2",
+      "status": "partially_closed",
+      "method_response": "Fixed total 8K budget creates a memory/chunk allocation choice.",
+      "evidence_response": "Figures 8–9 and Tables 8–9 compare 256–4096 memory and joint allocations.",
+      "conclusion_response": "Conclusion mentions memory capacity influences performance.",
+      "evidence": [
+        {
+          "page": 8,
+          "section": "§3.3.2",
+          "anchor": "trade-offs",
+          "basis": "explicit"
+        },
+        {
+          "page": 22,
+          "section": "Appendix D.1",
+          "anchor": "total length of memory size + context chunk size constant",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "RL memory is better than retrieval-agent alternatives.",
+      "origin": "Appendix D.2",
+      "status": "partially_closed",
+      "method_response": "End-to-end writes replace external top-K retrieval.",
+      "evidence_response": "Tables 10–11 compare listed RAG settings and D.2 describes Mem0, but model/embedding choices differ.",
+      "conclusion_response": "Conclusion does not mention the retrieval comparison.",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D.2",
+          "anchor": "greater flexibility and coherence compared with retrieval-based strategies",
+          "basis": "explicit"
+        },
+        {
+          "page": 23,
+          "section": "Tables 10–11",
+          "anchor": "Result versus RAG Agent",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "claim": "Memory behavior is interpretable and controllable.",
+      "origin": "§1 human-note intuition",
+      "status": "open",
+      "method_response": "Prompt, case study and memory diffs expose text trajectories.",
+      "evidence_response": "No systematic interpretability or controllability metric is provided.",
+      "conclusion_response": "No interpretability claim is recovered in §5.",
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix C",
+          "anchor": "This trajectory highlights several core capabilities learned by the memory agent",
+          "basis": "explicit"
+        },
+        {
+          "page": 24,
+          "section": "Appendix F",
+          "anchor": "Memory Diff between Turn 59 and Turn 60",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "appendix_inventory": [
+    {
+      "title": "A.1 Prompt Template",
+      "category": "implementation_detail",
+      "start_page": 17,
+      "end_page": 17,
+      "main_text_calls": [
+        "§2.1 refers to the prompt template in Table 5"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix A.1",
+          "anchor": "Template of M EM AGENT for context processing and final answer generation",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.2 Algorithm",
+      "category": "extended_method",
+      "start_page": 17,
+      "end_page": 17,
+      "main_text_calls": [
+        "§2.2 describes Multi-Conv DAPO; Algorithm 1 makes the rollout loop explicit"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix A.2",
+          "anchor": "Algorithm 1 Multi-conv DAPO",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.3 Training",
+      "category": "hyperparameter",
+      "start_page": 17,
+      "end_page": 18,
+      "main_text_calls": [
+        "§3.1 says specific hyperparameters are detailed in §A.3"
+      ],
+      "evidence": [
+        {
+          "page": 17,
+          "section": "Appendix A.3",
+          "anchor": "training recipe and algorithm hyperparameter",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix A.3",
+          "anchor": "Stage I",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "A.4 Evaluation",
+      "category": "implementation_detail",
+      "start_page": 18,
+      "end_page": 19,
+      "main_text_calls": [
+        "§3.1 benchmark/baseline discussion relies on evaluation settings in §A.4"
+      ],
+      "evidence": [
+        {
+          "page": 18,
+          "section": "Appendix A.4",
+          "anchor": "We employ the sub em score for all benchmarks",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix A.4",
+          "anchor": "Synthetic Configuration used for NIAH task",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "B. Computation Complexity",
+      "category": "additional_result",
+      "start_page": 19,
+      "end_page": 20,
+      "main_text_calls": [
+        "§2.1 says the O(N) detail is in §B"
+      ],
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix B",
+          "anchor": "The baseline model exhibits an O(n2) complexity",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix B",
+          "anchor": "For M EM AGENT, total FLOP cost is the sum of the FLOPs from all stages",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "C. Case Study",
+      "category": "qualitative_example",
+      "start_page": 20,
+      "end_page": 21,
+      "main_text_calls": [
+        "No explicit sentence in §3 points to C; it illustrates the §2 workflow after the main text."
+      ],
+      "evidence": [
+        {
+          "page": 20,
+          "section": "Appendix C",
+          "anchor": "To further illustrate the proposed memory mechanism in detail",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "D. Supplementary Experiments",
+      "category": "ablation",
+      "start_page": 22,
+      "end_page": 23,
+      "main_text_calls": [
+        "§3.3.2 points to §D.1 for context-size trends; §3.1 points to agent baselines in §D.2"
+      ],
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D",
+          "anchor": "SUPPLEMENTARY EXPERIMENTS",
+          "basis": "explicit"
+        },
+        {
+          "page": 23,
+          "section": "Appendix D.2",
+          "anchor": "RAG Agent",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "E. LLM Usage",
+      "category": "other",
+      "start_page": 23,
+      "end_page": 23,
+      "main_text_calls": [],
+      "evidence": [
+        {
+          "page": 23,
+          "section": "Appendix E",
+          "anchor": "Some sentences in this manuscript are drafted or refined by LLMs",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "title": "F. Failure Pattern Study",
+      "category": "failure_case",
+      "start_page": 24,
+      "end_page": 29,
+      "main_text_calls": [
+        "No explicit main-text call; it is the appendix's direct stress test of the memory claim."
+      ],
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Appendix F.1",
+          "anchor": "INFORMATION OVERWRITTEN",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "Appendix F.2",
+          "anchor": "MISSING CRITICAL INFORMATION",
+          "basis": "explicit"
+        },
+        {
+          "page": 28,
+          "section": "Appendix F.3",
+          "anchor": "PRIMACY BIAS",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "explicit limitations section",
+      "status": "not_present",
+      "description": "The paper transitions from §4 Related Work to §5 Conclusion and has no heading named Limitations.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§4–§5",
+          "anchor": "5 C ONCLUSION",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "training_and_test_distribution",
+      "status": "observed",
+      "description": "Training is dominated by synthetic HotpotQA-style QA plus DocQA-RL-1.6K; tests are QA, NIAH and two summary datasets, not code/table/vision/multilingual or interactive deployment.",
+      "evidence": [
+        {
+          "page": 6,
+          "section": "§3.1",
+          "anchor": "benchmarks",
+          "basis": "explicit"
+        },
+        {
+          "page": 18,
+          "section": "Appendix A.3",
+          "anchor": "Stage I",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "length_scope",
+      "status": "observed",
+      "description": "The prose says unlimited/arbitrary, but direct RULER reaches 3.5M and NIAH reaches 512K; longer scale is only an estimator.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§2.3",
+          "anchor": "overall linear complexity O(N)",
+          "basis": "explicit"
+        },
+        {
+          "page": 7,
+          "section": "§3.2",
+          "anchor": "1.75M and 3.5M",
+          "basis": "explicit"
+        },
+        {
+          "page": 19,
+          "section": "Appendix B",
+          "anchor": "8K to 4M",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "fixed_memory_failures",
+      "status": "observed",
+      "description": "Appendix F shows irreversible overwrite, missing prerequisite and primacy-bias errors; their denominator is not folded into the main aggregate tables.",
+      "evidence": [
+        {
+          "page": 24,
+          "section": "Appendix F.1",
+          "anchor": "information from the first context has already been lost",
+          "basis": "explicit"
+        },
+        {
+          "page": 27,
+          "section": "Appendix F.2",
+          "anchor": "still fails to produce the correct final answer",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "experimental_uncertainty",
+      "status": "not_present",
+      "description": "No seeds, repeats, error bars, intervals, tests or per-benchmark sample counts are reported for the point estimates.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Figure 5",
+          "anchor": "Performance heatmaps",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 10,
+          "section": "Table 4",
+          "anchor": "All values represent accuracy (%)",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "system_cost",
+      "status": "not_present",
+      "description": "FLOP estimates omit actual hardware, latency, memory, throughput, parallelism and failed-call behavior.",
+      "evidence": [
+        {
+          "page": 19,
+          "section": "Appendix B",
+          "anchor": "FLOP cost",
+          "basis": "explicit"
+        },
+        {
+          "page": 20,
+          "section": "Appendix B",
+          "anchor": "final result",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "artifact_availability",
+      "status": "observed",
+      "description": "The reproducibility statement says code, dataset and weights will be available; the PDF itself supplies prompt/config details but not a complete downloadable implementation.",
+      "evidence": [
+        {
+          "page": 11,
+          "section": "Reproducibility Statement",
+          "anchor": "will be available in open-source platforms",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "complexity_to_quality_identification",
+      "status": "observed",
+      "description": "Fixed C+M supports the O(N) FLOP argument, but quality still depends on the learned write policy and truncation; FLOPs alone do not prove lossless memory.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§2.3",
+          "anchor": "both compute and memory per step are O(C + M)",
+          "basis": "explicit"
+        },
+        {
+          "page": 25,
+          "section": "Appendix F.1",
+          "anchor": "where it is truncated due to insufficient memory",
+          "basis": "explicit"
+        }
+      ]
+    }
+  ],
+  "adverse_presentation_strategies": [
+    {
+      "name": "results_before_failures",
+      "status": "observed",
+      "description": "Main figures and tables establish stable extrapolation; concrete failures are deferred to Appendix F and are not called back from §5.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Figure 1",
+          "anchor": "marginal performance dropping",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 24,
+          "section": "Appendix F",
+          "anchor": "FALIURE PATTERN STUDY",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "asymmetric_long_length_comparison",
+      "status": "observed",
+      "description": "At 1.75M/3.5M Table 1 has only RL-MemAgent values while baseline cells are N/A, so same-length horizontal comparison ends earlier.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "1.75M 3.5M N/A",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "point_estimate_visuals",
+      "status": "observed",
+      "description": "Tables, heatmaps, and Figures 6–9 show single values without uncertainty; small RL or capacity differences therefore appear as deterministic trends.",
+      "evidence": [
+        {
+          "page": 7,
+          "section": "Figure 5",
+          "anchor": "All values represent accuracy (%)",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 8,
+          "section": "Figure 6–7",
+          "anchor": "Ablation result of RL training",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "difference_encoding",
+      "status": "observed",
+      "description": "Table 4 makes all non-random rows differences from random, requiring the caption to recover the scale and obscuring absolute performance in those rows.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Table 4",
+          "anchor": "The other rows show the performance difference relative to random",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "cross_model_agent_baseline",
+      "status": "observed",
+      "description": "Mem0 uses GPT-5.1 and text-embedding-3-large while the proposed model uses Qwen2.5 backbones; this is a workflow comparison rather than a pure memory-policy match.",
+      "evidence": [
+        {
+          "page": 22,
+          "section": "Appendix D.2",
+          "anchor": "we use SOTA OpenAI models, GPT-5.1 and text-embedding-3-large",
+          "basis": "interpretation"
+        }
+      ]
+    }
+  ],
+  "measurement_disagreements": [
+    {
+      "name": "appendix_start_page",
+      "status": "observed",
+      "description": "The automatic draft marks appendix_start_page=4, but p. 4 is §2.2; Appendix A visibly begins on p. 17.",
+      "evidence": [
+        {
+          "page": 4,
+          "section": "§2.2",
+          "anchor": "2.2 TRAINING MEMAGENT WITH MULTI-CONV RL",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 17,
+          "section": "Appendix A",
+          "anchor": "A IMPLEMENTATION DETAILS",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "main_end_page",
+      "status": "observed",
+      "description": "The automatic draft marks main_end_page=29; the main numbered sections end at p. 10, p. 11 is reproducibility, references begin p. 12. This reading uses main_pages=11 to retain the pre-reference statement.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "§5",
+          "anchor": "5 C ONCLUSION",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 11,
+          "section": "Reproducibility Statement",
+          "anchor": "REPRODUCIBILITY STATEMENT",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 12,
+          "section": "References",
+          "anchor": "REFERENCES",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "figure_caption_count",
+      "status": "observed",
+      "description": "Automatic count 9 misses Figure 10 in Appendix B; the PDF has Figure 1 through Figure 10.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "Figure 1",
+          "anchor": "Figure 1:",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 19,
+          "section": "Appendix B",
+          "anchor": "Figure 10:",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "table_caption_count",
+      "status": "observed",
+      "description": "Automatic count 10 misses Table 5 or the later appendix table sequence; the PDF has Table 1 through Table 11.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "Table 1",
+          "anchor": "Table 1:",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 23,
+          "section": "Appendix D.2",
+          "anchor": "Table 11:",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "numbered_equation_and_theory_count",
+      "status": "observed",
+      "description": "Automatic four numbered equations agree with Eq. (1)–(4); no theorem/lemma/proposition/corollary/proof appears.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§2.2",
+          "anchor": "Eq 1",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 5,
+          "section": "§2.3",
+          "anchor": "Eq 4",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "table_4_average",
+      "status": "observed",
+      "description": "The seven visible 14B random values average about 80.91, but Table 4 prints AVG=75.78; 7B's printed 79.58 agrees with its seven visible values. No alternate denominator is stated.",
+      "evidence": [
+        {
+          "page": 10,
+          "section": "Table 4",
+          "anchor": "14B random 80.47 82.03 82.03 83.59 81.25 77.34 79.69 75.78",
+          "basis": "layout_observation"
+        }
+      ]
+    },
+    {
+      "name": "objective_vs_pseudocode_granularity",
+      "status": "observed",
+      "description": "Eq. (2) sums group/conversation/token terms and says advantage reaches preceding conversations, while Algorithm 1 defines y_g as the final response and writes a final-response ratio only; implementation scope is unresolved.",
+      "evidence": [
+        {
+          "page": 5,
+          "section": "§2.2",
+          "anchor": "(group, conversation, token)",
+          "basis": "explicit"
+        },
+        {
+          "page": 17,
+          "section": "Algorithm 1",
+          "anchor": "yg ← og,cg",
+          "basis": "explicit"
+        }
+      ]
+    },
+    {
+      "name": "word_count_basis",
+      "status": "observed",
+      "description": "Raw extraction includes repeated headers, formula fragments, table numbers and float captions; section estimates therefore use prose/semantic assignment rather than the automatic total.",
+      "evidence": [
+        {
+          "page": 1,
+          "section": "PDF layout",
+          "anchor": "Published as a conference paper at ICLR 2026",
+          "basis": "layout_observation"
+        },
+        {
+          "page": 22,
+          "section": "Appendix D",
+          "anchor": "All number indicates",
+          "basis": "layout_observation"
+        }
+      ]
+    }
+  ],
+  "lexical_analysis": {
+    "scope": "Main-body pages 1–11 only; references, formula fragments, table numbers, obvious caption templates and repeated headers excluded. Hyphenated terms are retained.",
+    "approx_clean_tokens": 3189,
+    "high_frequency_content_words": [
+      {
+        "term": "memory",
+        "count": 60,
+        "context": "central state and memory management"
+      },
+      {
+        "term": "agent",
+        "count": 46,
+        "context": "workflow and model identity"
+      },
+      {
+        "term": "context",
+        "count": 37,
+        "context": "long-context problem and budget"
+      },
+      {
+        "term": "performance",
+        "count": 33,
+        "context": "length curves and comparisons"
+      },
+      {
+        "term": "long-context",
+        "count": 23,
+        "context": "problem scope and capability"
+      },
+      {
+        "term": "training",
+        "count": 23,
+        "context": "RL recipe and ablation"
+      },
+      {
+        "term": "length",
+        "count": 20,
+        "context": "extrapolation and memory size"
+      },
+      {
+        "term": "LLM",
+        "count": 17,
+        "context": "backbone/model framing"
+      },
+      {
+        "term": "tokens",
+        "count": 17,
+        "context": "window and benchmark scales"
+      },
+      {
+        "term": "information",
+        "count": 17,
+        "context": "what memory retains or loses"
+      },
+      {
+        "term": "capabilities",
+        "count": 15,
+        "context": "main effect language"
+      },
+      {
+        "term": "tasks",
+        "count": 13,
+        "context": "benchmark scope"
+      },
+      {
+        "term": "extrapolation",
+        "count": 12,
+        "context": "central outcome"
+      },
+      {
+        "term": "attention",
+        "count": 12,
+        "context": "prior-work contrast"
+      },
+      {
+        "term": "window",
+        "count": 12,
+        "context": "fixed context constraint"
+      },
+      {
+        "term": "linear",
+        "count": 10,
+        "context": "complexity claim"
+      }
+    ],
+    "bigrams": [
+      {
+        "phrase": "context window",
+        "count": 9
+      },
+      {
+        "phrase": "reinforcement learning",
+        "count": 7
+      },
+      {
+        "phrase": "performance degradation",
+        "count": 5
+      },
+      {
+        "phrase": "agent workflow",
+        "count": 4
+      },
+      {
+        "phrase": "DAPO algorithm",
+        "count": 4
+      },
+      {
+        "phrase": "key information",
+        "count": 4
+      },
+      {
+        "phrase": "length extrapolation",
+        "count": 3
+      },
+      {
+        "phrase": "long-context task",
+        "count": 3
+      },
+      {
+        "phrase": "memory management",
+        "count": 3
+      },
+      {
+        "phrase": "fixed-length memory",
+        "count": 3
+      },
+      {
+        "phrase": "linear time complexity",
+        "count": 2
+      }
+    ],
+    "trigrams": [
+      {
+        "phrase": "multi-conversation DAPO algorithm",
+        "count": 2
+      },
+      {
+        "phrase": "maintain consistent performance",
+        "count": 2
+      },
+      {
+        "phrase": "performance loss less",
+        "count": 2
+      }
+    ],
+    "rhetorical_patterns": {
+      "propose": 5,
+      "introduce": 6,
+      "demonstrate": 12,
+      "show": 7,
+      "achieve": 7,
+      "enable": 8,
+      "suggest": 2,
+      "indicate": 4,
+      "may": 3,
+      "however": 2,
+      "in_contrast": 4,
+      "despite": 4,
+      "state_of_the_art": 1,
+      "significant_or_significantly": 5,
+      "limitation": 0
+    },
+    "interpretation": "Memory/context/chunk terms are domain-driven; RL/training/reward/overwrite/extrapolation co-occur with the actual causal story. Strong verbs cluster around proposing and demonstrating, while suggest/indicate/may appear in prior-work and probe qualification. Counts are approximate because captions, citations and hyphenation alter token boundaries.",
+    "evidence": [
+      {
+        "page": 2,
+        "section": "§1",
+        "anchor": "we propose a novel use of Reinforcement Learning",
+        "basis": "explicit"
+      },
+      {
+        "page": 8,
+        "section": "§3.3.1",
+        "anchor": "RL training is essential",
+        "basis": "explicit"
+      }
+    ]
+  },
+  "final_judgment": {
+    "single_storyline": "Fixed-length chunk-wise memory overwrite converts an unbounded document into a linear read-write trajectory; Multi-Conv DAPO uses final verifiable QA reward to shape each memory write.",
+    "main_body_keeps": "The main body keeps the 8K budget, workflow/training diagrams, Eq. (1)-(4), baseline tables, length curves, cross-task results and RL/capacity/position ablations.",
+    "appendix_moves": "Appendix A-F move prompts, pseudocode, hyperparameters, data synthesis, scoring normalization, FLOP estimation, RAG/Mem0 comparisons, a positive case and failure trajectories; this improves recipe detail but leaves hardware, seeds and failure denominators absent.",
+    "best_pattern": "Figures 2-4 make the state transition and optimization structure visible; Table 1/Figure 5 align performance with context length; Figures 6-9 vary mechanism components rather than only adding baselines.",
+    "largest_gap": "The O(N)/arbitrary-length narrative exceeds direct tests; Eq. (2) and Algorithm 1 show different optimization granularity; no explicit limitations or uncertainty are reported; Table 4's 14B AVG is not reproducible from its visible cells.",
+    "transfer_rule": "A finite-window long-context paper should pair its fixed budget with cross-length results, component removal, runtime measurement and failure trajectories, and make pseudocode and objective use the same optimization granularity.",
+    "transfer_boundary": "This rule fits stateful compression and agent-workflow papers; a purely theoretical complexity paper need not add benchmark failures, but must still separate assumptions, bound and empirical scope.",
+    "evidence_basis": "Pages 3-10 establish the mechanism and main evidence; pages 17-29 provide implementation, complexity, comparison and failure boundaries."
+  },
+  "evidence_coverage": {
+    "substantive_claims": 8,
+    "claims_with_page_evidence": 8,
+    "status": "complete"
+  }
+}
