@@ -1,0 +1,2779 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-26bfc642d651",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/osu-srml/PRISM-DP-LoRA"
+    ],
+    "selected_repository": "https://github.com/osu-srml/PRISM-DP-LoRA",
+    "visual_source_files": [],
+    "search_note": "PDF p.1 explicitly links https://github.com/osu-srml/PRISM-DP-LoRA; the OpenReview page is https://openreview.net/forum?id=SiCjKmArjQ and the verified preprint is arXiv:2606.00944. reports/tables/visual_source_inventory.csv marks the exact-title repository as repository_without_visual_source. gh repo view/tree on main (latest commit 51cddadf19d7a2c118011b13286a0cfccc856e7c, 2026-06-27) confirms the README title and training/evaluation code, but the recursive tree contains no plot*, figure*, visual*, table generator, paper tex, tikz/pgf, svg, notebook, or exported result graphics for Figures 1–20 or Tables 1–8. corpus/visual_sources/icml-2026-26bfc642d651/ is absent. No model weights, datasets, checkpoints, or full clone were fetched."
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 5,
+    "appendix_figures": 16,
+    "appendix_tables": 3,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "DejaVu Sans"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 11.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 9.0,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "主文和附录结果图使用 Matplotlib 风格的蓝色 Baseline、橙色 PRISM；Figure 19 另用连续色阶编码 training step。表格为黑白 booktabs-like 规则，以粗体、分组和列方向表达比较；公式/算法使用 Computer Modern 数学字形。",
+    "vector_raster_mix": "PDF 正文、caption、算法、表格和大多数曲线/散点为可提取的 PDF vector 对象；Figure 19 的连续色条在 p.34 含小型 raster image resource，其余对象没有独立高分辨率图像资源。整篇是以 vector 为主、局部 raster 的混合渲染。",
+    "style_consistency": "主文图和附录图共享蓝/橙方法编码、浅色 dispersion 轨迹和 Matplotlib 轴式；主表与附录表共享 Nimbus Roman/Computer Modern 和 booktabs-like 横线。差异集中在 caption 信息密度、图例位置、log 轴和附录诊断的未定义透明带。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 1. Intrinsic DP-noise amplification during training (Math-10K). We plot the per-step ratio ∥N_Z∥_F^fac / ∥N_Z∥_F^PRISM, where ∥N_Z∥_F is the Frobenius norm of the effective DP noise on the merged LoRA update Z. The blue curve reports the raw per-step ratio, and the orange curve reports its moving average (MA) with window size w = 25 updates. Values > 1 indicate that applying DP-SGD in factor space (A, B) injects a larger intrinsic perturbation into Z than PRISM under the same privacy budget.",
+        "word_count": 85,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色为原始逐步 amplification，橙色为 w=25 moving average；黑色轴与白底提供结构。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 1,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "update step 0–300",
+        "y": "amplification ratio ∥N_Z∥_F^fac / ∥N_Z∥_F^PRISM",
+        "color": "raw vs. MA(w=25)",
+        "shape": "circle markers on raw curve; smooth line on MA",
+        "line": "blue/orange line styles and marker visibility",
+        "facet": "none",
+        "text": "legend plus w=25 and >1 interpretation"
+      },
+      "data_and_statistics": "300 update steps；蓝色为逐步比值，橙色为窗口 25 的移动平均；没有 seed band、error bar 或置信区间。",
+      "evidence_relation": "Issue III/overall mechanism claim → Figure 1 compares factor-space and PRISM intrinsic noise → Figure 2–4 isolate gauge and preconditioner mechanisms → Table 2 utility。",
+      "design_strengths": [
+        "同一轴上把瞬时噪声放大和平滑趋势同时呈现。",
+        ">1 的基准语义让“factor-space 更 noisy”可直接读取。"
+      ],
+      "design_weaknesses": [
+        "原始曲线点密集且与平滑线重叠，局部异常难定位。",
+        "caption 没有给出每步重复数或 dispersion，不能从图中判断 run-to-run variability。"
+      ],
+      "reusable_pattern": "用细粒度原始轨迹加窗口平均线承接机制诊断，但把重复/不确定性单独标出。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 2. Gauge sensitivity under DP (Math-10K). At step t we compute ρ_t = max_c ∥∆Z_t∥_F − min_c ∥∆Z_t∥_F across gauge-rescaled runs; smaller is better and ρ_t ≈ 0 indicates practical gauge invariance. PRISM drives ρ_t near zero, whereas factor-space DP exhibits persistently large ρ_t.",
+        "word_count": 44,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝色 Baseline 曲线和橙色 PRISM 曲线比较跨 gauge 的 ∆Z 范围；黑色坐标轴。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 1,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "update step 0–300",
+        "y": "ρ_t = max_c ∥∆Z_t∥_F − min_c ∥∆Z_t∥_F",
+        "color": "method",
+        "shape": "smooth colored trajectories",
+        "line": "blue/orange series",
+        "facet": "none",
+        "text": "log y ticks and ρ_t definition in caption"
+      },
+      "data_and_statistics": "300 steps 的 gauge-rescaled runs；ρ_t 是每步跨 c 的 max–min，y 轴为对数显示；无误差编码。",
+      "evidence_relation": "Issue I gauge sensitivity → Figure 2 measures operational spread → Figures 5–11 appendix diagnostics expose clipping and realized-step components。",
+      "design_strengths": [
+        "把 gauge variability 压缩成一个随时间的标量。",
+        "对数 y 轴同时保留早期大范围和后期接近零的 PRISM。"
+      ],
+      "design_weaknesses": [
+        "ρ_t 是跨 gauge 极差，不呈现每个 c 的轨迹或分布。",
+        "caption 没有给出 c 的五个具体值，需回到 Appendix C.1。"
+      ],
+      "reusable_pattern": "用 max–min index 将多次等价参数化压缩成一条稳定性曲线，并与机制原理绑定。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "theory_mechanism",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 3. Gauge-dependent intrinsic DP noise (Math-10K). We plot the measured intrinsic noise energy ∥N_Z∥_F² against the gauge-dependent statistic S_t. A strong linear trend indicates that the amount of DP noise injected into Z depends on the factorization; PRISM largely removes this dependence and keeps ∥N_Z∥_F² low.",
+        "word_count": 49,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色点为 Baseline measured，橙色点为 PRISM measured，蓝色拟合线标注线性拟合；黑白为坐标和背景。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 2,
+        "data_marks_estimate": 500
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "S_t = Σℓ(mℓ∥Bℓ∥²_F+nℓ∥Aℓ∥²_F)",
+        "y": "measured intrinsic noise energy ∥N_Z∥²_F",
+        "color": "Baseline/PRISM and fitted baseline",
+        "shape": "points plus fitted line",
+        "line": "fitted baseline line",
+        "facet": "none",
+        "text": "R²=0.999 fit label and S_t formula"
+      },
+      "data_and_statistics": "固定 Math-10K 训练诊断中的测量点；x 为 gauge-dependent S_t，y 为 ∥N_Z∥²_F；Baseline 有线性拟合（图例写 R²=0.999），PRISM 点保持低位；无误差带。",
+      "evidence_relation": "Issue II Proposition 2.2/Eq. (8) → Figure 3 tests noise energy versus S_t → Figure 12/13 fixed-Z gauge sweep → PRISM tangent-noise theory。",
+      "design_strengths": [
+        "散点、拟合线和 PRISM 对照在同一坐标系中直接检验 scaling prediction。",
+        "x 轴把 factor norm statistic 显式化，机制变量与结果变量相连。"
+      ],
+      "design_weaknesses": [
+        "Baseline 点云拥挤，PRISM 与基线的纵向差异压缩在同一 y 轴。",
+        "拟合优度标签只说明线性关联，不提供 seed 或 gauge-level uncertainty。"
+      ],
+      "reusable_pattern": "将理论预测的机制统计量作为 x 轴，叠加实测点和拟合线，而不是只报告相关系数。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 3",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4. Preconditioned intrinsic DP noise vs. σ (Math-10K). We report E∥P_t⁻¹ᐟ² ξ_intr∥_F; lower means the optimizer applies less stochastic perturbation after preconditioning. Factor-space DP becomes nearly σ-invariant, while PRISM keeps the preconditioned noise smaller via DP-aware floors.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#BBD7EE",
+          "#FFD6B3"
+        ],
+        "semantic_mapping": "蓝/橙区分方法，浅色散点和误差条表达 seed spread；黑色网格和坐标。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左下",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "noise multiplier σ ≈ 0.38–0.75",
+        "y": "E∥P_t⁻¹ᐟ²ξ_intr∥_F, μ±σ_seed",
+        "color": "Baseline vs. PRISM",
+        "shape": "circle mean markers and faint seed points/error bars",
+        "line": "solid blue/orange lines",
+        "facet": "none",
+        "text": "μ±σ_seed y-label"
+      },
+      "data_and_statistics": "四个 privacy-engine noise multiplier 点；均值以实心点/线表示，浅色点与竖向误差条显示 seed dispersion；caption 没有定义具体重复数。",
+      "evidence_relation": "Issue III adaptive preconditioning → Figure 4 sweeps σ → Figures 14–18 appendix separate raw noise, amplification, scaling proxy and conditioning。",
+      "design_strengths": [
+        "均值、seed spread 和两种方法在相同 σ 轴上对齐。",
+        "直接呈现“factor-space nearly σ-invariant / PRISM smaller”的比较。"
+      ],
+      "design_weaknesses": [
+        "σ 是 privacy-engine 实现返回值，caption 未解释 ε 到 σ 的映射。",
+        "误差条只标 σ_seed，未说明是否为标准差或其它 seed 汇总。"
+      ],
+      "reusable_pattern": "在主文用简洁 noise-multiplier sweep 建立预条件器效应，再把 raw/amplification 分解放入附录。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 4",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5. Over-time bands of dp_coef_mean across gauges (mean with IQR band; min/max lines).",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左下",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "update step t (0–300)",
+        "y": "mean dp_coef_mean across gauges",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "dp_coef_mean over 300 updates; five gauge rescalings c∈{0.25,0.5,1,2,4}; thick line is across-gauge mean, IQR fill and min/max lines are visible.",
+      "evidence_relation": "Figure 5 clipping-coefficient diagnostic → Figures 8–11 fixed-step gauge sweeps → Issue I clipping mechanism.",
+      "design_strengths": [
+        "IQR and min/max encode both central tendency and extremes.",
+        "The two methods share one time axis and legend."
+      ],
+      "design_weaknesses": [
+        "Caption does not define the five gauge runs beyond the surrounding paragraph.",
+        "Several faint trajectories overlap near 1.0, limiting small differences."
+      ],
+      "reusable_pattern": "Use a mean line with explicit IQR and min/max overlays for gauge-sensitivity time diagnostics.",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Figure 5",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6. Over-time bands of realized intrinsic step magnitude ∥∆Z_t∥_F across gauges (mean with IQR band; min/max lines).",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "update step t (0–300)",
+        "y": "realized intrinsic step magnitude ‖ΔZ_t‖_F",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Actual ∥∆Z_t∥_F from Z_{t+1}−Z_t across five gauges; mean with IQR band and min/max lines; y is log-scaled.",
+      "evidence_relation": "Figure 6 realizes the intrinsic update behind Figure 2 → Figures 5/7–11 diagnose clipping → Issue I conclusion.",
+      "design_strengths": [
+        "Measures the actual merged-update step rather than a formula proxy.",
+        "Log y scale preserves early transient and late small steps."
+      ],
+      "design_weaknesses": [
+        "The broad band and many faint lines are hard to attribute to individual gauges.",
+        "No explicit legend for IQR versus min/max beyond caption text."
+      ],
+      "reusable_pattern": "Plot realized update magnitude with a robust central line and range overlays, keeping the operational quantity separate from clipping proxies.",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 6",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7. Gauge-sensitivity index for clipping: rangec (dp_coef_mean) over time.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "update step t (0–300)",
+        "y": "range_c(dp_coef_mean) = max_c−min_c",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "range_c(dp_coef_mean) = max_c−min_c across the five gauge runs over 300 steps; no uncertainty summary.",
+      "evidence_relation": "Figure 7 aggregates Figure 5 into a gauge-invariance index → Figures 8–11 show endpoint gauge slices.",
+      "design_strengths": [
+        "One scalar index simplifies comparison across training.",
+        "The low PRISM curve makes the intended mechanism legible."
+      ],
+      "design_weaknesses": [
+        "The index hides which gauge causes the extrema.",
+        "Caption leaves the c set and finite-run variability to surrounding prose."
+      ],
+      "reusable_pattern": "Reduce multi-run invariance diagnostics to an explicit max–min index before showing endpoint sweeps.",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 7",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 8. Discrete gauge sweep of dp_clip_frac at step 1.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "log10(gauge c), c∈{0.25, 0.5, 1, 2, 4}",
+        "y": "dp_clip_frac at step 1",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Five discrete gauges c={0.25,0.5,1,2,4} shown as log10(c); step-1 clipping fraction, no error bars.",
+      "evidence_relation": "Figure 8 is the step-1 clipping slice of Figures 5/10 → Eq. (4) explains gauge dependence.",
+      "design_strengths": [
+        "Discrete gauge points make the reparameterization intervention explicit.",
+        "Baseline monotonic change and PRISM flatness are easy to compare."
+      ],
+      "design_weaknesses": [
+        "Only one training step is shown.",
+        "No replicate or seed dispersion is shown."
+      ],
+      "reusable_pattern": "Use a small, fixed gauge grid at an early step to expose a mechanism-level regime change.",
+      "evidence": {
+        "page": 29,
+        "label": "p.29 Figure 8",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 9. Discrete gauge sweep of dp_coef_mean at step 1.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左下",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "log10(gauge c), c∈{0.25, 0.5, 1, 2, 4}",
+        "y": "dp_coef_mean at step 1",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Same five log10(c) values at step 1; mean DP coefficient dp_coef_mean, no error bars.",
+      "evidence_relation": "Figure 9 smooths Figure 8’s clip fraction into mean shrinkage → Eq. (4) and Figure 8 support Issue I.",
+      "design_strengths": [
+        "Pairs a hard clipping fraction with a continuous coefficient measure.",
+        "Same x grid as Figure 8 supports direct cross-panel comparison."
+      ],
+      "design_weaknesses": [
+        "Legend placement differs from Figure 8.",
+        "The caption does not repeat gauge values or finite-run semantics."
+      ],
+      "reusable_pattern": "Keep paired endpoint diagnostics on identical gauge coordinates while changing the mechanism statistic.",
+      "evidence": {
+        "page": 29,
+        "label": "p.29 Figure 9",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 10. Discrete gauge sweep of dp_clip_frac at step 300.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "log10(gauge c), c∈{0.25, 0.5, 1, 2, 4}",
+        "y": "dp_clip_frac at step 300",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Same five log10(c) values at step 300; clipping fraction, no uncertainty encoding; baseline near saturation and PRISM near zero.",
+      "evidence_relation": "Late-step counterpart to Figure 8 → surrounding text warns saturation can mask gauge dependence.",
+      "design_strengths": [
+        "Makes the early/late saturation contrast visible.",
+        "Identical coordinate design to Figure 8 aids scanning."
+      ],
+      "design_weaknesses": [
+        "Saturation makes a flat baseline curve ambiguous as an invariance test.",
+        "No error bars or individual runs."
+      ],
+      "reusable_pattern": "Show late-step endpoint curves only as a saturation check, not as sole evidence of invariance.",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Figure 10",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 11. Discrete gauge sweep of dp_coef_mean at step 300.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "log10(gauge c), c∈{0.25, 0.5, 1, 2, 4}",
+        "y": "dp_coef_mean at step 300",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Same five log10(c) values at step 300; mean DP coefficient, no uncertainty encoding.",
+      "evidence_relation": "Late-step counterpart to Figure 9 → text interprets residual baseline dependence under clipping saturation.",
+      "design_strengths": [
+        "Complements Figure 10 with coefficient rather than fraction.",
+        "Retains method color and discrete gauge intervention."
+      ],
+      "design_weaknesses": [
+        "Late clipping saturation reduces discriminative resolution.",
+        "Caption is terse and not self-contained about c or step semantics."
+      ],
+      "reusable_pattern": "Pair a late-step coefficient slice with the late-step clipping-fraction slice and state saturation explicitly.",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Figure 11",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 12. Gauge sweep at fixed Zℓ: intrinsic-noise medians with 10–90% band.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "上方居中",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "gauge scale c in A→cA, B→c⁻¹B (10⁻³–10³)",
+        "y": "intrinsic noise norm (median with 10–90% band)",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Gauge scale c swept over log10(c)∈[-3,3] with 61 values and 64 Monte-Carlo samples per c; medians and 10–90% bands for baseline linear, baseline bilinear, and PRISM.",
+      "evidence_relation": "Issue II fixed-Z protocol → Figure 12 separates linear/bilinear factor noise from PRISM → Figure 13 ratio and Figure 3 training-time relation.",
+      "design_strengths": [
+        "Log–log axes expose orders-of-magnitude gauge amplification.",
+        "Separate linear and bilinear baseline components clarify the mechanism."
+      ],
+      "design_weaknesses": [
+        "Three series plus bands and two vertical reference markers create a dense legend.",
+        "Caption does not state the 61×64 sampling protocol."
+      ],
+      "reusable_pattern": "Use fixed-intrinsic-state log sweeps with component-wise baselines and quantile bands to separate mechanism terms.",
+      "evidence": {
+        "page": 31,
+        "label": "p.31 Figure 12",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 13. Gauge sweep: amplification factor (median baseline / median PRISM) vs. c.",
+        "word_count": 12,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "gauge scale c in A→cA, B→c⁻¹B (10⁻³–10³)",
+        "y": "amplification factor (median baseline / median PRISM)",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Median baseline/PRISM intrinsic-noise amplification ratio over the same log-spaced gauge sweep; no band visible.",
+      "evidence_relation": "Figure 12 component curves → Figure 13 converts them to a ratio → Figure 1 links fixed-state amplification to training-time amplification.",
+      "design_strengths": [
+        "Ratio removes the absolute noise scale and exposes V-shaped gauge dependence.",
+        "Log axes show large amplification factors compactly."
+      ],
+      "design_weaknesses": [
+        "Single blue series has no visible baseline/PRISM legend because the ratio is already encoded.",
+        "Median ratio does not show Monte-Carlo spread."
+      ],
+      "reusable_pattern": "Convert paired method measurements to an explicit amplification ratio when absolute units obscure the gauge effect.",
+      "evidence": {
+        "page": 31,
+        "label": "p.31 Figure 13",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 32,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 14. Mean raw intrinsic DP noise ∥ξ_intr∥_F vs. σ.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "realized noise multiplier σ (four privacy-engine values)",
+        "y": "mean raw intrinsic DP noise ‖ξ_intr‖_F",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Noise-multiplier sweep at four realized σ values; means with seed scatter/error bars for raw intrinsic noise; values increase with σ.",
+      "evidence_relation": "Issue III raw-noise scaling prediction → Figure 14 sanity check → Figure 15 isolates preconditioner amplification.",
+      "design_strengths": [
+        "Tests the privacy engine’s raw σ response before normalization.",
+        "Seed dots and error bars expose between-run spread."
+      ],
+      "design_weaknesses": [
+        "Log y scale and sparse tick labels make absolute differences less immediate.",
+        "Caption does not define the seed aggregation despite visible μ±σ_seed."
+      ],
+      "reusable_pattern": "Place a raw-noise calibration panel before any normalized amplification diagnostic.",
+      "evidence": {
+        "page": 32,
+        "label": "p.32 Figure 14",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 32,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 15. Mean amplification ∥P⁻¹ᐟ²ξ∥_F / ∥ξ∥_F vs. σ.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "realized noise multiplier σ (four privacy-engine values)",
+        "y": "mean amplification ‖P⁻¹ᐟ²ξ‖_F / ‖ξ‖_F",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Same four σ values; amplification ratio ∥P⁻¹ᐟ²ξ∥_F/∥ξ∥_F with seed scatter/error bars; baseline decreases and PRISM is lower.",
+      "evidence_relation": "Figure 14 raw noise → Figure 15 preconditioner-only ratio → Figure 16 aggressiveness and Figure 17 conditioning.",
+      "design_strengths": [
+        "Normalizes away raw noise and targets the adaptive-preconditioning failure.",
+        "Shared σ grid allows direct comparison with Figure 14."
+      ],
+      "design_weaknesses": [
+        "The denominator and preconditioner are dense symbols for readers outside the method.",
+        "Seed spread is visible but not defined in the caption."
+      ],
+      "reusable_pattern": "Follow raw scale with a normalized ratio so the optimizer’s contribution is separately auditable.",
+      "evidence": {
+        "page": 32,
+        "label": "p.32 Figure 15",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 33,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 16. Preconditioner aggressiveness (proxy) over training steps.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "update step t (0–300)",
+        "y": "max preconditioner scaling (proxy)",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "300-step diagnostic at ε=3 (σ≈0.62); max preconditioner scaling proxy for DP-AdamW versus PRISM, with translucent trajectories visible but replicate definition absent.",
+      "evidence_relation": "Figure 16 operationalizes Theorem 3.5’s scaling proxy → Figure 17 Gram stress → Figure 18 realized amplification.",
+      "design_strengths": [
+        "Proxy tracks the optimizer control knob directly over time.",
+        "Log y scale preserves the large early baseline value."
+      ],
+      "design_weaknesses": [
+        "The proxy is not the exact operator norm for every optimizer.",
+        "Caption does not define the faint trajectory/band statistic or repeat count."
+      ],
+      "reusable_pattern": "Use a transparent scaling proxy as a bridge between a bound and realized noise amplification.",
+      "evidence": {
+        "page": 33,
+        "label": "p.33 Figure 16",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 33,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 17. Low-rank numerics stress: max ∥M⁻¹ᐟ²∥₂ (Gram proxy).",
+        "word_count": 9,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "update step t (0–300)",
+        "y": "max ‖M⁻¹ᐟ²‖₂ (Gram proxy)",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "300-step ε=3 diagnostic; max ∥M⁻¹ᐟ²∥₂ Gram-proxy stress, with faint trajectories but no caption definition of their aggregation.",
+      "evidence_relation": "Low-rank numerical-stability issue → Figure 17 measures Gram inverse-square-root stress → Figure 18 checks realized amplification.",
+      "design_strengths": [
+        "Directly visualizes ill-conditioning rather than only final utility.",
+        "Method curves remain on a common log scale."
+      ],
+      "design_weaknesses": [
+        "M is a measured proxy and its construction is not in the caption.",
+        "Faint lines are not tied to a named uncertainty summary."
+      ],
+      "reusable_pattern": "Plot a conditioning proxy beside a scaling proxy to separate numerical stress from update amplification.",
+      "evidence": {
+        "page": 33,
+        "label": "p.33 Figure 17",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 34,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 18. Amplification over training steps: ∥P⁻¹ᐟ²ξ∥ / ∥ξ∥.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右下",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "update step t (0–300)",
+        "y": "realized amplification ‖P⁻¹ᐟ²ξ_t,intr‖_F / ‖ξ_t,intr‖_F",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "300-step ε=3 diagnostic; realized amplification ∥P⁻¹ᐟ²ξ_t,intr∥_F/∥ξ_t,intr∥_F, two methods and faint variability traces.",
+      "evidence_relation": "Figures 16–17 proxies → Figure 18 direct realized ratio → Figure 19/20 mechanism relationships.",
+      "design_strengths": [
+        "Moves from proxies to the measured amplification target.",
+        "The wide y range is legible with log scaling."
+      ],
+      "design_weaknesses": [
+        "Caption does not state whether lines are means, medians, or one run.",
+        "Baseline saturation can hide temporal variation."
+      ],
+      "reusable_pattern": "Use a direct realized ratio after proxy panels, retaining identical method colors and time axis.",
+      "evidence": {
+        "page": 34,
+        "label": "p.34 Figure 18",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 19",
+      "page": 34,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 19. Amplification vs. aggressiveness (color = step).",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左上 + 右侧 colorbar",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "preconditioner aggressiveness max‖P⁻¹ᐟ²‖ (log scale)",
+        "y": "noise amplification ‖P⁻¹ᐟ²ξ‖_intr / ‖ξ‖_intr",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Step-wise scatter of amplification versus preconditioner aggressiveness on log axes; color gradient encodes training step 0–300; separate Baseline and PRISM point markers.",
+      "evidence_relation": "Figure 16 aggressiveness proxy → Figure 19 tests amplification relation with step as color → Figure 20 swaps in low-rank stress.",
+      "design_strengths": [
+        "Color carries temporal progression without adding a third axis.",
+        "Log–log coordinates expose method regime separation."
+      ],
+      "design_weaknesses": [
+        "Colorbar plus method legend increases decoding load.",
+        "Scatter is observational and does not show a fitted relation or uncertainty."
+      ],
+      "reusable_pattern": "Use a colored trajectory/scatter cloud to connect a proxy to realized amplification while preserving method identity.",
+      "evidence": {
+        "page": 34,
+        "label": "p.34 Figure 19",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 20",
+      "page": 35,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 20. Amplification vs. low-rank stress (Gram proxy).",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#BBD7EE"
+        ],
+        "semantic_mapping": "蓝色 Baseline、橙色 PRISM；浅色透明轨迹/分位带表达运行 dispersion；Figure 19 另以连续色阶编码 training step。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左上",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "low-rank stress max‖M⁻¹ᐟ²‖₂ (Gram proxy; log scale)",
+        "y": "noise amplification ‖P⁻¹ᐟ²ξ‖_intr / ‖ξ‖_intr",
+        "color": "Baseline vs. PRISM; Figure 12 adds linear/bilinear components; Figure 19 adds training-step color",
+        "shape": "circle markers, central lines, bands where shown",
+        "line": "colored method lines/markers",
+        "facet": "none",
+        "text": "legend and axis annotation"
+      },
+      "data_and_statistics": "Step-wise scatter of amplification versus low-rank stress max∥M⁻¹ᐟ²∥₂ on log axes; Baseline and PRISM method colors/markers, no uncertainty summary.",
+      "evidence_relation": "Figure 17 low-rank stress → Figure 20 tests amplification coupling → final Issue III interpretation.",
+      "design_strengths": [
+        "Final panel tests whether safeguards decouple stress from amplification.",
+        "Large blank area gives the single scatter panel visual separation."
+      ],
+      "design_weaknesses": [
+        "Substantial page whitespace weakens page efficiency.",
+        "Caption does not define M proxy or the step sampling."
+      ],
+      "reusable_pattern": "End a diagnostic sequence with a two-variable scatter that tests the claimed decoupling directly.",
+      "evidence": {
+        "page": 35,
+        "label": "p.35 Figure 20",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1. Comparison with other DP-LoRA design choices. We evaluate each variant against three desiderata: (a) gauge-invariant randomized mechanism, (b) additive perturbations on Z (i.e., no bilinear DP term), and (c) LoRA-scale efficiency. The naive factor-space variant violates (a) and (b), yielding unbounded effective intrinsic noise E_Z. The one-sided variant, which updates B only while freezing A, satisfies (b) and (c) but not (a). PRISM satisfies all three and admits a closed-form expression for E_Z.",
+        "word_count": 76,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No empirical uncertainty; E_Z is a closed-form symbolic quantity and “UNBOUNDED” is a qualitative failure value.",
+      "data_and_statistics": "Rows are DP-LoRA, One-side, PRISM; columns are Method, Params, E_Z, and desiderata (a)–(c). PRISM is bold and has checkmarks in all three columns.",
+      "evidence_relation": "Issue I–III desiderata → Table 1 sets the comparison contract → Section 3/Algorithm 1 constructs the row marked PRISM → Tables 2–5 test utility, scaling and cost.",
+      "design_strengths": [
+        "Compactly binds invariance, additivity, efficiency and effective-noise claims.",
+        "Checkmarks and bold row make the design decision scannable."
+      ],
+      "design_weaknesses": [
+        "Symbolic E_Z expressions are dense at small size.",
+        "The table states qualitative properties rather than empirical magnitudes or uncertainty."
+      ],
+      "reusable_pattern": "Use a compact desiderata matrix before the method details, with a symbolic cost/noise column and explicit pass/fail marks.",
+      "evidence": {
+        "page": 2,
+        "label": "p.2 Table 1",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2. Utility on GLUE8 and Math-10K (higher is better). “Non-DP” uses the same setup without DP clipping/noise; ε ∈ {6, 3} uses DP-SGD with δ = 10⁻⁵. Avg is the unweighted mean over the 12 tasks; bold is best per column. Takeaway: Under DP, PRISM attains the best Avg and wins most tasks, especially on multi-step reasoning (GSM8K/MAWPS/SVAMP).",
+        "word_count": 55,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "abbreviation_definition",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 18,
+      "columns": 15,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No SD/SE or intervals; each cell is a single task score, and Avg is an unweighted mean over 12 tasks.",
+      "data_and_statistics": "Two header levels group GLUE8’s 8 tasks and Math-10K’s 4 tasks; Setting and Method are left columns and Avg is final column. Three row groups are Non-DP, ε=6, ε=3, each with six methods.",
+      "evidence_relation": "Method design contract/Table 1 → Table 2 headline utility on GLUE8 + Math-10K → Table 3–5 scaling/rank/overhead → Figures 1–4 mechanism diagnostics.",
+      "design_strengths": [
+        "One wide decision surface compares privacy regime, method and 12 task outcomes.",
+        "Bold per-column winners and a final Avg make the main takeaway visible."
+      ],
+      "design_weaknesses": [
+        "No replicate spread despite DP stochasticity; the caption only says Avg is unweighted.",
+        "Width and repeated method names create a high horizontal and vertical scanning cost."
+      ],
+      "reusable_pattern": "Use grouped task headers and a final aggregate column for multi-suite privacy utility, with row blocks for privacy regimes.",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 2",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 3. Math-10K results on Gemma-3-4B-pt, Gemma-2-9B, and Gemma-3-12B-pt under DP (r = 16, ε = 6, δ = 10⁻⁵). The “Type” column indicates the backbone family; all experiments use text-only inputs. Bold indicates the best result within each backbone.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; rows report single exact-answer accuracy values and Avg within each backbone.",
+      "data_and_statistics": "Columns are Backbone, Type, Method, GSM8K, AQuA, MAWPS, SVAMP, Avg; three backbone row groups contain AdamW, LoRA+, PRISM.",
+      "evidence_relation": "Table 2 main DP utility → Table 3 tests backbone family/size persistence → Table 4 rank sensitivity and Table 5 overhead.",
+      "design_strengths": [
+        "Explicit Type column distinguishes text-only from multimodal backbone families while holding text-only inputs fixed.",
+        "Within-backbone bolding avoids comparing raw scores across backbone scales."
+      ],
+      "design_weaknesses": [
+        "Mixed three- and four-decimal precision reduces column uniformity.",
+        "The caption says text-only inputs but Type includes multimodal, which requires careful reading."
+      ],
+      "reusable_pattern": "Repeat a compact method block per backbone and bold only within each block when scale changes alter the score regime.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 3",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 4. Rank sensitivity on Gemma-3-4B-pt under DP (ε = 6, δ = 10⁻⁵; text-only inputs). Avg is the unweighted mean over all 12 tasks. PRISM is best across all tested ranks.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; Avg columns are unweighted means over 12 tasks.",
+      "data_and_statistics": "Columns Rank, Method, GLUE8 Avg, Math Avg, Avg; three row groups r=8, r=16, r=32, each with AdamW, LoRA+, PRISM.",
+      "evidence_relation": "Table 2 baseline utility → Table 4 varies LoRA rank → Figure 1/4 and Appendix diagnostics address mechanism and noise rather than rank.",
+      "design_strengths": [
+        "Directly tests rank robustness with identical backbone and privacy setting.",
+        "Three aggregate columns keep the rank comparison compact."
+      ],
+      "design_weaknesses": [
+        "Aggregates hide task-level reversals.",
+        "Only three ranks are sampled, so the table cannot establish a continuous scaling law."
+      ],
+      "reusable_pattern": "Use repeated rank blocks with consistent aggregate metrics for a small, auditable sensitivity sweep.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 4",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5. Runtime and memory profiling on Gemma-3-4B-pt for Math-10K (r = 16, ε = 6). Measurements use a single A100-40GB GPU with 10 warmup updates and 30 measured updates. PRISM roughly doubles step time in the current implementation, while peak memory is essentially unchanged.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; 10 warmup and 30 measured updates on one A100-40GB GPU, with step time in seconds and peak memory in MB.",
+      "data_and_statistics": "Columns Method, Step time (s), Peak memory (MB); rows LoRA+, AdamW, PRISM.",
+      "evidence_relation": "Table 2 utility → Table 5 quantifies the runtime/memory trade-off → Limitations attributes practical cost to geometry-aware operations.",
+      "design_strengths": [
+        "Places runtime and memory on one compact cost surface.",
+        "Caption fixes hardware and warmup/measurement protocol."
+      ],
+      "design_weaknesses": [
+        "Single GPU and one workload limit portability.",
+        "Mixed units and no variability hide run-to-run systems noise."
+      ],
+      "reusable_pattern": "Pair performance claims with an explicit cost table using hardware and measurement protocol in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 5",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6. Dataset splits used in our experiments.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 14,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; counts are split sizes, with “–” for not applicable train/eval cells.",
+      "data_and_statistics": "Columns Dataset/Split, Train, Eval; two bold group headers GLUE8 and Math-10K, with GLUE8 total and Math test rows.",
+      "evidence_relation": "Table 2 task suite → Table 6 makes train/eval denominators and split sizes explicit → Table 7/8 complete the reproduction configuration.",
+      "design_strengths": [
+        "Separates training and evaluation counts in a compact schema.",
+        "Group headers and totals expose the composition of both benchmark suites."
+      ],
+      "design_weaknesses": [
+        "MNLI matched/mismatched and mixture/test rows require special parsing.",
+        "No dataset version/date or filtering details appear in the table itself."
+      ],
+      "reusable_pattern": "Use a two-column count table with group headers and explicit total/test rows for benchmark reconstruction.",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Table 6",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7. Common hyperparameters shared across methods.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; values are shared configuration settings, including ε∈{3,6}, δ=10⁻⁵, C=1.0 and seed 42.",
+      "data_and_statistics": "Columns Setting, GLUE8, Math-10K; rows cover backbone, LoRA rank/scaling/dropout, target modules, steps/batches, sequence length, input masking, seed, DP and backend/accountant.",
+      "evidence_relation": "Table 6 split sizes → Table 7 common controls → Table 8 method-specific optimizer/LR settings → reproducibility of Tables 2–5 and Figures 1–20.",
+      "design_strengths": [
+        "Centralizes shared controls instead of repeating them in every result table.",
+        "GLUE8/Math-10K differences are visible in one side-by-side column pair."
+      ],
+      "design_weaknesses": [
+        "Dense long strings such as target modules and accountant citations are small.",
+        "“SAME” cells require looking back to the GLUE8 column."
+      ],
+      "reusable_pattern": "Put invariant controls in a shared-configuration table and reserve the next table for method-specific deviations.",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Table 7",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 8. Method-specific hyperparameters.",
+        "word_count": 4,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; learning rates are scientific-notation hyperparameters and the Supplementary column contains optional ratio/“–” entries.",
+      "data_and_statistics": "Columns Method, Optimizer, LR (GLUE8), LR (Math), Supplementary; six method rows from AdamW, FFA, RITE, LoRA+ and LAMB to PRISM.",
+      "evidence_relation": "Table 7 common settings → Table 8 records optimizer/LR deviations → Tables 2–5 and diagnostic figures can be interpreted without hidden per-method defaults.",
+      "design_strengths": [
+        "Makes baseline-specific optimizer choices and LRs auditable.",
+        "The Supplementary column preserves the sole LoRA+ ratio override."
+      ],
+      "design_weaknesses": [
+        "Citation-heavy optimizer cells wrap across lines.",
+        "No run-level convergence or tuning budget is included."
+      ],
+      "reusable_pattern": "Separate common hyperparameters from method-specific optimizer and learning-rate choices, retaining exceptions in a final column.",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Table 8",
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Introduction 用 Table 1 预置 gauge invariance、additivity 和 efficiency 三项 desiderata；Section 3 以 Algorithm 1 和公式把 PRISM 组织为 tangent projection → clipping/noise → adaptive transform → retraction；Tables 2–5 先给 privacy utility、backbone/rank scaling 和 runtime cost，Figures 1–4 再逐项诊断三类 failure；Appendix C 的 Figures 5–20 把 clipping、fixed-Z noise、raw noise、preconditioner scaling、conditioning 和 realized amplification 串成闭环。",
+    "caption_system": "主文 Table 1–5 caption 同时交代设置、比较对象和部分主发现，Table 2 的 Takeaway 最完整；Figure 1–4 caption 定义主要指标、颜色/线型和主方向。附录 Figure 5–20 多为短标题，IQR、10–90% band、seed dispersion 或 proxy 的统计口径依赖邻近段落，caption 自包含性弱。",
+    "table_header_system": "结果表分别使用 desiderata matrix、GLUE8/Math-10K task groups、backbone/type/method、rank blocks 和 runtime/memory 列；附录表转为 split counts、common settings、method-specific settings。性能表多用 ↑/higher-is-better 语义和粗体，成本表用 seconds/MB 或 scientific notation。",
+    "method_result_ablation_link": "Table 1 的设计契约 → Algorithm 1 与 Section 3.1–3.3 的 tangent mechanism → Table 2 utility headline → Table 3 backbone、Table 4 rank、Table 5 overhead → Figures 1–4 三个 issue diagnostics → Appendix C Figures 5–20 的 mechanism decomposition。",
+    "main_appendix_link": "正文 p.1–9 保留 Table 1–5、Algorithm 1 和 Figures 1–4；References p.10–12 后，Appendix Roadmap p.13 开始，Tables 6–8 提供 split/hyperparameter reproduction，Figures 5–20 承载 Issue I–III 的追加诊断。p.35 Figure 20 保留大量空白，说明附录图按证据链追加而非版式填满。",
+    "typography_consistency": "正文和表格以 Nimbus Roman/Computer Modern 为主；图内坐标、legend 和 colorbar 使用嵌入的 DejaVu Sans 家族。算法同时使用 Roman、数学和 monospace-like 字形。字号以 6–10 pt 图中文字为主，小图在双栏页中存在可读性压力。",
+    "color_consistency": "蓝/橙始终标识 Baseline/PRISM，透明浅色轨迹承载 dispersion；Figure 12 用额外绿色标识 PRISM 并用点线标记理论 gauge，Figure 19 用色条承载 training step。颜色与 legend 有冗余，但灰度下蓝/橙和浅色 band 的区分明显减弱。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "先用 desiderata matrix 固定机制比较维度，再用 Algorithm 1 把方法组件串成执行顺序。",
+      "将 headline utility、scale/rank、runtime cost 放在连续的主表决策面，并把解释性机制图放在同一结果页。",
+      "附录采用“时间带 → 固定状态 gauge sweep → σ sweep → proxy/realized amplification scatter”的诊断序列，把理论 failure mode 分解成可观察量。"
+    ],
+    "highest_value_objects": [
+      "Table 1：用三个 desiderata 把 gauge invariance、additive noise 和 LoRA-scale efficiency 绑定到同一方法接口。",
+      "Table 2：在 GLUE8/Math-10K、三 privacy settings 和 12 tasks 上提供主效用决策面。",
+      "Figure 12 + Figures 16–20：分别把 gauge-dependent noise 与 adaptive-preconditioning amplification 拆成机制级证据。"
+    ],
+    "failure_patterns": [
+      "主效用与多数组件消融表只给点估计；DP seed variability 主要通过附录图的散点/带呈现，表格没有统一不确定性列。",
+      "附录短 caption 经常不定义透明带、proxy、seed 汇总或采样协议，读者必须往返正文段落。",
+      "结果图在蓝/橙之外混用绿色、连续色条、log 轴和不同 legend 位置；p.35 Figure 20 的大空白降低附录版式效率。"
+    ],
+    "one_sentence_visual_strategy": "论文先用 desiderata matrix 和 Algorithm 1 定义 intrinsic DP 机制，再用蓝/橙 utility 表与三类机制诊断，把 gauge dependence、bilinear noise 和 adaptive amplification 从理论公式连接到 fixed-Z sweep、σ sweep 与 low-rank stress evidence。"
+  }
+}

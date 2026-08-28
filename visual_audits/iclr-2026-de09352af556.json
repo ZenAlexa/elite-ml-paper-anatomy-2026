@@ -1,0 +1,2578 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-de09352af556",
+  "source_acquisition": {
+    "status": "no_public_source_found",
+    "repository_candidates": [
+      "yingchengyang/Reinforcement-Learning-Papers",
+      "17AIGB/GenerativeAutoBidding",
+      "ChuaHanChong/ResearchBrain"
+    ],
+    "selected_repository": null,
+    "visual_source_files": [],
+    "search_note": "The official proceedings PDF and the reading OpenReview URL were checked; the PDF contains no paper-specific code or project URL. Exact-title and AIGB-Pearl GitHub searches found no author-linked repository. The automatic candidate yingchengyang/Reinforcement-Learning-Papers is a related-paper list. 17AIGB/GenerativeAutoBidding contains small baseline/trajectory files but no title match, AIGB-Pearl implementation, figure/table source, or plotting assets. ChuaHanChong/ResearchBrain contains a knowledge note only. No local corpus/visual_sources directory exists for this paper, so all visual properties are from the PDF object and 200 dpi render inspection."
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 5,
+    "appendix_figures": 8,
+    "appendix_tables": 8,
+    "dominant_figure_typography": {
+      "family": [
+        "Computer Modern Roman",
+        "Computer Modern Sans",
+        "Computer Modern Math"
+      ],
+      "size_pt": {
+        "minimum": 4.0,
+        "median": 6.0,
+        "maximum": 9.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "rendered_estimate",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 7.5,
+      "header_size_pt": 8.0,
+      "header_weight": "medium",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figures use pastel semantic blocks for theory and method diagrams, categorical blue/orange/green/red lines for trajectories and training curves, and cyan histograms with a contrasting target line. Tables remain black-and-white with bold/underline highlighting and directional symbols.",
+    "vector_raster_mix": "Native PDF text, captions, rules, and tables are vector objects. The figure panels are embedded raster assets at high effective resolution, with native captions and page text around them; pdfimages reports eight raster groups across the figure pages. No public source establishes the original plotting backend or export settings.",
+    "style_consistency": "The main and appendix use the same Computer Modern/Nimbus Roman conference template and compact caption system. Table grammar is stable, while raster figure label sizes and pastel palettes vary across conceptual diagrams, diagnostics, and seed plots."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 5,
+      "module": "theory",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "scatter",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Schematic illustration of the KL-Lipschitz-constrained score-maximization. It enables safe trajectory improvement within a theoretically certified neighborhood of the high quality trajectories in the offline dataset, where the evaluator remains high accuracy.",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#96CEB4",
+          "#BFD7EA",
+          "#D95F59",
+          "#FFFFFF",
+          "#F28E2B",
+          "#222222"
+        ],
+        "semantic_mapping": "Green band and horizontal action lines define the certified region; blue/red/open circles encode win/loss categories; orange dashed line is 1/R_m.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 3,
+        "data_marks_estimate": 35
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Impression Index i",
+        "y": "c_t^i/v_t^i (1/ROI)",
+        "color": "action and outcome category",
+        "shape": "won/lost/open circle",
+        "line": "horizontal action lines and orange threshold",
+        "facet": "none",
+        "text": "a_t^1, a_t^2, 1/R_m"
+      },
+      "data_and_statistics": "Conceptual point layout over impression indices; it has no sample denominator, repeated runs, confidence interval, or fitted estimate. The green strip and points are the PDF schematic, not an empirical distribution.",
+      "evidence_relation": "Remark 1 and Eq. 8 connect the KL feasible set and planner Lipschitz neighborhood to this schematic; the figure supplies the geometric bridge from constraints to safe exploration, while Tables 1–4 test performance and Appendix Figure 7 expands the bound trade-off.",
+      "design_strengths": [
+        "The action band, threshold, and outcome categories are visible in one compact view.",
+        "Open, blue, and red point symbols duplicate the legend semantics.",
+        "The geometry gives the theory claim an immediate spatial interpretation."
+      ],
+      "design_weaknesses": [
+        "Small inset labels and mathematical symbols become difficult at normal page scale.",
+        "The schematic has no legend entry for the certified-neighborhood radius and does not quantify density.",
+        "Color carries part of the outcome semantics, so grayscale separation weakens."
+      ],
+      "reusable_pattern": "Use a threshold plus a shaded feasible band and redundant point shapes to explain a constrained exploration region before presenting numeric results.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 1",
+        "bbox": [
+          306.0,
+          560.96,
+          342.822,
+          570.923
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2: AIGB-Pearl (Planning with EvaluAtor via RL) constructs a trajectory evaluator to score the trajectory quality and let the planner maximize the obtained score under the KL-Lipschitz constraint through continuous interaction with the evaluator. A synchronous coupling method is used to estimate the Wasserstein term in the Lipschitz penalty.",
+        "word_count": 50,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.2,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#C6DDF4",
+          "#B9C5EA",
+          "#FAD4A5",
+          "#AFCB81",
+          "#F3C8B5",
+          "#E8E8E8",
+          "#6C8EBF",
+          "#222222"
+        ],
+        "semantic_mapping": "Pastel blocks separate conditions, trajectory states, evaluator, planner, and shared noise; arrows and labels carry the process semantics.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "input to output flow",
+        "y": "trajectory quality / generated state",
+        "color": "module role and shared noise",
+        "shape": "none",
+        "line": "arrows and dashed coupling links",
+        "facet": "two conceptual regions",
+        "text": "module and equation labels"
+      },
+      "data_and_statistics": "Architecture diagram with no empirical observations. It shows an evaluator score, a Causal Transformer planner, Gaussian noise, and the synchronous-coupling surrogate Ŵ_1; no sample count or statistical uncertainty is encoded.",
+      "evidence_relation": "Section 3.2 introduces the evaluator and planner, Eq. 12 defines the three planner-loss terms, and Eq. 13 defines Ŵ_1. This figure is the method interface that later connects to Figure 4–5 constraint checks and Figure 3 trajectory behavior.",
+      "design_strengths": [
+        "The left-to-right pipeline and enlarged coupling block make the training interface legible.",
+        "Shared η and the Ŵ_1 expression expose the implementation mechanism.",
+        "Dashed borders and color blocks separate roles without requiring a long legend."
+      ],
+      "design_weaknesses": [
+        "The rasterized labels are small for a page-width architecture.",
+        "The diagram does not show update order, loss weights β2/β3, or tensor dimensions.",
+        "Pastel color roles are not fully robust in grayscale."
+      ],
+      "reusable_pattern": "Pair an end-to-end pipeline with one magnified mechanism block, and put the key surrogate equation at the point where the data flow uses it.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2",
+        "bbox": [
+          108.0,
+          255.422,
+          144.583,
+          265.385
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "ablation",
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: Trajectory Generation Visualization. Three cases are presented. Here, the AIGB-Pearl generates plausible trajectories, whereas its variant without the KL-Lipschitz constraint produces generations that significantly deviate from the reference and exhibit evident issues.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#2E86DE",
+          "#D95F59",
+          "#2CA02C",
+          "#F28E2B",
+          "#D9D9D9"
+        ],
+        "semantic_mapping": "Green dashed line is the offline optimal trajectory, magenta line is AIGB-Pearl, and blue line is the variant without KL-Lipschitz; red annotations mark excessive concentration and backward tilt, and blue shading marks low cost.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 3,
+        "data_marks_estimate": 240
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Time Step",
+        "y": "Cost / Budget Per Time Step",
+        "color": "trajectory variant",
+        "shape": "line style and color",
+        "line": "trajectory line",
+        "facet": "Case 1, Case 2, Case 3",
+        "text": "pathology annotations"
+      },
+      "data_and_statistics": "Three hand-selected trajectory examples share a time-step x-axis and cost-per-budget y-axis. The colored area in Case 3 highlights low cost; it is a qualitative emphasis, not an uncertainty band. No aggregation, seed count, or interval is given.",
+      "evidence_relation": "Section 4.3 invokes this figure after Table 4 to make the KL and Lipschitz ablation failure modes concrete. It supports the qualitative part of the constraint-necessity claim and points to Appendix F.4 for case explanations.",
+      "design_strengths": [
+        "Three cases align the reference, proposed, and ablated paths for direct visual comparison.",
+        "The common legend lets the reader compare color semantics across panels.",
+        "Pathology annotations name failure modes at their location."
+      ],
+      "design_weaknesses": [
+        "The cases are selected exemplars with no prevalence or selection rule.",
+        "The long shared legend and small axes reduce readability.",
+        "The filled emphasis in Case 3 can be mistaken for uncertainty without a caption key."
+      ],
+      "reusable_pattern": "For a constraint ablation, align reference, full method, and removed-component trajectories on identical axes, then label the failure mode directly on the offending path.",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 3",
+        "bbox": [
+          108.0,
+          187.223,
+          145.081,
+          197.186
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: Examination of Evaluator Lipschitz.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.7,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#8FD3E8",
+          "#F28E2B",
+          "#222222"
+        ],
+        "semantic_mapping": "Cyan bars show evaluator Lipschitz-value frequency; orange dashed/reference annotation states the target or observed constant; black axes provide scale.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 25
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "distribution",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Evaluator Lipschitz Value",
+        "y": "Frequency",
+        "color": "none",
+        "shape": "none",
+        "line": "bars plus dashed reference",
+        "facet": "none",
+        "text": "Lipschitz constant annotation"
+      },
+      "data_and_statistics": "Histogram of Lipschitz values computed from 8,000 sampled trajectory pairs. The body reports evaluator value 2.2 near the theoretical 1.62; the panel itself shows the distribution and a reference annotation, with no confidence interval.",
+      "evidence_relation": "Section 4.4 uses Figure 4 together with Figure 5 to answer RQ(3), checking whether empirical evaluator and planner constants are near their target values. Figure 8 supplies the evaluator regularization mechanism.",
+      "design_strengths": [
+        "A distribution exposes concentration and tail behavior beyond a single reported constant.",
+        "The reference line/annotation links the histogram to the constraint.",
+        "The panel is small but directly labeled."
+      ],
+      "design_weaknesses": [
+        "The caption is title-only and omits the 8,000-pair sampling detail.",
+        "The target and measured constants are not both clearly keyed inside the small panel.",
+        "The histogram has no normalization or bin-width explanation."
+      ],
+      "reusable_pattern": "Show a constraint diagnostic as a distribution with an explicit target line, while stating sample count and aggregation in the caption.",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 4",
+        "bbox": [
+          306.0,
+          379.839,
+          343.848,
+          389.802
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5: Examination of Planner Lipschitz.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.7,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#8FD3E8",
+          "#6DBE77",
+          "#222222"
+        ],
+        "semantic_mapping": "Cyan bars show planner Lipschitz-value frequency; green dashed annotation gives L_p=0.50; black axes provide scale.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 25
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "distribution",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Planner Lipschitz Value",
+        "y": "Frequency",
+        "color": "none",
+        "shape": "none",
+        "line": "bars plus dashed target",
+        "facet": "none",
+        "text": "L_p = 0.50 annotation"
+      },
+      "data_and_statistics": "Histogram of planner Lipschitz values from the same 8,000-pair diagnostic. The body reports planner value 0.56 near L_p=0.50; the plotted bars are a distribution without interval or replicate summary.",
+      "evidence_relation": "Section 4.4 pairs this panel with Figure 4 and the lower-bound discussion around Eq. 10. It provides empirical evidence that the synchronous-coupling penalty keeps planner sensitivity close to the selected L_p.",
+      "design_strengths": [
+        "The target L_p is printed beside the empirical distribution.",
+        "The paired layout with Figure 4 supports evaluator/planner symmetry.",
+        "Frequency bins reveal whether violations are concentrated or diffuse."
+      ],
+      "design_weaknesses": [
+        "The title-only caption does not define the 8,000 pairs or the target.",
+        "The small axis and annotation make exact values hard to read.",
+        "Color and dashed line carry semantics with limited grayscale redundancy."
+      ],
+      "reusable_pattern": "Use paired diagnostic histograms for coupled constraints, with matched axes and distinct target annotations.",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 5",
+        "bbox": [
+          406.47,
+          379.751,
+          444.318,
+          389.714
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "other"
+      ],
+      "caption": {
+        "text": "Figure 6: The impression opportunities within time step t and t + 1, where p_t^i/v_t^i is the 1/ROI of impression i. Without loss of generality, consider two actions a_{1,t} and a_{2,t}, and let a_{2,t} ≥ a_{1,t}. The impressions within the shadow area are the impressions won by action a_{2,t} but lost by action a_{1,t}.",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#96CEB4",
+          "#BFD7EA",
+          "#D95F59",
+          "#FFFFFF",
+          "#F28E2B",
+          "#222222"
+        ],
+        "semantic_mapping": "Green shadow is the opportunity interval between actions; blue/red/open points encode wins and losses; orange dashed line is 1/R_m.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 2,
+        "data_marks_estimate": 35
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Impression index i",
+        "y": "p_t^i/v_t^i (1/ROI)",
+        "color": "action/outcome category",
+        "shape": "impression outcome marker",
+        "line": "action lines and threshold",
+        "facet": "none",
+        "text": "a_{1,t}, a_{2,t}, 1/R_m"
+      },
+      "data_and_statistics": "Proof schematic for impression opportunities across time steps t and t+1 under a second-price auction. It has conceptual points and a shaded interval; no empirical sample or uncertainty.",
+      "evidence_relation": "Appendix C uses Figure 6 in the proof of Theorem 1 to turn the reward/cost difference into an impression-opportunity geometry. That theorem supplies the Lipschitz property used by the evaluator regularizer in Eq. 11 and Figure 4.",
+      "design_strengths": [
+        "The shadow interval visually isolates impressions won by the higher action.",
+        "The axes and legend retain the proof variables used in the text.",
+        "It reuses the same geometric vocabulary as Figure 1."
+      ],
+      "design_weaknesses": [
+        "The caption is notation-heavy and assumes the second-price setting.",
+        "The diagram does not mark the time-step boundary explicitly.",
+        "The point pattern is illustrative and should not be read as a sample distribution."
+      ],
+      "reusable_pattern": "Use a small geometric proof diagram to expose the local event whose measure drives a global Lipschitz bound.",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 6",
+        "bbox": [
+          108.0,
+          261.991,
+          144.752,
+          271.954
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 7: Performance range of the planner with respect to hyper-parameters δ_k, L_p and ε. There is a trade-off in the selection of hyper-parameters: larger δ_k, L_p, ε results in a smaller lower bound but a higher upper bound.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#7FB3D5",
+          "#82C596",
+          "#B39DDB",
+          "#222222"
+        ],
+        "semantic_mapping": "Blue lower-bound region and green upper-bound region widen or shift with hyper-parameters; purple center denotes the true-performance range.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 0,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 8
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "lower/upper-bound region",
+        "shape": "none",
+        "line": "arrows and bound labels",
+        "facet": "none",
+        "text": "δ_k, L_p, ε labels"
+      },
+      "data_and_statistics": "Conceptual performance-range diagram. The x-axis arrow indicates higher performance; lower and upper bounds are symbolic expressions, with no numeric scale or uncertainty interval.",
+      "evidence_relation": "Appendix D interprets Theorem 3 and Eq. 10: increasing δ_k, L_p, or ε lowers the certified lower bound while raising the attainable upper bound. The diagram explains the hyper-parameter trade-off behind Table 12.",
+      "design_strengths": [
+        "Bound directions are shown with a simple spatial metaphor.",
+        "The true-performance range is named inside the diagram.",
+        "The visual gives Table 12 a theoretical interpretation."
+      ],
+      "design_weaknesses": [
+        "There is no numeric axis, so the width and slopes are qualitative.",
+        "The three hyper-parameters are grouped together without showing separate sensitivities.",
+        "The caption states a broad trade-off but omits the bound equation references."
+      ],
+      "reusable_pattern": "Represent a bound trade-off as a labeled range with directional arrows, then pair it with a numeric sensitivity table.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 7",
+        "bbox": [
+          108.0,
+          193.364,
+          144.324,
+          203.327
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 8: AIGB-Pearl Evaluator Learning. The evaluator loss is composed of three parts, including the point-wise loss, the pair-wise loss, and the Lipschitz penalty. The evaluator’s input representation is augmented with an LLM embedding to incorporate semantic information from the advertiser’s textual features.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#C6DDF4",
+          "#FAD4A5",
+          "#F8E4A0",
+          "#AFCB81",
+          "#F3C8B5",
+          "#D9EAD3",
+          "#B9C5EA",
+          "#E8E8E8",
+          "#222222"
+        ],
+        "semantic_mapping": "Pastel panels identify point-wise, pair-wise, Lipschitz, and LLM-embedding paths; arrows connect feature input, losses, and evaluator output.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 28
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "feature/trajectory input flow",
+        "y": "evaluator score and loss terms",
+        "color": "loss component / embedding role",
+        "shape": "trajectory pair and LLM block",
+        "line": "arrows and dashed panel boundaries",
+        "facet": "2x2 loss/component panels",
+        "text": "equations and component labels"
+      },
+      "data_and_statistics": "Architecture schematic of evaluator learning. It contains no empirical marks; the three loss components, Qwen2.5-1.5B-Instruct embedding, trajectory pairs, and pair-wise ranking inputs are represented as labeled modules.",
+      "evidence_relation": "Appendix E.1 expands the evaluator described in Section 3.2.1 and Eq. 11. It provides the implementation interface behind Figure 9 and Tables 9–10, which test LLM embeddings and point/pair loss choices.",
+      "design_strengths": [
+        "The 2×2 arrangement separates the overall loss, pair-wise loss, LLM embedding, and Lipschitz penalty.",
+        "The Qwen model name and loss labels make key reproduction choices visible.",
+        "Arrows show how textual features and trajectory pairs enter the evaluator."
+      ],
+      "design_weaknesses": [
+        "Small equations and labels are difficult in the rasterized composite.",
+        "The diagram does not specify tensor shapes, training schedule, or loss weights.",
+        "Pastel roles have weak grayscale separation."
+      ],
+      "reusable_pattern": "Decompose a composite evaluator into four fixed panels, with one panel per loss or representation path and arrows that expose shared inputs.",
+      "evidence": {
+        "page": 26,
+        "label": "Figure 8",
+        "bbox": [
+          108.0,
+          284.09,
+          145.34,
+          294.053
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9: The SMAPE training curves of the trajectory evaluator with and without LLM Embeddings. Incorporating LLM embeddings helps to achieve faster convergence and improved absolute accuracy.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.8,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#F37A4C",
+          "#2474C5",
+          "#E8E8E8"
+        ],
+        "semantic_mapping": "Orange is without LLM, blue is with LLM, and translucent ribbons/line texture show run variability around each training curve.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 1,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Training Steps",
+        "y": "SMAPE (%)",
+        "color": "LLM embedding condition",
+        "shape": "solid curve and translucent band",
+        "line": "training curves",
+        "facet": "none",
+        "text": "legend labels w/o/with LLM"
+      },
+      "data_and_statistics": "Training curves compare evaluator SMAPE with and without LLM embeddings over training steps. The visible ribbons are uncertainty-like run spread, but the caption does not define whether they are standard deviation, standard error, or another range.",
+      "evidence_relation": "Appendix F.6 and Tables 9–10 use this curve to connect representation choice to absolute and ranking accuracy. The body claims faster convergence and lower SMAPE with LLM embeddings; the chart gives the time-course evidence.",
+      "design_strengths": [
+        "The two conditions share axes, so convergence speed and terminal level are easy to compare.",
+        "The ribbon makes run-to-run variation visible.",
+        "The caption states the intended direction of the result."
+      ],
+      "design_weaknesses": [
+        "Ribbon provenance and aggregation are undefined.",
+        "Training-step and SMAPE labels are small in the single-column panel.",
+        "Only one metric and one evaluator training trajectory are shown."
+      ],
+      "reusable_pattern": "Plot a representation ablation with matched axes, explicit condition colors, and a defined spread band; include the band statistic in the caption.",
+      "evidence": {
+        "page": 28,
+        "label": "Figure 9",
+        "bbox": [
+          108.0,
+          375.102,
+          144.981,
+          385.065
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 10: Learning curves of cumulative rewards between offline RL with bootstrapping method and AIGB-Peral under 10 seeds.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.8,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 10,
+        "hex": [
+          "#E41A1C",
+          "#377EB8",
+          "#4DAF4A",
+          "#984EA3",
+          "#FF7F00",
+          "#FFFF33",
+          "#A65628",
+          "#F781BF",
+          "#999999",
+          "#A6CEE3"
+        ],
+        "semantic_mapping": "Each seed receives one categorical line color; panel titles distinguish offline RL with bootstrapping from AIGB-Pearl.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 20,
+        "legend_items": 10,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "inside_each_panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Steps",
+        "y": "Cumulative Rewards",
+        "color": "seed",
+        "shape": "individual seed trace",
+        "line": "none",
+        "facet": "method panel",
+        "text": "seed:1 through seed:10"
+      },
+      "data_and_statistics": "Two panels show 10 individual seed curves for cumulative rewards over 0–2000 steps. There is no mean line, aggregate band, seed summary, or interval; the evidence is the spread and smoothness of individual traces.",
+      "evidence_relation": "Appendix F.5 contrasts bootstrapped offline RL with AIGB-Pearl training stability. The body interprets the left panel as high variance and the right panel as smoother progress, complementing the main method claim that AIGB avoids bootstrapping.",
+      "design_strengths": [
+        "Individual seeds make instability visible rather than hiding it behind a mean.",
+        "Matched panels support direct method comparison.",
+        "The seed legend enables trace-level inspection."
+      ],
+      "design_weaknesses": [
+        "Twenty traces and two legends create visual density.",
+        "No summary statistic quantifies the claimed stability difference.",
+        "The PDF caption preserves the typo “AIGB-Peral”, which weakens naming consistency."
+      ],
+      "reusable_pattern": "Use paired seed-trace panels for training stability, then add a defined across-seed summary if the text makes a stability comparison.",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 10",
+        "bbox": [
+          108.0,
+          303.006,
+          149.813,
+          312.969
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 11: Learning curves of online rate between offline RL with bootstrapping method and AIGB-Peral under 10 seeds.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.8,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 10,
+        "hex": [
+          "#E41A1C",
+          "#377EB8",
+          "#4DAF4A",
+          "#984EA3",
+          "#FF7F00",
+          "#FFFF33",
+          "#A65628",
+          "#F781BF",
+          "#999999",
+          "#A6CEE3"
+        ],
+        "semantic_mapping": "Each seed is a colored trace; panel titles distinguish methods and the y-axis defines Online Rate.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 20,
+        "legend_items": 10,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "inside_each_panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Steps",
+        "y": "Online Rate",
+        "color": "seed",
+        "shape": "individual seed trace",
+        "line": "none",
+        "facet": "method panel",
+        "text": "seed:1 through seed:10"
+      },
+      "data_and_statistics": "Two 10-seed panels plot Online Rate, defined in the body as the ratio of bidding period before budget exhaustion to total bidding period. The figure gives individual traces without mean or interval.",
+      "evidence_relation": "Appendix F.5 defines Online Rate and uses this panel to assess whether stability extends to an operational pacing metric. It sits beside Figures 10, 12, and 13 as a metric-specific training-stability suite.",
+      "design_strengths": [
+        "The metric-specific y-axis makes operational behavior inspectable.",
+        "Identical seed and panel structure matches Figure 10.",
+        "High and low values have a clear directional interpretation from the body definition."
+      ],
+      "design_weaknesses": [
+        "Caption omits the Online Rate definition and sample count.",
+        "The individual traces overlap, making seed identification difficult.",
+        "The PDF caption repeats the “AIGB-Peral” spelling error."
+      ],
+      "reusable_pattern": "Keep a stability panel template across metrics, including identical seeds, axes conventions, and a shared definition block.",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 11",
+        "bbox": [
+          108.0,
+          209.009,
+          148.916,
+          218.972
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 12: Learning curves of bad case rate between offline RL with bootstrapping method and AIGB-Peral under 10 seeds.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.8,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 10,
+        "hex": [
+          "#E41A1C",
+          "#377EB8",
+          "#4DAF4A",
+          "#984EA3",
+          "#FF7F00",
+          "#FFFF33",
+          "#A65628",
+          "#F781BF",
+          "#999999",
+          "#A6CEE3"
+        ],
+        "semantic_mapping": "Each seed is a colored trace; panel titles identify methods and the y-axis measures Bad Case Rate.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 20,
+        "legend_items": 10,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "inside_each_panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Steps",
+        "y": "Bad Case Rate",
+        "color": "seed",
+        "shape": "individual seed trace",
+        "line": "none",
+        "facet": "method panel",
+        "text": "seed:1 through seed:10"
+      },
+      "data_and_statistics": "Two panels plot 10 seed traces of Bad Case Rate, a failure-oriented metric defined in the body as the fraction of bad trajectories among generated trajectories. Lower values indicate better behavior; no aggregate uncertainty is shown.",
+      "evidence_relation": "Appendix F.5 extends the stability check to an explicit failure metric. It provides a boundary for the plausible-trajectory claim in Figure 3, though the figure does not define the bad-trajectory rule inside the caption.",
+      "design_strengths": [
+        "The failure metric gives training stability a safety-relevant interpretation.",
+        "Matched seed panels make outliers visible.",
+        "The y-axis direction supports quick assessment."
+      ],
+      "design_weaknesses": [
+        "The caption lacks the denominator and bad-case definition.",
+        "Overlapping seed lines obscure trace-level comparison.",
+        "The typo “AIGB-Peral” is repeated in the PDF caption."
+      ],
+      "reusable_pattern": "Pair stability curves with a failure-rate metric and state the failure classifier and denominator next to the plot.",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 12",
+        "bbox": [
+          108.0,
+          371.155,
+          150.351,
+          381.118
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 13: Learning curves of cost rate between offline RL with bootstrapping method and AIGB-Pearl under 10 seeds.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.8,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 10,
+        "hex": [
+          "#E41A1C",
+          "#377EB8",
+          "#4DAF4A",
+          "#984EA3",
+          "#FF7F00",
+          "#FFFF33",
+          "#A65628",
+          "#F781BF",
+          "#999999",
+          "#A6CEE3"
+        ],
+        "semantic_mapping": "Each seed is a colored trace; panel titles identify methods and the y-axis measures Cost Rate.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 20,
+        "legend_items": 10,
+        "annotations": 0,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "inside_each_panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Steps",
+        "y": "Cost Rate",
+        "color": "seed",
+        "shape": "individual seed trace",
+        "line": "none",
+        "facet": "method panel",
+        "text": "seed:1 through seed:10"
+      },
+      "data_and_statistics": "Two panels plot 10 seed traces of Cost Rate, defined in the body as cost divided by budget. Larger cost rate is described as better within the operational context, but the plot has no budget target or tolerance line.",
+      "evidence_relation": "Appendix F.5 completes the four-metric training-stability suite. It connects operational cost consumption to the main tables’ Cost columns and to the body’s ±2% tolerance discussion.",
+      "design_strengths": [
+        "A cost-focused panel prevents stability claims from relying only on reward.",
+        "Matched panels and seeds support trace-level comparison.",
+        "The bounded 0–1 y-scale makes saturation visible."
+      ],
+      "design_weaknesses": [
+        "No cost target, tolerance threshold, or aggregate is drawn.",
+        "The caption does not define the cost-rate denominator.",
+        "The dense legends consume plotting area."
+      ],
+      "reusable_pattern": "Complete a training-stability suite with an operational cost metric and place the policy tolerance on the same axis.",
+      "evidence": {
+        "page": 31,
+        "label": "Figure 13",
+        "bbox": [
+          108.0,
+          209.009,
+          149.534,
+          218.972
+        ],
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Overall performance (GMV) in simulated experiments with 30 advertisers. Δ indicates the relative improvement of AIGB-Pearl against the most competitive baseline (which is underlined). Note that the absolute values are normalized without specific meanings; only Δ matters.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 11,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "No interval or repeated-run uncertainty; point estimates only.",
+      "data_and_statistics": "Simulated GMV for 30 advertisers at budgets 1.5k, 2.0k, 2.5k, and 3.0k. Values are normalized and the caption says only Δ has comparative meaning. Rows: 1.5k: 454.25, 454.72, 461.82, 456.80, 468.49, 470.38, 477.39, 480.76, 502.98, +4.62%; 2.0k: 482.67, 483.50, 475.78, 486.56, 488.12, 489.27, 507.30, 511.17, 521.84, +2.09%; 2.5k: 497.66, 498.77, 481.37, 518.27, 511.93, 523.91, 527.88, 531.29, 545.03, +2.59%; 3.0k: 500.60, 501.86, 491.36, 549.19, 553.91, 549.01, 550.66, 556.32, 574.17, +3.21%. Columns are Budget, USCB, BCQ, CQL, IQL, MORL, MOPO, DT, DiffBid, AIGB-Pearl, Δ.",
+      "evidence_relation": "Section 4.2 uses this table as the simulated headline comparison before the real-world Table 2. It covers all four budget settings and establishes consistent GMV gains against the underlined strongest baseline.",
+      "design_strengths": [
+        "One stable budget axis exposes consistency across operating points.",
+        "Caption defines normalized values and Δ, reducing interpretation risk.",
+        "Bold method values and underlined competitor make the comparison scannable."
+      ],
+      "design_weaknesses": [
+        "No uncertainty or repeated-run information accompanies the four point-estimate rows.",
+        "The normalized GMV scale has no physical unit.",
+        "Eleven columns make the baseline block dense at single-page width."
+      ],
+      "reusable_pattern": "Keep a fixed budget axis and a relative-to-strongest-baseline Δ column, with units and uncertainty added in a reproducibility footer.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 1",
+        "bbox": [
+          108.0,
+          81.722,
+          140.02,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2: Overall performance in real-world A/B tests, involving 6k advertisers over 19 days.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 10,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; four baseline-vs-AIGB-Pearl A/B blocks report point estimates.",
+      "data_and_statistics": "Four repeated five-column blocks compare DiffBid, USCB, DT, and MOPO against AIGB-Pearl on GMV, BuyCnt, ROI, and Cost. DiffBid block: 76,390,174 / 650,962 / 5.31 / 14,395,290 versus 78,676,009 / 665,173 / 5.41 / 14,551,054, Δ +3.00% / +2.20% / +1.89% / +1.10%. USCB: 52,182,805 / 516,994 / 4.92 / 10,598,486 versus 53,973,101 / 520,796 / 5.13 / 10,515,772, Δ +3.43% / +0.74% / +4.24% / −0.78%. DT: 34,808,665 / 341,995 / 5.61 / 6,205,665 versus 35,957,933 / 344,194 / 5.77 / 6,246,512, Δ +3.30% / +0.64% / +0.16% / +0.66%. MOPO: 51,674,071 / 579,332 / 3.08 / 16,771,892 versus 53,292,945 / 591,741 / 3.23 / 16,475,670, Δ +3.13% / +2.14% / +4.87% / −1.77%.",
+      "evidence_relation": "The main real-world result for 6k advertisers over 19 days sits in four compact A/B blocks. It supports the body’s GMV/BuyCnt/ROI improvement claim and keeps Cost in the same decision surface.",
+      "design_strengths": [
+        "Keeping all four metrics in each block exposes performance and spending together.",
+        "Repeated headers let each block be read locally.",
+        "The Δ row makes relative changes easy to compare."
+      ],
+      "design_weaknesses": [
+        "A 2×2 block table is dense and repeats the method header four times.",
+        "No experiment-arm sample size, randomization detail, or uncertainty is shown.",
+        "The Cost tolerance is discussed in body text instead of marked in the table."
+      ],
+      "reusable_pattern": "Use repeated metric blocks for multiple baselines only when each block carries its own header and protocol metadata.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 2",
+        "bbox": [
+          122.335,
+          185.888,
+          154.464,
+          195.851
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3: Generalization performance in real-world A/B tests with unseen advertisers against AIGB methods, involving 4k advertisers over 19 days.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 10,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; two unseen-advertiser A/B blocks report point estimates.",
+      "data_and_statistics": "Two five-column blocks compare DiffBid and DT with AIGB-Pearl on 4k unseen advertisers over 19 days. DiffBid: 67,092,973 / 553,020 / 5.39 / 12,444,306 versus 69,252,539 / 565,776 / 5.53 / 12,534,379, Δ +3.32% / +2.31% / +2.48% / +0.72%. DT: 30,562,007 / 300,271 / 5.61 / 5,450,573 versus 31,502,309 / 305,202 / 5.74 / 5,484,473, Δ +3.08% / +1.64% / +2.32% / +0.62%.",
+      "evidence_relation": "Section 4.2 uses this table for generalization to advertisers outside the offline dataset. It is the main empirical bridge from offline learning to unseen-advertiser performance.",
+      "design_strengths": [
+        "The unseen-advertiser population and 19-day duration are in the caption.",
+        "Matched blocks preserve the main metric definitions from Table 2.",
+        "All reported deltas are positive for the four metrics in both blocks."
+      ],
+      "design_weaknesses": [
+        "The caption does not define the train/test advertiser partition or assignment protocol.",
+        "No uncertainty or arm-level counts are visible.",
+        "The repeated block structure makes cross-baseline scanning slower."
+      ],
+      "reusable_pattern": "Reuse the main-result metric block for held-out entities, with an explicit split and uncertainty line.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 3",
+        "bbox": [
+          108.0,
+          81.722,
+          140.319,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 4: Ablation Study. The effectiveness of the KL constraint and the Lipschitz constraint in Real-world A/B tests, involving 6k advertisers over 8 days.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 10,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; deletion ablations compare point estimates across two real-world A/B blocks.",
+      "data_and_statistics": "Left block removes versus restores KL constraint: w/o KL 30,906,963 / 292,605 / 4.25 / 7,269,018; with KL 31,243,688 / 292,783 / 4.26 / 7,342,485; Δ +1.09% / +0.06% / +0.08% / +1.01%. Right block removes versus restores Lipschitz constraint: w/o 32,284,972 / 268,551 / 5.73 / 5,634,304; with 32,869,329 / 281,979 / 5.79 / 5,678,252; Δ +1.81% / +0.50% / +1.05% / +0.78%.",
+      "evidence_relation": "Section 4.3 directly answers RQ(2), isolating the KL and Lipschitz constraints. Figure 3 supplies qualitative failure modes for the same deletions.",
+      "design_strengths": [
+        "The two constraints are separated into parallel blocks.",
+        "Relative Δ rows expose component contribution across four metrics.",
+        "Cost is retained beside reward and ROI."
+      ],
+      "design_weaknesses": [
+        "The ablations use different visible absolute scales and the caption omits arm allocation.",
+        "No uncertainty or repeated A/B information is provided.",
+        "The top “AIGB-Pearl” label does not fully explain the block-specific variants."
+      ],
+      "reusable_pattern": "Place each removed component beside its restored version and preserve the headline metric columns for mechanism attribution.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 4",
+        "bbox": [
+          108.0,
+          164.728,
+          139.821,
+          174.691
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 5: Evaluator accuracy for simulated and real-world experiments. Results are reported for training data and OOD data evaluated using 5-fold cross-validation.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 7.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "OOD cells report ± values from 5-fold cross-validation: simulated MAE 0.7 ± 0.06 and AUC 85.5% ± 0.5%; real-world MAE 1.2 ± 0.03 and AUC 75.1% ± 0.2%. Training cells are point estimates.",
+      "data_and_statistics": "Table 5 answers RQ(4) after Figures 4–5: evaluator accuracy on training and OOD data in simulated and real-world settings. It gives numeric grounding to the evaluator reliability assumed by the constrained planner.",
+      "evidence_relation": "The four metric cells per domain are MAE 0.6/0.7 ± 0.06 and AUC 89.9%/85.5% ± 0.5% in simulation, and MAE 1.0/1.2 ± 0.03 and AUC 77.4%/75.1% ± 0.2% in real-world data.",
+      "design_strengths": [
+        "Two domains and two accuracy dimensions share one compact table.",
+        "The OOD header explicitly names cross-validation.",
+        "Metric arrows communicate direction."
+      ],
+      "design_weaknesses": [
+        "The caption does not name the ± statistic.",
+        "Training and OOD values are visually adjacent despite different evaluation protocols.",
+        "No fold count per domain or advertiser-level denominator is shown inside the table."
+      ],
+      "reusable_pattern": "Use a two-level domain/protocol header for evaluator diagnostics, with the uncertainty statistic and fold aggregation stated in a footnote.",
+      "evidence": {
+        "page": 10,
+        "label": "Table 5",
+        "bbox": [
+          108.0,
+          229.22,
+          141.335,
+          239.183
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Settings of the simulated experiments.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; deterministic simulation settings and bounds are listed.",
+      "data_and_statistics": "Parameters and Values: 30 advertisers; T=96; 50–300 impressions per time step; budget 1000–4000 Yuan; impression value >0; minimum bid min{a v_i}=0 Yuan; maximum bid max{a v_i}=10 Yuan; maximum market price p_M=10 Yuan.",
+      "evidence_relation": "Appendix F.1 supplies the parameter table for the simulated results in Table 1 and the first-price extension in Table 13. It converts the headline budget axis into a reproducible environment description.",
+      "design_strengths": [
+        "All core simulation bounds are in one two-column list.",
+        "Units appear alongside monetary bounds.",
+        "The compact form preserves page space for Algorithm 1 and explanatory text."
+      ],
+      "design_weaknesses": [
+        "The table omits dataset-generation policy and random seeds.",
+        "The value condition “>0” is qualitative and lacks a distribution.",
+        "No column indicates which settings are fixed versus varied in Table 1."
+      ],
+      "reusable_pattern": "Keep environment bounds in a two-column appendix table, then add a varied/fixed flag for direct reproduction.",
+      "evidence": {
+        "page": 27,
+        "label": "Table 6",
+        "bbox": [
+          212.228,
+          326.463,
+          244.357,
+          336.426
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7: Settings of the real-world experiments.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; real-world experiment settings and bounds are listed.",
+      "data_and_statistics": "Parameters and Values: 6,000 advertisers; T=96; 100–2,500 impressions per time step; budget 50–10,000 Yuan; impression value >0; minimum bid 0 Yuan; maximum bid 25 Yuan; maximum market price 25 Yuan.",
+      "evidence_relation": "Appendix F.2 expands the real-world setup behind Tables 2–4. The bounds explain the scale and episode structure but do not disclose sensitive platform sampling details.",
+      "design_strengths": [
+        "The real-world scale is explicit and easy to scan.",
+        "The parallel format with Table 6 improves simulated/real setup comparison.",
+        "Monetary units are retained."
+      ],
+      "design_weaknesses": [
+        "The A/B arm assignment, traffic split, and randomization are absent.",
+        "The table does not state the 19-day or 8-day windows used in result tables.",
+        "No data-access or privacy boundary is represented."
+      ],
+      "reusable_pattern": "Pair simulated and real setup tables with identical parameter ordering, and include evaluation-window and arm fields.",
+      "evidence": {
+        "page": 28,
+        "label": "Table 7",
+        "bbox": [
+          210.903,
+          81.722,
+          243.032,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 8: Overall performance of TargetROAS in real-world A/B test, involving 300k advertisers over 22 days.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; one TargetROAS real-world A/B comparison reports point estimates.",
+      "data_and_statistics": "DiffBid: GMV 779,642,891, BuyCnt 11,519,082, ROI 4.68, Cost 166,544,918. AIGB-Pearl (ours): 819,550,812, 11,886,501, 4.70, 174,234,673. Δ: +5.1%, +3.2%, +0.5%, +4.6%.",
+      "evidence_relation": "Appendix F.3 extends the method to TargetROAS and gives a domain-specific result beyond the budget-constrained main tables. It supports the broader applicability claim while retaining Cost.",
+      "design_strengths": [
+        "The five-column metric surface matches Tables 2–4.",
+        "The caption identifies the 300k-advertiser, 22-day setting.",
+        "The Δ row makes the extension result immediately visible."
+      ],
+      "design_weaknesses": [
+        "The caption does not define the extra ROI constraint or assignment protocol.",
+        "No uncertainty or daily aggregation is shown.",
+        "Cost increases with GMV but no operational tolerance is printed."
+      ],
+      "reusable_pattern": "Use the established result-table grammar for a new task, with the task-specific constraint in the caption.",
+      "evidence": {
+        "page": 29,
+        "label": "Table 8",
+        "bbox": [
+          108.0,
+          81.722,
+          141.185,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 9: SMAPE results from ablation experiments on the trajectory evaluator.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; SMAPE point estimates for the LLM × loss ablation.",
+      "data_and_statistics": "Rows w/o LLM and with LLM; columns Point-wise, Pair-wise, Both. Values: w/o LLM 43.55%, 196.38%, 35.00%; with LLM 38.20%, 196.00%, 31.60%. Lower SMAPE is better.",
+      "evidence_relation": "Appendix F.6 pairs this table with Table 10 and Figure 9. It isolates the representation and loss choices behind evaluator accuracy, showing the combined loss and LLM row as the lowest SMAPE.",
+      "design_strengths": [
+        "The 2×3 grid isolates two evaluator design axes.",
+        "The metric direction is in the header.",
+        "The compact format supports direct reading with Table 10."
+      ],
+      "design_weaknesses": [
+        "Pair-wise-only SMAPE is extremely high, but the table gives no scale explanation beyond the metric name.",
+        "No repeated-run uncertainty or data split is shown.",
+        "The caption omits the LLM model and training protocol."
+      ],
+      "reusable_pattern": "Use paired metric tables for orthogonal evaluator ablations, with shared rows and an explicit metric definition.",
+      "evidence": {
+        "page": 30,
+        "label": "Table 9",
+        "bbox": [
+          109.498,
+          675.42,
+          141.936,
+          685.383
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 10: AUC results from ablation experiments on the trajectory evaluator.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; AUC point estimates for the LLM × loss ablation.",
+      "data_and_statistics": "Rows w/o LLM and with LLM; columns Point-wise, Pair-wise, Both. Values: w/o LLM 61.57%, 64.91%, 70.91%; with LLM 65.00%, 71.30%, 75.10%. Higher AUC is better.",
+      "evidence_relation": "Appendix F.6 uses this table with Table 9 to show that LLM embeddings and combining point-wise with pair-wise loss improve ranking accuracy. It complements SMAPE’s absolute-accuracy view.",
+      "design_strengths": [
+        "The same row/column structure makes metric comparison immediate.",
+        "AUC direction is explicit.",
+        "The best combined value is visually highlighted."
+      ],
+      "design_weaknesses": [
+        "No uncertainty or pair denominator is reported.",
+        "The caption does not define AUC as ordinal-pair accuracy.",
+        "Side-by-side layout can make the two table labels easy to miss at small scale."
+      ],
+      "reusable_pattern": "Keep an identical ablation matrix for complementary absolute and ranking metrics, while defining each metric once in a shared note.",
+      "evidence": {
+        "page": 30,
+        "label": "Table 10",
+        "bbox": [
+          313.89,
+          675.42,
+          352.415,
+          685.383
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 11: Empirical performance with multiple data-collection policies.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; point estimates under a multi-policy offline data-collection condition.",
+      "data_and_statistics": "DiffBid: GMV 548.5, ROI 5.00, Cost 109.4. AIGB-Pearl (ours): GMV 575.7, ROI 5.04, Cost 114.6. Δ: +4.9%, +0.7%, +4.2%.",
+      "evidence_relation": "Appendix F.7 tests robustness to a multi-modal offline distribution assembled from nine data-collection policies. It broadens the single-policy assumption and reports reward, ROI, and cost together.",
+      "design_strengths": [
+        "The three metrics are compact and match the multi-modal claim.",
+        "The Δ row summarizes the method uplift.",
+        "Cost is kept alongside GMV and ROI."
+      ],
+      "design_weaknesses": [
+        "The caption does not state the nine-policy construction or simulated setting.",
+        "No distribution plot or modality counts appear in the table.",
+        "No uncertainty or repeated collection seed is reported."
+      ],
+      "reusable_pattern": "Pair a distribution-shift condition with a small decision table, and state the mixture construction in the caption.",
+      "evidence": {
+        "page": 31,
+        "label": "Table 11",
+        "bbox": [
+          163.048,
+          372.72,
+          200.159,
+          382.683
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Table 12: Hyper-parameter tuning with respect to KL constraint δ_k.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; one-dimensional hyper-parameter sweep point estimates.",
+      "data_and_statistics": "Columns are β2 settings 0 (no KL), 0.1, 0.5, 1.0, 2, 5, 10, ∞ (AIGB, only KL); δ_k values 0.85, 0.51, 0.50, 0.49, 0.43, 0.39, 0.36, 0.32; GMV 548.5, 563.8, 571.3, 574.2, 573.9, 570.7, 567.6, 556.3. The peak is β2=1.0, δ_k=0.49, GMV 574.2.",
+      "evidence_relation": "Appendix F.8 operationalizes the performance-range trade-off in Figure 7 and selects a moderate KL penalty. It explains why β2=0 and β2=∞ recover weaker limiting behaviors, while the middle values improve GMV.",
+      "design_strengths": [
+        "The sweep keeps β2, δ_k, and GMV aligned by column.",
+        "The best middle setting is visible without a separate plot.",
+        "Limiting cases are labeled in the header."
+      ],
+      "design_weaknesses": [
+        "Nine columns are dense and use a transposed sweep, which increases scan cost.",
+        "No uncertainty or independent repetitions are reported.",
+        "The caption omits the fixed L_p and ε choices described in the surrounding text."
+      ],
+      "reusable_pattern": "Use a transposed hyper-parameter sweep for a short one-dimensional search, with limiting cases and the selected operating point marked.",
+      "evidence": {
+        "page": 31,
+        "label": "Table 12",
+        "bbox": [
+          171.493,
+          664.823,
+          208.604,
+          674.786
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 32,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 13: Empirical performance in the simulated experiments with a first-price auction.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; simulated first-price auction point estimates.",
+      "data_and_statistics": "DiffBid: GMV 1,546, ROI 5.13, Cost 301. AIGB-Pearl (ours): GMV 1,611, ROI 5.18, Cost 311. Δ: +4.2%, +1.0%, +3.3%.",
+      "evidence_relation": "Appendix G adapts the method to first-price auctions with a common bid-shading method. This table tests transfer of the main comparison grammar to a changed auction mechanism.",
+      "design_strengths": [
+        "The auction extension is clearly named in the caption.",
+        "The same GMV/ROI/Cost surface supports comparison with Table 11.",
+        "The Δ row summarizes the extension effect."
+      ],
+      "design_weaknesses": [
+        "The caption does not state the shared bid-shading implementation.",
+        "No uncertainty or auction-level denominator is visible.",
+        "Cost increases with GMV and needs the body’s operational interpretation."
+      ],
+      "reusable_pattern": "Reuse the main metric table for a mechanism extension, while naming the changed mechanism and shared controller assumptions.",
+      "evidence": {
+        "page": 32,
+        "label": "Table 13",
+        "bbox": [
+          129.922,
+          81.722,
+          167.033,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 turns the KL-Lipschitz idea into a certified-neighborhood schematic; Figure 2 exposes the evaluator/planner and synchronous-coupling interface; Tables 1–3 establish simulated, real-world, and unseen-advertiser performance; Table 4 and Figure 3 isolate the two constraints and show their qualitative failure modes. Figures 4–5 and Table 5 check Lipschitz and evaluator accuracy, while Appendix Figures 6–9 and Tables 6–12 provide proof geometry, architecture, setup, evaluator ablations, distribution robustness, and hyper-parameter context. Table 8 and Table 13 extend the result to TargetROAS and first-price auctions; Figures 10–13 add multi-seed training-stability evidence.",
+    "caption_system": "Captions use the Figure/Table label followed by a short title and regular explanatory prose. Main result captions give experiment scale and comparison context, but most captions omit uncertainty definitions, denominators, and assignment details. Figure 4 and Figure 5 are title-only; Figures 10–12 preserve the PDF spelling “AIGB-Peral”.",
+    "table_header_system": "Result tables use Methods plus metric columns GMV, BuyCnt, ROI, and Cost, with Δ rows for relative comparison. Table 5 adds a two-level domain/protocol header; setup tables use Parameters/Values; Table 12 transposes a hyper-parameter sweep. Bold marks the proposed/best cells and Table 1 also underlines the strongest baseline.",
+    "method_result_ablation_link": "The method interface in Figure 2 is tested by evaluator diagnostics in Figures 4–5 and Table 5, by constraint deletion in Table 4, and by trajectory failure examples in Figure 3. Figure 8 and Tables 9–10 link evaluator architecture choices to SMAPE/AUC, while Table 12 links the bound trade-off in Figure 7 to β2 selection.",
+    "main_appendix_link": "Main Tables 1–5 and Figures 1–5 establish the headline and mechanism path. Appendix Figure 6 supports Theorem 1, Figure 7 supports the bound trade-off, Figure 8 expands implementation, Tables 6–7 document settings, Table 8 and Table 13 test extensions, Tables 9–12 and Figure 9 test evaluator choices, and Figures 10–13 expand stability metrics.",
+    "typography_consistency": "Native captions and tables use the conference Roman/math fonts consistently. Figure labels are rasterized and range from very small axis/legend text to readable panel titles; conceptual diagrams use a sans-like embedded label style that is visually distinct from the tables.",
+    "color_consistency": "Pastel blue/green/orange roles recur in theory and architecture diagrams, while categorical lines use distinct colors for methods or seeds. Table semantics rely on typography and symbols, so color is not needed there. Several figures lack a grayscale-safe redundant key for all pastel distinctions."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Use a threshold plus shaded feasible band and redundant point symbols for a theoretical safety region.",
+      "Pair a pipeline overview with a magnified implementation mechanism and its surrogate equation.",
+      "Keep headline metrics, relative Δ, and operational Cost on one table decision surface.",
+      "Reuse a fixed seed-panel template across reward, rate, failure, and cost metrics, with a defined across-seed summary.",
+      "Pair evaluator ablation tables for absolute error and ranking accuracy, using identical rows and columns."
+    ],
+    "highest_value_objects": [
+      "Figure 2 for the evaluator/planner/synchronous-coupling interface.",
+      "Tables 1–3 for the simulated, real-world, and unseen-advertiser headline comparisons.",
+      "Table 4 plus Figure 3 for constraint attribution and qualitative failure evidence.",
+      "Figures 4–5 and Table 5 for Lipschitz and evaluator reliability checks.",
+      "Figure 8 plus Figure 9 and Tables 9–10 for reproducible evaluator design choices."
+    ],
+    "failure_patterns": [
+      "Most tables provide point estimates without repeat counts or uncertainty, including the main A/B comparisons.",
+      "Captions often omit denominator, assignment, split, or aggregation details.",
+      "Figures 4–5 are title-only and do not state the 8,000-pair sampling in the caption.",
+      "Individual seed curves support a stability claim without a summary statistic.",
+      "Figure captions 10–12 contain the PDF spelling “AIGB-Peral”, and Figure 3’s filled emphasis is not defined as non-uncertainty."
+    ],
+    "one_sentence_visual_strategy": "The paper uses compact pastel theory/method diagrams, black-and-white metric tables, paired constraint diagnostics, and multi-seed appendix curves to connect safe generative planning to performance gains, while leaving protocol and uncertainty metadata thinner than the visual claims require."
+  }
+}

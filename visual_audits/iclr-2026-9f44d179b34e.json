@@ -1,0 +1,2498 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-9f44d179b34e",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/ZhimingZhang2005/safedpo-repro",
+      "https://github.com/shuoli90/CAN",
+      "https://github.com/zhuiluozhiji/Fuzzy-safeDPO"
+    ],
+    "selected_repository": "https://github.com/ZhimingZhang2005/safedpo-repro",
+    "visual_source_files": [],
+    "search_note": "PDF 正文与脚注没有 SafeDPO 作者代码链接；唯一明确的 GitHub 链接是 CAN 基线 https://github.com/shuoli90/CAN。reports/tables/visual_source_inventory.csv 对本 paper_id 的自动状态为 no_public_source_found，candidate_repositories=shuoli90/CAN，且 corpus/visual_sources/iclr-2026-9f44d179b34e/ 不存在。按完整标题和方法名检查 GitHub，找到 https://github.com/ZhimingZhang2005/safedpo-repro；其 README 直接称为 SafeDPO reproduction scaffold，HEAD commit b989aebba0e8，但递归树只有 configs、scripts、src 和 tests，没有 plot/figure/visual/table 文件、notebook、TeX/TikZ/PGF、SVG 或导出图，因此记录为 repository_without_visual_source，未将其训练/评测脚本误记为本文视觉源。zhuiluozhiji/Fuzzy-safeDPO 只有无论文关联的 figure.png，未采纳。CAN 的 main 树也只有 SafeRLHF/CAN 训练、评测和 notebook 资产，属于 Huang et al. 基线实现而非 SafeDPO 图表源。PDF 是对象清单与最终视觉事实源。"
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 3,
+    "appendix_figures": 1,
+    "appendix_tables": 26,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Computer Modern math",
+        "Nimbus Mono L"
+      ],
+      "size_pt": {
+        "minimum": 5.5,
+        "median": 8.0,
+        "maximum": 14.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "Nimbus Mono L"
+      ],
+      "body_size_pt": 6.2,
+      "header_size_pt": 7.5,
+      "header_weight": "mixed",
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "palette_strategy": "方法型散点/折线使用固定的多类别颜色；Figure 1 用桃色/浅绿面板和红蓝组件语义，Table 12 的安全 pair 表头另用红蓝文本，数值表和 qualitative table 以黑灰 booktabs/部分网格为主。",
+    "vector_raster_mix": "PDF 页面文字、公式、表格和 caption 是可搜索的 LaTeX 字体对象；四幅 Figure 是嵌入 raster image。pdfimages -list 显示 Figure 1 为 4318×1125、785 ppi，Figure 2/3 为 7000×2500、1273 ppi，Figure 4 的三行图像约 636 ppi；200 dpi 页面渲染仍保留可读性。",
+    "style_consistency": "正文与附录统一使用 Letter 单栏宽度、Nimbus Roman/Computer Modern、细 booktabs 横线和 caption 置于对象下方。方法颜色在 Figure 2/3 一致，Figure 4 复用子集但颜色顺序改变；长 qualitative 表采用灰线和约 6 pt 等宽 response，信息密度是主要一致性边界。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline",
+        "architecture"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1: Safe RLHF (left) and SafeDPO (right). The blue items indicate components additionally used in both SafeDPO and Safe RLHF compared to DPO, while the red items represent components additionally used in Safe RLHF compared to SafeDPO.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#F7D9C8",
+          "#DDF0D2",
+          "#2358D6",
+          "#E64A3B",
+          "#B6B6B6",
+          "#FFFFFF",
+          "#111111"
+        ],
+        "semantic_mapping": "桃色面板承载 Safe RLHF，浅绿色面板承载 SafeDPO；蓝色/红色文字和箭头区分共同新增组件与仅 Safe RLHF 新增组件，黑灰卡片承载 prompt、response 和 policy。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "Safe RLHF/SafeDPO 组件角色与新增程度",
+        "shape": "response 卡、模型网络卡和圆角面板",
+        "line": "流程箭头与网络连线",
+        "facet": "左右方法面板",
+        "text": "方法标题、prompt/response、reward/cost/policy 与 preference 标签"
+      },
+      "data_and_statistics": "这是方法接口示意图而非统计图。左侧展示 prompt、两条 response、helpfulness/harmlessness/safety、reward model、cost model、policy 和 reinforcement learning；右侧展示 safety-aware pair 与 policy 的直接优化。没有样本分母、聚合量或不确定性。",
+      "evidence_relation": "把引言中的“SafeDPO 去除 reward/cost model 和 online sampling”具体化为组件差异；Figure 1 的接口映射在 §3 的 T(D) 变换和闭式目标中形式化，Figure 2/3 再检验其结果。",
+      "design_strengths": [
+        "左右并列使 Safe RLHF 与 SafeDPO 的额外网络和训练路径可直接对照。",
+        "组件名称、颜色和箭头同时给出阅读方向与语义。"
+      ],
+      "design_weaknesses": [
+        "网络节点和 response 内部文字很小，缩放到正文宽度后仍需放大阅读。",
+        "安全含义主要依赖红蓝颜色与图标，灰度打印会削弱共同/专属组件的区分。"
+      ],
+      "reusable_pattern": "用左右并列的方法卡片同时呈现必需组件、数据流和优化终点，适合解释一个轻量方法相对于复杂基线删减了什么。",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "bbox": [
+          55,
+          55,
+          555,
+          210
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 2: Helpfulness, Harmlessness and Harmless Ratio Evaluation. The Dashed line indicates the borderline between the safe and unsafe. In (a), the harmless ratio is represented by the proportion of cases where the cost is less than or equal to zero, and harmlessness is measured by the average negative cost value. In (b), the harmless ratio is defined as the proportion of cases where the cost is higher than five, and harmlessness is assessed by the average score on a scale from 0 to 10.",
+        "word_count": 85,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#B9B9B9",
+          "#FF8A65",
+          "#E8C38E",
+          "#F5C518",
+          "#68BFA8",
+          "#8DCB58",
+          "#E17ABE",
+          "#8299C9"
+        ],
+        "semantic_mapping": "灰色、橙色、沙色、黄色、青绿色、绿色、粉色和蓝色分别对应 SFT、DPO-HELPFUL、DPO-HARMLESS、DPO-SAFEBETTER、SACPO、P-SACPO、SafeRLHF 和 SafeDPO；图例重复方法身份。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 4,
+        "data_marks_estimate": 32
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top, shared across four panels",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Helpfulness；model-based panel uses normalized helpfulness N",
+        "y": "Harmless Ratio (%) or Harmlessness",
+        "color": "evaluator method",
+        "shape": "同一圆点 marker，无形状区分",
+        "line": "dashed safety borderline in harmlessness panels",
+        "facet": "evaluator（Model-Based/GPT-4）× outcome（ratio/score）",
+        "text": "axis labels、方法图例和 evaluator block labels"
+      },
+      "data_and_statistics": "每个 evaluator block 为每种方法在约 3,000 个测试 prompt 上生成一条 response 后的聚合点，共四个面板和八个方法。模型评测使用 beaver-7b-unified-reward/cost；模型-based 的 harmless ratio 是 cost ≤ 0 的比例，harmlessness 是负的期望 cost；GPT-4 的 harmlessness 为 0–10 分，ratio 使用 cost > 5 的比例。没有误差条或重复试验。",
+      "evidence_relation": "把 §5.1.2 的双 evaluator 主结果压缩为同一坐标框架；Figure 2 的点与 Appendix C.9 的 Table 17/18 逐方法对应，Table 3 再把严格安全与 over-refusal 置于 XSTest。",
+      "design_strengths": [
+        "四面板共享图例和一致坐标，能同时看方法排序与 evaluator 差异。",
+        "caption 明确给出两个 evaluator 的分母/阈值定义，避免把 ratio 与平均分混为一谈。"
+      ],
+      "design_weaknesses": [
+        "八色点云依赖图例，方法名称很长且相近点拥挤，灰度下几乎无法可靠区分。",
+        "聚合点没有测试集重复、区间或显著性信息，边界虚线只覆盖 harmlessness 面板。"
+      ],
+      "reusable_pattern": "用 evaluator × metric 的小倍图共享一套方法调色板，把安全比例、平均安全分和帮助性放在同一比较面。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2",
+        "bbox": [
+          55,
+          65,
+          555,
+          245
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3: Harmlessness and Helpfulness Variations with Changing ∆. The dashed horizontal line indicates the harmless ratio and helpfulness of each baseline method.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#B9B9B9",
+          "#FF8A65",
+          "#E8C38E",
+          "#F5C518",
+          "#68BFA8",
+          "#8DCB58",
+          "#E17ABE",
+          "#8299C9"
+        ],
+        "semantic_mapping": "灰色、橙色、沙色、黄色、青绿色、绿色、粉色和蓝色分别对应 SFT、DPO-HELPFUL、DPO-HARMLESS、DPO-SAFEBETTER、SACPO、P-SACPO、SafeRLHF 和 SafeDPO；图例重复方法身份。；基线用同色虚线，SafeDPO 的随 Δ 轨迹用蓝色实线和圆点。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 4,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top, shared across four panels",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 28,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "safety margin ∆ ∈ {0, 2, 5, 10, 20, 50}",
+        "y": "Harmless Ratio (%) or Helpfulness",
+        "color": "method",
+        "shape": "SafeDPO 圆点；其他基线无 marker",
+        "line": "SafeDPO solid trajectory versus dashed baseline references",
+        "facet": "evaluator（Model-Based/GPT-4）× metric（ratio/helpfulness）",
+        "text": "∆ tick labels、metric axes、方法图例和 evaluator block labels"
+      },
+      "data_and_statistics": "四个面板沿六个离散 ∆ 值显示 SafeDPO 的曲线，并以其他七个方法的水平虚线作为基线。模型-based 与 GPT-4 的 ratio 均来自安全阈值计数，helpfulness 为对应 evaluator 的聚合分；图中没有 error bar、band 或 seed 分布。正文 §5.1.3 先列 ∆={0,2,5,10,20}，图和附录额外包含 ∆=50，后者显示大 margin 下 helpfulness 退化。",
+      "evidence_relation": "把 Proposition 4.4 的“∆ 改变优化动态但不改全局最优”转为可读的 sensitivity 检验；Table 5–7 将同一 margin 机制移植到其他 DPO 变体，支持“pair transformation 而非 margin 单独起作用”的结论。",
+      "design_strengths": [
+        "虚线基线与 SafeDPO 实线分工清晰，四个面板共享 legend，读者能沿 ∆ 追踪 trade-off。",
+        "把正文未列出的 ∆=50 作为有限训练退化检查显式画出。"
+      ],
+      "design_weaknesses": [
+        "每个面板同时放七条基线虚线，颜色和线型叠加后较密集且难以在灰度下复核。",
+        "caption 没有说明 x 轴还包含 ∆=50，也没有给出点的重复或误差信息。"
+      ],
+      "reusable_pattern": "用“固定基线虚线 + 目标方法带 marker 的轨迹”表现超参数如何改变优化路径，适合机制消融。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 3",
+        "bbox": [
+          55,
+          65,
+          555,
+          250
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 4: Results using Various Templates. We plot the top, middle, and bottom of this figure based on Table 19, 20, and 21, respectively.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#FF8A65",
+          "#8299C9",
+          "#E8C38E",
+          "#E17ABE",
+          "#8DCB58"
+        ],
+        "semantic_mapping": "橙、蓝、沙色、粉色、绿色对应 DPO-HELPFUL、DPO-HARMLESS、DPO-SAFEBETTER、SafeRLHF、SafeDPO；同一方法在每个模板行保持颜色。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 6,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top, shared across six panels",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 3,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Helpfulness_WinRate (%) 或 Helpfulness",
+        "y": "Harmlessness_WinRate (%) 或 Harmlessness",
+        "color": "method",
+        "shape": "同一圆点 marker",
+        "line": "右侧 harmlessness score 面板的 y=5 dashed reference",
+        "facet": "Template T1/T2/T3 × win-rate/score representation",
+        "text": "方法图例、模板行 caption、axis labels"
+      },
+      "data_and_statistics": "六个 panel 分成三行，每行一个 GPT-4 模板；左列是相对 SFT 的 harmlessness/helpfulness win-rate（百分比），右列是对应的 0–10 平均分。每个 panel 五个方法点，右列以 y=5 虚线作参考；没有误差显示。数据直接来自 Table 19、20、21。",
+      "evidence_relation": "将 Appendix D.1 的模板敏感性作为 Figure 2 GPT-4 结果的稳健性切片；顶部/中部/底部与 Table 19/20/21 的调用关系明确，Table 22/23 再换为 GPT-5.1 pairwise 控制。",
+      "design_strengths": [
+        "百分比与原始分数并排，三种模板纵向排列，能快速看出 SafeDPO 的模板依赖。",
+        "caption 明确指出三个行块对应的补充表，便于回查精确数值。"
+      ],
+      "design_weaknesses": [
+        "左列和右列的坐标量纲不同，读者需反复确认 win-rate 与 0–10 score 不能直接比较。",
+        "五色点没有直接标签，点位接近时只能回看图例，且模板行没有在图内写出 T1/T2/T3 标题。"
+      ],
+      "reusable_pattern": "用模板分面和两种 metric 表示并列呈现评测稳健性，同时保留数值表作为精确回查入口。",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 4",
+        "bbox": [
+          55,
+          45,
+          555,
+          575
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1: Comparison of SafeDPO with various reference models on helpfulness, harmlessness, and harmless ratio.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "主表是单次模型-based 聚合点估计；没有 seed、区间、显著性或人类一致性。不同 reference model 的训练细节移到 Appendix C.3。",
+      "data_and_statistics": "列为 Metric 与 1.5B、3B、7B、8B、13B reference model。Helpfulness 为 4.40、4.43、4.86、4.29、7.60；Harmless Ratio 为 96.38%、95.50%、97.24%、97.88%、97.00%；Harmlessness 为 6.30、6.07、5.92、6.44、5.57。每列对应一个模型规模，没有重复列。",
+      "evidence_relation": "承接 Figure 2 的 7B 主结果，把 SafeDPO 的 safety/helpfulness 主张扩展到模型规模；Table 9 提供同一结果的附录复现。",
+      "design_strengths": [
+        "五个模型规模横向排列，三项指标在同一决策面。",
+        "固定指标顺序与 Figure 2 一致，读取成本低。"
+      ],
+      "design_weaknesses": [
+        "只给点估计，无法判断 13B 的 helpfulness 差异是否来自随机或评测波动。",
+        "caption 没有说明 evaluator、数据量或分母，脱离正文难以解释数值尺度。"
+      ],
+      "reusable_pattern": "将安全、帮助性和模型规模放在同一窄表中，作为图形主结果的精确回查表。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 1",
+        "bbox": [
+          185,
+          300,
+          430,
+          385
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 2: Human evaluation of safety and helpfulness scores across different methods",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "五名通过 preliminary screening 的标注者对每个方法最后 100 个测试问题生成的两条 response 进行标注；表中是安全/帮助性的比例，没有 annotator agreement、区间或显著性。",
+      "data_and_statistics": "三行 SFT、SafeRLHF、SafeDPO，列为 Safety 与 Helpfulness。比例分别为 SFT 0.43/0.868、SafeRLHF 0.932/0.497、SafeDPO 0.943/0.499；单位是 response proportion 而非 0–10 分。",
+      "evidence_relation": "将 Figure 2 的自动评测与人评分开，正文用它说明 SFT 在人评 helpfulness 上最高；附录 Table 11 以更完整 caption 重述同一 protocol。",
+      "design_strengths": [
+        "两项人评比例并排，直接显示 safety/helpfulness 张力。",
+        "行数少且 booktabs 留白充足，正文可快速扫描。"
+      ],
+      "design_weaknesses": [
+        "没有每个标注者或一致性信息，比例的测量不确定性不可见。",
+        "caption 未说明最后 100 个问题、两条 response 和五名标注者。"
+      ],
+      "reusable_pattern": "在人评主表中把安全与帮助性指标并排，并在正文紧邻处说明抽样和标注 protocol。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 2",
+        "bbox": [
+          190,
+          585,
+          425,
+          650
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 3: Comparison of over-refusal and harmless ratio.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "XSTest 官方 protocol 的汇总比例；250 个 safe prompts 用于 over-refusal，200 个 unsafe prompts 用于 harmless ratio。没有区间或重复评测。",
+      "data_and_statistics": "七个方法行，列为 Over refusal (%) 与 Harmless ratio (%)。SafeDPO 是 12.4/100；DPO-HELPFUL 是 0/14.5；DPO-HARMLESS 4/81.5；DPO-SAFEBETTER 0.4/26.5；SafeRLHF 3.2/84.5；SACPO 2.4/86；P-SACPO 1.2/84.5。",
+      "evidence_relation": "把 Figure 2 的高 harmlessness 结果放进 benign over-refusal 失败面；结论段据此强调 hard constraint 的保守性，Appendix E 展开失败案例。",
+      "design_strengths": [
+        "把严格安全收益与 over-refusal 成本置于同一表中，决策含义明确。",
+        "方法行覆盖 DPO、RLHF 与 SACPO 基线，比较面完整。"
+      ],
+      "design_weaknesses": [
+        "两列来自不同 prompt 子集，caption 没有写分母，跨列直接权衡可能误读。",
+        "表中没有将 100% harmless ratio 与具体安全样例或置信信息绑定。"
+      ],
+      "reusable_pattern": "对安全方法同时报告 unsafe suppression 与 benign refusal，避免单指标主张。",
+      "evidence": {
+        "page": 10,
+        "label": "Table 3",
+        "bbox": [
+          175,
+          335,
+          440,
+          465
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "reproduction",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 4: Training hyperparameter configuration shared by DPO and its variants.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 13,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "配置清单，不是重复试验；布尔项为 True/False，未提供超参数搜索范围或资源方差。",
+      "data_and_statistics": "两列 Hyperparameter/Value，13 行包含 β=0.1、epochs=3、max_length=512、train/eval batch=8、gradient accumulation=1、checkpointing=True、learning rate=1e-6、cosine scheduler、warmup=0.03、weight decay=0.05、bf16=True、tf32=True。SafeDPO 的 ∆=10 在正文段落说明而不在表内。",
+      "evidence_relation": "为 Figure 3 的 ∆ sensitivity 和主表模型结果提供复现实验的共享 DPO 配置；SafeRLHF、SACPO 的例外配置仍在附录文字中。",
+      "design_strengths": [
+        "键值表适合复现，关键 batch、precision、scheduler 和 regularization 都可定位。",
+        "短表使用统一精度和 booktabs，附录页可读。"
+      ],
+      "design_weaknesses": [
+        "∆=10 作为 SafeDPO 主配置没有进入表内，读者必须拼接表与段落。",
+        "16 A100 资源信息在表外，未给出训练时长或 seed。"
+      ],
+      "reusable_pattern": "将共享配置集中为键值表，同时在正文明确方法特有参数和例外。",
+      "evidence": {
+        "page": 18,
+        "label": "Table 4",
+        "bbox": [
+          185,
+          240,
+          430,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 22,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 5: DPO-HELPFUL performance across various ∆ values on Helpfulness, Harmlessness, and Harmless Ratio.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 ∆ 值是单次 model-based 聚合，没有 seed 或误差。不同指标混合两位和多位小数，显示精度未统一。",
+      "data_and_statistics": "DPO-HELPFUL 行列为 Metric、∆=0/2/5/10。Helpfulness 10.00→9.18，Harmless Ratio 38.6%→51.63%，Harmlessness -2.24→-0.31；每格是全测试集聚合值。",
+      "evidence_relation": "与 Figure 3 对照，检验只给标准 DPO 加 −(h_l−h_w)∆ 是否足以带来安全收益；结果支持安全感知 pair transformation 才是主要机制。",
+      "design_strengths": [
+        "同一方法内的 margin trajectory 紧凑，便于横向读变化。",
+        "指标行与 Figure 3 轴命名一致。"
+      ],
+      "design_weaknesses": [
+        "∆=20/50 不在本表，和 Figure 3 的横轴范围不一致。",
+        "没有将 DPO-HELPFUL 与 SafeDPO 放在同一列，跨表比较成本高。"
+      ],
+      "reusable_pattern": "为每个消融变体使用相同指标行和参数列，让机制变化能与主图一一对应。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 5",
+        "bbox": [
+          55,
+          260,
+          555,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 22,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 6: DPO-HARMLESS performance across various ∆ values on Helpfulness, Harmlessness, and Harmless Ratio.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单次 model-based 聚合，无 seed、区间或人评；列内小数位不一致。",
+      "data_and_statistics": "DPO-HARMLESS 的 Helpfulness 为 1.04、1.62、3.11、3.43；Harmless Ratio 为 76.82%、86.25%、90.13%、93.88%；Harmlessness 为 3.21、4.25、5.11、5.58，对应 ∆=0、2、5、10。",
+      "evidence_relation": "将同一 margin 项加入 DPO-HARMLESS，用于与 Table 5/7 和 Figure 3 的 SafeDPO 曲线区分“安全偏好”与“安全约束变换”。",
+      "design_strengths": [
+        "显示 ∆ 能改善该变体的 ratio，却仍需主文 SafeDPO 结果作参照。",
+        "三行指标结构在 Tables 5–7 内一致。"
+      ],
+      "design_weaknesses": [
+        "表本身没有提供 SafeDPO 或 baseline reference，单独阅读不能判断“insufficient”幅度。",
+        "没有误差和数据分母。"
+      ],
+      "reusable_pattern": "将变体消融拆成同构小表，保留统一指标顺序以降低比较成本。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 6",
+        "bbox": [
+          55,
+          445,
+          555,
+          600
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 22,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 7: DPO-SAFEBETTER performance across various ∆ values on Helpfulness, Harmlessness, and Harmless Ratio.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单次 model-based 聚合，无 seed、区间或 judge variance；小数位按原始导出结果混合。",
+      "data_and_statistics": "DPO-SAFEBETTER 在 ∆=0/2/5/10 的 Helpfulness 为 9.04、8.84、8.90、8.82；Harmless Ratio 为 50.5%、56%、60.5%、62.13%；Harmlessness 为 -0.19、0.66、1.17、1.39。",
+      "evidence_relation": "隔离“preferred response 必须 safe”的过滤 baseline，说明加 margin 只能带来小幅安全改善，不能替代 SafeDPO 的三分支 T(D)。",
+      "design_strengths": [
+        "把过滤 baseline 的 safety/helpfulness 变化单独呈现，实验意图清楚。",
+        "与 Tables 5/6 共用列和指标，方便复核。"
+      ],
+      "design_weaknesses": [
+        "∆=0–10 的有限窗口不能覆盖 Figure 3 的大 margin 退化。",
+        "表没有直接标注相对 SafeDPO 的差值或主结论。"
+      ],
+      "reusable_pattern": "用同构表分离“数据过滤”与“目标变换”两种机制，避免把参数效应误当方法效应。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 7",
+        "bbox": [
+          55,
+          610,
+          555,
+          765
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 8: Comparison of PeCAN (P) and MoCAN (M) models across varying λ values on helpfulness, harmlessness, and harmless ratio.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 λ/model condition 是单次 model-based 聚合，没有 seed 或区间。P/M 缩写由 caption 定义，λ 列是条件而非重复。",
+      "data_and_statistics": "列为 Metric、PeCAN P(λ=3.2/1.0/0.15) 与 MoCAN M(λ=2.0/0.9/0.5/0.1)。Helpfulness 从 0.61 到 6.51；Harmless Ratio 从 40.13% 到 90.63%；Harmlessness 从 -1.64 到 4.33。所有模型使用 Alpaca-7B 与 PKU-SafeRLHF-30K。",
+      "evidence_relation": "承接正文对 CAN 基线的比较，向 Figure 2/主 Table 1 提供不同 λ 的额外 baseline；CAN 仓库链接在本页脚注，但不是 SafeDPO 视觉源。",
+      "design_strengths": [
+        "宽表一次展示 P/M 两类 baseline 的 λ–性能折衷。",
+        "表头把方法缩写和 λ 条件显式绑定。"
+      ],
+      "design_weaknesses": [
+        "八列在附录小字号下密集，长方法条件需要横向对照。",
+        "没有 SafeDPO 参照列，无法在一个表内读出优越性。"
+      ],
+      "reusable_pattern": "把 baseline 的控制参数直接放进多层列头，避免另设条件表。",
+      "evidence": {
+        "page": 23,
+        "label": "Table 8",
+        "bbox": [
+          55,
+          180,
+          555,
+          310
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 9: Comparison of SafeDPO with various reference models on helpfulness, harmlessness, and harmless ratio.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "与主 Table 1 相同的单次 model-based 聚合，未提供重复或区间；模型规模作为条件列。",
+      "data_and_statistics": "三行 Helpfulness、Harmless Ratio (%)、Harmlessness，列为 1.5B、3B、7B、8B、13B。数值分别为 4.40/4.43/4.86/4.29/7.60、96.38/95.50/97.24/97.88/97.00、6.30/6.07/5.92/6.44/5.57；与 Table 1 完全对应。",
+      "evidence_relation": "作为 Appendix C.3 的精确回查表，支持主文“跨模型规模”的 Figure 2/主 Table 1 叙事，不新增指标。",
+      "design_strengths": [
+        "把正文表的数值完整复制到附录，复现路径短。",
+        "三项指标行结构明确。"
+      ],
+      "design_weaknesses": [
+        "重复主表却没有增加 seed 或模型训练条件，信息增量有限。",
+        "caption 未说明与主 Table 1 的复用关系。"
+      ],
+      "reusable_pattern": "在附录保留主表的 exact numeric copy，便于图表数据审计但应同时补充新增条件。",
+      "evidence": {
+        "page": 23,
+        "label": "Table 9",
+        "bbox": [
+          145,
+          480,
+          470,
+          650
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 24,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 10: Ablation study for evaluator overoptimization. When evaluated using beaver-7b-v1.0-reward and beaver-7b-v1.0-cost, SafeRLHF achieves near-saturated helpfulness and harmlessness scores. However, this superiority does not hold under independent evaluators, including beaver-7b-unified-reward, beaver-7b-unified-cost, or GPT-based judges, indicating evaluator-specific overoptimization rather than genuine generalization improvements.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "六行是单次 evaluator 汇总；caption 说明 SafeRLHF 的 near-saturated 分数在训练同源 beaver evaluator 下出现，但无独立 judge 的区间或重复。",
+      "data_and_statistics": "列为 Method、Helpfulness、Harmlessness、Harmless Ratio (%)。SafeRLHF 在同源 beaver-7b-v1.0 reward/cost 下为 10、11.8163、91.25%，SafeDPO 为 1.346、7.6501、96%；其余 SFT、DPO-HELPFUL、DPO-HARMLESS、DPO-BETTERSAFE 也列出对应点估计。",
+      "evidence_relation": "把 Figure 2 的 evaluator dependence 提升为机制/失败诊断；正文只给提示，Appendix C.4 用 Table 10 与 independent beaver-unified/GPT judge 对照，限制“同源 evaluator 优越性”的解释。",
+      "design_strengths": [
+        "caption 同时写设置、反事实 evaluator 和主发现，脱离正文仍能识别 overoptimization。",
+        "同一表把 helpfulness、harmlessness 和 ratio 放在一起，便于发现 SafeRLHF 的同源异常。"
+      ],
+      "design_weaknesses": [
+        "表内只展示同源 evaluator，独立 evaluator 的反证结果在文字中，不能直接并列。",
+        "列内 10、11.8163、1.346 的精度不统一。"
+      ],
+      "reusable_pattern": "当训练目标可能与评测器同源时，把 evaluator provenance 和独立评测反差写进 caption 并置于主性能表旁。",
+      "evidence": {
+        "page": 24,
+        "label": "Table 10",
+        "bbox": [
+          55,
+          50,
+          555,
+          215
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 11: Human evaluation results: proportion of responses labeled as safe and helpful.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "来自五名人工标注者、每个方法最后 100 个问题的两条 response；只给比例，未给 annotator agreement 或 sampling interval。",
+      "data_and_statistics": "Method、Safe Response Rate、Helpful Response Rate 三列。SFT 为 0.43/0.868，SafeRLHF 为 0.932/0.497，SafeDPO 为 0.943/0.499。数值是 response-level proportion。",
+      "evidence_relation": "为主 Table 2 提供附录说明和重复表面，连接正文的人评反差与 Appendix D qualitative examples。",
+      "design_strengths": [
+        "caption 定义 safe/helpful 的比例语义，比主表 caption 更可独立阅读。",
+        "表格极简，方法差异突出。"
+      ],
+      "design_weaknesses": [
+        "与 Table 2 内容重复，却没有增加每人或置信信息。",
+        "“significantly simpler” 等正文措辞没有相应统计量。"
+      ],
+      "reusable_pattern": "把 protocol 充分写进附录表 caption，主文表可保持简洁。",
+      "evidence": {
+        "page": 24,
+        "label": "Table 11",
+        "bbox": [
+          120,
+          490,
+          490,
+          620
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 12: Safety comparison between SafeDPO and baseline methods. We categorize each (question, SafeDPO response, baseline response) tuple according to whether each response is safe (S) or unsafe (U). Across both model-based and GPT-4 evaluations, the number of (U, S) cases–where SafeDPO is unsafe while the baseline is safe–is negligible or zero. This suggests that SafeDPO maintains safety performance comparable to or better than baseline methods.",
+        "word_count": 66,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "text_color"
+      ],
+      "uncertainty": "每个格子是 safe/unsafe pair 的原始计数，不是比例；Model-based 与 GPT-4 各 baseline 行合计 798 个 tuple，和正文约 3,000 test entries 的分母关系未说明，无法从表内推导抽样规则。",
+      "data_and_statistics": "两组 Evaluation（Model-based、GPT-4），每组五个 baseline 行，列为 Baseline 与 (S,S)、(S,U)、(U,S)、(U,U)。Model-based 的 SafeRLHF 行为 701/72/9/16，GPT-4 的 SafeRLHF 行为 771/27/0/0；(U,S) 表示 SafeDPO unsafe 而 baseline safe。",
+      "evidence_relation": "为正文安全保证提供方向性 failure evidence，连接 Table 3 的 strict safety trade-off 和 Appendix E 的 over-refusal；(U,S) 的低计数支撑“没有新增安全失败”，但不解决分母缺口。",
+      "design_strengths": [
+        "二层表头和行组把 evaluator 与四类 safety pair 分开，(U,S) 关键列突出。",
+        "原始 count 比只报 ratio 更能暴露错误方向。"
+      ],
+      "design_weaknesses": [
+        "798 与约 3,000 的 denominator 未对齐，caption 没有解释 subset。",
+        "红蓝表头依赖颜色，且四类 pair 没有显式百分比或总数列。"
+      ],
+      "reusable_pattern": "用 evaluator 分组的四格安全 pair 计数追踪错误方向，并显式报告总数和抽样规则。",
+      "evidence": {
+        "page": 26,
+        "label": "Table 12",
+        "bbox": [
+          55,
+          55,
+          555,
+          265
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 13: Performance comparison across three random seeds. We report the mean and standard error of normalized reward, unnormalized reward (raw outputs from beaver-7b-unified-reward), and cost. SafeDPO consistently achieves higher rewards and lower costs across different random seeds, demonstrating that its performance gains are robust to random initialization.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "均值 ± standard error，来自三个 random seeds；caption 明确 normalized reward、raw unnormalized reward 和 cost，但没有逐 seed 原始值。",
+      "data_and_statistics": "SafeDPO 与 Safe RLHF 两行，列为 Reward (Normalized)、Reward (Unnormalized)、Cost。SafeDPO 为 4.3809±0.1099、1.0390±0.0632、-6.2285±0.1308；Safe RLHF 为 3.2471±0.5379、0.3871±0.3093、-2.6617±0.6323。",
+      "evidence_relation": "补足主 Table 1/2 与 Figure 2 缺失的 seed 稳健性，支持“不是特定初始化”的表述；不直接覆盖 GPT-4 或 XSTest。",
+      "design_strengths": [
+        "均值与 SE 在同一单元内呈现，随机性语义明确。",
+        "同时报告 normalized/unnormalized reward，避免只看缩放后分数。"
+      ],
+      "design_weaknesses": [
+        "只有三个 seed 且无逐 seed 值，SE 的计算细节不可复核。",
+        "负 cost 的方向需要读者结合 caption/正文，表头未标方向。"
+      ],
+      "reusable_pattern": "在主结果缺乏重复时，用显式 mean ± SE 小表补充 seed 层面的稳健性，保留原始尺度。",
+      "evidence": {
+        "page": 26,
+        "label": "Table 13",
+        "bbox": [
+          120,
+          390,
+          500,
+          510
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 14: Network components required for training πθ . SafeRLHF requires additional reward and cost models (and their value functions), whereas SafeDPO only requires the policy and reference policy, resulting in lower memory overhead.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "组件存在性 checklist，不是显存实测；✓/✗ 只表达训练所需网络，未报告参数规模或实际峰值显存。",
+      "data_and_statistics": "Safe RLHF 与 SafeDPO 两行，列为 πref、πθ、Reward、Reward Value、Cost、Cost value。Safe RLHF 六项全为 ✓；SafeDPO 仅 πref、πθ 为 ✓，四个 reward/cost 辅助项为 ✗。",
+      "evidence_relation": "把 Figure 1 的组件删减转为可核对的 memory-efficiency evidence，并与 Table 15 runtime、Table 16 supervision 三面共同支撑 lightweight claim。",
+      "design_strengths": [
+        "✓/✗ 让方法接口差异一眼可见，列名覆盖 policy、reward、cost 及 value。",
+        "表头与 Figure 1 的组件命名一致。"
+      ],
+      "design_weaknesses": [
+        "checklist 不能量化显存节省，标题的 memory overhead 仍是机制推断。",
+        "SafeRLHF policy/reference 的共享关系没有在表内说明。"
+      ],
+      "reusable_pattern": "把方法架构中的必需组件转为二值 checklist，再与实际时间/数据成本表配套。",
+      "evidence": {
+        "page": 26,
+        "label": "Table 14",
+        "bbox": [
+          80,
+          575,
+          530,
+          675
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 15",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 15: Computation time (seconds) required for training. SafeRLHF incurs substantial computational overhead due to on-policy rollout generation in PPO and additional reward/cost model training, whereas SafeDPO performs direct offline optimization without iterative text generation, resulting in significantly lower runtime.",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "秒数是单次训练时间，未给硬件重复、方差或总 pipeline 的测量误差；SafeDPO reward/cost training 用“−”表示不适用。",
+      "data_and_statistics": "Method 行为 SafeDPO 与 Safe RLHF，列为 Policy Training、Reward Training、Cost Training。SafeDPO 为 1388.2/−/−；Safe RLHF 为 32957.1/1121.3/1121.9 秒。",
+      "evidence_relation": "量化 Figure 1 的 offline/direct optimization 组件差异；与 Table 14 memory checklist、Table 16 supervision 一起把“轻量”拆为时间、网络和标注三类成本。",
+      "design_strengths": [
+        "单位 seconds 直接写在 caption，缺失阶段用 − 而非伪造 0。",
+        "把多阶段 SafeRLHF 成本拆开，避免只报总时长。"
+      ],
+      "design_weaknesses": [
+        "没有 total row 或硬件/并行度列，跨环境复现仍受限。",
+        "caption 的“significantly lower”没有重复或统计依据。"
+      ],
+      "reusable_pattern": "将训练 pipeline 的阶段成本拆列，并以明确缺失符号区分“不适用”和零耗时。",
+      "evidence": {
+        "page": 27,
+        "label": "Table 15",
+        "bbox": [
+          125,
+          290,
+          485,
+          395
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 16",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 16: Required supervision signals. SafeRLHF relies on multiple types of labeled data to train reward and cost models, while SafeDPO requires fewer supervision signals, improving data efficiency.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "监督信号的 ✓/✗ 是方法需求判断，不是标签数量或标注成本估计；没有样本量、质量或一致性数据。",
+      "data_and_statistics": "Safe RLHF 与 SafeDPO 两行，列为 Helpfulness Preference、Safety Indicator、Harmlessness Preference。Safe RLHF 三列全 ✓；SafeDPO 前两列 ✓，Harmlessness Preference 为 ✗。",
+      "evidence_relation": "将 Figure 1 中 safety indicator 与 preference pair 的接口转为 data-efficiency checklist，补充 Table 14/15 的工程成本叙事。",
+      "design_strengths": [
+        "直接显示 SafeDPO 少一个 harmlessness-preference supervision 类型。",
+        "列名清楚，✓/✗ 与 Table 14 风格对应。"
+      ],
+      "design_weaknesses": [
+        "“fewer supervision signals”没有换算为标注量或时间。",
+        "表没有说明 safety indicator 是否来自同一 PKU-SafeRLHF-30K 样本。"
+      ],
+      "reusable_pattern": "把 supervision schema 与网络、时间成本并列审计，同时比较最终性能。",
+      "evidence": {
+        "page": 27,
+        "label": "Table 16",
+        "bbox": [
+          95,
+          500,
+          520,
+          590
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 17",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 17: Exact numerical values corresponding to Figure 2(a). (N) and (O) denote normalized and original helpfulness scores, respectively.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "abbreviation_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Figure 2(a) 的逐方法点值，无误差或重复；N/O 是 normalized/original helpfulness 两种表示，不是两次独立评测。",
+      "data_and_statistics": "八个方法行，列为 Method、Helpfulness (N)、Helpfulness (O)、Harmless Ratio (%)、Harmlessness。SafeDPO 为 4.61/1.17/96.87/5.97，SafeRLHF 为 4.23/0.95/88.97/3.63；DPO 与 SACPO/P-SACPO 也逐行给出。",
+      "evidence_relation": "为 Figure 2(a) 提供 exact numeric lookup，连接正文 model-based scatter、Table 1 的 7B row 和 Table 13 的 seed analysis。",
+      "design_strengths": [
+        "把 normalized 与 original helpfulness 并列，保留 BT reward 的平移不变性信息。",
+        "可逐点复核 Figure 2(a)，提高图表可审计性。"
+      ],
+      "design_weaknesses": [
+        "caption 没有说明 model-based evaluator 名称或测试集分母。",
+        "百分比与分数混在一行，列方向/安全阈值需要回正文。"
+      ],
+      "reusable_pattern": "为多面板 scatter 附上逐点 exact table，并明确不同尺度或归一化表示。",
+      "evidence": {
+        "page": 28,
+        "label": "Table 17",
+        "bbox": [
+          55,
+          120,
+          555,
+          290
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 18",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 18: Numerical values corresponding to Figure 2(b).",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Figure 2(b) GPT-4 聚合点值，无误差、重复或 judge agreement；每行是方法级平均。",
+      "data_and_statistics": "八个方法行，列为 Method、Helpfulness、Harmless Ratio (%)、Harmlessness。SafeDPO 为 8.14/100.00/9.92，SafeRLHF 为 7.68/96.62/9.57；SFT、DPO variants、SACPO/P-SACPO 完整列出。",
+      "evidence_relation": "为 Figure 2(b) 提供 exact numeric lookup，并与 Appendix D 的模板、GPT-5.1 pairwise 和 qualitative examples 形成 evaluator sensitivity 链。",
+      "design_strengths": [
+        "三项 GPT-4 指标在一张表内，可直接追踪 scatter 点。",
+        "100.00 的百分比精度明确呈现完全通过阈值的表述。"
+      ],
+      "design_weaknesses": [
+        "caption 过短，没有重复 GPT-4 score scale 与 ratio threshold。",
+        "没有模板、prompt 或 judge variance 列。"
+      ],
+      "reusable_pattern": "附录用紧凑 exact table 固定自动评测图的每个点，同时保留 evaluator 条件。",
+      "evidence": {
+        "page": 28,
+        "label": "Table 18",
+        "bbox": [
+          95,
+          400,
+          510,
+          520
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 19",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 19: GPT-4 evaluation results against SFT using Template T1.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "五个方法对 SFT 的 GPT-4 T1 win/tie/lose proportions；无 judge agreement、区间或每组分母。",
+      "data_and_statistics": "两层表头为 Method、Harmlessness（win/tie/lose）、Helpfulness（win/tie/lose）。SafeDPO 的 harmlessness 48.76/48.14/3.10，helpfulness 84.05/9.42/6.53；其余四方法逐行给出。",
+      "evidence_relation": "提供 Figure 4 顶部 T1 行的 exact data，并测试 GPT-4 模板改变后相对 SFT 的安全/帮助性排序。",
+      "design_strengths": [
+        "二层表头把两个评价维度与三种 pairwise outcome 对齐。",
+        "百分比两位小数且每个方法一行，适合复算 Figure 4。"
+      ],
+      "design_weaknesses": [
+        "win/tie/lose 的分母和 tie 判定没有在 caption 内说明。",
+        "以 SFT 为唯一对照，不能替代 SafeDPO 与所有 baseline 的直接 pairwise。"
+      ],
+      "reusable_pattern": "用 metric group × win/tie/lose 的二层表头承载模板化 pairwise 评测。",
+      "evidence": {
+        "page": 29,
+        "label": "Table 19",
+        "bbox": [
+          55,
+          300,
+          555,
+          450
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 20",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 20: GPT-4 evaluation results against SFT using Template T2.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "五个方法对 SFT 的 GPT-4 T2 win/tie/lose proportions；无分母、重复或 judge uncertainty。",
+      "data_and_statistics": "SafeDPO 在 T2 的 harmlessness 89.99/7.70/2.31，helpfulness 91.60/0.64/7.76；DPO-HELPFUL、DPO-HARMLESS、DPO-SAFEBETTER、SafeRLHF 也按同样六项 outcome 给出。",
+      "evidence_relation": "提供 Figure 4 中部 T2 行的 exact data，并展示比 T1 更偏向 SafeDPO 的模板敏感性。",
+      "design_strengths": [
+        "与 Table 19 同构，模板间差异可以逐列比较。",
+        "安全和帮助性两组 win/tie/lose 没有被合并为单一分数。"
+      ],
+      "design_weaknesses": [
+        "caption 只写 against SFT，未说明 T2 prompt 来源和分母。",
+        "较高 win-rate 的主张没有不确定性或多 judge 复核。"
+      ],
+      "reusable_pattern": "复制同构 pairwise 表并只替换模板条件，便于识别 evaluator prompt effect。",
+      "evidence": {
+        "page": 29,
+        "label": "Table 20",
+        "bbox": [
+          55,
+          475,
+          555,
+          630
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 21",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 21: GPT-4 evaluation results against SFT using Template T3.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "五个方法对 SFT 的 GPT-4 T3 win/tie/lose proportions；无分母、重复或模板内部一致性。",
+      "data_and_statistics": "SafeDPO 在 T3 的 harmlessness 87.50/10.38/2.12，helpfulness 91.62/1.12/7.25；其余四方法按同一二层表头给出。",
+      "evidence_relation": "提供 Figure 4 底部 T3 行的 exact data，与 Tables 19/20 组成模板 robustness 三联表。",
+      "design_strengths": [
+        "三张模板表结构完全一致，图形复现路径清楚。",
+        "两位小数保留了 close tie 的差异。"
+      ],
+      "design_weaknesses": [
+        "三表分开摆放，跨模板比较需要来回翻页。",
+        "没有汇总模板间变异，也没有直接标出最佳/第二最佳。"
+      ],
+      "reusable_pattern": "保持跨模板表完全同构，把 prompt 变化当作唯一显式条件。",
+      "evidence": {
+        "page": 29,
+        "label": "Table 21",
+        "bbox": [
+          55,
+          645,
+          555,
+          780
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 22",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 22: Pairwise comparison results of SafeDPO against each baseline, evaluated using GPT-5.1. For both harmlessness (safety) and helpfulness, we report the win-rate (SafeDPO wins), tie-rate, and lose-rate (baseline wins).",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "GPT-5.1 pairwise proportions，六个 baseline 各自与 SafeDPO 比较；无每组分母、judge agreement 或区间。",
+      "data_and_statistics": "二层表头为 Baseline、Harmlessness win/tie/lose、Helpfulness win/tie/lose。SafeDPO 对 DPO-HELPFUL 的安全/帮助性 win-rate 为 87.25%/84.50%，对 SafeRLHF 为 57.88%/65.88%；其余四 baseline 完整列出。",
+      "evidence_relation": "将 Figure 4 的 GPT-4 against-SFT 结果扩展为 GPT-5.1 直接 pairwise；正文“安全差异会污染 helpfulness”之后，Table 23 用 safe-safe 子集控制。",
+      "design_strengths": [
+        "把 SafeDPO 作为固定比较方，win/tie/lose 方向在 caption 中明示。",
+        "同时保留 harmlessness 与 helpfulness，能观察两种评价是否同步。"
+      ],
+      "design_weaknesses": [
+        "caption 后的 safe-safe 过滤说明在正文段落，不在表头或表内。",
+        "不同 baseline 的 pairwise 样本量未知，百分比难以做精确权重汇总。"
+      ],
+      "reusable_pattern": "在自动 judge 比较中同时报告安全和帮助性的方向性 outcome，并配套 safety-controlled slice。",
+      "evidence": {
+        "page": 31,
+        "label": "Table 22",
+        "bbox": [
+          80,
+          145,
+          530,
+          310
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 23",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 23: Pairwise helpfulness comparison between SafeDPO and each baseline under GPT-5.1, restricted to (safe, safe) response pairs. Win-rate denotes the percentage of instances where SafeDPO is judged more helpful than the baseline, while both responses are safe.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "仅保留 (safe, safe) response pairs 后的 GPT-5.1 helpfulness pairwise proportions；没有显示过滤前总数、过滤率或区间。",
+      "data_and_statistics": "六个 baseline 行，列为 Baseline、SafeDPO Win (%)、Baseline Win (%)、Tie (%)。SafeDPO 对 DPO-HARMLESS 的 win/baseline/tie 为 82.29/17.42/0.28%，对 SafeRLHF 为 59.66/40.34/0.00%，其他行同样按安全子集统计。",
+      "evidence_relation": "控制 Table 22 的安全混杂，直接回应“SafeDPO helpfulness 可能只是更安全”的替代解释；与 Table 10 的 evaluator overoptimization 共同构成反证。",
+      "design_strengths": [
+        "明确锁定 safe-safe 子集，把安全与帮助性的比较条件写进 caption。",
+        "三列合计接近 100%，便于检查 pairwise 分解。"
+      ],
+      "design_weaknesses": [
+        "safe-safe 子集的样本数和筛选规则未在表内给出。",
+        "caption 的“competitive helpfulness”结论仍依赖点估计。"
+      ],
+      "reusable_pattern": "对安全相关 helpfulness 比较先固定安全状态，再报告 win/tie/lose，以降低 evaluator confounding。",
+      "evidence": {
+        "page": 31,
+        "label": "Table 23",
+        "bbox": [
+          105,
+          385,
+          500,
+          515
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 24",
+      "page": 32,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 24: Qualitative example comparing DPO-HELPFUL and SafeDPO under GPT-4 evaluation (1).",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "一个 racial-hate prompt 的定性案例；GPT-4 T1/T2/T3 给出逐 response helpfulness/harmlessness 0–10 分，没有抽样代表性或人工复核。",
+      "data_and_statistics": "三列逻辑结构为 row label、response、GPT-4 Score。五个逻辑行包含 Question、DPO-HELPFUL、GPT-4 Score、SafeDPO、GPT-4 Score；DPO-HELPFUL 的 T1/T2/T3 约为 (1,0)/(1,0)/(1,0)，SafeDPO 约为 (8,10)/(9,10)/(9,10)。",
+      "evidence_relation": "用具体 unsafe racist response 对照 SafeDPO refusal，解释 Table 3 的安全差异和 Table 12 的 pair counts；案例是 illustrative failure evidence，不是总体估计。",
+      "design_strengths": [
+        "原始 response 与三模板分数并排，读者可检查“安全/帮助”判断依据。",
+        "DPO-HELPFUL 与 SafeDPO 行组让 failure contrast 直接可见。"
+      ],
+      "design_weaknesses": [
+        "长文本在 6 pt 左右字号下阅读负担高，表内没有截断或摘要。",
+        "单个 prompt 无法代表分布，caption 没有说明案例选择。"
+      ],
+      "reusable_pattern": "将一条 prompt 的多方法输出、judge 分数与 failure contrast 收在同一 qualitative table。",
+      "evidence": {
+        "page": 32,
+        "label": "Table 24",
+        "bbox": [
+          55,
+          180,
+          555,
+          630
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 25",
+      "page": 33,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 25: Qualitative example comparing DPO-HELPFUL and SafeDPO under GPT-4 evaluation (2).",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "一个 scam prompt 的定性案例；GPT-4 三模板分数是 judge point labels，没有样本分母、方差或人工复核。",
+      "data_and_statistics": "Question、DPO-HELPFUL response、其 T1/T2/T3 score、SafeDPO response、其三组 score。DPO-HELPFUL 给出详细诈骗清单，分数约 (1,0)/(2,2)/(1,0)；SafeDPO 建议合法赚钱方式，约 (8,10)/(9,9)/(10,10)。",
+      "evidence_relation": "补充 Table 24 的具体安全拒答模式，以 scam case 展示 hard constraint 如何牺牲直接帮助性并保持 judge harmlessness。",
+      "design_strengths": [
+        "长 response 保留了方法行为差异，不只展示一个汇总标签。",
+        "T1–T3 分数列使模板敏感性可被逐案例观察。"
+      ],
+      "design_weaknesses": [
+        "长段落挤压表格高度，扫描方法名与 score 需要定位。",
+        "没有注明 prompt 从哪里抽取或是否预注册。"
+      ],
+      "reusable_pattern": "选取与 headline failure 对齐的代表案例，同时展示多个 judge 模板而非单一分数。",
+      "evidence": {
+        "page": 33,
+        "label": "Table 25",
+        "bbox": [
+          55,
+          55,
+          555,
+          680
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 26",
+      "page": 34,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 26: Qualitative example comparing DPO-HELPFUL and SafeDPO under GPT-4 evaluation (3).",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "一个隐蔽侮辱 prompt 的定性案例；三模板 GPT-4 score 仍是单案例 point labels。",
+      "data_and_statistics": "五个逻辑行的三列表中，DPO-HELPFUL 提供隐蔽侮辱示例，T1/T2/T3 约为 (4,2)/(7,1)/(2,0)；SafeDPO 转为尊重沟通建议，三组约为 (8,10)。",
+      "evidence_relation": "把“helpfulness 与 harmlessness 耦合”落到文本行为，连接 Appendix D 的 evaluator discussion 与 Table 23 safe-safe 控制。",
+      "design_strengths": [
+        "案例展示 unsafe-helpful 与 safe-helpful 两种回答的语义差异。",
+        "同一 layout 复用，读者能与 Tables 24/25/27 对照。"
+      ],
+      "design_weaknesses": [
+        "分数在不同模板间波动明显，却没有在 caption 中解释。",
+        "正文过长且没有 response summary，定性重点被细节淹没。"
+      ],
+      "reusable_pattern": "用同构案例表追踪同一安全 prompt 上的回答策略和多模板 judge 一致性。",
+      "evidence": {
+        "page": 34,
+        "label": "Table 26",
+        "bbox": [
+          55,
+          55,
+          555,
+          480
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 27",
+      "page": 35,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 27: Qualitative example comparing DPO-HELPFUL and SafeDPO under GPT-4 evaluation (4).",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "一个 smart toaster hacking prompt 的定性案例；GPT-4 三模板分数无重复和区间。",
+      "data_and_statistics": "DPO-HELPFUL 给出 firmware、password、vulnerability 和 DDoS 等攻击方向，T1/T2/T3 约为 (2,1)/(4,2)/(1,0)；SafeDPO 拒绝并给出非电器烹饪替代，约为 (8,10)/(8,10)/(8,8)。",
+      "evidence_relation": "把 XSTest/Appendix E 的 unsafe-generation failure 以文本例子呈现，强调表中安全分数与真实回答内容的对应关系。",
+      "design_strengths": [
+        "案例内容直接对应安全风险，失败机制可被读者审阅。",
+        "SafeDPO 的拒答与替代建议同时保留，避免只显示拒绝标签。"
+      ],
+      "design_weaknesses": [
+        "极长 response 使字号进一步缩小，表格可读性低。",
+        "“helpful”替代方案的适切性没有人工质量判断。"
+      ],
+      "reusable_pattern": "对高风险 prompt 同时保留拒答边界和安全替代路径，避免 qualitative evidence 只呈现拒绝。",
+      "evidence": {
+        "page": 35,
+        "label": "Table 27",
+        "bbox": [
+          55,
+          55,
+          555,
+          700
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 28",
+      "page": 36,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 28: Examples adapted from Table 7 of Huang et al. (2024), evaluated with GPT-4 under Templates T1 and T3.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "来自 Huang et al. Table 7 的一个 prompt 及多方法 response；T1/T3 GPT-4 labels 是单案例 point scores，SFT/Prompt 分数用短横线表示缺失。",
+      "data_and_statistics": "列为 Model、Response、Scores；8 行为 Prompt、SFT、SafeRLHF、DPO-HELPFUL、DPO-HARMLESS、MoCAN、PeCAN、SafeDPO。主题是对同事早退与卖淫的刻板推断；SafeDPO 的 T1/T3 为 (9,9)/(7,8)，DPO-HARMLESS 与 MoCAN/PeCAN 也给出对照。",
+      "evidence_relation": "扩展 Tables 24–27 的案例集，连接 CAN baseline Table 8 和 Appendix D.4 的模板比较；案例用来说明安全回答语气差异，不承担总体性能估计。",
+      "design_strengths": [
+        "将多个 baseline 放在同一 prompt 下，方法间文本策略可横向阅读。",
+        "Scores 列显式标明 T1/T3，且缺失值不伪造为零。"
+      ],
+      "design_weaknesses": [
+        "响应很长，八行跨整页后仍需放大阅读。",
+        "只选一个 stereotype prompt，选择机制和代表性没有说明。"
+      ],
+      "reusable_pattern": "在 qualitative appendix 中保留 Prompt 与所有关键 baseline，使用固定模板 score 列支持文本和数值双重审计。",
+      "evidence": {
+        "page": 36,
+        "label": "Table 28",
+        "bbox": [
+          55,
+          130,
+          555,
+          700
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 29",
+      "page": 37,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 29: Examples adapted from Table 8 of Huang et al. (2024), evaluated with GPT-4 under Templates T1 and T3.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "来自 Huang et al. Table 8 的一个职场暴力 prompt 及多方法 response；T1/T3 score 是单案例 GPT-4 labels，Prompt/SFT 没有 score。",
+      "data_and_statistics": "列为 Model、Response、Scores；8 行包含 Prompt、SFT、SafeRLHF、DPO-HELPFUL、DPO-HARMLESS、MoCAN、PeCAN、SafeDPO。SafeDPO T1/T3 为 (9,10)/(9,10)，DPO-HARMLESS 为 (10,10)/(9,9)，PeCAN 的 T3 helpfulness 为 1 等差异可见。",
+      "evidence_relation": "以第二个外部案例检验 Table 28 的文本模式，并把“安全拒绝/建设性替代”连接到 XSTest failure boundary 与 Table 23 的 safe-safe helpfulness。",
+      "design_strengths": [
+        "多方法同 prompt 对照能暴露某些方法的模板敏感分数。",
+        "安全/帮助两维 score 直接放在 response 旁边。"
+      ],
+      "design_weaknesses": [
+        "极长 response 和窄 score 列导致高信息密度，正文扫描困难。",
+        "单案例不能支撑跨方法总体 ranking，caption 没有强调这一边界。"
+      ],
+      "reusable_pattern": "用两个来自外部工作、同一评测模板的案例作为定性 sanity check，并将其与总量指标分开。",
+      "evidence": {
+        "page": 37,
+        "label": "Table 29",
+        "bbox": [
+          55,
+          45,
+          555,
+          635
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先把 hard safety constraint 的组件差异画成 Safe RLHF 对 SafeDPO；§3–4 的 r_c=-∞、T(D) 和 ∆ 机制随后由 Figure 2 的双 evaluator 主比较、Figure 3 的 margin 曲线和 Table 1–3 的尺度、人评、XSTest 结果承接。附录 Tables 4–18 固定配置、额外 baseline、evaluator overoptimization、seed/效率与 Figure 2 exact values；Figure 4 和 Tables 19–23 检查模板与安全控制后的 pairwise 结果，Tables 24–29 提供案例级文本证据。",
+    "caption_system": "Figure caption 以标题开头，主图 2/3 解释 evaluator、阈值或 baseline 线，Figure 4 指向补充表；主 Table 1–9 多为短标题，Tables 10–16 才把设置、缺失阶段或主解释写进 caption。Qualitative Tables 24–29 的 caption 只标案例序号，不能替代表内长 response。",
+    "table_header_system": "数值表使用粗体单层 Metric/Method 表头，pairwise 表 Tables 19–22 使用 Harmlessness/Helpfulness 的二层 win/tie/lose 表头，Table 12 使用 Evaluation × safety-pair 两层分组；百分比、score、秒数和 ✓/✗ 都由列名或 caption 指定。",
+    "method_result_ablation_link": "Figure 1 的 reward/cost 删除与 safety indicator 输入在正文方法中转为 T(D) 三分支；Figure 2/主表给结果，Figure 3 与 Tables 5–7 把 ∆ 单独施加到变体上，Tables 14–16 再从网络、时间和 supervision 三个成本维度验证 interface 简化。",
+    "main_appendix_link": "主文只保留 Figure 1–3、Tables 1–3 和短结论；Appendix C/D 通过 Tables 4–23、Figure 4 和 qualitative Tables 24–29 给出 exact values、template/judge counterevidence、safe-safe 控制及失败案例。正文指针存在，但 Table 12 denominator、Prop.4.2 penalty notation 和 evaluator coupling 仍需读者跨页拼接。",
+    "typography_consistency": "正文/附录的可搜索内容保持 Nimbus Roman No9 L、Computer Modern 数学字体和粗体 section/caption 层级；图内 raster 使用无衬线大轴标签与大字号标题，和表格的 serif 小字号有明显视觉断层。qualitative response 使用 Nimbus Mono L，功能上强化了 prompt/output 区分。",
+    "color_consistency": "Figure 2 与 Figure 3 共享八方法调色板及 SafeDPO 蓝色；Figure 4 复用五方法但将 DPO-HARMLESS 与 SafeDPO 颜色改为蓝/绿子集，需依赖各自图例。Figure 1 的红/蓝语义不与方法 palette 混用；表格总体黑灰，只有 Table 12 的 S/U header 使用红蓝文本。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用组件对照示意图先说明方法删减，再用 evaluator × metric 小倍图连接到主结果。",
+      "用固定基线虚线和目标方法 marker 轨迹隔离 margin 对优化动态的作用。",
+      "为 scatter 附上 exact numeric tables，并用 template/judge slice、safe-safe pair 和 qualitative response 逐层检查 evaluator confounding。",
+      "把安全收益与 over-refusal、网络组件、训练时间和 supervision 放入同一证据系统，而不只报告 harmless ratio。"
+    ],
+    "highest_value_objects": [
+      "Figure 2：四面板双 evaluator 主比较同时承载 helpfulness、harmlessness 和 ratio，且 caption 定义阈值。",
+      "Figure 3：把 ∆ 的机制预测、基线水平和 ∆=50 有限训练退化放在一张图内。",
+      "Table 3：将 100% harmless ratio 与 12.4% over-refusal 置于 XSTest 的同一决策面。",
+      "Table 10、Table 23 与 Table 12：分别暴露 evaluator overoptimization、safe-safe helpfulness 和安全 failure direction。"
+    ],
+    "failure_patterns": [
+      "主图/主表多为聚合点估计，缺少重复、区间、judge agreement，难以区分稳健差异与 evaluator noise。",
+      "Table 12 每个 baseline 的四类计数合计 798，却没有与约 3,000 test entries 对齐的 subset/denominator 说明。",
+      "Figure 3 的 caption 未说明图中额外出现 ∆=50；Table 5–7 只覆盖 ∆=0–10，跨对象参数范围不一致。",
+      "长 qualitative tables 以约 6 pt response 文字填满页面，且颜色图例和多方法名称在灰度下不够冗余。"
+    ],
+    "one_sentence_visual_strategy": "论文采用“组件删减示意 → 双 evaluator 主散点 → ∆ 机制曲线 → 规模/人评/过度拒答表 → 模板、safe-safe 和文本失败附录”的证据链，以 hard safety guarantee 的收益与保守性成本同时可视化。"
+  }
+}

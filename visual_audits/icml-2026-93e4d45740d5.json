@@ -1,0 +1,1906 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-93e4d45740d5",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/rhwxmx/SECNet_ICML"
+    ],
+    "selected_repository": "https://github.com/rhwxmx/SECNet_ICML",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/rhwxmx/SECNet_ICML",
+        "path": "SECNet.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "GitHub main-branch rendered architecture asset, 2858×1497 RGBA; visually corresponds to the SECNet architecture image in PDF Figure 3, but is not an editable source for the full conference figure."
+      },
+      {
+        "repository_url": "https://github.com/rhwxmx/SECNet_ICML",
+        "path": "DHP19/tools/image_save.py",
+        "role": "plot_script",
+        "tool": "OpenCV/TorchVision",
+        "evidence": "Local pose-render helper uses OpenCV BGR prediction color (255,0,0), cv2.circle radius 3, cv2.line thickness 2, and torchvision make_grid(nrow=8,padding=2,normalize=True); it provides partial generation evidence for the DHP19 overlays, not the complete Figure 7/8 page composer."
+      },
+      {
+        "repository_url": "https://github.com/rhwxmx/SECNet_ICML",
+        "path": "gif/sub13_session3_mov4_3D.gif",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "DHP19 3D pose visualization asset in the public repository; related to the appendix pose evidence but not an editable source for the assembled PDF montage."
+      },
+      {
+        "repository_url": "https://github.com/rhwxmx/SECNet_ICML",
+        "path": "gif/sub14_session1_mov7_3D.gif",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "DHP19 3D pose visualization asset in the public repository; related to the appendix pose evidence but not an editable source for the assembled PDF montage."
+      },
+      {
+        "repository_url": "https://github.com/rhwxmx/SECNet_ICML",
+        "path": "gif/sub15_session1_mov4_3D.gif",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "DHP19 3D pose visualization asset in the public repository; related to the appendix pose evidence but not an editable source for the assembled PDF montage."
+      },
+      {
+        "repository_url": "https://github.com/rhwxmx/SECNet_ICML",
+        "path": "gif/sub17_session5_mov5_3D.gif",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "DHP19 3D pose visualization asset in the public repository; related to the appendix pose evidence but not an editable source for the assembled PDF montage."
+      },
+      {
+        "repository_url": "https://github.com/rhwxmx/SECNet_ICML",
+        "path": "README.md",
+        "role": "other",
+        "tool": null,
+        "evidence": "README identifies the SECNet project, links arXiv 2412.20803, embeds the architecture/GIF assets, and lists configuration/training entry points; it does not provide PDF figure/table generators."
+      }
+    ],
+    "search_note": "The PDF first page explicitly links https://github.com/rhwxmx/SECNet_ICML, and the source-inventory row selects this repository by explicit_pdf_url while initially labeling it repository_without_visual_source. The local corpus/visual_sources/icml-2026-93e4d45740d5/ directory has no acquired files. gh repo view and a recursive main-branch tree confirm the project, SECNet.png, four DHP19 3D GIFs, and DHP19/tools/image_save.py. The tree has no paper.pdf, TeX, ipynb, TikZ, PGF, SVG, plot/table generator, export configuration, or data files. Therefore the repository supplies rendered assets and a local pose-render helper but cannot reconstruct all eight PDF Figures and thirteen Tables; this audit records partial_visual_source. PDF captions, object inventory, page positions, and values remain authoritative over the repository assets."
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 10,
+    "appendix_figures": 4,
+    "appendix_tables": 3,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "raster figure text"
+      ],
+      "size_pt": {
+        "minimum": 4.5,
+        "median": 7.0,
+        "maximum": 13.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Nimbus Mono L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 7.0,
+      "header_size_pt": 8.0,
+      "header_weight": "bold",
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "palette_strategy": "The paper uses task-specific categorical accents rather than one stable SECNet token: blue/purple/orange for Figure 1 methods, event/polarity and functional colors for Figures 2–5, light-blue/cyan for Figure 6, and yellow/blue or red/blue ground-truth/prediction overlays for Figures 7–8. Tables primarily use bold text and ✓/✗ rather than cell color. Positional, text, and line-style redundancy is common, but grayscale safety is weak for several raster objects.",
+    "vector_raster_mix": "The 18-page PDF uses embedded raster JPEG/PNG objects for all eight Figures (approximately 375–405 ppi at placement; page render audited at 200 dpi/1700×2200 px) while captions, table text, rules, and surrounding prose are PDF text/vector objects. Figure 5–8 PNGs include alpha/mask resources. The repository has a rendered SECNet.png and pose assets but no editable figure/table source.",
+    "style_consistency": "Letter, two-column proceedings layout and Nimbus Roman No9 L/Computer Modern math provide a stable paper frame, with minimal booktabs-style tables and direct labels inside raster Figures. Main Figure 3 and appendix Figure 8 are the most density-constrained objects; appendix wide tables are consistent in rules but small. Captions are mostly title/setup statements and rarely define units, aggregation, missing values, or repeat protocols. Several spelling/case and SECNet/FECNet naming inconsistencies reduce polish."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "other"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 1. The comparison with the SOTA voxel-based VMST-Net (Liu et al., 2023) and frame-based methods ECSNet (Chen et al., 2022b) on seven classification datasets.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "raster figure text"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#2D89AC",
+          "#8A2D74",
+          "#F39C12"
+        ],
+        "semantic_mapping": "SECNet is blue/cyan, VMST-Net is purple/magenta, and ECSNet is orange; fill, marker/vertex and line style repeat the method identity.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 21,
+        "data_marks_estimate": 21
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower_right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Angular categorical axes for seven datasets: CIFAR10-DVS, N-CARS, N-MNIST, UCF101-DVS, DVS128 Gesture, ASL-DVS, and N-Caltech101.",
+        "y": "Radial linear accuracy scale, visually approximately 0–100.",
+        "color": "Method/representation family: SECNet, VMST-Net, and ECSNet.",
+        "shape": "Closed radar polygons and their vertices encode the seven accuracy values for each method.",
+        "line": "Solid, dashed, and dotted polygon outlines distinguish the three methods.",
+        "facet": "One radar panel shared across all seven datasets.",
+        "text": "Direct numeric labels at vertices plus a lower-right method legend."
+      },
+      "data_and_statistics": "Single-point accuracy values for three methods on seven classification datasets; approximately 21 plotted observations and no error bars, intervals, sample-size encoding, or replicate summary. Readable examples include SECNet 99.7 on N-MNIST, 91.6 on UCF101-DVS, 99.993 on ASL-DVS, and 82.4 on N-Caltech101. The radar is an overview rather than a statistical stability display.",
+      "evidence_relation": "This is the paper's headline cross-representation overview. It supports the introduction/results comparison claim and is complemented by exact object-classification values in Table 2 and action-recognition values in Table 3; the seven-dataset set is not identical to the union of those two tables, so the figure should not be read as a direct table transcription or as evidence of cross-task uncertainty.",
+      "design_strengths": [
+        "Compresses the relative performance profile of event-cloud, voxel, and frame methods into one small overview.",
+        "Uses color, polygon line style, legend identity, and direct vertex numbers as redundant method cues.",
+        "Places all seven task axes in one shared frame for rapid directional comparison."
+      ],
+      "design_weaknesses": [
+        "Radar area and polygon shape can overemphasize differences between adjacent axes.",
+        "Radial tick values are not explicit and the dense vertex labels/legend are small at paper scale.",
+        "No sample denominator, seed, uncertainty, or explicit missing-value rule is shown.",
+        "Coverage differs from Tables 2 and 3 and the caption does not state that boundary."
+      ],
+      "reusable_pattern": "Use a small radar overview only for a qualitative cross-task profile, then provide task-specific tables with explicit units, denominators, aggregation, and uncertainty.",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1 embedded radar image, labels, legend, and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 2,
+      "module": "related_work",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "qualitative_grid",
+        "image_montage",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "qualitative_evidence",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 2. Visualization of different representations in yin-yang from N-Caltech101 dataset.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "raster figure text"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#E13BD6",
+          "#00BCD4",
+          "#000000",
+          "#32CD32",
+          "#1E2C9E"
+        ],
+        "semantic_mapping": "Event/time/polarity density and representation-specific rendering use magenta, cyan, black, green, and dark blue; row placement and panel titles redundantly identify the representation family.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 7,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 14,
+        "data_marks_estimate": 200
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Qualitative x-coordinate arrows/position within each representation panel.",
+        "y": "Qualitative y-coordinate arrows/position; time is shown as an additional axis or color dimension where applicable.",
+        "color": "Event polarity/time and representation rendering density, not a quantitative score.",
+        "shape": "Panel type and point/voxel/frame geometry encode the representation.",
+        "line": "Coordinate arrows and outlines indicate spatial/time directions.",
+        "facet": "Rows group raw event output, point-based representations, and frame-based representations.",
+        "text": "Panel titles Event Cloud, Point Cloud, Voxel Grid, Event Frame, Time Surface, and Binary Map; side labels identify point/frame families."
+      },
+      "data_and_statistics": "A qualitative seven-panel rendering of the same N-Caltech101 yin-yang event sample: raw event-camera output, three point/voxel representations, and three frame-based representations. It has no accuracy, denominator, aggregation, uncertainty, or statistical axis; point density and color are display encodings only.",
+      "evidence_relation": "The figure is the visual bridge in §2.1 between raw event streams and the paper's Event Cloud choice. It supports the representation-preservation argument and motivates the preprocessing comparison in Table 4, but it does not establish performance or information-content equivalence across renderings.",
+      "design_strengths": [
+        "Locks all representation views to one yin-yang sample, making transformation differences immediately comparable.",
+        "Stacks raw, point-based, and frame-based families so the information-loss narrative is spatially legible.",
+        "Uses panel names and coordinate arrows as redundant interpretation cues."
+      ],
+      "design_weaknesses": [
+        "Event count, time window, binning, and display normalization are not stated in the caption.",
+        "Different rendering densities and color schemes can be mistaken for information or quality differences.",
+        "No sample identifier or reproducible rendering parameters are provided."
+      ],
+      "reusable_pattern": "For representation comparisons, render one fixed raw sample in all views with shared coordinate/time and color keys, then separate the qualitative comparison from quantitative performance and cost evidence.",
+      "evidence": {
+        "page": 2,
+        "label": "p.2 Figure 2 seven-panel representation montage and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3. SECNet’s architecture. It accomplishes three tasks by processing the Event Cloud into a sequence of distinct modules: Embedding, Hierarchy Structure, and Predict Head. In more detail, the Hierarchy Structure contains five different modules: Event-based G & S module captures the local neighborhood relationships, Spatial-FA abstracts the explicit spatial and implicit temporal features, AGG aggregates the features in a group, Temporal-FA catches the global explicit temporal features, and RES is responsible for the abstraction and high-level representation of features. The final results are obtained by the max-pooling and average-pooling features.",
+        "word_count": 90,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "raster figure text"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#2D89AC",
+          "#E74C3C",
+          "#8E44AD",
+          "#27AE60",
+          "#F39C12",
+          "#164A5B",
+          "#D65A9A",
+          "#52B7C9"
+        ],
+        "semantic_mapping": "Blue/teal blocks represent grouping and sampling, red Spatial-FA, purple aggregation, green Temporal-FA, orange residual/prediction components, with dark outlines and accent blocks for interfaces and tensor flow.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": null,
+        "legend_items": 6,
+        "annotations": 30,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Left-to-right stage order from Event Cloud input through Embedding, Hierarchy Structure, and Predict Head.",
+        "y": "Vertical expansion from the global pipeline to G&S, FA/AGG/RES internals, and task heads.",
+        "color": "Functional module role: G&S, Spatial-FA, AGG, Temporal-FA, RES, and prediction branches.",
+        "shape": "Rounded/boxed modules, arrows, loop enclosure, and tensor boxes encode operator boundaries.",
+        "line": "Black arrows and connectors encode data flow and the hierarchy loop; accent outlines separate submodules.",
+        "facet": "Global pipeline, expanded G&S block, and lower-level module details are nested rather than independent panels.",
+        "text": "Tensor shapes [T,4], [T/2,K,2D+4], T/D/K, LOOP: 3, task-head names, and a symbol legend for concat, Hadamard, GELU, and matrix multiplication."
+      },
+      "data_and_statistics": "Architecture/interface diagram with no observations, estimates, or uncertainty display. Tensor dimensions and LOOP: 3 are structural annotations; the three downstream heads are Object, Action, and Human Pose. The embedded JPEG is approximately 2803×1488 px and the surrounding PDF caption is vector text.",
+      "evidence_relation": "This is the central method map: it links §3 equations and the D-FPS/EF-KNN/CES, Spatial-FA, AGG, Temporal-FA, and RES descriptions to the module-removal rows in Table 8, event-number scan in Table 9, and efficiency evidence in Tables 10 and 12. Appendix Figure 5 instantiates the abstract tensor path for one sample.",
+      "design_strengths": [
+        "Combines a global pipeline, key interface shapes, and local operator details in one page-width anchor.",
+        "Tensor shapes, functional colors, arrows, loop count, and a symbol key make the proposed implementation path traceable.",
+        "Shows all three prediction tasks and the mean/max pooling endpoint rather than hiding task branching."
+      ],
+      "design_weaknesses": [
+        "High information density makes module formulas and labels small after two-column scaling.",
+        "The shared FA name spans spatial and temporal components and requires the caption/body to disambiguate them.",
+        "Training/inference boundaries, batch assumptions, and resource-measurement boundaries are not encoded."
+      ],
+      "reusable_pattern": "Use a three-level architecture figure: global pipeline, expanded interface, and local operators; put tensor shapes, loop count, color key, and output tasks on the same stable anchor.",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 3 full-page architecture image, tensor labels, legend, and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 6,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "pipeline",
+        "conceptual_diagram",
+        "architecture"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4. Visualization of Event Cloud’s coordinates and features dimension during hierarchy structure. The closer to the end of the loop, the fewer the number of events and the greater the feature dimension.",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "raster figure text"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#2D89AC",
+          "#E9A8C5",
+          "#1B4965",
+          "#000000"
+        ],
+        "semantic_mapping": "Blue/pink event points and dark process arrows/frames distinguish event content, polarity/grouping, and the four hierarchy operations.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 16,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Qualitative spatial/time coordinate direction inside each Event Cloud cuboid.",
+        "y": "Qualitative feature/event state progression around the loop, not a numeric axis.",
+        "color": "Event points and group/polarity accents; dark arrows encode operation order.",
+        "shape": "Four cuboids/states encode input, D-FPS centroid sampling, EF-KNN grouping, and attention aggregation.",
+        "line": "Central LOOP arrow and black process arrows encode repeated hierarchy stages.",
+        "facet": "Four states arranged as a single cyclic hierarchy sequence.",
+        "text": "Sampling, Grouping, Aggregation, Next Stage, LOOP, and tensor-shape labels such as [T,D] and [T/2,K,2D+4]."
+      },
+      "data_and_statistics": "Qualitative four-state mechanism diagram. Point clouds and cuboid axes are schematic; they do not encode measured density, a calibrated coordinate scale, error, or uncertainty. The caption states the directional trend that event count decreases while feature dimension increases toward the loop end.",
+      "evidence_relation": "The figure expands the G&S portion of Figure 3 and corresponds to the hierarchy equations (8)–(12). Table 1 gives dataset-level point-number settings and Appendix Figure 5 gives a concrete dimension path; Figure 4 itself is not a performance or cost measurement.",
+      "design_strengths": [
+        "Binds sampling, grouping, aggregation, and next-stage semantics to an explicit four-state loop.",
+        "Uses the same event/feature shape vocabulary as the main architecture figure.",
+        "Central LOOP arrow and directional labels make the recursive stage order easy to follow."
+      ],
+      "design_weaknesses": [
+        "3D cuboid point textures are representative, not a faithful sample-density visualization.",
+        "Shape labels and operation names are small in the single-column inset.",
+        "K, D-FPS, grouping cardinality, and per-stage cost are not defined in the caption."
+      ],
+      "reusable_pattern": "Use a four-state loop diagram to bind abstract hierarchy operations to shape changes, while keeping the numeric configuration and cost claims in tables or an instance-level appendix figure.",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 4 embedded hierarchy-loop image and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 5. Specific variation of dimensions of a sample in SECNet.",
+        "word_count": 11,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "raster figure text"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#042433",
+          "#FFBDCA",
+          "#D5F6FF",
+          "#D3F9E5",
+          "#FF0000",
+          "#000000"
+        ],
+        "semantic_mapping": "Dark blue/pink/blue-green module fills distinguish stages; red dimension annotations identify the FFT axis and black arrows/text define the pipeline.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 7,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 24,
+        "data_marks_estimate": 35
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Left-to-right processing order from raw events to pooled outputs.",
+        "y": "Nested module expansion for Spatial-FA and Temporal-FA; no quantitative vertical scale.",
+        "color": "Module family and FFT/iFFT emphasis; red text marks the operated dimension.",
+        "shape": "Pipeline boxes, dashed outer sample boundary, rounded FA sub-blocks, and loop arrow encode stage boundaries.",
+        "line": "Arrows encode data flow; the circular/return arrow and LOOP 3 encode repeated hierarchy processing.",
+        "facet": "One sample path with two expanded FA submodule insets.",
+        "text": "Dimension labels [64571,4], [4096,4], [4096,64], [540], FFT/iFFT, Spatial-FA dimension 132, Temporal-FA dimension 2048, and LOOP 3."
+      },
+      "data_and_statistics": "One illustrative sample path: raw events [64571,4] are downsampled to Event Cloud [4096,4], embedded to [4096,64], processed through G&S/Spatial-FA/AGG/Temporal-FA/ResB for LOOP 3, and pooled to [540]. These are shape annotations, not a sample distribution or uncertainty summary; the dimension arrows are rendered visual annotations.",
+      "evidence_relation": "Appendix F/C uses this as a concrete companion to Figure 3 and Algorithm 1: it makes the event-number/channel changes and FFT dimensions visible. It does not replace Table 12 runtime/GMAC lookup or establish that the single path represents every dataset/sample.",
+      "design_strengths": [
+        "Shows input scale, embedding width, FFT dimension, and loop count on one traceable instance path.",
+        "Red dimension callouts expose which axis Spatial-FA and Temporal-FA transform.",
+        "Shape labels allow a reader to cross-check the architecture diagram and pseudocode."
+      ],
+      "design_weaknesses": [
+        "Dense shape text and small module boxes are difficult to read at appendix scale.",
+        "The caption does not explain the red FFT annotations, sample identity, or color key.",
+        "A single sample path cannot establish dataset-wide shape variability or runtime behavior."
+      ],
+      "reusable_pattern": "Use one instance-level shape trace to instantiate an abstract hierarchical network, but label the sample boundary and FFT-axis key and pair it with aggregate resource tables.",
+      "evidence": {
+        "page": 14,
+        "label": "p.14 Figure 5 dimension-flow PNG, shape labels, and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "other",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 6. Proportional chart of GMACs. The other modules’ GMACs, represented by the light blue, are congruent.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "raster figure text"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#D2E9FE",
+          "#83CBEB"
+        ],
+        "semantic_mapping": "Light blue denotes other modules and cyan-blue denotes Spatial-FA in SECNet or the replacement spatial CNN in ECNet.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": 4
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Two method/replacement facets: SECNet and ECNet after replacing FA with CNN.",
+        "y": "None; wedge area is the quantitative channel.",
+        "color": "Other modules versus Spatial-FA/spatial CNN module.",
+        "shape": "Pie-wedge area encodes the module share of total GMACs; arrow encodes replacement operation.",
+        "line": "Black replacement arrow connects SECNet to ECNet.",
+        "facet": "Side-by-side pies before and after the FA→CNN substitution.",
+        "text": "SECNet, ECNet, 24.7%, 85.5%, and a shared two-item legend."
+      },
+      "data_and_statistics": "Two composition pies show the fraction of total GMACs attributed to the highlighted spatial module: 24.7% for SECNet Spatial-FA and 85.5% for the replacement CNN in ECNet; other modules occupy the remainder. There are no totals, absolute GMACs, uncertainty, or latency observations in the figure.",
+      "evidence_relation": "This is the visual mechanism companion for the Spatial-FA replacement ablation in Appendix I. Table 13 supplies the paired GMACs, SFA MMACs, parameters, and task metrics; the percentages alone do not imply end-to-end latency, power, or accuracy.",
+      "design_strengths": [
+        "Before/after pies and a replacement arrow make the compute redistribution immediately visible.",
+        "Shared colors and direct percentages reduce lookup cost.",
+        "The compact form fits an appendix column without introducing a second axis."
+      ],
+      "design_weaknesses": [
+        "Pie areas are a weak comparison channel and no total GMAC is printed.",
+        "Light blue/cyan wedges are not reliably distinguishable in grayscale or at small size.",
+        "No absolute cost, accuracy, latency, or hardware context accompanies the shares."
+      ],
+      "reusable_pattern": "Use paired composition charts for a module replacement only when absolute totals and task-quality/latency consequences are supplied alongside the proportions.",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Figure 6 paired GMAC pie charts, replacement arrow, legend, and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage",
+        "other"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 7. Human pose estimation results in visualization for different models. The first row shows the results in 2D (yellow for ground truth, blue for prediction). The second row shows the results in 3D (red for ground truth, blue for prediction).",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "raster figure text"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#FFFF00",
+          "#159FD0",
+          "#FF0000",
+          "#0000FF",
+          "#000000"
+        ],
+        "semantic_mapping": "2D yellow/blue and 3D red/blue encode ground truth/prediction; black backgrounds and white 3D plotting surfaces separate the two rows.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 2,
+        "legend_items": 8,
+        "annotations": 12,
+        "data_marks_estimate": 208
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "repeated in each panel",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Column facet: ResNet18, DHP19, PointNet1024, and the image-labeled FECNet model.",
+        "y": "Row facet: 2D event-frame overlay versus 3D skeleton plot; 3D panels include qualitative X/Y/Z axes.",
+        "color": "2D yellow ground truth/blue prediction; 3D red ground truth/blue prediction.",
+        "shape": "Skeleton keypoint markers and connecting bones encode pose geometry.",
+        "line": "Skeleton bone segments connect keypoints; no uncertainty or reference line.",
+        "facet": "2×4 grid with model columns and dimensionality rows.",
+        "text": "Model titles, repeated GT/Pred keys, and direct MPJPE2D/MPJPE3D values in each panel."
+      },
+      "data_and_statistics": "Eight qualitative panels show one DHP19 sample for four model columns in 2D and 3D. Skeleton markers/lines and direct MPJPE2D/MPJPE3D labels give a local quantitative anchor, but there is no aggregate distribution, sample ID, denominator, unit, or uncertainty. The last image title reads FECNet although the paper body/caption discusses SECNet.",
+      "evidence_relation": "Appendix L uses the grid as qualitative support for Table 7 DHP19 aggregate MPJPE results. It demonstrates visual alignment for a selected sample rather than model-wide ranking; the FECNet/SECNet label discrepancy is a source/caption consistency issue that should be corrected or explained.",
+      "design_strengths": [
+        "Pairs 2D event-frame overlays with 3D skeletons for the same comparison layout.",
+        "Repeats GT/Pred keys in every panel and prints local MPJPE values, so the qualitative panels are not entirely unanchored.",
+        "Aligned model columns support a quick visual comparison of pose geometry."
+      ],
+      "design_weaknesses": [
+        "Sample identity, crop, camera/view convention, and coordinate units are not stated.",
+        "The switch from yellow/blue on black to red/blue on white increases semantic load.",
+        "A single qualitative sample cannot support aggregate model ranking, and FECNet versus SECNet is inconsistent."
+      ],
+      "reusable_pattern": "For pose qualitative evidence, hold the sample and column order fixed across 2D/3D, define colors once, print the local metric, and explicitly state that the montage complements aggregate evaluation.",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Figure 7 2×4 pose montage, repeated legends, direct metrics, and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage",
+        "other"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 8. More 2D and 3D SECNet’s results in DHP19 dataset.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "raster figure text"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#FFFF00",
+          "#159FD0",
+          "#FF0000",
+          "#0000FF",
+          "#000000"
+        ],
+        "semantic_mapping": "2D yellow/cyan and 3D red/blue overlays distinguish ground truth and prediction; panel backgrounds and repeated dimensional layout separate 2D and 3D.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 24,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 24,
+        "data_marks_estimate": 312
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Repeated sample columns within a dense montage; no quantitative horizontal scale.",
+        "y": "Upper 2D overlay block and lower 3D skeleton block; 3D panels have qualitative axes/grid.",
+        "color": "Ground-truth/prediction skeleton overlays using yellow/cyan in 2D and red/blue in 3D.",
+        "shape": "Keypoint markers and bone connections encode each predicted/ground-truth skeleton.",
+        "line": "Skeleton segments and 3D projection lines; no error bands or reference lines.",
+        "facet": "Dense 4×4 2D montage plus 2×4 3D montage, 24 panels total.",
+        "text": "Direct MPJPE2D/MPJPE3D annotation in each qualitative sample; no external legend."
+      },
+      "data_and_statistics": "Twenty-four DHP19 qualitative panels: 16 2D event-frame overlays and 8 3D skeleton views. Each panel prints a local MPJPE2D/MPJPE3D value, but the figure provides no sample IDs, aggregate summary, denominator, coordinate units, or uncertainty. It is visual evidence of multiple examples, not a statistical distribution.",
+      "evidence_relation": "This appendix montage extends Figure 7 with more SECNet examples and complements Table 7 aggregate human-pose metrics. It strengthens qualitative coverage but cannot substitute for the held-out aggregate evaluation or establish uncertainty; consistent sample/metric metadata would make the link auditable.",
+      "design_strengths": [
+        "Provides more than one pose example and keeps 2D and 3D evidence in one appendix object.",
+        "Direct per-panel metrics give each qualitative example a numerical anchor.",
+        "The repeated skeleton encoding makes broad visual failure cases inspectable without a separate plot."
+      ],
+      "design_weaknesses": [
+        "Twenty-four small panels create severe label and skeleton-density pressure at page scale.",
+        "No external legend or sample/index key explains the repeated color and metric annotations.",
+        "Metric units, sample selection, viewpoint/crop, and relationship to the aggregate test set are omitted."
+      ],
+      "reusable_pattern": "Use a multi-example qualitative montage only as a companion to aggregate metrics, with a compact shared key and sample metadata so local visual cases can be traced to the evaluation protocol.",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Figure 8 24-panel DHP19 pose montage and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 6,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "dataset",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 1. Specific details of different datasets. Point Number denotes the fixed downsampled value, and SW represents the sliding window.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 10,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty or replicate statistics; this is a dataset/configuration inventory.",
+      "data_and_statistics": "Ten dataset rows cover object classification (NMNIST, N-Caltech101, CIFAR10-DVS, N-CARS, ASL-DVS), action recognition (DVS128 Gesture, Daily DVS, UCF101-DVS, THUE-ACT-50), and human pose (DHP19). Columns give source, object/task, resolution, train/test counts, fixed point number, classes, average event length, and sliding window in ms.",
+      "evidence_relation": "Defines the experimental units and input settings used by Tables 2–10 and the qualitative DHP19 figures. It also establishes the point-number/window vocabulary needed to interpret the event-number scan in Table 9 and lookup configurations in Table 12.",
+      "design_strengths": [
+        "Three task groups make the dataset scope visible in one inventory.",
+        "Point Number and SW are placed beside dataset resolution and split counts.",
+        "Page-width placement accommodates the ten-column configuration record."
+      ],
+      "design_weaknesses": [
+        "The caption does not define source abbreviations, split protocol, or whether average length is computed over the same subset.",
+        "Mixed task units make direct row comparison inappropriate without the group labels.",
+        "No seeds, event-count distribution, or hardware/preprocessing protocol is included."
+      ],
+      "reusable_pattern": "Keep dataset identity, split, input cardinality, temporal window, and task group in one compact design table, then refer to it from every result object.",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Table 1 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "headline"
+      ],
+      "caption": {
+        "text": "Table 2. Experiment on event-based object classification datasets.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 19,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty, seed summary, confidence interval, or repeated-run statistic; entries are single accuracy points.",
+      "data_and_statistics": "Nineteen method rows and five object-classification dataset columns plus Average. Accuracy is shown as a 0–1 proportion with mixed precision up to four decimals; missing comparisons use `-`. The table separates three ImageNet-pretrained methods from sixteen methods without that pretraining, and bolds the SECNet row.",
+      "evidence_relation": "Primary object-classification comparison. Table 1 supplies dataset/configuration context and Figure 1 provides a seven-dataset visual overview; Table 2 is the precise source for its five object-task columns but does not cover every radar axis.",
+      "design_strengths": [
+        "Pretrained versus non-pretrained row grouping makes protocol differences inspectable.",
+        "Type, publication information, per-dataset values, and Average share one decision surface.",
+        "Bold SECNet row provides a clear proposed-method anchor."
+      ],
+      "design_weaknesses": [
+        "The table is dense and small at page scale.",
+        "Accuracy units, Average denominator, missing-value rule, and bolding convention are absent from the caption.",
+        "The mixed precision and single-point reporting hide run-to-run variability; `Pretrainning` is misspelled in the header."
+      ],
+      "reusable_pattern": "Group baselines by training protocol and place representation type, exact task values, and aggregation in one table, with a caption that states units and missing-value handling.",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 2 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3. Event-based action recognition dataset Results.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty, repeated-run summary, or confidence interval; each method/dataset entry is a point accuracy.",
+      "data_and_statistics": "Twelve method rows, three action-recognition datasets (DVSGesture, DailyDVS, UCF101-DVS), and Average. Accuracy is a 0–1 proportion with precision up to four decimals; missing results use `-`; Type identifies F/V/PC/EC families; SECNet is bolded.",
+      "evidence_relation": "Supplies the action-task values behind part of Figure 1 and the main §4.4 claim, while Table 6 adds UCF101-DVS hardware metrics. It is the exact task table but its Average denominator and missing-result treatment are not stated.",
+      "design_strengths": [
+        "Compact six-column layout keeps three action tasks and Average aligned.",
+        "Type labels preserve representation-family context.",
+        "Bold SECNet row makes the proposed result easy to locate."
+      ],
+      "design_weaknesses": [
+        "`Results` capitalization and caption grammar are inconsistent.",
+        "Average aggregation and missing-value handling are implicit.",
+        "Abbreviations, accuracy units, and variability are omitted."
+      ],
+      "reusable_pattern": "For heterogeneous action datasets, keep task columns and representation family together, and define Average, missing values, units, and protocol in the caption.",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 3 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "other"
+      ],
+      "caption": {
+        "text": "Table 4. Preprocessing time of different representations.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty or repetition; values are preprocessing-time points in milliseconds.",
+      "data_and_statistics": "Six representation rows and three dataset columns (N-Caltech101, Daily DVS, DHP19), with ms values generally shown to one decimal or integer precision. Event Cloud is bolded; Binary Map has much larger values (772, 286, 717 ms) than Event Cloud (1.5, 1.0, 0.3 ms).",
+      "evidence_relation": "Quantifies the representation-conversion cost motivated by Figure 2 and supports the claim that Event Cloud preprocessing is fast. It does not measure model inference latency or end-to-end deployment throughput.",
+      "design_strengths": [
+        "Three datasets make representation cost comparable across task contexts.",
+        "Units are compactly expressed in the numeric columns.",
+        "The Event Cloud versus Binary Map contrast is immediately visible."
+      ],
+      "design_weaknesses": [
+        "Input event count, hardware, batch, timer boundary, and repeat count are absent.",
+        "The extreme Binary Map values are not decomposed into operations.",
+        "Bold emphasis does not define the decision criterion or uncertainty."
+      ],
+      "reusable_pattern": "Pair representation visuals with a cost table that fixes event count, hardware, implementation, timer boundary, and repeated measurement.",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 4 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 5. Experiment on THU-E-ACT-50 dataset.",
+        "word_count": 6,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty, sample denominator, or protocol summary; one accuracy row contains mixed one- and two-decimal precision.",
+      "data_and_statistics": "One Accuracy row compares HMAX SNN (65.1), Motion SNN (85.3), EV-ACT (92.7), and SECNet (97.25) on THU-E-ACT-50. The PDF caption visually separates/raises parts of the dataset name (`THU E-ACT -50`); the normalized caption here preserves its semantic dataset identity.",
+      "evidence_relation": "Main high-resolution action result. Table 1 gives the dataset setting and Tables 4/6 provide complementary preprocessing and hardware context; the single row is a point comparison, not evidence of general high-resolution robustness.",
+      "design_strengths": [
+        "Very narrow one-row layout makes the proposed result easy to scan.",
+        "The dataset is named in the caption and the proposed method is bolded.",
+        "Comparison values are kept in a single consistent task row."
+      ],
+      "design_weaknesses": [
+        "Caption omits accuracy unit, split, training/input protocol, and variability.",
+        "Methods may not share pretraining or input protocol, which is not visible.",
+        "Mixed decimal precision and a single task limit interpretability."
+      ],
+      "reusable_pattern": "Use a compact one-task table only when the caption states unit, split, protocol, and repeated-measurement boundary; pair it with broader task evidence.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 5 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "headline"
+      ],
+      "caption": {
+        "text": "Table 6. Hardware benchmark on UCF101-DVS dataset. We adopt the dataset filename-based partitioning method (Ren et al., 2025).",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty, power, memory, batch, or repeated FPS measurement; parameters/GMACs/FPS/Acc. are point values.",
+      "data_and_statistics": "Twelve method rows and columns Name, Type, Param., GMACs, FPS, and Acc. Parameters are in M, compute in GMACs, throughput in FPS, and accuracy as a 0–1 proportion; precision is mixed and missing values use `-`. SECNet reports 1.126 M, 0.48 GMACs, 120 FPS, and 0.916 Acc.",
+      "evidence_relation": "Combines UCF101-DVS task quality with model size, compute, and throughput, complementing Table 3 accuracy and the server/FPGA discussion. Its hardware comparison is not a controlled latency study because device, batch, and timing protocol are not in the caption.",
+      "design_strengths": [
+        "Puts accuracy and resource quantities on one practical deployment decision surface.",
+        "Type preserves representation-family identity for each baseline.",
+        "The filename-based split source is explicitly cited in the caption."
+      ],
+      "design_weaknesses": [
+        "Hardware, batch, timing window, power, memory, and repeat protocol are missing.",
+        "GMACs and FPS cannot be interpreted as equivalent measurements across implementations.",
+        "Acc. unit and missing-value semantics are not defined."
+      ],
+      "reusable_pattern": "Hardware result tables should bind model quality, parameter count, operation count, and throughput to one device, batch, input window, timer, and repeat protocol.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 6 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 7. Experiment on event-based human pose dataset. RPC means the rasterized Point Cloud representation (Zhao et al., 2021).",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty, sample/subject denominator, or repeated-run statistic; MPJPE, parameter, and GMAC values are point estimates.",
+      "data_and_statistics": "Nine methods compare Type, MPJPE2D, MPJPE3D, Param., and GMACs on the event-based human-pose task. Type includes F, V, RPC, and EC; values mix three decimal places for pose errors/resources with other precision. SECNet reports 6.11 MPJPE2D, 69.89 MPJPE3D, 1.831 M parameters, and 0.160 GMACs.",
+      "evidence_relation": "Primary DHP19 quantitative comparison. Figure 7/8 provide qualitative pose overlays, Table 4 gives representation preprocessing cost, and Table 13 gives the Spatial-FA replacement trade-off; the table itself does not state MPJPE units or evaluation denominator.",
+      "design_strengths": [
+        "Places two pose errors beside parameters and compute.",
+        "RPC is defined in the caption and representation Type is retained.",
+        "Bold SECNet row gives a clear proposed-method anchor."
+      ],
+      "design_weaknesses": [
+        "MPJPE2D/3D units, keypoint count, split, and direction of better are not in the caption.",
+        "No uncertainty or subject/sample breakdown is shown.",
+        "Baseline training and input protocols are not fully aligned in the table."
+      ],
+      "reusable_pattern": "For pose comparisons, put 2D/3D metrics and resource columns together but define units, keypoint protocol, split, direction, and uncertainty in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 7 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 8. Ablation study on core modules.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No run-to-run uncertainty or resource column; MPJPE2D/3D and accuracy are point values with mixed metric direction.",
+      "data_and_statistics": "Seven ablation rows (`w all`, `w/o α`, `w/o EF-KNN`, `w/o SFA`, `w/o TFA`, `Input P`, `w/o P`) and two-level headers: Dataset groups DHP19, N-CARS, UCF101-DVS, with Metric subcolumns MPJPE2D, MPJPE3D, Acc., and Acc. Values use precision up to four decimals (for example 0.9993); all-components row is bold.",
+      "evidence_relation": "Directly maps Figure 3's G&S/FA/aggregation modules to deletion and polarity-input tests. DHP19 error increases after removing SFA/TFA and classification accuracy changes across N-CARS/UCF101-DVS provide mechanism evidence, but the table does not quantify variability or cost.",
+      "design_strengths": [
+        "Two-level headers group heterogeneous pose and classification metrics without duplicating dataset names.",
+        "A single module-removal vocabulary links rows to the architecture.",
+        "Bold complete model row establishes the reference configuration."
+      ],
+      "design_weaknesses": [
+        "α, EF-KNN, SFA, TFA, Input P, and `w/o P` are not defined in the caption.",
+        "MPJPE lower-is-better and accuracy higher-is-better directions are implicit.",
+        "No uncertainty, configuration cost, or protocol detail is included."
+      ],
+      "reusable_pattern": "Use deletion rows to connect modules to multi-task consequences, but define abbreviations, metric units/directions, configuration, and uncertainty in the table itself.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 8 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 9. Ablation study of different Point-based networks in N-Caltech101 with a 300 ms sliding window.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty, repeated runs, runtime, or cost column; accuracy is shown as a point value to two decimals.",
+      "data_and_statistics": "Six Event number rows (512, 1024, 2048, 4096, 5120, 10240) compare SECNet, SECNet with LSTM, PointNet++, and TTPOINT. Accuracy values use two-decimal display; the fixed 300 ms sliding window is stated in the caption, while event count is the scanned input-size variable.",
+      "evidence_relation": "Tests event-number scalability and supports the Temporal-FA/long-sequence claim. Appendix Table 12 adds runtime, parameter, and GMAC lookup for related configurations; Table 9 alone shows quality versus event number, not quality-cost trade-off.",
+      "design_strengths": [
+        "Single event-number axis makes the scaling pattern easy to inspect.",
+        "Four point-network columns stay aligned over the same scan.",
+        "Caption fixes the dataset and temporal window."
+      ],
+      "design_weaknesses": [
+        "No accuracy unit, fixed-downsampling rule, timing, or repeat protocol is stated.",
+        "Increasing accuracy is shown without the corresponding runtime/GMAC cost.",
+        "No uncertainty or explicit baseline highlighting is used."
+      ],
+      "reusable_pattern": "For event-capacity scans, show quality and cost together or link an adjacent lookup table, and fix event-source, window, runtime, and repeat conventions.",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 9 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "other"
+      ],
+      "caption": {
+        "text": "Table 10. FPGA comparison between spatial MLP and SFA on Zynq UltraScale+ MPSoC (200 MHz).",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty, power, utilization, or repeated hardware measurement; cycle counts and latency are point values.",
+      "data_and_statistics": "Four rows compare Input Dimension and MLP versus SFA Cycle Count/Latency: three stage rows plus On-Chip Memory (RAMB18). MLP stage latencies are 31.51, 62.98, and 125.96 ms for 6,302,723, 12,595,715, and 25,191,430 cycles; SFA is 393,859 cycles and 1.97 ms; memory is 84 versus 39 RAMB18.",
+      "evidence_relation": "Hardware-deployment evidence for the SFA module, linked to Figure 6's compute-composition mechanism and Table 6 server throughput. It compares a stage implementation, not end-to-end SECNet latency or power.",
+      "design_strengths": [
+        "Cycle count, latency, and on-chip memory are co-located.",
+        "Clock/device context is fixed in the caption.",
+        "The three-stage trend exposes the scaling cost of spatial MLP versus SFA."
+      ],
+      "design_weaknesses": [
+        "Input shape, precision, FPGA utilization, power, and end-to-end boundary are missing.",
+        "RAMB18 row has a different unit/semantic type from the latency rows.",
+        "No repeated measurements or implementation configuration are reported."
+      ],
+      "reusable_pattern": "Keep stage-level hardware quantities together but separate resource-unit rows and add precision, utilization, power, and end-to-end boundary.",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 10 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 13,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "theory_mechanism",
+        "other"
+      ],
+      "caption": {
+        "text": "Table 11. Different Model Architecture Comparison",
+        "word_count": 6,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 8,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Capability matrix has no statistical uncertainty; checkmarks, crosses, and categorical descriptors are qualitative.",
+      "data_and_statistics": "Eight capability rows (Scalability, Representation, Preprocessing Time, Polarity, Sampling Strategy, KNN Distance, Coord. Update, Long Sequence Model) compare SECNet, PointNet++, EventNet, VMV-GCN, and VMST-Net. Cells use categorical text, short/long descriptors, D-FPS/FPS, Feature-based/Radius-based, and ✓/✗ glyphs.",
+      "evidence_relation": "Appendix B compresses the architectural positioning behind the Event Cloud, structural polarity, D-FPS, EF-KNN, and CES claims. It is a capability boundary, not a performance table; Tables 2/3/7 supply the quantitative checks.",
+      "design_strengths": [
+        "Aligns representation, sampling, KNN, polarity, and sequence capabilities in one matrix.",
+        "Page-width layout leaves room for method-by-capability comparisons.",
+        "Categorical rows are easy to scan before reading detailed method sections."
+      ],
+      "design_weaknesses": [
+        "✓/✗ semantics, evidence source, and the threshold for `long` are undefined.",
+        "Contains `Muti-view` spelling and other terminology inconsistencies.",
+        "Model version/implementation basis and complexity are not identified."
+      ],
+      "reusable_pattern": "Use a capability matrix to fix method boundaries, then link every claimed capability to a quantitative or reproducible result and define categorical symbols in the caption.",
+      "evidence": {
+        "page": 13,
+        "label": "p.13 Table 11 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 12. Hardware performance lookup table for SECNet.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 5,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty or repeated measurement; Runtime, Param., and GMACs are point values and `-` marks unavailable configurations.",
+      "data_and_statistics": "Five event-number rows (10240, 8192, 4096, 2048, 1024) cross four centroid tuples ([2048,1024,512], [1024,512,256], [512,256,128], [256,128,64]), each with Runtime, Param., and GMACs. The first header is `Events Number/Centroid`; runtime is in ms, parameters in M, and GMACs in G with up to three-decimal precision.",
+      "evidence_relation": "Appendix J lookup companion to the event-number scan in Table 9 and the stage-level hardware comparison in Table 10. It supports centroid/runtime/compute trade-offs, but has no FPS column even though the main text describes throughput above 200 FPS; hardware, batch, window, and timing repetition depend on surrounding appendix text.",
+      "design_strengths": [
+        "Two-level header exposes four centroid configurations without repeating the tuple in every cell.",
+        "Event size is aligned against runtime, parameter, and GMAC lookup values.",
+        "Unavailable configurations are visibly marked with `-`."
+      ],
+      "design_weaknesses": [
+        "Thirteen columns force very small text and long tuples.",
+        "Units, centroid-to-stage mapping, timer protocol, and missing-value rule are not in the caption.",
+        "No uncertainty or throughput column is shown, so lookup values should not be read as a complete deployment benchmark."
+      ],
+      "reusable_pattern": "For configuration lookup tables, bind input size, structural tuple, units, hardware, availability rule, and a direct quality/throughput companion.",
+      "evidence": {
+        "page": 14,
+        "label": "p.14 Table 12 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 13. Ablation study for the Spatial-FA module of SECNet.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 4,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty, repeated-run summary, or significance statistic; task metrics and resource quantities are point values.",
+      "data_and_statistics": "Four metric/resource rows (Metric, Parameter, GMACs, SFA MMACs) are crossed with six dataset groups (DHP19, ASLDVS, UCF101-DVS, NCARS, NMNIST, DVS128 Gesture), each split into SECNet and ECNet. Metric cells mix MPJPE2D/MPJPE3D and Accuracy; resource rows use M, G, and MMACs, with precision up to four decimals.",
+      "evidence_relation": "Appendix I is the exact quality-versus-cost counterpart to Figure 6 and the Spatial-FA discussion. ECNet often has slightly better task metrics but much higher GMAC/SFA MMAC cost; Table 7 supplies the main DHP19 baseline context. The caption does not define ECNet, units, replacement protocol, or metric direction.",
+      "design_strengths": [
+        "Dataset→method two-level headers make each SECNet/ECNet pair directly comparable.",
+        "Quality and compute rows expose the replacement trade-off in the same table.",
+        "Wide placement prevents the six-dataset pairing from being split across pages."
+      ],
+      "design_weaknesses": [
+        "Thirteen columns are dense and metric direction/units are implicit.",
+        "ASLDVS/NCARS naming differs from other paper locations.",
+        "No protocol, total cost, uncertainty, or hardware measurement details are included."
+      ],
+      "reusable_pattern": "For module replacement ablations, pair each dataset's quality metrics with absolute resources, state directions and units, and make the replacement protocol auditable.",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Table 13 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "The sequence moves from Figure 1 cross-task headline and Figure 2 representation contrast to Figure 3/4 Event Cloud architecture and hierarchy mechanism, then Tables 2–7 task/efficiency results, Tables 8–10 ablations and hardware, and appendix Figures 5–8/Tables 11–13 for concrete dimensions, capability boundaries, resource lookup, replacement cost, and qualitative pose. The visual argument is representation → hierarchy/polarity/frequency modules → task quality → deployment cost, with Appendix I making the quality–efficiency trade-off explicit.",
+    "caption_system": "Figure and Table captions use numbered sentence-like labels, but most are short title/setup captions. Figure 3, Figure 4, Figure 7, and Table 6/7 define some mechanisms or abbreviations; most objects omit units, aggregation, missing-value handling, sample boundaries, hardware protocol, or uncertainty. Figure 7's image label FECNet conflicts with the SECNet naming used by the caption/body, and Table 5 is normalized here from the PDF's split typography.",
+    "table_header_system": "Main and appendix tables use sparse booktabs/minimal rules, centered numeric columns, and bold proposed rows where a comparison is intended. Table 8 has two-level dataset/metric headers; Tables 12 and 13 use two-level configuration/dataset-method headers; Table 1 uses task-group rows. Wide headers preserve hierarchy but captions do not consistently define units, directions, abbreviations, or unavailable `-` cells.",
+    "method_result_ablation_link": "Figure 3/4 define the Event Cloud, G&S, FA, aggregation, residual, and loop interfaces; Table 8 deletes those modules, Table 9 scans event capacity, and Table 10/12 measure implementation cost. Figure 6/Table 13 test Spatial-FA replacement, while Tables 2/3/5–7 measure object, action, high-resolution, hardware, and pose outcomes. This provides a coherent method→result→ablation chain, but point estimates lack run-to-run uncertainty.",
+    "main_appendix_link": "Main Figure 3 is instantiated by appendix Figure 5 and Algorithm 1; main Figure 4 is concretized by Table 1 and Table 12; main Table 7 is visually complemented by Figures 7/8; Figure 6 is numerically detailed by Table 13; Table 9 is extended with the runtime/GMAC lookup in Table 12. These links are inferable from captions/sections but not always stated with explicit cross-references in each caption.",
+    "typography_consistency": "PDF body, captions, and table text consistently use Nimbus Roman No9 L with Computer Modern math; embedded raster labels are visually serif/sans mixtures and are not source-identifiable. Table body/header estimates are around 6.5–8 pt, and dense Figure 3/8 labels fall to roughly 4.5–7 pt. The proceedings frame is consistent, but readability drops in wide lookup tables and dense montages.",
+    "color_consistency": "Blue is repeatedly associated with SECNet/event content and prediction in several objects, but its exact hue changes and Figure 7/8 switch ground-truth colors by dimensionality. Figure 1 purple/orange baselines, Figure 6 light-blue/cyan cost wedges, and Figure 3 functional colors are local semantic systems. Most colors have positional/text/line redundancy, yet the overall palette is not reliably grayscale-safe."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Three-level page-width architecture figure combining global pipeline, interface shapes, and local operators.",
+      "Same-sample multi-representation qualitative grid that separates raw, point/voxel, and frame views.",
+      "Quality-plus-resource tables that put accuracy/MPJPE beside parameters, GMACs, FPS, or hardware latency.",
+      "Paired module-replacement composition and lookup objects that expose efficiency–quality trade-offs.",
+      "2D/3D pose montage with direct local metrics as a qualitative companion to aggregate results."
+    ],
+    "highest_value_objects": [
+      "Figure 3: central SECNet architecture and module-interface anchor.",
+      "Figure 2: efficient qualitative bridge from raw events to representation choice.",
+      "Table 6: combined UCF101-DVS quality and hardware decision surface.",
+      "Table 13 plus Figure 6: clearest Spatial-FA replacement quality–compute trade-off.",
+      "Figures 7–8: multi-scale qualitative pose evidence tied to Table 7."
+    ],
+    "failure_patterns": [
+      "Most captions do not define units, aggregation, missing values, sample boundaries, hardware/timing protocols, or repeat uncertainty.",
+      "Dense raster architecture, montage, and wide tables become difficult to read after two-column/page-scale placement.",
+      "Figure 1 dataset coverage is not isomorphic to Tables 2/3, and the boundary is left to the reader.",
+      "Figure 7 has a FECNet/SECNet naming mismatch; Table 2 `Pretrainning`, Table 3 `Results`, and Table 11 `Muti-view` show copy-edit issues.",
+      "Color semantics vary by object and are only partly grayscale-safe; point estimates dominate without uncertainty, power, or measurement repeats."
+    ],
+    "one_sentence_visual_strategy": "Build an intuitive representation-to-architecture story with Figures 1–4, quantify task and deployment decisions in Tables 2–10, and use appendix shape, capability, replacement-cost, lookup, and pose objects to make the mechanism and efficiency boundary auditable without overstating qualitative or single-point evidence."
+  }
+}

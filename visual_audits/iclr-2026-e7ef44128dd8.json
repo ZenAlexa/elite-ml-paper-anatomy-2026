@@ -1,0 +1,1056 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-e7ef44128dd8",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "vsitzmann/xfactor-nvs",
+      "tomato1mule/xfactor-torch",
+      "dongjiacheng06/Learning-based-3D-Vision",
+      "YanjieZe/Paper-List",
+      "davnords/papers"
+    ],
+    "selected_repository": "https://github.com/vsitzmann/xfactor-nvs",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/vsitzmann/xfactor-nvs",
+        "path": "vggt/visual_utils.py",
+        "role": "plot_script",
+        "tool": "trimesh + NumPy + Matplotlib",
+        "evidence": "PDF-linked project title matches the README title; gh tree and local compact source show visualize_camera_trajectories and predictions_to_glb, including camera frustum/trajectory construction and RGB defaults."
+      },
+      {
+        "repository_url": "https://github.com/vsitzmann/xfactor-nvs",
+        "path": "vggt/utils/visual_track.py",
+        "role": "plot_script",
+        "tool": "OpenCV + Matplotlib",
+        "evidence": "gh tree and local compact source show colored track circles, hsv position coloring, and frames_per_row grid export; this supports qualitative frame/track panels but is not an exact Figure 1–3 compositor."
+      }
+    ],
+    "search_note": "reports/tables/visual_source_inventory.csv names vsitzmann/xfactor-nvs with exact README-title verification. The PDF explicitly links https://www.mitchel.computer/xfactor/; gh repo view/readme confirms the official repository and exact paper title. Read-only gh tree, strict title/caption code search, and README inspection found no figure/table/LaTeX composite source. The repository has visual utilities and example assets, but no PDF-matching figure scripts or table generator; visual source status is therefore partial rather than treating the inventory label as proof of exact composites."
+  },
+  "paper_style": {
+    "main_figures": 1,
+    "main_tables": 3,
+    "appendix_figures": 2,
+    "appendix_tables": 6,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "small_caps"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 6.0,
+      "header_size_pt": 6.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "表格使用四种固定 dataset 浅色列带（RE10K 米色、DL3DV 蓝色、MVImgNet 绿色、CO3Dv2 紫色），粗体和 ↑/↓ 负责比较方向；Figure 1–3 另用红绿/角色色标示流程、轨迹或 context/target，均配直接文字。",
+    "vector_raster_mix": "正文文字、箭头、规则和表格数值为矢量；Figure 1–3 的图像 tile/轨迹渲染为栅格并与矢量标签混排，整体为 mixed。",
+    "style_consistency": "Nimbus Roman/Computer Modern 字体和四 dataset 表头在 Tables 1–9 高度一致；Figure 1 的模块色与附录 Figure 2/3 的角色边条有共同红绿语义但不共用独立 legend。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: XFactor combines a [P OSE E NC, R ENDER] stereo-monocular model with our proposed transferability objective to learn transferable camera pose latents. Given a pair of input images, we apply two augmentations that minimize pixel content overlap while preserving pose information, such as inverse masking. The stereo P OSE E NC extracts the relative pose latent from the first pair. Then, given the context image from the second pair and the first’s target pose, the renderer is asked to reconstruct the second’s target.",
+        "word_count": 85,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "small_caps"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#59A79C",
+          "#F0C571",
+          "#3E4E8A",
+          "#D64DA3",
+          "#B4463A",
+          "#8BAE3B",
+          "#000000"
+        ],
+        "semantic_mapping": "青绿色 POSEENC、金色 RENDER、靛蓝/粉色增强分支、红绿角色条和黑色流程箭头；颜色与直接标签、空间位置冗余编码模块角色。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 Input Pair 经 augmentation 到 Pred/Target 的左到右流程",
+        "y": "上方 Pose Source 分支与下方 Context/RENDER 分支",
+        "color": "模块和 augmentation 角色",
+        "shape": "图像 tile、圆角模块框、弧形箭头",
+        "line": "实线数据/loss 连接及彩色边条",
+        "facet": null,
+        "text": "Input Pair、Aug A/B、Pose Source、Context、Pred、Target、POSEENC、RENDER 直接标签"
+      },
+      "data_and_statistics": "不编码样本或数值；十余个输入/增强/输出图像 tile 作为定性数据 marks，箭头表达信息流，L 双向箭头表达 rendering loss。",
+      "evidence_relation": "引言的 interpolation/information-leakage 动机 → §3.4 stereo-monocular model 和 §3.5 transferability objective → Table 1 transfer、Table 2 probe、Table 3 结构消融。",
+      "design_strengths": [
+        "上层 augmentation 与下层 Context→POSEENC→RENDER→Pred/Target 读图路径清楚。",
+        "图像 tile、文字、颜色同时标出 context/target/pose-source 角色。",
+        "page-width 单图将方法接口与 loss 接到后续实验。"
+      ],
+      "design_weaknesses": [
+        "彩色 small-caps 和小 tile 在缩放时难读。",
+        "箭头线型没有独立 key，需结合正文区分 pose source、data flow 和 loss。",
+        "未显示 latent 维度、损失分解或失败边界，可能被误读为保证。"
+      ],
+      "reusable_pattern": "采用“输入变换→表征抽取→跨 pair 渲染→目标比较”的骨架，模块语义同时用直接文字、形状和角色色编码。",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 1 caption 与 Pose-Preserving Augmentation/Rendering Loss 图示",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage",
+        "other"
+      ],
+      "purpose": [
+        "robustness",
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2: Qualitative Robustness Analysis of TPS Oracles. We evaluate the robustness of VGGT (Wang et al., 2025b) and COLMAP (Schönberger et al., 2016; Schönberger & Frahm, 2016b) oracles against visual corruptions. (a) VGGT is effectively invariant to minor distortions, while COLMAP quickly diverges. (b) VGGT maintains robustness even under significant random distortion, whereas COLMAP fails to register poses entirely.",
+        "word_count": 60,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "small_caps"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#B4463A",
+          "#8BAE3B",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "红/绿轨迹和边条表示参考与扰动/轨迹角色，黑色为标签与边界，白色为画布；颜色由直接标签和行布局冗余说明。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": 11
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左侧参考/扰动帧到右侧相机轨迹",
+        "y": "Reference/Corrupted 两行",
+        "color": "红绿轨迹/角色条",
+        "shape": "视频帧 tile 与相机 frustum",
+        "line": "相机轨迹段",
+        "facet": "(a) Weak Distortion 与 (b) Heavy Distortion",
+        "text": "Reference、Corrupted、VGGT、COLMAP 和面板标题直接标签"
+      },
+      "data_and_statistics": "每面板以 reference/corrupted 视频帧和相机轨迹作定性对照；(a) 同时显示 VGGT 与 COLMAP，(b) COLMAP 未注册因而没有轨迹。没有均值、分母或数值不确定性。",
+      "evidence_relation": "Appendix B oracle robustness → Figure 2 定性轨迹 → Table 8 weak distortion 定量 → Table 9 transferred video rejection。",
+      "design_strengths": [
+        "以同一 corruption 的帧和轨迹直接呈现 evaluator failure。",
+        "面板标题、行标签、oracle 标签使阅读方向无需外置 legend。",
+        "失败的 COLMAP 结果以“无法注册”留白呈现，和 caption 主发现一致。"
+      ],
+      "design_weaknesses": [
+        "没有坐标轴、尺度、相机数或数值误差，轨迹一致性只能定性判断。",
+        "红绿轨迹在灰度和小尺寸下区分弱。",
+        "heavy distortion 强度与图像预处理没有在图内给出。"
+      ],
+      "reusable_pattern": "将定性 corruption grid 紧邻其定量 Success Rate/TPS 表，并让不可注册的 evaluator 以显式缺失呈现。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Figure 2 两面板、Reference/Corrupted 行和 VGGT/COLMAP 轨迹",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3: Supervised Methods Also Struggle. Substantial reconstruction artifacts are also observed in supervised models when rendering difficult target views. The first and last frames are used as context views. (a) The supervised baseline, LVSM (Jin et al., 2024), excels at reconstructing easier target views. (b) However, LVSM struggles to cleanly render difficult target views, showing blurry or warped artifacts in the reconstruction.",
+        "word_count": 63,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "small_caps"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#8BAE3B",
+          "#B4463A",
+          "#000000"
+        ],
+        "semantic_mapping": "绿/红边条区分 context/target 角色，黑色为标题；图像内容本身保留场景信息。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每行从第一/最后 context 到中间或外推 target 的序列顺序",
+        "y": "三条定性场景序列",
+        "color": "context/target 边条和图像场景色",
+        "shape": "固定尺寸 frame tile",
+        "line": null,
+        "facet": "(a) interpolation 与 (b) extrapolation",
+        "text": "面板标题和 LVSM 直接标签"
+      },
+      "data_and_statistics": "两面板各三行、每行五个 frame tile，共约 30 个可见图像 marks；不报告数值、聚合、分母或不确定性。",
+      "evidence_relation": "正文 Reconstruction Artifacts 段 → Figure 3 对照 supervised LVSM 的 interpolation/OOD extrapolation → 主文 Table 1 的宽基线/出视野限制。",
+      "design_strengths": [
+        "相同行列结构让 in-distribution 与 OOD failure 一眼可比。",
+        "caption 直接说明 first/last context 和 blurry/warped artifact。",
+        "图像证据补足仅凭 PSNR/SSIM 无法表达的结构失真。"
+      ],
+      "design_weaknesses": [
+        "没有 frame index、context/target legend 或失败阈值。",
+        "缩小后 blur 与真实场景纹理难分，边条在灰度下不稳。",
+        "只展示 LVSM，没有同条件数值或 XFactor 对照。"
+      ],
+      "reusable_pattern": "用同样的多行 frame montage 隔离 interpolation 与 extrapolation，并在 caption 中明确 artifact 类型和 context 取法。",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Figure 3 两个 LVSM montage 面板及其 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 1: The Transferability Test. We compare the transferability of XFactor’s, RayZer’s, and RUST’s pose representations across four datasets. We evaluate using TPS with RRA, RTA, and AUC at different error thresholds. For all metrics except FID, higher is better. Visualizations of transfer renderings and camera trajectories extracted with O RACLE are shown for each method above. The target trajectory is visualized in red, XFactor in green, RayZer in blue, and RUST in gold.",
+        "word_count": 74,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、重复或失败值；FID 与 accuracy 均为 point estimate。",
+      "data_and_statistics": "每个 dataset 对 4000 对序列、每对 5 个等间隔 target frames 做 TPS/RRA/RTA/AUC，并计算输入与渲染目标序列 FID；数值按 dataset 平均。",
+      "evidence_relation": "Figure 1 的跨 pair transfer 接口 → Table 1 headline → §4.1 主结果；Table 2 probe 和 Table 3 ablation 提供 representation/设计对照。",
+      "design_strengths": [
+        "定性 rendering/trajectory 与数值 TPS/FID 同页。",
+        "阈值组和方法×dataset 多级表头适合快速比较。",
+        "caption 给出轨迹颜色及指标方向。"
+      ],
+      "design_weaknesses": [
+        "4×4 定性小网格密集，缩放和灰度下轨迹易混。",
+        "FID 与角度 accuracy 量纲混排，缺少样本数和不确定性。",
+        "粗体只表明局部最优，不代表跨序列稳健性。"
+      ],
+      "reusable_pattern": "在主矩阵上方放同一评价对象的定性 rendering/trajectory，并将阈值嵌入 metric 首列。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 1 数值区与上方四 dataset transfer rendering/trajectory",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 2: Pose Probe Accuracy. We report probe accuracy trained to predict ground-truth SE(3) poses from the latents of each model in terms of RRA, RTA, and AUC. We show several examples of XFactor’s poses (green) relative to O RACLE ground-truth (red). Zoom in to see details.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、重复或失败值；全部为 probe accuracy point estimates。",
+      "data_and_statistics": "冻结各模型 POSEENC，训练三层 MLP 预测 ORACLE 的 SE(3) camera poses，报告 RRA/RTA/AUC 在 10°/20°/30° 的平均结果；上方附 XFactor 绿/红轨迹示例。",
+      "evidence_relation": "Table 1 的 transferability 与 Table 2 的 pose-probe 分离“能迁移”和“latent 含 pose 信息”；Table 3 继续做设计反事实。",
+      "design_strengths": [
+        "metric skeleton 与 Table 1 对齐，易于区分 transfer 和 probe。",
+        "定性轨迹让抽象 pose accuracy 有几何参照。"
+      ],
+      "design_weaknesses": [
+        "轨迹和表格边界弱，坐标含义依赖正文。",
+        "caption 未给 probe 重复、样本数或单位。",
+        "小型大写 ORACLE 的 PDF 空格噪声影响机械读取。"
+      ],
+      "reusable_pattern": "以同一 R/T/AUC 阈值结构配合 ground-truth/predicted trajectory sanity check。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 2 caption、上方 XFactor pose 示例和 9 行 pose-probe 表",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3: Ablations. We ablate potential alternative design decisions using stereo-monocular XFactor as a starting point. Models are compared in terms of transferability and pose probe efficacy.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 14,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、重复或失败 token；Transfer/Probe 为 point estimates，数值精度混合 1–3 位。",
+      "data_and_statistics": "上块比较 XFactor/Bottleneck/Unconstrained，下块比较 SE(3)&Plücker/Additional View: Decoder/Additional View: Encoder + Decoder；每块含 Transfer 的 R/T/AUC/FID 和 Probe 的 R/T/AUC。",
+      "evidence_relation": "Figure 1 的 stereo-monocular 与 transferability 组件 → Table 3 结构反事实 → §4.3 结论；Table 6/7 在附录继续拆 objective/corruption。",
+      "design_strengths": [
+        "上下块共用表头，干预点在 model group 中直接可见。",
+        "Transfer 与 Probe 相邻，暴露二者不等价。"
+      ],
+      "design_weaknesses": [
+        "六个 variant、两块 metric 和 12 个 dataset 数值导致高密度。",
+        "训练差异依赖正文，小数位和 FID/accuracy 混排增加扫描成本。",
+        "caption 未指出各指标方向或干预顺序。"
+      ],
+      "reusable_pattern": "把结构反事实分块而不拆表，保持同一 dataset 色带和 metric 顺序。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 3 上下两块、Transfer/Probe 标签与六个 variant 表头",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 4: Autoencoding Reconstruction Quality.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、重复或失败值；PSNR 约 1 位，SSIM/LPIPS 约 3–4 位。",
+      "data_and_statistics": "XFactor/RayZer/RUST 在四 dataset 上的 autoencoding reconstruction PSNR、SSIM、LPIPS；正文说明为跨 sequence 平均。",
+      "evidence_relation": "Appendix B autoencoding control 为 Table 1 transferability 的边界对照，明确 interpolation 质量不等价于 true NVS。",
+      "design_strengths": [
+        "小表、方法×dataset 轴与主表保持一致。",
+        "把容易的 autoencoding control 放在附录，避免替代 headline。"
+      ],
+      "design_weaknesses": [
+        "caption 只有标题，缺少设置、方向和聚合信息。",
+        "无样本数和不确定性，读者必须返回正文。"
+      ],
+      "reusable_pattern": "用同一方法×dataset 结构报告“容易但不充分”的 reconstruction control。",
+      "evidence": {
+        "page": 14,
+        "label": "p.14 Table 4 三行 perceptual metrics 与 Appendix B Autoencoding Reconstruction 段",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 5: Augmentations at Inference. We evaluate transferred rendering quality in terms of standard perceptual metrics by applying our pose-preserving augmentations at inference with multi-view XFactor.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、重复或失败值；四指标按各自常用精度显示。",
+      "data_and_statistics": "XFactor (Aug. at Inference) 在四 dataset 上报告 PSNR/SSIM/LPIPS/FID；单方法、推理时 pose-preserving augmentation。",
+      "evidence_relation": "Table 4 的 autoencoding 对照 → Table 5 inference augmentation；正文限定该设置不能公平比较未见 masked inputs 的 RayZer/RUST。",
+      "design_strengths": [
+        "窄幅单方法表清楚隔离推理条件。",
+        "沿用 dataset 色带和 metric 方向。"
+      ],
+      "design_weaknesses": [
+        "无 sequence 数、聚合方式或与 Table 4 的关系说明。",
+        "推理条件的公平性边界不在 caption 中。"
+      ],
+      "reusable_pattern": "将训练/推理条件变化单独成表，不把不公平 baseline 混进主比较。",
+      "evidence": {
+        "page": 14,
+        "label": "p.14 Table 5 inset、XFactor (Aug. at Inference) 表头和 caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 6: Comparison with Self-Supervised Objectives: Pose Probe Accuracy. Probe accuracy for representations produced by training with our transferability objective (results copied from Table 3), a contrastive SimCLR (Chen et al., 2020) objective, and a mutual-information based VICReg (Bardes et al., 2022) objective.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、重复或失败值；R/T/AUC 20° probe accuracy 为 point estimates。",
+      "data_and_statistics": "比较 transferability objective、SimCLR、VICReg 的 R/T/AUC @20° probe accuracy，三 objective × 四 dataset。",
+      "evidence_relation": "Table 3 的 objective/representation 机制拆分；正文用其支持“rendering 可能促进 geometric reasoning”。",
+      "design_strengths": [
+        "只替换 objective，干预轴简单。",
+        "方法×dataset 轴和 Table 3 一致。"
+      ],
+      "design_weaknesses": [
+        "caption 未说明不训练 RENDER 的细节和 probe 训练协议。",
+        "复制 Table 3 数值需要版本/条件提示。"
+      ],
+      "reusable_pattern": "将 objective 替换作为同一 pose-probe skeleton 的矩阵，而不是改变 metric。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Table 6 三行 Probe 表及 “results copied from Table 3” caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 7: Robustness of Transferability Objective. We progressively corrupt our stereo-monocular transferability objective by forming pairs of sequences by sometimes applying a temporal offset to pairs of frames, instead of via our proposed augmentation strategy. XFactor results are copied from Table 3.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、重复或失败值；数值精度混合 1–3 位。",
+      "data_and_statistics": "XFactor 与 Temporal Shift +1/+2 的 Transfer（R/T/AUC/FID）和 Probe（R/T/AUC）在四 dataset 上比较；corruption 逐级增加。",
+      "evidence_relation": "Table 3 作为无 corruption 对照 → Table 7 temporal-offset robustness；正文指出 transfer 下降较小而 probe 下降更明显。",
+      "design_strengths": [
+        "corruption level 作为三组方法轴直观。",
+        "Transfer/Probe 同时显示，能分离任务稳健性与表征退化。"
+      ],
+      "design_weaknesses": [
+        "sometimes/equal-chance 生成概率不在表头。",
+        "无重复或不确定性，无法判断下降的跨 seed 稳定性。"
+      ],
+      "reusable_pattern": "用渐进干预等级和固定 metric skeleton 同时检查 transfer 与 representation degradation。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Table 7 两个 row group 与 Temporal Shift +1/+2 表头",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 8: Quantitative Robustness Analysis of TPS Oracles. We evaluate the robustness of the VGGT (Wang et al., 2025b) and COLMAP (Schönberger et al., 2016; Schönberger & Frahm, 2016b) oracles against visual corruptions by measuring the TPS between reference and corrupted videos. A weak distortion, visualized in Fig. 2 (a), is applied to the video. We find that the VGGT oracle is significantly more robust across all datasets and metrics. In contrast, the COLMAP oracle suffers from an excessive rejection ratio, diminishing the utility of the evaluation samples.",
+        "word_count": 88,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、拒绝计数或失败 token；Success Rate (%) 与 R/T/AUC 为 point estimates。",
+      "data_and_statistics": "VGGT Oracle/COLMAP Oracle 在四 dataset 上报告 R/T/AUC 10°/20°/30° 与 Success Rate；Success Rate 反映 oracle 注册成功比例。",
+      "evidence_relation": "Figure 2(a) weak distortion 的定性轨迹 → Table 8 定量 robustness/rejection → Figure 2(b) heavy failure 与 Table 9 transferred-video validity。",
+      "design_strengths": [
+        "将 evaluator failure 转成 metric 和成功率的双层证据。",
+        "caption 明确 weak distortion 来自 Fig. 2(a) 并直述主发现。"
+      ],
+      "design_weaknesses": [
+        "缺少 denominator、拒绝计数和不确定性。",
+        "低 COLMAP Success Rate 使剩余样本的指标可比性有限。"
+      ],
+      "reusable_pattern": "评价器稳健性表同时报告任务指标与 evaluator validity/Success Rate。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Table 8 Quantitative Robustness 表、四 dataset oracle 分组和 Success Rate 行",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 9: Fragility of COLMAP on Transferred Videos We find that COLMAP is highly fragile when applied to transferred videos. In particular, samples from the baseline method, RayZer (Jiang et al., 2025), exhibit a significantly higher rejection ratio, preventing meaningful measurement of transferability with TPS.",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color"
+      ],
+      "uncertainty": "无 error bar、区间、拒绝计数或 denominator；Success Rate (%) 为单行 point estimate。",
+      "data_and_statistics": "XFactor 与 RayZer 在四 dataset transferred videos 上经 COLMAP 的 Success Rate；低成功率表示 TPS 可能不可测。",
+      "evidence_relation": "Figure 2/Table 8 的 oracle robustness → Table 9 实际 transferred-video rejection → 主文 Table 1 的 RayZer transferability 可解释性边界。",
+      "design_strengths": [
+        "把 evaluator validity 作为独立决策面，而非静默低分。",
+        "单行窄表快速暴露 RayZer rejection fragility。"
+      ],
+      "design_weaknesses": [
+        "没有 denominator、拒绝原因或视频数量。",
+        "caption 未说明两方法是否经过完全相同的样本过滤。"
+      ],
+      "reusable_pattern": "主结果旁单独报告 Success Rate，使“不可测”不会被误写成模型效果。",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Table 9 Success Rate 行及 Fragility of COLMAP caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 exposes the pose-preserving transfer interface; Tables 1–3 establish transfer, probe, and structural ablations; Tables 4–7 bound reconstruction, objective, and corruption behavior; Figure 2/Table 8/Table 9 audit oracle validity; Figure 3 displays supervised reconstruction failure.",
+    "caption_system": "Captions use title plus setup/comparison; Figure 2, Figure 3, Table 8, and Table 9 state main findings, while Tables 1–7 mostly leave the numerical conclusion to the body. Table 4 is the shortest and least self-contained caption.",
+    "table_header_system": "Tables 1–9 use model/method as the top group and RE10K, DL3DV, MVImgNet, CO3Dv2 as the second group; metric and angle threshold are combined in the first column and ↑/↓ are printed beside metrics.",
+    "method_result_ablation_link": "POSEENC/RENDER and transferability from Figure 1 are tested in Table 1, separated by pose probe in Table 2, and perturbed by bottleneck, explicit pose, extra views, objective replacement, and temporal shifts in Tables 3, 6, and 7.",
+    "main_appendix_link": "Main Tables 1–3 carry transfer/probe/ablation claims; Appendix Tables 4–7 add interpolation and objective controls, while Figure 2/Table 8/Table 9 qualify the TPS oracle and Figure 3 qualifies supervised reconstruction.",
+    "typography_consistency": "Nimbus Roman No9 L and Computer Modern math are stable across captions, body cells, headers, and equations; table cells are approximately 6 pt and captions approximately 10 pt, with bold/medium headers.",
+    "color_consistency": "Dataset pastel columns persist across all tables; role colors in Figure 1 and red/green trajectory or edge bars in Figures 2–3 are direct-label redundant encodings, but there is no shared formal legend and grayscale separation is weaker."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Stable method × dataset multi-level headers with metric direction printed in the first column.",
+      "Quantitative transfer matrix paired with same-page qualitative renderings and trajectories.",
+      "Evaluator robustness reported with both task metrics and Success Rate so rejection is visible.",
+      "A fixed metric skeleton reused for headline, probe, ablation, and corruption comparisons."
+    ],
+    "highest_value_objects": [
+      "Figure 1: compactly exposes the cross-pair pose-to-render interface.",
+      "Table 1: aligns qualitative transfer trajectories with TPS/FID headline metrics.",
+      "Table 3: turns transferability-versus-probe differences into structural counterfactuals.",
+      "Figure 2 plus Table 8: closes the qualitative–quantitative TPS-oracle robustness loop."
+    ],
+    "failure_patterns": [
+      "Captions and headers omit denominator, repetition, uncertainty, or units for many point estimates.",
+      "Small type, dataset pastel bands, and dense qualitative grids degrade ordinary-scale and grayscale readability.",
+      "COLMAP rejection can make transferability unmeasurable; it must not be silently interpreted as model quality.",
+      "Figure 3 shows artifact types without frame indices, thresholds, or a quantitative matched control."
+    ],
+    "one_sentence_visual_strategy": "The paper uses a stable dataset-grouped table system to separate transferability from latent pose information, then layers qualitative trajectories, design ablations, and oracle/supervised failure evidence to bound the true-NVS claim."
+  }
+}

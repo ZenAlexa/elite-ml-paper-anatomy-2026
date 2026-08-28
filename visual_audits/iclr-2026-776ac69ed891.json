@@ -1,0 +1,335 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-776ac69ed891",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/fferflo/einx"
+    ],
+    "selected_repository": "https://github.com/fferflo/einx",
+    "visual_source_files": [],
+    "search_note": "PDF 首页明确链接 https://github.com/fferflo/einx；OpenReview 为 https://openreview.net/forum?id=QqvQ3iAdpC。使用 gh repo view 与 GitHub tree API 只读检查 fferflo/einx（master），树中无论文 .tex、plot/figure/visual/table、TikZ/PGF/SVG、notebook 或表格数据源。以论文完整标题和 einx 方法词做 gh search repos 未得到唯一匹配；模糊结果与本文无关，因此仓库存在但没有可对应四张表的公开视觉源。未克隆仓库。"
+  },
+  "paper_style": {
+    "main_figures": 0,
+    "main_tables": 2,
+    "appendix_figures": 0,
+    "appendix_tables": 2,
+    "dominant_figure_typography": {
+      "family": [],
+      "size_pt": {
+        "minimum": null,
+        "median": null,
+        "maximum": null
+      },
+      "weight": [],
+      "style": [],
+      "provenance": "pdf_object",
+      "confidence": "low"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "NimbusRomNo9L-Medi",
+        "Inconsolatazi4-Regular",
+        "CMR10",
+        "CMSY10"
+      ],
+      "body_size_pt": 10.0,
+      "header_size_pt": 10.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "表格以黑色 #000000 为主；Table 1/3 的 einx expression 使用 #FF0000，Table 1 交替行使用 #F0F0F0。颜色只作冗余强调，主要结构由列位置、文字、缩进和规则线编码。",
+    "vector_raster_mix": "pdfimages -list 未发现嵌入 raster image；表格文字、caption、规则线和代码颜色由 PDF 文本/矢量对象渲染，未观察到栅格图。",
+    "style_consistency": "四张表均为单栏、caption 置于表上、serif 正文/表头和无外框细规则线；Table 1/3 因代码内容加入等宽字体与红色 expression，Table 4 以粗体 row group 表示层级。"
+  },
+  "figures": [],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "method_interface",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: It’s all just vectorization: einx reduces the large, inconsistent API of Numpy-like frameworks to few elementary operations and a universal, declarative, pointful notation for expressing their vectorization. The table shows examples of different Numpy-like function calls that map to the same elementary operation in einx and differ solely in their vectorization.",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 24,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "text_color"
+      ],
+      "uncertainty": "不适用；这是结构性 examples-to-primitive mapping，没有误差、区间或重复次数。",
+      "data_and_statistics": "24 个可见、手选的 Numpy-like call examples 按 primitive 分为 get_at 8 行、multiply 4 行、dot 4 行、id 8 行；右列 expression 给出对应 vectorization。该计数是版面可见行数，不是完整 Numpy/PyTorch/TensorFlow API census；无样本分母、聚合统计或失败值。左列 API/函数及黑色 #000000，右列 einx expression 的字符串为红色 #FF0000，交替行底色约为 #F0F0F0。",
+      "evidence_relation": "摘要/§1 的“large, inconsistent API → few elementary operations”主张 → Table 1 的 24 行映射 → §3.2 primitive decomposition 与 §4.1 vectorization grammar → §5 MHA case study/§6 结论；Appendix C 追加 expression examples，但不重复该表。",
+      "design_strengths": [
+        "左右两列把真实旧 API 调用和稳定 primitive/signature 放在同一视觉面，直接呈现 API reduction。",
+        "组间横线与交替 #F0F0F0 行底色帮助定位长表；黑色位置编码与红色 #FF0000 冗余强调并存，灰度仍可读。",
+        "caption 以粗体结论标题开头，并说明表中是 examples、同一 elementary operation 和不同 vectorization。"
+      ],
+      "design_weaknesses": [
+        "24 行代表性 examples 没有 coverage denominator，容易被误读为完整 API census。",
+        "等宽 signature 较长，复杂行接近版心右界；没有独立 shape、参数或失败边界列。",
+        "四组没有文字 group label，读者需结合函数名和横线推断 get_at/multiply/dot/id；颜色强调不是黑白复印的唯一通道。"
+      ],
+      "reusable_pattern": "使用“真实旧 API 调用 → 少数稳定 primitive + 可变 signature”的两列映射，按 primitive 分组、用轻量横线/交替底色分隔，并在 caption 明确 examples 不等于统计 census。",
+      "evidence": {
+        "page": 2,
+        "label": "Table 1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 3,
+      "module": "related_work",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Table 2: Support for classes of operations and vectorization in different types of ein*-notation. P: Permutation. F: Flattening. R: Repetition (i.e. output-only vectorization). C: Concatenation. *: Always and only flattens concatenated axes. **: Coordinate axis must be first axis.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "italic"
+      ],
+      "uncertainty": "不适用；能力矩阵使用 P/F/R/C、破折号和脚注约束，没有统计不确定性。",
+      "data_and_statistics": "6 个 operation rows（Identity、Scalar、Reduction、Dot-product、Indexing、Any other）对比 5 个 notation/method columns（einx、einsum、einops reduce/repeat/rearrange/einsum、einops pack/unpack、eindex）。P/F/R/C 在 caption 中定义；- 表示不支持，括号与 *、** 表示限制。它是作者选择的 capability taxonomy，不是样本 benchmark 或完备性检验；表内语义文字为黑色 #000000。",
+      "evidence_relation": "§2.1 ein*-notation lineage 与 §2.3 vectorization taxonomy → Table 2 capability matrix → §4.1 unified grammar/§4.2 universal claim；Appendix A/B/C 用 pack/unpack、eindex 和 Numpy-like examples 补充矩阵边界。",
+      "design_strengths": [
+        "固定 operation class 与 vectorization dimension，离散矩阵适合横向扫读不同 notation 的支持范围。",
+        "caption 同时给出 P/F/R/C key 和星号约束，表脱离正文仍可解码；破折号保留未支持状态而非伪造连续分数。",
+        "列间竖线和换行表头在单栏版心中维持清晰的读向，黑色 #000000 与位置编码对灰度友好。"
+      ],
+      "design_weaknesses": [
+        "Any other 与 support 的边界没有完整操作清单或测试分母，PFR(C) 容易被当作全面评测。",
+        "列名很长且工具版本/变体信息拥挤；缩小阅读时表头换行会提高定位成本。",
+        "没有 backend、版本或失败案例列，无法从矩阵判断每个 capability 的实现条件。"
+      ],
+      "reusable_pattern": "先定义有限 operation taxonomy，再用字母编码、破折号和脚注表示支持/限制；用于实证时补充 taxonomy 分母、版本条件和未测试状态。",
+      "evidence": {
+        "page": 3,
+        "label": "Table 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 20,
+      "module": "appendix_g_overhead",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 3: Overhead in milliseconds of using einx for three example operations with Numpy.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "Inconsolatazi4-Regular",
+          "CMR10",
+          "CMSY10"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "text_color"
+      ],
+      "uncertainty": "每个 compilation/cache 数值均写成均值样式的 ± 表达，但论文未定义 ± 是 SD、SE、range 还是其他量，也未给 n、硬件、warm-up 或重复协议。",
+      "data_and_statistics": "三行 Numpy backend examples 的首次 compilation 与 subsequent cache retrieval，单位为 ms。Compilation 列为 6.8 ± 1.3、9.3 ± 2.4、23.5 ± 3.1；Cache retrieval 列为 0.058 ± 0.001、0.070 ± 0.007、0.077 ± 0.003。Compilation 保留 1 位小数、cache 保留 3 位，跨列精度不一致；没有 baseline 时延或失败值。Operation 代码中 expression 为红色 #FF0000，其他文字/数值为黑色 #000000。",
+      "evidence_relation": "§4.4 compiler/cache 机制 → Appendix G 三行 overhead measurement → p. 20 正文“cache retrieval after initialization adds less than 0.1ms”；Appendix E compiled Jax snippets提供实现路径旁证，但没有主文性能图或组件消融。",
+      "design_strengths": [
+        "将 first-call compilation 与 steady-state cache retrieval 并列，直接对应正文提出的两类 overhead。",
+        "单位写进列头、数值右对齐、每行绑定具体 operation；黑色结构与红色 #FF0000 expression 冗余表达代码重点。",
+        "表格很短，适合在附录中作为工程成本的快速核对入口。"
+      ],
+      "design_weaknesses": [
+        "±、n、硬件、软件版本与重复方式缺失，caption 脱离正文不能支持跨环境性能结论。",
+        "仅三个 operation、一个 Numpy backend，未扫描 shape、backend、cache size 或 JIT 条件。",
+        "第三个 Operation cell 换行，且 p. 20 同时放置 Table 4 与 G/H prose，页面信息密度较高。"
+      ],
+      "reusable_pattern": "用“first-call setup cost vs steady-state retrieval cost”成对列出并把单位固定到 header；在 caption/表注同时定义 ±、n、硬件、warm-up 和 backend 范围。",
+      "evidence": {
+        "page": 20,
+        "label": "Table 3",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 20,
+      "module": "appendix_h_usage_statistics",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 4: Usage statistics of libraries in the context of tensor notations. *: einsum is implemented in different tensor frameworks, not a single repository. **: torchdim was upstreamed into the larger functorch repository on Aug 1, 2024. ***: No reliable search term.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "没有区间或误差表达；conference usage 百分比没有抽样不确定性，snapshot 与 regex 口径在表外 prose。",
+      "data_and_statistics": "9 个 library rows（einsum、einops、penzai、torchdim、Haliax、xarray、Dex、Tensor Comprehensions、Ein）分属 3 个 row groups（ein*-notation、Named tensors、Other pointful notations），对比 Github stars、Github forks、Github files、Conferences usage 四个指标。*、**、*** 分别标记跨 framework 实现、torchdim upstream 情况和无可靠 search term。正文规定 stars/forks 为 2025-09 snapshot，files 来自 Github search，usage 来自 11,898 个 linked public repositories 的 regex；表格不显示分母或重复次数，百分比精度为 0–2 位不等。所有表内文字为黑色 #000000。",
+      "evidence_relation": "§2.2/§2.3 对 adoption 的叙述 → Appendix H source/search protocol → Table 4 stars/forks/files/percentage → p. 20 四条 observation（einsum/einops >20%、xarray file count 高但 conference usage 低等）；它是生态附录比较，不是方法组件消融。",
+      "design_strengths": [
+        "把 repository popularity、代码文件搜索量与 conference usage 放在同一行，显出 xarray 的指标异质性。",
+        "粗体 row group、缩进和横线清楚表达方法家族层级；脚注为不可比 repository/search 情况保留缺失标记。",
+        "不依赖彩色底纹，黑色 #000000 与位置/缩进编码适合灰度阅读。"
+      ],
+      "design_weaknesses": [
+        "snapshot、regex denominator 与 query 口径只在 prose；caption 脱离正文不自足，表头也未说明时间或分母。",
+        "星号混在数值列中，列类型不完全一致；百分比小数位和缺失标记不统一。",
+        "11,898 个 linked public repositories 与 regex 命中不等于全部 ML 代码或 active users，四个指标不构成因果比较。"
+      ],
+      "reusable_pattern": "用 row-group + 缩进分层，再将 popularity、source-surface count 与 target-corpus prevalence 并排；把 snapshot、检索式、分母、缺失值和不可比标记写进表注。",
+      "evidence": {
+        "page": 20,
+        "label": "Table 4",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "四张表形成“接口映射（Table 1）→ notation capability 对照（Table 2）→ compiler 成本（Table 3）→ 生态使用快照（Table 4）”链条；正文没有 figure 或 ablation object。",
+    "caption_system": "所有 caption 均为表上方的 Table n: 句式；Table 1 以粗体结论标题开头，Table 2/4 定义脚注或符号，Table 3 简述 metric/backend/scope。没有 caption 定义统计不确定性，Table 3 的 ± 需依赖正文外信息。",
+    "table_header_system": "Table 1/2 用列标题表达 notation 对照，Table 3 在 metric header 写 (ms)，Table 4 并列 stars/forks/files/usage；Table 4 未在 header 写 snapshot、query 或 denominator，Table 1/2 也没有 shape/version 条件列。",
+    "method_result_ablation_link": "vectorization、primitive decomposition、compiler 方法通过 Table 1/2 的结构性映射和 Table 3 的成本表相连；Table 4 是生态比较。没有 component deletion、controlled ablation 或 figure，因此四表不应被称为消融结果。",
+    "main_appendix_link": "Table 1/2 位于正文并在贡献/related-work段落中回引；Table 3/4 位于 Appendix G/H，正文或前节提供机制与 adoption 背景，Appendix A–F 以 expression、compiled code 和 exception prose 补充但不新增表格。",
+    "typography_consistency": "caption、serif 表头/正文均约 10 pt；代码列统一 Inconsolata，数学 ± 使用 Computer Modern；Table 1/2/4 的 medium/bold 只承担 header 或 row-group 层级。",
+    "color_consistency": "黑色 #000000 是默认文本；#FF0000 只在 Table 1/3 的 expression 中强调新 notation，#F0F0F0 只在 Table 1 作交替底色；颜色从不成为唯一数据通道。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "真实旧 API 到少数稳定 primitive/signature 的两列映射，按 primitive 分组并明确 examples 不等于 census。",
+      "有限 operation taxonomy + 字母编码/破折号/脚注表示 capability 支持与限制，避免伪造连续评分。",
+      "将一次性初始化成本与稳态成本并列，将 popularity、source-surface count 与 target-corpus prevalence 分列并注明口径。",
+      "用横线、缩进、等宽代码和冗余颜色建立结构，保证灰度阅读仍可复核。"
+    ],
+    "highest_value_objects": [
+      "Table 1：API reduction 的 headline/interface 映射。",
+      "Table 2：notation capability 的有限 taxonomy 对照。",
+      "Table 3：附录中的 efficiency evidence，但协议不完整。",
+      "Table 4：揭示生态指标异质性的附录 comparison。"
+    ],
+    "failure_patterns": [
+      "Table 1 的 examples 容易被误读为全 API coverage；Table 2 的 Any other/support taxonomy 缺少分母。",
+      "Table 3 未定义 ±、n、硬件和重复协议；Table 4 的 snapshot、regex denominator、百分比不确定性和不可比 repository 主要留在 prose。",
+      "页面无 Figure、无 Algorithm 或消融图；代码/异常示例是 prose/等宽块，不应虚计为 figure。"
+    ],
+    "one_sentence_visual_strategy": "用单栏 serif + 等宽代码、最小规则线和离散能力/成本表，把“统一接口—对照 taxonomy—工程 overhead—生态使用”压缩成可扫读但边界依赖正文的四步证据链。"
+  }
+}

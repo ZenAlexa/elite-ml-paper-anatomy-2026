@@ -1,0 +1,1575 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-2b91f2863fcf",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/zexiJia/MoG"
+    ],
+    "selected_repository": "https://github.com/zexiJia/MoG",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/zexiJia/MoG",
+        "path": "MoG/experiments/toy_experiment.py",
+        "role": "plot_script",
+        "tool": "Matplotlib, SciPy, optional Seaborn",
+        "evidence": "GitHub main at commit a2a3a649de22971c8f5fe0c821ca8bde0d9c0f88 contains the spiral simulation and GridSpec export. COLORS, parameters, line widths, markers and output dpi are source-exact for that public reproduction script, but its docstring calls the object Figure 2 and its labels/parameter ranges do not exactly match the PDF Figure 1; it is therefore not treated as an exact PDF source."
+      },
+      {
+        "repository_url": "https://github.com/zexiJia/MoG",
+        "path": "README.md",
+        "role": "other",
+        "tool": null,
+        "evidence": "README title, arXiv link and method description directly match the paper and point to experiments/toy_experiment.py as a reproduction. It contains no Table 1–11 generator and no exact source for Figures 2–7."
+      }
+    ],
+    "search_note": "PDF首页、正文、脚注和参考文献未给出 GitHub/project URL；OpenReview record supplies the paper/PDF but no public visual-source link. The local source inventory row is no_public_source_found and corpus/visual_sources/icml-2026-2b91f2863fcf is absent. Targeted unicli search discovered the authenticated gh repo zexiJia/MoG; gh repo metadata/README title and arXiv link directly match, and its main tree was inspected through the GitHub API. Only MoG/experiments/toy_experiment.py is a plot generator; example sampling scripts are not sources for the PDF grids, curves or tables, and no paper TeX/TikZ/PGF/table generator or exact figure data is present. Final status is partial_visual_source: Figure 1 has a public reproduction candidate with version/label mismatch, while Figures 2–7 and Tables 1–11 remain PDF/rendering facts."
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 4,
+    "appendix_figures": 2,
+    "appendix_tables": 7,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern",
+        "DejaVu Sans"
+      ],
+      "size_pt": {
+        "minimum": 6,
+        "median": 8,
+        "maximum": 10
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern"
+      ],
+      "body_size_pt": 8.2,
+      "header_size_pt": 8.4,
+      "header_weight": "mixed",
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "palette_strategy": "白底与黑色/灰色结构线构成底层系统；Figure 1 使用红、橙、蓝、灰、绿表达轨迹与几何角色，Figure 3 用浅蓝/灰/桃色表达 Better/Similar/Worse，Figure 4–5 使用 Matplotlib 蓝/橙/绿曲线，Figure 6–7 用橙/绿边框区分 CFG 与 Auto-MOG。表格保持黑白，以 booktabs 规则、粗体和 Table 1 的浅灰行突出重点。",
+    "vector_raster_mix": "PDF 页面文字、表格和 Figures 3–5 为矢量对象；Figure 1 是高分辨率嵌入栅格，Figure 2、6、7 是多张嵌入图像栅格。所有含对象页面（p.1、6–8、13–19）均以 200 dpi 渲染检查；PDF 的 pdfimages 清单也显示 p.1、6、18、19 的嵌入图像。",
+    "style_consistency": "主文 p.1–10 为 ICML 双栏，supplement p.11–20 为单栏；正文/表格以 Nimbus Roman/Computer Modern 为主，嵌入曲线的小字呈 DejaVu Sans 风格。booktabs 表线、白底和粗体重点在全篇稳定，但 Figure 3 的偏好配色、Figure 4–5 的曲线配色与附录网格边框是局部语义系统，且图注对设置/不确定性的自足度不一致。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "introduction",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. Toy spiral manifold illustration of guidance geometry. Left: trajectories on a high-density spiral tube. Standard CFG (red) takes a Euclidean shortcut that leaves the manifold. A projected update (orange) stays closer to the manifold but progresses more slowly. MOG (blue) follows a geometry-aware direction that remains near the manifold while moving efficiently toward the condition. Top right: distance to the manifold over steps, highlighting off-manifold deviation under CFG. Bottom right: conditional energy over steps, showing that MOG reduces energy rapidly without leaving the high-density region.",
+        "word_count": 87,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#D62728",
+          "#FF7F0E",
+          "#1F77B4",
+          "#606060",
+          "#2CA02C",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Red/orange/blue identify CFG, projected update and MOG; gray is the spiral data manifold, black is Start, green is Condition, and white is the canvas.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 6,
+        "annotations": 8,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "simulation steps in the two right subplots; no quantitative x in the spiral panel",
+        "y": "distance-to-manifold and conditional energy in the right subplots; no quantitative y in the spiral panel",
+        "color": "CFG red, projected/APG orange, MOG blue, gray manifold, black start and green condition",
+        "shape": "start circle and condition star",
+        "line": "solid colored trajectories/curves plus dashed manifold",
+        "facet": "spiral trajectory / off-manifold distance / conditional energy",
+        "text": "panel titles, legend, axis labels and method labels"
+      },
+      "data_and_statistics": "Conceptual toy dynamics rather than a benchmark sample: three trajectories are simulated on a spiral tube, with the right panels plotting distance to the manifold and conditional energy over steps. No replicate dispersion, confidence interval or population aggregation is shown; the axes in the left panel are intentionally schematic.",
+      "evidence_relation": "Introduction names off-manifold drift as the failure mechanism; Figure 1 makes the proposed geometric direction legible before the Riemannian objective in §3.2 and the MOG-Score/Auto-MOG instantiation in §4. The proxy curves motivate, but do not directly measure, the real-model trajectory claim later summarized by Table 1 and Figures 2–3.",
+      "design_strengths": [
+        "A three-panel storyboard shares one geometry and one color key, so the direction–stability–energy argument can be read left to right.",
+        "Direct labels and marker glyphs expose the start/condition anchors without adding another panel."
+      ],
+      "design_weaknesses": [
+        "The whole figure is an embedded raster and the right-panel axes are too small for exact values at page scale.",
+        "The toy manifold and curves are uncalibrated; the caption does not state the simulation parameters or uncertainty, so readers could overread the schematic as model evidence."
+      ],
+      "reusable_pattern": "Use one shared state-space canvas for the competing update directions, then add small diagnostic panels for the mechanism-relevant observables and label limiting behavior directly.",
+      "evidence": {
+        "page": 1,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 2. Qualitative comparison across guidance methods. All images are generated with Stable Diffusion XL at guidance scale 15. Standard CFG manifests oversaturation and harsh textures. CFG++ yields washed-out results with low contrast. APG introduces a hazy appearance. In contrast, Auto-MOG achieves the most realistic results.",
+        "word_count": 46,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "not_applicable",
+        "color_count": 0,
+        "hex": [],
+        "semantic_mapping": "Natural-image pixel colors carry the visual content; method identity is encoded by the five column headers rather than by a palette.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 25,
+        "series": 5,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": 25
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "method columns from Standard CFG through Auto-MOG",
+        "y": "five prompt/example rows; no quantitative y",
+        "color": "natural image appearance, not a method color key",
+        "shape": null,
+        "line": null,
+        "facet": "five method columns × five qualitative examples",
+        "text": "column headers name Standard CFG, CFG++ (Rescale), APG (Projected), MOG-Score and Auto-MOG"
+      },
+      "data_and_statistics": "A 5×5 image grid holds the seed/prompt/model family fixed within each row and varies only guidance method visually. It is qualitative evidence about oversaturation, contrast, haze and realism, not a statistical sample; prompt, seed, selection rule and per-cell numeric score are absent.",
+      "evidence_relation": "The main text introduces artifact suppression in §5.2; Figure 2 is the first result-facing symptom panel, followed by the cross-model metric comparison in Table 1 and preference shares in Figure 3. It supports perceptual interpretation but cannot establish the claimed generalization alone.",
+      "design_strengths": [
+        "Repeated rows make same-content comparison immediate, while method headers form a stable reading order.",
+        "Full-width placement gives the image details more area than a single-column strip and keeps the comparison conditions in the caption."
+      ],
+      "design_weaknesses": [
+        "The caption omits MOG-Score from its method list and gives no prompt/seed or selection protocol.",
+        "Natural image content is not grayscale-safe, and the five columns plus tiny headers leave no explicit uncertainty or artifact annotation."
+      ],
+      "reusable_pattern": "For qualitative guidance comparisons, keep prompt/seed rows aligned and place all methods in fixed columns; report the exact prompt/seed ledger separately so the grid remains visual rather than anecdotal.",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3. User preference study comparing Auto-MOG against standard CFG. Top row: model-based evaluation. Bottom row: domain-based evaluation. Auto-MOG achieves consistent preference advantages, particularly in Color and Realism.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#A6CEE3",
+          "#E6E6E6",
+          "#FDD0A2"
+        ],
+        "semantic_mapping": "Stack segments encode Better, Similar and Worse; the centered legend above the small multiples maps blue, gray and peach to those outcomes.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 96,
+        "data_marks_estimate": 96
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top-center",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "four criteria: Overall, Color, Realism, Texture",
+        "y": "percentage of paired judgments, 0–100%",
+        "color": "Better / Similar / Worse outcome shares",
+        "shape": "none",
+        "line": "stacked segment boundaries, no connecting lines",
+        "facet": "top row by model (Lumina, SD-2.1, SD-XL, SD-3.5); bottom row by domain (Portrait, Landscape, Painting, Objects)",
+        "text": "in-segment percentages and facet titles"
+      },
+      "data_and_statistics": "Eight panels contain 32 stacked categorical bars and three labeled outcome segments per bar. The displayed shares are percentages of user choices; the figure does not show interval estimates, participant counts, trial denominators, or a pooled estimator. Rendered labels include values such as 52.5–70.6% model wins and the stronger Painting/Color cells described in §5.4.",
+      "evidence_relation": "The user-study claim in §5.4 is that geometric correction translates into perceptual preference; Figure 3 exposes model/domain heterogeneity that Table 8 later pools across 2,960 trials. The figure connects the qualitative artifact story to human evidence, while the appendix supplies the protocol and agreement statistics.",
+      "design_strengths": [
+        "A shared 0–100% axis and identical 2×4 facet grammar make model and domain slices comparable.",
+        "Percent labels inside each segment preserve the partition sum and make the Better/Similar/Worse decomposition readable without estimating bar heights."
+      ],
+      "design_weaknesses": [
+        "Eight small panels consume most of the page but leave tiny labels and no room for sample-size or uncertainty annotations.",
+        "Color is the only outcome encoding; the similar-luminance blue/gray/peach palette degrades in grayscale and the pooled denominator is not visible in the plot."
+      ],
+      "reusable_pattern": "Use repeated 100% stacked bars when a preference result needs both direction and tie information, but print denominators or uncertainty beside the shared legend and preserve a parallel architecture/domain facet.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4. Ablation on guidance scale and sampling steps.",
+        "word_count": 9,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "Blue, orange and green identify CFG, MOG-Score and Auto-MOG in the steps panels; the guidance-scale panels compare CFG and MOG-Score.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 100
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sampling steps (top row) or guidance scale (bottom row)",
+        "y": "CLIP or HPSv2 score; each panel has its own narrow linear y range",
+        "color": "guidance method",
+        "shape": "marker symbols on sampled x values",
+        "line": "method-specific lines",
+        "facet": "top: steps; bottom: guidance scale; left/right: CLIP/HPSv2",
+        "text": "axis titles and repeated local legends"
+      },
+      "data_and_statistics": "Four line panels: top row varies steps (approximately 25–50) for CLIP and HPSv2, bottom row varies guidance scale for the same metrics. The plot shows point traces with markers and no error bars/bands; exact underlying sample count, seed aggregation and uncertainty are not stated in the caption.",
+      "evidence_relation": "Section §5.5 invokes the bottom/ top panels to argue that MOG-Score is stable at high scales and Auto-MOG beats fixed-scale methods across steps. Figure 4 is the sensitivity bridge between Table 2 component ablation and Table 4/10 static-baseline comparisons.",
+      "design_strengths": [
+        "A 2×2 small-multiple layout separates the two independent controls while preserving the same method colors.",
+        "Markers make sampled settings visible and the per-panel legends avoid a remote global key."
+      ],
+      "design_weaknesses": [
+        "The caption gives no panel mapping, metric definition, setting or uncertainty description; readers must use nearby prose.",
+        "Repeated legends and narrow y ranges make small differences look more decisive, and no reference/best-point marker identifies the claimed robust region."
+      ],
+      "reusable_pattern": "Split orthogonal sensitivity axes into small multiples with a stable method palette, but add a compact shared caption key and uncertainty or replicate traces before making robustness claims.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 5. Ablation on the Auto-MOG balance factor γ.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#FF7F0E",
+          "#1F77B4"
+        ],
+        "semantic_mapping": "Orange and blue identify the paired metrics in each dual-axis panel: FID/HPSv2 above and AES/CLIP Score below.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 28
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "balance factor γ (roughly 0.4–1.6)",
+        "y": "metric values on two independent y axes per panel",
+        "color": "metric identity (FID/HPSv2 or AES/CLIP Score)",
+        "shape": "sample-point markers",
+        "line": "metric-specific lines",
+        "facet": "top: FID + HPSv2; bottom: AES + CLIP Score, each with a left/right y axis",
+        "text": "dual-axis labels and local legend"
+      },
+      "data_and_statistics": "Two line panels vary γ and pair metrics with different scales on left and right y axes. The traces peak or change mildly near γ≈1 as described in §5.5; no replicate dispersion, confidence band or exact sample denominator is visible.",
+      "evidence_relation": "The balance-factor claim is that Auto-MOG does not depend on a finely tuned γ. Figure 5 complements the energy-ratio definition in Eq. (12–14), while Table 4 and Table 10 test whether the adaptive choice beats fixed schedules.",
+      "design_strengths": [
+        "A common γ axis and dual-axis pairing fit four quality metrics into a compact ablation object.",
+        "Markers and a local legend distinguish the metric curves without adding a second figure."
+      ],
+      "design_weaknesses": [
+        "Dual y axes invite visual comparisons of slopes and magnitudes that are not on a common scale.",
+        "The one-line caption does not define the axes, peak criterion or uncertainty, and there is no vertical guide at the claimed γ≈1 operating point."
+      ],
+      "reusable_pattern": "Use a shared hyperparameter axis for paired metrics only when each axis is clearly labeled; mark the predeclared operating point and expose replicate variability rather than relying on line shape alone.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 6. Correction of Saturation Artifacts on SD 3.5 (w = 4.5). At the officially recommended guidance scale, standard CFG (odd columns) frequently produces oversharpened edges, saturated color distributions, and unnatural contrast enhancement. Auto MOG (even columns, β = 1) effectively corrects these off manifold deviations, restoring natural skin tones, balanced highlight rolloff, and realistic lighting gradients throughout the scene.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#FF9800",
+          "#4CAF50",
+          "#000000"
+        ],
+        "semantic_mapping": "Orange borders/tags mark CFG, green borders/tags mark Auto-MOG, and black micro-labels identify each cell; image pixels are natural-image content.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 30,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 30,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "paired CFG/Auto-MOG columns",
+        "y": "five prompt/example rows",
+        "color": "orange CFG vs green Auto-MOG borders/labels",
+        "shape": null,
+        "line": "colored cell borders",
+        "facet": "five qualitative rows with three CFG/Auto-MOG pairs",
+        "text": "tiny CFG/Auto-MOG labels inside each image"
+      },
+      "data_and_statistics": "A 5-row × 6-column paired grid (30 images) is shown at SD3.5 w=4.5 with β=1. It is a qualitative failure-correction panel: no prompt text, seed, selection rule, numerical color statistic or uncertainty is provided. The left/right pairing is the only controlled comparison visible in the object.",
+      "evidence_relation": "Appendix §G extends the main SDXL qualitative claim to SD3.5 at its recommended scale; Figure 6 is the visual counterpart to Table 1’s SD3.5 block and the user-study artifact language. It also illustrates the saturation/contrast failure modes named in the abstract and §5.3.",
+      "design_strengths": [
+        "Consistent orange/green borders and paired columns make the baseline/ours mapping recoverable even when image content varies.",
+        "The rows span portraits, sports and scenes, giving the appendix an architectural extension rather than another SDXL duplicate."
+      ],
+      "design_weaknesses": [
+        "The 30-cell raster is dense and labels are only legible on close inspection; odd/even decoding is easy to lose when scanning.",
+        "No prompt/seed ledger or per-pair criterion is supplied, so the grid cannot distinguish representative examples from selected successes."
+      ],
+      "reusable_pattern": "For appendix image evidence, pair the same seed/prompt across adjacent cells, use a redundant border+text method key, and attach a machine-readable prompt/seed index to the source artifact.",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 7. Detail Enhancement on Flux.1 (w = 3.0). Even at the lower guidance scales appropriate for Rectified Flow architectures, standard CFG (odd columns) can induce texture degradation and geometric oversimplification. Auto MOG (even columns, β = 1) substantially improves material fidelity, surface detail preservation, and structural coherence, demonstrating consistent effectiveness across fundamentally different generative paradigms.",
+        "word_count": 55,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#FF9800",
+          "#4CAF50",
+          "#000000"
+        ],
+        "semantic_mapping": "Orange borders/tags mark CFG, green borders/tags mark Auto-MOG, and black micro-labels identify each cell; image pixels are natural-image content.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 30,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 30,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "paired CFG/Auto-MOG columns",
+        "y": "five prompt/example rows",
+        "color": "orange CFG vs green Auto-MOG borders/labels",
+        "shape": null,
+        "line": "colored cell borders",
+        "facet": "five qualitative rows spanning city, landscape, people, interiors and animals",
+        "text": "tiny CFG/Auto-MOG labels inside each image"
+      },
+      "data_and_statistics": "A 5-row × 6-column paired grid (30 images) is shown for Flux.1 at w=3.0 and β=1. The object encodes visual detail/material differences only; it has no quantitative score, prompt/seed information, sample denominator or uncertainty display.",
+      "evidence_relation": "Appendix §G uses Figure 7 to extend the method beyond latent diffusion to a Rectified Flow architecture; it visually complements the FLUX.1 row of Table 1 and the lower-guidance setting in Table 7. The qualitative panel supports cross-paradigm plausibility, not a statistical generalization estimate.",
+      "design_strengths": [
+        "The same paired grid grammar as Figure 6 lets readers compare the architecture extension without relearning the visual key.",
+        "Rows cover materially different scenes, making the detail-preservation claim visually concrete."
+      ],
+      "design_weaknesses": [
+        "The large raster grid has no row captions and relies on tiny tags and odd/even position; the method key is not repeated in the caption as a color legend.",
+        "Selection and generation conditions beyond w and β are absent, and perceptual claims are not tied to a per-cell metric."
+      ],
+      "reusable_pattern": "Keep a stable pairwise grid grammar across architectures, but include row IDs and a prompt/seed manifest so qualitative extension remains auditable.",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1. Quantitative comparison across diverse benchmarks. DiT-XL/2 and EDM2-XXL are evaluated on ImageNet 256×256; all text-to-image models are evaluated on COCO 512×512.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 7.8,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 36,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 6,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "No uncertainty, confidence interval, or seed-level dispersion is shown; all entries are point estimates with metric-direction arrows.",
+      "data_and_statistics": "Six model blocks × six guidance rows report FID, precision, recall, HSV saturation, pixel-wise contrast, HPSv2 and CLIP; ImageNet blocks are 256×256 and text-to-image blocks are COCO 512×512. Lower is preferred for FID/saturation/contrast; higher is preferred for the other columns. Gray MOG rows and bold values emphasize selected best entries.",
+      "evidence_relation": "Introduction claim of a unified architecture-agnostic improvement → §5.3 benchmark setup → Table 1 headline cross-model comparison → Figures 2–3 perceptual corroboration → Tables 2–4 component and tuning checks.",
+      "design_strengths": [
+        "Combines fidelity, artifact proxies and alignment in one repeated model/guidance grammar, so the claimed trade-off is visible without cross-table joins.",
+        "Metric arrows, model block labels and gray/bold emphasis make direction and the proposed-row location easy to scan."
+      ],
+      "design_weaknesses": [
+        "Thirty-six body rows are dense at page width and use abbreviated headers (Pre., Rec., Satu.) without full definitions in the caption.",
+        "Bold/gray semantics are not explicitly defined, and point estimates lack uncertainty or per-seed reproducibility information."
+      ],
+      "reusable_pattern": "Use a grouped block table when several model families share the same baseline ladder; put metric direction in headers and keep the proposed method visually traceable, while reporting uncertainty in a companion artifact.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2. Ablation of Riemannian metric estimators on SD-XL.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty or interval is shown; latency is a relative multiplier rather than an absolute time.",
+      "data_and_statistics": "Five rows form a component ladder: CFG (M=I), MOG-Score, MOG-Feat, MOG-Score+Feat and Auto-MOG. Columns report FID, HPSv2, CLIP, AES and relative latency (1.00×–1.08×), all on SD-XL.",
+      "evidence_relation": "The metric-instantiation paragraph in §5.5 claims score-based gains with negligible overhead; Table 2 tests metric components and cost before Figures 4–5 and Tables 3–4 isolate strength and schedule.",
+      "design_strengths": [
+        "Places quality and latency in the same ablation surface and ends with a bold Auto-MOG row.",
+        "The monotone row progression makes the addition/combination logic legible."
+      ],
+      "design_weaknesses": [
+        "MOG-Feat and AES are not defined in the caption, and the table omits sample count, guidance setting and uncertainty.",
+        "Relative latency cannot be interpreted across hardware or batch settings without the A100/batch-1 protocol elsewhere."
+      ],
+      "reusable_pattern": "Present component deletion/combination as a short ladder and place the computational cost column beside the quality estimands, with a shared protocol note.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3. Sensitivity to anisotropy ratio ρ (MOG-Score).",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty, interval or replicate information is shown; rows are point estimates for one SD-XL setting.",
+      "data_and_statistics": "Five ρ values (1, 5, 10 default, 20, 50) are crossed with FID, CLIP, HPSv2 and saturation. The default row is bold; arrows state that lower FID/saturation and higher CLIP/HPSv2 are preferred.",
+      "evidence_relation": "The §5.5 anisotropy paragraph interprets the same sweep as isotropic CFG-like behavior, a stable 5–20 region and over-constraint at 50; Table 11 repeats the sensitivity in the extended appendix with an interpretation column.",
+      "design_strengths": [
+        "A small parameter sweep keeps the operating-point claim and all four outcomes on one page.",
+        "Bold default row and metric arrows make the intended trade-off easy to locate."
+      ],
+      "design_weaknesses": [
+        "The caption does not define ρ or say which row is expected to be default; interpretation is delegated to prose.",
+        "No uncertainty or multiple-setting replication is visible, so “stable” is a point-estimate judgment."
+      ],
+      "reusable_pattern": "Pair a one-dimensional hyperparameter sweep with a bold preselected default and metric-direction arrows, then reuse the exact row set in the appendix only when the added column adds new interpretation.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 4. Auto-MOG vs. Tuned CFG on SD-XL.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty or interval is shown; the tuned CFG rows are single point estimates.",
+      "data_and_statistics": "Four rows compare CFG at w=3, w=7.5 and w=15 against Auto-MOG across FID, HPSv2 and CLIP. Lower FID and higher HPSv2/CLIP are indicated by arrows; the Auto-MOG row is bold.",
+      "evidence_relation": "The best-tuned-baseline paragraph in §5.5 argues that Auto-MOG is not merely a lower-strength CFG. Table 4 is the direct fixed-scale counterfactual, complementing the adaptive γ Figure 5 and extended schedule Table 10.",
+      "design_strengths": [
+        "Compactly puts low, selected-best and high CFG settings next to the adaptive method.",
+        "Metric arrows and bold final row make the intended Pareto comparison scannable."
+      ],
+      "design_weaknesses": [
+        "“Tuned” is asserted but the tuning procedure/search budget is not shown; the caption gives no w values or dataset details.",
+        "No uncertainty and only three metrics make the Pareto-frontier claim stronger than the table alone can demonstrate."
+      ],
+      "reusable_pattern": "Show the low/optimal/high static range beside an adaptive method so a schedule claim is tested against the strongest static comparator, not only the default baseline.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 13,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5. Evaluation protocols and sample counts used in our experiments.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.3,
+        "header_size_pt": 8.3,
+        "header_weight": "regular",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty is applicable: this is a protocol and sample-count inventory, not an estimator table.",
+      "data_and_statistics": "Rows identify ImageNet (Class-Conditional) at 256×256 with 50,000 samples, MS-COCO for FID & CLIP at 512×512 with 30,000 samples, and HPSv2 at 512×512 with 3,200 samples; notes give validation labels, random COCO captions and the standard HPSv2 prompt set.",
+      "evidence_relation": "Supplement §D.1 fills the sample-count gap left by §5.1 and makes the denominators behind Table 1 and the ablation metrics more reproducible.",
+      "design_strengths": [
+        "A four-column protocol inventory separates benchmark, resolution, count and notes with minimal visual overhead.",
+        "Explicit notes tie the sample count to the evaluation source rather than leaving dataset names as shorthand."
+      ],
+      "design_weaknesses": [
+        "The table does not state seeds, generation steps or whether the 3,200 HPSv2 prompts overlap other sets.",
+        "The caption does not name the metrics per benchmark beyond the row label, so readers still need §5.1 for the full evaluation map."
+      ],
+      "reusable_pattern": "Use a compact benchmark–resolution–count–notes table to anchor every later metric table to explicit evaluation denominators.",
+      "evidence": {
+        "page": 13,
+        "label": "Table 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 13,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6. Key hyperparameters (consistent with the main paper).",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.2,
+        "header_size_pt": 8.2,
+        "header_weight": "regular",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty is applicable; rows are fixed hyperparameters and numerical safeguards.",
+      "data_and_statistics": "Seven rows list λ⊤=1.0, λ⊥=10.0, ρ=10, Auto-MOG γ=1.0, ε=10⁻⁵ for n_t normalization, ε=10⁻⁶ in the Auto-MOG denominator and β(t) clamp [0,50]. Category labels form Metric, Auto-MOG and Stability groups.",
+      "evidence_relation": "Supplement §D.2 supplies the implementation constants used by the metric equation, Auto-MOG schedule and C.1–C.2 numerical safeguards; these settings qualify the claims in Figures 4–5 and Tables 2–4.",
+      "design_strengths": [
+        "Rows group method parameters and numerical stability controls without adding a separate wide matrix.",
+        "The symbol/value pairing is compact and preserves the mathematical notation used in the method."
+      ],
+      "design_weaknesses": [
+        "The repeated Category column is verbose and the ρ row duplicates the ratio of the two λ rows.",
+        "Mixed scalar, exponent and interval formats make precision inconsistent; software version and sampler settings remain outside the table."
+      ],
+      "reusable_pattern": "Keep method constants and stability epsilons in one grouped table, but add a versioned sampler/config column if reproduction depends on more than these values.",
+      "evidence": {
+        "page": 13,
+        "label": "Table 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 13,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7. Guidance scales used in the main-paper comparisons for each model.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.2,
+        "header_size_pt": 8.2,
+        "header_weight": "regular",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty is applicable; the table records fixed settings.",
+      "data_and_statistics": "Six model rows map DiT-XL/2 to w=4, EDM2-XXL to w=2, SD-2.1 to w=10, SD-XL to w=15, SD-3.5 to w=4.5 and FLUX.1 to w=4.0; the parenthetical benchmark appears in the model column.",
+      "evidence_relation": "This is the reproducibility key for the guidance regimes used by Table 1, Figure 2 and the corresponding rows in the main comparison. It also exposes the cross-architecture scale heterogeneity behind the “unified” claim.",
+      "design_strengths": [
+        "A direct model→scale lookup avoids forcing readers to reverse-engineer settings from the main table blocks.",
+        "The benchmark in parentheses preserves the task context for each scale."
+      ],
+      "design_weaknesses": [
+        "There is no separate column for baseline method, sampling steps or Auto-MOG β/γ, so “setting” is narrower than the complete protocol.",
+        "Notation spacing and decimal precision vary across rows (w=4, w = 10, w=4.5, w=4.0)."
+      ],
+      "reusable_pattern": "Maintain a one-row-per-model settings table next to the benchmark results, with all scale/schedule variables needed to reproduce the comparison in explicit columns.",
+      "evidence": {
+        "page": 13,
+        "label": "Table 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8. Aggregated User Study Results (Auto-MOG vs. Standard CFG). Data pools all 2,960 trials across 4 models. Win rates represent the mean preference for Auto-MOG. High statistical significance is observed for all metrics.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "regular",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Win-rate columns include 95% C.I.; §E.3 states a two-sided binomial test of H₀:p=0.5 and reports Fleiss’ κ and p-values. The intervals are pooled across 2,960 trials and no per-model interval is shown.",
+      "data_and_statistics": "Four criteria (Overall Quality, Color Fidelity, Realism, Texture Detail) list Auto-MOG wins, total trials=2,960, win rate 58.5–62.0%, 95% intervals, Fleiss’ κ=0.38–0.48 and p<0.001. The 37×80 pooled denominator is stated in the surrounding text and caption.",
+      "evidence_relation": "The main Figure 3 preference shares are extended by the formal user-study denominator and agreement/test columns. Table 8 is the appendix statistical support for the §5.4 headline, but pooling limits architecture-specific interpretation.",
+      "design_strengths": [
+        "Counts, rates, interval and agreement/test columns make the preference claim auditable in one row per criterion.",
+        "Bold win-rate cells focus attention on the target estimand while headers retain the denominator and test context."
+      ],
+      "design_weaknesses": [
+        "The pooled table hides model/domain heterogeneity that Figure 3 exposes and does not show participant-level dependence.",
+        "The caption declares “high statistical significance” without specifying the test or interval construction, and standard confidence intervals are not a substitute for per-condition uncertainty."
+      ],
+      "reusable_pattern": "When aggregating a forced-choice study, place wins, denominator, rate, agreement and test definition in one row, but pair the pooled table with stratified plots and explicit dependence assumptions.",
+      "evidence": {
+        "page": 14,
+        "label": "Table 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 9. Detailed User Preference Rates by Architecture. We report the win rates of AutoMOG against SOTA baselines across three distinct diffusion architectures. Note the higher variance on SDXL, indicating that AutoMOG’s geometric correction is particularly effective for high-dimensional latent diffusion models.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "italic"
+      ],
+      "uncertainty": "No confidence interval, error bar or explicit variance statistic is shown; each percentage partition sums to 100%, with N=100 pairs per baseline/model described in §E.4 rather than in the table.",
+      "data_and_statistics": "Two comparison groups (vs. APG and vs. CFG++) each contain SDXL, SD3.5, DiT-XL/2 and a Weighted Average. Columns partition AutoMOG Win, Tie/Similar and Baseline Win; weighted averages are italicized and AutoMOG wins are bold.",
+      "evidence_relation": "The expert-study extension in §E.4 tests whether the Figure 3 advantage survives stronger stabilization baselines. The architecture grouping connects geometric correction to latent, transformer and pixel-space regimes, while the stated “higher variance” is not numerically encoded.",
+      "design_strengths": [
+        "Two baseline groups and a repeated architecture column make cross-baseline comparison immediate.",
+        "The three outcome columns form a complete partition and the weighted-average rows summarize each comparison."
+      ],
+      "design_weaknesses": [
+        "The caption claims higher SDXL variance without reporting variance or uncertainty; the table provides no N/CI per cell.",
+        "The visual hierarchy of the first column’s group labels and weighted rows is subtle at appendix scale."
+      ],
+      "reusable_pattern": "Use nested comparison groups with complete win/tie/loss partitions and weighted summaries, but print the per-cell denominator and dispersion when making architecture-specific claims.",
+      "evidence": {
+        "page": 15,
+        "label": "Table 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 10. Ablation on Guidance Strength and Scheduling. Comparison performed on SD-XL. Standard CFG shows a clear trade-off: weak guidance (w = 1) yields poor alignment, while strong guidance (w = 15) destroys fidelity. Linear Decay improves upon static scales but still falls short of AutoMOG, which achieves the best Pareto frontier across all metrics.",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "regular",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty, interval or seed-level dispersion is shown; values are point estimates for SD-XL.",
+      "data_and_statistics": "Six rows compare Standard CFG at w=1,5,10,15, CFG (Linear) with 15→1 decay and AutoMOG with Adaptive Energy Balance. FID, HPSv2 and CLIP are reported; the proposed row is bold.",
+      "evidence_relation": "The appendix schedule ablation is the direct control against the alternative explanation that AutoMOG only reduces strength. It extends Table 4’s three fixed scales and links the adaptive mechanism to the robust region in Figure 4.",
+      "design_strengths": [
+        "The Setting/Parameter column makes static, linear and adaptive interventions comparable in a single table.",
+        "Metric arrows plus a bold final row make the intended conclusion readable without a separate Pareto chart."
+      ],
+      "design_weaknesses": [
+        "Repeated Standard CFG rows consume space and the “best Pareto frontier” caption is not visibly demonstrated by a frontier plot.",
+        "No uncertainty or tuning/search budget is shown, and the linear schedule’s step dependence is summarized only by a text label."
+      ],
+      "reusable_pattern": "Put fixed-strength sweeps, a credible schedule heuristic and the adaptive method in one table, with the intervention itself explicit rather than hidden in row labels.",
+      "evidence": {
+        "page": 16,
+        "label": "Table 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 11. Sensitivity Analysis of Anisotropy Ratio ρ. Evaluated on SD-XL (w = 15). ρ ≈ 10 yields the best trade-off.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "regular",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty or interval is shown; rows are point estimates for SD-XL at w=15.",
+      "data_and_statistics": "Five ratio rows (ρ=1,5,10,20,50) add an Interpretation column to FID, HPSv2, CLIP and Saturation. The default/ours row is bold; the interpretation spans Isotropic (Standard CFG), Mild/Strong Correction and Over-Constrained.",
+      "evidence_relation": "Table 11 repeats Table 3’s ρ sweep in the extended ablation section, adding qualitative interpretation and making the default trade-off explicit after Table 10. It is the appendix robustness support for the fixed anisotropy limitation in §H.1.",
+      "design_strengths": [
+        "Interpretation and metrics are aligned row-by-row, so the over-constrained failure at ρ=50 is visible beside its CLIP drop.",
+        "The bold default row preserves the same visual cue as Table 3 while adding the architecture/scale protocol in the caption."
+      ],
+      "design_weaknesses": [
+        "It duplicates Table 3’s values and adds no uncertainty or new architecture, so the evidence is repetitive rather than independent.",
+        "Formatting of ρ values and spaces around “=” varies, and the caption does not state sample count or seed aggregation."
+      ],
+      "reusable_pattern": "Add an interpretation column to a sensitivity table only when it makes the mechanism boundary explicit; otherwise keep one canonical sweep and point to it from the appendix.",
+      "evidence": {
+        "page": 17,
+        "label": "Table 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 turns the geometric mismatch into a toy path/energy story; Figure 2 shows artifact differences; Table 1 places fidelity, artifact proxies and alignment in one cross-model surface; Figure 3 adds human preference heterogeneity; Tables 2–4 and Figures 4–5 remove metric/strength/schedule alternatives; Tables 5–11 document protocols, pooled user statistics and extended robustness; Figures 6–7 extend the qualitative claim to SD3.5 and Flux.1.",
+    "caption_system": "Captions use an italic Figure/Table label followed by a short title; main tables and appendix user-study/schedule captions often bold the title and state the headline comparison. Figure 4–5 captions are title-only, while image-grid captions explain settings and claimed artifacts. Encoding keys and uncertainty definitions are uneven: Figure 3 relies on its legend, and Table 8’s interval/test details are mainly in surrounding prose.",
+    "table_header_system": "Tables use centered/italic or bold headers with metric-direction arrows where a metric is optimized, grouped model/method columns for main results, and a minimal horizontal-rule hierarchy without vertical rules. Main Table 1 uses model blocks and guidance rows; appendix tables shift to protocol, parameter, user-study and schedule headers.",
+    "method_result_ablation_link": "The visual sequence mirrors the method interfaces: MOG metric → Auto-MOG energy balance → image symptoms and cross-model outcomes → metric/ρ/scale/γ/schedule ablations. Table 2 tests metric components, Table 3/11 test ρ, Figure 4 tests scale/steps, Figure 5 tests γ, and Table 10 tests fixed/linear schedules.",
+    "main_appendix_link": "Main Figures 2–3 and Table 1 are expanded by Appendix Tables 5–9 and Figures 6–7; main Tables 2–4/Figures 4–5 are extended by Tables 10–11. Appendix E supplies the user-study denominator and failure analysis that the main captions omit, while §H records boundaries with no additional visual object.",
+    "typography_consistency": "Page-level typography is consistent across double-column main text and single-column supplement (embedded Nimbus Roman/Computer Modern with mathematical faces). Plot labels are smaller and often sans-like, and raster grids contain their own micro-labels; this creates a readable paper shell but uneven object-level size and source provenance.",
+    "color_consistency": "Black/gray tables and white canvas are stable. Method curves use a recurring Matplotlib blue/orange/green vocabulary, while Figure 3 and the appendix grids introduce local categorical keys. The grids redundantly use colored borders plus CFG/Auto-MOG tags, but Figure 3 depends primarily on color and the natural-image grids are not grayscale-safe."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "把机制示意图、机制相关 proxy、headline 对比和针对替代解释的消融排成单向视觉叙事；每个对象都回指同一方法接口。",
+      "主结果表用模型 block × 方法 row 的重复语法，同时把 fidelity、artifact proxy、alignment 和方向箭头放在同一决策面。",
+      "定性比较固定 prompt/seed 行与方法列，并用列位置之外的 border+text 冗余编码方法身份。",
+      "参数稳健性用小 multiples 或简短 sweep 表呈现，并在表头写出 metric direction 与具体 setting。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：把 off-manifold drift、方向修正和能量下降压缩成可读的机制入口，但应与真实轨迹测量区分。",
+      "Table 1：唯一同时覆盖六个模型 block、六种 guidance 和 fidelity/artifact/alignment 指标的 headline surface。",
+      "Figure 3：在同一 100% stacked grammar 中暴露模型与领域偏好异质性，并由 Table 8 补足 pooled denominator。",
+      "Table 10：把 fixed CFG、linear decay 和 AutoMOG 放到同一 schedule counterfactual 中，最直接回应“只是降低强度”的替代解释。"
+    ],
+    "failure_patterns": [
+      "定性网格缺少 prompt、seed 和选择规则，且 Figure 2 caption 未列出 MOG-Score；视觉案例难以复现。",
+      "Figure 4–5 caption 过于简短，双 y 轴、窄 y 范围和无 uncertainty 会放大微小趋势。",
+      "主结果与用户研究表几乎全为 point estimates；Table 8 的 pooled intervals 不能替代 architecture/domain 分层不确定性。",
+      "Table 3 与 Table 11 重复 ρ sweep，主文与附录的统计/失败边界主要靠文字而不是对象内编码。"
+    ],
+    "one_sentence_visual_strategy": "论文以一张几何 toy 图建立 MOG/Auto-MOG 的方向—强度直觉，再用固定条件的图像网格、跨架构主表、分层用户偏好和针对替代机制的消融把“减少 drift 且保留 alignment”的叙事逐层推进；其主要视觉缺口是定性案例与 point-estimate 图表的复现和不确定性不足。"
+  }
+}

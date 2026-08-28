@@ -1,0 +1,2236 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-cb506acd46ca",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/celerychen/discoformer"
+    ],
+    "selected_repository": "https://github.com/celerychen/discoformer",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/celerychen/discoformer",
+        "path": "score_comparison_2d.png",
+        "role": "rendered_asset",
+        "tool": "Matplotlib 3.10.8",
+        "evidence": "GitHub tree/README identify this as the test_discoformer.py 2D score-field output; PNG metadata reports 1800×750 RGB RGBA at 150 dpi. It is not identical to the paper Figure 3 and no exact figure-generation script is present."
+      }
+    ],
+    "search_note": "PDF首页、正文、参考文献未给出代码仓库；reading提供 arXiv:2511.05924 与 OpenReview forum gyOWJpP8cQ，无 supplementary。reports/tables/visual_source_inventory.csv 的目标行仍为 no_public_source_found，visual_source_files_local.csv 无目标行，corpus/visual_sources/icml-2026-cb506acd46ca/ 不存在。agent-reach doctor --json 将 GitHub 标为 warn（gh CLI/显式认证配置但未自动执行认证写操作）；unicli scholar code 对完整标题通过 github-scholar 返回同一仓库，match_type=title_exact、relationship=candidate-implementation、confidence=0.98 且 is_official_code=false；gh完整标题搜索随后找到公开未归档仓库 https://github.com/celerychen/discoformer，其README直接链接该论文题目和 arXiv:2511.05924v2。gh API树核对 README、discoformer.py、test_discoformer.py、score_comparison_2d.png 和权重/PDF；未读取或克隆权重、数据集、checkpoint。仓库没有 plot*/figure*/visual*/table*脚本、notebook、TeX/TikZ/PGF或样式文件，只有一个由测试脚本生成的150 dpi PNG，故记为 partial_visual_source，不能把论文PDF的视觉参数标为 source_exact。"
+  },
+  "paper_style": {
+    "main_figures": 11,
+    "main_tables": 6,
+    "appendix_figures": 4,
+    "appendix_tables": 0,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 9.0,
+      "header_size_pt": 9.0,
+      "header_weight": "regular",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "正文图像以 viridis 类连续色标表达 attention/density 强度，Matplotlib 蓝/橙/红/绿/紫/青区分 estimator、score role 和 TTT budget；表格保持黑色数字与横线，最佳值多用粗体。",
+    "vector_raster_mix": "Letter 双栏正文、caption、表格横线和文字主要是 PDF vector；Figure 1/3–11、12–15 的图面以 RGB 栅格嵌入，代码框和图框/文字为 vector，整体 mixed。",
+    "style_consistency": "Nimbus Roman/Times-like serif 与 Computer Modern math 在正文、caption、表格和公式中稳定；图内 axes/legend 使用 Matplotlib 风格 sans-serif，Figure 2 使用 Nimbus Mono 等宽体。booktabs/minimal 表格一致，但图的颜色、legend 密度与独立 heatmap normalization 造成局部可读性差异。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "heatmap",
+        "matrix",
+        "qualitative_grid",
+        "other"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 1. Attention visualization. Top: average attention in layer 0 from query x; heatmaps show the attention matrix and the normalized KDE matrix Dᵢⱼ ∝ e^(−∥xᵢ−xⱼ∥²/2), and scatter plots show very high agreement. Bottom: individual heads exhibit emergent specialization (close-range, far-range, directional).",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#440154",
+          "#21918C",
+          "#FDE725",
+          "#D62728",
+          "#1F77B4",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "viridis encodes attention score/heatmap intensity; red, blue and green encode true, predicted and KDE score vectors; black/red crosses mark means and chosen point.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": 4,
+        "legend_items": 5,
+        "annotations": 8,
+        "data_marks_estimate": 1800
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left for top field; per-panel head titles/colorbars",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "2D sample/query coordinates in the score field; query/key indices in the two matrices",
+        "y": "2D sample/query coordinates; query index in the matrices",
+        "color": "attention scalar or score-field role (true/predicted/KDE)",
+        "shape": "arrows, points, black means and red chosen-point cross",
+        "line": "true/predicted/KDE score-vector arrows",
+        "facet": "top field, two matrices, two correlations, four selected heads",
+        "text": "Score comparison title, correlation values, head titles and legends"
+      },
+      "data_and_statistics": "n=1000 GMM sample for the spatial field. The two heatmaps compare layer-0 average attention with a normalized KDE matrix; correlation panels show corr=0.930 and corr=0.841; the top legend reports Transformer MSE=0.0366. No uncertainty or repeated-trial dispersion is shown.",
+      "evidence_relation": "Proposition 3.3–3.6 claim that attention recovers/reweights Gaussian KDE → this mechanism composite; Figure 2 supplies the whitening/core interface and Table 1 checks its equivariance; Appendix Figures 12–13 expand all heads and query-conditioned behavior.",
+      "design_strengths": [
+        "Combines field, matrix, correlation and head behavior in one mechanism chain.",
+        "MSE/correlation, means and chosen point bind the qualitative attention story to observed data.",
+        "The head grid exposes a concrete multi-scale kernel interpretation."
+      ],
+      "design_weaknesses": [
+        "Nine panels and small colorbars make the right-column composite dense at print size.",
+        "Heatmap scales and head axis/parameter labels are hard to compare without enlarging.",
+        "Color carries several semantic roles with little shape/line-style redundancy."
+      ],
+      "reusable_pattern": "Use a top-to-bottom composite of field → attention/KDE matrix → agreement statistic → individual-head specialization; in a reusable version share color normalization and add panel labels/explicit query conditions.",
+      "evidence": {
+        "page": 3,
+        "label": "Rendered Figure 1 composite: score field, two matrices, two correlation scatters and four head scatters",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "screenshot",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 2. The forward pass implementing affine equivariance.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#E7298A",
+          "#1F9E89",
+          "#666666",
+          "#222222"
+        ],
+        "semantic_mapping": "Syntax-highlighting colors mark keywords, identifiers, operators and comments in the Python-like forward pass.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 7,
+        "data_marks_estimate": 0
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "syntax role in the code box",
+        "shape": null,
+        "line": "code order and indentation",
+        "facet": "single forward-pass code block",
+        "text": "forward signature, whitening operations, logdet and score readout"
+      },
+      "data_and_statistics": "No empirical data or uncertainty; the code block lists centering, scatter matrix, inverse square root, core outputs, logdet correction and score back-transform.",
+      "evidence_relation": "Proposition 3.1 equivariance requirements → executable whitening/core/inverse-transform interface; Algorithm 1 on p.5 supplies the training-data interface and Table 1 tests the resulting transform behavior.",
+      "design_strengths": [
+        "Makes the central coordinate transformation executable and inspectable.",
+        "Shows the density and score paths in their actual order."
+      ],
+      "design_weaknesses": [
+        "No input/output shapes, branch labels or explicit density/score output boxes.",
+        "Caption is only a title; interpretation depends on the following body paragraph."
+      ],
+      "reusable_pattern": "For a symmetry-critical method, show the minimal forward-pass code and pair it with shape/semantic callouts so the caption need not carry the whole explanation.",
+      "evidence": {
+        "page": 4,
+        "label": "Rendered Figure 2 code box and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "other"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3. Score estimation comparison between Scott KDE (Scott, 2015) and our transformer model. The transformer is more accurate, especially in the sparse regions. We plot the negated score for easier viewing.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#F8766D",
+          "#619CFF",
+          "#00BA38",
+          "#222222",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Red, blue and green arrow fields denote true, Transformer and KDE scores; gray/black points provide sample/mean context.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 3,
+        "data_marks_estimate": 1000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "2D coordinate x1",
+        "y": "2D coordinate x2",
+        "color": "true, Transformer and Scott-KDE score fields",
+        "shape": "quiver arrows and sample/mean points",
+        "line": "negated score vector direction and length",
+        "facet": null,
+        "text": "Score comparison n=1000 title and MSE values in the legend"
+      },
+      "data_and_statistics": "A 2D unimodal Gaussian with n=1000. The legend reports Transformer MSE=0.0077 and KDE MSE=0.1528; there are no uncertainty marks or repeated-trial summaries.",
+      "evidence_relation": "First direct result for the abstract accuracy claim: Figure 1 explains the learned attention/KDE mechanism, Figure 4 and Table 2 extend this point to dimension/sample-size scaling, and Appendix Figure 15 checks the cost boundary.",
+      "design_strengths": [
+        "Spatial arrows make sparse-region behavior visually concrete.",
+        "True, Transformer and KDE are co-located on identical coordinates and summarized with MSE."
+      ],
+      "design_weaknesses": [
+        "Dense arrows overlap, making per-point method attribution difficult.",
+        "MSE appears only in the legend and sparse regions are not explicitly bounded.",
+        "No uncertainty or repeated evaluation is shown."
+      ],
+      "reusable_pattern": "Overlay true/model/KDE score fields for a qualitative-to-quantitative bridge; add a sparse-region inset or error magnitude and replicate-level uncertainty for a publication-grade comparison.",
+      "evidence": {
+        "page": 6,
+        "label": "Rendered Figure 3 quiver plot, legend and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4. Left: MSE of score estimation in dimensions 1 and 10 on a 3-modal GMM using Transformer and KDE. The Transformer has excellent scaling in both dimension d and the sample size n. Right: MSE of score estimation using the Transformer on GMMs with different numbers of modes. Despite being trained only on GMMs with 1-10 modes, and n = 2048, the model exhibits excellent generalization.",
+        "word_count": 67,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#F8766D",
+          "#E69F00",
+          "#56B4E9",
+          "#0072B2",
+          "#984EA3",
+          "#4DAF4A",
+          "#222222"
+        ],
+        "semantic_mapping": "Left color separates Transformer/KDE and dimension; right color separates GMM mode counts.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 4,
+        "data_marks_estimate": 100
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left (left), upper-right (right)",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sample size n on a log scale",
+        "y": "score-estimation MSE on a log scale",
+        "color": "model/dimension in the left panel; mode count in the right panel",
+        "shape": "point markers along each curve",
+        "line": "series trajectories across n or mode count",
+        "facet": "dimension/model scaling (left) and mode-count OOD scaling (right)",
+        "text": "panel titles, axis labels and legend entries"
+      },
+      "data_and_statistics": "Left: score MSE for a 3-modal GMM in d=1 and d=10 over several n. Right: score MSE for 1–19 GMM modes with training limited to 1–10 modes and n=2048. No uncertainty bands or repeated-trial summaries are visible.",
+      "evidence_relation": "Upgrades Figure 3 from one score field to dimension/sample-size and mode-count extrapolation; Table 2 gives exact n endpoints, while Tables 3–4 and Figure 5 cover non-Gaussian/OOD behavior.",
+      "design_strengths": [
+        "Separates sample/dimension scaling from structural mode-count generalization.",
+        "Log axes expose multi-order-of-magnitude trends in a small footprint."
+      ],
+      "design_weaknesses": [
+        "Color-heavy legends and many mode curves reduce print accessibility.",
+        "Training/test support and error aggregation are carried mostly by caption/body text.",
+        "Claims of excellent scaling are not accompanied by uncertainty."
+      ],
+      "reusable_pattern": "Pair a scale extrapolation panel with a structural-complexity extrapolation panel and state training support directly in the caption; put exact endpoints in a companion table.",
+      "evidence": {
+        "page": 6,
+        "label": "Rendered Figure 4 two line-chart panels and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5. MSE of score estimation on the Laplace distribution. Test-time training (TTT) improves the out-of-distribution generalization.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#E41A1C",
+          "#222222",
+          "#984EA3",
+          "#377EB8",
+          "#1B9E77",
+          "#4DAF4A"
+        ],
+        "semantic_mapping": "KDE, No TTT and TTT step budgets use red, black, purple, blue, teal and green line/marker combinations.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 2,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "n (number of samples), log scale",
+        "y": "score MSE, log-style scale",
+        "color": "KDE, No TTT and TTT step count",
+        "shape": "triangles for KDE, circles for No TTT, squares for TTT variants",
+        "line": "MSE trajectory over n",
+        "facet": null,
+        "text": "Laplace 2D title and TTT-step legend"
+      },
+      "data_and_statistics": "Laplace 2D score MSE over sample size for KDE, No TTT and TTT 2/4/6/8 steps; no error bar/band or replicate summary.",
+      "evidence_relation": "Connects Section 3.5 consistency-loss interface to Table 4’s Student-t step sweep; it isolates TTT from Table 6’s whitening OOD effect and follows Tables 3–4’s non-Gaussian tests.",
+      "design_strengths": [
+        "Shows adaptation budget and sample-size scaling together.",
+        "Markers provide some redundancy for the six colored series."
+      ],
+      "design_weaknesses": [
+        "Curves cluster at small n and still rely heavily on color.",
+        "Caption omits step/seed/aggregation conditions and uncertainty.",
+        "No explicit saturation annotation."
+      ],
+      "reusable_pattern": "Use a budget sequence to expose test-time-adaptation gain and saturation; add line-style redundancy and replicate intervals.",
+      "evidence": {
+        "page": 7,
+        "label": "Rendered Figure 5 Laplace score-MSE line chart and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "other"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 6. Computing relative Fisher information. Our model predicts ∇ log g(xᵢ) at query points xᵢ via cross-attention with the samples yᵢ ∼ g.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#A6CEE3",
+          "#FB9A99",
+          "#33A02C",
+          "#FF7F00",
+          "#E31A1C",
+          "#1F78B4"
+        ],
+        "semantic_mapping": "Light blue/red points are distributions A/B; colored arrows distinguish true/predicted score fields for A/B.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 6,
+        "annotations": 3,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "2D coordinate x",
+        "y": "2D coordinate y",
+        "color": "distribution identity and true/predicted score role",
+        "shape": "sample points, arrows and chosen query point",
+        "line": "score-vector direction/length",
+        "facet": null,
+        "text": "Distribution A/B and True/Predicted Score legend"
+      },
+      "data_and_statistics": "Samples X∼f are queries and Y∼g are context; the plot visualizes the Monte Carlo score-difference setup but reports no relative-Fisher point estimate, uncertainty or replicate variation.",
+      "evidence_relation": "Section 4.4’s cross-attention estimator → visual context/query role; the same score/log-density interface feeds Figure 10 functional estimates and Figure 11 the Landau solver.",
+      "design_strengths": [
+        "Makes cross-distribution context/query semantics spatially visible.",
+        "Legend names all four true/predicted score roles."
+      ],
+      "design_weaknesses": [
+        "Arrow/query overlap obscures which points are query versus context.",
+        "No numerical estimator error or Monte Carlo variability is shown."
+      ],
+      "reusable_pattern": "For a cross-distribution operator, color context/query populations and overlay true/predicted fields; add a clearly marked query and a numeric estimator summary.",
+      "evidence": {
+        "page": 8,
+        "label": "Rendered Figure 6 distribution scatter/quiver and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 7. Qualitative comparison: True density, Scott KDE, Emp-SD-KDE, and SD-KDE with our learned score. Learned-score SD-KDE is visibly less biased.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 3,
+        "hex": [
+          "#440154",
+          "#21918C",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like intensity encodes 2D density from low purple to high yellow; panel titles encode estimator and MISE.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 5,
+        "series": 5,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": 2500
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "2D density coordinate x",
+        "y": "2D density coordinate y",
+        "color": "density intensity",
+        "shape": null,
+        "line": null,
+        "facet": "Ground Truth, Scott KDE, Emp-SD-KDE and two SD-KDE variants",
+        "text": "panel titles with estimator and MISE"
+      },
+      "data_and_statistics": "Five fixed-coordinate 2D density maps; MISE values are printed in panel titles (0.001241, 0.000617, 0.000981 and 0.000798 for the non-ground-truth panels). No uncertainty is displayed.",
+      "evidence_relation": "Section 4.5 score-debiased KDE mechanism → density recovery; Figure 8 gives a 1D density slice and Figure 9 gives n-scaling, while Figure 6 supplies the learned score oracle.",
+      "design_strengths": [
+        "Truth-first fixed-coordinate layout makes peak/tail bias directly comparable.",
+        "MISE in panel titles links the qualitative maps to a quantitative loss."
+      ],
+      "design_weaknesses": [
+        "No shared colorbar or explicit normalization statement makes cross-panel intensity comparison ambiguous.",
+        "Density strength is color-only and not grayscale safe.",
+        "MISE definition is left to the body."
+      ],
+      "reusable_pattern": "Use a fixed-coordinate truth→baseline→oracle/learned grid and pair each panel with an error value; share color normalization and a colorbar in a reusable version.",
+      "evidence": {
+        "page": 9,
+        "label": "Rendered Figure 7 five-panel density heatmap grid and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area",
+        "histogram"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8. 1D bimodal GMM (n = 2048): SD-KDE with the learned score best approximates the density by MSE.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#BDBDBD",
+          "#222222",
+          "#377EB8",
+          "#4DAF4A",
+          "#E41A1C",
+          "#984EA3"
+        ],
+        "semantic_mapping": "Gray bars are the histogram; black dashed line is ground truth; colored curves distinguish KDE and SD-KDE/Transformer variants.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 5,
+        "data_marks_estimate": 700
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "x coordinate",
+        "y": "density",
+        "color": "estimator identity",
+        "shape": "histogram bars and curve lines",
+        "line": "ground-truth dashed and estimator density curves",
+        "facet": null,
+        "text": "GMM title, legend and per-method MSE"
+      },
+      "data_and_statistics": "A 1D two-component GMM with n=2048. Legend values include KDE density MSE=0.00049, learned density=0.00022, learned-score SD-KDE=0.000147 and autograd-score SD-KDE=0.000157; no uncertainty.",
+      "evidence_relation": "Provides a one-dimensional concrete slice of Figure 7’s density recovery; Figure 9 tests whether the learned-score advantage persists with n, while Figure 10 evaluates downstream functionals.",
+      "design_strengths": [
+        "Histogram, truth and multiple estimates share one coordinate system.",
+        "Legend MSE values connect curve overlap to an explicit comparison."
+      ],
+      "design_weaknesses": [
+        "Several curves overlap near modes and the dense legend occupies the data area.",
+        "A single GMM and point MSE do not establish repeatability."
+      ],
+      "reusable_pattern": "Combine sample support, truth and estimator curves in one plot, with a compact error legend; add a tail/mode inset when curves overlap.",
+      "evidence": {
+        "page": 9,
+        "label": "Rendered Figure 8 1D density/histogram and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9. MSE of density estimation in 1D (left) and 2D (right). SD-KDE with our learned score and the Transformer model show the best scaling. The Transformer was trained only at n = 2048.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#3B4CC0",
+          "#984EA3",
+          "#56B4E9",
+          "#E69F00",
+          "#D73027"
+        ],
+        "semantic_mapping": "Line color identifies KDE, empirical/debiased score variants and direct Transformer density.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 10,
+        "legend_items": 10,
+        "annotations": 4,
+        "data_marks_estimate": 100
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "number of samples n, log scale",
+        "y": "density-estimation MSE, log scale",
+        "color": "estimator family",
+        "shape": "point markers along curves",
+        "line": "MSE scaling/slope",
+        "facet": "GMM dimension d=1 versus d=2",
+        "text": "dimension titles, estimator legends and slope values"
+      },
+      "data_and_statistics": "Two panels compare approximately five density estimators over n in d=1 and d=2; the Transformer training point n=2048 is stated in the caption. No uncertainty bands or replicate summaries.",
+      "evidence_relation": "Extends Figure 8’s single n comparison to scaling; pairs with Figure 4/​Table 2 score scaling and supports the claim that learned-score SD-KDE/direct Transformer remain competitive beyond training n.",
+      "design_strengths": [
+        "Shared visual grammar makes the d=1/d=2 comparison quick.",
+        "Log-log axes expose estimator slopes and crossings."
+      ],
+      "design_weaknesses": [
+        "Five colored curves and low legends are difficult at print size.",
+        "Slope/error definition and repetition are not made uncertainty-aware."
+      ],
+      "reusable_pattern": "Use dimension small multiples with common log axes and an explicit training-support marker; move long estimator names to a keyed table or direct labels.",
+      "evidence": {
+        "page": 9,
+        "label": "Rendered Figure 9 two density-MSE scaling panels and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 10. Comparison between the transformer model (learned) and Scott KDE and score-debiased KDE for estimation of differential entropy H(f) and Fisher Information I(f). Transformer’s MSE is lower than that of the KDE approximation, even in dimension 1.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "comparison",
+          "encoding_key",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 6.8,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1845FB",
+          "#E41A1C",
+          "#2CA02C",
+          "#984EA3"
+        ],
+        "semantic_mapping": "Colors identify KDE, learned Transformer score/density and score-debiased/autodiff variants; panel title identifies dimension and functional.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 12,
+        "legend_items": 12,
+        "annotations": 8,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "per-panel, placed in open area",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sample size n, log scale",
+        "y": "absolute error/MSE for entropy or Fisher information, log-style scale",
+        "color": "estimator method",
+        "shape": "point markers",
+        "line": "functional-estimation error over n",
+        "facet": "entropy/Fisher × d=1/d=10",
+        "text": "functional/dimension titles, estimator legends and slope annotations"
+      },
+      "data_and_statistics": "Four panels: entropy and Fisher information in d=1 and d=10. d=1 uses a 3-mode GMM with grid integration; d=10 uses random Gaussians with analytic formulas. Curves are point estimates without uncertainty.",
+      "evidence_relation": "Downstream utility of the score/log-density heads: Figure 6 introduces cross-distribution score use, Figure 9 covers density scaling, and Figure 11 applies the same oracle to a kinetic PDE solver.",
+      "design_strengths": [
+        "Orthogonal 2×2 facet isolates task and dimension instead of conflating them.",
+        "Small multiples preserve shared estimator comparison."
+      ],
+      "design_weaknesses": [
+        "Small legends and slope text are hard to read.",
+        "Caption says MSE while axes read absolute error/abs error; the aggregation and formulas are not repeated.",
+        "No uncertainty or numerical ground-truth error bars."
+      ],
+      "reusable_pattern": "Use task×dimension small multiples for plug-in functionals, but state a single error definition on every y-axis and report replicate variation separately.",
+      "evidence": {
+        "page": 9,
+        "label": "Rendered Figure 10 2×2 functional-estimation grid and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 11. Comparison between the trained Transformer model and Scott KDE on the task of numerically solving the homogeneous Landau equation. We plot the first entry of the covariance matrix Σ₁,₁(t) of the numerical solutions and ground truth, when known. The left two panels use Maxwell collisions, while the last panel shows Coulomb collisions. The Transformer outperforms KDE, and is comparable in quality to SBTM in (Ilin et al., 2025).",
+        "word_count": 70,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#222222"
+        ],
+        "semantic_mapping": "Blue/orange distinguish KDE/Transformer; black dashed curve is analytic/equilibrium reference.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 9,
+        "legend_items": 9,
+        "annotations": 5,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper region of each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "time t",
+        "y": "Σ₁,₁(t)",
+        "color": "KDE, Transformer and reference",
+        "shape": "line trajectories",
+        "line": "solid numerical trajectories and dashed analytic/equilibrium curve",
+        "facet": "Maxwell d=3, Maxwell d=10, Coulomb d=3",
+        "text": "collision/dimension titles and n=500 legend"
+      },
+      "data_and_statistics": "Three time trajectories at n=500 for Maxwell (d=3,d=10) and Coulomb (d=3); analytic/equilibrium ground truth is shown when known. No ensemble interval, solver-step uncertainty or repeated run summary.",
+      "evidence_relation": "Section 4.7 connects the pre-trained score oracle to a Landau/Fokker–Planck particle solver without simulation-time retraining; Figure 15 supplies the runtime/memory boundary and Figures 6/10 the other plug-in uses.",
+      "design_strengths": [
+        "Same observable and reference style across physical regimes.",
+        "Dashed reference gives some non-color redundancy."
+      ],
+      "design_weaknesses": [
+        "No SBTM trajectory is plotted despite the caption comparison.",
+        "Solver discretization, time step and variation are absent.",
+        "Panel ranges are not fully identical, limiting direct amplitude comparison."
+      ],
+      "reusable_pattern": "Show one observable across physical regimes with reference curves and explicitly mark which regimes have ground truth; pair with a solver-error/cost table.",
+      "evidence": {
+        "page": 9,
+        "label": "Rendered Figure 11 three Landau covariance trajectories and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 12. We visualize attention of the eight individual heads of layer 0 as a heatmap. Yellow color denotes higher attention weight and blue is lower. We choose the particle ordering so that nearby particles are close in the ordering. Heads 0, 2, and 5 specialize on nearby points, heads 1 and 6 specialize on far-away points, whereas heads 3, 4, and 7 attend in specific directions.",
+        "word_count": 67,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 3,
+        "hex": [
+          "#440154",
+          "#21918C",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Yellow indicates higher attention weight and blue lower weight in each head matrix.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 8,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 8,
+        "data_marks_estimate": 64800
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "key/token index after nearby-particle ordering",
+        "y": "query/token index after nearby-particle ordering",
+        "color": "attention weight",
+        "shape": null,
+        "line": null,
+        "facet": "layer-0 heads H0–H7",
+        "text": "head titles and per-panel colorbar"
+      },
+      "data_and_statistics": "Eight full layer-0 attention matrices, one per head; no uncertainty, aggregation interval or error encoding. Each panel has a colorbar and may use its own numeric range.",
+      "evidence_relation": "Full appendix expansion of Figure 1’s four selected head panels; supports Section 3.3 emergent specialization and pairs with Figure 13’s query-conditioned spatial view.",
+      "design_strengths": [
+        "Covers all eight heads under one particle ordering.",
+        "Caption states color and ordering semantics and names the observed specialization groups."
+      ],
+      "design_weaknesses": [
+        "Per-head colorbars make absolute cross-head intensity comparisons ambiguous.",
+        "Index axes are not physical coordinates, so direction interpretation depends on the accompanying text."
+      ],
+      "reusable_pattern": "Use a fixed head grid for mechanism evidence, with shared color normalization and explicit ordering metadata.",
+      "evidence": {
+        "page": 18,
+        "label": "Rendered Figure 12 2×4 layer-0 attention heatmap grid",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 13. We visualize attention of the eight individual heads of layer 0 as a scatter plot. We choose a random query point, marked with a red x. Yellow color denotes higher attention weight and blue is lower. Heads 0, 2, and 5 specialize on nearby points, head 1 specializes on far-away points, whereas heads 3, 4, 6, and 7 attend in specific directions.",
+        "word_count": 64,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#440154",
+          "#21918C",
+          "#FDE725",
+          "#E41A1C"
+        ],
+        "semantic_mapping": "Viridis maps attention weight from blue/purple low to yellow high; red x marks the random query.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 24,
+        "series": 24,
+        "legend_items": 24,
+        "annotations": 24,
+        "data_marks_estimate": 12000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "2D sample coordinate",
+        "y": "2D sample coordinate",
+        "color": "query-conditioned attention weight",
+        "shape": "sample points and red query x",
+        "line": null,
+        "facet": "three query/sample blocks × eight heads (24 panels)",
+        "text": "Head titles and per-panel attention colorbars"
+      },
+      "data_and_statistics": "Twenty-four scatter panels: three visible blocks of eight layer-0 heads, each with a random query and many sample points. No uncertainty or replicate summary; block coordinate/color ranges are not shared.",
+      "evidence_relation": "Query-conditioned counterpart to Figure 12: matrix ordering → spatial attention field. Figure 1’s average/correlation panels and Appendix C prose use these views to support multi-scale learned-kernel specialization.",
+      "design_strengths": [
+        "Multiple blocks show that the head pattern is not tied to one query.",
+        "Red query marker and individual colorbars make each local field interpretable."
+      ],
+      "design_weaknesses": [
+        "Twenty-four panels are extremely dense at print size.",
+        "Unlabeled block boundaries and non-shared axes/color scales limit across-block comparison.",
+        "Color-only attention encoding is not grayscale safe."
+      ],
+      "reusable_pattern": "Use block×head small multiples for query-conditioned mechanisms, but label blocks and share coordinate/color scales or move the full grid to interactive supplement.",
+      "evidence": {
+        "page": 19,
+        "label": "Rendered Figure 13 6×4 scatter grid (three 8-head blocks)",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "other"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 14. Comparison of sliced score matching and our transformer model. The transformer model can be used without retraining and does not suffer from overfitting. We plot the negated score for ease of visualization.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#9ECAE1",
+          "#FF7F0E",
+          "#1F77B4"
+        ],
+        "semantic_mapping": "Light-blue points are samples; orange and blue arrows are true and predicted scores.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 12,
+        "legend_items": 12,
+        "annotations": 6,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "per-panel open area",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "2D score-field coordinate",
+        "y": "2D score-field coordinate",
+        "color": "sample points, true score and predicted score",
+        "shape": "points and score arrows",
+        "line": "negated score vectors",
+        "facet": "MLP/sliced score matching at 10/100/1000 steps versus universal Transformer settings",
+        "text": "panel legends and training-step labels"
+      },
+      "data_and_statistics": "Six qualitative score-field panels; upper panels vary sliced-score-matching training steps 10/100/1000 and lower panels show the universal Transformer. No MSE/error bars or repeat variation.",
+      "evidence_relation": "Appendix D’s score-matching loss and finite-difference implementation → visual under/over-fitting comparison; complements the main no-retraining claim and Figure 15’s cost/failure evidence.",
+      "design_strengths": [
+        "Training budget is exposed as a facet rather than hidden in prose.",
+        "Same true/predicted field grammar makes visual mismatch easy to inspect."
+      ],
+      "design_weaknesses": [
+        "Panel labels and step conditions are small; qualitative arrows do not quantify the stated claim.",
+        "Color/arrow overlap makes gray-scale reading only partially safe."
+      ],
+      "reusable_pattern": "Facet baseline optimization budget against a fixed universal model and add a compact numeric error summary.",
+      "evidence": {
+        "page": 20,
+        "label": "Rendered Figure 14 2×3 score-field comparison and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "failure",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 15. Runtime comparison between KDE and the Transformer model in 2 and 10 dimensions. Both are O(n²) asymptotically, but empirically the Transformer scales better and has improved memory efficiency. KDE encounters an OOM error at n = 2¹⁵.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E"
+        ],
+        "semantic_mapping": "Blue is KDE and orange is Transformer; same-color dashed curves are empirical slope fits.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 6,
+        "data_marks_estimate": 36
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sample size n, log scale",
+        "y": "wall-clock runtime in seconds, log scale",
+        "color": "KDE versus Transformer",
+        "shape": "circle markers",
+        "line": "runtime curves and dashed empirical slope fits",
+        "facet": "d=2 versus d=10",
+        "text": "dimension titles, method legend and slope labels"
+      },
+      "data_and_statistics": "Single L40S GPU with 48GB memory; runtime is plotted over n and each panel includes method fit slopes (left KDE −1.98/Transformer 1.65; right KDE −2.53/Transformer 1.65). KDE is censored by OOM at n=2¹⁵; no repeated-run uncertainty is shown.",
+      "evidence_relation": "Table 2’s large-n OOM and score accuracy → runtime/memory cost boundary; Appendix E explains the practical attention-kernel versus naive-KDE difference, while Figure 14 shows retraining as another cost.",
+      "design_strengths": [
+        "Log-log axes show crossover and empirical scaling in both dimensions.",
+        "OOM is visible as a failure boundary rather than silently omitted.",
+        "Dashed fits provide trend information beyond raw points."
+      ],
+      "design_weaknesses": [
+        "No warm-up, repetition, hardware-utilization or timing variability is reported.",
+        "Censored KDE series makes slope comparison sensitive to the stopping point.",
+        "Caption omits the small-n KDE advantage/crossover described in the body."
+      ],
+      "reusable_pattern": "Combine dimension facets, wall-clock curves, empirical slope fits and explicit OOM censoring; report hardware and repeated timing statistics alongside it.",
+      "evidence": {
+        "page": 21,
+        "label": "Rendered Figure 15 d=2/d=10 runtime panels and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 1. Relative MSE of affine equivariance error, averaged over 50 trials.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Only a 50-trial mean is shown; no SD/SE/interval or trial-level distribution.",
+      "data_and_statistics": "Rows are permutation, translation, isotropic scaling, anisotropic scaling, rotation and full affine; Rel. MSE values are 0, 0, 0, 0, 5×10⁻⁴ and 1×10⁻⁴.",
+      "evidence_relation": "Proposition 3.1/Remark 3.2 → empirical equivariance check; Figure 2 shows the whitening interface and the rotation boundary reappears in Limitations.",
+      "design_strengths": [
+        "Compact transform-by-error layout makes exact versus residual equivariance immediate.",
+        "Minimal rules fit the narrow column."
+      ],
+      "design_weaknesses": [
+        "Mean-only aggregation hides trial variability.",
+        "Rel. MSE denominator and experimental dimension are not in the table."
+      ],
+      "reusable_pattern": "Use transform rows and one normalized error column for symmetry checks, but define the denominator and add dispersion in a complete version.",
+      "evidence": {
+        "page": 3,
+        "label": "Rendered Table 1 and PDF caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 2. Relative MSE (%) of score estimation on GMMs. The Transformer was trained with n ∈ [2⁸, 2¹⁴], so the last three rows probe extrapolation past the training range. KDE encounters OOM past n = 2¹⁴ on a single 48GB L40S.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; OOM is a censored failure value, not a numeric estimate.",
+      "data_and_statistics": "Six n rows (2⁸–2¹⁷), grouped d=2/d=10 columns with Ours/KDE. Ours d=2: 14.67, 8.80, 7.24, 6.80, 5.35, 5.41; KDE: 43.8, 33.6, 24.6, 17.2, OOM, OOM. Ours d=10: 7.49, 4.65, 3.32, 2.83, 2.80, 2.74; KDE: 65.6, 61.3, 57.1, 52.9, OOM, OOM. Relative MSE is normalized so a zero predictor equals 100% in the body.",
+      "evidence_relation": "Exact numeric companion to Figure 4 left and Section 4.1: sample-size extrapolation, dimension split and GPU-memory failure are on one decision surface; Figure 15 expands cost.",
+      "design_strengths": [
+        "Two-level dimension×method header is efficient.",
+        "Extrapolation rows and OOM are explicit alongside accuracy."
+      ],
+      "design_weaknesses": [
+        "Ours/KDE decimal precision differs.",
+        "No seed/repetition or dispersion; hardware condition is caption-only.",
+        "Normalization to zero predictor is not repeated in the table header."
+      ],
+      "reusable_pattern": "Use dimension×method grouped columns and preserve OOM as a failure state; standardize precision and include aggregation/hardware footnotes.",
+      "evidence": {
+        "page": 6,
+        "label": "Rendered Table 2 grouped header, values, OOM cells and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3. MSE of score estimation on the 2D Laplace distribution.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty, intervals or repeated-trial dispersion.",
+      "data_and_statistics": "n=512, 1024, 2048, 4096; columns KDE and Transformer. Values are KDE 0.3810, 0.3305, 0.2990, 0.2650 and Transformer 0.3598, 0.2992, 0.2756, 0.2597; Transformer is bold per row.",
+      "evidence_relation": "First non-Gaussian score test after GMM results; Table 4 adds Student-t and TTT, while Figure 5 shows the TTT scaling view.",
+      "design_strengths": [
+        "Four-decimal precision is consistent.",
+        "Bold Transformer cells make row-wise comparison fast."
+      ],
+      "design_weaknesses": [
+        "Bold-as-best rule is not stated.",
+        "Single point values do not show OOD variation or TTT budget."
+      ],
+      "reusable_pattern": "Use a narrow n×baseline/model table for one OOD distribution and define row-best highlighting and aggregation.",
+      "evidence": {
+        "page": 7,
+        "label": "Rendered Table 3 values, bold cells and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 4. MSE of score estimation on the 2D Student-t distribution (ν = 3).",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty or replicate spread; all cells are point MSE values.",
+      "data_and_statistics": "Rows n=128, 256, 512, 1024; columns KDE, No TTT, TTT 4, TTT 6, TTT 8. Values: 0.1515/0.1980/0.1676/0.1569/0.1450; 0.1206/0.1119/0.0956/0.0908/0.0897; 0.0916/0.0574/0.0488/0.0485/0.0514; 0.0812/0.1023/0.0806/0.0768/0.0765. Per-row best is bold.",
+      "evidence_relation": "Discrete TTT budget evidence for Figure 5 and Section 4.1; Table 3 covers Laplace and Table 6 isolates whitening.",
+      "design_strengths": [
+        "No-adaptation and four budgets share one compact decision face.",
+        "Four decimals allow close TTT comparisons."
+      ],
+      "design_weaknesses": [
+        "TTT abbreviation/steps and bold rule are not in caption.",
+        "No adaptation cost, learning-rate or seed information."
+      ],
+      "reusable_pattern": "Expose adaptation budget as columns while retaining a no-TTT baseline; define units and selection rule in the caption.",
+      "evidence": {
+        "page": 7,
+        "label": "Rendered Table 4 Student-t/TTT grid and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 5. Score and log-density estimation in d = 100 on random 2-component diagonal-covariance GMMs (n = 2048 context, 256 queries). KDE baselines use two bandwidth strategies; “Oracle h” is the best fixed bandwidth found by grid search. DiScoFormer (d_model = 256, 8 heads, 6 layers) is evaluated at 150k training steps.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty or repetition reported.",
+      "data_and_statistics": "Rows Scott KDE, Oracle h KDE and DiScoFormer; columns Score MSE and Log-density MSE. Values: 1.155/967, 1.090/781 and 0.167/20.8; DiScoFormer is bold. Score precision is three decimals while log-density mixes integer and one decimal.",
+      "evidence_relation": "High-dimensional extension of Figure 4/Table 2; Oracle h prevents an uncompetitive fixed-bandwidth baseline and Figure 15 supplies the practical cost boundary.",
+      "design_strengths": [
+        "Places both outputs and a strong KDE bandwidth baseline together.",
+        "Caption gives d, context/query sizes, model configuration and training budget."
+      ],
+      "design_weaknesses": [
+        "Mixed precision across log-density cells.",
+        "No seed/aggregation and bold rule not stated.",
+        "The high-dimensional result is a single table without uncertainty."
+      ],
+      "reusable_pattern": "In a high-dimensional comparison, put multiple output metrics and an oracle baseline in one table, with the evaluation budget fully stated.",
+      "evidence": {
+        "page": 7,
+        "label": "Rendered Table 5 high-dimensional comparison and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 6. Ablation: effect of whitening on score and density estimation (d = 1). ID and OOD use different log-uniform meta-distributions over GMM location and scale parameters; OOD scales are well beyond the training range.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 3,
+      "rules": "minimal",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; ID/OOD and whitening values are single point MSEs.",
+      "data_and_statistics": "Two row groups ID/OOD, each with Whitening and No whitening; columns Score MSE and Log-density MSE. ID: 0.107/0.058 versus 0.118/0.066; OOD: 0.020/0.123 versus 1.136/1.593. Group-best cells are bold.",
+      "evidence_relation": "Directly tests Figure 2 whitening/Proposition 3.1 motivation; contrasts structural normalization with Figure 5’s test-time adaptation and supports the rotation/scale boundary in Limitations.",
+      "design_strengths": [
+        "Paired ID/OOD groups expose catastrophic OOD failure clearly.",
+        "Score and density outputs are evaluated together."
+      ],
+      "design_weaknesses": [
+        "Exact ID/OOD parameter ranges and bold rule are omitted.",
+        "Group label and metric header hierarchy are compact enough to require careful reading."
+      ],
+      "reusable_pattern": "Use paired ID/OOD row groups to isolate a structural component and report both primary outputs; state ranges and aggregation explicitly.",
+      "evidence": {
+        "page": 7,
+        "label": "Rendered Table 6 ID/OOD whitening ablation and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 2/Table 1 establish whitening and equivariance; Figure 1 links attention to KDE; Figure 3–5 and Tables 2–4 quantify score accuracy, scaling and TTT; Tables 5–6 add high-dimensional and whitening boundaries; Figure 6–11 show Fisher, SD-KDE, entropy and Landau plug-in uses; Figures 12–15 complete head specialization, score-matching failure and runtime/OOM evidence.",
+    "caption_system": "Captions use italic Figure/Table label followed by a descriptive sentence or comparison statement. Most captions provide title plus setup/comparison, while Figure 1/4/7/10/11/15 also state a main finding; uncertainty definitions, replicate counts and bold/highlight rules are usually absent.",
+    "table_header_system": "Tables use short serif headers, n or Method as the first column, and grouped dimension/method headers only where needed (Table 2). Metrics are MSE/relative MSE with occasional mixed decimal precision; ID/OOD appears as a row group in Table 6.",
+    "method_result_ablation_link": "Figure 2 and Table 1 ground the whitening/equivariance interface; Figure 1 and Appendix Figures 12–13 ground attention–KDE mechanism; score/density results and TTT appear in Figures 3–10/Tables 2–5; Table 6 isolates whitening under ID/OOD, separating structural normalization from TTT.",
+    "main_appendix_link": "Main Figure 1 selected four heads, expanded by all-head matrix/scatter views in Figures 12–13; main no-retraining score claim is stress-tested by Figure 14, and Table 2/score results receive runtime/memory boundary evidence in Figure 15. Appendix captions and text make the layer/head and failure conditions explicit but not always in the main captions.",
+    "typography_consistency": "The paper’s serif/Computer Modern typography and minimal table rules are stable across main and appendix. Matplotlib sans-serif labels become smaller in dense grids, particularly Figures 1, 10, 13 and 15.",
+    "color_consistency": "Viridis consistently maps attention/density magnitude, while blue/orange/red/green/purple identify methods or score roles. However, independent colorbars and color-only curve identities mean most objects are not robustly grayscale safe."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1’s field → matrix → correlation → head-specialization mechanism composite.",
+      "Figure 7/8’s truth-first qualitative comparison tied to panel/legend MISE.",
+      "Table 2/5/6’s grouped dimension/OOD/failure and ID/OOD ablation layouts.",
+      "Figure 15’s log-log runtime curves with empirical slopes and explicit OOM censoring."
+    ],
+    "highest_value_objects": [
+      "Figure 1：attention–KDE construction mechanism。",
+      "Figure 4 + Table 2：score dimension/sample-size scaling and extrapolation。",
+      "Table 5 + Table 6：high-dimensional performance and whitening boundary。",
+      "Figures 7–9：SD-KDE density recovery and scaling。",
+      "Figure 15：runtime/memory crossover and failure boundary。"
+    ],
+    "failure_patterns": [
+      "颜色承担主要语义且多数图灰度不安全。",
+      "caption 常写 excellent/best/outperforms，却没有 seed、重复或 uncertainty 定义。",
+      "Figure 1/13 的高 panel 密度压缩 axis、legend 与 colorbar；heatmap 的独立 normalization 限制跨 panel 比较。",
+      "表格的粗体规则、MSE 分母和聚合方式不总在 caption 中说明；OOM/slope 的 censoring 语义需要更明确。"
+    ],
+    "one_sentence_visual_strategy": "以白化与 attention–KDE 机制为入口，用 score/density 主比较、OOD/高维消融建立效果边界，再以 Fisher/entropy/PDE 插件和附录 attention、score-matching、runtime 图补齐机制、失败与成本证据。"
+  }
+}

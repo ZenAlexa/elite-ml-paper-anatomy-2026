@@ -1,0 +1,1554 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-5d471305c6f6",
+  "source_acquisition": {
+    "status": "no_public_source_found",
+    "repository_candidates": [
+      "https://github.com/HiroshiKERA/transformer-groebner"
+    ],
+    "selected_repository": null,
+    "visual_source_files": [],
+    "search_note": "The PDF reproducibility footnote on p.10 links https://github.com/HiroshiKERA/transformer-groebner as the repository for the cited Kera et al. (2024) prior work and states on p.11 that the authors own codebase is not publicly available. `gh repo view` confirms that this is the official NeurIPS-2024 prior-work repository; its main tree (HEAD 640bf3d73b7aa69efd8d86912e9d93ceae800988, 2024-11-18) contains dataset/training code and notebooks, but no target-paper Figure 1–6 or Table 1–12 generator/export. GitHub repository searches for HATSolver and the full title returned no target repository. The automated inventory row remains no_public_source_found, and corpus/visual_sources/iclr-2026-5d471305c6f6/ plus visual_source_files_local.csv contain no acquired files. All target styles and values are therefore PDF/render based; no weights, checkpoints, or datasets were fetched."
+  },
+  "paper_style": {
+    "main_figures": 2,
+    "main_tables": 3,
+    "appendix_figures": 4,
+    "appendix_tables": 9,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Sans L",
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "Nimbus Mono L"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 8.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figures 2–5 reuse a three-method blue/magenta/orange palette for training curves; Figure 1 is grayscale; Figure 6 uses pale module-role fills. Table 4 alone uses red text to mark trained configurations, while all other tables are grayscale booktabs-style.",
+    "vector_raster_mix": "All six figures and twelve tables are primarily PDF vector paths and text. `pdfimages -list` reports no embedded raster images. Curve figures contain vector translucent bands; diagrams and table rules remain vector. Full 21-page PDF was rendered at 180 dpi for inspection.",
+    "style_consistency": "Body/captions/tables use embedded Nimbus Roman No9 L and Computer Modern math objects; figure axes and legends use Nimbus Sans L-like objects, and Figure 1 includes monospace labels. The booktabs/no-vertical-rule table system is stable, but appendix curve legends, mixed y scales, and the red-only Table 4 encoding create local readability differences."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "tree",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Hierarchical representation of the tokenized system of equations p1 = x0^2 x1^2 + 5x0^2 x1, p2 = 3x0^3 + 2x1 over k[x0, x1].",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Mono L",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 2,
+        "hex": [
+          "#333333",
+          "#888888"
+        ],
+        "semantic_mapping": "Gray branch connectors and labels; no method category is encoded by hue.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "tree depth and horizontal branch position (not quantitative)",
+        "y": "system → equation → term → token hierarchy (not quantitative)",
+        "color": "none; gray line/text",
+        "shape": "node role and level labels",
+        "line": "branch connectors",
+        "facet": "single tree diagram",
+        "text": "System, Equation, Term, <bos>/<SEP>, C/E tokens and operators"
+      },
+      "data_and_statistics": "Single page-width tree with one System root, two Equation nodes, two Term nodes per equation, and token leaves. The worked example uses p1 and p2 over k[x0,x1], with coefficients C, exponents E, <bos>, <SEP>, and +. It is a conceptual encoding example rather than measured data.",
+      "evidence_relation": "§3.1 flat-attention token explosion → Figure 1 explicit system/equation/term/token tree → §3.2 bottom-up and top-down hierarchy → Eqs. (2)–(5).",
+      "design_strengths": [
+        "The depth and sibling structure make the proposed inductive bias concrete before the equations.",
+        "Monospace labels and branch geometry remain readable in grayscale.",
+        "The worked token example gives a direct bridge from symbolic input to tensor levels."
+      ],
+      "design_weaknesses": [
+        "The tree is an illustrative two-equation instance, not evidence that all tokenization has this shape.",
+        "There is no legend or explicit mapping from every C/E token to the later tensor axes.",
+        "Dense leaf labels become small at normal page zoom."
+      ],
+      "reusable_pattern": "Show one fully expanded symbolic example as a tree before introducing a hierarchical tensor or attention operator.",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 2: Training dynamics comparison; training models on predicting Gröbner bases for 52 hours on 8 V100 GPUs using the backward generated dataset of size 1 million multivariate systems over F7 with n = 6 variables and density ρ = 0.33. Baseline is the Kera et al. (2024) base model with 6/6 encoder decoder layers and 1024 embedding dimensions. The HATSolver-2/-3 models are our models with the same hyperparameters as the baseline, with the attention layer replaced by our hierarchical attention layer with 2 and 3 levels respectively. Sequence accuracy refers to the exact match accuracy of the model.",
+        "word_count": 99,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Sans L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#3888B0",
+          "#A84878",
+          "#F09010"
+        ],
+        "semantic_mapping": "Blue Baseline, magenta HATSolver-2, orange HATSolver-3; method identity is primarily color/legend.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "local legend inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Training Steps (x 50), linear 0–~9000",
+        "y": "Training/Evaluation Loss (top, log-like ticks) or Token/Sequence Accuracy (%) (bottom, linear)",
+        "color": "Baseline/HATSolver-2/HATSolver-3",
+        "shape": "none",
+        "line": "smoothed method trajectories",
+        "facet": "2×2 metrics: training loss, evaluation loss, token accuracy, sequence accuracy",
+        "text": "panel titles, local three-item legends, y-axis metric names"
+      },
+      "data_and_statistics": "Page-width 2×2 training dynamics: top panels plot training and evaluation loss with logarithmic-style scientific ticks; bottom panels plot token and exact-match sequence accuracy on linear percentage axes. Curves use three methods and translucent bands; the caption fixes 52 hours, 8 V100 GPUs, 1M backward-generated F7 systems, n=6, ρ=0.33, 6/6 layers and d=1024, but does not define the bands or replicate denominator.",
+      "evidence_relation": "§4.1 model comparison claim → Figure 2 speed/accuracy trajectories → §4.2 Table 1 scale-up and §4.3 Table 2 curriculum ablation; Appendix Figures 4–5 extend the same metric triptych.",
+      "design_strengths": [
+        "The four metrics share a time axis, letting learning speed and exact-match behavior be read together.",
+        "Local legends keep each panel independently interpretable.",
+        "The page-width float gives the bands and late-stage separation enough room."
+      ],
+      "design_weaknesses": [
+        "Loss panels and accuracy panels use different y semantics without a global note in the graphic.",
+        "Visible bands lack a caption definition, seed count, or aggregation denominator.",
+        "Local repeated legends consume plotting area and increase decoding time."
+      ],
+      "reusable_pattern": "Pair loss and token/sequence accuracy in a fixed 2×2 training-dynamics grid when comparing a structured model to a flat baseline.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 15,
+      "module": "appendix C.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "experimental_design",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 3: Training base models with varying embedding dimensions and number of layers for 48 hours on multivariate datasets of n = 3 variables over finite field F7 and density ρ = 0.5. Each configuration is run with 3 seeds and the plotted lines are smoothened averages. Hyperparameters: batch size = 32, learning rate = 3 · 10−5 with 1000 warm up steps. Training on 1 × V100 per experiment for 48 hours.",
+        "word_count": 73,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Sans L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#A8C8F0",
+          "#F0A05A",
+          "#90E0A8",
+          "#F08F8F"
+        ],
+        "semantic_mapping": "Four width/depth configurations: blue base 3/3 1024, orange base 4/4 1024, green base 8/8 512, salmon base 6/6 512.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 12,
+        "data_marks_estimate": 700
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "inside each panel (upper-right in loss panels; lower-right in accuracy panels)",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Training Steps (x 50), 0–~6300",
+        "y": "Training/Evaluation Loss (top, log-like) or Token/Sequence Accuracy (%) (bottom, linear)",
+        "color": "width/depth model configuration",
+        "shape": "none",
+        "line": "smoothed mean curves with translucent bands",
+        "facet": "2×2 loss/accuracy facets",
+        "text": "four-item configuration legends and panel metric titles"
+      },
+      "data_and_statistics": "Appendix page-width 2×2 comparison of base Transformer configurations (3/3 d=1024, 4/4 d=1024, 8/8 d=512, 6/6 d=512) on n=3, F7, ρ=0.5. Each configuration uses 3 seeds; caption says plotted lines are smoothed averages. Bands are visible but their statistic is not named. Top loss axes use logarithmic-style ticks; bottom accuracy axes are linear.",
+      "evidence_relation": "Appendix C.1 width-versus-depth ablation → Figure 3 → choice of wider base models → main HATSolver architecture in Figures 2/4/5.",
+      "design_strengths": [
+        "The same metric grid makes width/depth trade-offs comparable across loss and accuracy.",
+        "Three-seed averaging is disclosed in the caption, supporting a more reproducible interpretation.",
+        "Configuration names encode both layer depth and embedding dimension compactly."
+      ],
+      "design_weaknesses": [
+        "The ribbons are not defined as SD, SE, or range despite the seed statement.",
+        "Different y scales across rows prevent direct visual magnitude comparison.",
+        "Four long legend labels crowd each small panel."
+      ],
+      "reusable_pattern": "Use a controlled width/depth 2×2 learning-dynamics ablation before fixing a production architecture.",
+      "evidence": {
+        "page": 15,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 16,
+      "module": "appendix C.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4: Training dynamics comparison; training models for 72 hours on multivariate datasets of n = 7 variables and density ρ = 0.25",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Sans L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#3888B0",
+          "#F09010",
+          "#A84878"
+        ],
+        "semantic_mapping": "Blue Baseline, orange HATSolver-3, magenta HATSolver-2; only color and legends distinguish methods.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 500
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "inside panels (upper-right for top row, upper-left for bottom row)",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Training Steps (x 50), 0–~14,000",
+        "y": "Training/Evaluation Loss (top, log-like) or Token/Sequence Accuracy (%) (bottom, linear)",
+        "color": "Baseline/HATSolver-3/HATSolver-2",
+        "shape": "none",
+        "line": "smoothed trajectories; orange HATSolver-3 has visible ribbons",
+        "facet": "2×2 metrics for n=7, ρ=0.25",
+        "text": "panel titles and local method legends"
+      },
+      "data_and_statistics": "Appendix C.2 training dynamics for n=7, ρ=0.25 over 72 hours on 8 V100 GPUs (setting stated in surrounding text). Four panels use the same loss/accuracy arrangement as Figure 2. Baseline terminates near 2,400 steps and sequence accuracy remains 0%; HATSolver-2/3 continue farther. A translucent band is visible mainly around HATSolver-3, with no statistic or seed count in the short caption.",
+      "evidence_relation": "§4.1 larger-instance claim → Appendix C.2 Figure 4 → evidence that HATSolver-2/3 train farther than the baseline → comparison with Figure 5 and Table 4.",
+      "design_strengths": [
+        "The identical 2×2 grammar supports direct visual comparison to Figure 2.",
+        "Early termination of the baseline is visible rather than hidden by extrapolation.",
+        "Separate loss and accuracy panels show both optimization and task behavior."
+      ],
+      "design_weaknesses": [
+        "Only one method has a visible uncertainty band, making uncertainty treatment asymmetric.",
+        "The caption omits the hardware, number of seeds, and band definition supplied only in nearby prose.",
+        "Different end-of-run x ranges make speed comparisons partly dependent on plot truncation."
+      ],
+      "reusable_pattern": "Reuse a fixed training-dynamics panel grammar across increasing problem sizes, while showing the point where a baseline stops learning.",
+      "evidence": {
+        "page": 16,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 17,
+      "module": "appendix C.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: Training dynamics comparison; training models for 72 hours on multivariate datasets of n = 10 variables and density ρ = 0.1",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Sans L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#3888B0",
+          "#F09010",
+          "#A84878"
+        ],
+        "semantic_mapping": "Blue Baseline, orange HATSolver-3, magenta HATSolver-2; method identity is color plus legend.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 450
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "inside panels (upper-right for loss panels; upper-left for accuracy panels)",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Training Steps (x 50), 0–~8500",
+        "y": "Training/Evaluation Loss (top, log-like) or Token/Sequence Accuracy (%) (bottom, linear)",
+        "color": "Baseline/HATSolver-2/HATSolver-3",
+        "shape": "none",
+        "line": "smooth line trajectories",
+        "facet": "2×2 metrics for n=10, ρ=0.1",
+        "text": "panel titles and local legends"
+      },
+      "data_and_statistics": "Appendix C.2 page-width 2×2 training dynamics for n=10, ρ=0.1 over 72 hours. The baseline stops around 2,400 steps and has 0% sequence accuracy; HATSolver-2/3 continue to about 6,000/8,000 steps and reach roughly 9%/8% in surrounding prose. No error bands, replicate count, or uncertainty encoding is visible.",
+      "evidence_relation": "Appendix C.2 n=10 stress test → Figure 5 → surrounding text claim of >400K HATSolver-3 versus <120K baseline training steps → main efficiency narrative.",
+      "design_strengths": [
+        "The same panel order as Figures 2 and 4 makes scaling behavior easy to compare.",
+        "Baseline truncation and zero sequence accuracy remain visually explicit.",
+        "Loss and accuracy curves jointly show learning-rate/compute behavior."
+      ],
+      "design_weaknesses": [
+        "The short caption leaves all method and hardware context to preceding prose.",
+        "Different endpoints and no uncertainty prevent a clean estimate of run-to-run stability.",
+        "The large gap between top and bottom y semantics is not explained inside the figure."
+      ],
+      "reusable_pattern": "Keep a stable small-multiple training grammar for an appendix stress test, so failure to learn is visible as a trajectory endpoint.",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 18,
+      "module": "appendix C.3",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 6: Architectural adaptation of the Hi-Transformer Wu et al. (2021) for multivariate polynomial equation systems. We modified the original layer ordering—originally a repeated sequence of (Sentence, Document, Sentence)—to a grouped configuration of N Equation layers, followed by 2N System layers, and finally N Equation layers. This modification ensures that an equal network depth is allocated to both system-wide and equation-level information processing.",
+        "word_count": 63,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Sans L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#D8EFD8",
+          "#FFF4C4",
+          "#DCE8F7",
+          "#555555"
+        ],
+        "semantic_mapping": "Pale green Equation Transformer blocks, pale yellow System Transformer, pale blue symbol/position embeddings, gray arrows and dashed containers.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 26,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "top-to-bottom flow and repeated block positions (not quantitative)",
+        "y": "input symbols → equation levels → system level → output equation tokens",
+        "color": "module role by pale fill color",
+        "shape": "N/2N repetition multipliers and Equation 1/2/M labels",
+        "line": "solid/dashed arrows and repeated block outlines",
+        "facet": "single architecture flow diagram",
+        "text": "Equation Transformer, System Transformer, Symbol & Pos Emb, d/h/e/p labels"
+      },
+      "data_and_statistics": "Page-width architecture schematic adapted from Hi-Transformer: N Equation layers bottom-up, 2N System layers, then N Equation layers top-down. It shows three representative equations, symbol/position embeddings, intermediate e/h/p states, and output tokens. No numeric benchmark is encoded; layer multiplicities and ordering are the evidence.",
+      "evidence_relation": "§5 related-work distinction from Hi-Transformer → Appendix C.3 Figure 6 adaptation → reported n=5/n=13 comparison → conclusion that HATSolver-3 is faster at scale.",
+      "design_strengths": [
+        "Grouped N/2N/N blocks make the modified depth allocation immediately visible.",
+        "Input, intermediate, and output states are linked by directional arrows and repeated equation lanes.",
+        "Colors distinguish module roles while labels preserve grayscale interpretability."
+      ],
+      "design_weaknesses": [
+        "Ellipses and representative equations hide the exact number of equations and token lengths.",
+        "The diagram does not expose parameter sharing or the precise cross-level operation.",
+        "Several tiny d/e/h/p labels are difficult to read at normal paper scale."
+      ],
+      "reusable_pattern": "Use repeated-block architecture diagrams with explicit multiplicity labels when adapting a known hierarchy to a new symbolic domain.",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 1: Performance of HATSolver-3 on computing Gröbner bases for polynomial systems with 13 variables over F7, across varying system densities with comparison to traditional algorithms STD-FGLM Greuel et al. (2009); Faugère et al. (1993) and Msolve Berthomieu et al. (2021). The density (%) indicates the proportion of nonzero terms in the matrix U2 in backward generation 2.4, controlling the sparsity of the systems. Success denotes the exact match test accuracy, i.e. the percentage of the test set instances for which the model generated the exact correct Gröbner basis. Support Acc. measures the accuracy when only the support (i.e., the set of monomials) of the polynomials is considered, treating two polynomials as equal if they have the same set of monomials regardless of coefficients. Per Token Acc. reports the average token-level accuracy over all outputs. The reported runtime corresponds to the output generation phase, noting that no optimization efforts were implemented (e.g. key-value caching, inference engines, etc.). For the STD-FGLM and Msolve algorithms, a run is considered failed after a 2 hour time limit.",
+        "word_count": 174,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 10,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No error bars or intervals. Accuracy metrics are point percentages; runtime is seconds. The caption defines a two-hour timeout for classical methods but the table has no explicit timeout/failure cells or common denominator.",
+      "data_and_statistics": "Header has Density (%) over 30–100; the first two columns are method group and metric, followed by eight density columns. Ours has Success, Support Acc., Per Token Acc., Runtime; STD-FGLM and Msolve have Success and Runtime. Values mix one-decimal percentages and integer seconds. Ours runtime is inference/output generation only; classical runs are censored at two hours.",
+      "evidence_relation": "§4.2 n=13 scale-up claim → Table 1 heterogeneous accuracy/runtime comparison → §4.3 curriculum ablation Table 2 and Appendix Tables 7/12 for data and training context.",
+      "design_strengths": [
+        "Success, support, token accuracy, and runtime share one density sweep.",
+        "Three method groups avoid a completely flat baseline list.",
+        "The caption defines the support metric and timeout protocol rather than relying only on body text."
+      ],
+      "design_weaknesses": [
+        "The ten-column layout makes horizontal reading expensive and omits a visible Method/Metric header.",
+        "Ours, STD-FGLM, and Msolve use different hardware/protocol and timeout semantics.",
+        "Runtime is inference-only for Ours while the headline comparison can be read as end-to-end."
+      ],
+      "reusable_pattern": "Use method-group rows and a density header when performance and cost must be compared across a controlled difficulty sweep.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 2: (Exact Match) Accuracy of HATSolver-3 trained without curriculum on n = 13 variables over F7 at ρtrain = 0.9, evaluated across densities ρtest ∈ {0.1, 0.2, . . . , 1.0}. Each test set contains 1000 systems. Model architecture: 4 encoder layers, 4 decoder layers, embedding dimension 1408. Bold indicates training density.",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 11,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; each density is an exact-match accuracy percentage on 1000 systems, with no seed or dispersion reported.",
+      "data_and_statistics": "One Accuracy (%) body row across ten test densities (10–100); the 90% training density is bold. Caption fixes ρtrain=0.9, n=13, F7, 4/4 encoder/decoder layers, d=1408, and 1000 systems per test set. Values are two-decimal percentages.",
+      "evidence_relation": "Table 1 curriculum-trained result → Table 2 no-curriculum control → §4.3 attribution of representational capacity versus curriculum/data-budget effects.",
+      "design_strengths": [
+        "A single sweep makes distance from the training density visible.",
+        "Bold training-density cell provides a direct reference point.",
+        "The caption states architecture and test-set size."
+      ],
+      "design_weaknesses": [
+        "The one-row table lacks a visual baseline or paired curriculum row.",
+        "Bold encodes training density, not best accuracy, which requires careful caption reading.",
+        "No seed or uncertainty means the apparent density pattern cannot be separated from run noise."
+      ],
+      "reusable_pattern": "Place a compact one-row distribution-shift ablation beside the main table to isolate training-regime effects.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 3: Exact Match Accuracy (%) of our model on Gröbner basis prediction of multivariate polynomial systems with n = 5 variables across different densities over multiple finite fields. Training is done on 1 A100 GPU per field for 24 hours using the backward data generation method from Kera et al. (2025). Model parameters are 2 encoder layers, 6 decoder layers, 1024 embedding dimensions.",
+        "word_count": 64,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty or replicate spread; cells are exact-match percentages.",
+      "data_and_statistics": "Two-level header: Field plus Density (%) spanning 20, 40, 60, 80, 100. Rows are F7, F16, F17; all entries are two-decimal exact-match accuracy. Caption states one A100 GPU per field for 24 hours, n=5, backward generation from Kera et al. (2025), 2 encoder/6 decoder layers, d=1024.",
+      "evidence_relation": "§4.4 new backward-generated data → Table 3 prime/non-prime field sweep → conclusion that learned performance is comparable across F7/F16/F17 but declines with density.",
+      "design_strengths": [
+        "Field is separated from density, allowing a clean cross-field comparison.",
+        "The small table exposes the full five-point density trend without extra decoration.",
+        "Training hardware/time and model size are in the caption."
+      ],
+      "design_weaknesses": [
+        "No denominator, seed, or variance is reported for the percentages.",
+        "The table cannot distinguish the effect of finite-field characteristic from the field-specific training run.",
+        "The caption says “our model” while the exact model identity is only indirectly specified."
+      ],
+      "reusable_pattern": "Use a two-level field×difficulty header for compact robustness checks across algebraic domains.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 15,
+      "module": "appendix B.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4: (Exact Match) Accuracy (%) / Support Accuracy (%) of the base transformer model in predicting Gröbner bases for multivariate polynomial systems over F7. Each cell reports accuracy over 1,000 test samples, after training with 1 million samples per training setting (values shown in red: (n, *ρ) ∈ {(2, 1), (3, 0.5, 1), (4, 0.5, 1), (5, 0.33, 0.67, 1), (6, 0.33, 0.67, 1), (7, 0.25, 0.5, 0.75, 1)}. Non-colored cells correspond to interpolated evaluations. n is the number of variables, ρ is the density of the randomly generated system (backward generation method). The curriculum learning approach enables scaling to larger and denser systems compared to prior work.",
+        "word_count": 109,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "text_color"
+      ],
+      "uncertainty": "No uncertainty; each cell is exact-match/support accuracy over 1000 test samples.",
+      "data_and_statistics": "Two-level header with n=2–7 spanning six columns and ρ (%) as the row variable (10, 25, 33, 50, 67, 75, 100). Cells are exact-match/support percentages with one decimal. Red cells denote configurations actually trained (the listed n,ρ pairs); non-colored cells are interpolated evaluations. Caption and body describe 1M samples per training setting and backward generation.",
+      "evidence_relation": "§4.2 curriculum scaling claim → Appendix B.1 Table 4 grid of trained/interpolated base-model settings → Figure 3 architecture choice and main Figures 2/4/5.",
+      "design_strengths": [
+        "Text color makes the training-versus-interpolation boundary visible without adding columns.",
+        "The n×ρ grid shows both dimensional and density scaling in one object.",
+        "The caption defines the red set, sample size, metric pair, and density symbol."
+      ],
+      "design_weaknesses": [
+        "Colored cells are not robust in grayscale and are not duplicated by a symbol.",
+        "Interpolated evaluations can look like measured training points at a glance.",
+        "The table caption claims scaling while a nearby prose value is rounded/inconsistent with the visible n=7 full-density cell."
+      ],
+      "reusable_pattern": "Use a condition-colored grid to separate directly trained configurations from interpolation, but add a non-color marker for accessibility.",
+      "evidence": {
+        "page": 15,
+        "label": "Table 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 18,
+      "module": "appendix C.4",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5: Exact Match Accuracy (%) of our model on Gröbner basis prediction of multivariate polynomial systems with n = 7 variables across different densities over the prime and non-prime finite fields F17 and F24. Training is done on 1 A100 GPU per field for 24 hours. Model parameters are 2 encoder layers, 6 decoder layers, 1024 embedding dimensions.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; exact-match accuracy percentages only.",
+      "data_and_statistics": "Two-level header: Field and Density (%) with five density columns (20–100); rows F16 and F17, two-decimal exact-match accuracy. Caption fixes n=7, 1 A100 GPU per field for 24 hours, 2/6 encoder-decoder layers, d=1024. The visual table uses F16/F17 labels although caption describes F24 = F16 as a non-prime extension field.",
+      "evidence_relation": "Appendix C.4 finite-field generalization → Table 5 → robustness claim across prime F17 and non-prime F16/F24.",
+      "design_strengths": [
+        "Field and density are explicit, so the graceful decline is easy to scan.",
+        "Small footprint keeps the auxiliary result adjacent to Figure 6 and dataset appendix.",
+        "Caption includes training budget and model dimensions."
+      ],
+      "design_weaknesses": [
+        "The F16 versus F24 notation is potentially confusing without the prose equivalence.",
+        "No uncertainty or common test-set denominator is shown.",
+        "The table supports a field comparison but not a controlled characteristic-only intervention."
+      ],
+      "reusable_pattern": "Keep a small field×density table next to the explanatory paragraph rather than burying field labels in prose.",
+      "evidence": {
+        "page": 18,
+        "label": "Table 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 19,
+      "module": "appendix D.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Data Generation Configuration and explanations.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 14,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration values and explanatory text, not estimates.",
+      "data_and_statistics": "Three columns Hyperparameter / Value / Explanation and 14 body rows. It records degree/density/field/GB type, F/G degree and term caps, max size, duplication, train/test sample counts, variable count, and term sampling. The degree_sampling value is explicitly “(empty)” and its explanation says not specified.",
+      "evidence_relation": "§2.4 backward dataset generation → Appendix D.1 Table 6 configuration → Tables 1/2/7 reproducibility and density-cap interpretation.",
+      "design_strengths": [
+        "Parameter, value, and explanation are co-located for reproduction.",
+        "The wide explanation column preserves semantic meaning for caps and sampling.",
+        "Underscored machine-like parameter names can be mapped back to configuration keys."
+      ],
+      "design_weaknesses": [
+        "The unspecified degree sampler is a material reproducibility gap.",
+        "Long explanations and inconsistent mathematical/plain-text notation reduce scanability.",
+        "No source-file path, seed, or generator version is included in the table."
+      ],
+      "reusable_pattern": "Use a three-column configuration table when parameter names alone would not explain dataset semantics.",
+      "evidence": {
+        "page": 19,
+        "label": "Table 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 19,
+      "module": "appendix D.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7: Statistics about the 13-variable datasets over F7. Max # Monoms in Sys. is the maximum number of monomials per equation in each system, for which we report the max/mean/std over the whole dataset. This is the metric we cap to 400 for training. This means that for ρ = 0.4 for example, we trained on most of the dataset as mean+std = 277 + 75 < 400 while for ρ = 1, we considered less than 10% of the dataset as mean - std > 400. We also report the total number of monomials in each system Total # Monoms in Sys. which would be relevant for HATSolver-2 which considers this entity instead.",
+        "word_count": 115,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Descriptive standard deviations are shown in the `std` subcolumns; they are not confidence intervals and no sample-count/estimation uncertainty is given.",
+      "data_and_statistics": "Two-level grouped header: Density; Max # Monoms in Sys. (max/mean/std); Total # Monoms in Sys. (mean/std); Max Degree (max). Ten density rows 0.1–1.0, with one-decimal values. The caption explains the 400-per-equation cap, the HATSolver-3 interpretation, and why total monomials matter for HATSolver-2.",
+      "evidence_relation": "Table 1 n=13 density sweep → Appendix D.2 Table 7 dataset-size statistics → rationale for the 400-term cap and HATSolver-2 versus HATSolver-3 levels.",
+      "design_strengths": [
+        "Grouped headers separate per-equation and per-system sequence proxies.",
+        "Mean/std plus max exposes the tail that drives the training cap.",
+        "The caption links the statistics to concrete sampling decisions."
+      ],
+      "design_weaknesses": [
+        "The caption is long and repeats table labels rather than stating a single decision takeaway.",
+        "“Max # Monoms in Sys.” and level-1 sequence length require prose to disambiguate.",
+        "No histogram or quantile view shows how much mass lies beyond the cap."
+      ],
+      "reusable_pattern": "Pair max/mean/std grouped columns with a prose threshold when a training truncation depends on dataset tails.",
+      "evidence": {
+        "page": 19,
+        "label": "Table 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 20,
+      "module": "appendix D.3",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "dataset",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 8: Statistical Comparison of Forward and Backward Generation Datasets for n = 3 over F7",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Std subcolumns are descriptive dispersion; no inferential uncertainty is intended.",
+      "data_and_statistics": "Two-level grouped header with Metric and Forward Generation/Backward Generation, each split into Mean, Std, Median. Five metrics: sequence length, max equation size, terms per equation, term degree, equations per sample; n=3 over F7. Values are mostly two-decimal summaries.",
+      "evidence_relation": "Appendix D.3 backward-versus-forward data question → Table 8 sequence/term distribution comparison → Tables 9–10 intrinsic dimension and BART outcomes.",
+      "design_strengths": [
+        "Mean/std/median under each generation regime make distributional differences compact.",
+        "Vertical group rules separate the two data-generation families.",
+        "The metric list anticipates the later rank/PCA analysis."
+      ],
+      "design_weaknesses": [
+        "Only n=3 is shown, so the relationship to n=13 headline data is indirect.",
+        "The short caption omits sample sizes and the role of the statistics in training.",
+        "Grouped columns require careful horizontal tracking at single-column width."
+      ],
+      "reusable_pattern": "Use parallel summary-statistic blocks to compare data-generation regimes before reporting model performance.",
+      "evidence": {
+        "page": 20,
+        "label": "Table 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 20,
+      "module": "appendix D.3.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9: Intrinsic Dimensionality Analysis",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; rank, PCA dimensionality, sparsity ratio, and average non-zero counts are descriptive summaries.",
+      "data_and_statistics": "Three columns Metric / Forward Generation / Backward Generation and six rows: Matrix Rank, 90%, 95%, 99% Variance (dims), Sparsity Ratio, Avg Non-zero Elements. Values mix integers, three-decimal ratios, and one-decimal counts.",
+      "evidence_relation": "Appendix D.3.1 rank statement → Table 9 intrinsic-dimensionality comparison → D.3.3 BART training result and the claim that backward data occupy a constrained subspace.",
+      "design_strengths": [
+        "A minimal three-column layout makes the 364-versus-216 rank contrast salient.",
+        "Variance thresholds and sparsity sit beside rank rather than in separate prose.",
+        "No decorative highlighting distracts from the direct regime comparison."
+      ],
+      "design_weaknesses": [
+        "Mixed precision and units are not signaled in the header.",
+        "The caption is only a title; definitions of variance/dimensions remain in prose.",
+        "No sample count or bootstrap uncertainty accompanies the dimensionality estimates."
+      ],
+      "reusable_pattern": "Keep intrinsic-structure diagnostics in a compact regime-by-metric table, with units made explicit in headers.",
+      "evidence": {
+        "page": 20,
+        "label": "Table 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 20,
+      "module": "appendix D.3.3",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 10: BART Model Performance on Gröbner Basis Prediction over F7",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; token/exact/support metrics are point percentages and Samples is a count.",
+      "data_and_statistics": "Seven columns n, Density (ρ), Method, Token Acc., Acc., Support Acc., Samples; four rows comparing BG and FG at n=2/3 and densities 0.5/1.0. Percentages use two decimals, density and sample count use mixed formats. The forward-generation row has 0.10% exact accuracy versus higher backward-generation rows.",
+      "evidence_relation": "Table 8/9 data-regime diagnostics → Table 10 BART forward/backward training results → evidence that generation distribution changes learnability.",
+      "design_strengths": [
+        "Method and density are explicit, avoiding an implicit regime comparison.",
+        "Token, exact, support, and sample count share one compact result surface.",
+        "The FG failure row remains visible rather than being omitted."
+      ],
+      "design_weaknesses": [
+        "The caption does not define BG/FG or each accuracy metric.",
+        "Rows have unequal sample counts (987/903/1000) without explanation.",
+        "No model hyperparameters, seed, or uncertainty appears beside the performance values."
+      ],
+      "reusable_pattern": "Report token-level, task-level, structural-support metrics together when a data-regime claim needs multiple notions of success.",
+      "evidence": {
+        "page": 20,
+        "label": "Table 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 21,
+      "module": "appendix E",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 11: Comparison of STD-FGLM algorithm execution times between reported literature values in Kera et al. (2024) and experimental verification. Our results show mean ± standard deviation and median execution times across 1000 trials per configuration (n = 2 to 5 variables, finite field F7) using ’libsingular:stdfglm’ implementation via SageMath. Matched column indicate that the found groebner basis matches the one used in backward generation as a sanity check metric. Our measurements (in seconds) are consistently faster than reported values. All trials were conducted on Intel(R) Xeon(R) Gold 6230 CPU @ 2.10GHz (80 cores).",
+        "word_count": 94,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean Time ± Std is explicit descriptive standard deviation over 1000 trials; median and max are also reported. No confidence interval is provided.",
+      "data_and_statistics": "Seven columns n, Density, Matched, Mean Time ± Std (s), Median (s), Max (s), Paper Claim Mean (s); four configurations n=2–5. All Matched values are 100%. Measured times are milliseconds-to-subsecond while literature claims are 7–8 seconds. Mixed decimal precision reflects seconds and percentages.",
+      "evidence_relation": "§4.2 uses classical baselines → Appendix E/Table 11 independent STD-FGLM timing check → Table 1 timeout interpretation and reproducibility caveat.",
+      "design_strengths": [
+        "Mean, median, max, and literature claim show the discrepancy from multiple angles.",
+        "Matched is a sanity-check column that separates timing from correctness.",
+        "The caption names the implementation, trial count, hardware, and units."
+      ],
+      "design_weaknesses": [
+        "The hardware/protocol mismatch limits direct comparison to literature claims.",
+        "The large scale difference is not visualized as a ratio and must be read numerically.",
+        "The table uses “groebner” in prose without a normalized notation and no code artifact link."
+      ],
+      "reusable_pattern": "When disputing a benchmark, place measured mean/dispersion, correctness check, and cited claim in one auditable table.",
+      "evidence": {
+        "page": 21,
+        "label": "Table 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 21,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 12: Hyperparameters used in our table 1 training experiment.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 31,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: hyperparameter values, not estimates.",
+      "data_and_statistics": "Two columns Hyperparameter / Value and 31 configuration rows, including task/model, sample counts, optimizer, heads, timescale, clipping, dtype, sequence lengths, n, density, batches, field, curriculum parameters, coefficients/degree, positional encoding, padding, layer counts, and d=1408. The PDF visibly renders Max sequence length as `15,400,15`, an ambiguous value. Machine-like names and inline comments are preserved.",
+      "evidence_relation": "Table 1 headline training setup → Appendix F Table 12 hyperparameter disclosure → reproduction boundary; Table 6 separately covers dataset generation.",
+      "design_strengths": [
+        "A long two-column table keeps all training knobs in one place.",
+        "Values retain implementation vocabulary such as `hatsolver.3`, `float16`, and `concat # versus sum`.",
+        "The caption directly points back to the main experiment."
+      ],
+      "design_weaknesses": [
+        "The ambiguous `15,400,15` sequence-length value is a concrete reproducibility defect.",
+        "No seed, checkpoint, code version, or hardware is included in the table itself.",
+        "The table is dense and mixes prose comments with machine values, increasing transcription risk."
+      ],
+      "reusable_pattern": "Expose implementation-level hyperparameters in a narrow key/value appendix table, but validate every machine value before release.",
+      "evidence": {
+        "page": 21,
+        "label": "Table 12",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 first makes the symbolic tree explicit, Figure 2 demonstrates training speed/accuracy, Table 1 reports n=13 density performance, and Table 2 separates hierarchical architecture from curriculum. Table 3 tests finite-field transfer. Appendix Figures 3–5 and Table 4 expand architecture/scaling; Figure 6 and Tables 5–12 document an alternative hierarchy, fields, data statistics, timing, and training configuration.",
+    "caption_system": "Figure captions use a short title followed by setup and encoding details. Figure 2 and Figure 3 are the most self-contained; Figures 4–5 are terse and rely on nearby prose. Table 1 defines metrics and timeout, Table 4 defines colored trained/interpolated cells, and Tables 6–12 range from explanatory captions to title-only diagnostics. Bands are visible in Figures 2–4 but their statistic is generally omitted.",
+    "table_header_system": "Main Tables 1–3 use density/field headers with metric rows; Appendix Tables 4, 5, 7, and 8 use grouped multi-level headers, while Tables 6 and 12 use key/value or key/value/explanation layouts. Booktabs rules dominate; partial vertical separators appear in Tables 8–9. Units are partly in headers but precision is mixed for runtime and configuration tables.",
+    "method_result_ablation_link": "Figure 1 supplies the tree interface; Figure 2 links HAT replacement to learning dynamics; Table 1 is the headline scale/efficiency comparison; Table 2 is the no-curriculum control. Figure 3/4/5 and Table 4 probe model width, depth, curriculum and problem size, while Table 3 and Figure 6 extend field and architecture comparisons.",
+    "main_appendix_link": "The main text directly calls Appendix Figures 4–5, Table 7, Appendix B, and Table 11. Appendix Table 4 expands the curriculum evidence behind the n=7 claim; Tables 6–7 and 12 expose dataset/training boundaries; Tables 8–10 test generation-distribution effects; Table 11 qualifies the classical-runtime comparison.",
+    "typography_consistency": "Embedded Nimbus Roman/Computer Modern objects keep captions and tables coherent. Figure interiors use a smaller sans-serif-like scale, with Figure 1 monospace node labels and Figure 6 bold diagram labels. Appendix figures preserve the same 2×2 grammar but become dense through repeated legends and small tick labels.",
+    "color_consistency": "Blue/magenta/orange consistently identify Baseline/HATSolver variants in Figures 2–5, but Figure 3 uses four pastel configuration colors and Figure 6 switches to module-role fills. Table 4 red text is a condition marker without a grayscale duplicate. Most tables are color-free, so the figure palette does not become a global table semantic."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Use one explicit symbolic tree before introducing hierarchical attention.",
+      "Keep a stable 2×2 loss/token/sequence accuracy grammar across problem-size and architecture ablations.",
+      "Use grouped density/field headers and method-group rows to place success metrics beside cost or training conditions.",
+      "Separate directly trained versus interpolated configurations with a redundant marker, not color alone."
+    ],
+    "highest_value_objects": [
+      "Figure 1, because it makes the token→term→equation→system inductive bias inspectable.",
+      "Figure 2, because it pairs learning speed with exact-match behavior under a controlled common setup.",
+      "Table 1, because it puts exact/support/token accuracy and runtime on one density axis.",
+      "Table 2 and Table 4, because they expose curriculum versus architecture and training/interpolation boundaries.",
+      "Table 11, because it makes the classical-runtime protocol discrepancy auditable."
+    ],
+    "failure_patterns": [
+      "Short appendix captions (Figures 4–5, Tables 8–10) omit metric definitions, seeds, denominators, or aggregation details.",
+      "Loss/accuracy panels mix y scales and repeated local legends, increasing visual decoding cost.",
+      "Bands appear asymmetrically and are rarely defined; Table 4 relies on red text without redundant encoding.",
+      "Main runtime headline compares inference-only neural output to timeout-censored classical runs, and Table 12 contains an ambiguous sequence-length value.",
+      "There is no public exact source for the target paper figures/tables; the only linked repository is prior-work code."
+    ],
+    "one_sentence_visual_strategy": "Make the symbolic hierarchy concrete first, use a repeatable 2×2 learning-dynamics grammar to establish efficiency, place density/field/curriculum comparisons in compact tables, and move scale, data-distribution, timing, and implementation caveats into explicitly linked appendix objects."
+  }
+}

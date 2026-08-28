@@ -1,0 +1,1204 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-d99017a21fe7",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/pixeli99/Prophet"
+    ],
+    "selected_repository": "https://github.com/pixeli99/Prophet",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/pixeli99/Prophet",
+        "path": "analysis/visualize.ipynb",
+        "role": "plot_script",
+        "tool": "Matplotlib, Seaborn",
+        "evidence": "GitHub API tree at main commit 460afe41c7063a29a9893675aca07b985997bb83; README explicitly identifies this notebook as the figure-generation source. Cells 6/10/13/14 generate GSM8K histograms (Figure 1), cells 15/17/19/20 generate MMLU histograms (Figure 4), and cells 26–30 generate position-change heatmaps (Figure 2)."
+      }
+    ],
+    "search_note": "库存行标为 repository_without_visual_source，目标 source directory 不存在。按 PDF 首页/摘要的作者明确 URL 核查 pixeli99/Prophet；GitHub API description 与 README 标题严格匹配论文，main tree 仅含 analysis/visualize.ipynb 这一视觉相关文件。Notebook 明确覆盖 Figure 1/2/4 的 histogram/heatmap，未发现 Figure 3/5 或 Table 1–7 的绘图、表格或 LaTeX 源；标题与 paper_id 的 GitHub 搜索无额外仓库。"
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 4,
+    "appendix_figures": 2,
+    "appendix_tables": 3,
+    "dominant_figure_typography": {
+      "family": [
+        "Times New Roman",
+        "Helvetica",
+        "Menlo",
+        "DejaVu Sans"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 9.0,
+        "maximum": 20.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 9.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "histogram 统一使用蓝色渐变并以红/橙阈值线强调早期区间；heatmap 用橙/蓝/绿离散状态；method diagram 用紫/绿/黄流程语义；主结果表用浅蓝 Prophet 背景、红绿 gain 和橙色 speedup；消融/配置表保持黑白。",
+    "vector_raster_mix": "Figure 1、Figure 3–5 和所有 Table 主要是 vector/text；Figure 2 含两个 2345×1745 内嵌 raster heatmap，Figure 3 还含小 raster emoji/icon；整体为 mixed。",
+    "style_consistency": "表格内部均采用 minimal/booktabs 线条，Figure 1/4 的 histogram 语法高度一致；跨对象字体不完全统一（Times New Roman histogram、Nimbus/Computer Modern 表格、Helvetica/Menlo diagram），跨对象也没有统一方法色。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 5,
+      "module": "theory",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "headline",
+        "theory_mechanism",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Distribution of early correct answer detection during decoding process.. Histograms show when correct answers first emerge during diffusion decoding, measured as percentage of total decoding steps, using LLaDA 8B on GSM8K. Red and orange dashed lines indicate 50% and 70% completion thresholds, with corresponding statistics showing substantial early convergence. Suffix prompting (b,d) dramatically accelerates convergence compared to standard prompting (a,c). This early convergence pattern demonstrates that correct answer tokens stabilize as top-1 candidates well before full decoding.",
+        "word_count": 79,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 10.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 24,
+        "hex": [
+          "#4A90E2",
+          "#A9CFE5",
+          "#9CC9E2",
+          "#4B8BC2",
+          "#5B9BCB",
+          "#E74C3C",
+          "#F39C12",
+          "#2C3E50",
+          "#34495E",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色渐变柱表示首次正确答案出现位置；红色 dashed 与橙色 dash-dot 表示 25%/50% 的累计阈值；深色墨色用于轴和文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "首次正确答案出现占总 decoding steps 的百分比（0–100）",
+        "y": "每个条件中达到首次匹配的样本数",
+        "color": "每个直方图内部的蓝色渐变；条件由面板标题区分",
+        "shape": null,
+        "line": "红 dashed 25% 与橙 dash-dot 50% 参考线；柱体白边",
+        "facet": "2×2：suffix/no suffix × low-confidence/random remasking",
+        "text": "面板标题、累计百分比注释、轴标题和刻度"
+      },
+      "data_and_statistics": "§3.2 只纳入最终输出含 ground-truth answer 的正确 GSM8K 样本；GSM8K 使用 256 个总 decoding steps。四面板累计比例为 (a) 7.9%/24.2%，(b) 59.7%/75.8%，(c) 88.5%/97.2%，(d) 94.6%/97.3%，对应 ≤25%/≤50% 的首次出现阈值。图中没有 n、误差条或区间。",
+      "evidence_relation": "§3.2 p.4 的 early-emergence 定义与三项观察 → Figure 1 p.5 的 GSM8K 条件分布 → Eq. (4)–(5) 的 confidence gap/staged threshold → Table 1–4 的结果与消融。",
+      "design_strengths": [
+        "四个 remasking×suffix 条件同屏，支持直接比较。",
+        "累计比例和参考线把 headline 数字落到分布位置。",
+        "直方图保留长尾和早期集中形状，信息量高于单一均值。"
+      ],
+      "design_weaknesses": [
+        "面板 y 轴范围不同且没有样本量，跨面板柱高不能直接比较。",
+        "分母只含最终正确样本，caption 未提示筛选口径。",
+        "caption 写 50%/70% 参考线，图面和 notebook 实际为 25%/50%。",
+        "没有重复统计或不确定性；渐变蓝缺少非颜色条件编码。"
+      ],
+      "reusable_pattern": "用 2×2 条件 histogram 展示首次稳定的分布、统一早期阈值和累计比例；复用时统一 y 轴或标出每面板 n，并让 caption 与参考线数值一致。",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 1",
+        "bbox": [
+          122,
+          67,
+          490,
+          275
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 6,
+      "module": "theory",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "heatmap"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2: Decoding dynamics across all positions based on maximum-probability predictions. Heatmaps track how the top-1 token changes at each position, if it is decoded at the current step, over the course of decoding. (a) Without our suffix prompts, correct answer tokens reach maximum probability at step 119. (b) With our suffix prompts, this occurs earlier at step 88, showing that the model internally identifies correct answers well before the final output. Results are shown for LLaDA 8B solving problem index 700 from GSM8K under low-confidence decoding. Gray indicates positions where the top-1 prediction remains unchanged, orange marks positions where the prediction changes to a different token, blue denotes the step at which the corresponding y-axis position is actually decoded, and green box highlights the answer region where the correct answer remains stable as the top-1 token and can be safely decoded without further changes as the decoding process progresses.",
+        "word_count": 150,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 10.0,
+          "maximum": 15.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#F8F9FA",
+          "#FF8C42",
+          "#3498DB",
+          "#27AE60"
+        ],
+        "semantic_mapping": "No Change、Token Change、Token Decoded、Correct Answer Token 分别以浅灰、橙、蓝、绿编码；绿色 outline 标出答案区。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 28000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "顶部居中共享 legend",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "decoding steps 0–250",
+        "y": "输出 token position index；左 100–155，右 180–235",
+        "color": "四类位置状态：不变、token change、当前步 decoded、答案 token",
+        "shape": null,
+        "line": "绿色矩形 outline 标出 answer region",
+        "facet": "(a) 无 suffix 与 (b) 有 suffix 的同一问题轨迹",
+        "text": "顶部共享 legend、轴标题、刻度"
+      },
+      "data_and_statistics": "两个 `2345×1745` 内嵌 raster heatmap；每个 cell 表示一个 step×position 状态。左图 caption 报告答案 token 在 step 119 达到最大概率，右图为 step 88。样本是 LLaDA 8B 在 GSM8K problem index 700 的单例、low-confidence decoding；没有总体聚合或误差。",
+      "evidence_relation": "Figure 1 的条件分布 → Figure 2 的单例 token-position dynamics → §4 answer-region confidence gap → Figure 3 early-commit 接口。",
+      "design_strengths": [
+        "共享 legend 和离散颜色定义完整。",
+        "绿色答案框与蓝色 decoded 轨迹形成空间/时间双编码。",
+        "两种 suffix 条件并排，119→88 的变化易于读取。"
+      ],
+      "design_weaknesses": [
+        "单一 problem index 700，不能代表总体。",
+        "两面板 y 轴是不同位置窗口，跨面板比较需要先理解裁剪。",
+        "没有答案字符串、样本 n 或聚合不确定性；raster 缩放后字体偏小。"
+      ],
+      "reusable_pattern": "用“全位置 heatmap + 共享离散 legend + 目标区域 outline”解释序列模型停止信号；同时声明单例边界或补充多实例汇总。",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 2",
+        "bbox": [
+          105,
+          68,
+          505,
+          270
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 6,
+      "module": "method",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "conceptual_diagram",
+        "pipeline"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 3: An illustration of the Prophet’s early-commit-decoding mechanism. (a) Standard full-step decoding completes all predefined steps (e.g., 10 steps), incurring redundant computations after the answer has stabilized (at t=6). (b) Prophet dynamically monitors the model’s confidence (the “Confidence Gap”). It triggers an early commit decoding as soon as the answer converges, saving a significant portion of the decoding steps (in this case, 55%) without compromising the output quality.",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Helvetica",
+          "Helvetica-Bold",
+          "Menlo",
+          "Menlo-Bold",
+          "Tahoma-Bold",
+          "Times New Roman",
+          "Apple Color Emoji"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#E1BEE7",
+          "#5E35B1",
+          "#4CAF50",
+          "#E8F5E9",
+          "#FFCCBC",
+          "#F8D04A",
+          "#EF5350",
+          "#757575",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "浅紫表示 CoT token，紫色表示输出，绿色表示稳定/出口，浅绿表示 Prophet 路径，浅橙表示答案 token，黄色表示 Early Commit，红色表示冗余，灰色表示时间线。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 t=0→2→4→6→10 的解码时间线",
+        "y": "上/下 panel：standard full-step 与 Prophet early commit",
+        "color": "紫色 CoT、桃色答案 token、绿色出口/条件、黄色 early-commit pill",
+        "shape": "空心/绿色 timeline nodes、rounded output block",
+        "line": "灰色实线时间线、绿色弧形出口箭头、红色虚线冗余框",
+        "facet": "上下两条路径共享 toy arithmetic state",
+        "text": "直接标签：Confidence Gap > τ、Redundant Steps、Output: 540、~55% Steps Saved"
+      },
+      "data_and_statistics": "这是 540 算术例的机制示意，不含经验数据轴。上 panel 以 t=0/2/4/6/10 展示固定 10 steps，答案在 t=6 出现；下 panel 在 Confidence Gap > τ 后直接输出 540，并标注约 55% steps saved。",
+      "evidence_relation": "Eq. (4) confidence gap → Eq. (5) staged threshold → Algorithm 1 check/return 分支 → Figure 3 的可读执行接口 → Table 2 的组合加速。",
+      "design_strengths": [
+        "两条路径使用同一中间算术状态，固定循环和出口差异清楚。",
+        "冗余区域、阈值条件、输出与节省量都有直接标签。",
+        "代码/算式使用等宽体，流程方向明确。"
+      ],
+      "design_weaknesses": [
+        "toy timeline 没有真实 x 轴或阈值数值；t=6/10 与标注的 55% 节省量不能由图面独立核算。",
+        "紫/绿/黄和 emoji 使视觉注意力集中，灰度打印层级下降。",
+        "caption 未定义 55% 的计算口径，也未区分剩余 mask fill 与最终 emission。"
+      ],
+      "reusable_pattern": "用上下对齐的“固定循环/自适应出口”时间线表达停止算法；保留相同状态、冗余区和出口条件，并定义节省量。",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 3",
+        "bbox": [
+          103,
+          410,
+          526,
+          562
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 4: Distribution of early correct answer detection during decoding process. Histograms show when correct answers first emerge during diffusion decoding, measured as percentage of total decoding steps, using LLaDA 8B on MMLU. Red and orange dashed lines indicate 50% and 70% completion thresholds, with corresponding statistics showing substantial early convergence. Suffix prompting (b,d) dramatically accelerates convergence compared to standard prompting (a,c). This early convergence pattern demonstrates that correct answer tokens stabilize as top-1 candidates well before full decoding.",
+        "word_count": 79,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 10.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 24,
+        "hex": [
+          "#4A90E2",
+          "#A9CFE5",
+          "#9CC9E2",
+          "#4B8BC2",
+          "#5B9BCB",
+          "#E74C3C",
+          "#F39C12",
+          "#2C3E50",
+          "#34495E",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色渐变柱表示首次正确答案出现位置；红色 dashed 与橙色 dash-dot 表示 25%/50% 的累计阈值；深色墨色用于轴和文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "首次正确答案出现占总 decoding steps 的百分比（0–100）",
+        "y": "MMLU 条件中的样本数",
+        "color": "蓝色渐变柱；红/橙参考线和注释分别指向早期阈值",
+        "shape": null,
+        "line": "红 dashed 与橙 dash-dot 参考线",
+        "facet": "MMLU：no/with suffix × low-confidence/random",
+        "text": "四面板标题和累计百分比注释"
+      },
+      "data_and_statistics": "Figure 4 复用 Figure 1 的 2×2 histogram 语法；MMLU 四面板的 ≤25%/≤50% 累计比例为 (a) 15.1%/21.4%，(b) 99.7%/99.9%，(c) 95.3%/99.2%，(d) 98.8%/99.6%。各面板样本量和 y 上限不同；没有 n、误差或区间。",
+      "evidence_relation": "Figure 1 的 GSM8K 现象 → Appendix B.1 的 MMLU corroboration → Table 1 的 MMLU accuracy/speedup。它扩展任务覆盖，仍是单模型条件分布。",
+      "design_strengths": [
+        "与 Figure 1 同构，读者可直接比较任务方向。",
+        "suffix 条件的极早出现和无 suffix 的长尾在视觉上很醒目。",
+        "累计百分比注释把分布与正文数字对应。"
+      ],
+      "design_weaknesses": [
+        "caption 仍把图面 25/50% 写成 50/70%。",
+        "y 轴不共享且未报告各条件分母。",
+        "只对 LLaDA-8B 做 MMLU corroboration，缺少跨模型和重复不确定性。"
+      ],
+      "reusable_pattern": "让附录复核图保持主图的 binning、参考线、颜色和 caption 句式，以便跨任务读图；同时锁定样本分母和统一尺度。",
+      "evidence": {
+        "page": 16,
+        "label": "Figure 4",
+        "bbox": [
+          101,
+          81,
+          517,
+          360
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "failure",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: Distribution of the “Last Change Step” for incorrect answers. The right-skewed distribution ensures Prophet acts conservatively on uncertain samples.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Nimbus Roman No9 L",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#4B8BC2",
+          "#EBEBEB",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色 histogram bars 表示错误样本 Last Final Answer Change；浅灰 grid 和黑色轴为结构墨色。",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Last Final Answer Change，占总 decoding steps 百分比（0–100）",
+        "y": "最终错误样本数（0–50）",
+        "color": "单一蓝色柱体",
+        "shape": null,
+        "line": "柱体白边/黑色轴；无额外参考线",
+        "facet": null,
+        "text": "轴标题和刻度"
+      },
+      "data_and_statistics": "只分析最终错误的 GSM8K 样本，x 表示最终答案最后一次改变所在的总步数百分比；柱高集中在约 80–100%。正文把右偏解释为错误预测持续不确定、较少触发 early commit。图面没有 n、筛选分母、阈值触发率或 false-positive。",
+      "evidence_relation": "Figure 1/4 的正确样本早期稳定 → Appendix B.3 的错误样本末期变化 → risk-averse threshold 与 Algorithm 1 的 full-iteration fallback。",
+      "design_strengths": [
+        "单 panel、单变量、右偏形状直接。",
+        "与正确样本分布构成“可以早停/应继续”的互补证据。"
+      ],
+      "design_weaknesses": [
+        "缺少正确样本对照、样本 n 和置信度统计。",
+        "右偏形状不能单独证明实际触发率或误报率。",
+        "caption 没有写 GSM8K、LLaDA、总步数和筛选口径，独立复现信息不足。"
+      ],
+      "reusable_pattern": "为停止算法配对绘制正确样本的早期稳定与错误样本的最后变化；同时报告 n、触发率和误报率。",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 5",
+        "bbox": [
+          198,
+          398,
+          377,
+          544
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 1: Benchmark results on LLaDA-8B-Instruct and Dream-7B-Instruct. We report Accuracy (%) for both Full-step decoding and Prophet. The numbers in parentheses indicate the Accuracy Gain (∆) compared to the baseline. Sudoku and Countdown are evaluated using 8-shot setting; all other benchmarks use zero-shot evaluation. Detailed configuration is listed in the Appendix C.",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "text_color"
+      ],
+      "uncertainty": "无均值±SD/SE、区间或显著性；所有单元为点估计。",
+      "data_and_statistics": "12 个 benchmark 的 Full accuracy、Prophet accuracy 与括号内 Δ，以及两个模型的 Speedup。accuracy 一位小数，speedup 两位小数并带 ×；Sudoku/Countdown 为 8-shot，其余 zero-shot。",
+      "evidence_relation": "§5.1 的模型/任务/预算 → Table 1 主比较 → §5.2 的 benchmark 解释 → Appendix Table 6 配置。",
+      "design_strengths": [
+        "模型、四能力域和质量/效率同表。",
+        "两级模型表头、row groups 和颜色让结果易扫读。",
+        "caption 交代 shot 设置和 Δ 含义。"
+      ],
+      "design_weaknesses": [
+        "颜色承担 gain 方向，灰度和色觉缺陷下冗余不足。",
+        "无 n、seed、重复统计或不确定性；正文“statistically on par”不由表内检验支持。",
+        "Speedup 的成本与 Full/Prophet steps 关系没有进入表头。"
+      ],
+      "reusable_pattern": "采用“模型组→Full/Prophet (Δ)→Speedup”列组，把质量和效率放在一个 headline 表；复用时补 n、重复统计和成本定义。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 1",
+        "bbox": [
+          115,
+          105,
+          495,
+          390
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2: Comparison between Prophet and acceleration baselines on GSM8K.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无方差、区间或重复统计；Steps (Avg) 仅出现在左侧 SDTT 子表。",
+      "data_and_statistics": "左子表：LLaDA Teacher 77.1/256/1.00×，SDTT Distilled 76.9/128/2.00×，Prophet 77.9/160/1.63×，SDTT+Prophet 76.4/79/3.21×。右子表：Baseline 77.1/1.00×，Fast-dLLM 76.6/6.82×，Prophet 77.9/1.63×，Fast-dLLM+Prophet 77.3/7.66×。accuracy 一位小数，speedup 两位小数，steps 为整数。",
+      "evidence_relation": "§5.3 的“total steps 与 cost per step 正交” → 两个并列子表和组合行 → Appendix A 的 system-level integration。",
+      "design_strengths": [
+        "SDTT 和 Fast-dLLM 两条加速轴并列，组合收益可见。",
+        "组合行加粗，表格紧凑。"
+      ],
+      "design_weaknesses": [
+        "左右子表成本列不对称，右侧没有 Steps (Avg)。",
+        "caption 没解释 teacher/student、KV cache 或 baseline budget。",
+        "点估计没有质量不确定性。"
+      ],
+      "reusable_pattern": "把训练型和系统型加速器拆成并列子表，并保留共同的质量列和组合行；每个子表补齐相同成本单位。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 2",
+        "bbox": [
+          88,
+          505,
+          519,
+          638
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "ablation",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 3: Ablation study on step budget and remasking strategy.. (a) Accuracy vs. step budget under two generation lengths L. Prophet stops early (average steps in parentheses) yet matches/exceeds the full-budget baseline. (b) Accuracy under different remasking strategies; Prophet complements token-selection policies.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无方差、区间或重复统计；Prophet 平均 steps 约为整数。",
+      "data_and_statistics": "(a) L=256 静态 16/32/64/128 steps 为 7.7/22.5/58.8/76.2，Prophet 77.9 (≈160)，Full 77.1；L=128 为 21.8/50.3/67.9/71.3，Prophet 72.7 (≈74)，Full 71.3。(b) Random 63.8→66.6，Low-confidence 71.3→72.7，Top-k margin 72.4→73.1。",
+      "evidence_relation": "Table 1 的主 speedup → Table 3a 排除少跑几步的解释 → Table 3b 检查 stopping rule 与 token-selection 兼容性 → Table 4。",
+      "design_strengths": [
+        "同一复合表同时覆盖预算和 remasking。",
+        "Prophet 平均 steps 与 accuracy 同列。",
+        "caption 直接说明 stops early yet matches/exceeds 和 complements。"
+      ],
+      "design_weaknesses": [
+        "两个子表列数、指标和成本口径不对称。",
+        "没有重复统计、误差或 top-k margin 定义。",
+        "caption 出现双句号。"
+      ],
+      "reusable_pattern": "用复合表同时检验时间预算和 token-selection 兼容性；每个子表保留同一质量指标并给出自适应平均 steps。",
+      "evidence": {
+        "page": 10,
+        "label": "Table 3",
+        "bbox": [
+          35,
+          65,
+          517,
+          180
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Sensitivity to block length on GSM8K (semi-autoregressive updates). Prophet is less brittle to coarse-grained updates and yields larger gains as block length increases.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无方差、区间或重复统计。",
+      "data_and_statistics": "Baseline 67.1/68.7/71.3/59.9/33.1；Ours 72.8/73.3/72.7/69.8/52.2；Δ +5.7/+4.6/+1.4/+9.9/+19.1。百分比一位小数。",
+      "evidence_relation": "§5.4 coarse-grained brittleness → Table 4 block-length sweep → time-varying risk-aversion 解释。",
+      "design_strengths": [
+        "Baseline/Ours/Δ 三行把绝对值和收益同表。",
+        "block length 从 8 到 128 单调列出，端点崩塌易见。"
+      ],
+      "design_weaknesses": [
+        "Δ 的方向需读者自行确认。",
+        "没有固定 L,T、seed 或运行环境；窄 inset 列间距偏紧。"
+      ],
+      "reusable_pattern": "用 Baseline/Ours/absolute delta 三行表达粒度鲁棒性；复用时同时给预算、重复统计和粗粒度端点。",
+      "evidence": {
+        "page": 10,
+        "label": "Table 4",
+        "bbox": [
+          126,
+          181,
+          410,
+          233
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Table 5: Qualitative Analysis: Decoding Dynamics. Visualization of the decoding trajectory for a simple arithmetic problem. Masked tokens are represented by MASK (note that sequences of consecutive masks are abbreviated for visual clarity). Crucially, even when the intermediate reasoning chain is incomplete, the model locks onto the correct final answer early in the process (highlighted in darker blue ).",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Sans L",
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "text_color"
+      ],
+      "uncertainty": "阶段约为 10%/50%/100% steps，是定性时间标记；没有总体统计不确定性。",
+      "data_and_statistics": "一个 Simple Arithmetic 实例的 Early、Prophet、Full token stream。Early/Prophet 已出现 `The answer is 3`，中间 CoT 仍含 mask；Full 行补齐 `2 / 2 = 1` 与解释。MASK 以灰字/灰底，答案以 darker blue 高亮。",
+      "evidence_relation": "Figure 2 的答案区稳定 → Table 5 的真实轨迹例 → Figure 5 的错误轨迹反例 → early commit 语义边界。",
+      "design_strengths": [
+        "把答案先于解释完成落到可读 token stream。",
+        "阶段标签、MASK 缩写和 darker blue 高亮形成稳定视觉语法。",
+        "caption 明确 qualitative case。"
+      ],
+      "design_weaknesses": [
+        "单个算术例缺乏代表性与样本选择。",
+        "浅蓝 token backgrounds 在小字号下偏密。",
+        "mask 缩写改变序列长度直觉，表头没有具体 decoding step。"
+      ],
+      "reusable_pattern": "用 staged token stream 展示答案先于解释完成；复用时保留同一问题、阶段和答案高亮，并另报聚合统计。",
+      "evidence": {
+        "page": 17,
+        "label": "Table 5",
+        "bbox": [
+          101,
+          153,
+          522,
+          317
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 6: Configurations used in our runs. We keep only parameters relevant to our method: base budget (L, T, B) and PROPHET’s confidence schedule defined in Eq. 5",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无方差、区间或重复统计；表内为固定配置。",
+      "data_and_statistics": "MMLU/ARC-C/Hellaswag/TruthfulQA/WinoGrande/PIQA：`(L,T,B)=(64,64,16)`、thresholds `(7.5,5.0,2.5)`；GSM8K/GPQA：`(256,256,32)`、`(8.0,5.0,3.5)`；HumanEval/MBPP：`(512,512,32)`、`(7.5,5.0,4.5)`；Sudoku `(24,24,24)`、Countdown `(32,32,32)`，transition 均 33%,67%。",
+      "evidence_relation": "§5.1 模型/任务/长度 → Table 6 复现实验配置 → Eq. (5) schedule → Table 7 schedule ablation。",
+      "design_strengths": [
+        "任务级预算、阈值和转换点集中呈现。",
+        "row groups 让重复配置易扫读。",
+        "表头显式写出 `(L,T,B)` 和 transition points。"
+      ],
+      "design_weaknesses": [
+        "缺少硬件、seed、runtime、batch 和 prompt。",
+        "主文 §5.1 的 general L=128 与本表 L=64 口径差异未解释。",
+        "配置表没有 accuracy/speedup，需回查 Table 1。"
+      ],
+      "reusable_pattern": "在附录集中列出 benchmark→budget→threshold schedule→transition points；复用时统一主文与附录符号并记录环境。",
+      "evidence": {
+        "page": 19,
+        "label": "Table 6",
+        "bbox": [
+          97,
+          168,
+          522,
+          385
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7: Comparison of threshold schedules on GSM8K (LLaDA-8B).",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无方差、区间或重复统计；只比较一个 GSM8K/LLaDA-8B setting。",
+      "data_and_statistics": "Staged (Ours)：77.9 accuracy、160 avg steps；Linear (Ablation)：77.4、154。accuracy 一位小数，steps 整数；linear schedule 公式和阈值范围在相邻正文。",
+      "evidence_relation": "Eq. (5) staged schedule → Appendix C.2 的 hyperparameter robustness → Table 7 staged/linear controller-form ablation。",
+      "design_strengths": [
+        "两行对照紧凑，质量与平均步骤同表。",
+        "附录位置适合放最小 controller-form check。"
+      ],
+      "design_weaknesses": [
+        "caption 没给 linear 公式或共同阈值范围。",
+        "只有一个任务/模型设置，没有运行变异。",
+        "inset 字号偏小。"
+      ],
+      "reusable_pattern": "对停止函数做最小形式消融，固定质量和成本列；复用时在表注中写函数、范围和重复统计。",
+      "evidence": {
+        "page": 19,
+        "label": "Table 7",
+        "bbox": [
+          204,
+          526,
+          410,
+          614
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 给 GSM8K early-correct emergence 分布，Figure 2 下钻到单例 token-position dynamics，Figure 3 把 confidence gap 变成 full-step/early-commit 接口；Table 1 给跨模型/任务 headline，Table 2 给 SDTT/Fast-dLLM 组合，Table 3–4 给预算/remasking/block-length 消融；附录 Figure 4、Table 5、Figure 5 扩展任务、定性轨迹和失败机制，Table 6–7 收束到复现配置和 schedule 形状。",
+    "caption_system": "Figure 1/4 共用 histogram caption 句式，Figure 2/3 的 encoding key 较完整；Figure 5 过短；Table 1 caption 最完整，Table 2–4 的子表语义较依赖正文。Figure 1/4 的 50/70% 阈值文字与图面 25/50% 不一致，Table 3 有双句号。",
+    "table_header_system": "Table 1 使用模型 superheader 加 Full/Prophet/Speedup；Table 2/3 使用并列子表；Table 4/6/7 使用简单列头；Table 5 使用 Stage+stream。主结果表加入浅蓝/红绿/橙色语义，消融与配置表保持黑白。",
+    "method_result_ablation_link": "Eq. (4) 定义 confidence gap，Eq. (5) 定义 staged threshold，Algorithm 1 定义 check/return；Figure 3 是方法接口，Table 1/2 测试质量与 speedup，Table 3/4 检验预算、remasking、block granularity，Table 7 检验 controller form；Figure 5 补足“何时不退出”的 failure-side evidence。",
+    "main_appendix_link": "正文放 Figure 1–3、Table 1–4 的现象、接口、主比较与消融；附录用 Figure 4 复核 MMLU、Table 5 展示轨迹、Figure 5 展示错误分布、Table 6–7 给配置与 schedule 对照。附录延伸了证据链，却没有补 seed、硬件、runtime、n 或 uncertainty。",
+    "typography_consistency": "Nimbus Roman/Computer Modern 主导页面正文和表格；histogram notebook 使用 Times New Roman；Figure 3 混入 Helvetica、Tahoma、Menlo 和 Apple Color Emoji；Table 5 混入 Sans/Mono token styling。表格内一致，跨图谱系混合。",
+    "color_consistency": "Figure 1/4 共用蓝渐变与红橙参考线，Figure 2 用橙/蓝/绿状态，Figure 3 用紫/绿/黄流程，Table 1 用浅蓝 Prophet 与红绿 gain。对象内语义清楚；跨对象没有统一 Prophet/Full brand color。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "2×2 条件 histogram + 统一早期阈值 + 累计比例，再用单例 heatmap 解释位置级机制。",
+      "full-step/early-commit 对齐 timeline 把停止条件、冗余区和出口显式串起来。",
+      "主表固定 Full→Prophet (Δ)→Speedup，附录配置表和最小 schedule ablation 支撑复现。",
+      "提前停止主张同时给出正确样本早期稳定和错误样本末期变化的互补证据。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：headline early-convergence phenomenon。",
+      "Figure 2：answer-region mechanism bridge。",
+      "Table 1：quality/efficiency 主决策面。",
+      "Table 3–4：static budget 与 block granularity boundaries。",
+      "Figure 5：failure-side safety mechanism。"
+    ],
+    "failure_patterns": [
+      "Figure 1/4 caption 阈值与图面/源码不一致。",
+      "多数图表没有 n、seed、误差或区间。",
+      "Figure 2/5 是单例或条件分布，外推边界需正文限定。",
+      "Table 2 左右子表成本列不对称；Table 6 与 §5.1 的 generation-length 口径未解释。",
+      "颜色与混合字体在灰度、小尺寸下可读性下降；公开仓库未提供 Figure 3/5 或 Table 源。"
+    ],
+    "one_sentence_visual_strategy": "论文以蓝色 early-convergence 分布为入口，经单例 heatmap 和停止时间线进入 Prophet，再用分组主表、正交组合表和预算/粒度消融把速度—质量主张收束到附录的失败机制与复现配置。"
+  }
+}

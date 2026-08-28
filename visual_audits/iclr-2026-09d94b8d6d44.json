@@ -1,0 +1,5669 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-09d94b8d6d44",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/xzyu02/2952x-25fall-final-project",
+      "https://github.com/Yu-Xiaoyan/LLM-Analogical-Reasoning-Survey",
+      "https://github.com/junha1125/iclr2026-mllm-papers"
+    ],
+    "selected_repository": "https://github.com/xzyu02/2952x-25fall-final-project",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/xzyu02/2952x-25fall-final-project",
+        "path": "README.md",
+        "role": "other",
+        "tool": null,
+        "evidence": "GitHub main README directly names the paper and links arXiv:2506.15871; it identifies this repository as a replication/course project, not the author paper source."
+      },
+      {
+        "repository_url": "https://github.com/xzyu02/2952x-25fall-final-project",
+        "path": "webb_dataset_2025/entropy/dataset_generation.py",
+        "role": "other",
+        "tool": "Python/PIL",
+        "evidence": "GitHub main tree; entropy dataset generation code covers the high/low entropy visual-binding stimuli described in Appendix A.1.4, but contains no PDF figure layout/export."
+      },
+      {
+        "repository_url": "https://github.com/xzyu02/2952x-25fall-final-project",
+        "path": "generate_entropy_data.py",
+        "role": "other",
+        "tool": "Python/argparse",
+        "evidence": "GitHub main tree; wrapper exposes grid_size, entropy, task, and n_samples for replication of the dataset, not the paper plots."
+      },
+      {
+        "repository_url": "https://github.com/xzyu02/2952x-25fall-final-project",
+        "path": "plot_results.py",
+        "role": "plot_script",
+        "tool": "matplotlib/seaborn",
+        "evidence": "GitHub main tree; generic counting/entropy plots use explicit matplotlib colors and 300 dpi PNG export, but their axes and layouts do not match Figures 1–47."
+      }
+    ],
+    "search_note": "PDF p.1 says “Code will be made available here.” but supplies no repository URL; the reproducibility statement says analysis/intervention code will be released. The reading source is the verified official Proceedings PDF and OpenReview forum https://openreview.net/forum?id=3RQ863cRbx. reports/tables/visual_source_inventory.csv supplied the three GitHub candidates above; the exact-title README match was inspected with gh repo view and gh api tree/README. The selected repository directly cites the paper and contains entropy-dataset generation plus a generic plotting script, so status is partial_visual_source rather than exact_visual_source. The survey and paper-list repositories have no direct author code or matching visual sources. corpus/visual_sources/iclr-2026-09d94b8d6d44/ is absent. No source file exactly reproduces the PDF figures; typography, colors, dimensions, and chart grammar below therefore use PDF objects and 200 dpi renders."
+  },
+  "paper_style": {
+    "main_figures": 7,
+    "main_tables": 0,
+    "appendix_figures": 40,
+    "appendix_tables": 1,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "Open Sans Bold",
+        "Nimbus Mono L",
+        "Nimbus Roman No9 L",
+        "Computer Modern Math"
+      ],
+      "size_pt": {
+        "minimum": 4.0,
+        "median": 7.0,
+        "maximum": 11.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 7.0,
+      "header_size_pt": 8.0,
+      "header_weight": "bold",
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "palette_strategy": "主文以阶段色（蓝 ID retrieval、红 ID selection、绿 feature retrieval）和 position/feature 曲线色建立机制语义；行为柱图另用灰度或低饱和色，刺激图用颜色×形状组合表达 feature entropy。色彩常与文字、面板位置或线型冗余，但 heatmap/sweep 的色相区分在灰度下不安全。",
+    "vector_raster_mix": "LaTeX/pdfTeX 双栏排版；线图、柱图、箭头和文字主要为 vector，刺激照片、形状图、PCA atlas、CMA heatmap 和 schematic icon 为 raster，整体为 mixed。PDF object inspection found raster images on pp.4, 7, 9, 14–15, 17–18, 21–23, 29 and vector chart primitives elsewhere.",
+    "style_consistency": "caption/正文使用 Nimbus Roman No9 L 与 Computer Modern math，图内统计轴/legend 多为 DejaVu Sans/Open Sans Bold，prompt 与 schematic label 使用 Nimbus Mono L/Courier New；三阶段色块和 RSA 色彩在主文与附录稳定复用。主要不一致来自各模型附录图的轴范围、色条尺度和极密小字体，而非排版结构。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "architecture",
+        "scatter",
+        "line",
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1: Overview of position ID architecture and supporting evidence. We identify three processing stages: ID retrieval heads that retrieve the position ID of objects described in the prompt, ID selection heads that select the position ID for a target object, and feature retrieval heads that use this position ID to retrieve the features of the target object. These stages are revealed both by (b,c) representational and (d) causal mediation analyses (see text for explanation).",
+        "word_count": 75,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Mono L",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#74A8DC",
+          "#EF8D8D",
+          "#80C987",
+          "#F6B26B",
+          "#E83E8C",
+          "#6BE0B2",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色、红色、绿色分别标记 ID retrieval、ID selection、feature retrieval 阶段；橙色/粉色和亮色散点承载示意、PCA/RSA 对比，黑白为结构与画布。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 18,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "panel-inset",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "PCA/RSA 子图的 layer 或 principal-component 坐标；架构/CMA 面板无轴。",
+        "y": "PCA/RSA correlation 或 head/layer index；架构面板无轴。",
+        "color": "三类 head 阶段、position/features 和 CMA score。",
+        "shape": "PCA 点的对象/条件标记。",
+        "line": "RSA 曲线与流程箭头。",
+        "facet": "(a) architecture、(b) PCA、(c) RSA、(d) CMA。",
+        "text": "阶段名、layer/head index、Target Position/Features。"
+      },
+      "data_and_statistics": "架构是定性接口；PCA/RSA 为逐层 representational correlations，CMA 为每个 layer×head 的 mediation score。图没有样本量、分母、重复或误差条；数值均为 PDF 中的点/曲线显示。",
+      "evidence_relation": "引言的 visual-binding 缺口 → §3.2 三阶段 position-ID 架构 → 本图将 retrieval/selection/feature retrieval 与 PCA、RSA、CMA 接口并置；Figure 2–7 随后分别验证空间编码、自然图像干预、任务复用和 entropy failure，附录 Figures 10–25 展开条件和全模型。",
+      "design_strengths": [
+        "一张 page-width 复合图把机制接口与三种证据类型连成单一阅读路径。",
+        "阶段颜色、文字和连接关系重复编码，CMA/PCA/RSA 的角色可定位。"
+      ],
+      "design_weaknesses": [
+        "四面板信息密度高，PCA/CMA 的小字在双栏缩放时难读。",
+        "caption 依赖正文解释，未定义坐标、误差或 head 选择阈值；示意箭头易被误读为完整计算图。"
+      ],
+      "reusable_pattern": "以“架构接口→表征证据→因果定位”的四面板骨架组织机制论文，并让同一角色颜色贯穿流程、曲线和热图。",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "line"
+      ],
+      "purpose": [
+        "experimental_design",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2: Testing for relative vs. absolute spatial coding. Left: Example of each grid condition with centrally located object circled. Right: RSA results showing second-order correlation of last token embeddings (Qwen2-VL) with relative position, absolute position, and object features.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#F17CB0",
+          "#8DD3C7",
+          "#4D4D4D",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "粉色 Feature、薄荷色 Absolute Position、深灰 Relative Position；左侧物体颜色仅表示刺激构成。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 8,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "右面板 layer（0–约35）；左面板为 2×2/3×3 grid 条件无轴。",
+        "y": "右面板 RSA Pearson correlation；左面板无轴。",
+        "color": "三条 RSA 曲线对应 feature、absolute position、relative position；左图彩色形状编码对象特征。",
+        "shape": "圆、三角、方形、心形区分刺激对象。",
+        "line": "RSA 曲线。",
+        "facet": "左刺激条件、右 Representational Similarity Across Layers。",
+        "text": "中心对象圆圈、曲线 legend 与 Layer。"
+      },
+      "data_and_statistics": "四种 grid arrangement 的 last-token embedding 与三类目标 RSM 的二阶/Pearson RSA；图展示曲线点估计，无样本数、区间或误差条。",
+      "evidence_relation": "§4.1 的 relative-vs-absolute 研究问题 → Figure 8 条件设计 → 本图比较三种 RSM 对齐 → Figure 30 以 position-ID patching 做行为反事实，Figures 27–29 扩展模型族。",
+      "design_strengths": [
+        "刺激和 RSA 结果左右并列，研究设计到证据的映射直接。",
+        "中心对象和三条曲线都有直接/legend 标签，阅读方向清楚。"
+      ],
+      "design_weaknesses": [
+        "caption 没有说明每种条件的完整 grid 编号、trial 数或 RSA 聚合。",
+        "颜色承载曲线身份但没有线型冗余，灰度阅读容易混淆。"
+      ],
+      "reusable_pattern": "把刺激构造与对应 representational comparison 放在同一双面板内，并将假设对应的曲线置于同一 layer 轴。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: Photorealistic intervention results targeting the three position ID processing stages as identified by CMA.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Mono L",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#74A8DC",
+          "#EF8D8D",
+          "#80C987",
+          "#F3A35C",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "左示意图用蓝/红/绿标记三个 head 阶段，右柱图三色分别为 ID retrieval、ID selection、feature retrieval。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 16,
+        "data_marks_estimate": 32
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom-center",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "右面板为 7 个模型类别；左面板为 source/target object schematic。",
+        "y": "右面板 Accuracy 0–1；左面板无轴。",
+        "color": "柱色映射三类阶段；红色虚线为 patched ID。",
+        "shape": "PUG 图像中的动物与对象框。",
+        "line": "Feedforward/Attention/Patching 箭头与虚线。",
+        "facet": "(a) ID-selection intervention schematic、(b) cross-model intervention accuracy。",
+        "text": "model names、ID=0/1、head stage labels。"
+      },
+      "data_and_statistics": "PUG photorealistic 两动物任务的 intervention accuracy，按模型与三类 top-K CMA-ranked heads 汇总；柱顶有误差条，但 caption 未定义其统计含义、重复数或分母。",
+      "evidence_relation": "§3.4 CMA 识别的 head stages → 本图在 PUG 图像上做 ID swap → 右图把机制效应跨 7 模型比较；Figure 4/5 继续测试局部 key swap 与跨任务复用，Appendix Figures 10–12 定义 CMA 条件。",
+      "design_strengths": [
+        "左侧把 patch 操作具体化，右侧提供跨模型行为读数。",
+        "共享阶段 legend 和红色 patching 箭头使干预方向可追踪。"
+      ],
+      "design_weaknesses": [
+        "右图模型标签倾斜且拥挤，误差条没有 caption 定义。",
+        "示意图把对象 ID、head 输出和 feature retrieval 同时画出，非熟悉读者需要正文补充。"
+      ],
+      "reusable_pattern": "用一张“操作示意+跨模型柱图”把可操纵机制和行为效应绑定，适合展示因果干预而非单纯相关。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 4: Color Retrieval Intervention Accuracy for all models.",
+        "word_count": 9,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#B7D7B9",
+          "#76A978",
+          "#4D7A50",
+          "#333333",
+          "#D9EAD3",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "绿色深浅为不同模型的 color-retrieval intervention bar；x 轴模型标签承担类别信息。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 6
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "6 个 VLM 模型类别。",
+        "y": "Intervention Accuracy，0–1。",
+        "color": "绿色柱的深浅为模型/柱组视觉区分。",
+        "shape": null,
+        "line": "柱顶误差条。",
+        "facet": null,
+        "text": "模型名称和 y 轴标题。"
+      },
+      "data_and_statistics": "在 visual object patch keys 上交换 ID，固定 α=2，并在含 top-20 feature-retrieval heads 的 layers 上汇总 color retrieval accuracy；每模型一柱并带误差条，caption 未说明误差定义或样本量。",
+      "evidence_relation": "§4.3 的“position IDs localized within visual object patches” → 本图提供 key-swap 行为验证 → Figure 3 的 head-output intervention 和 Figure 5 的跨任务注入共同支撑 position ID 可操纵性。",
+      "design_strengths": [
+        "单柱、统一 y 轴和明确模型 x 轴，主比较非常快。",
+        "误差条至少保留了重复实验的可见不确定性提示。"
+      ],
+      "design_weaknesses": [
+        "caption 只有标题，未定义 α、top-20、误差条或分母。",
+        "绿色深浅没有 legend，颜色本身不增加可解释性且灰度区分弱。"
+      ],
+      "reusable_pattern": "将一个局部表征干预压缩为单栏小图，固定同一 y 轴并保留误差条，作为主文机制链中的快速行为校验。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 5: Intervention performance on spatial reasoning task.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 3,
+        "hex": [
+          "#333333",
+          "#BDBDBD",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "深灰/浅灰分别表示 Before/After 或 Intervention After/Before；颜色不依赖彩色，x/y 和 legend 共同编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "above/below/left/right 四种 relation 类别。",
+        "y": "Accuracy (%)，0–100。",
+        "color": "Before/After intervention 两组柱。",
+        "shape": null,
+        "line": null,
+        "facet": "5 个模型面板。",
+        "text": "模型名、relation 类别和共享 legend。"
+      },
+      "data_and_statistics": "场景描述任务估计的 position IDs 被注入 spatial-reasoning task；5 个模型、4 个空间关系各有 Before/After proportion/accuracy 柱。Qwen2.5-VL-32B 与 Llava-OneVision 因 ceiling performance 未画入，未显示误差或样本分母。",
+      "evidence_relation": "§4.4 “position IDs are reused across tasks” → 本图把 scene-description ID transfer 到空间推理 → Figure 7/Appendix Table 1 转向 entropy failure，形成机制可复用但有 ceiling 边界的行为证据。",
+      "design_strengths": [
+        "五个模型按同一 relation 顺序重复，Before/After 视觉比较稳定。",
+        "灰度双柱使结果在打印中仍可读。"
+      ],
+      "design_weaknesses": [
+        "各面板没有误差条/样本量，caption 没有列出排除的两模型。",
+        "五面板高度压缩，长 relation 标签和模型名增加扫描成本。"
+      ],
+      "reusable_pattern": "用小倍数 grouped bars 对齐同一任务的 Before/After 和关系类别，显式保留 ceiling 模型的排除边界。",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "failure",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 6: Binding error analysis showing effect of feature entropy on position ID mechanisms.",
+        "word_count": 14,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#6BAED6",
+          "#FB6A6A",
+          "#F0F0F0",
+          "#4D4D4D",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色 Low Entropy、红色 High Entropy；上方定性 grid 直接显示刺激特征重复程度。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "RSA 子图的 layer；刺激子图无轴。",
+        "y": "RSA Correlation (r)；刺激子图无轴。",
+        "color": "High/Low Entropy 两条曲线与刺激行。",
+        "shape": "2×2 物体形状/颜色。",
+        "line": "Prompt Tokens–Position 与 Last Token–Position RSA。",
+        "facet": "(a,b) high/low entropy stimuli；(c,d) token-position RSA。",
+        "text": "High/Low Entropy、Layer 和 RSA 标签。"
+      },
+      "data_and_statistics": "scene-description binding-error 条件下，比较 high/low feature entropy 的模型 accuracy/position RSA；曲线带浅色阴影带，但 caption 未定义带宽、重复或聚合方式。",
+      "evidence_relation": "§4.5 的 binding-error 假设 → Appendix Figure 9 的刺激配置 → 本图把 entropy 改变连接到 ID retrieval/selection 两个 RSA 阶段 → Figure 7 与 Appendix Table 1 将差异转成模型级准确率和 activation patching。",
+      "design_strengths": [
+        "定性刺激与两个 token-source 曲线直接并置，机制失败的入口清楚。",
+        "颜色和面板标题区分 entropy 与 token stage。"
+      ],
+      "design_weaknesses": [
+        "caption 不定义阴影带、RSA 聚合或 entropy 构造；(c,d) 依赖共享 legend。",
+        "定性 grid 没有显示对象坐标或 trial 规模，无法从图单独复现数据。"
+      ],
+      "reusable_pattern": "先用一对可见刺激，再用同一坐标轴上的 representation curves 解释行为失败，适合机制—failure 过渡。",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "failure",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 7: Link between binding errors and failure of position ID mechanisms.",
+        "word_count": 12,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 3,
+        "hex": [
+          "#333333",
+          "#BDBDBD",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "深/浅灰对应 High Entropy/Low Entropy，三面板分别显示 model performance 与两种 token-position RSA。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 42
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "7 个模型类别。",
+        "y": "左 Accuracy；中/右 RSA Correlation；均为线性。",
+        "color": "High Entropy/Low Entropy 两组灰柱。",
+        "shape": null,
+        "line": "误差条。",
+        "facet": "Model Performance、Prompt Tokens–Position RSA、Last Token–Position RSA。",
+        "text": "模型名、面板标题和共享 entropy legend。"
+      },
+      "data_and_statistics": "按 7 个模型汇总 high/low entropy 的 performance 与 prompt-token/last-token position RSA，柱顶可见误差条；图未写样本数、误差类型或显著性。",
+      "evidence_relation": "Figure 6 的 token-level entropy effect → 本图把 effect 跨模型聚合 → Appendix Figures 31–37 展开逐模型层曲线，Table 1 用高熵 prototype patch 测试因果改善。",
+      "design_strengths": [
+        "三面板共用模型顺序，能够同时观察行为和两种 RSA 读数。",
+        "灰度编码简单，误差条提醒读者比较存在变异。"
+      ],
+      "design_weaknesses": [
+        "面板 y 轴含义不同但量程/视觉样式相近，可能误把 RSA 与 accuracy 直接比较。",
+        "caption 只给标题，不定义误差条和 high/low entropy 的统计构造。"
+      ],
+      "reusable_pattern": "用并列的 behavior/representation small multiples 让同一条件差异可在多个测量层级横向核对。",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8: Stimulus condition for characterizing relative vs absolute position IDs.",
+        "word_count": 11,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#EF0000",
+          "#4DFF00",
+          "#1122FF",
+          "#9A24D8",
+          "#FFD700",
+          "#FF8C00",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "行表示 High/Low Entropy，列表示 2×2/3×3；形状颜色表示对象特征，虚线圆圈固定中心对象。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 36
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 4,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "对象 color/shape conjunction 与 entropy 条件。",
+        "shape": "圆、三角、方形、心形等对象符号。",
+        "line": "虚线圆圈标记中心位置。",
+        "facet": "行 High/Low Entropy，列 2×2/3×3。",
+        "text": "行/列条件标签。"
+      },
+      "data_and_statistics": "展示 relative-vs-absolute 实验的四种 stimulus condition；每格是一个定性 grid，不编码均值、分母或不确定性。",
+      "evidence_relation": "§4.1 位置编码问题 → 本图明确四个 grid arrangement 和中心对象控制 → Figure 2 的 RSA 与 Figure 30 的 intervention 使用同一条件，PCA Figure 26 也回指本图。",
+      "design_strengths": [
+        "行列标签直接给出实验因素，中心对象圈定控制位置。",
+        "示例足以解释 relative/absolute 操作的空间变换。"
+      ],
+      "design_weaknesses": [
+        "没有给每格的 trial 数或对象 ID 规则；颜色/形状组合在灰度和小尺寸下难区分。",
+        "caption 只有标题，必须回到 Appendix A.1.2 才能理解条件为何识别绝对位置。"
+      ],
+      "reusable_pattern": "把多因素刺激设计排成 2×2 matrix，并用固定中心对象作为跨条件锚点。",
+      "evidence": {
+        "page": 14,
+        "label": "Figure 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "experimental_design",
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 9: Image configurations for investigating binding errors.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#EF0000",
+          "#4DFF00",
+          "#1122FF",
+          "#9A24D8",
+          "#FFD700",
+          "#FF8C00",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "四格按 grid size 与 entropy 分层；颜色和形状组合控制 feature entropy，2×2/3×3 表示对象数量。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": 52
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 4,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "高熵使用 distinct color/shape conjunction，低熵复用有限 conjunction。",
+        "shape": "彩色几何对象。",
+        "line": "面板边界与对象网格。",
+        "facet": "列 2×2/3×3，行 High/Low Entropy。",
+        "text": "grid-size 和 entropy 标签。"
+      },
+      "data_and_statistics": "为 2×2（4 objects）与 3×3（9 objects）各提供 high/low entropy image configurations；正文给出 100/50 trials per combination 与总量，但图本身不显示这些分母。",
+      "evidence_relation": "Appendix A.1.4 的 binding-error dataset 定义 → 本图给出 Figure 6/7 的刺激实例 → Figures 31–37 复现各模型 RSA，Table 1 对低熵条件做高熵 activation patch。",
+      "design_strengths": [
+        "同一 row/column 结构隔离 grid size 与 feature entropy。",
+        "对象组合可直接让读者看到“重复特征”如何造成 binding ambiguity。"
+      ],
+      "design_weaknesses": [
+        "caption 没有说明每格的 trial 数和具体组合空间；低熵/高熵语义全靠正文。",
+        "多色小对象的可辨性在打印或缩放时显著下降。"
+      ],
+      "reusable_pattern": "用固定的 grid-size × entropy facet 把数据生成因素视觉化，后续所有 binding-error 曲线都能回链。",
+      "evidence": {
+        "page": 15,
+        "label": "Figure 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "architecture"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 10: Causal mediation procedure used to identify ID retrieval heads.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Mono L",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#74A8DC",
+          "#EF8D8D",
+          "#80C987",
+          "#FF0000",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝/红/绿块分别为 ID retrieval、ID selection、feature retrieval；黑实线/黑虚线/红虚线分别为 feedforward、attention、patching。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 22,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "阶段色块与 patching 颜色。",
+        "shape": "图像对象/虚线框作为 ID-bearing patches。",
+        "line": "三种箭头样式编码计算与干预。",
+        "facet": "左 source/clean，右 target/modified。",
+        "text": "ID=0/1、head 类型、prompt 片段、对象颜色/形状。"
+      },
+      "data_and_statistics": "ID retrieval output is patched from the source object to the target example。图示 clean/source 与 modified/target 条件，使用 Feedforward、Attention 和 Patching 三类箭头；不包含样本量、行为分母或统计不确定性。",
+      "evidence_relation": "§3.4 的 CMA counterfactual 条件 → Figure 10 具体化 ID retrieval heads 的输入、ID 和 patched edge → Figure 1d 的 CMA heatmap 与 Figures 20–25 的跨模型 head scores 提供定位，Figure 3/4/5 用相同阶段做行为干预。",
+      "design_strengths": [
+        "颜色、箭头线型和文字标签三重编码机制阶段与干预。",
+        "左右 source/target 对照让 causal mediation 的替换点可追踪。"
+      ],
+      "design_weaknesses": [
+        "两个 schematic 面板都很密，等宽 prompt 文本和小 ID 标签在双栏缩放时难读。",
+        "caption 没有解释 clean/modified、样本聚合或 CMA score 定义。"
+      ],
+      "reusable_pattern": "用 source/target 双面板、三类箭头和阶段色块解释 activation patching 条件，在不引入定量噪声的情况下暴露干预接口。",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "architecture"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 11: Causal mediation procedure used to identify ID selection heads.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Mono L",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#74A8DC",
+          "#EF8D8D",
+          "#80C987",
+          "#FF0000",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝/红/绿块分别为 ID retrieval、ID selection、feature retrieval；黑实线/黑虚线/红虚线分别为 feedforward、attention、patching。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 22,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "阶段色块与 patching 颜色。",
+        "shape": "图像对象/虚线框作为 ID-bearing patches。",
+        "line": "三种箭头样式编码计算与干预。",
+        "facet": "左 source/clean，右 target/modified。",
+        "text": "ID=0/1、head 类型、prompt 片段、对象颜色/形状。"
+      },
+      "data_and_statistics": "ID selection output is patched while the target ID is held in the downstream flow。图示 clean/source 与 modified/target 条件，使用 Feedforward、Attention 和 Patching 三类箭头；不包含样本量、行为分母或统计不确定性。",
+      "evidence_relation": "§3.4 的 CMA counterfactual 条件 → Figure 11 具体化 ID selection heads 的输入、ID 和 patched edge → Figure 1d 的 CMA heatmap 与 Figures 20–25 的跨模型 head scores 提供定位，Figure 3/4/5 用相同阶段做行为干预。",
+      "design_strengths": [
+        "颜色、箭头线型和文字标签三重编码机制阶段与干预。",
+        "左右 source/target 对照让 causal mediation 的替换点可追踪。"
+      ],
+      "design_weaknesses": [
+        "两个 schematic 面板都很密，等宽 prompt 文本和小 ID 标签在双栏缩放时难读。",
+        "caption 没有解释 clean/modified、样本聚合或 CMA score 定义。"
+      ],
+      "reusable_pattern": "用 source/target 双面板、三类箭头和阶段色块解释 activation patching 条件，在不引入定量噪声的情况下暴露干预接口。",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "architecture"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 12: Causal mediation procedure used to identify feature retrieval heads.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Mono L",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#74A8DC",
+          "#EF8D8D",
+          "#80C987",
+          "#FF0000",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝/红/绿块分别为 ID retrieval、ID selection、feature retrieval；黑实线/黑虚线/红虚线分别为 feedforward、attention、patching。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 22,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "阶段色块与 patching 颜色。",
+        "shape": "图像对象/虚线框作为 ID-bearing patches。",
+        "line": "三种箭头样式编码计算与干预。",
+        "facet": "左 source/clean，右 target/modified。",
+        "text": "ID=0/1、head 类型、prompt 片段、对象颜色/形状。"
+      },
+      "data_and_statistics": "feature-retrieval query/output is patched to test feature lookup through the selected ID。图示 clean/source 与 modified/target 条件，使用 Feedforward、Attention 和 Patching 三类箭头；不包含样本量、行为分母或统计不确定性。",
+      "evidence_relation": "§3.4 的 CMA counterfactual 条件 → Figure 12 具体化 feature retrieval heads 的输入、ID 和 patched edge → Figure 1d 的 CMA heatmap 与 Figures 20–25 的跨模型 head scores 提供定位，Figure 3/4/5 用相同阶段做行为干预。",
+      "design_strengths": [
+        "颜色、箭头线型和文字标签三重编码机制阶段与干预。",
+        "左右 source/target 对照让 causal mediation 的替换点可追踪。"
+      ],
+      "design_weaknesses": [
+        "两个 schematic 面板都很密，等宽 prompt 文本和小 ID 标签在双栏缩放时难读。",
+        "caption 没有解释 clean/modified、样本聚合或 CMA score 定义。"
+      ],
+      "reusable_pattern": "用 source/target 双面板、三类箭头和阶段色块解释 activation patching 条件，在不引入定量噪声的情况下暴露干预接口。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 12",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "architecture"
+      ],
+      "purpose": [
+        "experimental_design",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 13: Illustration of the intervention testing for relative vs. absolute spatial coding.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Mono L",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#74A8DC",
+          "#EF8D8D",
+          "#80C987",
+          "#FF0000",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝/红/绿块分别为 ID retrieval、ID selection、feature retrieval；黑实线/黑虚线/红虚线分别为 feedforward、attention、patching。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 22,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "阶段色块与 patching 颜色。",
+        "shape": "图像对象/虚线框作为 ID-bearing patches。",
+        "line": "三种箭头样式编码计算与干预。",
+        "facet": "左 source/clean，右 target/modified。",
+        "text": "ID=0/1、head 类型、prompt 片段、对象颜色/形状。"
+      },
+      "data_and_statistics": "source target ID is patched into two grid arrangements with the same absolute or relative position。图示 clean/source 与 modified/target 条件，使用 Feedforward、Attention 和 Patching 三类箭头；不包含样本量、行为分母或统计不确定性。",
+      "evidence_relation": "§4.1 的 relative-vs-absolute 假设 → Figure 13 显示 source/target grid 与 patched ID 的唯一反事实 → Figure 2/27–30 将该条件转成 RSA 与行为结果。",
+      "design_strengths": [
+        "颜色、箭头线型和文字标签三重编码机制阶段与干预。",
+        "左右 source/target 对照让 causal mediation 的替换点可追踪。"
+      ],
+      "design_weaknesses": [
+        "两个 schematic 面板都很密，等宽 prompt 文本和小 ID 标签在双栏缩放时难读。",
+        "caption 没有解释 clean/modified、样本聚合或 CMA score 定义。"
+      ],
+      "reusable_pattern": "用 source/target 双面板、三类箭头和阶段色块解释 activation patching 条件，在不引入定量噪声的情况下暴露干预接口。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 13",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 14: Representational analyses for Qwen2.5-VL-3b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BE0B2",
+          "#E83E8C",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Target Position 为薄荷绿、Target Features 为洋红；点和线共同显示 layer trajectory。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer Number，模型深度范围随模型变化。",
+        "y": "Pearson Correlation (r)，0–1。",
+        "color": "Target Position vs. Target Features。",
+        "shape": "圆形 marker。",
+        "line": "两条逐层 RSA 曲线。",
+        "facet": null,
+        "text": "RSA Similarity by Layer、legend、Layer Number。"
+      },
+      "data_and_statistics": "Qwen2.5-VL-3b 的 last-token representation 与 target position/features RSM 的 Pearson correlation 随 layer 变化；每 layer 为一个点估计，无阴影、误差条、trial 数或聚合定义。",
+      "evidence_relation": "Figure 1c 的阶段性 RSA → Figure 14 将同一 position-before-feature pattern 扩展到 Qwen2.5-VL-3b → Figures 27–29 比较 relative/absolute coding，Figures 31–37 比较 entropy 条件，Figures 20–25 给出对应 CMA head localization。",
+      "design_strengths": [
+        "单图双曲线、统一 y 轴，position→features 的时序峰值易读。",
+        "每个模型独立一图避免跨模型深度轴混淆。"
+      ],
+      "design_weaknesses": [
+        "模型图分别占一页的纵向空间，跨模型比较需翻页；caption 只标模型名。",
+        "没有置信带、样本量或层选择标准，峰值差异不能直接作统计结论。"
+      ],
+      "reusable_pattern": "对每个模型使用相同两曲线语法，让不同深度的阶段转移可以逐图核验。",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 14",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 15: Representational analyses for Qwen2.5-VL-7b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BE0B2",
+          "#E83E8C",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Target Position 为薄荷绿、Target Features 为洋红；点和线共同显示 layer trajectory。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer Number，模型深度范围随模型变化。",
+        "y": "Pearson Correlation (r)，0–1。",
+        "color": "Target Position vs. Target Features。",
+        "shape": "圆形 marker。",
+        "line": "两条逐层 RSA 曲线。",
+        "facet": null,
+        "text": "RSA Similarity by Layer、legend、Layer Number。"
+      },
+      "data_and_statistics": "Qwen2.5-VL-7b 的 last-token representation 与 target position/features RSM 的 Pearson correlation 随 layer 变化；每 layer 为一个点估计，无阴影、误差条、trial 数或聚合定义。",
+      "evidence_relation": "Figure 1c 的阶段性 RSA → Figure 15 将同一 position-before-feature pattern 扩展到 Qwen2.5-VL-7b → Figures 27–29 比较 relative/absolute coding，Figures 31–37 比较 entropy 条件，Figures 20–25 给出对应 CMA head localization。",
+      "design_strengths": [
+        "单图双曲线、统一 y 轴，position→features 的时序峰值易读。",
+        "每个模型独立一图避免跨模型深度轴混淆。"
+      ],
+      "design_weaknesses": [
+        "模型图分别占一页的纵向空间，跨模型比较需翻页；caption 只标模型名。",
+        "没有置信带、样本量或层选择标准，峰值差异不能直接作统计结论。"
+      ],
+      "reusable_pattern": "对每个模型使用相同两曲线语法，让不同深度的阶段转移可以逐图核验。",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 15",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 16: Representational analyses for Qwen2.5-VL-32b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BE0B2",
+          "#E83E8C",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Target Position 为薄荷绿、Target Features 为洋红；点和线共同显示 layer trajectory。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer Number，模型深度范围随模型变化。",
+        "y": "Pearson Correlation (r)，0–1。",
+        "color": "Target Position vs. Target Features。",
+        "shape": "圆形 marker。",
+        "line": "两条逐层 RSA 曲线。",
+        "facet": null,
+        "text": "RSA Similarity by Layer、legend、Layer Number。"
+      },
+      "data_and_statistics": "Qwen2.5-VL-32b 的 last-token representation 与 target position/features RSM 的 Pearson correlation 随 layer 变化；每 layer 为一个点估计，无阴影、误差条、trial 数或聚合定义。",
+      "evidence_relation": "Figure 1c 的阶段性 RSA → Figure 16 将同一 position-before-feature pattern 扩展到 Qwen2.5-VL-32b → Figures 27–29 比较 relative/absolute coding，Figures 31–37 比较 entropy 条件，Figures 20–25 给出对应 CMA head localization。",
+      "design_strengths": [
+        "单图双曲线、统一 y 轴，position→features 的时序峰值易读。",
+        "每个模型独立一图避免跨模型深度轴混淆。"
+      ],
+      "design_weaknesses": [
+        "模型图分别占一页的纵向空间，跨模型比较需翻页；caption 只标模型名。",
+        "没有置信带、样本量或层选择标准，峰值差异不能直接作统计结论。"
+      ],
+      "reusable_pattern": "对每个模型使用相同两曲线语法，让不同深度的阶段转移可以逐图核验。",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 16",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 17: Representational analyses for Llava1.5-7b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BE0B2",
+          "#E83E8C",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Target Position 为薄荷绿、Target Features 为洋红；点和线共同显示 layer trajectory。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer Number，模型深度范围随模型变化。",
+        "y": "Pearson Correlation (r)，0–1。",
+        "color": "Target Position vs. Target Features。",
+        "shape": "圆形 marker。",
+        "line": "两条逐层 RSA 曲线。",
+        "facet": null,
+        "text": "RSA Similarity by Layer、legend、Layer Number。"
+      },
+      "data_and_statistics": "Llava1.5-7b 的 last-token representation 与 target position/features RSM 的 Pearson correlation 随 layer 变化；每 layer 为一个点估计，无阴影、误差条、trial 数或聚合定义。",
+      "evidence_relation": "Figure 1c 的阶段性 RSA → Figure 17 将同一 position-before-feature pattern 扩展到 Llava1.5-7b → Figures 27–29 比较 relative/absolute coding，Figures 31–37 比较 entropy 条件，Figures 20–25 给出对应 CMA head localization。",
+      "design_strengths": [
+        "单图双曲线、统一 y 轴，position→features 的时序峰值易读。",
+        "每个模型独立一图避免跨模型深度轴混淆。"
+      ],
+      "design_weaknesses": [
+        "模型图分别占一页的纵向空间，跨模型比较需翻页；caption 只标模型名。",
+        "没有置信带、样本量或层选择标准，峰值差异不能直接作统计结论。"
+      ],
+      "reusable_pattern": "对每个模型使用相同两曲线语法，让不同深度的阶段转移可以逐图核验。",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 17",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 18: Representational analyses for LlavaOnevision-7b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BE0B2",
+          "#E83E8C",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Target Position 为薄荷绿、Target Features 为洋红；点和线共同显示 layer trajectory。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer Number，模型深度范围随模型变化。",
+        "y": "Pearson Correlation (r)，0–1。",
+        "color": "Target Position vs. Target Features。",
+        "shape": "圆形 marker。",
+        "line": "两条逐层 RSA 曲线。",
+        "facet": null,
+        "text": "RSA Similarity by Layer、legend、Layer Number。"
+      },
+      "data_and_statistics": "LlavaOnevision-7b 的 last-token representation 与 target position/features RSM 的 Pearson correlation 随 layer 变化；每 layer 为一个点估计，无阴影、误差条、trial 数或聚合定义。",
+      "evidence_relation": "Figure 1c 的阶段性 RSA → Figure 18 将同一 position-before-feature pattern 扩展到 LlavaOnevision-7b → Figures 27–29 比较 relative/absolute coding，Figures 31–37 比较 entropy 条件，Figures 20–25 给出对应 CMA head localization。",
+      "design_strengths": [
+        "单图双曲线、统一 y 轴，position→features 的时序峰值易读。",
+        "每个模型独立一图避免跨模型深度轴混淆。"
+      ],
+      "design_weaknesses": [
+        "模型图分别占一页的纵向空间，跨模型比较需翻页；caption 只标模型名。",
+        "没有置信带、样本量或层选择标准，峰值差异不能直接作统计结论。"
+      ],
+      "reusable_pattern": "对每个模型使用相同两曲线语法，让不同深度的阶段转移可以逐图核验。",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 18",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 19",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 19: Representational analyses for Idefics2-8b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BE0B2",
+          "#E83E8C",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Target Position 为薄荷绿、Target Features 为洋红；点和线共同显示 layer trajectory。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer Number，模型深度范围随模型变化。",
+        "y": "Pearson Correlation (r)，0–1。",
+        "color": "Target Position vs. Target Features。",
+        "shape": "圆形 marker。",
+        "line": "两条逐层 RSA 曲线。",
+        "facet": null,
+        "text": "RSA Similarity by Layer、legend、Layer Number。"
+      },
+      "data_and_statistics": "Idefics2-8b 的 last-token representation 与 target position/features RSM 的 Pearson correlation 随 layer 变化；每 layer 为一个点估计，无阴影、误差条、trial 数或聚合定义。",
+      "evidence_relation": "Figure 1c 的阶段性 RSA → Figure 19 将同一 position-before-feature pattern 扩展到 Idefics2-8b → Figures 27–29 比较 relative/absolute coding，Figures 31–37 比较 entropy 条件，Figures 20–25 给出对应 CMA head localization。",
+      "design_strengths": [
+        "单图双曲线、统一 y 轴，position→features 的时序峰值易读。",
+        "每个模型独立一图避免跨模型深度轴混淆。"
+      ],
+      "design_weaknesses": [
+        "模型图分别占一页的纵向空间，跨模型比较需翻页；caption 只标模型名。",
+        "没有置信带、样本量或层选择标准，峰值差异不能直接作统计结论。"
+      ],
+      "reusable_pattern": "对每个模型使用相同两曲线语法，让不同深度的阶段转移可以逐图核验。",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 19",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 20",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 20: CMA results for Qwen-2.5-VL-3b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#0A0A0A",
+          "#1E88E5",
+          "#B71C1C",
+          "#EF5350",
+          "#2E7D32",
+          "#66BB6A",
+          "#FFFFFF",
+          "#777777",
+          "#000000"
+        ],
+        "semantic_mapping": "三个面板分别使用蓝、红、绿连续色阶表示 ID retrieval、ID selection、feature retrieval 的 CMA score；黑底和白网格提供矩阵定位。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Head Index，离散类别。",
+        "y": "Layer Index，离散类别。",
+        "color": "CMA score 的蓝/红/绿 sequential intensity。",
+        "shape": "每个 layer×head cell。",
+        "line": "白色 cell grid。",
+        "facet": "(a) ID retrieval、(b) ID selection、(c) feature retrieval。",
+        "text": "stage subcaption、Head Index、Layer Index、CMA Score colorbars。"
+      },
+      "data_and_statistics": "Qwen-2.5-VL-3b 三类 head 的 CMA layer×head scores，矩阵尺寸约为 16 heads × 36 layers；色条给出 score 强度，未报告阈值、重复、置信区间或 top-K 分母。",
+      "evidence_relation": "Figure 1d 的 Qwen2-VL CMA 总览 → Figure 20 展开 Qwen-2.5-VL-3b 的 stage-specific head localization → Figures 3/38–44 用 top-K heads 干预，Figures 10–12 解释 CMA clean/modified conditions。",
+      "design_strengths": [
+        "三阶段各自独立 colorbar，head/layer 位置可直接定位。",
+        "同一三面板结构跨模型重复，适合核查阶段是否跨架构出现。"
+      ],
+      "design_weaknesses": [
+        "矩阵和刻度极密，页宽缩放后 layer/head 数字几乎不可读。",
+        "阶段使用不同色相且色条未给语义阈值，灰度和色觉缺陷下可比性差。"
+      ],
+      "reusable_pattern": "用统一的三 heatmap layout 记录“哪个 layer×head 实现哪个阶段”，为后续 top-K causal intervention 提供可追溯索引。",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 20",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 21",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 21: CMA results for Qwen-2.5-VL-7b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#0A0A0A",
+          "#1E88E5",
+          "#B71C1C",
+          "#EF5350",
+          "#2E7D32",
+          "#66BB6A",
+          "#FFFFFF",
+          "#777777",
+          "#000000"
+        ],
+        "semantic_mapping": "三个面板分别使用蓝、红、绿连续色阶表示 ID retrieval、ID selection、feature retrieval 的 CMA score；黑底和白网格提供矩阵定位。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Head Index，离散类别。",
+        "y": "Layer Index，离散类别。",
+        "color": "CMA score 的蓝/红/绿 sequential intensity。",
+        "shape": "每个 layer×head cell。",
+        "line": "白色 cell grid。",
+        "facet": "(a) ID retrieval、(b) ID selection、(c) feature retrieval。",
+        "text": "stage subcaption、Head Index、Layer Index、CMA Score colorbars。"
+      },
+      "data_and_statistics": "Qwen-2.5-VL-7b 三类 head 的 CMA layer×head scores，矩阵尺寸约为 28 heads × 28 layers；色条给出 score 强度，未报告阈值、重复、置信区间或 top-K 分母。",
+      "evidence_relation": "Figure 1d 的 Qwen2-VL CMA 总览 → Figure 21 展开 Qwen-2.5-VL-7b 的 stage-specific head localization → Figures 3/38–44 用 top-K heads 干预，Figures 10–12 解释 CMA clean/modified conditions。",
+      "design_strengths": [
+        "三阶段各自独立 colorbar，head/layer 位置可直接定位。",
+        "同一三面板结构跨模型重复，适合核查阶段是否跨架构出现。"
+      ],
+      "design_weaknesses": [
+        "矩阵和刻度极密，页宽缩放后 layer/head 数字几乎不可读。",
+        "阶段使用不同色相且色条未给语义阈值，灰度和色觉缺陷下可比性差。"
+      ],
+      "reusable_pattern": "用统一的三 heatmap layout 记录“哪个 layer×head 实现哪个阶段”，为后续 top-K causal intervention 提供可追溯索引。",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 21",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 22",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 22: CMA results for Qwen-2.5-VL-32b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#0A0A0A",
+          "#1E88E5",
+          "#B71C1C",
+          "#EF5350",
+          "#2E7D32",
+          "#66BB6A",
+          "#FFFFFF",
+          "#777777",
+          "#000000"
+        ],
+        "semantic_mapping": "三个面板分别使用蓝、红、绿连续色阶表示 ID retrieval、ID selection、feature retrieval 的 CMA score；黑底和白网格提供矩阵定位。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Head Index，离散类别。",
+        "y": "Layer Index，离散类别。",
+        "color": "CMA score 的蓝/红/绿 sequential intensity。",
+        "shape": "每个 layer×head cell。",
+        "line": "白色 cell grid。",
+        "facet": "(a) ID retrieval、(b) ID selection、(c) feature retrieval。",
+        "text": "stage subcaption、Head Index、Layer Index、CMA Score colorbars。"
+      },
+      "data_and_statistics": "Qwen-2.5-VL-32b 三类 head 的 CMA layer×head scores，矩阵尺寸约为 64 heads × 64 layers；色条给出 score 强度，未报告阈值、重复、置信区间或 top-K 分母。",
+      "evidence_relation": "Figure 1d 的 Qwen2-VL CMA 总览 → Figure 22 展开 Qwen-2.5-VL-32b 的 stage-specific head localization → Figures 3/38–44 用 top-K heads 干预，Figures 10–12 解释 CMA clean/modified conditions。",
+      "design_strengths": [
+        "三阶段各自独立 colorbar，head/layer 位置可直接定位。",
+        "同一三面板结构跨模型重复，适合核查阶段是否跨架构出现。"
+      ],
+      "design_weaknesses": [
+        "矩阵和刻度极密，页宽缩放后 layer/head 数字几乎不可读。",
+        "阶段使用不同色相且色条未给语义阈值，灰度和色觉缺陷下可比性差。"
+      ],
+      "reusable_pattern": "用统一的三 heatmap layout 记录“哪个 layer×head 实现哪个阶段”，为后续 top-K causal intervention 提供可追溯索引。",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 22",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 23",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 23: CMA results for Llava-1.5-7b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#0A0A0A",
+          "#1E88E5",
+          "#B71C1C",
+          "#EF5350",
+          "#2E7D32",
+          "#66BB6A",
+          "#FFFFFF",
+          "#777777",
+          "#000000"
+        ],
+        "semantic_mapping": "三个面板分别使用蓝、红、绿连续色阶表示 ID retrieval、ID selection、feature retrieval 的 CMA score；黑底和白网格提供矩阵定位。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Head Index，离散类别。",
+        "y": "Layer Index，离散类别。",
+        "color": "CMA score 的蓝/红/绿 sequential intensity。",
+        "shape": "每个 layer×head cell。",
+        "line": "白色 cell grid。",
+        "facet": "(a) ID retrieval、(b) ID selection、(c) feature retrieval。",
+        "text": "stage subcaption、Head Index、Layer Index、CMA Score colorbars。"
+      },
+      "data_and_statistics": "Llava-1.5-7b 三类 head 的 CMA layer×head scores，矩阵尺寸约为 32 heads × 32 layers；色条给出 score 强度，未报告阈值、重复、置信区间或 top-K 分母。",
+      "evidence_relation": "Figure 1d 的 Qwen2-VL CMA 总览 → Figure 23 展开 Llava-1.5-7b 的 stage-specific head localization → Figures 3/38–44 用 top-K heads 干预，Figures 10–12 解释 CMA clean/modified conditions。",
+      "design_strengths": [
+        "三阶段各自独立 colorbar，head/layer 位置可直接定位。",
+        "同一三面板结构跨模型重复，适合核查阶段是否跨架构出现。"
+      ],
+      "design_weaknesses": [
+        "矩阵和刻度极密，页宽缩放后 layer/head 数字几乎不可读。",
+        "阶段使用不同色相且色条未给语义阈值，灰度和色觉缺陷下可比性差。"
+      ],
+      "reusable_pattern": "用统一的三 heatmap layout 记录“哪个 layer×head 实现哪个阶段”，为后续 top-K causal intervention 提供可追溯索引。",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 23",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 24",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 24: CMA results for Llava-1.5-13b.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#0A0A0A",
+          "#1E88E5",
+          "#B71C1C",
+          "#EF5350",
+          "#2E7D32",
+          "#66BB6A",
+          "#FFFFFF",
+          "#777777",
+          "#000000"
+        ],
+        "semantic_mapping": "三个面板分别使用蓝、红、绿连续色阶表示 ID retrieval、ID selection、feature retrieval 的 CMA score；黑底和白网格提供矩阵定位。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Head Index，离散类别。",
+        "y": "Layer Index，离散类别。",
+        "color": "CMA score 的蓝/红/绿 sequential intensity。",
+        "shape": "每个 layer×head cell。",
+        "line": "白色 cell grid。",
+        "facet": "(a) ID retrieval、(b) ID selection、(c) feature retrieval。",
+        "text": "stage subcaption、Head Index、Layer Index、CMA Score colorbars。"
+      },
+      "data_and_statistics": "Llava-1.5-13b 三类 head 的 CMA layer×head scores，矩阵尺寸约为 40 heads × 40 layers；色条给出 score 强度，未报告阈值、重复、置信区间或 top-K 分母。",
+      "evidence_relation": "Figure 1d 的 Qwen2-VL CMA 总览 → Figure 24 展开 Llava-1.5-13b 的 stage-specific head localization → Figures 3/38–44 用 top-K heads 干预，Figures 10–12 解释 CMA clean/modified conditions。",
+      "design_strengths": [
+        "三阶段各自独立 colorbar，head/layer 位置可直接定位。",
+        "同一三面板结构跨模型重复，适合核查阶段是否跨架构出现。"
+      ],
+      "design_weaknesses": [
+        "矩阵和刻度极密，页宽缩放后 layer/head 数字几乎不可读。",
+        "阶段使用不同色相且色条未给语义阈值，灰度和色觉缺陷下可比性差。"
+      ],
+      "reusable_pattern": "用统一的三 heatmap layout 记录“哪个 layer×head 实现哪个阶段”，为后续 top-K causal intervention 提供可追溯索引。",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 24",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 25",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 25: CMA results for Llava-OneVision.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#0A0A0A",
+          "#1E88E5",
+          "#B71C1C",
+          "#EF5350",
+          "#2E7D32",
+          "#66BB6A",
+          "#FFFFFF",
+          "#777777",
+          "#000000"
+        ],
+        "semantic_mapping": "三个面板分别使用蓝、红、绿连续色阶表示 ID retrieval、ID selection、feature retrieval 的 CMA score；黑底和白网格提供矩阵定位。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Head Index，离散类别。",
+        "y": "Layer Index，离散类别。",
+        "color": "CMA score 的蓝/红/绿 sequential intensity。",
+        "shape": "每个 layer×head cell。",
+        "line": "白色 cell grid。",
+        "facet": "(a) ID retrieval、(b) ID selection、(c) feature retrieval。",
+        "text": "stage subcaption、Head Index、Layer Index、CMA Score colorbars。"
+      },
+      "data_and_statistics": "Llava-OneVision 三类 head 的 CMA layer×head scores，矩阵尺寸约为 40 heads × 32 layers；色条给出 score 强度，未报告阈值、重复、置信区间或 top-K 分母。",
+      "evidence_relation": "Figure 1d 的 Qwen2-VL CMA 总览 → Figure 25 展开 Llava-OneVision 的 stage-specific head localization → Figures 3/38–44 用 top-K heads 干预，Figures 10–12 解释 CMA clean/modified conditions。",
+      "design_strengths": [
+        "三阶段各自独立 colorbar，head/layer 位置可直接定位。",
+        "同一三面板结构跨模型重复，适合核查阶段是否跨架构出现。"
+      ],
+      "design_weaknesses": [
+        "矩阵和刻度极密，页宽缩放后 layer/head 数字几乎不可读。",
+        "阶段使用不同色相且色条未给语义阈值，灰度和色觉缺陷下可比性差。"
+      ],
+      "reusable_pattern": "用统一的三 heatmap layout 记录“哪个 layer×head 实现哪个阶段”，为后续 top-K causal intervention 提供可追溯索引。",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 25",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 26",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "mechanism",
+        "experimental_design",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 26: Principal Component Analyses. Stimulus condition shown in Figure 8. PCA results for all objects. (e-g) PCA results for central object only. Hidden state embeddings at last token position projected onto the top 2 principal components, coded by relative position, absolute position, or object features.",
+        "word_count": 46,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 10,
+        "hex": [
+          "#EF0000",
+          "#1122FF",
+          "#4DFF00",
+          "#9A24D8",
+          "#FFD700",
+          "#FF8C00",
+          "#00A6D6",
+          "#E83E8C",
+          "#777777",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "PCA 点颜色按 relative position、absolute position 或 object feature coding；每行 layer 0–27，彩色聚类是编码条件而非连续数值。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 5,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 35,
+        "data_marks_estimate": 25000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 5,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "PC1；每个 layer 小面板。",
+        "y": "PC2；每个 layer 小面板。",
+        "color": "relative position、absolute position、object features 三种 coding。",
+        "shape": "对象/语义类别点。",
+        "line": null,
+        "facet": "(a) relative all objects、(b) absolute all objects、(c) features central、(d) relative central、(e) features central/semantic comparison as rendered.",
+        "text": "Layer 0–27 与 (a–e) panel labels。"
+      },
+      "data_and_statistics": "Qwen2-VL last-token hidden states 投影到 top-2 principal components；五行/组按 layer 展示 all-object 与 central-object 条件，点云不带误差或聚合统计。PDF 中 PCA raster image 与文字/面板标注混合。",
+      "evidence_relation": "Appendix A.5.3 的 relative-vs-absolute PCA test → 本图与 Figure 8 的 central-object control 对接 → Figure 2/27–30 的 RSA/intervention 将 PCA 的视觉聚类转成定量和因果证据。",
+      "design_strengths": [
+        "每层小面板保留了表示随深度变化的完整轨迹。",
+        "同一对象在 relative/absolute/feature coloring 下并排，支持机制解释。"
+      ],
+      "design_weaknesses": [
+        "超过数千点和 28 个 layer 小格，标签/点在页面宽度下非常密。",
+        "caption 写“(e-g)”但渲染面板为 (a)-(e)，存在 caption—panel 编号不一致；没有 PCA explained variance。"
+      ],
+      "reusable_pattern": "用 layer-by-layer PCA atlas 让抽象表征的聚类方向可视化，并用 central-object 子集隔离位置与语义因素。",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 26",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 27",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 27: RSA results comparing relative vs. absolute spatial coding schemes for Qwen2.5 models.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#E83E8C",
+          "#8DD3C7",
+          "#4D4D4D",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Feature 为洋红、Absolute Position 为薄荷色、Relative Position 为深灰；三种 RSM 由 legend 直接标明。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 8,
+        "data_marks_estimate": 180
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "Pearson Correlation (r)。",
+        "color": "Feature/Absolute Position/Relative Position 三曲线。",
+        "shape": null,
+        "line": "三条 layer-wise RSA 曲线与浅色 uncertainty bands。",
+        "facet": "按模型分面。",
+        "text": "Representational Similarity Across Layers、model panel labels、legend。"
+      },
+      "data_and_statistics": "Qwen2.5-VL-3b/7b/32b 的 last-token RSA 比较 relative/absolute position 与 feature RSM；曲线带浅色 band，caption 未说明 band 的统计定义、trial 数或聚合。",
+      "evidence_relation": "Figure 2 的空间编码曲线 → Figure 27 扩展到 Qwen2.5-VL-3b/7b/32b → Figure 30 的 patching performance 作为行为检验，Figures 14–19 和 31–37 分别扩展阶段/entropy 维度。",
+      "design_strengths": [
+        "三条曲线共享 layer/r 轴，模型族之间结构可比。",
+        "legend 在每面板保留，脱离正文仍能识别编码。"
+      ],
+      "design_weaknesses": [
+        "小 multiples 让 band、低值和交叉点难以读取。",
+        "caption 只说明比较对象，不定义阴影或模型具体层数。"
+      ],
+      "reusable_pattern": "将相同三曲线语法复制到模型族小 multiples，保持编码颜色和 y 轴一致以支持跨模型稳健性比较。",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 27",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 28",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 28: RSA results comparing relative vs. absolute spatial coding schemes for Qwen2 and Llava1.5 models.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#E83E8C",
+          "#8DD3C7",
+          "#4D4D4D",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Feature 为洋红、Absolute Position 为薄荷色、Relative Position 为深灰；三种 RSM 由 legend 直接标明。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 8,
+        "data_marks_estimate": 180
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "Pearson Correlation (r)。",
+        "color": "Feature/Absolute Position/Relative Position 三曲线。",
+        "shape": null,
+        "line": "三条 layer-wise RSA 曲线与浅色 uncertainty bands。",
+        "facet": "按模型分面。",
+        "text": "Representational Similarity Across Layers、model panel labels、legend。"
+      },
+      "data_and_statistics": "Qwen2-VL 与 Llava1.5-7b/13b 的 last-token RSA 比较 relative/absolute position 与 feature RSM；曲线带浅色 band，caption 未说明 band 的统计定义、trial 数或聚合。",
+      "evidence_relation": "Figure 2 的空间编码曲线 → Figure 28 扩展到 Qwen2-VL 与 Llava1.5-7b/13b → Figure 30 的 patching performance 作为行为检验，Figures 14–19 和 31–37 分别扩展阶段/entropy 维度。",
+      "design_strengths": [
+        "三条曲线共享 layer/r 轴，模型族之间结构可比。",
+        "legend 在每面板保留，脱离正文仍能识别编码。"
+      ],
+      "design_weaknesses": [
+        "小 multiples 让 band、低值和交叉点难以读取。",
+        "caption 只说明比较对象，不定义阴影或模型具体层数。"
+      ],
+      "reusable_pattern": "将相同三曲线语法复制到模型族小 multiples，保持编码颜色和 y 轴一致以支持跨模型稳健性比较。",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 28",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 29",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 29: RSA results comparing relative vs. absolute spatial coding schemes for Idefics2-8b.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#E83E8C",
+          "#8DD3C7",
+          "#4D4D4D",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Feature 为洋红、Absolute Position 为薄荷色、Relative Position 为深灰；三种 RSM 由 legend 直接标明。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 8,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "Pearson Correlation (r)。",
+        "color": "Feature/Absolute Position/Relative Position 三曲线。",
+        "shape": null,
+        "line": "三条 layer-wise RSA 曲线与浅色 uncertainty bands。",
+        "facet": "按模型分面。",
+        "text": "Representational Similarity Across Layers、model panel labels、legend。"
+      },
+      "data_and_statistics": "Idefics2-8b 的 last-token RSA 比较 relative/absolute position 与 feature RSM；曲线带浅色 band，caption 未说明 band 的统计定义、trial 数或聚合。",
+      "evidence_relation": "Figure 2 的空间编码曲线 → Figure 29 扩展到 Idefics2-8b → Figure 30 的 patching performance 作为行为检验，Figures 14–19 和 31–37 分别扩展阶段/entropy 维度。",
+      "design_strengths": [
+        "三条曲线共享 layer/r 轴，模型族之间结构可比。",
+        "legend 在每面板保留，脱离正文仍能识别编码。"
+      ],
+      "design_weaknesses": [
+        "小 multiples 让 band、低值和交叉点难以读取。",
+        "caption 只说明比较对象，不定义阴影或模型具体层数。"
+      ],
+      "reusable_pattern": "将相同三曲线语法复制到模型族小 multiples，保持编码颜色和 y 轴一致以支持跨模型稳健性比较。",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 29",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 30",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 30: Intervention results testing for relative vs. absolute spatial coding schemes.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 4,
+        "hex": [
+          "#D9D9D9",
+          "#6F6F6F",
+          "#333333",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "浅灰 Absolute、深灰 Relative；误差条用黑色，legend 直接说明两种 position-ID 假设。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "6 个模型类别。",
+        "y": "Proportion Correct，0–1。",
+        "color": "Absolute/Relative position-ID intervention。",
+        "shape": null,
+        "line": "黑色 error bars。",
+        "facet": null,
+        "text": "Position Patching Performance、模型名、legend。"
+      },
+      "data_and_statistics": "将第一图的 target ID patch 到第二图的 ID selection heads，比较 same-absolute 与 same-relative position 下的 proportion correct；柱含误差条，caption 未定义重复/误差。",
+      "evidence_relation": "Figure 13 的 source/target intervention schematic → 本图给出六模型行为判别 → Figure 27–29 RSA 解释相对/绝对 coding，Figure 2 是主文 Qwen2-VL 版本。",
+      "design_strengths": [
+        "灰度双柱和统一 0–1 y 轴让假设对照直接。",
+        "误差条和模型分组揭示模型族差异，而不是只给单一结论。"
+      ],
+      "design_weaknesses": [
+        "Relative/Absolute 结论依赖 patch 设计与模型的 baseline，caption 未说明 2×2 条件细节。",
+        "小字体长模型名倾斜，未标注 ceiling 或试验分母。"
+      ],
+      "reusable_pattern": "用同一模型轴对置两个互斥假设的 patching outcome，并将颜色、legend 和误差条集中在单一行为图中。",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 30",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 31",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "failure",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 31: RSA for Qwen2-VL.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BAED6",
+          "#FB6A6A",
+          "#A6CEE3",
+          "#F4A3A3"
+        ],
+        "semantic_mapping": "蓝色 Low Entropy、红色 High Entropy；浅色 area/band 叠加主曲线表示不确定性或 spread。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "RSA Correlation (r)。",
+        "color": "Low/High Entropy curves and bands。",
+        "shape": null,
+        "line": "Prompt Tokens–Position 与 Last Token–Position curves。",
+        "facet": "四面板：Prompt/Last Token × Position RSA（两组 token source）。",
+        "text": "panel titles、Layer、RSA Correlation、Low/High Entropy legend。"
+      },
+      "data_and_statistics": "Qwen2-VL 在 high/low entropy scene-description 条件下的 prompt-token 与 last-token position RSA，四面板逐层曲线带 shaded bands；caption 未定义 band、样本聚合或误差。",
+      "evidence_relation": "Figure 6 的总体 entropy 机制 → Figure 31 按模型展开 → Table 1 的高熵 ID-selection prototype intervention 提供因果修复，Figure 7 比较模型级行为/RSA。",
+      "design_strengths": [
+        "四面板固定 Prompt/Last Token × entropy 结构，跨模型复制性强。",
+        "蓝/红主曲线和阴影带使低熵退化的方向清楚。"
+      ],
+      "design_weaknesses": [
+        "每幅图四个小图，标题和 y 轴重复导致可读性低；caption 仅标模型名。",
+        "阴影带没有统计定义，且部分模型轴范围不同，跨图视觉高度比较受限。"
+      ],
+      "reusable_pattern": "以一致四面板 grammar 分离 token source 与 entropy condition，再将模型深度差异保留在各自 layer 轴上。",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 31",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 32",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "failure",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 32: RSA for Qwen2.5-VL-3b.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BAED6",
+          "#FB6A6A",
+          "#A6CEE3",
+          "#F4A3A3"
+        ],
+        "semantic_mapping": "蓝色 Low Entropy、红色 High Entropy；浅色 area/band 叠加主曲线表示不确定性或 spread。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "RSA Correlation (r)。",
+        "color": "Low/High Entropy curves and bands。",
+        "shape": null,
+        "line": "Prompt Tokens–Position 与 Last Token–Position curves。",
+        "facet": "四面板：Prompt/Last Token × Position RSA（两组 token source）。",
+        "text": "panel titles、Layer、RSA Correlation、Low/High Entropy legend。"
+      },
+      "data_and_statistics": "Qwen2.5-VL-3b 在 high/low entropy scene-description 条件下的 prompt-token 与 last-token position RSA，四面板逐层曲线带 shaded bands；caption 未定义 band、样本聚合或误差。",
+      "evidence_relation": "Figure 6 的总体 entropy 机制 → Figure 32 按模型展开 → Table 1 的高熵 ID-selection prototype intervention 提供因果修复，Figure 7 比较模型级行为/RSA。",
+      "design_strengths": [
+        "四面板固定 Prompt/Last Token × entropy 结构，跨模型复制性强。",
+        "蓝/红主曲线和阴影带使低熵退化的方向清楚。"
+      ],
+      "design_weaknesses": [
+        "每幅图四个小图，标题和 y 轴重复导致可读性低；caption 仅标模型名。",
+        "阴影带没有统计定义，且部分模型轴范围不同，跨图视觉高度比较受限。"
+      ],
+      "reusable_pattern": "以一致四面板 grammar 分离 token source 与 entropy condition，再将模型深度差异保留在各自 layer 轴上。",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 32",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 33",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "failure",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 33: RSA for Qwen2.5-VL-7b.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BAED6",
+          "#FB6A6A",
+          "#A6CEE3",
+          "#F4A3A3"
+        ],
+        "semantic_mapping": "蓝色 Low Entropy、红色 High Entropy；浅色 area/band 叠加主曲线表示不确定性或 spread。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "RSA Correlation (r)。",
+        "color": "Low/High Entropy curves and bands。",
+        "shape": null,
+        "line": "Prompt Tokens–Position 与 Last Token–Position curves。",
+        "facet": "四面板：Prompt/Last Token × Position RSA（两组 token source）。",
+        "text": "panel titles、Layer、RSA Correlation、Low/High Entropy legend。"
+      },
+      "data_and_statistics": "Qwen2.5-VL-7b 在 high/low entropy scene-description 条件下的 prompt-token 与 last-token position RSA，四面板逐层曲线带 shaded bands；caption 未定义 band、样本聚合或误差。",
+      "evidence_relation": "Figure 6 的总体 entropy 机制 → Figure 33 按模型展开 → Table 1 的高熵 ID-selection prototype intervention 提供因果修复，Figure 7 比较模型级行为/RSA。",
+      "design_strengths": [
+        "四面板固定 Prompt/Last Token × entropy 结构，跨模型复制性强。",
+        "蓝/红主曲线和阴影带使低熵退化的方向清楚。"
+      ],
+      "design_weaknesses": [
+        "每幅图四个小图，标题和 y 轴重复导致可读性低；caption 仅标模型名。",
+        "阴影带没有统计定义，且部分模型轴范围不同，跨图视觉高度比较受限。"
+      ],
+      "reusable_pattern": "以一致四面板 grammar 分离 token source 与 entropy condition，再将模型深度差异保留在各自 layer 轴上。",
+      "evidence": {
+        "page": 26,
+        "label": "Figure 33",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 34",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "failure",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 34: RSA for Qwen2.5-VL-32b.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BAED6",
+          "#FB6A6A",
+          "#A6CEE3",
+          "#F4A3A3"
+        ],
+        "semantic_mapping": "蓝色 Low Entropy、红色 High Entropy；浅色 area/band 叠加主曲线表示不确定性或 spread。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "RSA Correlation (r)。",
+        "color": "Low/High Entropy curves and bands。",
+        "shape": null,
+        "line": "Prompt Tokens–Position 与 Last Token–Position curves。",
+        "facet": "四面板：Prompt/Last Token × Position RSA（两组 token source）。",
+        "text": "panel titles、Layer、RSA Correlation、Low/High Entropy legend。"
+      },
+      "data_and_statistics": "Qwen2.5-VL-32b 在 high/low entropy scene-description 条件下的 prompt-token 与 last-token position RSA，四面板逐层曲线带 shaded bands；caption 未定义 band、样本聚合或误差。",
+      "evidence_relation": "Figure 6 的总体 entropy 机制 → Figure 34 按模型展开 → Table 1 的高熵 ID-selection prototype intervention 提供因果修复，Figure 7 比较模型级行为/RSA。",
+      "design_strengths": [
+        "四面板固定 Prompt/Last Token × entropy 结构，跨模型复制性强。",
+        "蓝/红主曲线和阴影带使低熵退化的方向清楚。"
+      ],
+      "design_weaknesses": [
+        "每幅图四个小图，标题和 y 轴重复导致可读性低；caption 仅标模型名。",
+        "阴影带没有统计定义，且部分模型轴范围不同，跨图视觉高度比较受限。"
+      ],
+      "reusable_pattern": "以一致四面板 grammar 分离 token source 与 entropy condition，再将模型深度差异保留在各自 layer 轴上。",
+      "evidence": {
+        "page": 26,
+        "label": "Figure 34",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 35",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "failure",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 35: RSA for Llava1.5-7b.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BAED6",
+          "#FB6A6A",
+          "#A6CEE3",
+          "#F4A3A3"
+        ],
+        "semantic_mapping": "蓝色 Low Entropy、红色 High Entropy；浅色 area/band 叠加主曲线表示不确定性或 spread。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "RSA Correlation (r)。",
+        "color": "Low/High Entropy curves and bands。",
+        "shape": null,
+        "line": "Prompt Tokens–Position 与 Last Token–Position curves。",
+        "facet": "四面板：Prompt/Last Token × Position RSA（两组 token source）。",
+        "text": "panel titles、Layer、RSA Correlation、Low/High Entropy legend。"
+      },
+      "data_and_statistics": "Llava1.5-7b 在 high/low entropy scene-description 条件下的 prompt-token 与 last-token position RSA，四面板逐层曲线带 shaded bands；caption 未定义 band、样本聚合或误差。",
+      "evidence_relation": "Figure 6 的总体 entropy 机制 → Figure 35 按模型展开 → Table 1 的高熵 ID-selection prototype intervention 提供因果修复，Figure 7 比较模型级行为/RSA。",
+      "design_strengths": [
+        "四面板固定 Prompt/Last Token × entropy 结构，跨模型复制性强。",
+        "蓝/红主曲线和阴影带使低熵退化的方向清楚。"
+      ],
+      "design_weaknesses": [
+        "每幅图四个小图，标题和 y 轴重复导致可读性低；caption 仅标模型名。",
+        "阴影带没有统计定义，且部分模型轴范围不同，跨图视觉高度比较受限。"
+      ],
+      "reusable_pattern": "以一致四面板 grammar 分离 token source 与 entropy condition，再将模型深度差异保留在各自 layer 轴上。",
+      "evidence": {
+        "page": 26,
+        "label": "Figure 35",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 36",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "failure",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 36: RSA for Llava1.5-13b.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BAED6",
+          "#FB6A6A",
+          "#A6CEE3",
+          "#F4A3A3"
+        ],
+        "semantic_mapping": "蓝色 Low Entropy、红色 High Entropy；浅色 area/band 叠加主曲线表示不确定性或 spread。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "RSA Correlation (r)。",
+        "color": "Low/High Entropy curves and bands。",
+        "shape": null,
+        "line": "Prompt Tokens–Position 与 Last Token–Position curves。",
+        "facet": "四面板：Prompt/Last Token × Position RSA（两组 token source）。",
+        "text": "panel titles、Layer、RSA Correlation、Low/High Entropy legend。"
+      },
+      "data_and_statistics": "Llava1.5-13b 在 high/low entropy scene-description 条件下的 prompt-token 与 last-token position RSA，四面板逐层曲线带 shaded bands；caption 未定义 band、样本聚合或误差。",
+      "evidence_relation": "Figure 6 的总体 entropy 机制 → Figure 36 按模型展开 → Table 1 的高熵 ID-selection prototype intervention 提供因果修复，Figure 7 比较模型级行为/RSA。",
+      "design_strengths": [
+        "四面板固定 Prompt/Last Token × entropy 结构，跨模型复制性强。",
+        "蓝/红主曲线和阴影带使低熵退化的方向清楚。"
+      ],
+      "design_weaknesses": [
+        "每幅图四个小图，标题和 y 轴重复导致可读性低；caption 仅标模型名。",
+        "阴影带没有统计定义，且部分模型轴范围不同，跨图视觉高度比较受限。"
+      ],
+      "reusable_pattern": "以一致四面板 grammar 分离 token source 与 entropy condition，再将模型深度差异保留在各自 layer 轴上。",
+      "evidence": {
+        "page": 26,
+        "label": "Figure 36",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 37",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "failure",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 37: RSA for LlavaOne-7b.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#6BAED6",
+          "#FB6A6A",
+          "#A6CEE3",
+          "#F4A3A3"
+        ],
+        "semantic_mapping": "蓝色 Low Entropy、红色 High Entropy；浅色 area/band 叠加主曲线表示不确定性或 spread。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Layer。",
+        "y": "RSA Correlation (r)。",
+        "color": "Low/High Entropy curves and bands。",
+        "shape": null,
+        "line": "Prompt Tokens–Position 与 Last Token–Position curves。",
+        "facet": "四面板：Prompt/Last Token × Position RSA（两组 token source）。",
+        "text": "panel titles、Layer、RSA Correlation、Low/High Entropy legend。"
+      },
+      "data_and_statistics": "LlavaOne-7b 在 high/low entropy scene-description 条件下的 prompt-token 与 last-token position RSA，四面板逐层曲线带 shaded bands；caption 未定义 band、样本聚合或误差。",
+      "evidence_relation": "Figure 6 的总体 entropy 机制 → Figure 37 按模型展开 → Table 1 的高熵 ID-selection prototype intervention 提供因果修复，Figure 7 比较模型级行为/RSA。",
+      "design_strengths": [
+        "四面板固定 Prompt/Last Token × entropy 结构，跨模型复制性强。",
+        "蓝/红主曲线和阴影带使低熵退化的方向清楚。"
+      ],
+      "design_weaknesses": [
+        "每幅图四个小图，标题和 y 轴重复导致可读性低；caption 仅标模型名。",
+        "阴影带没有统计定义，且部分模型轴范围不同，跨图视觉高度比较受限。"
+      ],
+      "reusable_pattern": "以一致四面板 grammar 分离 token source 与 entropy condition，再将模型深度差异保留在各自 layer 轴上。",
+      "evidence": {
+        "page": 26,
+        "label": "Figure 37",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 38",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 38: Qwen-2.5-VL-3B",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 12,
+        "hex": [
+          "#FDE725",
+          "#B8DE29",
+          "#73D055",
+          "#35B779",
+          "#1F9E89",
+          "#26828E",
+          "#31688E",
+          "#3E4989",
+          "#482878",
+          "#440154",
+          "#6A1B9A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "颜色序列编码 Top-K 取值（2、3/5、10、12/15、20、30、40、50、60、100/200），三面板标题编码 head stage。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 5,
+        "data_marks_estimate": 330
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "left-center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Magnitude of Intervention，log scale（10^0–10^2）。",
+        "y": "Accuracy，0–1。",
+        "color": "Top-K series。",
+        "shape": "圆形 marker。",
+        "line": "每个 Top-K 一条曲线。",
+        "facet": "ID Retrieval Heads、ID Selection Heads、Feature Retrieval Heads。",
+        "text": "stage titles、Top-K legend、Magnitude of Intervention、Accuracy。"
+      },
+      "data_and_statistics": "Qwen-2.5-VL-3B 的 α（Magnitude of Intervention）× K sweep；每个 head stage 画约 11 条 Top-K curve，x 为对数刻度，y 为 accuracy，无误差条或重复/样本量。",
+      "evidence_relation": "§4.2 的“best α/K”选择 → Figure 38 暴露完整 hyperparameter surface → Figure 3 只报告最佳点，Figures 20–25 提供 CMA ranking，Figure 47 另测 top-vs-bottom-K 在 counting 上的后果。",
+      "design_strengths": [
+        "对数 α 轴适合显示 1–100 的干预幅度，三阶段面板保持同一结构。",
+        "完整 Top-K 曲线避免只展示单一最佳组合。"
+      ],
+      "design_weaknesses": [
+        "11 条彩色曲线叠加严重遮挡，legend 很长且没有线型冗余。",
+        "caption 只有模型名，未注明哪些 K/α 被选为主文结果或是否调参使用测试集。"
+      ],
+      "reusable_pattern": "用 log-x 的多曲线 sweep 同时展示干预强度和 head 数量，并把三阶段放在固定横向 facet 中。",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 38",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 39",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 39: Qwen-2.5-VL-7B",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 12,
+        "hex": [
+          "#FDE725",
+          "#B8DE29",
+          "#73D055",
+          "#35B779",
+          "#1F9E89",
+          "#26828E",
+          "#31688E",
+          "#3E4989",
+          "#482878",
+          "#440154",
+          "#6A1B9A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "颜色序列编码 Top-K 取值（2、3/5、10、12/15、20、30、40、50、60、100/200），三面板标题编码 head stage。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 5,
+        "data_marks_estimate": 330
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "left-center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Magnitude of Intervention，log scale（10^0–10^2）。",
+        "y": "Accuracy，0–1。",
+        "color": "Top-K series。",
+        "shape": "圆形 marker。",
+        "line": "每个 Top-K 一条曲线。",
+        "facet": "ID Retrieval Heads、ID Selection Heads、Feature Retrieval Heads。",
+        "text": "stage titles、Top-K legend、Magnitude of Intervention、Accuracy。"
+      },
+      "data_and_statistics": "Qwen-2.5-VL-7B 的 α（Magnitude of Intervention）× K sweep；每个 head stage 画约 11 条 Top-K curve，x 为对数刻度，y 为 accuracy，无误差条或重复/样本量。",
+      "evidence_relation": "§4.2 的“best α/K”选择 → Figure 39 暴露完整 hyperparameter surface → Figure 3 只报告最佳点，Figures 20–25 提供 CMA ranking，Figure 47 另测 top-vs-bottom-K 在 counting 上的后果。",
+      "design_strengths": [
+        "对数 α 轴适合显示 1–100 的干预幅度，三阶段面板保持同一结构。",
+        "完整 Top-K 曲线避免只展示单一最佳组合。"
+      ],
+      "design_weaknesses": [
+        "11 条彩色曲线叠加严重遮挡，legend 很长且没有线型冗余。",
+        "caption 只有模型名，未注明哪些 K/α 被选为主文结果或是否调参使用测试集。"
+      ],
+      "reusable_pattern": "用 log-x 的多曲线 sweep 同时展示干预强度和 head 数量，并把三阶段放在固定横向 facet 中。",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 39",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 40",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 40: Qwen-2.5-VL-32B",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 12,
+        "hex": [
+          "#FDE725",
+          "#B8DE29",
+          "#73D055",
+          "#35B779",
+          "#1F9E89",
+          "#26828E",
+          "#31688E",
+          "#3E4989",
+          "#482878",
+          "#440154",
+          "#6A1B9A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "颜色序列编码 Top-K 取值（2、3/5、10、12/15、20、30、40、50、60、100/200），三面板标题编码 head stage。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 5,
+        "data_marks_estimate": 330
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "left-center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Magnitude of Intervention，log scale（10^0–10^2）。",
+        "y": "Accuracy，0–1。",
+        "color": "Top-K series。",
+        "shape": "圆形 marker。",
+        "line": "每个 Top-K 一条曲线。",
+        "facet": "ID Retrieval Heads、ID Selection Heads、Feature Retrieval Heads。",
+        "text": "stage titles、Top-K legend、Magnitude of Intervention、Accuracy。"
+      },
+      "data_and_statistics": "Qwen-2.5-VL-32B 的 α（Magnitude of Intervention）× K sweep；每个 head stage 画约 11 条 Top-K curve，x 为对数刻度，y 为 accuracy，无误差条或重复/样本量。",
+      "evidence_relation": "§4.2 的“best α/K”选择 → Figure 40 暴露完整 hyperparameter surface → Figure 3 只报告最佳点，Figures 20–25 提供 CMA ranking，Figure 47 另测 top-vs-bottom-K 在 counting 上的后果。",
+      "design_strengths": [
+        "对数 α 轴适合显示 1–100 的干预幅度，三阶段面板保持同一结构。",
+        "完整 Top-K 曲线避免只展示单一最佳组合。"
+      ],
+      "design_weaknesses": [
+        "11 条彩色曲线叠加严重遮挡，legend 很长且没有线型冗余。",
+        "caption 只有模型名，未注明哪些 K/α 被选为主文结果或是否调参使用测试集。"
+      ],
+      "reusable_pattern": "用 log-x 的多曲线 sweep 同时展示干预强度和 head 数量，并把三阶段放在固定横向 facet 中。",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 40",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 41",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 41: Qwen-2-VL",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 12,
+        "hex": [
+          "#FDE725",
+          "#B8DE29",
+          "#73D055",
+          "#35B779",
+          "#1F9E89",
+          "#26828E",
+          "#31688E",
+          "#3E4989",
+          "#482878",
+          "#440154",
+          "#6A1B9A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "颜色序列编码 Top-K 取值（2、3/5、10、12/15、20、30、40、50、60、100/200），三面板标题编码 head stage。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 5,
+        "data_marks_estimate": 330
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "left-center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Magnitude of Intervention，log scale（10^0–10^2）。",
+        "y": "Accuracy，0–1。",
+        "color": "Top-K series。",
+        "shape": "圆形 marker。",
+        "line": "每个 Top-K 一条曲线。",
+        "facet": "ID Retrieval Heads、ID Selection Heads、Feature Retrieval Heads。",
+        "text": "stage titles、Top-K legend、Magnitude of Intervention、Accuracy。"
+      },
+      "data_and_statistics": "Qwen-2-VL 的 α（Magnitude of Intervention）× K sweep；每个 head stage 画约 11 条 Top-K curve，x 为对数刻度，y 为 accuracy，无误差条或重复/样本量。",
+      "evidence_relation": "§4.2 的“best α/K”选择 → Figure 41 暴露完整 hyperparameter surface → Figure 3 只报告最佳点，Figures 20–25 提供 CMA ranking，Figure 47 另测 top-vs-bottom-K 在 counting 上的后果。",
+      "design_strengths": [
+        "对数 α 轴适合显示 1–100 的干预幅度，三阶段面板保持同一结构。",
+        "完整 Top-K 曲线避免只展示单一最佳组合。"
+      ],
+      "design_weaknesses": [
+        "11 条彩色曲线叠加严重遮挡，legend 很长且没有线型冗余。",
+        "caption 只有模型名，未注明哪些 K/α 被选为主文结果或是否调参使用测试集。"
+      ],
+      "reusable_pattern": "用 log-x 的多曲线 sweep 同时展示干预强度和 head 数量，并把三阶段放在固定横向 facet 中。",
+      "evidence": {
+        "page": 28,
+        "label": "Figure 41",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 42",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 42: Llava-1.5-7B",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 12,
+        "hex": [
+          "#FDE725",
+          "#B8DE29",
+          "#73D055",
+          "#35B779",
+          "#1F9E89",
+          "#26828E",
+          "#31688E",
+          "#3E4989",
+          "#482878",
+          "#440154",
+          "#6A1B9A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "颜色序列编码 Top-K 取值（2、3/5、10、12/15、20、30、40、50、60、100/200），三面板标题编码 head stage。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 5,
+        "data_marks_estimate": 330
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "left-center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Magnitude of Intervention，log scale（10^0–10^2）。",
+        "y": "Accuracy，0–1。",
+        "color": "Top-K series。",
+        "shape": "圆形 marker。",
+        "line": "每个 Top-K 一条曲线。",
+        "facet": "ID Retrieval Heads、ID Selection Heads、Feature Retrieval Heads。",
+        "text": "stage titles、Top-K legend、Magnitude of Intervention、Accuracy。"
+      },
+      "data_and_statistics": "Llava-1.5-7B 的 α（Magnitude of Intervention）× K sweep；每个 head stage 画约 11 条 Top-K curve，x 为对数刻度，y 为 accuracy，无误差条或重复/样本量。",
+      "evidence_relation": "§4.2 的“best α/K”选择 → Figure 42 暴露完整 hyperparameter surface → Figure 3 只报告最佳点，Figures 20–25 提供 CMA ranking，Figure 47 另测 top-vs-bottom-K 在 counting 上的后果。",
+      "design_strengths": [
+        "对数 α 轴适合显示 1–100 的干预幅度，三阶段面板保持同一结构。",
+        "完整 Top-K 曲线避免只展示单一最佳组合。"
+      ],
+      "design_weaknesses": [
+        "11 条彩色曲线叠加严重遮挡，legend 很长且没有线型冗余。",
+        "caption 只有模型名，未注明哪些 K/α 被选为主文结果或是否调参使用测试集。"
+      ],
+      "reusable_pattern": "用 log-x 的多曲线 sweep 同时展示干预强度和 head 数量，并把三阶段放在固定横向 facet 中。",
+      "evidence": {
+        "page": 28,
+        "label": "Figure 42",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 43",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 43: Llava-1.5-13B",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 12,
+        "hex": [
+          "#FDE725",
+          "#B8DE29",
+          "#73D055",
+          "#35B779",
+          "#1F9E89",
+          "#26828E",
+          "#31688E",
+          "#3E4989",
+          "#482878",
+          "#440154",
+          "#6A1B9A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "颜色序列编码 Top-K 取值（2、3/5、10、12/15、20、30、40、50、60、100/200），三面板标题编码 head stage。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 5,
+        "data_marks_estimate": 330
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "left-center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Magnitude of Intervention，log scale（10^0–10^2）。",
+        "y": "Accuracy，0–1。",
+        "color": "Top-K series。",
+        "shape": "圆形 marker。",
+        "line": "每个 Top-K 一条曲线。",
+        "facet": "ID Retrieval Heads、ID Selection Heads、Feature Retrieval Heads。",
+        "text": "stage titles、Top-K legend、Magnitude of Intervention、Accuracy。"
+      },
+      "data_and_statistics": "Llava-1.5-13B 的 α（Magnitude of Intervention）× K sweep；每个 head stage 画约 11 条 Top-K curve，x 为对数刻度，y 为 accuracy，无误差条或重复/样本量。",
+      "evidence_relation": "§4.2 的“best α/K”选择 → Figure 43 暴露完整 hyperparameter surface → Figure 3 只报告最佳点，Figures 20–25 提供 CMA ranking，Figure 47 另测 top-vs-bottom-K 在 counting 上的后果。",
+      "design_strengths": [
+        "对数 α 轴适合显示 1–100 的干预幅度，三阶段面板保持同一结构。",
+        "完整 Top-K 曲线避免只展示单一最佳组合。"
+      ],
+      "design_weaknesses": [
+        "11 条彩色曲线叠加严重遮挡，legend 很长且没有线型冗余。",
+        "caption 只有模型名，未注明哪些 K/α 被选为主文结果或是否调参使用测试集。"
+      ],
+      "reusable_pattern": "用 log-x 的多曲线 sweep 同时展示干预强度和 head 数量，并把三阶段放在固定横向 facet 中。",
+      "evidence": {
+        "page": 28,
+        "label": "Figure 43",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 44",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 44: Llava-OneVision",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 12,
+        "hex": [
+          "#FDE725",
+          "#B8DE29",
+          "#73D055",
+          "#35B779",
+          "#1F9E89",
+          "#26828E",
+          "#31688E",
+          "#3E4989",
+          "#482878",
+          "#440154",
+          "#6A1B9A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "颜色序列编码 Top-K 取值（2、3/5、10、12/15、20、30、40、50、60、100/200），三面板标题编码 head stage。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 5,
+        "data_marks_estimate": 330
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "left-center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Magnitude of Intervention，log scale（10^0–10^2）。",
+        "y": "Accuracy，0–1。",
+        "color": "Top-K series。",
+        "shape": "圆形 marker。",
+        "line": "每个 Top-K 一条曲线。",
+        "facet": "ID Retrieval Heads、ID Selection Heads、Feature Retrieval Heads。",
+        "text": "stage titles、Top-K legend、Magnitude of Intervention、Accuracy。"
+      },
+      "data_and_statistics": "Llava-OneVision 的 α（Magnitude of Intervention）× K sweep；每个 head stage 画约 11 条 Top-K curve，x 为对数刻度，y 为 accuracy，无误差条或重复/样本量。",
+      "evidence_relation": "§4.2 的“best α/K”选择 → Figure 44 暴露完整 hyperparameter surface → Figure 3 只报告最佳点，Figures 20–25 提供 CMA ranking，Figure 47 另测 top-vs-bottom-K 在 counting 上的后果。",
+      "design_strengths": [
+        "对数 α 轴适合显示 1–100 的干预幅度，三阶段面板保持同一结构。",
+        "完整 Top-K 曲线避免只展示单一最佳组合。"
+      ],
+      "design_weaknesses": [
+        "11 条彩色曲线叠加严重遮挡，legend 很长且没有线型冗余。",
+        "caption 只有模型名，未注明哪些 K/α 被选为主文结果或是否调参使用测试集。"
+      ],
+      "reusable_pattern": "用 log-x 的多曲线 sweep 同时展示干预强度和 head 数量，并把三阶段放在固定横向 facet 中。",
+      "evidence": {
+        "page": 28,
+        "label": "Figure 44",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 45",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 45: Illustration of the intervention performed with the COCO dataset.",
+        "word_count": 11,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Mono L",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#EF8D8D",
+          "#80C987",
+          "#F6B26B",
+          "#74A8DC",
+          "#333333",
+          "#6BAED6",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "四象限中灰/彩色模块标识 ID selection 与 feature retrieval；真实 COCO 图像承担场景，文字标明 source/target 与 object order。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "source/target 图像与 head-stage 色块。",
+        "shape": "COCO object photos。",
+        "line": "source→target 竖向/虚线箭头。",
+        "facet": "2×2：Obtain ID Order (Source), ID Estimation (Source), Obtain ID Order (Target), Intervention (Target)。",
+        "text": "ID=0/1、object order、cat、head labels。"
+      },
+      "data_and_statistics": "COCO source/target protocol 的四步示意：从开放场景描述抽取 object order，估计 source ID prototype，再在 target 中 patch ID selection heads；无统计量或样本分母。",
+      "evidence_relation": "Appendix B 的 real-world generalization boundary → 本图给出 object-order-derived ID 的 source/target protocol → Figure 46 提供 top-50/100/200 selection-head intervention accuracy，区别于合成图像的已知 ID。",
+      "design_strengths": [
+        "四象限按 source/target 与 order/intervention 分解步骤，流程可复现。",
+        "照片、prompt 文本和 ID patch 箭头把开放世界限制具体化。"
+      ],
+      "design_weaknesses": [
+        "没有显示模型 order 错误、对象检测失败或样本筛选；caption 只有标题。",
+        "照片与 schematic 视觉风格差异大，且小 prompt 文本在缩放后难读。"
+      ],
+      "reusable_pattern": "将真实图像协议拆成“source 估计→target 干预”四象限，明确哪些 ID 是模型派生而非 ground truth。",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 45",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 46",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "dataset",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 46: COCO intervention results. Intervention performed on ID selection heads.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#F08A8A",
+          "#F56A6A",
+          "#D94F57",
+          "#8E354A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "三种 salmon/red 深浅映射 intervention top 50/100/200；模型为 x 类别，柱顶黑色误差条。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 4,
+        "data_marks_estimate": 15
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "5 个模型类别（Llava-1.5-13b、Qwen-2.5-7b、Qwen-2.5-3b、Llava-1.5-7b、Qwen-2.5-32b）。",
+        "y": "Mean Accuracy，0–约0.95。",
+        "color": "top 50/top 100/top 200 ID selection heads。",
+        "shape": null,
+        "line": "黑色 error bars。",
+        "facet": null,
+        "text": "模型名、Intervention legend、Mean Accuracy。"
+      },
+      "data_and_statistics": "COCO 2017 validation set、3 random source/target splits 上，对 top-50/100/200 ID selection heads 做 intervention；柱为 mean accuracy，含误差条，caption 未说明误差统计或分母。",
+      "evidence_relation": "Figure 45 的 source/target COCO ID estimation → 本图检验真实图像的 intervention 泛化 → Figure 3 是 PUG 受控 photorealistic 对照，Table/Appendix 其余图不把 COCO order 当作 ground truth。",
+      "design_strengths": [
+        "三档 top-K 与五模型 grouped bars 直观显示 head-budget/accuracy trade-off。",
+        "误差条保留 random split 的变异提示。"
+      ],
+      "design_weaknesses": [
+        "红色深浅在灰度下区分弱，legend 与倾斜模型标签增加扫描成本。",
+        "没有 source/target 成功率或 object-order accuracy，均值可能混合 ID 估计失败。"
+      ],
+      "reusable_pattern": "以模型×干预预算 grouped bars 报告开放世界扩展，并保留随机拆分的误差条。",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 46",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 47",
+      "page": 30,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "failure",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 47: Ablation of top- vs. bottom-K heads (as identified by CMA) on a counting task. Note that the model contains a total of 2, 560 attention heads.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Open Sans Bold",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#153BFF",
+          "#FF1717",
+          "#B0B0B0",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝线为 Max Top-k heads，红线为 Bottom Top-k heads；同色 marker 和 legend 直接区分 ablation 方向。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 5,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Top k Heads，0–500。",
+        "y": "Counting Accuracy，0–1。",
+        "color": "Max Top-k vs Bottom Top-k head ablation。",
+        "shape": "圆形 marker。",
+        "line": "两条折线。",
+        "facet": null,
+        "text": "Top k Heads、Counting Accuracy、legend。"
+      },
+      "data_and_statistics": "Qwen2.5-32B counting task 中按三阶段 CMA score 排序，消融 top-K 或 bottom-K heads；x 为 K，y 为 counting accuracy，caption 指出总 head 数 2,560，但未给样本量/误差。",
+      "evidence_relation": "Appendix C 的“机制参与更复杂 binding task” → 本图将 CMA ranking 转为 top-vs-bottom ablation → Figures 20–25 的 heatmaps 提供 ranking 来源，Figure 3/38–44 提供干预而非消融证据。",
+      "design_strengths": [
+        "单图双线和清晰的 top/bottom 对照直接暴露因果敏感性。",
+        "双向 grid 帮助读取 0–1 accuracy 与 K 的拐点。"
+      ],
+      "design_weaknesses": [
+        "只展示单一 best-performing model，不能代表跨模型机制；caption 未说明重复/误差。",
+        "蓝/红色没有线型冗余，彩色打印之外的可读性有限。"
+      ],
+      "reusable_pattern": "用同一 head ranking 的高端/低端对照曲线，把 mechanism localization 连接到 downstream task ablation。",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 47",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "mechanism",
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Performance (accuracy) on high vs. low entropy scene description. Intervention performed on ID selection heads in low entropy condition.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty notation, interval, or ± column; percentage point estimates only.",
+      "data_and_statistics": "四行模型分为 LLaVA 1.5 与 Qwen 2.5-VL 两个 row groups；五个逻辑列为 Model、High Entropy、Low Entropy/No Intervention、Low Entropy/With Intervention、Improvement。百分比保留两位小数；Improvement 为 low-entropy intervention 相对 no-intervention 的 percentage-point difference。表中未提供 trial denominator、重复数、误差或显著性。",
+      "evidence_relation": "Appendix D 的 binding-error intervention → 本表将 Figure 6/7 的 entropy gap 转成高熵 baseline、低熵 no/with intervention 与 improvement → 支撑“用 high-entropy ID-selection prototype 修复低熵失败”的因果链，补充正文的机制主张但不替代跨模型 Figure 7。",
+      "design_strengths": [
+        "两级表头把 low-entropy 的 no/with intervention 明确拆开。",
+        "两组模型和统一百分比精度便于扫描改善幅度。"
+      ],
+      "design_weaknesses": [
+        "caption 没有定义 improvement 是百分点还是相对百分比，也没有给实验重复/分母。",
+        "表格只有 point estimates，读者不能判断跨模型差异的不确定性。"
+      ],
+      "reusable_pattern": "将高熵 source、低熵 baseline 和低熵 intervention 放在同一行，直接呈现“表征迁移是否修复行为”的最小三状态表。",
+      "evidence": {
+        "page": 31,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "主文 Figure 1 先给出三阶段 position-ID architecture 与 PCA/RSA/CMA 接口，Figure 2 检验 relative/absolute coding，Figure 3–5 以 PUG、patch-key 和跨任务 intervention 做因果行为验证，Figure 6–7 将 entropy 与 binding failure 连接。附录按数据设计→CMA 条件→全模型 representation/CMA→空间编码→entropy→K/α sweep→COCO→counting→activation patch table 展开，形成“机制接口→表征→局部因果→任务与失败边界”的单一视觉叙事。",
+    "caption_system": "47 个 figure caption 均以 “Figure n:” 加标题开头；主文 Figure 1/2 解释较完整，Figure 3–7 多为标题式短 caption。附录 Figure 26 是唯一明显的 bold headline 且含详细 encoding/pointer；Figure 38–44 仅给模型名。caption 很少定义误差条、阴影带、分母或主发现，信息主要留在正文。",
+    "table_header_system": "唯一 Table 1 使用两级表头：Model、High Entropy、Low Entropy 下的 No/With Intervention 与 Improvement；LLaVA/Qwen 行分组以横线隔开。两位百分比精度统一、无高亮和颜色，表头明确了干预条件但未定义 improvement 的单位或不确定性。",
+    "method_result_ablation_link": "Figure 1 的三类 head 通过 Figures 10–12 的 CMA conditions 和 Figures 20–25 的 layer×head heatmaps 定位；Figures 3–5/30/46 将定位转成 stage-specific intervention，Figures 38–44 扫描 K/α，Figure 47 用 top-vs-bottom ablation 检验 downstream counting。",
+    "main_appendix_link": "正文 Figures 1–7 是最小机制论证；Appendix Figures 8–13 给 stimulus/CMA/intervention protocol，14–25 给模型和 head 全量，26–30 给 PCA/RSA/position coding 扩展，31–44 给 entropy 与 hyperparameter robustness，45–47 和 Table 1 给 COCO、counting、binding-error causal boundary。",
+    "typography_consistency": "PDF font objects show Nimbus Roman No9 L/Medium、Nimbus Mono L、DejaVu Sans、Open Sans Bold 与 Computer Modern math；正文/caption 的衬线体系稳定，图内 sans/mono 标签角色稳定。附录 heatmap 与 sweep 的字号降到约 3.5–6 pt，虽保持字体体系但降低可读性。",
+    "color_consistency": "蓝/红/绿三阶段色在架构、CMA 条件、PUG bar 和 heatmaps 中重复；RSA 常用薄荷绿/洋红/深灰，entropy 常用蓝/红，行为对照常用灰度。语义颜色跨对象大体稳定，但 heatmap 每阶段独立 sequential scale、sweep 使用多色 Top-K、COCO 使用 salmon shades，且没有统一全局色板或色盲安全冗余。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 的 architecture→PCA/RSA/CMA 复合总览，把机制接口和证据类型一次对齐。",
+      "Figure 2/8 的 stimulus-condition→RSA 配对，以及 Figure 13/30 的 schematic→behavioral intervention 配对。",
+      "Figure 20–25 的三 stage heatmap 与 Figure 38–44 的三 stage sweep 保持固定面板顺序，便于跨模型复核。",
+      "Table 1 的 high-entropy source→low-entropy baseline→low-entropy intervention 三状态结构。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：最短路径暴露三阶段机制和 measurement hand-off。",
+      "Figure 3：PUG schematic 与跨模型 intervention accuracy 将 head-level mechanism 连接到复杂图像行为。",
+      "Figure 6–7 与 Table 1：把 entropy-related representation failure、模型级差异和 activation patch 修复串成 failure→causal repair 闭环。",
+      "Figures 20–25：提供跨模型/阶段的 head localization 全量证据。"
+    ],
+    "failure_patterns": [
+      "大量短 caption 不定义误差条、阴影带、分母、重复和聚合，读者必须回正文。",
+      "附录 heatmaps、PCA atlas、K/α sweeps 信息密度过高，3.5–6 pt 文字和多色编码不适合普通缩放/灰度。",
+      "Relative coding 结论在模型族间强度不同，但跨模型 RSA/behavior 图没有统一 uncertainty 或显著性呈现。",
+      "COCO 的 object order 是模型生成后估计的 ID，不是独立 ground truth；counting ablation 只覆盖一个 Qwen 模型。",
+      "Figure 26 caption 的 “(e-g)” 与实际 (a)-(e) 面板不一致，破坏附录复现指针。"
+    ],
+    "one_sentence_visual_strategy": "论文以统一的三阶段颜色和固定面板顺序，把 position-ID 的表征预测、CMA head 定位、局部/跨任务干预和 entropy/真实图像/计数失败边界串成一条从机制到因果修复的视觉证据链。"
+  }
+}

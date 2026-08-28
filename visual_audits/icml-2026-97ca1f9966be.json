@@ -1,0 +1,2081 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-97ca1f9966be",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/ywwes26/Auxiliary-MCMC"
+    ],
+    "selected_repository": "https://github.com/ywwes26/Auxiliary-MCMC",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/ywwes26/Auxiliary-MCMC",
+        "path": "scripts/run_gaussian_20d.jl",
+        "role": "other",
+        "tool": "Julia",
+        "evidence": "作者仓库 README 将该 runner 绑定到 20-D truncated Gaussian；源码生成样本、time vectors 和 MSE 输入，但不包含 Figure/plot layout。"
+      },
+      {
+        "repository_url": "https://github.com/ywwes26/Auxiliary-MCMC",
+        "path": "scripts/run_robust_reg.jl",
+        "role": "other",
+        "tool": "Julia",
+        "evidence": "作者仓库中的 robust-regression runner；与正文/附录 N、d、target-rate 实验对应，输出供 Figure 1、3–9 和 Table 2、5–7 统计使用，但没有绘图命令。"
+      },
+      {
+        "repository_url": "https://github.com/ywwes26/Auxiliary-MCMC",
+        "path": "scripts/run_bayes_logistic_reg.jl",
+        "role": "other",
+        "tool": "Julia",
+        "evidence": "作者仓库中的 MNIST 3s/5s 与 7s/9s runner；源码输出 accuracy/time trajectories，未提供 Figure 2、10–13 的排版源。"
+      },
+      {
+        "repository_url": "https://github.com/ywwes26/Auxiliary-MCMC",
+        "path": "eval/ess_gaussian_20d.jl",
+        "role": "other",
+        "tool": "Julia",
+        "evidence": "作者仓库中的 ESS/s evaluator，按 rate/round 聚合 Gaussian 结果；可核对 Table 1、4 的统计定义，不能重建表格版式。"
+      },
+      {
+        "repository_url": "https://github.com/ywwes26/Auxiliary-MCMC",
+        "path": "eval/ess_robust_reg.jl",
+        "role": "other",
+        "tool": "Julia",
+        "evidence": "作者仓库中的 robust-regression ESS/s evaluator；可核对 Table 2、5、6、7 的 min/median/max 计算，未包含表格绘制代码。"
+      },
+      {
+        "repository_url": "https://github.com/ywwes26/Auxiliary-MCMC",
+        "path": "eval/ks_gaussian_20d.jl",
+        "role": "other",
+        "tool": "Julia",
+        "evidence": "作者仓库中的 KS evaluator，使用 reference samples、burn-in 和 equalized sample sizes；可核对 Table 3 的统计来源，未包含表格排版。"
+      }
+    ],
+    "search_note": "PDF 摘要明确链接作者仓库，README 标题和 arXiv 链接与论文直接对应；gh tree 只有 Julia runner/evaluator 与任务源码，没有 plot/figure/table/LaTeX/TikZ/PGF/SVG 源或对应导出资产。故将仓库记为可信统计/参数来源但 repository_without_visual_source，所有图面颜色、字体、线宽和布局均标 rendered_estimate；自动 visual_source_inventory 的 no_public_source_found 已由该人工核查补充。"
+  },
+  "paper_style": {
+    "main_figures": 2,
+    "main_tables": 3,
+    "appendix_figures": 11,
+    "appendix_tables": 4,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans"
+      ],
+      "size_pt": {
+        "minimum": 6,
+        "median": 8,
+        "maximum": 11
+      },
+      "weight": [
+        "regular"
+      ],
+      "style": [
+        "roman"
+      ],
+      "provenance": "rendered_estimate",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 9.0,
+      "header_weight": "mixed",
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "palette_strategy": "实验图采用按方法或局部 tuning 变量复用的 categorical 蓝/橙/红/绿/紫/粉/灰/黑；caption 与 panel/legend 提供位置和文字冗余，表格以黑白横线和粗体最佳值为主。",
+    "vector_raster_mix": "Figure 1–13 的绘图区均为嵌入 RGB raster image；正文/附录文字、caption、算法和 Table 1–7 的线条/文字为 PDF text/vector objects。",
+    "style_consistency": "MSE/accuracy 图在同一实验族内保持方法色、linear axes、双向网格、acceptance-rate small multiples 和无 uncertainty 的结构；MNIST tuning 图把颜色局部改作 step size，附录字号和面板密度未完全统一。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 1. MSE of estimating θ⋆ as a function of time across different acceptance rates. The three large plots show the performance of all methods in the first 7 seconds. The three inside plots zoom in on PoissonMH, Poisson–Barker, and Poisson–MALA in the first 0.5 seconds. All results are averaged over 100 runs.",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 11
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#D62728",
+          "#2CA02C",
+          "#800080",
+          "#E377C2",
+          "#000000",
+          "#7F7F7F"
+        ],
+        "semantic_mapping": "方法颜色编码 MH、MALA、PoissonMH、Poisson–Barker、Poisson–MALA、HMC-10、Barker、SGLD；颜色之外由 panel、inset 和 legend 冗余编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 6,
+        "data_marks_estimate": 240
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "运行时间（秒）",
+        "y": "posterior-mean MSE",
+        "color": "八种 MCMC 方法",
+        "shape": null,
+        "line": "方法的 MSE 轨迹",
+        "facet": "三列 acceptance rate=0.25/0.4/0.55；每列含主图与早期 inset",
+        "text": "acceptance-rate titles、方法 legend、MSE/Time (s) labels 与 inset"
+      },
+      "data_and_statistics": "三列接受率各显示 0–7 秒的 posterior-mean MSE，并在 inset 中放大前 0.5 秒（实际 inset 横轴约 0–0.15 秒）。100 次运行的平均曲线；不显示 run-level spread、误差带、分母或失败值。",
+      "evidence_relation": "Section 5.2 的 robust regression 主张 → Figure 1 的 clock-time MSE → Table 2 的 best ESS/s → Appendix Figures 4–9 的 iteration、scale、dimension 与 HMC controls。",
+      "design_strengths": [
+        "主尺度和早期 inset 同时回答总体时间效率与 minibatch 初期差异。",
+        "三个 acceptance-rate panel 共享轴语法，方法 legend 稳定复用。",
+        "caption 明确时间窗与 100-run aggregation。"
+      ],
+      "design_weaknesses": [
+        "八条曲线在 inset 和后期低 MSE 区域重叠。",
+        "只有均值路径，没有不确定性表达。",
+        "caption 没有独立解释 posterior mean MSE，需回正文。"
+      ],
+      "reusable_pattern": "采用“全时间范围 + 关键早期窗口 inset + 固定方法色”呈现 wall-clock efficiency；关键差距应配合误差带或直接数值。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 1 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 2. Test accuracy as a function of time. Tuna–SGLD is our proposed method.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#E36F4F",
+          "#2CA02C",
+          "#BC6BCB",
+          "#F0A500",
+          "#000000"
+        ],
+        "semantic_mapping": "颜色编码 MH、TunaMH、TunaMH-SGLD、MALA、HMC-5、Barker；面板标题编码 step size，位置与 legend 提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 4,
+        "data_marks_estimate": 240
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.6,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "时间（秒）",
+        "y": "MNIST test accuracy",
+        "color": "六种算法",
+        "shape": null,
+        "line": "算法的 accuracy trajectory",
+        "facet": "2×2 step size=0.0008/0.001/0.002/0.004",
+        "text": "step-size titles、方法 legend、Test Accuracy/Time (s)"
+      },
+      "data_and_statistics": "MNIST 3s/5s 的 4 个 step-size 面板，x=0–1.5 s、y 约 0.4–1.0；TunaMH-SGLD/TunaMH 早期到约 0.94–0.95，full-batch 与 HMC-5 较慢。图中无 runs、误差、测试分母或失败值；训练/测试规模由正文给出。",
+      "evidence_relation": "Section 5.3 的 gradient proposal + ratio correction → Figure 2 time accuracy → Appendix Figures 10–13 的宽步长、iteration、minibatch 与 7s/9s transfer。",
+      "design_strengths": [
+        "2×2 参数网格直观展示 step-size sensitivity。",
+        "所有 panel 统一轴范围和方法色，时间效率比较短。",
+        "右下共享 legend 节省绘图区。"
+      ],
+      "design_weaknesses": [
+        "共享 legend 使独立裁剪 panel 难以解释。",
+        "无 run 数和不确定性；后期线条重叠。",
+        "caption 没有写 3s/5s、步长网格和具体主发现。"
+      ],
+      "reusable_pattern": "以同构 parameter-grid small multiples 对比 accuracy-time；共享 legend 必须辅以每个 panel 的可裁剪标签或 caption。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 2 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 3. Clock-time MSE comparison. First row: MSE of posterior mean as a function of time for different acceptance rates; Second row: MSE of posterior variance as a function of time for different acceptance rates. The results are averaged over 100 runs for all methods.",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#D62728",
+          "#2CA02C",
+          "#800080",
+          "#E377C2",
+          "#000000",
+          "#7F7F7F"
+        ],
+        "semantic_mapping": "八种算法颜色固定；行位置编码 posterior mean/variance，列位置编码 acceptance rate。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 6,
+        "data_marks_estimate": 240
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "时间（秒）",
+        "y": "posterior mean/variance MSE",
+        "color": "八种算法",
+        "shape": "方形 time-grid markers（渲染可见）",
+        "line": "MSE trajectory",
+        "facet": "2×3：estimand 行 × acceptance-rate 列",
+        "text": "row/column semantics、method legend、MSE/Time labels"
+      },
+      "data_and_statistics": "Gaussian benchmark 的 mean 行与 variance 行分别显示 MSE；列为 acceptance rate=0.25/0.4/0.55，time points 为 1/5/10/25/50 秒，100-run 平均。未显示逐 run spread、置信区间或分母。",
+      "evidence_relation": "Section 5.1 调用的完整 Gaussian 结果 → Figure 3 展开两个 estimand → Table 1 的 Best ESS/s 与 Appendix Table 4 的 rate-by-rate 分解。",
+      "design_strengths": [
+        "行列结构同时呈现两个 estimand 和三个 tuning 条件。",
+        "caption 清楚定义行语义与重复数。",
+        "方法色与正文 Figure 1 兼容。"
+      ],
+      "design_weaknesses": [
+        "6×8 条线和重复 legend 密度高。",
+        "两行 y 轴范围不同，跨行直觉比较受影响。",
+        "附录放置导致正文调用与物理对象跨页。"
+      ],
+      "reusable_pattern": "使用“estimand 行 × tuning 条件列”的矩阵组织完整曲线；高密度版本可采用共享 legend、直接标签和不确定性带。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 3 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 28,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4. Iteration-wise MSE comparison.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#D62728",
+          "#2CA02C",
+          "#800080",
+          "#E377C2",
+          "#000000",
+          "#7F7F7F"
+        ],
+        "semantic_mapping": "颜色复用 robust-regression 方法；列编码 acceptance rate，inset 位置编码前 100 iterations。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "iteration count",
+        "y": "MSE",
+        "color": "八种算法",
+        "shape": null,
+        "line": "iteration-wise MSE trajectory",
+        "facet": "三列 acceptance rate；每列主图 + 前 100 steps inset",
+        "text": "acceptance-rate titles、方法 legend、MSE/Iteration labels"
+      },
+      "data_and_statistics": "robust regression 在 0–2000 iterations 的 MSE 与前 100 steps inset；图面为平均曲线，没有 caption 级 run 数或 uncertainty。正文上下文解释 MALA/Poisson–MALA 的 per-iteration 优势。",
+      "evidence_relation": "Figure 1 的 clock-time view → Figure 4 的 iteration-wise view → Figure 5 HMC sensitivity 与 Table 5 ESS/s；把计算成本与 per-iteration mixing 分开。",
+      "design_strengths": [
+        "与 Figure 1 共享 acceptance-rate 分面和方法色。",
+        "inset 防止早期差异被主尺度压扁。",
+        "帮助解释“每步快”与“每秒快”的差异。"
+      ],
+      "design_weaknesses": [
+        "caption 只有标题，无法独立判断任务、条件和 inset。",
+        "legend/inset 重复占用绘图区。",
+        "无 run 数与不确定性。"
+      ],
+      "reusable_pattern": "将 clock-time 与 iteration 两个视角配成同构图，并在 caption 最少定义任务、条件、观察窗和 inset。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 4 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 29,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 5. Clock-time MSE comparison for HMC with leapfrog steps 2, 5, and 10. All results are averaged over 10 runs.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#4C4CFF",
+          "#4CAF50",
+          "#FF4C4C"
+        ],
+        "semantic_mapping": "蓝、绿、红分别表示 HMC-2、HMC-5、HMC-10；panel 标题编码 acceptance rate。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "时间（秒）",
+        "y": "MSE",
+        "color": "leapfrog steps=2/5/10",
+        "shape": null,
+        "line": "HMC configuration trajectory",
+        "facet": "三列 acceptance rate=0.25/0.4/0.55",
+        "text": "(a)/(b)/(c) acceptance-rate labels、HMC legend、MSE/Time"
+      },
+      "data_and_statistics": "10-D robust regression 的 HMC-2/5/10 clock-time MSE，0–7 s，三种 acceptance rate；10-run 平均。三种设置曲线相近，10 steps 略好；未显示误差带或成本分解。",
+      "evidence_relation": "Appendix G.2 的 HMC 控制 → Figure 5 → 正文 Table 2/Appendix Table 5 的 HMC-10 行与选择。",
+      "design_strengths": [
+        "单一控制量、三条线，视觉负担低。",
+        "三列共享轴和 caption 语法，横向比较直接。",
+        "10-run aggregation 明确。"
+      ],
+      "design_weaknesses": [
+        "差距小且没有不确定性。",
+        "leapfrog 次数的每步成本未直接量化。",
+        "略好结论需结合正文而非 caption。"
+      ],
+      "reusable_pattern": "用小规模 sensitivity panels 固定一个 tuning control，复用主结果轴语法，并把计算成本作为辅助注释。",
+      "evidence": {
+        "page": 29,
+        "label": "p.29 Figure 5 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 6. Clock-time and iteration-wise MSE comparison.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#D62728",
+          "#2CA02C",
+          "#800080",
+          "#E377C2",
+          "#000000",
+          "#7F7F7F"
+        ],
+        "semantic_mapping": "方法颜色固定；行位置编码 time/iteration，列位置编码 acceptance rate，inset 编码 early region。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "time (top row) 或 iteration (bottom row)",
+        "y": "MSE",
+        "color": "八种算法",
+        "shape": null,
+        "line": "MSE trajectory",
+        "facet": "2×3：view × acceptance rate；每 panel 有 early inset",
+        "text": "acceptance-rate titles、view labels、legend"
+      },
+      "data_and_statistics": "N=200000 robust regression 的 clock-time 与 iteration MSE；上行为 0–7 s，下行为 0–2000 iterations，三个 acceptance rate，均值曲线无 uncertainty。",
+      "evidence_relation": "Appendix G.2 的 large-N 设置 → Figure 6 → Table 6 large-N ESS/s；与 Figure 7–9 组成 scale/dimension robustness。",
+      "design_strengths": [
+        "时间和迭代视角在同一页配对。",
+        "inset 保留早期 minibatch 差异。",
+        "复用 Figure 1/4 的方法色。"
+      ],
+      "design_weaknesses": [
+        "6 panels+insets 信息密度高。",
+        "caption 未说明 N、行语义和 runs。",
+        "缺少不确定性，不能独立判断大 N 稳定性。"
+      ],
+      "reusable_pattern": "对规模扩展同时报告 time/iteration，避免把 per-step cost 与 mixing speed 混为单一速度。",
+      "evidence": {
+        "page": 29,
+        "label": "p.29 Figure 6 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 30,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 7. Clock-time MSE comparison. MSE of θ⋆ as a function of time across different acceptance rates. The three large plots show the performance of all methods in the first 50 seconds.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#1F77B4",
+          "#7F7F7F",
+          "#D62728",
+          "#2CA02C",
+          "#FF7F0E",
+          "#800080",
+          "#000000"
+        ],
+        "semantic_mapping": "七种 robust-regression 方法颜色；列编码 acceptance rate，曲线高度编码 d=50 的 posterior-mean MSE。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "时间（秒）",
+        "y": "MSE of θ⋆",
+        "color": "七种算法",
+        "shape": null,
+        "line": "clock-time MSE",
+        "facet": "三列 acceptance rate=0.25/0.4/0.55",
+        "text": "acceptance-rate titles、method legend、MSE/Time"
+      },
+      "data_and_statistics": "50-D robust regression 的 posterior-mean MSE，时间窗 0–50 s，三种 acceptance rate；图面无 run 数、误差或分母。附录段落说明高维仍由 Poisson–MALA/Poisson–Barker 领先。",
+      "evidence_relation": "Appendix G.3 dimensionality experiment → Figure 7 time view → Figure 8 iteration view、Table 7 ESS/s、Figure 9 HMC sensitivity。",
+      "design_strengths": [
+        "统一时间窗便于与 10-D baseline 对照。",
+        "caption 明确 θ⋆、acceptance-rate 和 50 s 观察窗。",
+        "方法色延续主结果。"
+      ],
+      "design_weaknesses": [
+        "图内没有 d=50/N 标识。",
+        "早期高 MSE 曲线被顶部边界裁切。",
+        "caption 不含 10-run aggregation。"
+      ],
+      "reusable_pattern": "在维度扩展中保持主结果轴/颜色，只改变实验维度，并在 caption 重复 dimension、N 与 run 数。",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Figure 7 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 30,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 8. Iteration-wise MSE comparison. MSE of θ⋆ as a function of iteration count different acceptance rates. The three large plots show the performance of all methods in the first 2000 steps. The three inside plots zoom in on Poisson–Barker, and Poisson–MALA, MALA, and HMC in the first 100 steps. All results are averaged over 10 runs.",
+        "word_count": 57,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#1F77B4",
+          "#7F7F7F",
+          "#D62728",
+          "#2CA02C",
+          "#FF7F0E",
+          "#800080",
+          "#000000"
+        ],
+        "semantic_mapping": "七种方法颜色；三列为 acceptance rate；inset 直接聚焦 Poisson–Barker、Poisson–MALA、MALA、HMC。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "iteration count",
+        "y": "MSE of θ⋆",
+        "color": "七种算法",
+        "shape": null,
+        "line": "iteration-wise MSE",
+        "facet": "三列 acceptance rate；每列主图 + 前 100 steps inset",
+        "text": "acceptance-rate labels、重点方法 inset labels、MSE/Iteration"
+      },
+      "data_and_statistics": "50-D robust regression 在 0–2000 iterations、inset 前 100 steps 的 MSE，三种 acceptance rate，10-run 平均；没有误差带。",
+      "evidence_relation": "Figure 7 time view → Figure 8 iteration view → Table 7 ESS/s；与 Figure 4 对照高维 per-iteration mixing。",
+      "design_strengths": [
+        "inset 直接点名比较对象并报告 10 runs。",
+        "与 Figure 7 面板同构。",
+        "揭示高维 time/iteration 排序可能不同。"
+      ],
+      "design_weaknesses": [
+        "重复 legend/inset 使页面拥挤。",
+        "caption 有轻微语病（“count different”）。",
+        "没有在 caption 中说明 d=50。"
+      ],
+      "reusable_pattern": "主图保留全局收敛，inset 只放大预先声明的 early window，并在 caption 明确对象和重复。",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Figure 8 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 31,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 9. Clock-time MSE comparison for HMC with leapfrog steps 2, 5, and 10. All results are averaged over 10 runs.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#4C4CFF",
+          "#4CAF50",
+          "#FF4C4C"
+        ],
+        "semantic_mapping": "蓝、绿、红表示 HMC-2、HMC-5、HMC-10；三列为 acceptance rate。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "时间（秒）",
+        "y": "MSE",
+        "color": "leapfrog steps=2/5/10",
+        "shape": null,
+        "line": "HMC trajectory",
+        "facet": "三列 acceptance rate=0.25/0.4/0.55",
+        "text": "acceptance-rate labels、HMC legend、MSE/Time"
+      },
+      "data_and_statistics": "50-D robust regression 的 HMC-2/5/10 clock-time MSE，约 0–100 s，10-run 平均；三条曲线差异小，不显示误差或每步成本。",
+      "evidence_relation": "Figure 5 的 10-D HMC sensitivity → Figure 9 的 50-D 重复 → Table 7 的 HMC-5 行。",
+      "design_strengths": [
+        "只保留一个 tuning control，读图简洁。",
+        "跨维度复用 Figure 5 的颜色/布局。",
+        "caption 给出 10-run 规则。"
+      ],
+      "design_weaknesses": [
+        "caption 未写 d=50 和时间窗。",
+        "小差异无 uncertainty 支撑。",
+        "高维控制选择仍需结合 Table 7/正文。"
+      ],
+      "reusable_pattern": "在不同维度重复同构 sensitivity 图，保持颜色和 caption 结构以区分稳定结论与 setting-specific 结论。",
+      "evidence": {
+        "page": 31,
+        "label": "p.31 Figure 9 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 33,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 10. Test accuracy as a function of time for each algorithm with different step sizes.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 11
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#E36F4F",
+          "#2CA02C",
+          "#BC6BCB",
+          "#F0A500",
+          "#000000"
+        ],
+        "semantic_mapping": "每个算法 panel 内颜色编码局部 step size；panel 标题编码 MH/MALA/TunaMH/TunaMH-SGLD/HMC-2/HMC-5/Barker，颜色不是跨图固定方法色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 7,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "时间（秒）",
+        "y": "MNIST 3s/5s test accuracy",
+        "color": "各算法的不同 step sizes",
+        "shape": null,
+        "line": "step-size trajectory",
+        "facet": "7 个算法 panels（2×4，右下留白）",
+        "text": "algorithm titles、step-size legends、Test Accuracy/Time"
+      },
+      "data_and_statistics": "MNIST 3s/5s 的 7 算法宽步长扫描；x 约 0–1.5 s、y 0.4–1.0。正文说明 full-batch 通常随步长改善而 HMC 仍慢，Tuna 系列较稳；无 runs、误差或分母。",
+      "evidence_relation": "Figure 2 的主步长 → Figure 10 的宽 tuning grid → Figure 11 optimal tuning、Figure 12 minibatch/step sensitivity。",
+      "design_strengths": [
+        "将所有算法放入统一 tuning audit，能看到 HMC 慢混合与 Tuna–SGLD 宽容区间。",
+        "panel 标题与 legend 形成双重定位。",
+        "保留相同 accuracy-time 轴语法。"
+      ],
+      "design_weaknesses": [
+        "7 个 panel 的长 legend 在缩放后很小。",
+        "颜色在本图表示 step size，易与主图方法色混淆。",
+        "右下留白使画布不规则且 caption 过短。"
+      ],
+      "reusable_pattern": "用“算法 panel × step-size series”做调参审计，但在每个 Figure 内明确颜色的局部语义，避免跨图误读。",
+      "evidence": {
+        "page": 33,
+        "label": "p.33 Figure 10 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 34,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 11. Test accuracy comparison when each algorithm is optimally tuned.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 11
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#E36F4F",
+          "#2CA02C",
+          "#BC6BCB",
+          "#F0A500",
+          "#000000"
+        ],
+        "semantic_mapping": "颜色编码 MH、MALA、TunaMH、TunaMH-SGLD、HMC-2、HMC-5、Barker（图内实际为六/七条方法色）；panel 位置区分 time 与 iteration。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 2,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左 panel 时间（秒）；右 panel iteration count",
+        "y": "test accuracy",
+        "color": "最优调参后的算法",
+        "shape": null,
+        "line": "accuracy trajectory",
+        "facet": "(a) time 与 (b) iteration count",
+        "text": "Classify 3 and 5、panel labels、method legend"
+      },
+      "data_and_statistics": "MNIST 3s/5s 在最优调参下的 0–7 s 与约 0–5000 iterations 曲线；time panel 中 Tuna–SGLD 最快，iteration panel 中 MALA 更快，未显示 runs/误差。",
+      "evidence_relation": "Figure 10 宽步长扫描 → Figure 11 每算法最佳曲线 → Section 4.1 per-iteration theory 与 Figure 12 tuning diagnosis。",
+      "design_strengths": [
+        "同页并列 wall-clock 与 iteration，清楚暴露 cost/mixing trade-off。",
+        "各方法的最优选择支持公平的 time comparison。",
+        "两个 panel 共享任务和方法 legend。"
+      ],
+      "design_weaknesses": [
+        "最优 step size 不在 caption/legend 中，复现需回到 Figure 10/代码。",
+        "无 run 数或不确定性。",
+        "两 panel x 轴范围不同，不宜直接比较斜率。"
+      ],
+      "reusable_pattern": "先用附录扫描选择每算法 tuning，再以 time/iteration 双 panel 报告同一最优选择；保留选择记录以便复现。",
+      "evidence": {
+        "page": 34,
+        "label": "p.34 Figure 11 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 34,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 12. Test accuracy of Tuna–SGLD as a function of time for classifying 3s and 5s in MNIST, across different gradient minibatch sizes and step sizes.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#1F77B4",
+          "#E36F4F",
+          "#2CA02C",
+          "#BC6BCB",
+          "#C49A00"
+        ],
+        "semantic_mapping": "panel 编码 gradient minibatch size=20/64/128；线颜色编码 step size=5e-6、1e-5、1e-4、5e-4，MH 为基线。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "时间（秒）",
+        "y": "MNIST 3s/5s test accuracy",
+        "color": "Tuna–SGLD step size；MH baseline",
+        "shape": null,
+        "line": "accuracy trajectory",
+        "facet": "三个 gradient minibatch sizes=20/64/128",
+        "text": "Classify 3 and 5、batch-size panel semantics、step-size legend"
+      },
+      "data_and_statistics": "Tuna–SGLD 的 batch size 20/64/128 panels，step size 5e-6/1e-5/1e-4/5e-4 curves，time 0–1 s，accuracy 约 0.4–1.0；无 runs、误差或 wall-clock cost per step。",
+      "evidence_relation": "Algorithm 3 的独立 gradient minibatch → Figure 12 的 batch/step response → Figure 2/10/11 efficiency 与 Figure 13 task transfer；直接对应 Section 6 的 hyperparameter limitation。",
+      "design_strengths": [
+        "把一个 control 放在 panel、另一个放在线，实验问题映射清楚。",
+        "caption 指出任务和两个 tuning 维度。",
+        "能观察大 step size 与 batch cost 的折衷。"
+      ],
+      "design_weaknesses": [
+        "长 legend 小且字符串密集。",
+        "没有每个 batch size 的实际每步耗时。",
+        "缺少 uncertainty，微小曲线交叉不能稳健解释。"
+      ],
+      "reusable_pattern": "用“结构性 control 做 panel、tuning control 做 line”进行超参数诊断，并在 caption 明确两个量的角色。",
+      "evidence": {
+        "page": 34,
+        "label": "p.34 Figure 12 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 35,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 13. Test accuracy as a function of time for classifying 7s and 9s in MNIST. Step sizes for all methods are varied across {0.0008, 0.001, 0.002, 0.004}. Each subplot reports the curve of test accuracy in the first 2.5 seconds.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 11
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#E36F4F",
+          "#2CA02C",
+          "#BC6BCB",
+          "#F0A500",
+          "#000000"
+        ],
+        "semantic_mapping": "颜色编码 MH、TunaMH、TunaMH-SGLD、MALA、HMC-5、Barker；panel 编码 step size。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 4,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "时间（秒）",
+        "y": "MNIST 7s/9s test accuracy",
+        "color": "六种算法",
+        "shape": null,
+        "line": "accuracy trajectory",
+        "facet": "2×2 step size=0.0008/0.001/0.002/0.004",
+        "text": "step-size titles、method legend、Test Accuracy/Time"
+      },
+      "data_and_statistics": "MNIST 7s/9s，四个 step sizes，time 0–2.5 s；Tuna–SGLD/TunaMH 早期到约 0.93–0.95，MH/MALA/Barker 较慢，HMC-5 近基线；无 run 数、误差或测试分母。",
+      "evidence_relation": "Section 5.3 Figure 2 的 3s/5s → Appendix G.5 Figure 13 的 7s/9s transfer → 任务异质性下的 minibatch-gradient robustness。",
+      "design_strengths": [
+        "保持 Figure 2 的 panel/方法色，使跨 task 比较成本低。",
+        "caption 给出任务、参数集合和时间窗。",
+        "四个 panel 轴范围统一。"
+      ],
+      "design_weaknesses": [
+        "共享 legend 只在右下，独立裁剪难解释。",
+        "caption 未给训练/测试样本数和 runs。",
+        "无 uncertainty，不能区分小差距是否稳定。"
+      ],
+      "reusable_pattern": "在不同 task 上复用主图结构与方法色，在 caption 写出 task、参数集合、时间窗和重复规则。",
+      "evidence": {
+        "page": 35,
+        "label": "p.35 Figure 13 rendered plot and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 1. ESS/s comparison. (Min, Median, Max) refer to the minimum, median and maximum ESS/s across all dimensions. “Best” reports the best ESS/s across all acceptance rates {0.25, 0.4, 0.55}. Results are averaged over 100 runs.",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "不显示跨 run error bar/interval；100-run mean 只在 caption 中说明，Min/Median/Max 是 dimensions 内的 ESS/s 摘要而非 uncertainty。",
+      "data_and_statistics": "MH (0.05,0.08,0.47); MALA (0.10,0.19,2.77); Barker (0.12,0.22,1.53); PoissonMH (0.40,0.66,4.67); Poisson–Barker (0.91,1.65,12.16); Poisson–MALA (0.84,1.65,23.84). 每行跨 20 dimensions，Best 在三个 acceptance rates 中逐项取优。",
+      "evidence_relation": "Section 5.1 gradient-based minibatch headline → Table 1 compact Best → Appendix Table 4 rate-by-rate 与 Figure 3 mean/variance MSE。",
+      "design_strengths": [
+        "三元摘要和粗体最佳行适合单栏快速扫描。",
+        "caption 定义 Best、维度聚合和 100 runs。",
+        "列语义与 Appendix Table 4 对齐。"
+      ],
+      "design_weaknesses": [
+        "Best over rates 隐藏 tuning heterogeneity。",
+        "括号三元组不是跨 run uncertainty。",
+        "ESS 估计细节需回正文。"
+      ],
+      "reusable_pattern": "主文保留 compact Best summary，附录保留完整条件矩阵，并在 caption 明确 selection rule。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 1 table text and rules",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2. ESS/s comparison. (Min, Median, Max) denote the minimum, median and maximum ESS/s across all dimensions. “Best” reports the best ESS/s over acceptance rates {0.25, 0.4, 0.55}. Results are averaged over 100 runs.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "没有跨 run spread、硬件成本或区间；100-run mean 在 caption 中说明，Min/Median/Max 为 10 个 regression dimensions 的 ESS/s 汇总。",
+      "data_and_statistics": "MH (2.0,2.1,2.1); MALA (5.0,5.1,5.2); Barker (2.9,3.0,3.0); HMC-10 (0.9,0.9,1.0); PoissonMH (99.0,100.2,101.1); Poisson–Barker (265.3,268.3,270.3); Poisson–MALA (489.3,491.8,496.5). Best 为三个 target rates 的逐行最佳。",
+      "evidence_relation": "Section 5.2 Figure 1 time-MSE → Table 2 efficiency summary → Appendix Table 5、Figures 4–6 的 rate/iteration/large-N 展开。",
+      "design_strengths": [
+        "同一决策面纳入 full-batch、HMC 与 Poisson 方法。",
+        "粗体与统一一位小数格式便于排序。",
+        "caption 复用 Table 1 aggregation 语言。"
+      ],
+      "design_weaknesses": [
+        "Best 把三个 rate 压成一列。",
+        "极大 ESS/s 比值仅来自合成 Student-t 设置。",
+        "无不确定性与统一硬件/成本列。"
+      ],
+      "reusable_pattern": "将全批、已有 minibatch 和新方法并列，用统一 min/median/max；附录必须显示 per-condition 结果。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 2 table text and rules",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 3. Kolmogorov–Smirnov statistics comparison with different target accept rates. (Min, Median, Max) denote the minimum, median and maximum across all dimensions. Note that SGLD does not have a target accept rate.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 4,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "KS 点估计；无 KS critical value、p-value、跨 run uncertainty 或 reference-sample size 细分。SGLD 在 rate=0.4 列有数值，其余 rate 以 “same” 表示。",
+      "data_and_statistics": "每行是 MH/MALA/Barker/SGLD/PoissonMH/Poisson–Barker/Poisson–MALA；三列 target rate=0.25/0.4/0.55，各格为跨 dimensions 的 (Min, Median, Max)，例如 Poisson–Barker 最大值 0.05/0.05/0.04，SGLD 最大值 0.18。",
+      "evidence_relation": "Section 5.4 的 correctness check → Table 3 exact minibatch vs fixed-step SGLD bias 对照 → Proposition 2 的条件性可逆性。",
+      "design_strengths": [
+        "把 exact 方法和 SGLD 的 empirical target check 放在同一表。",
+        "明确 SGLD 无 target acceptance rate。",
+        "三元跨维度摘要节省版面。"
+      ],
+      "design_weaknesses": [
+        "没有 reference sample size 和检验不确定性。",
+        "“same”需读者结合上下文解释。",
+        "有限 benchmark 不能独立支撑普适 correctness。"
+      ],
+      "reusable_pattern": "在 correctness 表中同时给方法、tuning condition 和跨维度分布摘要，并显式标注不适用条件。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 3 table text and rules",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 4. ESS/s comparison. Here (Min, Median, Max) refer to the minimum, median and maximum of ESS/s across all dimensions. The column “Best” reports the best ESS/s across all acceptance rates. The results are averaged over 100 runs for all methods.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "无误差条或区间；100-run mean 已说明，括号三元组是 20-D dimensions 内摘要。",
+      "data_and_statistics": "完整给出 MH/MALA/Barker/PoissonMH/Poisson–Barker/Poisson–MALA 在 acceptance rate=0.25/0.4/0.55 与 Best 的三元 ESS/s；Poisson–Barker Best (0.91,1.65,12.16)，Poisson–MALA Best (0.84,1.65,23.84)。",
+      "evidence_relation": "Table 1 的 Best headline → Table 4 per-rate decomposition → Figure 3 的 mean/variance trajectories；使正文对 Poisson–MALA 在 0.25 rate 较弱的限制可核验。",
+      "design_strengths": [
+        "同时保留每个 rate 和 Best，能看出调参来源。",
+        "与 Table 1/5/6/7 结构连续。",
+        "caption 定义 runs 和 aggregation。"
+      ],
+      "design_weaknesses": [
+        "粗体语义未在 caption 明说。",
+        "宽表三元括号扫描成本高。",
+        "仍无跨 run uncertainty。"
+      ],
+      "reusable_pattern": "附录表同时保留条件列和 Best，但明确高亮粒度与选择规则。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Table 4 table text and rules",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 5. ESS/s comparison. Here (Min, Median, Max) refer to the minimum, median and maximum of ESS/s across all dimensions. The column “Best” reports the best ESS/s over all acceptance rates. The results are averaged over 100 runs for all methods.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "没有 run-level uncertainty；100-run 平均，括号三元组为 10-D regression dimensions 的 min/median/max。",
+      "data_and_statistics": "PoissonMH 三 rate (99.0,100.2,101.1)/(84.9,87.0,88.0)/(56.5,57.9,59.0)；Poisson–Barker (182.1,185.5,188.2)/(254.8,258.3,259.6)/(265.3,268.3,270.3)；Poisson–MALA (219.8,222.0,228.5)/(395.9,399.9,403.3)/(489.3,491.8,496.5)，Best 逐行取三 rate 最佳；其余方法同构。",
+      "evidence_relation": "Table 2 headline → Table 5 target-rate expansion → Figure 5 HMC control 与 Figure 6 N=200000 MSE；定量展示 Poisson–MALA 在高 rate 更快。",
+      "design_strengths": [
+        "直接暴露 Best 来源和 tuning heterogeneity。",
+        "新方法与 HMC/full-batch 保持同一决策面。",
+        "一位小数适合该 setting 数量级。"
+      ],
+      "design_weaknesses": [
+        "宽表小字号和三元括号降低扫读。",
+        "粗体规则没有文字说明。",
+        "没有 uncertainty 或硬件成本。"
+      ],
+      "reusable_pattern": "用 per-condition 列纠正 Best 聚合的信息损失，并保留 Best 做主文回链。",
+      "evidence": {
+        "page": 29,
+        "label": "p.29 Table 5 table text and rules",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 6. ESS/s comparison across target acceptance rates.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "caption 未说明 runs 或 uncertainty；ESS/s 三元摘要与实验设定依赖附录 G.2 上下文。",
+      "data_and_statistics": "N=200000 robust regression；PoissonMH rate values (24.67,25.74,26.86)/(21.38,22.16,22.97)/(14.17,15.31,16.22)，Best=(24.67,25.74,26.86)；Poisson–Barker Best=(58.40,60.33,61.33)；Poisson–MALA Best=(109.03,111.01,114.40)。每格为维度内 ESS/s min/median/max。",
+      "evidence_relation": "Figure 6 large-N MSE → Table 6 large-N efficiency → Table 5 10-D baseline；测试数据量翻倍后趋势是否保留。",
+      "design_strengths": [
+        "表结构与 Table 4/5/7 一致，便于跨规模比较。",
+        "target rate 与 Best 同屏。",
+        "数值精度适合大 N 结果。"
+      ],
+      "design_weaknesses": [
+        "caption 过短，无法独立解释括号和 Best。",
+        "N=200000、run 数、高亮语义缺失。",
+        "宽表的小数字易误读。"
+      ],
+      "reusable_pattern": "附录复用主表结构时，caption 必须重复 experiment identifier、aggregation 和 highlight rule。",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Table 6 table text and rules",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 31,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 7. ESS/s comparison. Here (Min, Median, Max) refer to the minimum, median and maximum of ESS/s across all dimensions. The column “Best” reports the best ESS/s across all acceptance rates. The results are averaged over 10 runs for all methods.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "无 error bars/intervals；10-run average 仅说明均值，括号三元组是 50 dimensions 的 ESS/s 摘要。",
+      "data_and_statistics": "MH Best (0.08,0.10,0.13); MALA (0.73,0.83,0.91); Barker (0.23,0.28,0.31); HMC-5 (0.03,0.04,0.05); PoissonMH (1.91,2.04,2.21); Poisson–Barker (6.07,6.51,6.84); Poisson–MALA (13.92,14.91,15.58)。三 rate 列和 Best 均按跨维度 min/median/max 汇总。",
+      "evidence_relation": "Figure 7/8 的 high-dimensional MSE → Table 7 efficiency ranking → Figure 9 HMC sensitivity；支持“50-D 仍保持方法排序”。",
+      "design_strengths": [
+        "per-rate+Best 保留高维调参信息。",
+        "10-run aggregation 在 caption 透明。",
+        "与 Table 5/6 可直接横向读取。"
+      ],
+      "design_weaknesses": [
+        "缺少 d=50/N 标识和 uncertainty。",
+        "Best 粗体语义仍需数值推断。",
+        "实验设定依赖附录段落。"
+      ],
+      "reusable_pattern": "高维复现实验沿用主表列语义，caption 同时重复维度、数据规模与重复规则。",
+      "evidence": {
+        "page": 31,
+        "label": "p.31 Table 7 table text and rules",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Algorithm 1–3 的 auxiliary-variable proposal/acceptance 机制先在正文建立；Figure 1/2 与 Table 1/2 给出 robust-regression、Gaussian、MNIST 的 clock-time/ESS headline，Table 3 检查 exactness。附录 Figure 3–9 和 Table 4–7 展开 estimand、rate、iteration、N/d scale 与 HMC controls，Figure 10–13 再检验 tuning 和 task transfer。",
+    "caption_system": "所有 Figure/Table caption 在对象下方并以编号开头；Table 1–5、7 反复定义 Min/Median/Max、Best 和 runs，Figure 1、3、5、8、9、13 给出较完整设置；Figure 4、6、10、11 与 Table 6 过短，条件主要留在正文或图内。",
+    "table_header_system": "Table 1–3 用 Method 加 ESS/KS 汇总列；Table 4–7 用 Method、三个 acceptance/target-rate 列和 Best，顶部以 ESS/s 或 KS 三元摘要分组。所有表采用无竖线的 booktabs/minimal 横线系统，粗体承担最佳值强调。",
+    "method_result_ablation_link": "Algorithm 2/3 的 gradient/ratio minibatch → Figure 1/2 time trajectories → Table 1/2 ESS/s → Table 3 KS correctness；Appendix Figure 3/4/6/7/8 展开 estimand、iteration、scale 和 dimension，Figure 5/9 控制 HMC，Figure 10/12 控制 MNIST tuning。没有删除 ω1/ω2 或 acceptance correction 的 component ablation。",
+    "main_appendix_link": "正文 Table 1/2 的 Best 对应 Appendix Table 4/5 的 per-rate 展开，正文 Figure 1/2 对应 Figure 3 与 Figure 10–13；正文 Section 5 调用 G.1–G.5。附录把 tuning heterogeneity、time/iteration 差异、large-N/high-D 与 task transfer 变为可核验对象，但 Figure 3 的物理位置在 p.28，存在跨页跳转成本。",
+    "typography_consistency": "正文、caption、算法和表格稳定使用 Nimbus Roman/Computer Modern；嵌入 plot 使用 sans-serif raster 字体，Figure 10–13 标题/legend 相对更大，未形成完全统一的图内字号 token。",
+    "color_consistency": "MSE 结果图复用方法色；HMC sensitivity 图把颜色局部定义为 leapfrog steps，MNIST tuning 图把颜色定义为 step size/minibatch。legend 和 panel 文字提供冗余，但跨 Figure 直接比较颜色需要重新读取局部 legend；表格用黑白避免颜色唯一化。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1/3 的完整时间范围 + 早期 inset + acceptance-rate 分面。",
+      "Table 1/2 的 compact Best ESS/s 与 Appendix Table 4/5/6/7 的 per-rate 展开。",
+      "Figure 4/6/7/8 的 time-vs-iteration 与 N/d scale 配对。",
+      "Figure 5/9 的单变量 HMC sensitivity 和 Figure 10/12 的 panel×line tuning audit。",
+      "Figure 2/11/13 在不同 step/task 下保持 accuracy-time 的同构方法色。"
+    ],
+    "highest_value_objects": [
+      "Figure 1",
+      "Table 1",
+      "Table 2",
+      "Table 3",
+      "Figure 11",
+      "Table 4",
+      "Table 5",
+      "Table 7"
+    ],
+    "failure_patterns": [
+      "作者仓库提供数值 runner/evaluator 但没有公开 plotting/table-layout source，视觉无法精确重建。",
+      "Figure 4、6、10、11 和 Table 6 caption 过短，需往返正文才能解释条件。",
+      "所有曲线与表格缺少 run-level uncertainty；Best 聚合压缩 tuning heterogeneity。",
+      "Figure 10–12 把颜色改作局部 step size/minibatch 语义，跨图容易误认。",
+      "没有 component deletion ablation，无法把效率增益单独归因于某个 auxiliary variable。"
+    ],
+    "one_sentence_visual_strategy": "用统一方法色和 acceptance-rate 分面把 two-auxiliary-variable 算法的效率、正确性与调参边界串成“time/iteration 曲线 → ESS/s 表 → KS check → scale/task sensitivity”证据链，主文给 Best headline，附录给完整条件展开。"
+  }
+}

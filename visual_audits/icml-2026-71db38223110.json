@@ -1,0 +1,1335 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-71db38223110",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/JerrySoybean/facrnn"
+    ],
+    "selected_repository": "https://github.com/JerrySoybean/facrnn",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/JerrySoybean/facrnn",
+        "path": "assets/schematic.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "README/project asset has the exact paper title and author metadata; the 4,366×1,683 image matches the PDF Figure 1 schematic content and layout, while the PDF embeds an internal fig/schematic.pdf Form."
+      },
+      {
+        "repository_url": "https://github.com/JerrySoybean/facrnn",
+        "path": "facrnn/synthetic_rnn_input/benchmark.ipynb",
+        "role": "plot_script",
+        "tool": "matplotlib/seaborn/starbars",
+        "evidence": "Cells 3, 5, 6, and 8 contain the latent time-series, metric/trajectory, sub-connectivity, and permutation-complexity plotting code corresponding to Figures 2, 8, and 9; paper method labels FacRNN where the notebook uses DisRNN."
+      },
+      {
+        "repository_url": "https://github.com/JerrySoybean/facrnn",
+        "path": "facrnn/synthetic_rnn_input/data/data_generator.ipynb",
+        "role": "plot_script",
+        "tool": "matplotlib/seaborn",
+        "evidence": "Cells 1–2 generate the two rank-3 Lorenz/Thomas groups and cells 8/15 create pairplot/KDE views; cell 2 specifies the 3D trajectory line width. These cells explain Figure 5, whose final PDF rendering is one raster image."
+      },
+      {
+        "repository_url": "https://github.com/JerrySoybean/facrnn",
+        "path": "facrnn/monkey_nonlinear/conv.ipynb",
+        "role": "plot_script",
+        "tool": "pycirclize/matplotlib/seaborn",
+        "evidence": "Cells 6–13 define thresholded positive/negative chord diagrams, M1 trajectory grids, and rotation curves corresponding to Figure 3; the public tree contains no compiled fig/monkey.pdf or monkey_conn.pdf."
+      }
+    ],
+    "search_note": "The PDF p.9 Software and Data link explicitly names https://github.com/JerrySoybean/facrnn. gh metadata and README title/author/paper links match the paper exactly, and the recursive tree was inspected read-only. The local visual-source candidate visualization.ipynb is actually an ISO MP4 (ftypisom) byte-identical to voltage.mp4, so it is excluded. The public tree has no paper TeX, fig/ PDFs, Figure 4/6/7/10 plot source, or Table 1 generator; internal PTEX filenames are not public source paths. The resulting status is partial_visual_source, not exact_visual_source."
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 0,
+    "appendix_figures": 6,
+    "appendix_tables": 1,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "Helvetica",
+        "KaTeX Math",
+        "KaTeX Main",
+        "Nimbus Roman No9 L"
+      ],
+      "size_pt": {
+        "minimum": 4.0,
+        "median": 6.7,
+        "maximum": 11.3
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "NimbusRomNo9L",
+        "Computer Modern"
+      ],
+      "body_size_pt": 8.7,
+      "header_size_pt": 8.7,
+      "header_weight": "medium",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "The paper mixes Matplotlib categorical method colors (Figures 2 and 8), direction colors (Figure 3), and red/blue signed-value maps or edges (Figures 4 and 10). There is no cross-figure color dictionary, so the same hue can carry different semantics.",
+    "vector_raster_mix": "Most diagrams, trajectories, tables, and labels are vector PDF content. Raster content is concentrated in Figure 2/4 tile maps, the full Figure 5 image, Figure 9 complexity raster, and Figure 10 matrix tiles.",
+    "style_consistency": "The main/appendix objects share compact page-width compositions and sans-serif figure labels, but imported vector fonts, Type3 DejaVu Sans, KaTeX/Computer Modern math, and Nimbus Roman table text create a mixed typography contract. Appendix multi-panel figures are denser and smaller than main figures."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 4,
+      "module": "method schematic",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline",
+        "architecture",
+        "network"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. (a): Schematic of the FacRNN, showing independent latent groups and the corresponding low-rank connectivities. (b): Group-wise independence: (z₁, z₂) ⊥ (z₃, z₄), while within-groups are highly entangled, and components from different groups are marginally independent.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Helvetica",
+          "DejaVu Sans",
+          "KaTeX Math",
+          "KaTeX Main"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.3,
+          "maximum": 6.7
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#000000",
+          "#94B6D7",
+          "#F4B07A",
+          "#73BF69",
+          "#E53935",
+          "#B7B7B7"
+        ],
+        "semantic_mapping": "Blue and orange identify latent groups; green marks KDE structure; red marks sample points; black and gray carry equations, arrows, and axes.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 0,
+        "annotations": 14,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "blue/orange group blocks, green KDE, and red sample points",
+        "shape": null,
+        "line": "arrows and solid/outlined schematic connectors",
+        "facet": "(a) model interface and (b) independence illustration",
+        "text": "group labels, equations, component labels, and panel letters"
+      },
+      "data_and_statistics": "A conceptual object rather than a sampled estimate: panel (b) depicts K=4 components in G=2 groups with within-group dependence and cross-group marginal independence. The diagram contains no sample size, confidence interval, or fitted statistic.",
+      "evidence_relation": "PDF p.4 connects the observation-to-latent-to-decoder pipeline, the group factorization, and W=AB/W=ΣW_g interpretation in §3; Figure 2–4 instantiate the interface on synthetic, M1, and mouse data.",
+      "design_strengths": [
+        "It binds the encoder/decoder, independent groups, and low-rank sub-connectivity into one causal visual chain.",
+        "The companion independence panel makes the intended group-wise versus within-group dependence distinction visible."
+      ],
+      "design_weaknesses": [
+        "Formulae, 3D insets, KDE contours, and arrows compete for a small page-width canvas.",
+        "Small type and pale fills weaken group-color discrimination under scaling or grayscale printing; the caption does not decode every color."
+      ],
+      "reusable_pattern": "Use one end-to-end schematic to bind a model interface, its structural assumption, and the interpretable output decomposition before quantitative panels.",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 1: FacRNN schematic",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 6,
+      "module": "synthetic main comparison",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "box",
+        "line",
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2. (a): The PC and R² of the estimated latent, and the connectivity correlation. The starbars indicate the pairwise t-test significance levels. Arrows indicate the higher or lower the better. (b): Group 2 latent trajectories with the true dynamics in 3D plots; and the 1D trajectories from different methods on selected latent components. All latent dimensions are plotted in Fig. 8 in Appendix A.3.1. (c): The learned sub-connectivities from different methods and the ground truth.",
+        "word_count": 76,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "KaTeX Math"
+        ],
+        "size_pt": {
+          "minimum": 4.7,
+          "median": 6.0,
+          "maximum": 6.7
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#000000",
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#9467BD",
+          "#8C564B",
+          "#0000FF",
+          "#FFFFFF",
+          "#FF0000"
+        ],
+        "semantic_mapping": "Method identity uses the Matplotlib categorical sequence; black is true dynamics; the seismic matrix scale maps negative/near-zero/positive connectivity to blue/white/red.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 10,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "unknown",
+        "legend_present": true,
+        "legend_placement": "center between the 3D and 1D portions of panel (b)",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "method category in metric boxplots; time bin in trajectory panels",
+        "y": "PC, latent R², connectivity correlation, or latent value",
+        "color": "method identity and signed sub-connectivity value",
+        "shape": "boxplot distribution marks and mean/outlier symbols",
+        "line": "true/method latent trajectories",
+        "facet": "metric, 3D/1D dynamics, and sub-connectivity panels (a)–(c)",
+        "text": "method labels, panel letters, starbars, direction arrows, and heatmap labels"
+      },
+      "data_and_statistics": "Panel (a) summarizes PC, latent R², and sub-connectivity correlation over ten seeds with box distributions, means, outliers, and pairwise t-test starbars. Panel (b) shows a 200-bin trajectory window for group 2 and selected components; panel (c) shows 20×20 signed sub-connectivity matrices on a -1 to 1 diverging scale.",
+      "evidence_relation": "PDF p.6 §4.1 uses the three-part object for the synthetic comparison: metrics first, representative latent dynamics second, and learned versus ground-truth sub-connectivities third. The caption points to Figure 8 for all six latent dimensions.",
+      "design_strengths": [
+        "It closes a metric-to-dynamics-to-structure loop in one traceable object.",
+        "The shared method legend lets distributions, trajectories, and matrices be read as the same comparison."
+      ],
+      "design_weaknesses": [
+        "Three dense layers force tiny labels and crowded starbars; metric boxplot x labels are largely omitted.",
+        "The caption does not define boxplot spread, mean markers, matrix color bounds, or matrix units in enough detail for independent decoding."
+      ],
+      "reusable_pattern": "Order quantitative distributions, representative dynamics, and structural matrices as (a), (b), and (c) so each layer answers a different part of the same comparison.",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 2: synthetic metrics, trajectories, and sub-connectivities",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "monkey M1 alignment and mechanism",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "line",
+        "network"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3. (a): Recovered latent trajectories from different methods v.s. the ground-truth trajectories, and their alignment R² scores. (b): The corresponding low-rank connectivity for K = 2 FacRNN and K = 4 FacRNN. For FacRNN, for example, the rank-4 connectivity can be decomposed into two rank-2 sub-connectivities, one responsible for the dynamics of the x-movement, and the other for the y-movement. (c): The R² scores of aligning the estimated latent to rotated coordinate systems.",
+        "word_count": 74,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "KaTeX Main",
+          "KaTeX Math",
+          "StandardSymL"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 6.7,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#9467BD",
+          "#8C564B",
+          "#E377C2",
+          "#7F7F7F",
+          "#FF0000",
+          "#0000FF"
+        ],
+        "semantic_mapping": "C0–C7 identify eight movement directions in trajectories; red and blue chord edges encode positive and negative signed connectivity.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 23,
+        "series": 8,
+        "legend_items": 0,
+        "annotations": 24,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "unknown",
+        "grid": "unknown",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "time/trajectory coordinate in (a); rotation angle in (c)",
+        "y": "latent trajectory coordinate in (a); alignment R² in (c)",
+        "color": "movement direction in (a); edge sign in (b)",
+        "shape": "circular network sectors and small chord markers",
+        "line": "trajectory traces, chord edges, and rotation curves",
+        "facet": "trajectory multiples, connectivity decomposition, and rotation sweep (a)–(c)",
+        "text": "method/K/rank labels, R² titles, x/y sub-connectivity annotations, and panel letters"
+      },
+      "data_and_statistics": "M1 contains 168 trials, 14 time bins, 154 neurons, and eight movement directions. Panel (a) reports alignment R² summaries; panel (b) thresholds A@B connectivity to show signed edges and additive rank-2 pieces; panel (c) plots alignment R² over rotation angle with a shaded band whose aggregation is not defined in the caption.",
+      "evidence_relation": "PDF p.7 §4.2 links hand-coordinate alignment, rank-1 failure, rank-2/rank-4 decomposition, and coordinate-rotation stress testing. The public conv.ipynb reproduces the trajectory/chord/rotation plotting logic, while Figure 10 expands the connectivity matrices.",
+      "design_strengths": [
+        "It puts task alignment, interpretable connectivity decomposition, and coordinate robustness on one page.",
+        "The additive rank-4 = rank-2 x-movement + rank-2 y-movement relation is visually explicit."
+      ],
+      "design_weaknesses": [
+        "Many small multiples and chord diagrams leave no room for a sign legend or shared trajectory scale.",
+        "The rotation band lacks a stated statistical definition, and method names differ between the public notebook (DisRNN) and the paper (FacRNN)."
+      ],
+      "reusable_pattern": "Pair representative trajectories with additive sub-connectivity networks and a rotation curve to test appearance, mechanism, and coordinate robustness separately.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3: M1 alignment, connectivity, and rotation",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "mouse voltage-imaging result",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "line",
+        "map",
+        "heatmap",
+        "network",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "experimental_design",
+        "main_comparison",
+        "mechanism",
+        "qualitative_evidence",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4. (a): Experiment setup. (b): Reconstruction performance w.r.t. different (G, H) specifications with fixed K = 12, or different K with G = K and H = 1. (c): Cortical map with region abbreviations. (d): (G, H) = (1, 12), i.e., standard lrRNN. Left: brain maps A₍:,g₎ and time series z₍g₎⁽ᵗ⁾; right: rank-12 connectivity. Similar for (e) (G, H) = (6, 1) and (f) (G, H) = (6, 2).",
+        "word_count": 70,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Helvetica",
+          "KaTeX Math"
+        ],
+        "size_pt": {
+          "minimum": 4.7,
+          "median": 8.7,
+          "maximum": 11.3
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#FF0000",
+          "#9367BC",
+          "#0000FF",
+          "#FFB6B6",
+          "#000000",
+          "#00FF00",
+          "#D3D3D3",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Red/blue encode signed activity or connectivity; purple/red distinguish sweep curves; green boxes mark selected ROIs; black/gray/white carry axes, maps, and background.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 15,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "unknown",
+        "y_scale": "unknown",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 3,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "stimulus time, capacity specification, or cortical/map coordinate depending on panel",
+        "y": "reconstruction R², voltage trace, or cortical/map coordinate depending on panel",
+        "color": "signed activity/connectivity, capacity series, and selected ROI",
+        "shape": "map outlines, ROI boxes, and directed network arrows",
+        "line": "stimulus bracket, time traces, sweep curves, and directed edges",
+        "facet": "setup, capacity sweep, cortical map, and three model configurations (a)–(f)",
+        "text": "G/H/K configurations, region abbreviations, selected group labels, and panel letters"
+      },
+      "data_and_statistics": "The mouse panel uses trial-averaged JEDI-1P voltage imaging: 30 Hz pulsed air puff, 150 frames, 50×50 dorsal-cortex images, and a 0.75 s stimulus. Panel (b) sweeps G/H at fixed K=12 and K with G=K,H=1; representative panels show lrRNN (1 rank-12), FacRNN (6 rank-1), and FacRNN (6 rank-2).",
+      "evidence_relation": "PDF p.8–9 §4.3 moves from stimulus/data to capacity comparison and then to cortical maps, latent traces, and directed connectivity. The 18 indexed 92×92 objects are the d–f map tiles; curves, arrows, and labels are vector content.",
+      "design_strengths": [
+        "It combines input event, capacity choice, anatomical reference, latent trace, reconstruction, and connectivity in one progression.",
+        "Rows for each configuration maintain a clear visual path from maps to traces to networks."
+      ],
+      "design_weaknesses": [
+        "Brain maps, traces, and arrows are crowded, while the caption omits common scale details, color semantics, and the rationale for representative groups.",
+        "The sweep panel mixes G/H/K conditions without a fully self-contained axis/legend contract."
+      ],
+      "reusable_pattern": "Organize real-data evidence as event setup → capacity sweep → spatial reference → configuration-wise map/trace/network rows.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 4: mouse experiment, capacity, maps, and connectivity",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 13,
+      "module": "synthetic dataset",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "line",
+        "other"
+      ],
+      "purpose": [
+        "dataset",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5. The synthetic latent consists of two independent groups.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#1F77B4",
+          "#000000"
+        ],
+        "semantic_mapping": "Blue encodes pairplot samples/density; black marks axes, labels, and the attractor traces.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 23,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 34000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "latent component value in pairplot cells; attractor coordinate in 3D insets",
+        "y": "latent component value or attractor coordinate",
+        "color": "single sample/density color for the synthetic latent",
+        "shape": "scatter point versus line/density geometry",
+        "line": "KDE outlines and Lorenz/Thomas trajectories",
+        "facet": "corner pairplot cells and Lorenz/Thomas attractor insets",
+        "text": "z₁…z₆ component labels and Lorenz/Thomas titles"
+      },
+      "data_and_statistics": "The public data generator sets two groups, rank 3 per group, six components, and 2,000 integration steps; the first three dimensions are Lorenz and the last three Thomas, followed by standardization. Pairplot samples and diagonal KDE summarize the latent relation, while two 3D traces show the dynamical attractors.",
+      "evidence_relation": "PDF p.13 A.3.1 presents the synthetic ground truth used by Figure 2, Figure 7, and Figure 8. The PDF contains one 4,162×4,181 RGB image plus a soft mask, so the page view is raster even though the public generator contains plotting code.",
+      "design_strengths": [
+        "It couples marginal/pairwise structure with attractor geometry.",
+        "The high-resolution source raster preserves small scatter and density detail before page downsampling."
+      ],
+      "design_weaknesses": [
+        "The caption does not identify the component-to-group mapping, standardization, or sample length.",
+        "Ticks and values are sparse after raster scaling, making numerical ranges difficult to recover from the page alone."
+      ],
+      "reusable_pattern": "Place a corner pairplot beside one attractor inset per latent group to show statistical independence and temporal shape together.",
+      "evidence": {
+        "page": 13,
+        "label": "Figure 5: synthetic latent and attractors",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 14,
+      "module": "synthetic beta ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 6. Metrics w.r.t. the PC penalty β in FacRNN on the synthetic dataset.",
+        "word_count": 14,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.3,
+          "median": 6.7,
+          "maximum": 9.3
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#9467BD",
+          "#DCC9EA",
+          "#000000"
+        ],
+        "semantic_mapping": "Purple line is the metric trend, pale purple is its shaded range, and black is axes/text.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 4,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "PC penalty β on a logarithmic axis",
+        "y": "reconstruction R², partial correlation, latent R², or connectivity correlation",
+        "color": "single purple metric line and pale uncertainty band",
+        "shape": null,
+        "line": "metric trend across β",
+        "facet": "four metric panels sharing the β sweep",
+        "text": "metric names, β ticks, and panel labels"
+      },
+      "data_and_statistics": "Four metric curves sweep approximately seven β positions on a log x-axis: reconstruction R², partial correlation, latent R², and connectivity correlation. The purple band is visible but its SD/SE/replicate definition is not stated; the figure has no marker for the selected β=20.",
+      "evidence_relation": "PDF p.14 A.3.1 uses this ablation to motivate the synthetic β choice and connect the PC term in Eq. (10) to Figure 2 outcomes; Table 1 repeats the structural-versus-reconstruction choice on M1.",
+      "design_strengths": [
+        "A common hyperparameter axis makes metric trade-offs easy to scan.",
+        "The restrained single-series design stays legible despite four panels."
+      ],
+      "design_weaknesses": [
+        "The selected value is not marked and the band statistic is undefined.",
+        "Different y ranges across panels make vertical distance incomparable without reading each axis."
+      ],
+      "reusable_pattern": "Align multiple project metrics on one hyperparameter sweep, and explicitly mark the candidate/selected value and uncertainty definition.",
+      "evidence": {
+        "page": 14,
+        "label": "Figure 6: PC-penalty metric sweep",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 14,
+      "module": "latent alignment procedure",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "matrix",
+        "qualitative_grid",
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 7. The latent dynamics alignment process. We try to align the estimated latent groups with the ground truth. The best match is marked by the red squared linear least-squares R² score.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.3,
+          "median": 6.7,
+          "maximum": 9.3
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF0000",
+          "#000000"
+        ],
+        "semantic_mapping": "Blue shows trajectories, red boxes mark best matches, and black text/axes carry labels and R² values.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 18,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "estimated group index in each matrix column",
+        "y": "ground-truth group index in each matrix row",
+        "color": "trajectory blue and best-match red outline",
+        "shape": "matrix cells containing 3D trajectory insets",
+        "line": "trajectory traces and red match rectangles",
+        "facet": "lrRNN and FacRNN 3×3 alignment matrices",
+        "text": "estimated/true group labels and cell-level R² scores"
+      },
+      "data_and_statistics": "Each of the two 3×3 matrices shows 18 estimated-to-true group pairings, with a red box around each row-wise best match. Visible best-match scores include lrRNN values 0.8739, 0.3460, 0.4059 and FacRNN values 0.9852, 0.9545, 0.9133; no uncertainty interval is shown.",
+      "evidence_relation": "PDF p.14 A.3.1 makes the affine least-squares group matching behind the Figure 2 latent R² explicit. The three-by-three layout is a rendered fact; the caption does not explain its relation to the earlier two-group synthetic description.",
+      "design_strengths": [
+        "The matrix makes global assignment positions and scores inspectable at once.",
+        "Red outline plus numeric score redundantly identifies the selected match."
+      ],
+      "design_weaknesses": [
+        "Eighteen tiny 3D insets are crowded and the group-count convention is unexplained.",
+        "The caption omits the affine transformation details and aggregation rule for the reported R² values."
+      ],
+      "reusable_pattern": "Use a candidate-group × true-group matrix with an inset trajectory and a selected-cell marker to expose the alignment procedure rather than only its final score.",
+      "evidence": {
+        "page": 14,
+        "label": "Figure 7: latent dynamics alignment",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 15,
+      "module": "all latent dynamics",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 8. The estimated latent components by different methods on every latent component/dimension.",
+        "word_count": 13,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "KaTeX Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#000000",
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#9467BD",
+          "#8C564B"
+        ],
+        "semantic_mapping": "True and six methods use a fixed categorical line palette across the six latent components.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 0,
+        "data_marks_estimate": 8400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "time index (0–200 shown in the selected window)",
+        "y": "latent component value for each z dimension",
+        "color": "true trajectory and method identity",
+        "shape": null,
+        "line": "one solid line per method/true trajectory",
+        "facet": "six latent component panels sharing the time axis",
+        "text": "component labels and one shared method legend"
+      },
+      "data_and_statistics": "Six latent components are plotted over roughly 200 time points for true dynamics and six methods, with no replicate band or confidence display. The notebook source explicitly creates the shared seven-item legend and saves the latent time-series figure.",
+      "evidence_relation": "PDF p.15 A.3.1 expands the selected trajectories in Figure 2(b); the caption in Figure 2 points readers here for all latent dimensions. The public benchmark notebook cell 3 is the corresponding plotting source.",
+      "design_strengths": [
+        "Shared x-axis and legend make cross-component method differences easy to follow.",
+        "Showing all six components reduces the risk of reporting only a favorable selected trajectory."
+      ],
+      "design_weaknesses": [
+        "Seven overlapping lines rely almost entirely on color, which is weak in grayscale.",
+        "Panel-specific y ranges and a very short caption leave scale comparability unspecified."
+      ],
+      "reusable_pattern": "Expand a representative trajectory comparison into shared-x small multiples while retaining the same method palette and legend.",
+      "evidence": {
+        "page": 15,
+        "label": "Figure 8: estimated latent components",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 15,
+      "module": "permutation complexity and seed distributions",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix",
+        "box"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "failure",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 9. Left: Complexity demonstration matrix. Right: The latent R² of all possible permutations for methods without the assumption of group structure under different random seeds.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.3,
+          "median": 6.7,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#440154",
+          "#21918C",
+          "#FDE725",
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#9467BD"
+        ],
+        "semantic_mapping": "Viridis encodes log10 permutation complexity on the left, while the right boxplots use categorical method colors.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 9,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper center of the right panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "box",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "G/H categories in the complexity matrix; random seed category in boxplots",
+        "y": "log10 permutation count on the left; latent R² on the right",
+        "color": "viridis complexity and method identity",
+        "shape": "box/whisker/outlier/mean symbols",
+        "line": null,
+        "facet": "complexity matrix versus seed-wise permutation distributions",
+        "text": "nine exact count labels, G/H labels, method legend, and panel titles"
+      },
+      "data_and_statistics": "The left 3×3 matrix covers G,H=2–4 and labels exact permutation counts 3, 10, 35, 15, 280, 5,775, 105, 15,400, and 2,627,625; its color is log10 complexity. The right panel shows lrRNN, lrRNN+ICA, LINT, and FacRNN-full across seeds 0–9 with boxplot distributions and mean markers.",
+      "evidence_relation": "PDF p.15 A.3.1 implements Eq. (19) and contrasts exhaustive permutation cost with seed-wise latent R². The public benchmark notebook cell 8 contains the matrix formula, white count labels, and four-method boxplot.",
+      "design_strengths": [
+        "The matrix turns combinatorial growth into exact labeled cells rather than an uninterpretable color field.",
+        "The adjacent seed distributions connect search cost to observed baseline variability."
+      ],
+      "design_weaknesses": [
+        "The left panel has no colorbar, so log10 encoding must be inferred from text/source.",
+        "Dense boxplots and a top legend crowd the right panel; the caption does not define the box statistic or mean symbol."
+      ],
+      "reusable_pattern": "Pair a structural search-space display with the resulting seed/permutation distribution to answer both how large the search is and what it yields.",
+      "evidence": {
+        "page": 15,
+        "label": "Figure 9: permutation complexity and latent R² distributions",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 16,
+      "module": "M1 connectivity matrices",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 10. The learned connectivity matrices from all methods in Fig. 3(a), except for K = 2 FacRNN-MLP.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.3,
+          "median": 5.3,
+          "maximum": 6.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 3,
+        "hex": [
+          "#0000FF",
+          "#FFFFFF",
+          "#FF0000"
+        ],
+        "semantic_mapping": "Signed connectivity values use a shared blue–white–red scale with blue negative, white near zero, and red positive.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 8,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 189728
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "neuron index, not tick-labeled",
+        "y": "neuron index, not tick-labeled",
+        "color": "signed connectivity magnitude",
+        "shape": "matrix cell position",
+        "line": null,
+        "facet": "K=2 and K=4 rows across method columns",
+        "text": "method/K labels, missing-panel placeholder, and shared colorbar ticks"
+      },
+      "data_and_statistics": "Eight 154×154 connectivity matrices are shown for M1, using a shared diverging colorbar at approximately -0.5, 0, and 0.5. The upper row covers K=2 lrRNN, LINT, and FacRNN with a blank FacRNN-MLP position; the lower row covers K=4 lrRNN, LINT, SMC, and FacRNN.",
+      "evidence_relation": "PDF p.16 A.3.2 expands the connectivity discussed in Figure 3(b); the blank K=2 FacRNN-MLP slot agrees with the caption. Eight 246×246 RGB tiles and one 13×260 colorbar are embedded raster objects, while labels and layout are vector.",
+      "design_strengths": [
+        "A common color scale and fixed K/method grid preserve structural comparability.",
+        "The explicit blank slot records a missing configuration instead of silently changing the layout."
+      ],
+      "design_weaknesses": [
+        "Dense 154×154 matrices lack neuron ordering/axis labels and are difficult to interpret locally.",
+        "The caption omits scale semantics and leaves a large blank slot in an already compressed grid."
+      ],
+      "reusable_pattern": "Use a fixed condition grid and shared signed color scale for full connectivity, preserving missing configurations as explicit placeholders.",
+      "evidence": {
+        "page": 16,
+        "label": "Figure 10: learned M1 connectivity matrices",
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 16,
+      "module": "monkey M1 beta ablation",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 1. Monkey M1 β ablation. Values are mean (std) across five runs.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.7,
+        "header_size_pt": 8.7,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 6,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Each cell reports mean (std) across five runs, as stated in the caption; no interval or significance marker is shown.",
+      "data_and_statistics": "Rows use β values 1, 2, 5, 10, 20, 50, 100, and 200. Recon. log-likelihood is approximately 379.422–380.001 while Between-group PC falls from about 0.0165 to 0.000220. Decimal places vary by column and no unit or held-out split is reported.",
+      "evidence_relation": "PDF p.16 A.3.2 uses the table to select a real-data β interval by contrasting reconstruction with between-group PC; it supplies hyperparameter context for Figure 3 and Figure 10 and parallels the synthetic sweep in Figure 6.",
+      "design_strengths": [
+        "The same β rows expose the reconstruction/structural-penalty trade-off.",
+        "Mean(std) over five runs retains repeatability information without adding a separate panel."
+      ],
+      "design_weaknesses": [
+        "Column precision is inconsistent and no unit/direction is encoded in the headers.",
+        "The text-recommended β=10–20 range is not highlighted, so the selection depends on prose above the table."
+      ],
+      "reusable_pattern": "Report task quality and structural constraint metrics on the same regularization grid with repeated-run mean(std), then visibly mark the selected operating range.",
+      "evidence": {
+        "page": 16,
+        "label": "Table 1: Monkey M1 beta ablation",
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 defines FacRNN group factorization and sub-connectivity; Figures 2–4 move through synthetic metrics/trajectories/matrices, M1 alignment/decomposition/rotation, and mouse event/capacity/spatial-temporal-network evidence. Figures 5–10 and Table 1 then supply synthetic ground truth, beta choice, alignment details, full latent traces, permutation complexity, full M1 matrices, and real-data beta evidence.",
+    "caption_system": "All objects use Figure n./Table 1. prefixes. Multi-panel main captions use (a)/(b)/(c) keys and Figure 2/3 provide the strongest comparison and mechanism narration, while Figures 5/6/8 and Figure 10 omit important scale, uncertainty, or encoding definitions.",
+    "table_header_system": "The only table uses one header row, three right-aligned metric columns, no grouped headers, and booktabs rules. It names beta, reconstruction log-likelihood, and between-group PC, but omits units, metric direction, and the selected range.",
+    "method_result_ablation_link": "The Figure 1 PC/group mechanism is instantiated in Figures 2–4; Figure 6 and Table 1 test beta choices, Figure 7 exposes matching, Figure 9 tests permutation cost, and Figures 8/10 expand the latent/connectivity results.",
+    "main_appendix_link": "Figure 2 points to Figure 8 for all latent dimensions, Figure 3 and the p.16 text point to Figure 10 for full matrices, and short Appendix A.3 pointers lead to Figures 5–9 and Table 1 for data generation, ablation, alignment, and search-cost detail.",
+    "typography_consistency": "Figure internals predominantly use DejaVu Sans/Helvetica with KaTeX or Computer Modern math, while Table 1 follows Nimbus Roman/Computer Modern body text. This is locally coherent but lacks a single font-size/weight contract across imported vector, Type3, and raster objects.",
+    "color_consistency": "Figures 2 and 8 share a method palette; Figure 3 reuses C0–C7 for movement direction; Figures 4 and 10 use red/blue for signed activity/connectivity; Figure 4 also uses purple/red for sweeps. Color semantics are therefore panel-local rather than globally stable."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Put structural assumptions, training interface, and interpretable outputs in one schematic before quantitative evidence.",
+      "Use the Figure 2 statistics → representative trajectory → structural matrix sequence to close a metric/shape/mechanism loop.",
+      "Combine task alignment, additive sub-connectivity, and coordinate rotation to test whether an explanation is structurally grounded.",
+      "Organize real-data evidence as event input → capacity sweep → spatial/temporal/network interpretation.",
+      "Pair search complexity or beta selection with quality metrics and repeated-run spread."
+    ],
+    "highest_value_objects": [
+      "Figure 1: the clearest method-interface and group-independence causal map.",
+      "Figure 3: the densest link between M1 task alignment, connectivity mechanism, and rotation robustness.",
+      "Figure 2: the most complete synthetic comparison surface.",
+      "Figure 4: the strongest real-data input-to-mechanism progression."
+    ],
+    "failure_patterns": [
+      "One palette is reused for unrelated levels of meaning without a cross-figure color dictionary.",
+      "Small panels, pale bands, dense starbars, and 154×154 heatmaps lose readability when reduced or printed in grayscale.",
+      "Captions often omit band/box aggregation, colorbar range, sign semantics, units, and representative-selection rationale.",
+      "Public visual-source coverage is incomplete, and the automatically listed visualization.ipynb is a mislabeled MP4 rather than a plotting notebook."
+    ],
+    "one_sentence_visual_strategy": "The paper defines group-wise factorization schematically, then advances through synthetic statistics/trajectories/matrices, M1 alignment/sub-connectivity, and mouse spatial-temporal-network evidence while the appendix fills in capacity, matching, permutation, and beta-selection details."
+  }
+}

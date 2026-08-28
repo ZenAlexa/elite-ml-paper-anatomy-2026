@@ -1,0 +1,1597 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-12331806f03c",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/jdeschena/pgm",
+      "nkalyanv99/UNI-D2",
+      "AAAAA-Academia-Attractions/Discrete-Diffusion"
+    ],
+    "selected_repository": "https://github.com/jdeschena/pgm",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/jdeschena/pgm",
+        "path": "static/images/pgm_vs_mgm.jpg",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "README metadata is exact for the paper title, authors, ICLR 2026 oral status, and arXiv 2505.18883. The 5042×2042 300-dpi JPEG matches the MGM/PGM core of PDF Figure 2 but contains an extra throughput panel and changed callout text, so it is a partial rendered asset rather than the exact PDF object or a plot script."
+      }
+    ],
+    "search_note": "先核对 reports/tables/visual_source_inventory.csv（该行自动状态 repository_without_visual_source）和不存在的 corpus/visual_sources/iclr-2026-12331806f03c/。PDF 首页、README 和作者仓库元数据严格匹配 jdeschena/pgm；只读检查 main、image_pretrain、text_pretrain、text_distill_sdtt 分支的递归树。仓库没有 Figure 1、3–6 的 plot/diagram source，也没有 table generator、LaTeX/TikZ/PGF、notebook 或 exact data file；utils/viz.py 只是通用重建/网格 helper。nkalyanv99/UNI-D2 与 AAAAA-Academia-Attractions/Discrete-Diffusion 未通过论文标题、作者、ID 或链接严格验证，未记其文件为源。"
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 2,
+    "appendix_figures": 2,
+    "appendix_tables": 8,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "DejaVu Sans",
+        "Arial",
+        "Lexend-like sans-serif"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 7.0,
+        "maximum": 20.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 6.8,
+      "header_size_pt": 7.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "正文结果图采用蓝/橙/红/绿的 categorical model/sampler colors，并在部分 panel 以 marker、模块位置或直接文字提供冗余；机制图使用灰 mask、红 callout、蓝/橙 group 和绿模块；Figure 5 固定蓝/橙/绿 sampler 行。所有表格保持黑白 booktabs/partial-grid，使用粗体、浅灰或下划线突出选择。",
+    "vector_raster_mix": "PDF captions、正文、表格规则和多数文字是 vector PDF objects；Figures 1–6 由 vector text/lines 与嵌入或栅格化图形混合，Figure 2 另有 public JPEG rendered asset。没有把 XObject 或 generic helper 当作 exact plotting source。",
+    "style_consistency": "正文、caption 和表格稳定使用 Nimbus Roman No9 L/Computer Modern math；图内 quantitative/diagram labels 使用 DejaVu Sans/Arial/Lexend-like sans-serif 的小字号。页宽 Figure 1–3/5–6、单栏 Figure 4 的布局差异清楚，表格规则和 row-group 语法跨正文/附录一致，但高密度 appendix tables 的可读性下降。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar",
+        "scatter"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 1: (Left): On ImageNet, using the Halton sampler, PGM (ours), reaches similar FID as MaskGIT with a 7.5× speedup. By sampling with twice as many steps, PGM reaches an FID of 4.56 while remaining 3.9× faster. (Right): On OpenWebText, PGM achieves a better Generative Perplexity with a 5.3× higher sampling throughput compared to MDLM (an MGM for text), at a context length of 1024.",
+        "word_count": 65,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial",
+          "Lexend-like sans-serif",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#D62728",
+          "#2CA02C",
+          "#808080",
+          "#000000"
+        ],
+        "semantic_mapping": "Bar colors distinguish MaskGIT/PGM and sampling-step variants; scatter colors and markers distinguish GPT-2 Small, MDLM, and two PGM configurations; direct numeric/entropy labels add partial redundancy.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 9,
+        "legend_items": 7,
+        "annotations": 9,
+        "data_marks_estimate": 14
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "bottom_left_and_upper_left_inside",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 4,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Left: model/step categories; right: throughput in tokens/sec on a log axis.",
+        "y": "Left: FID and throughput metric regions; right: Generative Perplexity.",
+        "color": "Model family and sampler/step variant.",
+        "shape": "Scatter marker identifies model family; bars use rectangular geometry.",
+        "line": "Dotted connections in the scatter; a dashed separator divides left metric regions.",
+        "facet": "Left ImageNet FID/throughput bars versus right OpenWebText Gen. PPL/throughput scatter.",
+        "text": "Bar-top values and entropy annotations (5.3/5.4/5.5)."
+      },
+      "data_and_statistics": "Mixed headline data: ImageNet Halton selected points (MaskGIT 32 FID 5.35/1.05 img/s; PGM 12/12 32 FID 5.54/7.93; PGM 12/12 64 FID 4.56/4.12; PGM 14/10 32/64 FID 5.55/4.76 and 7.37/3.80 img/s) and OpenWebText context 1024 Gen. PPL versus throughput for four model configurations. Values are point estimates with no quality interval or replication shown; the full step/guidance conditions are in Tables 6 and 9.",
+      "evidence_relation": "Abstract and Introduction headline claims feed Figure 1; Sections 5.1–5.2 and Tables 1, 6, and 9 provide model, sampler, batch, and full-sweep context, while Figure 4 covers the distilled text slice. The object turns clean-token computation into a cross-modal quality–efficiency decision view.",
+      "design_strengths": [
+        "The first page combines quality and cost across text and image modalities.",
+        "Direct labels make the headline ratios and selected values readable without estimating bar heights.",
+        "The two panels map directly to detailed appendix sweeps."
+      ],
+      "design_weaknesses": [
+        "Mixed metrics and scales make the left panel easy to misread as one common axis.",
+        "Small legends/categories and color-heavy mappings reduce small-size and grayscale readability.",
+        "Quality uncertainty, parameter matching, and selected CFG/sampler conditions are not visible."
+      ],
+      "reusable_pattern": "Use paired quality–throughput panels with direct values, then link every selected point to a complete condition sweep and expose capacity, sampler, steps, and batch in the companion table.",
+      "evidence": {
+        "page": 1,
+        "label": "Figure 1",
+        "bbox": [
+          108.0,
+          569.035,
+          145.772,
+          578.998
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline",
+        "architecture"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2: Masked Generative Modeling (MGM) vs. Partition Generative Modeling (PGM). Left: MGMs learn at masked positions only, and must process [MASK] tokens at inference. Right: PGMs partition tokens in two groups, learn from all positions and process clean tokens only during sampling. PGMs achieve >5.3x higher throughput on OpenWebText (context length 1024, 128 sampling steps).",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial",
+          "Lexend-like sans-serif",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 9.0,
+          "maximum": 20.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#808080",
+          "#5B9BD5",
+          "#F4A340",
+          "#70AD47",
+          "#E06464",
+          "#F7E9D2",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Gray denotes masks/modules, blue and orange denote clean or complementary groups, red denotes compute/waste callouts, and pale cream separates the PGM side.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 7,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "Mask/Clean and Group 1/Group 2 token semantics plus positive/negative callouts.",
+        "shape": "Token rectangles and rounded module boxes.",
+        "line": "Arrows show information/computation flow; dashed/solid separators distinguish modules.",
+        "facet": "MGM panel versus PGM training and sampling panels.",
+        "text": "Learn/supervise/waste/no-mask callouts and token labels."
+      },
+      "data_and_statistics": "Mechanism-only visual: a token sequence, mask/clean or two-group partition, encoder/decoder/GroupSwap blocks, and arrows. It contains no experimental sample, aggregation, replication, or uncertainty; the >5.3x annotation is the OWT context-1024/128-step result summarized elsewhere.",
+      "evidence_relation": "Sections 2–4 explain the MGM baseline, partition objective, and Partition Transformer; Section 5 and Tables 1/6 quantify the throughput statement. The author-linked repository asset static/images/pgm_vs_mgm.jpg matches the core MGM/PGM layout but adds a throughput panel and changes a callout, so it is only a partial rendered source.",
+      "design_strengths": [
+        "Baseline and proposed mechanism share a token-level spatial grammar.",
+        "Callouts connect the architecture to informative versus wasted computation.",
+        "Training and sampling are visually distinguished on the PGM side."
+      ],
+      "design_weaknesses": [
+        "Training plus sampling in one wide diagram creates a dense reading path.",
+        "Small labels and callout colors carry much of the interpretation.",
+        "The published asset is not an exact PDF crop, so source-level visual parameters are unavailable."
+      ],
+      "reusable_pattern": "Align the same token sequence and module geometry for baseline/proposed paths, and attach efficiency callouts to the concrete input tokens or modules they describe.",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2",
+        "bbox": [
+          108.0,
+          244.404,
+          143.451,
+          254.367
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3: Partition Transformer. RoPE is applied before every attention layer (omitted for clarity). (C) Encoder: group-wise self-attention (no cross-group flow). (B) GroupSwap: cross-attention that routes each position’s representation to the opposite group. (A) Decoder: group-wise cross-attention to the encoder output (no self-attention).",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial",
+          "Lexend-like sans-serif",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#C7B7E8",
+          "#D9EAD3",
+          "#F4A3A3",
+          "#8DB8EB",
+          "#000000",
+          "#808080"
+        ],
+        "semantic_mapping": "Purple blocks denote layer stacks, green rectangles denote Transformer submodules, red/blue token blocks track group identity, and black/gray arrows/text encode flow and boundaries.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 15
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "Group and module roles through persistent red/blue and purple/green fills.",
+        "shape": "Token blocks, stack rectangles, and attention/module boxes.",
+        "line": "Solid arrows carry computation; dashed separators mark group/module boundaries.",
+        "facet": "Overview stack plus expanded A Decoder, B GroupSwap, and C Encoder blocks.",
+        "text": "A/B/C labels, Q/K/V, LN/MLP, attention-direction and no-flow annotations."
+      },
+      "data_and_statistics": "Architecture visual with no quantitative observations, sample size, repetition, or uncertainty. It makes group-wise self-attention, cross-group GroupSwap, and decoder cross-attention explicit; RoPE is stated as omitted from the drawing.",
+      "evidence_relation": "Section 4 and Eqs. (9)–(11) define Encoder, GroupSwap, queries, and Decoder; Figure 2 supplies the clean-token intuition, and Section 5 tests the resulting inference cost. No public exact plotting/diagram source was found.",
+      "design_strengths": [
+        "Overview stack and component expansions serve different levels of implementation reading.",
+        "Group colors persist across input, attention, and output semantics.",
+        "Caption explicitly states which attention paths are blocked."
+      ],
+      "design_weaknesses": [
+        "A/B/C overview and right-side details require a nontrivial reading order.",
+        "Dense Q/K/V and module labels are small at page width.",
+        "Omitted RoPE details must be recovered from the prose for reproduction."
+      ],
+      "reusable_pattern": "Use a compact total stack beside three component expansions, with persistent group colors and a caption that states allowed and forbidden information paths.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 3",
+        "bbox": [
+          108.0,
+          296.738,
+          144.129,
+          306.701
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: After distillation, PGM (6 / 6, dim. 1024) with nucleus sampling remains significantly faster than MDLM, at matching entropy and Gen. PPL.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#D62728",
+          "#BFBFBF"
+        ],
+        "semantic_mapping": "Blue star marks MDLM, orange marks PGM, and red marks PGM with nucleus sampling; gray is grid/neutral ink.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 6,
+        "data_marks_estimate": 9
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_left_inside",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 3,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Throughput (tokens/sec.), linear.",
+        "y": "Generative Perplexity, linear.",
+        "color": "Model and decoding sampler.",
+        "shape": "Star, square/plus, and cross/plus markers.",
+        "line": "Dotted series connectors.",
+        "facet": null,
+        "text": "Entropy labels such as (5.4) and (5.5) next to points."
+      },
+      "data_and_statistics": "Distilled OpenWebText point comparisons of Gen. PPL, entropy, and throughput. At 128 steps with FP32 loss, MDLM is 45.06 Gen. PPL/5.40 entropy/1043.22 tok/s, PGM ancestral is 60.06/5.47/5518.09, and PGM+nucleus p=0.9 is 43.84/5.39/5375.20. All are point values with no error bars or intervals.",
+      "evidence_relation": "Section 5.1 motivates the distilled comparison; Table 7 supplies precision, steps, ancestral/nucleus, entropy, and throughput conditions. Figure 1 gives the undistilled text headline. The matching-quality statement is supported by the nucleus slice, not by every distilled PGM row.",
+      "design_strengths": [
+        "A single quality–throughput plane exposes the speed/quality tradeoff.",
+        "Entropy labels retain a diversity control beside Gen. PPL.",
+        "The small panel fits the results-column narrative after distillation."
+      ],
+      "design_weaknesses": [
+        "Single-column size makes legend and entropy labels small.",
+        "No uncertainty or repeat-run information is shown.",
+        "Caption omits nucleus p=0.9 and relies on the table/body for the setting."
+      ],
+      "reusable_pattern": "Plot model and decoding variants on common quality–throughput axes and annotate the diversity proxy directly, while retaining the full precision/sampler sweep in an appendix table.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 4",
+        "bbox": [
+          306.0,
+          351.796,
+          341.226,
+          361.759
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 15,
+      "module": "appendix B",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "matrix"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "qualitative_evidence",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 5: Comparison of unmasking schedules on a 2D grid. (a) Halton sampling covers space uniformly. (b) Random sampling can leave large areas empty. (c) With confidence-based sampling, new tokens are decoded close to existing ones, leading to high mutual information and a risk of inconsistent generation.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#5B83BA",
+          "#E89B17",
+          "#8BAD24",
+          "#EAEAEA"
+        ],
+        "semantic_mapping": "Blue/orange/green identify Halton/random/confidence rows; gray cells are not yet decoded.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 15,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Sampling time from t=1 to t=0 along the bottom timeline.",
+        "y": "2D grid position, not a metric axis.",
+        "color": "Schedule method and decoded-cell state.",
+        "shape": "Occupied versus empty square cells.",
+        "line": "Single bottom timeline arrow.",
+        "facet": "Three sampler rows, each with five stages.",
+        "text": "Row labels and t=1/SAMPLING TIME/t=0 annotations."
+      },
+      "data_and_statistics": "Illustrative H×H grid schedule, not a measured heatmap: five coarse stages per row compare low-discrepancy Halton coverage, random gaps, and confidence clustering. There are no sample counts, repeated draws, numeric mutual-information values, or uncertainty encodings.",
+      "evidence_relation": "Appendix B Eq. (13) and Algorithm 1 define the radical-inverse Halton schedule; Section 3.2 and Figure 2 explain sampling semantics, and Tables 8–9 quantify confidence/Halton image outcomes. The caption connects confidence clustering to mutual information and inconsistency risk.",
+      "design_strengths": [
+        "The timeline and spatial coverage pattern are immediately legible.",
+        "Fixed cells make the three scheduling behaviors comparable.",
+        "The appendix object supplies qualitative intuition for the Halton choice in Figure 1."
+      ],
+      "design_weaknesses": [
+        "Five stages cannot quantify coverage or compare repeated random draws.",
+        "The caption asserts MI implications without plotting MI or a formal scale.",
+        "Row colors are the main method distinction, despite cell labels."
+      ],
+      "reusable_pattern": "For a schedule mechanism, use identical cell grids across rows, a common left-to-right time arrow, and explicit row labels before introducing quality metrics.",
+      "evidence": {
+        "page": 15,
+        "label": "Figure 5",
+        "bbox": [
+          108.0,
+          353.93,
+          145.619,
+          363.893
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 17,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 6: Training loss of MDLM, MDLM with Complementary Masking (Section 5.3) and PGM. Complementary masking seems to introduce spikes in the loss, even though it did not cause the models to diverge.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#D9D9D9",
+          "#000000"
+        ],
+        "semantic_mapping": "The same blue loss ink is used in all three panels; panel titles identify MDLM, complementary masking, and PGM, while gray/black are grid and text.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Training step, 0 to approximately 1.0e6, linear.",
+        "y": "Training loss, approximately 3–10, linear.",
+        "color": "Single blue loss line; condition is encoded by panel title.",
+        "shape": null,
+        "line": "One solid loss trajectory per panel.",
+        "facet": "MDLM, MDLM with complementary masking, PGM 6/6 dim 1024.",
+        "text": "Panel titles and caption call out spikes/divergence."
+      },
+      "data_and_statistics": "Three 1M-step loss trajectories show a smooth MDLM baseline and occasional spikes for complementary masking and PGM. No seeds, repeated-run bands, spike frequency, mean, or interval are encoded; Appendix D.4 states that runs converged.",
+      "evidence_relation": "Section 5.3 isolates complementary masking; Table 1/Table 5 report PPL effects, and Appendix D.4 uses this figure to document stability. It is the visual negative/failure boundary for the denser-supervision argument, not a direct gradient-variance measurement.",
+      "design_strengths": [
+        "Shared axes and direct panel titles support a fast stability comparison.",
+        "Spikes and the non-divergence boundary appear in the same object.",
+        "Single-color lines avoid introducing an unnecessary legend."
+      ],
+      "design_weaknesses": [
+        "No repeat-run uncertainty or quantitative spike definition is supplied.",
+        "Thin blue lines and small panels may under-resolve spikes at print scale.",
+        "Loss trajectories cannot directly verify the claimed gradient-variance reduction."
+      ],
+      "reusable_pattern": "Use shared-scale small multiples for stability ablations and state both the observed anomaly and the failure event that did not occur.",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 6",
+        "bbox": [
+          108.0,
+          230.285,
+          144.685,
+          240.248
+        ],
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 6,
+      "module": "results/ablation",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 1: Validation perplexity, sampling latency, and throughput (TP) on LM1B and OpenWebText. PGM k / m uses k encoder and m decoder layers. The best PGM per dataset is highlighted. Latency and TP are measured at batch size 32. † Trained with a 2× larger batch size (Sec. 5.3). See Table 5 for architecture ablations.",
+        "word_count": 57,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "Point values only; no ±, confidence interval, seed, or quality replication. Latency and TP use batch size 32. The visual uses gray/bold for best PGM per dataset.",
+      "data_and_statistics": "Seven numeric model rows plus LM1B/OWT group labels: Model, #Params, Val. PPL ↓, Latency (sec) ↓, TP (tok/sec) ↑. Examples are LM1B MDLM 27.67/3.78/1081.57 versus PGM 6/6 26.80/2.12/1930.93, and OWT MDLM 23.07/31.41/1043.22 versus PGM 8/8 22.61/5.86/5585.57 or PGM 6/6 dim 1024 21.43/5.93/5518.09. OWT capacity is 170M versus 203M/268M, so the quality comparison is not strictly parameter matched.",
+      "evidence_relation": "Section 5.1 likelihood evaluation; Figure 1 summarizes the speed/quality headline and Table 5 expands architecture choices. The table also exposes the paper's 1.95 PPL prose inconsistency: PGM 26.80 versus MDLM 27.67 differs by 0.87; 1.95 equals MDLM versus complementary-MDLM 25.72.",
+      "design_strengths": [
+        "Places parameters, quality, latency, and throughput on one decision surface.",
+        "Metric direction arrows and dagger/group labels improve interpretation.",
+        "Gray/bold best-PGM cue maps to the selection in the main text."
+      ],
+      "design_weaknesses": [
+        "No uncertainty for validation quality or throughput beyond a single point.",
+        "Group labels and several model configurations are visually tight.",
+        "Capacity mismatch and the 1.95 textual discrepancy require explicit reading."
+      ],
+      "reusable_pattern": "Keep model capacity, quality, latency, and throughput in the same table, and use row groups to expose dataset and training-condition changes.",
+      "evidence": {
+        "page": 6,
+        "label": "Table 1",
+        "bbox": [
+          107.691,
+          81.722,
+          139.907,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 2: Accuracy on downstream tasks (Gao et al., 2024). HS: HellaSwag, OQA: OpenBook QA. Arc: Arc-easy. We select the tasks following Nie et al. (2025). We see that distillation slightly changes the downstream tasks performance, but that PGMs continue to outperform MDLM on most tasks. The best performance is bolded, while the second best is underlined.",
+        "word_count": 64,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "Point accuracies only; no standard deviations, intervals, seeds, or pooled summary are shown. Bold denotes the best cell and underline the second best within task columns.",
+      "data_and_statistics": "Six numeric model rows plus Before Distillation/After Distillation group labels; Model plus eight task columns (LAMBADA, HS, OQA, Arc-e, Arc-c, MathQA, PIQA, WinoGrande). Before MDLM is 38.52/37.88/49.42/31.36/28.60/58.27/28.04/38.84 and PGM 8/8 is 46.98/40.40/53.49/33.20/26.60/58.92/26.89/39.97; after SDTT, PGM 8/8 is 47.22/37.42/51.50/31.62/25.80/59.03/30.62/39.61.",
+      "evidence_relation": "Section 5.1 downstream evaluation; Table 4 adds a task slice and Figures 1/4 provide efficiency context. It tests whether distillation changes task quality while retaining the headline comparison.",
+      "design_strengths": [
+        "Before/after conditions share one task-column order.",
+        "Best and second-best styles make task-level comparison direct.",
+        "The caption defines the three non-obvious task abbreviations."
+      ],
+      "design_weaknesses": [
+        "Nine columns compress labels and values.",
+        "No aggregate accuracy or task-level uncertainty is provided.",
+        "The reader must use the caption/body to interpret the row groups."
+      ],
+      "reusable_pattern": "Separate before/after interventions with row-group labels while retaining a fixed benchmark-column order and explicit best/second-best encoding.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 2",
+        "bbox": [
+          107.691,
+          81.722,
+          140.89,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 16,
+      "module": "appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 3: Latency and throughput for a single forward+backward pass of the MDLMs and PGMs, computed on a single A100-SXM4-80GB GPU. On LM1B, PGM introduces a negligible overhead over MDLM. On OWT, our PGM with 6 encoder and decoder layers and an embedding dimension of 1024 achieves around 75% of the training throughput of MDLM. Recall that at inference, the same PGM is around 5× faster than MDLM.",
+        "word_count": 84,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Latency and throughput are mean ± standard deviation over 100 batches after 2 warmup batches on one A100-SXM4-80GB GPU; the table does not show quality uncertainty.",
+      "data_and_statistics": "Five numeric rows in LM1B (2) and OWT (3) groups. Columns are Model, Forward Pass latency/Seq/sec, and Forward + Backward latency/Seq/sec. LM1B MDLM is 0.03±0.00 ms, 1978.87±44.21 seq/s, 0.08±0.00 ms, 714.80±15.47 seq/s; OWT MDLM is 0.13±0.00, 233.28±2.58, 0.39±0.00, 80.86±0.15, while PGM 6/6 dim 1024 is 0.18±0.00, 176.47±0.65, 0.50±0.00, 62.85±0.19.",
+      "evidence_relation": "Appendix C experimental details and Appendix E costs; it qualifies the inference speed headline with a training-throughput reversal and complements Table 1's inference-only cost.",
+      "design_strengths": [
+        "Explicit GPU, pass type, grouping, and batch aggregation support reproduction.",
+        "Forward-only and backward-inclusive cost are separated.",
+        "Caption states the cross-regime interpretation."
+      ],
+      "design_weaknesses": [
+        "Training and inference use different measurement conditions, so the rows are not one end-to-end cost.",
+        "Small numbers and multi-level header are dense.",
+        "Only timing variability is quantified."
+      ],
+      "reusable_pattern": "Pair forward and forward+backward measurements under explicit hardware and warmup/sample-count metadata when an inference gain may shift training cost.",
+      "evidence": {
+        "page": 16,
+        "label": "Table 3",
+        "bbox": [
+          107.691,
+          81.722,
+          140.768,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 19,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "dataset",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 4: Accuracy on downstream tasks. We evaluate MDLM and PGM on LAMBADA, ARC Easy and Challenge, HellaSwag, MathQA, PIQA, and WinoGrande. Both models show comparable performance across tasks. PGM outperforms MDLM on all but one benchmark, where the difference between MDLM and PGM 8 / 8 is small.",
+        "word_count": 57,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Point accuracies with no intervals, seed aggregation, or uncertainty column; bold marks best cells.",
+      "data_and_statistics": "Three model rows and seven task columns after Model: LAMBADA, ARC-e, ARC-c, HSwag, MathQA, PIQA, WinoG. MDLM is 38.52/34.26/24.66/31.54/20.70/57.89/51.93; PGM 8/8 is 46.98/37.37/24.06/33.10/21.24/59.09/51.30; PGM 6/6 dim 1024 is 41.39/38.80/22.95/33.92/21.71/61.43/54.30.",
+      "evidence_relation": "Appendix D.5 extends Table 2's downstream task evaluation and supports the caption's all-but-one benchmark qualification.",
+      "design_strengths": [
+        "Lists the complete task set in the caption.",
+        "Preserves the model/task comparison in a compact appendix slice.",
+        "One-benchmark exception is stated rather than hidden."
+      ],
+      "design_weaknesses": [
+        "Task abbreviations and narrow columns reduce scanability.",
+        "No uncertainty or per-task statistical aggregation.",
+        "The table has less condition detail than Table 2."
+      ],
+      "reusable_pattern": "Keep an appendix extension in the same metric order and model naming as the main table so it can be compared without remapping columns.",
+      "evidence": {
+        "page": 19,
+        "label": "Table 4",
+        "bbox": [
+          107.691,
+          156.99,
+          141.184,
+          166.953
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 21,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "theory_mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5: Perplexity evaluations. Validation perplexity of the Masked Diffusion Language Model (MDLM) and PGMs (ours) on LM1B and OpenWebText (OWT). The row MDLM (Compl. masking) denotes an MDLM trained with the complementary masking strategy discussed in Section 5.3. The row PGM k / m denotes a PGM with k encoder and m decoder layers, and we highlighted the best PGM results in gray. lsm and mean denote the logsumexp and mean queries initializations (Section 4). Takeaway: using the same number of layers in the encoder and decoder, and data-independent queries performed best. On LM1B, our PGM reaches 1.95 lower perplexity than MDLM after 1M steps. On OWT, we grow the embedding dimension or the number of layers to outperform MDLM on OWT.",
+        "word_count": 119,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 20,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "Validation PPL is reported as a point value with no uncertainty. Gray rows and bold values identify best PGM results; 200k versus 1M training groups and LM1B versus OWT are the main aggregation dimensions.",
+      "data_and_statistics": "Two side-by-side subtables (LM1B and OWT), each Model/Val. PPL ↓. There are 4 step/dataset row groups and 20 numeric rows: LM1B 200k has MDLM 34.29, complementary 30.87, PGM splits 32.83/33.55/32.84/32.69/32.70/33.89; LM1B 1M has 27.67/25.72/26.80. OWT 200k has 25.35/25.32/26.96/25.10/25.19/23.75; OWT 1M has 23.07/22.98/22.61/21.43.",
+      "evidence_relation": "Section 4's encoder/decoder and query choices lead to the split/query ablation; Table 1 selects main models, while Appendix D.1/D.4 add context and stability boundaries. The caption's 1.95 claim is numerically inconsistent with its PGM/MDLM rows.",
+      "design_strengths": [
+        "One object covers split balance, query initialization, dataset, and training horizon.",
+        "Gray/bold selection cue aligns with the stated takeaway.",
+        "The side-by-side layout keeps LM1B and OWT parallel."
+      ],
+      "design_weaknesses": [
+        "Twenty rows and two small tables are high density.",
+        "No repeated-run uncertainty.",
+        "The prose's 1.95 reduction can be misattributed to PGM rather than complementary MDLM."
+      ],
+      "reusable_pattern": "Use nested row groups for training horizon and dataset, with explicit shading for the selected architecture while preserving every ablation row.",
+      "evidence": {
+        "page": 21,
+        "label": "Table 5",
+        "bbox": [
+          107.691,
+          609.683,
+          140.89,
+          619.646
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 22,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Sample quality and efficiency on OpenWebText with different numbers of sampling steps. We generate sequences of 1024 tokens with a batch size of 32 to measure the latency and throughput. PGM 6 / 6 with a hidden dimension of 1024 and uniform sampling achieves at least a 5× latency and throughput improvement over MDLM, with better Generative Perplexity and matching entropy.",
+        "word_count": 70,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 30,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 5,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Gen. PPL and entropy are point estimates; latency and throughput are mean ± standard deviation over 20 batches after 2 warmup batches. No uncertainty is supplied for quality metrics.",
+      "data_and_statistics": "Five sampler/model groups (MDLM; PGM 8/8 uniform; PGM 8/8 non-uniform; PGM 6/6 dim 1024 uniform; PGM 6/6 dim 1024 non-uniform), each with 32/64/128/256/512/1024 steps, giving 30 numeric rows. Columns are Model, Gen. PPL ↓, Entropy ↑, Latency ↓ (ms), Throughput ↑ (tok/s). At 128 steps MDLM is 122.89/5.67/31.41/1043.22, PGM 8/8 uniform 122.21/5.66/5.86/5585.57±24.49, and PGM 6/6 dim 1024 uniform 116.95/5.67/5.93/5518.09±13.46.",
+      "evidence_relation": "Provides the complete OWT step/sampler slice behind Figure 1 and Figure 4, linking Section 5.1's clean-token speed claim to entropy and quality across budgets.",
+      "design_strengths": [
+        "Quality, diversity proxy, latency, and throughput share one column contract.",
+        "Step row groups expose the speed/quality tradeoff.",
+        "The table is sufficient to recover the headline ratio under stated conditions."
+      ],
+      "design_weaknesses": [
+        "Thirty rows and long thousands separators are slow to scan.",
+        "Quality lacks seed/replicate uncertainty.",
+        "Uniform/non-uniform conditions and the one three-decimal latency cell add visual irregularity."
+      ],
+      "reusable_pattern": "Represent inference steps as within-group rows and keep quality, diversity, and cost metrics adjacent so selected headline points remain auditable.",
+      "evidence": {
+        "page": 22,
+        "label": "Table 6",
+        "bbox": [
+          107.691,
+          159.919,
+          140.186,
+          169.882
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 23,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "robustness",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7: Generative perplexity of MDLM and PGM after distillation with varying precision.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 48,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 8,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Gen. PPL and entropy are point values; latency/throughput retain mean ± standard deviation measurement convention from Appendix C/E over 20 batches after warmup. The short caption does not define this uncertainty.",
+      "data_and_statistics": "Same five columns as Table 6 and 48 numeric rows: eight row groups (MDLM SDTT BF16/FP32; PGM 6/6 dim 1024 SDTT BF16; PGM nucleus p=.9 BF16; corresponding FP32 groups; PGM 8/8 BF16/FP32), each at six step counts. At 128 FP32 steps, MDLM is Gen. PPL 45.06/entropy 5.40/1043.22 tok/s, PGM ancestral 60.06/5.47/5518.09, and PGM+nucleus 43.84/5.39/5375.20.",
+      "evidence_relation": "Appendix C.4/D.2 precision discussion and Figure 4's distilled quality–throughput claim; the table shows that matching quality is specific to the nucleus slice and that FP32 changes Gen. PPL.",
+      "design_strengths": [
+        "Makes precision and decoding choices explicit rather than collapsing them.",
+        "Preserves the same columns and step order as Table 6.",
+        "Explains a key condition behind the main distilled figure."
+      ],
+      "design_weaknesses": [
+        "Forty-eight rows are extremely dense.",
+        "Caption omits steps, latency aggregation, uncertainty, and nucleus parameter details.",
+        "Repeated timing values create visual bulk while quality conditions change."
+      ],
+      "reusable_pattern": "Use row groups to isolate training precision and decoding sampler, and retain a common step/metric layout so apparent quality gains cannot hide a precision or sampler change.",
+      "evidence": {
+        "page": 23,
+        "label": "Table 7",
+        "bbox": [
+          122.475,
+          81.722,
+          154.604,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 24,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "dataset",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 8: Sample quality and efficiency on ImageNet for different numbers of sampling steps using the Confidence-based sampler. We generate images in batches of 32 to measure throughput, and use a batch size of 1 to measure latency. Throughput is lower with CFG because each step requires two forward passes (conditional and unconditional). The throughput and latency are averaged over 10 batches.",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 42,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 6,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "FID and IS are point estimates; latency and throughput are averaged over 10 batches (batch 1 for latency and batch 32 for throughput), with no displayed SD/error column. Bold/underline identify selected best/second values.",
+      "data_and_statistics": "Six row groups (MaskGIT 32/64; PGM 12/12 32/64; PGM 14/10 32/64), each with CFG guidance w=0…6, for 42 numeric rows. Columns are Model, FID ↓, IS ↑, Latency ↓ (ms), Throughput ↑ (img/s). Confidence-based sampler; CFG rows cost two forward passes. The full guidance sweep separates no-CFG speed from quality-selected settings.",
+      "evidence_relation": "Appendix D.3 supplies the confidence sampler comparison behind the ImageNet selection in Figure 1 left; Table 9 repeats the same design for Halton, enabling sampler-specific comparison.",
+      "design_strengths": [
+        "Full guidance sweep prevents a single selected CFG weight from being mistaken for the whole result.",
+        "Metric direction and batch roles are explicit in header/caption.",
+        "Quality and cost are in the same rows."
+      ],
+      "design_weaknesses": [
+        "Forty-two rows with repeated timings are visually dense.",
+        "No FID/IS uncertainty or seed information.",
+        "Best/second styles and w labels are easy to miss in narrow columns."
+      ],
+      "reusable_pattern": "Place guidance weights inside fixed model/step row groups and keep quality/cost columns unchanged across sampler tables.",
+      "evidence": {
+        "page": 24,
+        "label": "Table 8",
+        "bbox": [
+          107.691,
+          81.722,
+          140.228,
+          91.685
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 25,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "dataset",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 9: Sample quality and efficiency on ImageNet for different numbers of sampling steps using the Halton sampler. We generate images in batches of 32 to measure throughput, and use a batch size of 1 to measure latency. Throughput is lower with CFG because each step requires two forward passes (conditional and unconditional). The throughput and latency are averaged over 10 batches.",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 42,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 6,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "FID and IS are point estimates; latency and throughput are averaged over 10 batches (batch 1 for latency and batch 32 for throughput), without displayed quality uncertainty. Bold/underline mark selected best/second values.",
+      "data_and_statistics": "Six model/step groups with w=0…6 (42 numeric rows), same five columns as Table 8. Halton selected points include MaskGIT 32 w=1 FID 5.35/1.05 img/s, PGM 12/12 32 w=3 FID 5.54/7.93, PGM 12/12 64 w=2 FID 4.56/4.12, and PGM 14/10 32/64 FID 5.55/4.76 with 7.37/3.80 img/s.",
+      "evidence_relation": "Appendix B/Section 3.2 motivate Halton, and Table 9 is the exact guidance sweep behind Figure 1 left's 7.5× and 3.9× selected points; Figure 5 supplies qualitative coverage intuition.",
+      "design_strengths": [
+        "Makes both headline selected points numerically recoverable.",
+        "Uses the same schema as confidence Table 8 for a controlled sampler comparison.",
+        "Full w sweep exposes quality/cost tradeoffs."
+      ],
+      "design_weaknesses": [
+        "Repeated throughput values and 42 rows reduce scanability.",
+        "No quality error/seed uncertainty.",
+        "The selected weight is not a separate visual mark in every row."
+      ],
+      "reusable_pattern": "Keep sampler tables structurally isomorphic so quality and efficiency differences can be attributed to the sampler rather than a changed table layout.",
+      "evidence": {
+        "page": 25,
+        "label": "Table 9",
+        "bbox": [
+          107.691,
+          86.083,
+          140.228,
+          96.046
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 26,
+      "module": "appendix D/E",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "efficiency_cost",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 10: Throughput (TP) of MDLM and PGM with a context length of 4096, for varying number of inference steps. PGM is significantly faster than MDLM.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Throughput values are mean ± standard deviation under the Appendix E/D batch measurement convention; quality is not measured in this table. The SD is embedded in each cell rather than drawn as an error mark.",
+      "data_and_statistics": "Three model rows (MDLM, PGM 8/8, PGM 6/6 dim 1024) and four context columns TP(4096), TP(1024), TP(256), TP(64), plus Model. MDLM is 30.45±0.06/121.25±0.02/483.53±0.25/1912.16±1.44; PGM 6/6 dim 1024 is 129.01±0.67/706.65±36.23/2146.60±15.12/8175.69±7.85 tok/s.",
+      "evidence_relation": "Appendix D.6/E extends the 1024-token experiments to inference context 4096 and shorter contexts. It qualifies the long-context boundary because models were not trained beyond 1024 context and no corresponding quality is reported.",
+      "design_strengths": [
+        "Presents context-length scaling in a compact column slice.",
+        "Inline SD preserves timing variability without extra chart area.",
+        "Bold PGM values make the directional speed claim easy to scan."
+      ],
+      "design_weaknesses": [
+        "Only three rows and repeated wide numbers still require careful column tracking.",
+        "No quality or training-at-4096 evidence.",
+        "Caption does not define the SD convention or model capacity."
+      ],
+      "reusable_pattern": "Use context length as columns in a single throughput table and state the training/evaluation boundary so inference-only extrapolation is not overread.",
+      "evidence": {
+        "page": 26,
+        "label": "Table 10",
+        "bbox": [
+          107.691,
+          362.111,
+          144.967,
+          372.074
+        ],
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先建立跨模态 quality–throughput headline；Figure 2 把 MGM mask waste 与 PGM partition/clean-token mechanism 并置；Figure 3 展开 Partition Transformer；Table 1/2 与 Figure 4 将 mechanism 接到 text quality、downstream 和 distillation；Figure 5/6 与 Tables 3–10 回收 sampler coverage、precision、training cost、stability、guidance sweep 和 long-context 边界。",
+    "caption_system": "Figure captions 通常采用对象标题、设置、比较和主发现，Figure 5/6 还报告机制或失败现象；table captions 更常定义指标方向、batch/GPU、缩写、highlight、sampler 和附录指针。Table 7 是例外：仅给 precision 标题，许多复现条件要跨正文/Appendix C 读取。",
+    "table_header_system": "表格统一以 Model/condition 为左侧身份列，以带方向箭头和单位的 quality/cost 指标为数值列；dataset、step、sampler、precision 和 distillation 使用 row groups，Table 3 以两层 header 分开 forward 与 forward+backward，Table 5 以并列小表分开 LM1B/OWT。",
+    "method_result_ablation_link": "Figure 2/3 定义 partition 与 GroupSwap 接口；Table 1/5 检验模型容量、layer split、query init 和 PPL；Figures 1/4 与 Tables 6/7/8/9 检验 sampler/step/precision 下的质量–效率；Figure 6 把 complementary masking 的 loss-spike failure 边界与 Table 1/5 的 PPL ablation 接起来。",
+    "main_appendix_link": "正文保留 Figure 1–4 与 Tables 1–2 的 headline、机制和 downstream；Appendix B 的 Figure 5 与 Table 9 解释/量化 Halton，Appendix C/E 的 Table 3/10 补成本和 context 边界，Appendix D 的 Figure 6 与 Tables 4–8 补 task、precision、step、sampler 和稳定性。",
+    "typography_consistency": "PDF 对象确认正文/caption/table 的 Nimbus Roman No9 L 和 Computer Modern math；图内 labels 使用较小 sans-serif，约 6–10 pt，机制图标题可到约 20 pt。表格字号和 booktabs 规则稳定，但单栏 Figure 4 与 48-row Table 7 的空间压缩明显。",
+    "color_consistency": "蓝/橙/红/绿在结果图中反复表示模型或 sampler，图 2/3/5 将蓝/橙 group 或 sampler 语义保持稳定；但不同对象的近似色并非锁定的 source-level palette，Figure 6 主要依靠 panel titles。表格保持 grayscale，图表之间没有统一 color token 的 exact source。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "首面 quality–throughput 双面板用直接数值压缩跨模态 headline，并把 selected point 链回完整 sampler/step sweep。",
+      "用同构 token/module 几何对照 baseline 与 proposed mechanism，再用 GroupSwap/attention flow 展开可实现接口。",
+      "将模型容量、质量、成本和 batch/step 条件放在同一表格，避免只报告速度倍数。",
+      "用 shared-scale stability small multiples 和 caption 同时记录 spike 与未发生的 divergence，保留负面证据。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：第一页质量–效率决策面和跨模态主张入口。",
+      "Figure 2：MGM mask waste 到 PGM partition mechanism 的最短解释路径。",
+      "Figure 3：Partition Transformer 的总览与组件级实现接口。",
+      "Tables 6/9：完整 OWT/ImageNet sampler-step 条件，令主图选点可复核；Figure 6：补上消融稳定性边界。"
+    ],
+    "failure_patterns": [
+      "多指标复合图、单栏小图和长 row groups 依赖小字号/颜色，降低灰度和快速扫描可读性。",
+      "质量、FID、accuracy 多为点估计，缺少跨 seed 离散度；只有 timing/throughput 提供 batch-level SD。",
+      "正文 headline 依赖 selected sampler/CFG/steps，且 OWT 模型容量不匹配，需联读附录才能限定比较。",
+      "Figure 5 的示意 grid 没有重复 coverage/MI 数值，Figure 6 不能直接测 gradient variance；Table 7 caption 也未独立定义关键 precision/uncertainty 条件。"
+    ],
+    "one_sentence_visual_strategy": "以“去除 mask 后只计算 clean tokens”的机制图为解释轴，用第一页 quality–throughput 对照建立主张，再以条件完整的附录 sweep、训练成本、精度和稳定性图表约束 headline 的适用边界。"
+  }
+}

@@ -1,0 +1,1400 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-3c3e3a191645",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "Vegetebird/CA-MLLM"
+    ],
+    "selected_repository": "https://github.com/Vegetebird/CA-MLLM",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/Vegetebird/CA-MLLM",
+        "path": "assets/moti.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "gh 仓库树与 README 元数据验证；2796×1144 资产的长颈鹿、相机、射线和对话框逐项匹配 PDF Figure 1。"
+      },
+      {
+        "repository_url": "https://github.com/Vegetebird/CA-MLLM",
+        "path": "assets/arch.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "gh 仓库树与 README 元数据验证；1230×1234 资产的 (a)/(b)、GAVE 分支和输出 schema 匹配 PDF Figure 4。"
+      },
+      {
+        "repository_url": "https://github.com/Vegetebird/CA-MLLM",
+        "path": "assets/results.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "gh 仓库树与 README 元数据验证；2040×550 资产的三联跨相机曲线、颜色、标题和数值标签匹配 PDF Figure 6。"
+      },
+      {
+        "repository_url": "https://github.com/Vegetebird/CA-MLLM",
+        "path": "src/visualize_tools/img_drawer.py",
+        "role": "other",
+        "tool": "OpenCV/Open3D",
+        "evidence": "inventory 候选经仓库元数据确认，但只实现通用 3D box/point 绘制，未能与本文 Figure 2/7 的具体对象或参数建立严格匹配。"
+      },
+      {
+        "repository_url": "https://github.com/Vegetebird/CA-MLLM",
+        "path": "src/qwen_vl/data/draw_marker.py",
+        "role": "other",
+        "tool": "PIL/OpenCV",
+        "evidence": "inventory 候选经仓库元数据确认，但为通用 point/box marker helper，不是本文 Figure 2/7 的 figure-specific generator。"
+      },
+      {
+        "repository_url": "https://github.com/Vegetebird/CA-MLLM",
+        "path": "src/visualize_tools/default_color_map.py",
+        "role": "style_file",
+        "tool": "Python/OpenCV",
+        "evidence": "inventory 候选经仓库元数据确认，但仅为类别 RGB palette；未与本文图表的完整绘图过程严格匹配。"
+      }
+    ],
+    "search_note": "先核查 reports/tables/visual_source_inventory.csv 与 corpus/visual_sources/iclr-2026-3c3e3a191645/；inventory 自动标为 exact_visual_source，但目标源目录没有取得文件。随后用 gh 只读核对仓库元数据、README 标题/作者/arXiv 2603.06704 与论文严格匹配。仅 assets/moti.png、assets/arch.png、assets/results.png 分别与 Figure 1、4、6 的 PDF 渲染资产严格匹配；Figure 2、3、5、7 和 Tables 1–6 没有公开的 figure/table-specific 绘图、LaTeX 或 notebook 源。inventory 列出的 visual_track.py、unidepth visualization、img_drawer、draw_marker、default_color_map 与 BLINK YAML 均经仓库树检查，只有通用 helper/任务配置，未当作本文对象的生成源。"
+  },
+  "paper_style": {
+    "main_figures": 6,
+    "main_tables": 5,
+    "appendix_figures": 1,
+    "appendix_tables": 1,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "HelveticaNeue",
+        "ComicSansMS",
+        "Computer Modern"
+      ],
+      "size_pt": {
+        "minimum": 5,
+        "median": 8,
+        "maximum": 14
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern",
+        "Courier"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 8.5,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "各对象按语义局部选色：Figure 1/4/5 用几何路径或模块色，Figure 2/7 用照片上的类别 box overlay，Figure 3 用 plasma-like frequency sequential scale，Figure 6 固定 baseline/ours categorical palette；Tables 2–4/5 用局部浅橙高亮或 bold。模型颜色只在 Figure 6 内稳定，全文没有统一调色板。",
+    "vector_raster_mix": "Figure 1–5、7 主要是嵌入 raster asset 加 PDF text/vector annotation；Figure 6 的 PDF 主要为 vector line/marker/text/grid，但仓库另有匹配的 rendered results.png；Tables 1–5 是 PDF text/rules，Table 6 是 text 加圆角外框。",
+    "style_consistency": "Letter 双栏骨架、Figure/Table 标签和 booktabs 规则稳定；但图内资产字体、抗锯齿、颜色和视觉密度随概念图、照片 overlay、3D surface、曲线图和宽 benchmark 表切换。Table 2/3 的旋转表头和图像内标签是最小文本，降低缩放可读性。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction / §1",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Illustration of the inherent geometric ambiguity in RGB-only spatial reasoning. The same 2D image can result from different 3D scenes: a nearby object with a wide-angle lens can appear identical to a distant object with a telephoto lens. This ambiguity makes generalizable 3D localization from a single RGB image an ill-posed problem, especially when camera intrinsics are unknown.",
+        "word_count": 60,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "HelveticaNeue",
+          "ComicSansMS",
+          "STIXGeneral",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 9,
+          "maximum": 16
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#4F8E0A",
+          "#F2AA12",
+          "#D9D9D9",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "绿色/橙色射线表示两组可产生相同 2D 投影的相机—场景路径；灰色为问题气泡，黑白为图标与背景。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 0
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "相机—图像—3D 场景的空间/流程方向",
+        "y": "投影高度与场景深度关系",
+        "color": "绿色与橙色表示两条几何等价路径",
+        "shape": "相机、长颈鹿和对话气泡图标",
+        "line": "实线/虚线射线与 focal-length 关系线",
+        "facet": "左侧观测与右侧两种 3D 场景",
+        "text": "f_2=2f_1、f_1、h_1、h_2=h_1 及问题标签"
+      },
+      "data_and_statistics": "同一 2D 长颈鹿观测对应不同 (f,H,Z) 的定性示例；不含样本量、重复、误差或置信区间。",
+      "evidence_relation": "把 Eq. (1)–(2) 的 focal–depth/size–depth ambiguity 置于引言，并引出 Figure 3 的 intrinsics 分布、Figure 4 的 camera-aware framework；属于机制/问题定义而非实验估计。",
+      "design_strengths": [
+        "以双路径图把不可辨识性、光学直觉和核心问题压缩到一个对象。",
+        "射线颜色、相机图标、对话框和直接参数标签形成多通道编码。",
+        "官方 assets/moti.png 与 PDF 对象逐项匹配，可作为复用起点。"
+      ],
+      "design_weaknesses": [
+        "示意比例不是量化坐标，数学标签和对话框在单栏中偏小。",
+        "射线颜色承担主要身份语义，灰度打印时两条路径区分减弱。",
+        "caption 未明确 f_2=2f_1 与相同投影高度的具体条件。"
+      ],
+      "reusable_pattern": "用“同一观测 → 两组相机/场景参数 → 相同投影”的双路径图引入几何歧义；复用时保留直接参数标注，并说明关系是示意而非按比例测量。",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "bbox": [
+          188,
+          48,
+          408,
+          165
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "results / §3.1–3.2",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 2: Visualization of generalization failure in a camera-agnostic MLLM (finetuned Qwen2.5-VL). Simply resizing the input image during inference induces a systematic shift in 3D localization.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#E31A1C",
+          "#1F78B4",
+          "#00C7D9",
+          "#33A02C",
+          "#FF7F0E",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "三列通过 w/o rescale、x 0.7、x 1.3 直接标注；每格的半透明红/青/绿/橙 3D box 表示场景中的预测对象，底图颜色来自室内照片。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 9,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 9
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "三列图像变换条件：w/o rescale、x 0.7、x 1.3",
+        "y": "三个不同 ScanNet 室内场景",
+        "color": "3D box/类别 overlay 的对象区分",
+        "shape": "透视 3D bounding-box 线框与半透明面",
+        "line": "box 边线与图像边框",
+        "facet": "3×3 场景×变换网格",
+        "text": "列头和图像内 object/category labels"
+      },
+      "data_and_statistics": "9 个 qualitative cells 展示 finetuned Qwen2.5-VL 在原图、0.7×、1.3× resize 下的 3D detections；无样本分母、重复、数值偏移量或不确定性。",
+      "evidence_relation": "把 Table 1 的 resize performance collapse 具体化，并服务 §3.2 的 systematic localization shift 叙事；Eq. (6) 与 Figure 3 将其归因于 camera-geometry shift。",
+      "design_strengths": [
+        "3×3 同构网格使 resize 方向与空间偏移可视化。",
+        "列名简单，真实室内图保留了检测语境。"
+      ],
+      "design_weaknesses": [
+        "无行名、ground-truth/prediction 图例或数值误差。",
+        "图像内小标签在单栏缩放后难读，颜色和透明叠加不适合灰度。",
+        "仓库中没有可验证的 Figure 2 生成脚本。"
+      ],
+      "reusable_pattern": "对同一场景沿一个预处理变量做横向三列对照并保持 box overlay 一致；复用时补充行标签、框类型和定量偏移指标。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2",
+        "bbox": [
+          326,
+          80,
+          505,
+          310
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 4,
+      "module": "theory / §3.3",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "other"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: Multi-modal distribution of camera intrinsics in mixed datasets.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#3B0F9F",
+          "#482878",
+          "#31688E",
+          "#35B779",
+          "#FDE725",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "紫→黄的 plasma-like surface 与 colorbar Frequency 编码相机内参联合分布的频率；白/浅灰为三维网格。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 0
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "f_x focal length / pixels",
+        "y": "f_y focal length / pixels",
+        "color": "surface 与 colorbar 的 Frequency",
+        "shape": "3D surface 的峰/谷几何",
+        "line": "surface 网格线",
+        "facet": "(a) Qwen2.5-VL preprocessing、(b) VG-LLM",
+        "text": "panel labels、轴标签和 Frequency colorbar"
+      },
+      "data_and_statistics": "两个 preprocessing 后的 camera-intrinsics 频率 surface；图中没有样本数、bin/kernel 设置、归一化、重复或不确定性。",
+      "evidence_relation": "支持 §3.3 关于 mixed datasets 中 clustered/multi-modal focal-length 分布的机制说明，并连接 Table 1 的 mixed-source failure；不是置信区间或精确 density estimator 结果。",
+      "design_strengths": [
+        "上下 panel 对齐两个 baseline，能直观表达相机来源冲突。",
+        "峰高与顺序色阶共同编码 frequency，colorbar 给出连续键。"
+      ],
+      "design_weaknesses": [
+        "3D 透视和重叠尖峰不利于精确比较峰高/面积。",
+        "轴单位、频率归一化、样本数和带宽未说明。",
+        "单栏缩放后字号偏小，仓库中没有可验证源。"
+      ],
+      "reusable_pattern": "对不同模型/数据来源使用相同相机内参坐标的 3D density surface，配 colorbar 与 panel label；复用时增加样本量、归一化、带宽和二维投影。",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 3",
+        "bbox": [
+          326,
+          380,
+          505,
+          735
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 6,
+      "module": "method / §4.1–4.2",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4: The proposed Camera-Aware MLLM Framework. (a) The overview of the architecture, where (b) Geometry-Aware Visual Encoder (GAVE) injects camera-awareness and 3D geometric priors into the MLLM.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "HelveticaNeue",
+          "ComicSansMS",
+          "Cambria",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 9,
+          "maximum": 14
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#FDD420",
+          "#FB916A",
+          "#71D29F",
+          "#6EC7D4",
+          "#5793C6",
+          "#D9D9D9",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "黄色表示 camera-aware MLLM，橙/绿/青分别表示 ray embedding、2D encoder、3D prior distillator，蓝虚线为 camera rays，浅灰为问题/point-cloud 模块。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 0
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "从输入帧/问题到 MLLM 与结构化 3D box 输出的数据流",
+        "y": "上层整体架构与下层 GAVE 展开",
+        "color": "模块/几何分支身份",
+        "shape": "token 方块、encoder 模块、point-cloud 与 answer schema",
+        "line": "实线数据箭头；蓝色虚线 camera rays",
+        "facet": "(a) framework overview；(b) GAVE detail",
+        "text": "模块名、GAVE、MMDE 和 [x center,…,roll] schema"
+      },
+      "data_and_statistics": "方法接口/架构图，不包含样本量、重复、误差或统计量；[x_center,…,roll] 是 3D box 输出 schema。",
+      "evidence_relation": "直接对应 §4.2–4.4 的 ray embedding、2D visual encoder、3D geometric prior distillator、MMDE；由 Figure 5 的 augmentation、Figure 6 的跨相机曲线和 Table 5 的消融验证。",
+      "design_strengths": [
+        "上 panel 给出端到端输入—输出接口，下 panel 展开关键 encoder 的三分支。",
+        "箭头、模块色和输出 schema 让几何注入路径可追踪。",
+        "官方 assets/arch.png 与 PDF 结构相同。"
+      ],
+      "design_weaknesses": [
+        "模块文字、四帧输入和 ray fan 在单栏中密集。",
+        "没有显示融合层数、张量维度或训练/冻结边界。",
+        "颜色仍是主要分支身份，灰度冗余有限。"
+      ],
+      "reusable_pattern": "上 panel 展示完整输入—输出接口，下 panel 展开一个关键 encoder 的多路几何注入；复用时标注可训练/冻结模块与张量尺寸。",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 4",
+        "bbox": [
+          217,
+          65,
+          409,
+          300
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 6,
+      "module": "method / §4.3",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 5: Illustration of camera-aware geometric augmentation.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 11
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#5793C6",
+          "#000000",
+          "#FFFFFF",
+          "#C88352"
+        ],
+        "semantic_mapping": "蓝色虚线表示 camera rays，黑色文字/箭头表示步骤，白色框与照片背景承载示意；橙/绿仅是照片内容色。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": 0
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "各步骤中图像与 ray fan 的空间并列",
+        "y": "从原图到两种 camera-aware augmentation 的步骤顺序",
+        "color": "蓝色 ray fan 与照片/框的辅助区分",
+        "shape": "三张图像/相机框",
+        "line": "垂直流程箭头和蓝色虚线射线",
+        "facet": "原图 → Rescale & Shift & Pad / Rescale & Shift & Crop",
+        "text": "Camera Intrinsics Update 与两种变换名称"
+      },
+      "data_and_statistics": "几何 augmentation 的示意流程；无实验数值、样本量、重复或不确定性。",
+      "evidence_relation": "连接 §4.3 中对 (f_x,f_y,c_x,c_y) 的同步更新与 Figure 6 的 rescale-factor evaluation、Table 5 的 x1.2 ablation。",
+      "design_strengths": [
+        "把两种常见变换与 intrinsics update 放在一条垂直流程中。",
+        "步骤文字与箭头提供比颜色更稳健的顺序编码。"
+      ],
+      "design_weaknesses": [
+        "相机框和蓝色射线在单栏中较小。",
+        "没有 scale/offset 数值或失败对照。",
+        "caption 极短，未说明 pad 与 crop 的区别。"
+      ],
+      "reusable_pattern": "对每个图像变换同时画 K update 与视觉结果，使用统一箭头和步骤标签；复用时把变换参数、裁切锚点和几何不变量写入 caption。",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 5",
+        "bbox": [
+          320,
+          370,
+          505,
+          735
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 7,
+      "module": "results / §5.1",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 6: Cross-camera generalization on spatially-grounded tasks. While camera-agnostic MLLMs (Qwen2.5-VL, VG-LLM) fail catastrophically on altered camera geometries by rescaling, our method maintains robust performance, proving its ability to generalize across cameras.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 13
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#FF7F0E",
+          "#2CA02C",
+          "#20BFC4",
+          "#9ECAE1",
+          "#808080"
+        ],
+        "semantic_mapping": "橙=Qwen2.5-VL-3B，绿=VG-LLM-4B，青=Ours-4B，浅蓝虚线=Ours-4B (intrinsics unknown)，灰=grid/Original Scale reference。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 34,
+        "data_marks_estimate": 132
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个 panel 右下/下部各自放置 3–4 项 legend",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 4,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Rescale Factor，0.5–1.5",
+        "y": "(a,b) F1@0.25 (20 Common Classes)；(c) Acc@0.25",
+        "color": "模型身份与 intrinsics-unknown 变体",
+        "shape": "circle=Qwen、square=VG、triangle=Ours、diamond=unknown-K",
+        "line": "实线模型曲线；unknown-K 为浅蓝虚线",
+        "facet": "Single-Frame Detection、Video Detection、Video Visual Grounding 三 panel",
+        "text": "panel title、点旁数值、Original Scale 与 legend"
+      },
+      "data_and_statistics": "11 个 rescale factor 点在三个任务上比较跨相机泛化。代表端点：(a) 0.5 为 15.6/5.8/52.1，1.5 为 20.4/19.9/45.5；(b) 0.5 为 10.9/6.7/55.5，1.5 为 18.8/19.7/47.5；(c) 0.5 为 4.5/2.9/34.9/20.5，1.5 为 8.8/8.2/34.6/17.4（unknown-K 为第四序列）。无 seed、重复、误差带或区间。",
+      "evidence_relation": "这是 Table 1 resize failure 的正向方法对照，连接 Figure 5 的 augmentation、Table 5 的组件消融与 Figure 7 的 qualitative generalization；三 panel 共同支持 cross-camera robustness，但 (c) 指标由 F1 改为 accuracy。",
+      "design_strengths": [
+        "三任务共享 rescale 轴、模型顺序、颜色和 marker，便于横向比较。",
+        "x=1 的 Original Scale 参考线与点旁数值降低读图成本。",
+        "官方 assets/results.png 与 PDF 三联图视觉匹配。"
+      ],
+      "design_weaknesses": [
+        "legend 与点标签同时存在，缩小后较密集。",
+        "第三 panel 的 Acc 与前两 panel 的 F1 不完全同构，unknown-K 只在 (c) 出现。",
+        "无 error bars/seed 信息，无法从图面判断稳定性。"
+      ],
+      "reusable_pattern": "将同一 perturbation 轴下的多个任务做 small multiples，统一 baseline/ours 的颜色和 marker，并用 x=1 参考线显示原始条件；复用时补齐误差、分母和 K availability。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 6",
+        "bbox": [
+          92,
+          55,
+          520,
+          205
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 9,
+      "module": "results / §5.4 Visualization Results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7: Qualitative comparison of 3D object detection results. Our camera-aware MLLM can robustly generalize to new camera setups.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#00FF00",
+          "#00BFFF",
+          "#FF8C00",
+          "#FFD700",
+          "#FF0000",
+          "#800080",
+          "#FFFFFF",
+          "#000000"
+        ],
+        "semantic_mapping": "3D box/类别 overlay 使用绿、青、橙、黄、红、紫等颜色；列名与场景 row-group 标签编码模型/数据来源，颜色本身主要编码 object/category。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 12,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "三列模型：Qwen2.5-VL-3B、VG-LLM-4B、Ours",
+        "y": "四个场景行；上两行为 Zoomed-in ScanNet，下两行为 TUM-RGBD in-the-wild",
+        "color": "3D box/类别 overlay",
+        "shape": "透视 3D box 与 label marker-like geometry",
+        "line": "box 边线/半透明面",
+        "facet": "4×3 场景×模型网格，含两个 row group",
+        "text": "模型列名、场景组名和图像内 object labels"
+      },
+      "data_and_statistics": "12 个 qualitative cells（4 场景×3 模型），上部为 Zoomed-in ScanNet，下部为 unseen TUM-RGBD；无样本分母、重复、box error、置信度或不确定性。",
+      "evidence_relation": "作为 Figure 6 quantitative robustness 的视觉案例，展示 camera-aware augmentation 对 3D localization 的定性效果；公开树只有通用 img_drawer/color helpers，没有 figure-specific generator。",
+      "design_strengths": [
+        "4×3 同构 grid 同时覆盖合成 zoom 与真实 in-the-wild，列顺序固定。",
+        "同一 3D box overlay 允许对照模型是否贴合物体。"
+      ],
+      "design_weaknesses": [
+        "无 ground-truth/prediction 图例、置信度或数值误差。",
+        "类别颜色与真实照片内容混合，缩小及灰度下难辨。",
+        "caption 未说明 ScanNet/TUM-RGBD 行组和模型列，且来源脚本缺失。"
+      ],
+      "reusable_pattern": "把合成扰动和真实场景放在上下 row group，模型固定为列并保持同一 3D box overlay；复用时加入 ground-truth 标记、误差摘要和场景元数据。",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 7",
+        "bbox": [
+          320,
+          300,
+          505,
+          565
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 3,
+      "module": "results / §3.2",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "failure",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Generalization failure of camera-agnostic MLLMs. 3D object detection performance drops when trained on mixed data sources or evaluated on resized images, exposing a fundamental lack of robustness and generalization.",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "没有 mean±SD、标准误、区间、重复或显著性；只有脚注解释 ScanNet-val x0.8。",
+      "data_and_statistics": "Qwen2.5-VL-3B 的 ScanNet/mixed/x0.8/x1.2 F1 为 45.7/35.4/24.3/31.6；VG-LLM-4B 为 46.5/46.0/25.8/33.2。每行报告 31 common classes 上的 P/R/F1 单点。",
+      "evidence_relation": "用 train/evaluate 条件对齐 Figure 2 的 resize failure，并为 Figure 3 的 mixed-intrinsics 机制提供第一组定量结果。",
+      "design_strengths": [
+        "Train Data 与 Evaluate Data 分列，能区分混合数据与 resize 条件。",
+        "固定 P/R/F1 三列且 booktabs 规则克制。"
+      ],
+      "design_weaknesses": [
+        "长数据集名称造成列密度。",
+        "P/R/F1 定义、聚合、样本数与重复缺失。",
+        "VG-LLM mixed-source 的 F1 仅从 46.5 到 46.0，caption 的 drops 对各行不等幅。"
+      ],
+      "reusable_pattern": "用模型 row group 与 train/evaluate condition 展开分布外失败，配固定 P/R/F1 列；复用时加入样本数、方差和每个变换参数。",
+      "evidence": {
+        "page": 3,
+        "label": "Table 1",
+        "bbox": [
+          88,
+          32,
+          525,
+          180
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results / §5.2 SPAR-Bench",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2: Comparison of MLLMs’ spatial reasoning performance on SPAR-Bench.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 25,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "cell_color",
+        "bold"
+      ],
+      "uncertainty": "没有均值方差、重复、显著性或误差；缺失项用 “-”，但 caption 未定义缺失值及其对 Avg 的影响。",
+      "data_and_statistics": "SPAR-Bench tiny 5 行、full 11 行；25 列为 Methods、Avg. 与 Low/Medium/High 任务指标。full 行 Ours-4B Avg=68.35、VG-LLM-4B=60.36、SPAR-8B=63.25；tiny Human Level Avg=67.27。分数为单点 benchmark accuracy/score。",
+      "evidence_relation": "把 Figure 6 的跨相机空间能力放到 SPAR-Bench 细粒度任务上，检查泛化是否只发生在 ScanNet。",
+      "design_strengths": [
+        "tiny/full row group 与 Low/Medium/High 二级表头同时表达 benchmark variant 和任务难度。",
+        "Avg 与 task-level score 并列，能看出整体与子任务差异。"
+      ],
+      "design_weaknesses": [
+        "25 列压缩和旋转表头使字号极小。",
+        "高亮语义、任务缩写及缺失值规则未在 caption 中定义。",
+        "不同模型的缺失项是否进入 Avg 不透明。"
+      ],
+      "reusable_pattern": "用难度组二级表头配 Avg 与 task-level score，row group 区分 benchmark variant；复用时减少列密度、说明缺失值和高亮规则，并统一不确定性。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 2",
+        "bbox": [
+          88,
+          28,
+          525,
+          300
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "results / §5.2 VSI-Bench",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3: Comparison of MLLMs’ spatial reasoning performance on VSI-Bench.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 20,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "cell_color",
+        "bold"
+      ],
+      "uncertainty": "没有均值方差、重复、显著性或误差；缺失项用 “-”，平均方式未由 caption 说明。",
+      "data_and_statistics": "20 行分为 Proprietary Generalist MLLMs 5、Open-Sourced Generalist MLLMs 10、MLLMs for Spatial Intelligence 5；10 列含 Avg、4 个 Numerical Answer 与 4 个 Multiple-Choice 子任务。Ours Avg=46.8，VG-LLM-4B=47.3，Gemini-2.5-Pro-0617=52.7；Ours Obj. Count=71.3、Abs. Dist.=39.3、Room Size=65.9。",
+      "evidence_relation": "以来源/用途 row group 展开 VSI-Bench 能力剖面；表中 Ours aggregate 低于若干模型，补足正文对 benchmark 的总括。",
+      "design_strengths": [
+        "按模型来源/用途分组，并将 numerical 与 multiple-choice 子任务放进同一表头。",
+        "能区分 Ours 在 Obj. Count/Room Size 等子项的优势与 Avg 的差异。"
+      ],
+      "design_weaknesses": [
+        "宽表旋转表头密集。",
+        "正文 SOTA 总括与 Ours Avg=46.8 低于 VG/Gemini 的边界需要更精确表述。",
+        "高亮、缺失和 Avg 计算规则不完整。"
+      ],
+      "reusable_pattern": "用来源 row group 与任务类型二级表头展开能力剖面；复用时在 caption 说明 Avg 计算、缺失值，并分别陈述 aggregate 与分项结论。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 3",
+        "bbox": [
+          115,
+          300,
+          455,
+          500
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 8,
+      "module": "results / §5.2",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Comparison of model performance on various spatial understanding datasets.",
+        "word_count": 11,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "cell_color",
+        "bold"
+      ],
+      "uncertainty": "没有均值方差、重复、显著性或误差；缺失项用 “-”，不同模型的 benchmark 覆盖不对称。",
+      "data_and_statistics": "11 个模型行；9 列为 Model、CV-Bench-3D 的 Avg/Depth/Dist.、BLINK-Spatial 的 Avg/Depth/Spatial Rel./Multi. View。Ours CV Avg/Depth/Dist.=90.7/89.8/91.5，BLINK Avg/Depth/Spatial Rel./Multi. View=77.0/77.4/66.4/87.2；VG-LLM CV Avg=91.3。",
+      "evidence_relation": "把 Figure 6 的 spatially-grounded robustness 置于多个 spatial-understanding datasets；并暴露 Ours 并非每个 aggregate/子项最高。",
+      "design_strengths": [
+        "共享模型行并列两个 benchmark group，aggregate 与子任务可直接对照。",
+        "比 Tables 2–3 更窄，仍保留细粒度维度。"
+      ],
+      "design_weaknesses": [
+        "正文无条件 state-of-the-art 与 Ours/ VG 的 aggregate 差异存在边界冲突。",
+        "高亮未在 caption 定义，缺失值造成列覆盖不对称。"
+      ],
+      "reusable_pattern": "在共享模型行下并列多个 benchmark 的 Avg/子任务组；复用时说明 Avg 构成、覆盖范围和缺失值影响。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 4",
+        "bbox": [
+          320,
+          300,
+          505,
+          505
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 9,
+      "module": "ablation / §5.3",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 5: Ablation study on the components of our Camera-Aware MLLM framework. Performance measured on ScanNet-val x1.2 to test cross-camera generalization.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "没有 seed、重复、误差、区间或计算成本。",
+      "data_and_statistics": "六种组件组合：空、仅 Ray Emb.、仅 Geom. Aug.、仅 Prior Dist.、Ray+Prior、全组件；ScanNet-val x1.2、20 common classes 的 P/R/F1。空基线=40.8/37.7/39.1，全组件=54.6/50.1/52.1，最终行加粗。",
+      "evidence_relation": "把 Figure 4/5 的组件接口与 Figure 6 的跨相机主结果闭合为组件消融；只覆盖一个 x1.2 synthetic setting。",
+      "design_strengths": [
+        "空基线、单组件和联合组件共存，组件开关结构简单。",
+        "P/R/F1 固定，最终行加粗突出完整系统。"
+      ],
+      "design_weaknesses": [
+        "缺少 Ray+Geom、Geom+Prior 等完整三组件子集。",
+        "仅一个 x1.2 setting，未报告方差、成本或训练稳定性。",
+        "缩写依赖正文，caption 未解释组件名。"
+      ],
+      "reusable_pattern": "用组件开关表和固定跨相机指标识别单组件与联合增益；复用时覆盖完整子集或解释缺失组合，并报告不确定性和成本。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 5",
+        "bbox": [
+          320,
+          115,
+          505,
+          290
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 14,
+      "module": "appendix / B Implementation Details",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "method_interface",
+        "reproduction",
+        "other"
+      ],
+      "caption": {
+        "text": "Table 6: The prompt for 3D video object detection.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Courier",
+          "NimbusMonL"
+        ],
+        "body_size_pt": 9.5,
+        "header_size_pt": 9.5,
+        "header_weight": "regular",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 1,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "不是结果表；没有均值、排名、重复或不确定性。",
+      "data_and_statistics": "一个跨栏 prompt/code block，包含多帧 X_User 图像输入、五类 curtain/bathtub/towel/doorframe/bar、JSON list 指令、X_Agent 和两个示例输出；字段要求含 label、bbox_3d/box 3d 与 9 个 box 参数。",
+      "evidence_relation": "Appendix B 的实现接口，为 Figure 4 的结构化 3D box 输出和视频 3D object detection 提供复现边界；不是 benchmark 统计对象。",
+      "design_strengths": [
+        "集中给出多帧输入、类别约束、JSON schema 和示例输出。",
+        "与正文关于显式类别减少不存在类别 hallucination 的实现说明相连。"
+      ],
+      "design_weaknesses": [
+        "以 Table 命名但没有普通表头/行列统计，外框只是 prompt block。",
+        "框内 rolll、bbox 3d 与正文术语可能不一致。",
+        "没有完整 prompt、采样参数或失败处理。"
+      ],
+      "reusable_pattern": "使用带标题的单元 prompt block 同时给输入模板、约束类别和结构化输出 schema；复用时统一字段命名并说明示例是否完整。",
+      "evidence": {
+        "page": 14,
+        "label": "Table 6",
+        "bbox": [
+          90,
+          540,
+          522,
+          750
+        ],
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 以投影等价说明 RGB-only 几何歧义；Table 1/Figure 2 给出 mixed-source 与 resize failure；Figure 3 将失败归因于多模态 camera intrinsics；Figure 4/5 给出 ray embedding、geometric prior 和一致增强；Figure 6 在三项任务上画跨相机曲线；Tables 2–4 展开 SPAR/VSI/CV/BLINK benchmark；Table 5 做三组件消融；Figure 7 提供 ScanNet/TUM-RGBD 定性案例；Table 6 给出视频 3D detection prompt 复现接口。",
+    "caption_system": "所有对象使用 Figure n:/Table n: 标签。Figure 1/6 caption 包含 setup、比较和主发现；Figure 2/4/7 只提供有限上下文；Figure 3/5、Table 2–4/6 近乎标题式。没有 caption 定义误差/不确定性，表格高亮与缺失值规则也少有说明。",
+    "table_header_system": "Table 1 用模型/数据条件与 31 classes 两级表头；Table 2 用 tiny/full row group 与 Low/Medium/High 任务分组；Table 3 用模型来源与 Numerical/Multiple-Choice 分组；Table 4 用两个 benchmark 分组；Table 5 用 Components/20 Common Classes；Table 6 是 code block 而非数据表。分组表达力强，但宽表旋转表头、缩写和 “-” 增加阅读成本。",
+    "method_result_ablation_link": "Figure 1/Eq. (1)–(2) 提出 ambiguity；Figure 3/Eq. (3)–(7) 解释 K/ray distribution；Figure 4/5 实现 camera-aware components；Figure 6 验证跨相机曲线；Table 5 识别组件协同；Figure 7 提供 qualitative generalization；Tables 2–4 检查一般 spatial reasoning；Table 6 固定视频 prompt 接口。机制链在 synthetic resize/ScanNet 上闭合，真实相机的定量证据仍有限。",
+    "main_appendix_link": "正文 Figures 1–7 与 Tables 1–5 承载问题、方法、主结果、benchmark 和消融；Appendix A 给理论证明，Appendix B 给实现细节与 Table 6 prompt，Appendix C 给 LLM disclosure。附录没有额外结果图表改变正文对象清单。",
+    "typography_consistency": "正文/caption/table 主要为 Nimbus Roman No9 L 与 Computer Modern；Figure 1–5/7 的嵌入资产与 Figure 6 chart font 不同，Table 2/3 旋转表头明显缩小。表体和 caption 约同量级，图像内 object labels 最小。",
+    "color_consistency": "Figure 6 内 Qwen/ VG/ Ours 的橙/绿/青/浅蓝一致，且 marker/线型提供冗余；Figure 2/7 颜色按 object/category，Figure 4/5 按模块，Figure 3 按 frequency，表格按局部高亮，因而全篇没有统一 palette。照片 overlay 在灰度下最依赖空间边界而非颜色语义。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 的双场景/双射线示意：把相同 2D 观测与不同 3D 参数直接对照。",
+      "Figure 4 的 architecture overview + encoder detail 双 panel：同时给出输入、几何分支和输出 schema。",
+      "Figure 6 的三任务 small multiples：统一 rescale 轴、原始尺度参考线、颜色和 marker 表达 robustness。",
+      "Table 5 的组件开关消融：空基线、单组件和联合组件在固定指标下对齐。",
+      "Figure 7 的合成 zoom + 真实 in-the-wild row group，以及 Table 6 的可复现 prompt block。"
+    ],
+    "highest_value_objects": [
+      "Figure 1（核心几何机制）",
+      "Table 1 + Figure 2（失败证据）",
+      "Figure 4（方法接口）",
+      "Figure 6（跨任务主结果）",
+      "Table 5（组件消融）"
+    ],
+    "failure_patterns": [
+      "Figure 2/3/5/7 与 Table 6 caption 过短，缺少模型、行组、编码、分母或复现边界。",
+      "Tables 2–4 宽度高、旋转表头和小字号明显；局部高亮与缺失值没有统一语义。",
+      "结果对象没有 error bars、seed variance 或显著性；单点 benchmark 与单次 qualitative grid 不能支持稳定性结论。",
+      "VSI-Bench 中 Ours Avg=46.8 低于 VG-LLM=47.3、Gemini=52.7，CV-Bench-3D 中 Ours Avg=90.7 低于 VG-LLM=91.3，正文的无条件 SOTA 总括需要边界化。",
+      "Figures 2/7 的 raster overlay 与 Figure 6 的 vector chart 视觉系统不一致，灰度下类别/模型色义减弱；官方仓库只提供部分渲染资产，没有完整 figure/table source。"
+    ],
+    "one_sentence_visual_strategy": "论文按“几何歧义 → 失败可视化 → camera-aware 架构/增强 → 跨相机曲线 → benchmark 与组件消融 → 定性/提示复现”组织视觉证据，机制与主结果连接清楚，但宽表可读性、统计不确定性和部分 caption/source 完整性仍未闭合。"
+  }
+}

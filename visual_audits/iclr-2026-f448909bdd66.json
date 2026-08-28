@@ -1,0 +1,2341 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-f448909bdd66",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/aigc-apps/VideoX-Fun"
+    ],
+    "selected_repository": "https://github.com/aigc-apps/VideoX-Fun",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/aigc-apps/VideoX-Fun",
+        "path": "README.md",
+        "role": "other",
+        "tool": "Markdown",
+        "evidence": "Generic VideoX-Fun framework README; no MotionStream paper asset index, figure/table source, or paper-specific plotting instructions."
+      },
+      {
+        "repository_url": "https://github.com/aigc-apps/VideoX-Fun",
+        "path": "examples/wan2.1_causal_forcing/predict_t2v_stream.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Generic causal streaming prediction example with chunked rollout; no Figure/Table generation code or MotionStream-specific assets."
+      },
+      {
+        "repository_url": "https://github.com/aigc-apps/VideoX-Fun",
+        "path": "examples/wan2.1_self_forcing/predict_t2v_stream.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Generic self-forcing streaming inference example; confirms implementation relation but contains no paper visual source."
+      },
+      {
+        "repository_url": "https://github.com/aigc-apps/VideoX-Fun",
+        "path": "scripts/wan2.1_causal_forcing/train_causal_dmd.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Generic causal DMD training script; no plot/table generator, TeX, or paper asset."
+      },
+      {
+        "repository_url": "https://github.com/aigc-apps/VideoX-Fun",
+        "path": "scripts/wan2.1_self_forcing/train_distill.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Generic self-forcing distillation training script; no MotionStream figure/table source."
+      },
+      {
+        "repository_url": "https://github.com/aigc-apps/VideoX-Fun",
+        "path": "videox_fun/models/wan_transformer3d_self_forcing.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Generic Wan self-forcing model implementation containing attention/cache machinery, not editable source for any target figure or table."
+      },
+      {
+        "repository_url": "https://github.com/aigc-apps/VideoX-Fun",
+        "path": "videox_fun/pipeline/pipeline_wan_self_forcing.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Generic Wan self-forcing pipeline with streaming/KV behavior; no plotting, TeX, notebook, or paper-specific visual asset."
+      }
+    ],
+    "search_note": "reports/tables/visual_source_inventory.csv records an automated no_public_source_found row and suggests aigc-apps/VideoX-Fun; corpus/visual_sources/iclr-2026-f448909bdd66/ is absent. The PDF reference on p.11 directly links VideoX-Fun as a generic Wan initialization/baseline source, not a MotionStream paper repository. gh metadata/tree, README, and the examined streaming prediction, distillation, model, and pipeline files confirm generic causal/self-forcing/chunk/rolling-KV code but no MotionStream-named assets, Figure/Table generator, plot script, TeX/TikZ/PGF, notebook, or paper asset index. The repository therefore exists without an exact visual source; all figure geometry/color claims are rendered estimates and table claims use PDF objects."
+  },
+  "paper_style": {
+    "main_figures": 8,
+    "main_tables": 4,
+    "appendix_figures": 6,
+    "appendix_tables": 4,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman",
+        "Computer Modern Math",
+        "DejaVu Sans",
+        "Arial-like sans-serif"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 8.0,
+        "maximum": 18.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 9.0,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Quantitative curves use a categorical blue/orange/green/red/purple palette; attention maps use sequential blue with gray masks; qualitative frames retain natural colors and green/red/blue control overlays; tables are predominantly black and white with bold/underline. Marker, position, direct labels, and table typography provide partial redundancy, but the many natural colors and curve hues are not fully grayscale-safe.",
+    "vector_raster_mix": "The 26-page PDF was rendered at 200 dpi (1700×2200 px per page). pdfimages shows the main contents of Figures 1–8 and A1–A6 as embedded JPEG/PNG raster XObjects, while captions, table text, rules, and surrounding prose remain PDF text/line objects. Figure geometry and plot typography are therefore rendered estimates; table typography and rules are PDF-object evidence.",
+    "style_consistency": "The double-column letter layout uses stable Computer Modern/Nimbus Roman-like body, caption, and table typography with Arial/Matplotlib-like sans-serif labels inside raster plots. Booktabs/minimal tables consistently omit vertical rules; quantitative plots reuse axis/legend conventions, while qualitative/UI panels inherit natural-image and screenshot typography. Model names vary between Ours Teacher, Ours Causal, and Ours Distilled, so per-object legends remain necessary."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "introduction / system overview",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Prior motion-controlled video diffusion models typically operate offline to generate fixed-length sequences in parallel (top left). In contrast, our MotionStream enables streaming long-video generation from a single image with track control at interactive speed (bottom left). MotionStream can be applied to a variety of online downstream applications, such as real-time motion transfer, user drag operations, and 3D camera control (right).",
+        "word_count": 62,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 8.0,
+          "maximum": 15.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#4C78A8",
+          "#F28E2B",
+          "#59A14F",
+          "#E15759",
+          "#9C9C9C",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "灰/橙/蓝/红及自然图像区分 offline 与 streaming、teacher/student、输入轨迹和三类在线应用；位置、箭头与直接文字提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 fixed-length offline 到 indefinite streaming 的流程顺序",
+        "y": "上/下对照的 teacher/student 与右侧应用 lane",
+        "color": "teacher/student、输入/输出与应用类别",
+        "shape": "模块框、帧序列和三类应用小图",
+        "line": "箭头与虚线阶段边界",
+        "facet": "offline/streaming 左栏与三类 downstream 右栏",
+        "text": "速度、延迟、应用标题和输入轨迹直接标注"
+      },
+      "data_and_statistics": "概念与 qualitative evidence，不是样本统计。左栏直接标出 0.79 FPS/103 s 与 29.5 FPS/0.39 s；右栏用 motion transfer、drag 和 3D camera 的帧序列展示应用接口。",
+      "evidence_relation": "引言提出的 offline、非因果和短时长缺口 → Figure 1 的 streaming interface → Figure 2 的 teacher/student architecture → Figure 7/8 的应用与 demo evidence；速度标签与 Table A2 相连。",
+      "design_strengths": [
+        "把 latency、causality、长时生成和三类交互应用放进一张主线画布。",
+        "箭头、模型框、帧序列、速度文字和自然图像形成多通道语义。",
+        "全宽位置为方法图和后续结果链提供稳定锚点。"
+      ],
+      "design_weaknesses": [
+        "右侧应用没有统一的 input/output legend，camera 与 drag 控制变量需要回到正文。",
+        "速度标签是 point claim，没有硬件与测量波动。",
+        "颜色承担多个角色，缩小或灰度阅读时更依赖位置和文字。"
+      ],
+      "reusable_pattern": "用全宽左右对照同时呈现 offline baseline、streaming system 和 downstream interaction，再用定量表补齐速度条件。",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 4,
+      "module": "method / model architecture and training",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2: Model architecture and training pipeline. To build a teacher motion-controlled video model, we extract and randomly sample 2D tracks from the input video and encode them using a lightweight track head. The resulting track embeddings are combined with the input image, noisy video latents, and text embeddings as input to the diffusion transformer with bidirectional attention, which is then trained with a flow matching loss (top). We then distill a few-step causal diffusion model from the teacher through Self Forcing-style DMD distillation, integrating joint text-motion guidance into the objective, where autoregressive rollout with rolling KV cache and attention sink is applied during both training and inference (bottom).",
+        "word_count": 109,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#4C78A8",
+          "#F28E2B",
+          "#59A14F",
+          "#9C9C9C",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝/橙模型框与阶段区分 teacher、student 和 rollout；自然色 track canvas、文本/噪声输入及 mask 色块编码张量类型。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 31,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从输入视频/轨迹到 teacher，再到 causal student 的阶段顺序",
+        "y": "Stage 1/Stage 2 与训练/推理分支",
+        "color": "输入类型、teacher/student 和 attention mask",
+        "shape": "track、frame、noise、cache、mask 的模块形状",
+        "line": "左到右箭头和上下阶段边界",
+        "facet": "teacher bidirectional 与 student causal/sparse branches",
+        "text": "stage、track head、cache、sink、loss 和 mask 文字"
+      },
+      "data_and_statistics": "方法流程图；展示 tracks、track head、input frame、text、noise、bidirectional transformer、rolling KV cache 和 attention sink 的数据流，不包含聚合统计或 uncertainty。",
+      "evidence_relation": "Section 3 的 causal distillation → Figure 2 的 teacher/student dataflow → Eq. (1) track embedding、Eq. (2) joint guidance、Eq. (3)–(4) DMD → Figure 3 sink intuition 和 Figure 6 sparse-attention ablation。",
+      "design_strengths": [
+        "Stage 1/Stage 2 边界清楚，输入类型和训练/推理共用的 cache/sink 可定位。",
+        "attention-mask 小矩阵把抽象 receptive field 变成可见几何。",
+        "箭头方向和模块文字使流程无需额外 legend。"
+      ],
+      "design_weaknesses": [
+        "变量、chunk 数、NFE 和训练轮次没有贴在图面。",
+        "节点密度高，小标签在单栏缩放后阅读成本较高。",
+        "teacher/student 的容量和具体 backbone 需要正文补充。"
+      ],
+      "reusable_pattern": "用阶段分割固定 teacher、distillation、rollout 与 inference 接口，并把关键张量或公式编号贴近箭头。",
+      "evidence": {
+        "page": 4,
+        "label": "p.4 Figure 2 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "method / attention mechanism",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: Visualization of self attention probability map. We visualize attention probability maps for bidirectional, full causal, and causal sliding window attentions. Several attention heads focus on the tokens corresponding to the initial frame throughout denoising generation.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#F7FBFF",
+          "#C6DBEF",
+          "#6BAED6",
+          "#2171B5",
+          "#08306B",
+          "#808080"
+        ],
+        "semantic_mapping": "蓝色深浅表示 self-attention probability，灰色块表示 causal mask；行/列标题、colorbar 和矩阵位置提供结构冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 9,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 18,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个 heatmap 右侧 colorbar",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token/frame position",
+        "y": "query token/frame position",
+        "color": "attention probability 与灰色不可见 mask",
+        "shape": "attention regime 行、layer/head 列",
+        "line": null,
+        "facet": "3×3 的 regime × layer/head small multiples",
+        "text": "Layer/Head、Bidirectional/Causal/Sparse Causal 和 colorbar"
+      },
+      "data_and_statistics": "9 个 attention probability heatmaps，比较 bidirectional、full causal 和 causal sliding-window；没有跨样本统计、显著性或误差区间。",
+      "evidence_relation": "Self-Forcing 长时 drift 问题 → initial-frame attention 观察 → attention sink design → Figure 6 与 Figure A3 的长时 LPIPS/EPE 和 qualitative stability；它是机制观察而非 head-level significance test。",
+      "design_strengths": [
+        "统一 3×3 行列对照，让不同 attention regime 的 receptive field 直接可比。",
+        "colorbar、行列标题和灰色 mask 提供多重阅读入口。",
+        "在小面积内把 sink intuition 连接到后续消融。"
+      ],
+      "design_weaknesses": [
+        "token/frame 索引缺少语义名称。",
+        "head/layer 的代表性选择规则、概率范围和聚合层级未说明。",
+        "灰色 mask 与低概率蓝色在缩小后容易混淆。"
+      ],
+      "reusable_pattern": "以固定行列坐标并置 bidirectional、causal 和 sparse attention，并显式标明 colorbar、mask 与 head selection rule。",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 3 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "experiments / joint guidance ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: Quantitative ablation on guidance. We use Sora subset to ablate guidance strategies. Higher text guidance reduces overall metrics while motion guidance improves trajectory accuracy at the cost of visual quality (LPIPS).",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#4C78A8",
+          "#F28E2B",
+          "#59A14F",
+          "#E15759",
+          "#B07AA1",
+          "#76B7B2"
+        ],
+        "semantic_mapping": "六种 text guidance scale w_t=0…5 由颜色与圆形 marker 区分，motion guidance scale w_m 在 x 轴；legend 直接给配置。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "底部共享 legend",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "motion guidance scale w_m",
+        "y": "左 LPIPS、右 visible EPE",
+        "color": "text guidance scale w_t",
+        "shape": "无",
+        "line": "每个 w_t 的折线",
+        "facet": "LPIPS 与 EPE paired panels",
+        "text": "panel titles、axis labels 与底部 legend"
+      },
+      "data_and_statistics": "Sora subset 上的 guidance sweep；左 panel 是 LPIPS，右 panel 是 visible EPE，曲线比较 w_t=0…5 在多个 w_m 点上的均值趋势。没有 error bar/band，也未在图或 caption 定义样本聚合。",
+      "evidence_relation": "Eq. (2) joint text-motion guidance → Figure 4 定量 trade-off → Figure 5 qualitative examples → Section 4.3 的默认 w_t=3.0、w_m=1.5。",
+      "design_strengths": [
+        "并列 LPIPS/EPE 把视觉质量和轨迹精度放在同一 tuning surface。",
+        "共享 x 变量与底部 legend 节省空间且便于横向比较。",
+        "marker 与颜色一起编码六个 text-scale，具有一定冗余。"
+      ],
+      "design_weaknesses": [
+        "窄 y 范围放大小差异，曲线没有 uncertainty。",
+        "坐标点、aggregation 和重复层级未由 caption 完整定义。",
+        "颜色在灰度下难以区分，实际 guidance 数值仍需读 legend。"
+      ],
+      "reusable_pattern": "用共同 x 轴的 paired metric panels 展示控制权衡，同时在复现材料中给出配置网格与聚合层级。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 4 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "experiments / joint guidance qualitative ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "ablation",
+        "qualitative_evidence",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: Qualitative ablation on guidance. Pure motion guidance produces rigid movements while text guidance enables natural motion and shape preservation even with imperfect tracks. Our Hybrid joint guidance balances these two.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#59A14F",
+          "#E15759",
+          "#4C78A8",
+          "#F28E2B",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "自然视频帧保留场景颜色，列标题编码 Input/Motion Only/Hybrid/Text Only，轨迹 overlay 的绿/红/蓝区分控制条件。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 12,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "四个 guidance condition 的列顺序",
+        "y": "三个 elephant/person/animal 样本行",
+        "color": "motion track 与输出内容",
+        "shape": "无",
+        "line": "无",
+        "facet": "sample row × guidance column grid",
+        "text": "列标题、w_t/w_m 配置和 track overlay"
+      },
+      "data_and_statistics": "3×4 qualitative grid；Input、Motion Only (w_t=0,w_m=5.0)、Hybrid (3.0,1.5)、Text Only (5.0,0.0) 对照自然运动、shape preservation 和 trajectory adherence，不承载统计区间。",
+      "evidence_relation": "Figure 4 的 quantitative guidance trade-off → Figure 5 行级 visual examples → Section 4.3 Hybrid 解释 → Figure 7 downstream qualitative results。",
+      "design_strengths": [
+        "每行固定输入与三种 guidance，刚性运动和 text-induced dynamics 直观可见。",
+        "列标题显式给出关键 guidance 配置，减少对正文的依赖。",
+        "输入、轨迹和输出帧在同一行形成控制到结果的局部证据。"
+      ],
+      "design_weaknesses": [
+        "样本数、prompt/seed 和帧选择规则未说明。",
+        "没有 failure examples，难以判断 qualitative pattern 的覆盖范围。",
+        "轨迹颜色与自然图像中的物体颜色语义不完全分离。"
+      ],
+      "reusable_pattern": "在 paired quantitative plot 旁提供同条件 qualitative grid，把 input、control、output 和配置放进列标题。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 5 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 9,
+      "module": "experiments / sparse attention long-horizon ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Impact of Sparse Attention Patterns. Using longer clips (up to 241 frames) from the Sora subset, we ablate attention sink size and local window size in extrapolation scenarios. Having at least a single sink chunk is crucial, but more provides marginal benefit, while larger window sizes degrade performance as attending to long-past history allows errors to accumulate in context tokens.",
+        "word_count": 62,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#4C78A8",
+          "#F28E2B",
+          "#59A14F",
+          "#E15759",
+          "#B07AA1",
+          "#76B7B2",
+          "#B279A2"
+        ],
+        "semantic_mapping": "颜色和线型编码 chunk/sink/window 配置（如 c3s0w1、c3s1w1、c3s1w6）；曲线位置与 marker 提供辅助区分。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 2,
+        "data_marks_estimate": 150
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "顶部/局部 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左侧 sweep 的 sink/window size；右侧 frame 0–241",
+        "y": "LPIPS/EPE 以及左侧对应质量指标",
+        "color": "attention configuration",
+        "shape": "配置对应 marker/线型",
+        "line": "不同 c/s/w configuration 曲线",
+        "facet": "sink/window sweep 与 LPIPS/EPE time-course panels",
+        "text": "panel labels、configuration legend、axis titles"
+      },
+      "data_and_statistics": "Sora subset 长 clip，最多 241 frames、平均 194 frames；左侧四个 sweep panel 比较 sink/local window，右侧 LPIPS/EPE 随 frame 的配置曲线。全部为 point curves，无 uncertainty band 或 error bar。",
+      "evidence_relation": "Figure 3 的 initial-token attention → sink/window design → Figure 6 长时 LPIPS/EPE → Table 4 latency/throughput operating-point comparison → Figure A3 frame montage。",
+      "design_strengths": [
+        "把 compact configuration sweep 与随时间 drift 曲线放在同一画布。",
+        "质量机制和长时行为互相核对，能直接看到 sink 与 window 的方向。",
+        "与 Table 4 的 c3s1w1 operating point 形成可追踪链接。"
+      ],
+      "design_weaknesses": [
+        "不同 panel 的 y 量纲和配置较多，后段曲线密集。",
+        "没有 split 数、重复层级或 uncertainty band。",
+        "左侧横轴与顶部 legend 在缩放后较小，c/s/w shorthand 对新读者不透明。"
+      ],
+      "reusable_pattern": "先用 compact sweep 定位 operating point，再用 time-course 曲线验证长时机制，并为每条线附完整配置和 aggregation。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 6 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 10,
+      "module": "experiments / downstream qualitative results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 7: Qualitative Results. MotionStream can perform diverse downstream applications, including long video motion transfer (from offline or online sources), drag-based controls, and precise camera control with depth estimation. We showcase a few examples here.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#59A14F",
+          "#E15759",
+          "#4C78A8",
+          "#F28E2B",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "自然视频帧承担结果内容，轨迹/深度控制 overlay 使用绿、红、蓝等直接语义色；行标题承担应用类别。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 16,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "输入到输出的帧序列顺序",
+        "y": "四类 downstream application rows",
+        "color": "轨迹、深度和生成结果",
+        "shape": "online/offline source 与 control type",
+        "line": "箭头/时间顺序线索",
+        "facet": "四行应用 small multiples",
+        "text": "Long Video Motion Transfer、Streaming Motion Transfer、Camera Control、Drag Control"
+      },
+      "data_and_statistics": "四行 qualitative montage：long video motion transfer、online human-pose tracking、depth-based camera control、drag controls。没有坐标轴或统计分布，帧序列用于展示功能覆盖。",
+      "evidence_relation": "Table 1/2 的 motion/camera quality-speed comparisons → Figure 7 的 downstream visual cases → Figure 8/A5 的 interactive streaming demo。",
+      "design_strengths": [
+        "四类应用在一页中并置，展示控制接口的任务覆盖。",
+        "行标题和时间箭头减少跨行解释成本。",
+        "定性结果与前文 benchmark/机制链位置相邻。"
+      ],
+      "design_weaknesses": [
+        "样本选择、prompt、帧间隔和失败率未写入 caption。",
+        "不同应用的输出尺寸/控制条件未统一说明。",
+        "定性帧无法单独证明实时吞吐或跨场景泛化。"
+      ],
+      "reusable_pattern": "以固定行标题组织多应用 frame montage，并将输入控制 overlay 与生成帧成对呈现。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Figure 7 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 10,
+      "module": "experiments / streaming demonstration",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "screenshot",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "method_interface",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8: Streaming Demo. An example of real-time streaming generation; more details in Sec. C.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#59A14F",
+          "#E15759",
+          "#4C78A8",
+          "#F28E2B",
+          "#9C9C9C",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "UI screenshot 与自然视频帧保留原色；交互轨迹以绿/红/蓝区分 active/static/pre-drawn controls。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 14,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "交互输入到生成视频的序列位置",
+        "y": "Interactive Canvas 与 Generated Video 区域",
+        "color": "UI controls、轨迹与生成视频",
+        "shape": "不同 demo/example block",
+        "line": "循环虚线箭头/时间关系",
+        "facet": "多行 UI/视频 pair montage",
+        "text": "Interactive Canvas、Generated Video 与 Sec. C pointer"
+      },
+      "data_and_statistics": "UI screenshot/frame montage，三行交互输入与生成视频对照并用虚线回环表示持续 streaming；不含坐标轴、统计聚合或误差。",
+      "evidence_relation": "Figure 1 的 interactive-speed headline → Figure 8 的 demo interface → Appendix A Tiny VAE speed tables 与 Figure A5 的更多 streaming examples；caption 将细节指向 Sec. C。",
+      "design_strengths": [
+        "把 interactive canvas、输入轨迹和 generated video 放在同一画布，接口关系直观。",
+        "回环箭头表达持续生成而非单次离线输出。",
+        "与 Figure 1 的速度/应用主张及 A5 形成视觉呼应。"
+      ],
+      "design_weaknesses": [
+        "demo screenshot 缺硬件、计时 protocol 和失败样本。",
+        "细小 UI 字样在 PDF 缩放后难读。",
+        "短 caption 不能单独说明轨迹颜色与视频帧选择。"
+      ],
+      "reusable_pattern": "用输入画布—输出视频 paired screenshot 加循环箭头表达 streaming interface，并把操作颜色写入图注。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Figure 8 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A1",
+      "page": 20,
+      "module": "appendix B / user study",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure A1: User Study Results. We evaluate video quality through pairwise comparisons on 20 Sora samples. In terms of pure video quality, our models outperform all baselines except ATI, which uses a 10× larger backbone (Wan 2.1-14B), producing visually favorable videos.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#4C78A8",
+          "#9C9C9C"
+        ],
+        "semantic_mapping": "两种 pairwise preference 选项以蓝/灰 stacked share 表示；百分比直接写在 bar 内，虚线为 50% reference。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 14,
+        "data_marks_estimate": 14
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "pairwise preference percentage",
+        "y": "七个 model pair / comparison rows",
+        "color": "preferred model share vs other",
+        "shape": "无",
+        "line": "无",
+        "facet": "single horizontal 100% stacked bar panel",
+        "text": "method labels、percentages、50% dashed line"
+      },
+      "data_and_statistics": "20 Sora samples、2,800 responses 的 pairwise user-study 汇总；七条 100% stacked horizontal bars，直接标注 56.5、52.13、48.37、52.5、51.64、42.68、52.38 等 preference shares，没有 confidence interval。",
+      "evidence_relation": "Table A3 的 multi-dimensional VBench check → Figure A1 的 human video-quality preference → Figure A4 qualitative comparison；ATI 的 14B capacity difference 在 caption 中显式给出。",
+      "design_strengths": [
+        "把 user preference 归一化到同一 0–100% 横轴，跨 pair 读取方便。",
+        "百分比直接标注并有 50% dashed reference，减少 legend 解码。",
+        "caption 给出样本和 response denominator。"
+      ],
+      "design_weaknesses": [
+        "pairwise question wording、ties/quality-only protocol 和每个 pair 的分母未展开。",
+        "蓝/灰在灰度下可区分性有限，方法名和百分比承担主要语义。",
+        "没有 response-level uncertainty 或 subgroup breakdown。"
+      ],
+      "reusable_pattern": "用归一化横向 preference bars、直接百分比和 50% reference 快速表达成对人评结果，并在 caption 公开 denominator。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Figure A1 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A2",
+      "page": 21,
+      "module": "appendix C / speed-quality trade-off",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure A2: Speed and Quality Tradeoffs with Chunk Sizes and Sampling Steps. We visualize the latency-throughput relationship across varying chunk sizes and sampling steps (left), and image quality (LPIPS) across different sampling steps, using our default setup of c3s1w1 (right).",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#4C78A8",
+          "#F28E2B",
+          "#59A14F",
+          "#E15759"
+        ],
+        "semantic_mapping": "颜色编码 1–4 sampling steps，marker/shape 编码 chunk size 1/3/7；右 panel 用 step 曲线比较 LPIPS。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左 panel 内/右上 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左 latency，右 sampling steps",
+        "y": "左 throughput，右 LPIPS",
+        "color": "sampling steps",
+        "shape": "chunk size",
+        "line": "右 panel quality-vs-step line",
+        "facet": "latency-throughput scatter 与 LPIPS line paired panels",
+        "text": "chunk/step legend、default c3s1w1 标注"
+      },
+      "data_and_statistics": "左 panel 绘制不同 chunk size 与 1–4 sampling steps 的 latency-throughput points；右 panel 绘制默认 c3s1w1 的 LPIPS 随 sampling steps 变化；无 uncertainty。",
+      "evidence_relation": "Table 4 的 c3s1w1 operating point → Figure A2 的 chunk/step frontier → Figure A3 long-video stability 与 demo throughput；支持 latency、throughput 和 LPIPS 的配置权衡。",
+      "design_strengths": [
+        "scatter 与 line 分别回答系统成本和质量随步数变化。",
+        "颜色与 marker 双重编码 chunk/step，默认设置可定位。",
+        "附录把主文少量步骤 claim 展开为完整 sweep。"
+      ],
+      "design_weaknesses": [
+        "图例和 shorthand 较密，点的 hardware/time aggregation 未说明。",
+        "没有 error bars 或 per-video variation。",
+        "右 panel 的 LPIPS 变化幅度需要读取小 y 轴差异。"
+      ],
+      "reusable_pattern": "将成本 frontier scatter 与质量 step curve 并置，并用颜色×shape 双编码配置。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Figure A2 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A3",
+      "page": 21,
+      "module": "appendix C / long-video extrapolation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure A3: Long video extrapolation with and without attention sink. Models without attention sink (top two rows) exhibit cumulative drift over time, while our approach with attention sink (bottom) maintains stable quality throughout extrapolation.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#4C78A8",
+          "#F28E2B",
+          "#9C9C9C",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "自然视频帧展示 drift，行标签编码 C3S0W1/C3S0W6/C3S1W1，attention-sink presence 由配置文字而非颜色表达。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 9,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Frame 1→80→161 的时间顺序",
+        "y": "三种 C/S/W configuration rows",
+        "color": "自然帧质量与 drift",
+        "shape": "无",
+        "line": "无",
+        "facet": "configuration row × temporal frame grid",
+        "text": "row labels、Frame labels 和 sink/no-sink condition"
+      },
+      "data_and_statistics": "三行配置（C3S0W1、C3S0W6、C3S1W1）× 三个时间点（Frame 1/80/161）的 qualitative long-video extrapolation；不含统计误差或 rate。",
+      "evidence_relation": "Figure 6 的 LPIPS/EPE time-course → Figure A3 的 frame-level drift illustration → Table 4 的 sink/window latency-quality comparison；顶部两行无 sink，底行为 proposed sink。",
+      "design_strengths": [
+        "固定时间点让 cumulative drift 与 stable sink 结果可直接对照。",
+        "行标签将视觉结果绑定到 Table 4 的 configuration shorthand。",
+        "不依赖颜色即可通过位置和文字读出 sink condition。"
+      ],
+      "design_weaknesses": [
+        "只有三个时间点，不能替代完整 time-course 或 failure denominator。",
+        "sample selection 和视频内容未说明。",
+        "自然视频的内容变化可能与 attention effect 混淆。"
+      ],
+      "reusable_pattern": "用统一 Frame checkpoints 的 configuration-by-time montage 把定量长时曲线落到可见 drift。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Figure A3 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A4",
+      "page": 23,
+      "module": "appendix C / qualitative comparison",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure A4: Qualitative Comparison. Generated videos from the Sora subset. As seen on the left, our model successfully reconstructs the flower blooming motion, while GWTF captures the motion but suffers quality degradation. ATI produces high-quality videos but with reduced trajectory adherence in motion transfer scenarios.",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#59A14F",
+          "#E15759",
+          "#4C78A8",
+          "#F28E2B",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "自然视频色彩表达生成质量，方法行标签直接编码 baseline/teacher/causal，轨迹 overlay 以彩色线索辅助。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "三个时间帧的左到右顺序",
+        "y": "八个方法行与两个 scene blocks",
+        "color": "方法与生成帧内容",
+        "shape": "scene block × method row",
+        "line": "无",
+        "facet": "8 method rows × 2 scenes × 3 frames",
+        "text": "method names、scene grouping 和 qualitative comparison caption"
+      },
+      "data_and_statistics": "Sora subset qualitative comparison：两个 scene blocks（flower blooming 与 city/cat）各含 3 frames，8 行方法（Image Conductor、GWTF、DAS、ATI、Ours 1.3B/5B Teacher/Causal），共约 48 frame cells；无统计 uncertainty。",
+      "evidence_relation": "Table 1/2 的 quality-speed results → Figure A4 的 trajectory/visual quality cases → Figure A6 failure boundary；对照 GWTF 的 quality degradation 与 ATI 的 trajectory adherence trade-off。",
+      "design_strengths": [
+        "方法行和时间帧固定，跨 baseline 的 visual fidelity/trajectory adherence 容易对照。",
+        "两个 scene blocks 同时覆盖 motion reconstruction 与 camera/scene variation。",
+        "caption 直接指出 GWTF 和 ATI 的不同 failure trade-off。"
+      ],
+      "design_weaknesses": [
+        "48 个 frame cell 使字号和细节密度很高。",
+        "只展示两个场景，不能代表全体 Sora subset。",
+        "baseline 输入/seed/track protocol 的等价性需要正文补充。"
+      ],
+      "reusable_pattern": "用固定方法行×时间帧 qualitative matrix 展示 fidelity 与 control adherence 的互补 trade-off。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure A4 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A5",
+      "page": 24,
+      "module": "appendix D / streaming demo examples",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "screenshot",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "method_interface",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure A5: Streaming Demo. We show some examples of our streaming demo. Green grids indicate the points that are being dragged (online), red grids indicate a set of points that should remain static, and blue grids indicate user’s pre-drawn trajectories for moving multiple points simultaneously (see chameleon example). More examples can be found on our supplementary website.",
+        "word_count": 57,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#59A14F",
+          "#E15759",
+          "#4C78A8",
+          "#F28E2B",
+          "#9C9C9C",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "绿色网格表示 online dragged points，红色表示 static points，蓝色表示预绘轨迹；UI 和自然视频保留原色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 18,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 30,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "交互输入→生成帧的时间/空间顺序",
+        "y": "不同 streaming example blocks",
+        "color": "green/red/blue control grid 与输出视频",
+        "shape": "example block（cup/chameleon/bear-like）",
+        "line": "箭头/帧序列",
+        "facet": "多 example screenshot/montage blocks",
+        "text": "control-color key、输入/输出标签和 supplementary pointer"
+      },
+      "data_and_statistics": "多个 streaming demo blocks：green grid 为在线拖动点，red grid 为静态点，blue grid 为同时移动多点的预绘轨迹；图内是 UI/自然帧，不含统计分布或 uncertainty。",
+      "evidence_relation": "Figure 8 demo interface → Figure A5 更多 interaction examples → 正文关于 online drag/multiple-point control 的方法接口；supplementary website 作为未本地获取的延伸证据。",
+      "design_strengths": [
+        "显式 color key 让三类控制状态可追踪。",
+        "cup、chameleon 和 bear-like examples 展示 single/multiple point interaction 的覆盖。",
+        "输入 canvas 与生成结果成对排列，能读出操作到输出的映射。"
+      ],
+      "design_weaknesses": [
+        "example count、frame sampling、latency 和失败率未报告。",
+        "UI 小字与多个 block 使页面密度高。",
+        "supplementary videos unavailable，静态 PDF 无法验证连续交互。"
+      ],
+      "reusable_pattern": "把 control-state color key 固定为 green=online、red=static、blue=pre-drawn，并用 paired UI/output montage 展示操作覆盖。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Figure A5 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A6",
+      "page": 26,
+      "module": "appendix F / limitations and failure cases",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure A6: Failure Cases. In the cat and turtle examples, the intention was to bring the cat out of the box and make the turtle hatch from the egg. However, due to limitations in hand-drawn trajectories for expressing complex motions and the backbone model’s generalization capacity, the outputs are not physically plausible, and objects are either deformed or simply translated along the tracks. In complex scenes with multiple human identities (second example), the model often loses identity information and produces artifacts. The last row shows our model’s output on the world exploration task. Since track representation struggles to capture complete scene transitions and the attention sink prioritizes preserving source features, our pipeline faces difficulty in scenarios where new objects appear or scenes continuously change. More videos can be found on our supplementary website.",
+        "word_count": 133,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#59A14F",
+          "#E15759",
+          "#4C78A8",
+          "#9C9C9C",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "自然帧保留失败现象；轨迹/场景变化的控制线索使用绿、红、蓝和直接文字，失败类别由行/场景分组表达。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "输入意图到输出帧的序列",
+        "y": "cat/turtle、multiple identities、world exploration failure groups",
+        "color": "轨迹与物体/场景结果",
+        "shape": "failure mechanism / example group",
+        "line": "帧序列与行内比较",
+        "facet": "按 failure mechanism 分组的 qualitative grid",
+        "text": "failure description、scene/task labels 和 supplementary pointer"
+      },
+      "data_and_statistics": "失败案例 montage：cat/turtle 复杂轨迹与物理不 plausibility，多人场景 identity/artifacts，world exploration 中 scene transition/new objects failure；没有 failure rate、denominator 或 uncertainty。",
+      "evidence_relation": "Figure 7/A5 的能力展示 → Figure A6 的 failure boundary → limitations 对 complex tracks、multiple identities、continuous scene changes 和 attention sink source preservation 的机制解释。",
+      "design_strengths": [
+        "把复杂轨迹、identity 保持和场景变化分成可诊断的 failure mechanisms。",
+        "caption 解释每组预期意图、实际输出和 backbone/track/sink 原因。",
+        "作为主结果的边界证据，避免只展示成功案例。"
+      ],
+      "design_weaknesses": [
+        "没有每类失败的分母、发生率或系统性测试。",
+        "四组静态帧不能证明失败机制的唯一因果来源。",
+        "多类自然场景和控制线索密集，缩小后细节难读。"
+      ],
+      "reusable_pattern": "用 failure-mechanism rows 组织 qualitative counterexamples，并在 caption 中同时写预期控制、观察到的失败和适用边界。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Figure A6 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "experiments / motion transfer reconstruction",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 1: Benchmark on Motion Transfer (Reconstruction).",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "PSNR、SSIM、LPIPS、EPE 与 FPS 是 point estimates；表内没有跨视频 spread 或 error interval。",
+      "data_and_statistics": "Motion Transfer Reconstruction：DAVIS validation 30 videos 与 Sora demo subset 20 videos；比较 Image Conductor、GWTF、DAS、ATI、Ours Teacher/Causal 在 Wan 2.1 1.3B 与 Wan 2.2 5B 上的 resolution、FPS、PSNR、SSIM、LPIPS、EPE。典型值包括 Ours Causal 1.3B 的 16.7 FPS、DAVIS PSNR 16.20 和 Sora EPE 4.21，以及 Ours Causal 5B 的 10.4 FPS。",
+      "evidence_relation": "正文 motion-transfer setup → Table 1 quality/speed headline → Figure 4/5 guidance trade-off 与 Figure 7 downstream cases；速度和 quality 需结合 resolution/backbone 读取。",
+      "design_strengths": [
+        "dataset grouped header 同时呈现 DAVIS 与 Sora 的 quality/control metrics。",
+        "FPS 与 reconstruction quality 同表，主 claim 易定位。",
+        "booktabs、无竖线和粗体/下划线保持紧凑。"
+      ],
+      "design_weaknesses": [
+        "caption 只给 benchmark 名，未写 split、resolution、hardware 或 aggregation。",
+        "多 backbone/resolution 使跨行 ranking 不完全同条件。",
+        "LPIPS/EPE 的越低越好方向和小数精度需读表头/正文。"
+      ],
+      "reusable_pattern": "用 dataset→metric grouped columns 把质量、轨迹误差和实时成本放在同一主 benchmark 表。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 1 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "experiments / novel-view synthesis",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 2: Evaluation on Novel View Synthesis.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "PSNR、SSIM、LPIPS、FPS 均为 point estimates；没有 scene-level variation 或 uncertainty。",
+      "data_and_statistics": "LLFF novel-view synthesis；DepthSplat、ViewCrafter、SEVA 为 576P，Ours 为 480P/720P。Ours Causal 1.3B 为 16.7 FPS、PSNR 15.7、SSIM .38、LPIPS .23；Ours Causal 5B 为 10.4 FPS、PSNR 15.0、SSIM .39、LPIPS .23；teacher FPS 为 .79/.74。",
+      "evidence_relation": "Section 4.2 camera-control setup → Table 2 novel-view quality/FPS → Figure 7 Camera Control row；这是 depth/COLMAP-derived track 与 baseline 输入协议不同的 zero-shot comparison。",
+      "design_strengths": [
+        "单栏中同时比较 specialized 3D baselines 与 track-conditioned model。",
+        "resolution、FPS 和 quality grouped columns 易于快速扫读。",
+        "booktabs 结构在小宽度下仍保持层级。"
+      ],
+      "design_weaknesses": [
+        "caption 没有 LLFF protocol、resize 512×288、hardware 或 aggregation。",
+        "不同 resolution 和输入轨迹生成方法限制横向等价性。",
+        "caption 没有 main finding，脱离正文难判断 quality/cost trade-off。"
+      ],
+      "reusable_pattern": "在 compact grouped table 中并置 novel-view protocol、resolution、FPS 与 quality，并将输入协议差异写入注释。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 2 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "experiments / track representation ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3: Comparing track representation methods. Our sinusoidal PE with learnable track head outperforms RGB-VAE in both quality and efficiency, achieving 40× faster encoding critical for real-time streaming.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Time 与 PSNR/SSIM/LPIPS/EPE 是 point estimates；DAVIS/Sora slash-paired entries 没有 per-video variation。",
+      "data_and_statistics": "RGB-VAE 与 PE-Head 对照：encoding time 1053 ms vs 24.8 ms；DAVIS/Sora PSNR 16.03/16.99 vs 16.29/17.15，SSIM .433/.544 vs .452/.559，LPIPS .463/.363 vs .456/.359，EPE 8.57/3.96 vs 6.54/3.13。",
+      "evidence_relation": "Section 3.1 track-head design → Table 3 representation latency/quality → Figure 2 track-head block → Figure 4/5 guidance experiments；支持 sinusoidal PE + learnable head 的效率与 fidelity trade-off。",
+      "design_strengths": [
+        "将 preprocessing bottleneck、quality 和 control metric 置于一个 toggle 表。",
+        "DAVIS/Sora paired header 省空间且保留 dataset 顺序。",
+        "40× encoding speed finding 在 caption 直接给出。"
+      ],
+      "design_weaknesses": [
+        "只有一个 RGB-VAE baseline，缺少 representation sensitivity。",
+        "caption 没定义 slash 顺序、frozen VAE 或 latency protocol。",
+        "没有重复计时、variance 或 hardware details。"
+      ],
+      "reusable_pattern": "对一个 representation toggle 同时报 encoding latency、quality 和 control error，并显式给 paired dataset 顺序。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 3 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 9,
+      "module": "experiments / sparse attention ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 4: Ablation study on Sora Extended. c3s1w1 maintains high visual quality with small latency & throughput fluctuations, while vanilla sliding window exhibits large fluctuations degrading streaming stability.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "LPIPS/EPE 为 point estimates；Latency 与 Throughput 报告 mean ± variation，但 ± 的统计类型与重复层级没有在 caption 定义。",
+      "data_and_statistics": "Sora Extended configurations：c3s1w1 为 LPIPS .464、EPE 25.34、Latency .70±.01 s、Throughput 16.92±.80 FPS；remove sink c3s0w1 为 .501/26.64/.68±.005/17.43±.88；chunk-1 c1s1w1 为 .597/76.21/.30±.01/13.26±1.36；vanilla sliding window 为 .480/28.09/.80±.08/14.96±1.42。",
+      "evidence_relation": "Figure 6 的 sparse-attention curves → Table 4 configuration-level quality/latency contrast → Figure A2 chunk/step frontier 与 Figure A3 long-video drift。",
+      "design_strengths": [
+        "quality、motion error、latency、throughput 形成同一 operating-point decision surface。",
+        "base/remove-sink/chunk-1/sliding-window 对照直接。",
+        "booktabs 和有限列数适合正文单栏。"
+      ],
+      "design_weaknesses": [
+        "c3s1w1 shorthand 不透明，caption 未展开 c/s/w。",
+        "± variation、Sora Extended sample/horizon 与 aggregation 未定义。",
+        "不同 row 的 latency 与 quality 最优方向相反，需同时看指标方向。"
+      ],
+      "reusable_pattern": "用 configuration table 把 attention mechanism ablation 与系统成本绑定，并在表注展开 shorthand、variation 和评测 horizon。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 4 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table A1",
+      "page": 19,
+      "module": "appendix A / causal VAE reconstruction",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table A1: Comparison of Causal VAE Models. We evaluate reconstruction quality on the Sora demo samples (resized to 81f×832×480) by encoding videos with the Full VAE encoder and decoding with different VAE variants. Our Tiny VAE achieves an order-of-magnitude faster decoding than Full VAEs while outperforming existing community implementations in reconstruction quality.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "参数、compression、decode time、PSNR、SSIM、LPIPS 是 point estimates；没有视频级 variation。",
+      "data_and_statistics": "Sora demo samples resized to 81f×832×480；比较 Wan 2.1/2.2 Full VAE、community Tiny 和 Ours Tiny。典型 rows：Wan2.1 Full 73.3M/1.67 s/PSNR 31.43/.934/.069，community Tiny 9.84M/.12 s/28.85/.899/.168，Ours Tiny 9.84M/.12 s/29.27/.904/.107；Wan2.2 Full 555M/1.75 s，Ours Tiny 56.7M/.23 s。",
+      "evidence_relation": "正文 Tiny VAE bottleneck → Table A1 decoder-only speed/quality → Table A2 distilled-student end-to-end effect → Figure 1/8/A5 streaming demo。",
+      "design_strengths": [
+        "参数、compression、decode time 与三项 reconstruction quality 同表。",
+        "community baseline 与 Ours Tiny 可直接对照。",
+        "caption 写出 Full encoder/Tiny decoder procedure 和 resize。"
+      ],
+      "design_weaknesses": [
+        "hardware、decode repetitions、sample aggregation 未说明。",
+        "decoder-only speed 不能直接等同于端到端 latency。",
+        "宽表列标题换行且附录小字密集。"
+      ],
+      "reusable_pattern": "对 decoder replacement 同时报参数、压缩率、decode time 与 reconstruction quality，并明确评测分辨率。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Table A1 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table A2",
+      "page": 19,
+      "module": "appendix A / Tiny VAE streaming setup",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table A2: Evaluating Tiny VAE in Streaming Generation Setup. Using the same distilled student model, we ablate the impact of switching VAE from original Full VAE to Tiny VAE in Sora demo subset. It’s important to note that even after changing to Tiny VAE, our distilled models still outperform all other baselines and quality differences compared to Full VAEs are marginal while achieving 1.75× and 2.3× higher throughput.",
+        "word_count": 68,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Full/Tiny paired rows 的 FPS、latency、PSNR、SSIM、LPIPS 是 point estimates；没有 across-video spread。",
+      "data_and_statistics": "同一 distilled student、Sora demo subset 下切换 Full→Tiny VAE：Wan2.1 16.7→29.5 FPS、.69→.39 s、PSNR 16.67→16.68、SSIM .531→.528、LPIPS .360→.365；Wan2.2 10.4→23.9 FPS、1.14→.49 s、PSNR 16.62→16.62、SSIM .545→.543、LPIPS .343→.349。",
+      "evidence_relation": "Table A1 isolated decoder test → Table A2 same-student end-to-end pairing → Figure 1 29.5 FPS 与 Figure 8/A5 demo；正文说明主 quality benchmark 使用 Full VAE。",
+      "design_strengths": [
+        "Full/Tiny pair 清晰，speed gain 与 quality delta 可直接读取。",
+        "同一 student 控制模型因素，适合展示 VAE operating point。",
+        "附录把 demo speed 与 quality cost 分开于主文 headline。"
+      ],
+      "design_weaknesses": [
+        "caption 中“outperform all baselines”依赖表外结果。",
+        "硬件、跨视频 variation 和 latency measurement protocol 未给。",
+        "Wan2.1/2.2 compression 与 backbone 差异使 ratio 不能直接横比。"
+      ],
+      "reusable_pattern": "用 paired decoder table 分开报告 end-to-end speed 与 quality，避免把局部 decoder 加速写成完整 pipeline 结论。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Table A2 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table A3",
+      "page": 20,
+      "module": "appendix B / VBench-I2V dimensions",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table A3: VBench-I2V Results. We evaluate other baselines using VBench-I2V on Sora subset. While the results primarily depend on the choice of backbone, our models generally achieve high performance across all dimensions.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "VBench-I2V 各维度为单值 point metrics；没有 per-video spread、显著性或置信区间。",
+      "data_and_statistics": "Sora subset 上 8 methods × 7 dimensions（i2v subject/background、subject/background consistency、motion smoothness、aesthetic quality、imaging quality）；例如 Ours Distilled 5B 为 .984/.990/.945/.959/.987/.630/.703，ATI 为 .981/.988/.948/.947/.980/.629/.707。camera motion/dynamic degree 按正文说明排除。",
+      "evidence_relation": "Table 1/2 quality-speed benchmark → Table A3 多维质量检查 → Figure A1 human preference 与 Figure A4 qualitative；caption 主动写 backbone dependence，限制 ranking 解读。",
+      "design_strengths": [
+        "宽表覆盖 subject/background、motion、aesthetic/imaging 等维度。",
+        "wrapped header 保留多维 metric 语义，best/second-best 高亮易定位。",
+        "caption 公开 backbone caveat，降低过度解读。"
+      ],
+      "design_weaknesses": [
+        "8×7 表格字号小，脱离正文难懂列含义。",
+        "无 spread、显著性或 per-video aggregation。",
+        "ATI 14B 与 Ours 1.3B/5B 容量不对称。"
+      ],
+      "reusable_pattern": "用 grouped wrapped header 汇总多维 benchmark，并把 backbone dependence 与 excluded-dimension protocol 写入 caption。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table A3 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table A4",
+      "page": 22,
+      "module": "appendix C / motion conditioning quality check",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table A4: Impact of Motion Control on Generative Quality. We evaluate whether injecting motion control degrades the pretrained model’s capability by comparing against a larger, dedicated I2V baseline (Wan 2.1 14B I2V). We also report performance when motion conditions are dropped. Results indicate that adding motion conditioning does not significantly degrade the base model’s generative quality. While removing motion conditions introduces a slight quality drop as our models were not optimized for this setting, the output still adheres to the given text and image inputs.",
+        "word_count": 85,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "VBench-style metrics 与 FVD 为 point estimates；caption 使用“does not significantly degrade”作为定性描述，但表内没有显著性检验或 uncertainty。",
+      "data_and_statistics": "5 rows × 9 columns：Wan2.1 I2V 14B、Ours Teacher/Student with Motion 与 without Motion，7 个 VBench-style dimensions 加 FVD。Wan 14B FVD 1274.6；Ours Teacher w Motion .984/.988/.948/.943/.987/.625/.698/578.2，w/o Motion FVD 1550.4；Student w Motion FVD 745.8，w/o Motion 1532.5。",
+      "evidence_relation": "track head/guidance conditioning → Table A4 motion injection vs empty condition → limitations 的 static bias/CFG 讨论与 Figure A4 quality/control examples；不是等规模 unconditional I2V baseline。",
+      "design_strengths": [
+        "显式同时放置 larger dedicated I2V、motion-conditioned 和 w/o Motion rows。",
+        "多维 quality 与 FVD 形成 conditioning capability 的完整面。",
+        "caption 把 empty-condition 的目标错配和主结论写清楚。"
+      ],
+      "design_weaknesses": [
+        "容量、训练目标和 conditioning protocol 不对称。",
+        "w/o Motion 是未优化设定，不能独立作为干净因果 ablation。",
+        "sample count、aggregation、FVD protocol 和统计不确定性未给。"
+      ],
+      "reusable_pattern": "对 conditioning injection 同时报多维 quality 与 distribution metric，并把 empty-condition 的适用边界写入表注。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table A4 caption, header, and body",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 establishes the offline→streaming target; Figure 2 gives the teacher/track-head/student pipeline; Figure 3 supplies the initial-token attention-sink mechanism. Tables 1–2 provide motion-transfer and camera-control quality/speed headlines; Figures 4–5 isolate joint-guidance trade-offs; Table 3 isolates track representation; Figure 6 and Table 4 connect sparse-attention choices to long-horizon stability and cost. Figures 7–8 then show downstream applications and the interactive demo. Appendix Tables A1–A2 quantify Tiny VAE cost, Table A3/Figure A1 add multi-dimensional and human-preference checks, Figure A2/A3 expand operating-point and long-horizon evidence, and Table A4/Figures A4–A6 define conditioning, qualitative, and failure boundaries.",
+    "caption_system": "Captions use a consistent Figure/Table label and sentence-style prose. Figures 4–6, A1–A4, and A6 state a main finding, while Table 1/2 and Figure 8 are title-like and depend on body text. Most captions omit aggregation, sample selection, frame sampling, and uncertainty/± definitions; A1, A2, A5, and A6 are more explicit about denominators or control-color semantics. Captions repeatedly point to sections or supplementary videos when the static PDF cannot carry the full protocol.",
+    "table_header_system": "Tables 1–2 use dataset/metric grouped headers; Table 3 uses paired DAVIS/Sora metrics; Table 4 uses a Sora Extended configuration group. Appendix A1/A2 pair decoder/runtime columns, A3 wraps VBench dimensions, and A4 combines VBench-style metrics with FVD. All use booktabs/minimal rules without vertical lines and black/white bold/underline highlighting, while metric directions and mixed precision must be read from headers or prose.",
+    "method_result_ablation_link": "Figure 2 and the track-head/guidance equations define the method interface; Tables 1–2 establish task quality/speed; Figures 4–5 and Table 3 test guidance and representation; Figure 6/Table 4 test sparse attention and system cost; A1/A2 test Tiny VAE; A3/Figure A1/A4 provide multi-dimensional, human, and qualitative checks; A6 returns to explicit failure modes. This gives a method→result→mechanism/efficiency→boundary chain rather than isolated plots.",
+    "main_appendix_link": "The main pages keep the headline workflow, benchmark, guidance, representation, and sparse-attention evidence. Appendix A supplies Tiny VAE reconstruction and end-to-end speed; Appendix B supplies VBench/user study; Appendix C supplies chunk/step, long-horizon, qualitative, and motion-conditioning checks; Appendix D adds streaming examples; Appendix F supplies failure cases. Supplementary videos are unavailable locally, so demo continuity remains outside the auditable PDF.",
+    "typography_consistency": "PDF caption/table text consistently uses Computer Modern/Nimbus Roman-like objects, with bold/italic variants for labels and headers. Raster plots use small sans-serif axes/legends and qualitative/UI frames bring their own text, creating a clear functional hierarchy but not one exact figure font. Wide appendix objects preserve the same table typography while increasing density.",
+    "color_consistency": "Blue/orange/green/red/purple recur in quantitative guidance and attention-related plots; sequential blue is reserved for attention maps; green/red/blue control overlays recur in streaming UI examples; natural image colors are not model identities. Figure A1 uses blue/gray preference bars locally. Direct labels, marker/line choices, row/column positions, and booktabs highlights are necessary redundancy because cross-figure color identity is not globally fixed."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1/2 的 offline→streaming 概念图与 teacher→student pipeline，把系统目标、控制输入、cache 和应用出口放在一条流程中。",
+      "Figure 4/5 的 paired quantitative/qualitative guidance ablation，同时呈现 motion adherence 与 natural dynamics 的 trade-off。",
+      "Figure 6/Table 4 与 Figure A2/A3 的 configuration→time-course→operating-point 链，区分 sparse attention 的 quality mechanism 与 latency cost。",
+      "Table A1/A2 的 decoder-only 与 end-to-end paired comparison，避免把 Tiny VAE 的局部加速直接等同于完整系统速度。",
+      "Figure A6 的按失败机制分组 qualitative grid，把 complex tracks、identity、scene change 与 attention-sink boundary 写进 caption。"
+    ],
+    "highest_value_objects": [
+      "Table 1：motion-transfer quality/speed 的主 benchmark。",
+      "Figure 2：teacher/track-head/student 方法接口核心。",
+      "Figure 6/Table 4：long-video stability、attention configuration 与系统成本的关键消融。",
+      "Figure 4/5：guidance mechanism 最清晰的定量/定性组合。",
+      "Figure A2/A3、Table A1/A2 和 Figure A6：分别限定 operating point、VAE cost 与 failure boundary。"
+    ],
+    "failure_patterns": [
+      "公开候选仓库只有通用 VideoX-Fun causal/self-forcing 代码，没有本文 Figure/Table 的可编辑 plotting、TeX 或 source asset；图形排版只能从 PDF 复核。",
+      "Table 1/2、Figure 7/8 的 caption 信息偏少；Table 4 的 c3s1w1、Figure A2 的 color/shape legend、Figure 4/6 的曲线 aggregation 和 ± variation 规则脱离正文不可完整复原。",
+      "Qualitative grids、user study 和 attention plots 普遍缺 sample selection、uncertainty 或 failure rate；Figure A6 有边界叙述但仍无 denominator，supplementary videos 也无法本地核验。",
+      "多 backbone、resolution、输入轨迹协议和 operating-point 选择使跨-baseline ranking 受条件影响，缺少覆盖全部 chunk/scene-transition 的 controlled ablation。"
+    ],
+    "one_sentence_visual_strategy": "论文以“offline/streaming workflow → teacher/student 与 attention mechanism → quality/speed benchmark → guidance、representation、sparse-attention 消融 → Tiny VAE、interactive demo 与 failure cases”的双栏证据链，把实时交互能力与长时稳定性、质量成本和适用边界串联起来，但图表源代码和 supplementary video 证据未公开。"
+  }
+}

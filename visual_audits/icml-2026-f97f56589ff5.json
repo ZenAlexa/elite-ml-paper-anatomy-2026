@@ -1,0 +1,1696 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-f97f56589ff5",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/wbopan/flashtrace",
+      "https://github.com/Aider-AI/aider"
+    ],
+    "selected_repository": "https://github.com/wbopan/flashtrace",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/wbopan/flashtrace",
+        "path": "paper_figures/fig4_5/README.md",
+        "role": "other",
+        "tool": "Markdown",
+        "evidence": "标题明确为 TPAMI Figures 4 and 5 reproduction；说明 Figure 5 数据、Figure 4 interpolation/hand-normalized Pareto 与 placeholder 限制。"
+      },
+      {
+        "repository_url": "https://github.com/wbopan/flashtrace",
+        "path": "paper_figures/fig4_5/plot_efficiency.py",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "定义 Figure 4 的 1×5 efficiency/Pareto 面板、8 个方法、长度网格、marker、OOM 标记和共享 legend。"
+      },
+      {
+        "repository_url": "https://github.com/wbopan/flashtrace",
+        "path": "paper_figures/fig4_5/plot_reasoning_length.py",
+        "role": "plot_script",
+        "tool": "matplotlib/pandas",
+        "evidence": "定义 Figure 5 的 MoreHopQA/Variable Tracking 两面板、三方法、五个 percentile bins 与 error bars。"
+      },
+      {
+        "repository_url": "https://github.com/wbopan/flashtrace",
+        "path": "paper_figures/fig4_5/common.py",
+        "role": "style_file",
+        "tool": "matplotlib",
+        "evidence": "精确定义 Libertinus Sans fallback、7 pt axes/legend、#3F63A8/#79B6D2/#6F9D4E 等 palette、300 dpi figure/savefig 与 bbox=tight。"
+      },
+      {
+        "repository_url": "https://github.com/wbopan/flashtrace",
+        "path": "paper_figures/fig4_5/data/efficiency.json",
+        "role": "data_file",
+        "tool": "JSON",
+        "evidence": "包含 Figure 4 的方法、length series 与 source path；README 说明部分值为插值/归一化或 placeholder，不能覆盖 PDF 事实。"
+      },
+      {
+        "repository_url": "https://github.com/wbopan/flashtrace",
+        "path": "paper_figures/fig4_5/render.py",
+        "role": "plot_script",
+        "tool": "Python/matplotlib",
+        "evidence": "恢复处理后的 attribution archive 并调用 Figure 4/5 plot scripts；记录 MoreHopQA 95 与 Variable Tracking 子集等复现输入。"
+      },
+      {
+        "repository_url": "https://github.com/wbopan/flashtrace",
+        "path": "paper_figures/fig4_5/reproduce.sh",
+        "role": "other",
+        "tool": "shell",
+        "evidence": "一键编排 Figure 4/5 复现；证明复现边界但不是新的图形定义。"
+      }
+    ],
+    "search_note": "PDF p.1 明确链接 wbopan/flashtrace；agent-reach doctor 显示 GitHub gh CLI 可用但状态为 warn，随后以 unicli search 定位结构化检索并用 gh repo view/tree 与文件读取核验。自动 source inventory 对本 paper 标为 no_public_source_found，并给出不匹配的 Aider-AI/aider 低分候选；corpus/visual_sources/icml-2026-f97f56589ff5/ 无目录。选定仓库当前 master 树提供 Figure 4/5 的局部复现源，未找到 Figure 1–3、6–7、表格或完整论文 TeX 的对应绘图源；paper_figures/fig6 是 VizWiz/Wiki-VISA multimodal 示例，未算作本文 Figure 6。PDF 对象、页码、caption 和统计事实始终优先于该 partial source。"
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 5,
+    "appendix_figures": 2,
+    "appendix_tables": 5,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Libertinus Sans",
+        "Computer Modern math",
+        "Nimbus Mono L"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 7.5,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.8,
+      "header_size_pt": 9.0,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "主结果中 FlashTrace 以青色突出，baseline 使用深蓝/绿/紫；Figure 3/6 用 blue sequential attribution 与 green/red diverging delta；Figure 7 用深蓝/青区分 CoT 与 Input。表格保持黑白 booktabs 横线，浅青底色与粗体标记 FlashTrace。公开源 common.py 的 current palette（#3F63A8、#79B6D2、#6F9D4E 等）与 PDF 成品并非完全相同，因此 per-object 颜色以 rendered estimate 为准。",
+    "vector_raster_mix": "PDF 26 页主体为矢量文字/路径；Figure 2、3、6 含嵌入栅格资源，Figure 1、4、5、7 与 Tables 1–10 主要为矢量/文字。全部页面以 200 dpi 检查，栅格图不以源仓库输出替代 PDF 实物。",
+    "style_consistency": "双栏版式、Nimbus Roman/Libertinus Sans 与 Computer Modern math、booktabs 表格规则和 FlashTrace 高亮贯穿全文；全宽机制/heatmap 与窄栏结果图承担不同职责。图内 palette 在成本曲线、heatmap 和 violin 间不是严格同一套，八方法 legend、小 token 字号和颜色依赖是主要一致性与可读性成本。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "introduction",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "conceptual_diagram",
+        "pipeline",
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1. Motivation for FLASHTRACE. Top: Naive token-by-token attribution requires expensive per-token computation, while FLASHTRACE performs efficient span-wise recursive attribution. Bottom: (a) With extended reasoning, attribution weight on reasoning tokens increases significantly (from approximately 80% to over 90%); (b) This causes recovery rate of ground-truth input tokens to drop substantially (from 26% to below 10%); (c) Naive multi-hop attribution scales poorly with reasoning length, while FLASHTRACE remains efficient even for 10K tokens.",
+        "word_count": 72,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Libertinus Sans",
+          "Computer Modern math",
+          "Nimbus Mono L"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#43C6E0",
+          "#727DB2",
+          "#25377B",
+          "#94A9CE",
+          "#4E579E",
+          "#ACD7E4",
+          "#1DAFEA",
+          "#4479B6"
+        ],
+        "semantic_mapping": "青/蓝区分 Direct、CoT、Baseline 与 FLASHTRACE；流程阶段和 token span 用位置、箭头与文字补充语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 2,
+        "annotations": 10,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top of the composite and inside the mini-panels",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Direct/CoT and reasoning-length positions",
+        "y": "attribution weight, recovery rate, and time",
+        "color": "method/path role and attribution category",
+        "shape": "bars, token cubes, arrows",
+        "line": "naive per-token versus recursive span-wise path",
+        "facet": "top process diagram plus three bottom diagnostics",
+        "text": "stage labels, method names, percentages, length ticks"
+      },
+      "data_and_statistics": "概念流程与三项诊断的复合图；下方小图给出 Direct/CoT 的 attribution-weight 与 recovery-rate 对照以及随 reasoning length 的 time 趋势，没有样本量、重复、误差或明确聚合分母。",
+      "evidence_relation": "引言关于 reasoning-token attribution sink、recovery drop 和效率瓶颈的诊断 → Figure 1 → Figure 2 的 span aggregation/recursive mechanism → Figure 4 的 scaling 与 Tables 1–2 的 faithfulness。",
+      "design_strengths": [
+        "一张图同时建立故障、效率代价和质量损失，Top→Bottom 阅读路径清楚。",
+        "流程箭头、token span、标签和小图数值形成部分冗余证据。"
+      ],
+      "design_weaknesses": [
+        "右栏复合图的小标签和三个 mini-panel 的单位/分母较密。",
+        "颜色承担多种方法语义，灰度下 attribution 角色区分减弱。"
+      ],
+      "reusable_pattern": "用一个诊断复合图先隔离中间 reasoning 改变证据归属的故障，再把故障转写为可测的质量与效率问题。",
+      "evidence": {
+        "page": 1,
+        "label": "Figure 1 and caption",
+        "bbox": [
+          311.0,
+          46.11,
+          588.0,
+          352.99
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "conceptual_diagram",
+        "architecture"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2. Overview of FLASHTRACE span-wise attribution. The method pre-aggregates causal attention and residual contributions within target spans at each layer, enabling efficient multi-hop attribution through chains of intermediate reasoning.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Libertinus Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#2F6FA3",
+          "#58B9D2",
+          "#7665A7",
+          "#2E9A8A",
+          "#E9904A"
+        ],
+        "semantic_mapping": "蓝/青表示 attribution 与 target，紫/青绿表示 Hop/解释阶段，橙色强调 target 或接口；阶段位置和箭头补充颜色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "target span, attribution intensity, Hop stage",
+        "shape": "token-span blocks and arrows",
+        "line": "recursive links through intermediate reasoning",
+        "facet": "Token-to-Span → Hop 0/1/2 → explanation",
+        "text": "module labels, token strips, Hop labels and explanation boxes"
+      },
+      "data_and_statistics": "机制接口图；没有样本、单位、聚合或不确定性。图中预聚合 causal attention/residual contribution 的结构与正文 Eq. 5–12、Algorithm 1 的 SPANATTRIBUTE/K-hop 顺序一致。",
+      "evidence_relation": "§3 的 token-to-span problem → Figure 2 的 pre-aggregation/recursive interface → Eq. 5–12 与 Algorithm 1 → Figure 3 的 attribution shift 和 Figure 4 的 scaling 后果。",
+      "design_strengths": [
+        "将 span aggregation、recursive hops 和最终 input explanation 置于同一条左—中—右路径。",
+        "阶段标题与正文术语一一对应，适合作为方法入口。"
+      ],
+      "design_weaknesses": [
+        "箭头、层次和 token strip 密集，缩放后难以追踪全部连接。",
+        "图例没有给出数值色标或归一化范围，定量语义仍需回到公式。"
+      ],
+      "reusable_pattern": "按输入 span、递归中间态和输出解释组织全宽机制图，让每个 Hop 对应正文中可验证的操作。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2 and caption",
+        "bbox": [
+          36.89,
+          38.68,
+          559.44,
+          345.56
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 3. Visualization of recursive attribution across hops. Hop 1: Initial attribution concentrates on reasoning tokens nearest to the output. Hop 2: Attribution shifts toward earlier reasoning tokens and input context. Δ (Hop2 - Hop1): The difference map shows how importance propagates backward: green regions indicate tokens gaining attribution in the second hop (typically input tokens), while red regions show tokens losing attribution (typically intermediate reasoning tokens).",
+        "word_count": 66,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Libertinus Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 6,
+        "hex": [
+          "#2F77B5",
+          "#8EC7E0",
+          "#F0F4F7",
+          "#6F9D4E",
+          "#B9654E",
+          "#E9904A"
+        ],
+        "semantic_mapping": "Hop 1/2 为蓝色 sequential attribution；Δ 用绿表示增加、红表示减少；橙框标识 target。列位置和 token 文字补充方向。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right-side color keys",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token sequence order",
+        "y": null,
+        "color": "absolute attribution and Hop2−Hop1 change",
+        "shape": "target outline",
+        "line": null,
+        "facet": "Hop 1 / Hop 2 / Δ columns",
+        "text": "token labels, column titles, color keys"
+      },
+      "data_and_statistics": "样例级 token attribution heatmap；横轴是 token 顺序，Hop 1/2 为绝对强度，Δ 为差分方向，没有样本汇总、误差或重复信息。",
+      "evidence_relation": "Figure 2 的 Hop interface → Figure 3 的 Hop 1→Hop 2→Δ 可见机制 → Appendix Figure 6 的多样本 grid、Figure 7 的分布与 Table 7 的 depth ablation。",
+      "design_strengths": [
+        "三列固定对照同时显示 attribution 强度与差分方向。",
+        "caption 明确定义 Δ、绿色增加和红色减少，读图动作可复核。"
+      ],
+      "design_weaknesses": [
+        "token 字体和色块小，热图没有明确数值刻度/归一化范围。",
+        "单个样例不能代表长 reasoning 的重复性，样本选择规则不在图内。"
+      ],
+      "reusable_pattern": "将同一 token 序列的两个 Hop 与差分图并列，用增减颜色和目标框表达路径、方向及作用对象。",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 3 and caption",
+        "bbox": [
+          36.89,
+          20.0,
+          559.76,
+          238.1
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "pareto"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4. Efficiency comparison across methods. (a-b) Time cost vs. input and generation length. (c-d) Memory consumption vs. input and generation length. (e) Pareto front of speed vs. faithfulness. FLASHTRACE achieves the most efficient scaling in both time and memory, while gradient-based methods (IG, IG-Attn, Perturbation) encounter OOM at longer contexts. Dashed lines indicate OOM.",
+        "word_count": 55,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Libertinus Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#E5FFFF",
+          "#407BB2",
+          "#7DC6CC",
+          "#A5E4DF",
+          "#3BA3BE",
+          "#15D8A5",
+          "#5680B2",
+          "#80AEC2"
+        ],
+        "semantic_mapping": "八种方法分别由颜色与 marker 表示；FlashTrace 以青色突出，OOM/辅助线使用深灰或黑色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 8,
+        "data_marks_estimate": 170
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 8,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "input/generation length grid (10–5000)",
+        "y": "log time, log memory, and normalized speed/faithfulness",
+        "color": "method identity and FlashTrace emphasis",
+        "shape": "method-specific markers",
+        "line": "length-scaling curves and dashed OOM segments",
+        "facet": "four cost panels plus Pareto panel",
+        "text": "OOM labels, panel titles, axis labels and method legend"
+      },
+      "data_and_statistics": "5×A800 上比较 IG、IG-Attn、Perturbation、REAGENT、IFR、AttnLRP、CLP、FlashTrace 的时间、显存和 speed–faithfulness Pareto；长度为 10/100/500/1000/2000/5000，曲线与 Pareto 为点估计，无重复或区间。",
+      "evidence_relation": "Figure 1 的效率诊断 → Figure 4 的 time/memory/OOM headline → Table 3 的 exhaustive 对照、Table 6 的复杂度和 Figure 5 的 reasoning-length slice；Pareto faithfulness 仍受 README 中 interpolation/normalization 与 placeholder 说明约束。",
+      "design_strengths": [
+        "time、memory、Pareto 同屏，形成完整成本面。",
+        "共享长度网格和 legend 便于八方法横向扫描，OOM 用虚线显式呈现。"
+      ],
+      "design_weaknesses": [
+        "八方法×四曲线面板造成 legend/颜色密度，灰度阅读困难。",
+        "Pareto faithfulness 口径和缺失/placeholder 状态需回到正文与源 README；没有不确定性。"
+      ],
+      "reusable_pattern": "以同一方法顺序并列 time、memory 和 Pareto，并把 OOM 作为显式结果，与主质量表配对。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 4 and caption",
+        "bbox": [
+          36.89,
+          157.38,
+          559.44,
+          464.26
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 5. Faithfulness (MAS) across reasoning lengths. FLASHTRACE maintains stable performance and consistently outperforms baseline methods.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Libertinus Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#3BA3BE",
+          "#2F4B7C",
+          "#6F9D4E"
+        ],
+        "semantic_mapping": "青/深蓝/绿分别表示 FlashTrace、AttnLRP、Perturbation；marker、面板标题和 legend 提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 2,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 3,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "CoT length percentile bins",
+        "y": "1/MAS",
+        "color": "method identity",
+        "shape": "method-specific markers",
+        "line": "length-bin trend",
+        "facet": "MoreHopQA and Variable Tracking panels",
+        "text": "panel titles, axis labels and legend"
+      },
+      "data_and_statistics": "按 reasoning-length percentile bins 比较 MoreHopQA 与 Variable Tracking 的 1/MAS；三种方法各五个 bins，有可见 error bars，但 caption 未定义其统计量、聚合或重复数。",
+      "evidence_relation": "Figure 4 的 efficiency/faithfulness headline → Figure 5 的长度鲁棒性切片 → Table 7 的 K ablation 与 Appendix Figure 7 的 hop-wise mass distribution；它检验“稳定”而非单一最终点值。",
+      "design_strengths": [
+        "两个任务共享方法与长度轴，直接检查 reasoning length 影响。",
+        "误差线暴露离散度，避免把稳定性完全写成定性句。"
+      ],
+      "design_weaknesses": [
+        "caption 没定义 error bar、bin 或 1/MAS 方向。",
+        "三条线在小面板中容易重叠，正确性筛选需要正文/附录补充。"
+      ],
+      "reusable_pattern": "在主结果之后用同一指标和方法集合做跨任务 length-bin 切片，并保留误差线作为稳定性证据。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 5 and caption",
+        "bbox": [
+          55.0,
+          470.0,
+          290.0,
+          620.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 23,
+      "module": "appendix G",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6. Token-level attribution heatmaps on MATH dataset samples. Hop 1 attributes the output directly to the context. Hop 2 recursively attributes through the reasoning chain. Δ (Hop2 − Hop1) shows the change: green indicates increased attribution (input tokens), red indicates decreased attribution (reasoning tokens).",
+        "word_count": 44,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Libertinus Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 6,
+        "hex": [
+          "#2F77B5",
+          "#8EC7E0",
+          "#F3F5F6",
+          "#6F9D4E",
+          "#B9654E",
+          "#E9904A"
+        ],
+        "semantic_mapping": "Hop 1/2 用蓝色 attribution，Δ 用绿/红表达增加/减少，橙框标 target；行列标签与固定三列结构补充颜色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 9,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "top of grid",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token sequence within each sample",
+        "y": null,
+        "color": "attribution magnitude and Δ direction",
+        "shape": "target outline",
+        "line": null,
+        "facet": "three samples × Hop 1/Hop 2/Δ",
+        "text": "sample labels, column labels, token text, shared color key"
+      },
+      "data_and_statistics": "MATH 的三个样例（Math17、Math54、Math60）组成 3×3 token-level grid；没有总体聚合、样本选择分母或不确定性。",
+      "evidence_relation": "Figure 3 的单样例机制 → Appendix Figure 6 的多样本 qualitative replication → Figure 7 的 100-sample distribution 与 Table 7 的 K depth control。",
+      "design_strengths": [
+        "固定三列结构便于跨样例检查相同 Hop→Δ pattern。",
+        "共享 color key 和 target 标记使绝对 attribution 与差分方向同时可见。"
+      ],
+      "design_weaknesses": [
+        "九个 heatmap 块的 token text 小，长样本局部色块难以精确读取。",
+        "没有样本选择规则、归一化范围或失败样例，灰度下强度退化。"
+      ],
+      "reusable_pattern": "把主文机制 heatmap 扩展为固定列、多个真实样本的 grid，并用差分列分离变化方向。",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 6 and caption",
+        "bbox": [
+          36.89,
+          180.36,
+          559.44,
+          487.24
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 23,
+      "module": "appendix H",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "violin"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 7. Attribution mass shift during recursive hops. From hop 0 to hop 1, the attribution mass on reasoning tokens decreases while attribution shifts toward input tokens. Aggregated across 100 samples from the MoreHopQA dataset.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Libertinus Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#123A8C",
+          "#4DBBCB"
+        ],
+        "semantic_mapping": "深蓝/青色分别区分 CoT 与 Input Tokens；hop 位置、legend、inner bars 和 annotation 提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 1,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "distribution",
+        "line_width_pt": 0.75,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "recursive hop 0–3",
+        "y": "attribution weight",
+        "color": "CoT versus Input Tokens",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "legend and annotation: input majority after 3 hops"
+      },
+      "data_and_statistics": "MoreHopQA 100 个样本的 CoT/Input attribution mass violin distribution；x 为 hop 0–3，y 为 attribution weight，inner bars/中位数可见，但其中心和带宽统计未在 caption 定义。",
+      "evidence_relation": "Figure 3/6 的 qualitative shift → Figure 7 的分布汇总 → Table 7 的 K ablation；它将局部机制图转成跨样本证据，但不替代 correctness/filtering 说明。",
+      "design_strengths": [
+        "分布形状显示 hop-wise heterogeneity，而不仅是一条均值线。",
+        "annotation 把三 hop 后 input majority 绑定到可见转移。"
+      ],
+      "design_weaknesses": [
+        "violin 带宽、inner bar 和中心统计未定义。",
+        "两种颜色依赖较强，y 轴归一化范围和分母未展开。"
+      ],
+      "reusable_pattern": "用固定 hop 轴的分布图汇总样例级机制，并同时标出样本数和方向性结论。",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 7 and caption",
+        "bbox": [
+          24.0,
+          421.77,
+          301.0,
+          728.65
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 1. Attribution quality on RULER benchmarks. We evaluate Recovery Rate (%, the proportion of ground-truth tokens in top-10% of attribution) and Faithfulness (RISE ↓ and MAS ↓) across context lengths (Needle-in-a-Haystack) and tracking complexity (Variable Tracking).",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 18,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "none reported; values are point estimates and no across-sample dispersion, seeds, intervals, or significance tests are shown.",
+      "data_and_statistics": "Recovery Rate (%) 是 ground-truth token 出现在 attribution top-10% 的比例；RISE/MAS 为 lower-is-better 的 faithfulness point estimates，覆盖 NIAH、Variable Tracking 的多个配置和 HotpotQA。Recovery Rate 的百分数与其余三位小数指标并列，表内没有分母样本数或重复。",
+      "evidence_relation": "Figure 1 的 recovery/faithfulness diagnosis → Figure 2 的 span/recursive intervention → Table 1 跨配置主质量矩阵 → Figure 4/5 的成本与长度证据；Appendix B–F、K 补充 baseline、过滤、长 context 和 metric schedule。",
+      "design_strengths": [
+        "将 Recovery Rate、RISE、MAS 放在同一条件矩阵，质量与 faithfulness 可同时扫描。",
+        "dataset/context→metric 的层级和 FlashTrace 行高亮使主比较可定位。"
+      ],
+      "design_weaknesses": [
+        "13 列在页面宽度下仍密集。",
+        "没有 seed、样本量、区间或显著性；正确性筛选与 perturbation schedule 需跨附录重建。"
+      ],
+      "reusable_pattern": "用任务/长度顶层分组、指标第二层表头承载质量与 faithfulness，并在 caption 定义百分数分母。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 1 caption and body",
+        "bbox": [
+          55,
+          106,
+          542,
+          330
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 2. Faithfulness on Multi-step Reasoning Tasks. Comparison on MATH and MorehopQA using causal metrics.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "none reported; values are point estimates and no across-sample dispersion, seeds, intervals, or significance tests are shown.",
+      "data_and_statistics": "六种方法在 MATH、MorehopQA 上报告 RISE 与 MAS point estimates，方向均为 lower-is-better；没有样本量、重复或 error bar。",
+      "evidence_relation": "Table 1 的 RULER 质量矩阵 → Table 2 的多步 reasoning faithfulness replication → Figure 5 长度切片、Table 3 approximation check 与 Appendix K unfiltered check。",
+      "design_strengths": [
+        "两个任务的 RISE/MAS 成对出现，窄表扫描路径简单。",
+        "FlashTrace 行和 dataset→metric 双层表头与主表系统一致。"
+      ],
+      "design_weaknesses": [
+        "caption 未定义指标方向、过滤规则或样本量。",
+        "无重复/离散度，颜色高亮在灰度下主要依赖粗体。"
+      ],
+      "reusable_pattern": "用 dataset→causal metric 双层表头保持跨任务指标轴一致，再连接长度与资源附录。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 2 caption and body",
+        "bbox": [
+          55,
+          138,
+          290,
+          233
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3. Approximation Quality vs. Efficiency. Comparison between FLASHTRACE (Span-wise) and Exhaustive Token-Level Rollout on reasoning tasks. Our method matches the faithfulness of the exact method while reducing runtime from hours to seconds.",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "text_color"
+      ],
+      "uncertainty": "none; Delta is a deterministic relative comparison in the displayed values.",
+      "data_and_statistics": "Exhaustive 与 FlashTrace 的 runtime、RISE、MAS point estimates及 Delta；Exhaustive 约 11.2 sec/0.116/0.193，FlashTrace 约 0.72 sec/0.128/0.205，Delta 给出 runtime ↓93.6%、RISE ↑10.2%、MAS ↑6.4%。",
+      "evidence_relation": "Figure 2 的 span-wise approximation → Table 3 exact rollout 对照 → Table 6 复杂度表达式 → Algorithm 1/附录 normalization；成本变化与质量变化被放在同一局部证据面。",
+      "design_strengths": [
+        "runtime、RISE、MAS 与 Delta 同屏，速度收益和质量变化不会被拆散。",
+        "箭头与红/绿 text color 快速表达方向。"
+      ],
+      "design_weaknesses": [
+        "Delta 的分母和 exact rollout 条件需要正文/附录核对。",
+        "红绿在灰度下弱，表内没有重复或不确定性。"
+      ],
+      "reusable_pattern": "将 approximation/exhaustive 与成本、质量 Delta 并列，避免只宣传加速而隐藏 faithfulness 偏移。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 3 caption and body",
+        "bbox": [
+          307,
+          436,
+          542,
+          552
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 4. Generalization to Code Generation (Aider). We attribute generated code modification snippets back to user instructions. FLASHTRACE generalizes to structured intermediate outputs better than single-line baselines.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "none reported; values are point estimates and no across-sample dispersion, seeds, intervals, or significance tests are shown.",
+      "data_and_statistics": "比较 IFR Last Line、IFR Last Token 与 FlashTrace Full Code Span 在 Aider code-generation snippets 上的 RISE/MAS；可见值约 0.710/0.782、0.707/0.773、0.013/0.173，均为 point estimates。",
+      "evidence_relation": "Figure 1 的 intermediate reasoning 问题 → Figure 2 span aggregation → Table 4 structured code-span transfer → Appendix target aggregation/failure boundary；它是跨域 robustness evidence。",
+      "design_strengths": [
+        "方法行直接写出 target scope，干预对象清楚。",
+        "caption 把用户指令与 structured intermediate output 的关系说清。"
+      ],
+      "design_weaknesses": [
+        "没有 code task 数量、过滤条件或指标方向。",
+        "full-span 优势可能受 target scope 变化影响，需要附录控制。"
+      ],
+      "reusable_pattern": "把 structured-output 的 target scope 写进方法行名，并单独呈现 scope ablation。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 4 caption and body",
+        "bbox": [
+          307,
+          540,
+          542,
+          650
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 5. Model Generalization to LLaMA-3.1-8B-It. Faithfulness results on RULER (Avg) and MATH.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "none reported; values are point estimates and no across-sample dispersion, seeds, intervals, or significance tests are shown.",
+      "data_and_statistics": "LLaMA-3.1-8B-It 上 IFR、AttnLRP、FlashTrace 的 RULER average 与 MATH RISE/MAS point estimates；无样本量、重复或离散度。",
+      "evidence_relation": "Tables 1–2 的主模型/任务比较 → Table 5 的 model-family robustness → Appendix B/F 的 baseline 与 metric protocol；只有一个额外 model family，不能替代系统跨模型实验。",
+      "design_strengths": [
+        "复用 RULER/MATH 与 RISE/MAS 轴，泛化问题独立易定位。",
+        "FlashTrace 行高亮与主表系统一致。"
+      ],
+      "design_weaknesses": [
+        "caption 没有 model size、context、样本数或筛选设置。",
+        "没有不确定性，跨方法小差异只能作为点值比较。"
+      ],
+      "reusable_pattern": "保持 benchmark 指标结构不变，只替换 model family，使泛化证据与主表可对齐。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 5 caption and body",
+        "bbox": [
+          55,
+          69,
+          290,
+          173
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 17,
+      "module": "appendix B.3",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "theory_mechanism",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6. Complexity Comparison. N: Context Length, M: Target Span Length, D: Hidden Dimension, K: Number of Hops, L: Number of Layers. Working memory refers to memory used during attribution computation, excluding attention maps (which require O(L · N²) if cached).",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "none reported; values are point estimates and no across-sample dispersion, seeds, intervals, or significance tests are shown.",
+      "data_and_statistics": "Naive Token-Level 与 FLASHTRACE 的时间/working-memory asymptotic expressions：O(M·N·D)/O(M·N) 对照 O(K·N·(M+D))/O(N+D)；working memory 排除 cached attention maps，后者若缓存为 O(L·N²)。",
+      "evidence_relation": "Figure 2/Algorithm 1 的循环结构 → Table 6 复杂度摘要 → Figure 4 measured time/memory → Table 9 cache trade-off；附录表揭示正文简化复杂度的条件边界。",
+      "design_strengths": [
+        "符号、时间和 working-memory 对照紧凑。",
+        "caption 明确定义 N/M/D/K/L 与 attention-cache 排除项。"
+      ],
+      "design_weaknesses": [
+        "没有 K/M/N/D 实测范围或常数，不能独自预测 wall-clock。",
+        "渐近式不是端到端 GPU memory，必须与 Figure 4/Table 9 联读。"
+      ],
+      "reusable_pattern": "把渐近式和排除项放在同一表，再用 measured scaling 与 cache ablation 复核适用边界。",
+      "evidence": {
+        "page": 17,
+        "label": "Table 6 caption and body",
+        "bbox": [
+          37.13,
+          321.15,
+          559.61,
+          430
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 22,
+      "module": "appendix H",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 7. Effect of Recursive Hops. Faithfulness (RISE ↓, MAS ↓) on MorehopQA with varying recursion depths.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "none reported; values are point estimates and no across-sample dispersion, seeds, intervals, or significance tests are shown.",
+      "data_and_statistics": "MorehopQA 在 K=0/1/2/3 recursive hops 下的 RISE/MAS point estimates，约为 0.127/0.209、0.128/0.205、0.130/0.206、0.133/0.209；没有误差、重复或显著性。",
+      "evidence_relation": "Figure 2 recursive mechanism → Figure 3 Hop shift → Table 7 depth ablation → Figure 7 hop-wise mass distribution；它显示更多 hop 并非单调改善。",
+      "design_strengths": [
+        "K=0–3 形成清晰的单轴扫描，指标方向在 caption 中给出。",
+        "小表直接暴露收益饱和/反转。"
+      ],
+      "design_weaknesses": [
+        "没有 seed、样本量或误差，小差异的稳健性无法判断。",
+        "caption 没解释 K=0 的 baseline 语义。"
+      ],
+      "reusable_pattern": "把递归深度作为唯一行轴，保持同一 faithfulness 指标并高亮默认配置。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 7 caption and body",
+        "bbox": [
+          298,
+          494,
+          543,
+          589
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 24,
+      "module": "appendix K",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 8. Unfiltered faithfulness at longer contexts. RISE and MAS on HotpotQA with no correctness filtering, at 2048 and 4096 token contexts. FLASHTRACE keeps its advantage and improves at longer contexts.",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "none reported; unfiltered HotpotQA values are point estimates.",
+      "data_and_statistics": "HotpotQA 无 correctness filtering，在 2048/4096 context 比较 AttnLRP、IFR、FlashTrace 的 RISE、MAS、time。2048：AttnLRP .383/.544/1.19、IFR .059/.139/5.10、FlashTrace .036/.118/3.58；4096：.232/.291/2.63、.040/.115/12.71、.025/.106/9.12。",
+      "evidence_relation": "主文 Tables 1–2 的 filtered faithfulness → Table 8 的 unfiltered long-context stress test → Figure 4 scaling 与 Table 9 cache cost；它补充适用性边界但不消除指标设计限制。",
+      "design_strengths": [
+        "caption 明确 unfiltered 和两个长 context，直接回应过滤/长度依赖。",
+        "每行同时显示 quality 与 time。"
+      ],
+      "design_weaknesses": [
+        "time 单位和输入/生成定义不够显眼。",
+        "没有样本计数或误差，“improves”需按 RISE/MAS 方向理解。"
+      ],
+      "reusable_pattern": "把过滤条件、长度压力和 runtime 放在一张附录表，作为主文 point estimates 的边界检查。",
+      "evidence": {
+        "page": 24,
+        "label": "Table 8 caption and body",
+        "bbox": [
+          55,
+          579,
+          543,
+          697
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 25,
+      "module": "appendix L",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9. Cached versus on-the-fly attention. Latency and peak GPU memory of FLASHTRACE on Qwen-3 4B (bf16, 2048-token context, averaged over five runs).",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Time is shown as mean ± an unspecified spread over five runs; the caption does not identify whether ± is SD or SE. Peak memory has no interval.",
+      "data_and_statistics": "Qwen-3 4B、bf16、2048-token context，cached 为 1.98 ± .27 sec/35.43 GiB，on-the-fly 为 2.81 ± .06 sec/13.43 GiB；time 有五次运行的 ±，peak memory 为单值。",
+      "evidence_relation": "Table 6 的 attention-cache boundary → Table 9 的 latency/memory trade-off → Figure 4 的 overall scaling；该表把部署选择落实为实测证据。",
+      "design_strengths": [
+        "latency 与 peak memory 的反向 trade-off 直接并列。",
+        "caption 暴露模型、dtype、context 和五次运行。"
+      ],
+      "design_weaknesses": [
+        "± 的统计量未定义，cached 高显存条件容易被忽略。",
+        "没有 GPU 型号或 batch size，跨环境复现边界不完整。"
+      ],
+      "reusable_pattern": "对缓存策略同时报告 latency 与 peak memory，并明确运行次数，让渐近式与部署取舍相互校验。",
+      "evidence": {
+        "page": 25,
+        "label": "Table 9 caption and body",
+        "bbox": [
+          55,
+          202,
+          543,
+          273
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 25,
+      "module": "appendix M.1",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 10. Last-token targeting versus span-wise aggregation on HotpotQA. Attributing only the final token sharply reduces coverage and faithfulness.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.8,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "none reported; values are point estimates and no across-sample dispersion, seeds, intervals, or significance tests are shown.",
+      "data_and_statistics": "HotpotQA 上比较 FlashTrace span-wise 与 Last-Token 的 attribution coverage、RISE、MAS；FlashTrace 为 .384/.033/.128，Last Token 为 .161/.214/.354。coverage 分母、样本量和过滤细节未在表中给出。",
+      "evidence_relation": "Figure 2 的 span aggregation → Table 10 的 last-token targeting control → Figure 1 recovery diagnosis 与 Table 4 structured-span generalization；它隔离 target scope 这一设计变量。",
+      "design_strengths": [
+        "coverage、RISE、MAS 三个互补指标同屏，scope 变量简单。",
+        "caption 直接给出 final-token 对 coverage/faithfulness 的方向。"
+      ],
+      "design_weaknesses": [
+        "coverage 分母与任务过滤未在 caption 给出。",
+        "只有点值，不能判断差异对样本扰动的稳健性。"
+      ],
+      "reusable_pattern": "保持模型、任务和指标不变，只改变 target scope，再并列 coverage 与 faithfulness。",
+      "evidence": {
+        "page": 25,
+        "label": "Table 10 caption and body",
+        "bbox": [
+          55,
+          628,
+          543,
+          704
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 诊断 reasoning-token attribution sink、recovery drop 与效率问题；Figure 2 把问题转成 span aggregation + recursive-hop 机制；Figure 3 显示 token-level shift；Tables 1–2/Figure 4 建立质量与成本 headline；Table 3–5/Figure 5 做 approximation、structured-output、model-generalization 与长度切片；附录 Figure 6–7、Tables 6–10 和 Algorithm 1 补足复杂度、hop、cache、长 context、target scope 与 qualitative/distribution 边界。",
+    "caption_system": "Figure 1–4、6–7 与 Table 1、3、4、6、8 等使用加粗标题句并在 caption 中写 setup/编码/主发现；Table 2、5、7、9 更短，依赖正文定义指标或条件。Figure 5 error bars 与 Table 9 的 ± 被看见但统计语义未完全定义。",
+    "table_header_system": "主结果表采用 dataset/context→metric 双层表头，方法为行轴；消融表将 rollout、target scope、hop depth 或 attention mode 直接放入行轴；Table 6 用复杂度符号列。booktabs 横线、无竖网格和 FlashTrace 粗体/浅青高亮贯穿表格。",
+    "method_result_ablation_link": "Figure 2/Algorithm 1 的 span/recursive interface 连接到 Tables 1–2 的 faithfulness、Figure 4 的 measured cost，再由 Figure 5/Table 3/4/5 与 Table 7/10 分解 length、approximation、scope、域和模型变量；Table 9 单独隔离 cache trade-off。",
+    "main_appendix_link": "正文 p.1–9 保留 motivation、机制、主质量矩阵、scaling 和有限 ablation；附录 p.16–25 展开 Algorithm、复杂度、K、qualitative samples、long-context、cache、target scope 与 unfiltered controls。baseline adaptation、correctness filtering 和 metric schedule 仍依赖 Appendix B–F/K–N。",
+    "typography_consistency": "caption、正文和表格的 Nimbus Roman/Computer Modern 体系稳定；图内小标签混用 Libertinus Sans、Nimbus Mono 或栅格字形，Figure 2/3/6 的估计置信度较低。",
+    "color_consistency": "FlashTrace 在表格与 Figure 4/5 多为青色，delta heatmap 统一采用绿增/红减，形成可追踪语义；但公开源当前 palette 与 PDF 不完全一致，Figure 4 八方法和 Figure 6 强依赖颜色，灰度安全性弱于表格。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 Figure 1 的故障诊断复合图建立单一问题，再用 Figure 2 的全宽机制接口连接公式和算法。",
+      "主表按 dataset/context→metric 分组，同时展示 Recovery Rate、RISE 和 MAS，并通过 caption 定义分母与方向。",
+      "Figure 4 将 time、memory、Pareto 和 OOM 放在同一方法轴上；附录再用 hop、cache、target scope 与 unfiltered 长 context 做边界检查。",
+      "用 Figure 3/6 的固定 Hop→Δ grid 配合 Figure 7 的跨样本分布，把局部解释与 aggregate evidence 分开。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：把 reasoning attribution sink、recovery drop 和效率瓶颈同时变成可测问题。",
+      "Figure 2：最清楚地定义 span aggregation 与 recursive attribution 的方法接口。",
+      "Table 1：跨配置质量/faithfulness headline 矩阵。",
+      "Figure 4：time、memory、OOM 和 speed–faithfulness 的完整成本面。",
+      "Table 3 与 Table 9：近似/缓存策略的速度、质量和资源边界。"
+    ],
+    "failure_patterns": [
+      "多数 Table 和 Figure 4/6 只有 point estimates，没有 seed、样本分母或重复。",
+      "Figure 5 error bars 与 Table 9 的 ± 未定义统计量，Figure 7 的 violin 中心/带宽也未说明。",
+      "Figure 4 的八方法颜色/legend 密度以及 Figure 3/6 的小 token heatmap 降低灰度和缩放可读性。",
+      "broad faithfulness 与简化 O(N) efficiency 叙述需要 filtering、残余 M·N 项和 attention-cache 条件才能完整解释。"
+    ],
+    "one_sentence_visual_strategy": "论文先用 attribution-sink 诊断和全宽 span-wise 机制图锁定问题，再以 faithfulness/效率主表图建立 headline，最后用递归、target、cache、长 context 和 qualitative distribution 的附录对象逐层限定方法收益的适用条件。"
+  }
+}

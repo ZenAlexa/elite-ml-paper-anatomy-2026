@@ -1,0 +1,727 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-8b22afb8c5ae",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates"
+    ],
+    "selected_repository": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+        "path": "repro/src/experiments.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "gh api tree confirms plotting functions: lines 171–217 generate Figure 1, 268–359 Figure 2, 468–496 Figure 3, 515–578 Figure 4, and 608–676 Figure 5; README identifies the package as clean-room reproduction."
+      },
+      {
+        "repository_url": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+        "path": "repro/src/spectral.py",
+        "role": "other",
+        "tool": "NumPy",
+        "evidence": "gh api tree confirms ESD, span-profile, oracle-risk and OP-GF numerical primitives used by the clean-room plot producers; it is not the original paper plotting source."
+      },
+      {
+        "repository_url": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+        "path": "outputs/v4/figures/figure1_span_profiles.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "Generated clean-room PNG asset; the repository README says outputs/v4/figures contains evidence figures, not author PDF assets."
+      },
+      {
+        "repository_url": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+        "path": "outputs/v4/figures/figure2_depth.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "Generated clean-room PNG asset; conceptually corresponds to the paper's depth/ESD/error comparison but has different title and source settings."
+      },
+      {
+        "repository_url": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+        "path": "outputs/v4/figures/figure3_linear.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "Generated clean-room PNG asset for fixed-design PCR; it includes an MC scatter series absent from the paper PDF Figure 3."
+      },
+      {
+        "repository_url": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+        "path": "outputs/v4/figures/figure4_rkhs.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "Generated clean-room PNG asset for RKHS/KPCPE bounds; its styling and titles differ from the paper PDF Figure 4."
+      },
+      {
+        "repository_url": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+        "path": "outputs/v4/figures/figure5_pathwise.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "Generated scale-reduced clean-room PNG asset; README/source manifest states it is not bit-for-bit recovery of the author run."
+      },
+      {
+        "repository_url": "https://github.com/MachineLearning-Nerd/icml26-spectral-minimax-rates",
+        "path": "SOURCE_MANIFEST.md",
+        "role": "other",
+        "tool": null,
+        "evidence": "gh api read confirms arXiv v4 association and explicitly attributes the package to MachineLearning-Nerd as a clean-room reproduction, not the authors' implementation."
+      }
+    ],
+    "search_note": "The PDF exposes OpenReview 4HrWo5x7YF and arXiv 2509.20294 but no code/project URL. Read-only gh search by exact title/method terms found no exact repository-name hit; gh api /search/code found MachineLearning-Nerd/icml26-spectral-minimax-rates/SOURCE_MANIFEST.md, whose full title and arXiv identifier match. Its main tree has five plot PNGs and Matplotlib/NumPy reproduction code but no original .tex, .tikz, .pgf or figure-source project. It is therefore partial rather than source-exact."
+  },
+  "paper_style": {
+    "main_figures": 2,
+    "main_tables": 0,
+    "appendix_figures": 3,
+    "appendix_tables": 0,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "DejaVu Sans Oblique"
+      ],
+      "size_pt": {
+        "minimum": 7,
+        "median": 11,
+        "maximum": 13
+      },
+      "weight": [
+        "regular"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern"
+      ],
+      "body_size_pt": null,
+      "header_size_pt": null,
+      "header_weight": "regular",
+      "provenance": "pdf_object",
+      "confidence": "low"
+    },
+    "palette_strategy": "以 Okabe–Ito 类别色复用 blue/orange/green；Figure 1 另用 pink/yellow 表示时间。Figure 3/4 用 solid/dashed/dotted 线型补足颜色语义，Figure 5 用 circle/square marker 补足双轴语义。",
+    "vector_raster_mix": "PDF 中五幅图均由矢量路径和嵌入字体组成；pdfimages -list 未发现栅格 XObject。公开复现仓库的对应输出是 PNG，但不是 PDF 嵌入资产。",
+    "style_consistency": "五幅图都使用 DejaVu Sans 图内标签、黑色坐标和约 1.2 PDF stroke-width，图例和浅灰网格风格相近。Figure 4 的单图字号明显更大；Figure 1 的时间色编码与其他图的深度/风险色编码不同。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 8,
+      "module": "main §6 Numerical experiments",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1. Evolution of span profiles during the training of an over-parameterized gradient flow. The misalignment level q varies from 1 to 3. Fixed parameters are n = 10000, σ₀ = 1, d = 5000, J = 15, p = 2.5, and γ = 1.",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 11,
+          "maximum": 13
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#0072B2",
+          "#D55E00",
+          "#009E73",
+          "#CC79A7",
+          "#E69F00"
+        ],
+        "semantic_mapping": "颜色按训练时间映射：蓝 t=0、橙 t=20、绿 t=40、粉 t=60、黄 t=80；坐标、网格和文字为中性黑/灰。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 4,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "inside each panel; lower-left for q=1,1.5,2 and upper-right for q=3",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "noise level τ, logarithmic, approximately 10⁻⁷–10⁻²",
+        "y": "ESD d†(τ), logarithmic",
+        "color": "training time t ∈ {0,20,40,60,80}",
+        "shape": null,
+        "line": "five solid span-profile trajectories per panel; no markers",
+        "facet": "2×2 q panels: q=1, 1.5, 2, 3",
+        "text": "q panel titles, d†(τ) y-labels, bottom-row τ x-labels, and t legends"
+      },
+      "data_and_statistics": "Synthetic sequence model with n=10000, σ₀=1, d=5000, J=15, p=2.5, γ=1. The span profile d†(τ) is shown over q and five training times. This is a descriptive trajectory comparison with no replication count, averaging, error bar, interval, failure value, or denominator.",
+      "evidence_relation": "Connects the fixed-eigenbasis OP-GF mechanism in §5 to the §6 misalignment experiment. The q=1 panel is the aligned/no-room-for-improvement control; q>1 panels show the downward profile shift that motivates Figure 2 and the later Appendix D.2 pathwise descriptor.",
+      "design_strengths": [
+        "Separates misalignment q from training checkpoint t in a compact 2×2 facet.",
+        "Log–log axes expose span-profile changes across several orders of magnitude.",
+        "Fixed dimensions and signal parameters are stated in the caption, making the controlled comparison explicit."
+      ],
+      "design_weaknesses": [
+        "All five time series use color alone; q=1 overlap makes the curves difficult to separate even in color.",
+        "The caption does not define the time-color key or state the downward-shift finding, so the reader must use the legend and body text.",
+        "No replication or uncertainty is shown, so a single trajectory cannot establish stability of the trend."
+      ],
+      "reusable_pattern": "Use controlled q facets and checkpoint-colored log–log span profiles to show how a learned spectrum changes a noise-indexed complexity descriptor; add marker or line-style redundancy when profiles overlap.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 1 plot and caption; bbox approximately [79,85,532,414] pt; 220/600 dpi render",
+        "bbox": [
+          79,
+          85,
+          532,
+          414
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 8,
+      "module": "main §6 Numerical experiments",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2. Averaged squared error of the oracle–tuned PC estimator and ESD as a function of the training time. Each average is computed based on 20 replications and each error bar represents one standard error.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 11,
+          "maximum": 13
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#0072B2",
+          "#D55E00",
+          "#009E73"
+        ],
+        "semantic_mapping": "颜色按深度映射：蓝 D=0、橙 D=1、绿 D=3；误差条沿用对应曲线颜色。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "training time t, logarithmic, visible ticks 10¹–10⁴",
+        "y": "left: oracle-tuned PC squared error; right: ESD d†, both linear",
+        "color": "depth D ∈ {0,1,3}",
+        "shape": null,
+        "line": "three solid depth trajectories with vertical one-SE error bars; no markers",
+        "facet": "two side-by-side metrics: Oracle PC squared error and Effective span dimension",
+        "text": "panel titles, metric y-labels, Training time x-labels, and D legends"
+      },
+      "data_and_statistics": "For D=0,1,3, each curve is a 20-replication Monte Carlo mean over training time; every error bar is one standard error. The plot compares ESD and oracle-tuned PC squared error, with the body text reporting earlier shallow-model decline and lower late ESD for deeper models. q, n, d, signal decay, seed, and stopping rule are not stated in the caption.",
+      "evidence_relation": "Carries Figure 1's span-profile mechanism into the main empirical comparison. ESD determines the oracle-PC component count, and the paired error panel links that descriptor to estimation error. D is a depth-sensitivity contrast, not a component-removal ablation; §6 explicitly limits the general-depth interpretation.",
+      "design_strengths": [
+        "The same log training-time axis aligns a complexity curve with an estimator-error curve.",
+        "Twenty replications and one-SE bars expose between-run variation rather than showing only a deterministic path.",
+        "The two panels keep the mechanism quantity and task error adjacent without mixing their units."
+      ],
+      "design_weaknesses": [
+        "Depth is encoded only by color, and error bars overlap where the curves are close.",
+        "The caption omits q and the fixed synthetic settings needed to reproduce the comparison from the figure alone.",
+        "The different y-axis scales require the reader to make a cross-panel rather than direct visual magnitude comparison."
+      ],
+      "reusable_pattern": "Pair a noise/complexity descriptor with the downstream estimator error on a shared training-time axis, retaining the same control-color mapping and reporting replication plus error-bar semantics in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 2 plot and caption; bbox approximately [79,490,532,668] pt; 220/600 dpi render",
+        "bbox": [
+          79,
+          490,
+          532,
+          668
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 19,
+      "module": "Appendix B.4 Numerical illustration",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3. Oracle PCR risk versus Effective Span Dimension for (a) geometric eigen-decay and (b) logarithmic eigen-decay. The dashed line plots Risk × n/σ₀²; the solid line is d†(α). The risk is computed based on 20 replications and the error bars represent standard errors.",
+        "word_count": 44,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique"
+        ],
+        "size_pt": {
+          "minimum": 9,
+          "median": 11,
+          "maximum": 13
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#0072B2",
+          "#D55E00"
+        ],
+        "semantic_mapping": "蓝实线表示 ESD，橙虚线表示重标化 oracle PCR risk；误差条使用橙色。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-right inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "transformation severity α; linear, left panel 0–30 and right panel 0–10",
+        "y": "ESD and rescaled risk nR*(α)/σ₀²; linear, approximately 0–300",
+        "color": "blue ESD versus orange rescaled risk",
+        "shape": null,
+        "line": "solid ESD and dashed risk with vertical standard-error bars",
+        "facet": "(a) geometric eigen-decay; (b) logarithmic eigen-decay",
+        "text": "ESD and Rescaled risk ± SE legends; the plot itself omits an α x-label"
+      },
+      "data_and_statistics": "Appendix B.4 fixes σ₀²=1, n=300, p=400 and applies a non-orthogonal A(α) transformation to geometric and logarithmic spectrum/signal cases. Blue d†(α) is compared with orange nR*(α)/σ₀². Risk is computed over 20 replications with standard-error bars; the ESD curve is not an empirical mean.",
+      "evidence_relation": "Extends the ESD–oracle-risk relation from the sequence model to fixed-design linear regression and visually checks Proposition B.2. The two spectrum/signal cases are controlled robustness slices, not a learned-method baseline ranking.",
+      "design_strengths": [
+        "Uses a common y quantity and identical solid/dashed semantics for two spectrum cases.",
+        "The caption defines which curve is risk, which is ESD, and how the 20-replication errors are formed.",
+        "Line-style redundancy preserves the two-series distinction when color is unavailable."
+      ],
+      "design_weaknesses": [
+        "The α x-variable is absent from the plot axes and depends on caption/body context.",
+        "The two panels use different α ranges, which makes visual slope comparison unsafe without reading the ticks.",
+        "The curves approach a high plateau and the caption does not state the observed increasing trend."
+      ],
+      "reusable_pattern": "For a theoretical extension, use matched case panels with a shared risk/complexity y semantics, solid-versus-dashed encoding, and replication/SE details in the caption; label each case's x range explicitly.",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 3 plot and caption; bbox approximately [66,70,543,243] pt; 220/600 dpi render",
+        "bbox": [
+          66,
+          70,
+          543,
+          243
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 25,
+      "module": "Appendix C.4 Numerical Illustration",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4. Optimal KPCPE risk and ESD-based bounds. The blue dashed curve plots the lower bound (d†(α) − 1)σ₀²/n. The green dotted curve plots the ESD-based upper curve 2d†(α)(σ₀² + ‖f*‖∞²)/n. The orange curve with error bars plots the Monte Carlo estimate of the risk of the oracle–tuned KPCPE. The risk is averaged over 10 replications, and the error bars represent one standard error.",
+        "word_count": 64,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique"
+        ],
+        "size_pt": {
+          "minimum": 10,
+          "median": 15,
+          "maximum": 17
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#0072B2",
+          "#009E73",
+          "#D55E00"
+        ],
+        "semantic_mapping": "蓝 dashed 线为 ESD lower bound，绿 dotted 线为 ESD upper bound，橙 solid 线为 Optimal KPCPE risk；误差条使用橙色。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 33
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left inside plot",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "misalignment severity α; linear, ticks 0–30",
+        "y": "risk and ESD-based bounds; linear, approximately 0–1.2",
+        "color": "lower bound blue, upper bound green, empirical risk orange",
+        "shape": null,
+        "line": "dashed lower, dotted upper, solid empirical risk with one-SE bars",
+        "facet": null,
+        "text": "formula legend and Risk and ESD-based bounds y-label; plot omits an α x-label"
+      },
+      "data_and_statistics": "Appendix C.4 fixes cosine basis, x∼Unif[0,1], n=400, J=800, σ₀²=1 and changes the first D=80 eigenvalues over α. The orange curve is an oracle-tuned KPCPE Monte Carlo mean over 10 replications with one-SE bars; blue and green curves are the ESD lower and upper bounds.",
+      "evidence_relation": "Connects the RKHS extension to Proposition C.4 by placing empirical oracle KPCPE risk between ESD-based lower and upper curves. It is a theory-bound validation object, not a direct comparison with a learned neural baseline.",
+      "design_strengths": [
+        "Puts both theoretical bounds and the empirical risk on one axis, making the sandwich relation immediately visible.",
+        "Formula legend plus line-style redundancy identifies all three curves in grayscale.",
+        "The caption states the risk estimator, replication count, and one-SE interpretation."
+      ],
+      "design_weaknesses": [
+        "The α x-variable is not labelled on the plot, so the reader must use caption/body context.",
+        "The formula legend occupies the upper-left plot area and competes with the high upper-bound curve.",
+        "The large gap between the upper bound and empirical risk leaves much of the y-range visually empty near the risk curve."
+      ],
+      "reusable_pattern": "Use a single lower-bound/upper-bound/empirical-risk chart with line-style roles and error bars on the estimate; place the exact inequalities in the legend and label the transformation variable on the axis.",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 4 plot and caption; bbox approximately [190,70,441,296] pt; 220/600 dpi render",
+        "bbox": [
+          190,
+          70,
+          441,
+          296
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 27,
+      "module": "Appendix D.2 Pathwise ESD for Learned Kernels",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5. Pathwise ESD and risk under a learned kernel using a 4-layer linear network.",
+        "word_count": 15,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 11,
+          "median": 11,
+          "maximum": 12
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#0072B2",
+          "#D55E00"
+        ],
+        "semantic_mapping": "蓝圆点/左轴表示 ESD，橙方点/右轴表示 parameter risk；轴标签颜色重复该语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right inside plot",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "epoch, linear, 0–500",
+        "y": "dual linear axes: left ESD (approximately 50–62), right risk (approximately 0.1–0.8)",
+        "color": "blue ESD and orange risk",
+        "shape": "circle for ESD and square for risk",
+        "line": "two solid pathwise trajectories",
+        "facet": null,
+        "text": "colored left/right y-labels, Epoch x-label, and combined ESD/Risk legend"
+      },
+      "data_and_statistics": "Appendix D.2 describes a random-design linear regression with p=900, n=1000, four hidden affine layers, full-batch Adam and learning rate 10⁻⁴. The same training path supplies d†(t) and ‖A(t)ᵀw(t)−β*‖₂². No replication, averaging, error bar, interval, or failure value is reported; the plotted trajectory decreases and then plateaus.",
+      "evidence_relation": "Connects the pathwise ESD definition and deep-linear learned-kernel construction in Appendix D.2 to the paper's explicit evolving-eigenfunction boundary. The figure is illustrative mechanism evidence, not a general adaptive-learning theorem or a repeated empirical estimate.",
+      "design_strengths": [
+        "Shows descriptor and parameter risk on the same trajectory, making synchronized decline and plateau visible.",
+        "Circle/square marker shapes redundantly distinguish the two quantities from color.",
+        "Single-panel composition keeps the path and endpoint readable."
+      ],
+      "design_weaknesses": [
+        "Dual y axes can make the two slopes look directly comparable even though their units differ.",
+        "A single Adam trajectory has no uncertainty or replication evidence for stability.",
+        "The caption omits the risk formula, p/n/depth, initialization and the single-trajectory/illustrative scope."
+      ],
+      "reusable_pattern": "When an evolving-kernel claim is only pathwise, use a dual-axis descriptor/risk trajectory with marker redundancy and explicitly label it as a single illustrative run in the caption.",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 5 plot and caption; bbox approximately [161,70,440,251] pt; 220/600 dpi render",
+        "bbox": [
+          161,
+          70,
+          440,
+          251
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 用 q/time span profiles 暴露信号—谱对齐机制；Figure 2 将其连接到 depth、ESD 与 oracle-PC error；Appendix Figure 3/4 分别扩展到 fixed-design PCR 与 RKHS bounds；Figure 5 给出 evolving learned-kernel 的 pathwise illustration。",
+    "caption_system": "五个 caption 都以 italic Figure n. 起头。Figure 1/2/4/5 的标题正文为 regular，Figure 3 的比较标题使用 medium/bold；Figure 1 给固定参数，Figure 2–4 给 replication/SE，Figure 5 只有主题标题。",
+    "table_header_system": "PDF 没有任何表格，因此没有可比较的指标表头、单位、模型/任务分组、成本列、失败值或 best/second-best 规则。",
+    "method_result_ablation_link": "q 和 D 是 alignment/depth sensitivity 对照，不是 component-removal ablation。Figure 1/2 是主文机制与结果，Figure 3/4 是跨模型 risk/bound 验证，Figure 5 是 learned-kernel pathwise 证据；论文没有组件替换或成本基准表。",
+    "main_appendix_link": "主文 Figure 1–2 由 §5–§6 的 OP-GF 条件、ESD 定义和实验段落调用；Appendix B.4/C.4/D.2 的 Figure 3/4/5 分别扩展 fixed-design、RKHS 和 pathwise learned-kernel 语境。附录 E–I 补充证明和边界，但没有追加图表。",
+    "typography_consistency": "图内 plot text 统一为 DejaVu Sans，数学变量使用 italic；caption/body 统一为 Nimbus Roman/Computer Modern 风格。Figure 4 的大字号适应单图缩放，但跨图字号并不完全一致。",
+    "color_consistency": "蓝/橙/绿在图间复用，通常表达 ESD、risk 或 bound；Figure 1 的蓝/橙/绿/粉/黄改为表达 t。Figure 3/4 以线型提供冗余，Figure 5 以 marker 和轴色提供冗余。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 controlled facet 将 alignment/depth lever 与 ESD/span profile 分离，并让 log/linear 轴匹配量级。",
+      "用并排 complexity-proxy/risk 或 lower/upper/empirical sandwich 组织理论量、经验均值和 SE。",
+      "对 pathwise learned-kernel 证据使用双 y 轴加 marker redundancy，同时在 caption 标出单轨迹边界。"
+    ],
+    "highest_value_objects": [
+      "Figure 1（p. 8）：把 q、training time、signal-spectrum alignment 与 ESD profile 组织成主机制接口。",
+      "Figure 2（p. 8）：用 20-replication one-SE 曲线把 depth、ESD 与 oracle-PC error 放进同一主文对照。",
+      "Figure 4（p. 25）：在一个对象中同时展示 empirical KPCPE risk 与 ESD lower/upper bounds。"
+    ],
+    "failure_patterns": [
+      "Figure 1/2 只用颜色区分多条系列，重叠曲线和灰度阅读不友好。",
+      "Figure 1、3、4 的 τ/α 变量在部分 panel 中依赖 caption/正文而缺少独立 x-label；Figure 2 caption 缺 q 与完整固定设置。",
+      "Figure 5 是无不确定性的单轨迹双轴图且 caption 信息不足；全文没有表格、成本、失败或 baseline 汇总。",
+      "严格匹配的公开仓库是 clean-room reproduction，缺少原作者 plotting/LaTeX source，不能 source-exact 复原 PDF。"
+    ],
+    "one_sentence_visual_strategy": "先用 q/time span-profile facets 暴露谱—信号对齐机制，再用 depth 对照和 error/ESD 并排读数闭合主文证据，最后以 fixed-design、RKHS bounds 和 learned-kernel pathwise 图扩展同一 ESD 叙事，同时明确单轨迹和缺失表格边界。"
+  }
+}

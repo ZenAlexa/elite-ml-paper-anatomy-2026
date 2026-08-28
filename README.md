@@ -7,6 +7,9 @@
 | 目标 | 入口 |
 |---|---|
 | 直接起草一篇完整 ICLR 论文 | [ICLR 全文写作蓝图](docs/iclr-full-paper-blueprint.md) |
+| 按 250 篇证据设计全部 Figure/Table | [ICLR 图表执行手册](docs/iclr-visual-design-handbook.md) |
+| 阅读图表统计、源码与逐对象证据 | [250 篇图表解剖](reports/visual_design_analysis_250.md) |
+| 复用绘图、方法图与表格模板 | [`templates/visuals/`](templates/visuals/) |
 | 阅读全部统计结论 | [250 篇统计报告](reports/statistical_analysis_250.md) |
 | 按顶会高频模式设计论文 | [250 篇顶会论文写作手册](docs/writing-playbook.md) |
 | 查找某篇论文的深读与结构化数据 | [逐篇深读索引](reports/reading_index.md) |
@@ -27,10 +30,13 @@
 | 相关工作 | 中位数 507 词、正文占比中位数 8.42%；高频链为「分类轴 → 最近邻 → 明确差异 → 方法缺口」 |
 | 方法与理论 | 方法平均 1.21 图、0.39 算法、5.52 公式；理论平均 5.97 公式 |
 | 结果与消融 | 结果平均 2.34 图、2.09 表；消融平均 1.67 图、0.90 表 |
+| 图表总体 | 逐对象审计 3,071 个 Figure、2,329 个 Table；会议等权均值上取整为正文 6 图/4 表、附录 8 图/7 表 |
+| 视觉规格 | 正文 Figure 中位 2 个面板、4 个系列、8 pt 图中文字、1 pt 数据线；Table 中位 6 行×6 列、2 位小数 |
+| 视觉源码 | 20 篇 exact、132 篇 partial；取得 824 个逐篇核验源文件，源码样式解析覆盖 101 篇 |
 | 证据闭环 | 30.8% 形成「对象 → 缺口 → 洞见 → 组件 → 公式 → 预测 → 实验 → 结果 → 消融 → 结论」完整链 |
 | 附录 | 附录/正文页数比中位数 1.40，词数比中位数 0.84；追加结果、实现细节、扩展方法和证明最常见 |
 | 修辞 | `we introduce`、`we propose`、`we show`、`we find`、`however`、`in contrast` 构成高频主张与转折语言 |
-| ICLR 起稿配置 | 10 页正文，以 105 个向上取整写作单位起稿；正文预留 7 图、4 表、1 算法、13 个展示公式 |
+| ICLR 起稿配置 | 9 页正文，以 105 个向上取整写作单位起稿；正文预留 6 图、4 表、1 算法、13 个展示公式，附录预留 8 图、7 表 |
 
 统计报告同时给出论文覆盖率、会议等权比例、中位数、四分位数、图表公式计数、动作转移和逐篇案例。
 
@@ -38,7 +44,7 @@
 
 ### 设计一篇论文
 
-从 [ICLR 全文写作蓝图](docs/iclr-full-paper-blueprint.md)取得逐节整数预算、9 句摘要模板、方法与理论结构、实验协议表、结果与消融写法、17 页附录架构和完稿检查表。再用[写作手册](docs/writing-playbook.md)建立 claim map、正文比例、图表职责和正文—附录分工。
+从 [ICLR 全文写作蓝图](docs/iclr-full-paper-blueprint.md)取得 9 页逐节整数预算、9 句摘要模板、方法与理论结构、实验协议表、结果与消融写法、附录架构和完稿检查表。再用[图表执行手册](docs/iclr-visual-design-handbook.md)确定 6 图、4 表的职责、尺寸、字体、配色、caption 和证据关系，并用[写作手册](docs/writing-playbook.md)建立 claim map 与正文—附录分工。
 
 ### 审阅一篇论文
 
@@ -110,6 +116,10 @@ appendix_ratio = appendix_pages / main_pages
 ### 结论与指南
 
 - [`reports/statistical_analysis_250.md`](reports/statistical_analysis_250.md)：完整统计分析、案例和写作研判；
+- [`reports/visual_design_analysis_250.md`](reports/visual_design_analysis_250.md)：全部 Figure/Table 的对象级统计、视觉源码、论证关系与反模式；
+- [`docs/iclr-visual-design-handbook.md`](docs/iclr-visual-design-handbook.md)：9 页 ICLR 正文的 6 图、4 表执行配置；
+- [`reports/visual_audit_index.md`](reports/visual_audit_index.md)：250 篇逐篇视觉审计入口；
+- [`templates/visuals/`](templates/visuals/)：可运行的 Matplotlib、TikZ 和 booktabs 模板；
 - [`docs/iclr-full-paper-blueprint.md`](docs/iclr-full-paper-blueprint.md)：全部数值向上取整的 ICLR 全文起稿与定稿规范；
 - [`docs/writing-playbook.md`](docs/writing-playbook.md)：可直接用于未来论文的写作与设计手册；
 - [`reports/reading_index.md`](reports/reading_index.md)：253 篇深读的论文级索引；
@@ -128,6 +138,13 @@ appendix_ratio = appendix_pages / main_pages
 - [`checkpoint_250_categorical_summary.csv`](reports/tables/checkpoint_250_categorical_summary.csv)：理论、视觉、统计、附录和闭环类别；
 - [`iclr_full_paper_blueprint.csv`](reports/tables/iclr_full_paper_blueprint.csv)：正文比例、词数和图表算法公式的整数上包络；
 - [`reading_index.csv`](reports/tables/reading_index.csv)：论文、等级、队列、来源与深读文件。
+- [`visual_audit_object_inventory.csv`](reports/tables/visual_audit_object_inventory.csv)：全部 Figure/Table 的对象级设计、绘图语法、caption、表头和证据关系；
+- [`visual_design_categorical_summary.csv`](reports/tables/visual_design_categorical_summary.csv)：论文覆盖率与逐篇归一后的视觉预算；
+- [`visual_design_numeric_summary.csv`](reports/tables/visual_design_numeric_summary.csv)：面板、系列、字号、线宽、行列、精度与复杂度；
+- [`visual_cross_object_system.csv`](reports/tables/visual_cross_object_system.csv)：逐篇视觉叙事、caption、表头和正文—附录关系；
+- [`visual_source_inventory.csv`](reports/tables/visual_source_inventory.csv)：自动发现的仓库与视觉文件候选；`discovery_*` 字段记录检索阶段，最终状态来自逐篇审计；
+- [`visual_source_files_local.csv`](reports/tables/visual_source_files_local.csv)：公开视觉源码与论文源码的逐文件获取结果；
+- [`visual_source_style_summary.csv`](reports/tables/visual_source_style_summary.csv)：源码中的绘图库、字号、线宽、透明度、DPI 与导出格式。
 
 ### 逐项证据表
 
@@ -148,8 +165,10 @@ corpus/             论文来源文件与版面文本
 prompts/            单篇独立深读协议
 schemas/            结构化结果 schema
 readings/           每篇论文的 Markdown 与 JSON
+visual_audits/      每篇论文的全部 Figure/Table 视觉审计
 reports/            统计报告、阅读索引、图和表
 docs/               写作手册、语料与统计方法
+templates/visuals/  ICLR 绘图、方法图与表格模板
 scripts/            获取、测量、验证、聚合与渲染
 ```
 
@@ -160,6 +179,10 @@ make validate       # 校验目录、来源和 253 份深读结果
 make checkpoint     # 重建 250 篇统计、词频、图和阅读索引
 make index          # 单独更新逐篇深读索引
 make blueprint      # 重建 ICLR 全文整数预算表
+make visual-sources # 获取已核验的公开视觉源码并提取样式
+make visual-validate # 校验 250 份逐篇视觉审计
+make visual-analysis # 重建图表统计、索引、报告与手册
+make visual-templates # 生成可复用的 ICLR 图表示例
 ```
 
 完整流程入口位于 [`Makefile`](Makefile)：`catalog → hydrate → resolve → acquire → measure → sample → validate → checkpoint`。

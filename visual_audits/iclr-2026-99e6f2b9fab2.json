@@ -1,0 +1,1695 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-99e6f2b9fab2",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "dingdongwang/EmotionThinker",
+      "OpenBMB/MiniCPM-o"
+    ],
+    "selected_repository": "https://github.com/dingdongwang/EmotionThinker",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/dingdongwang/EmotionThinker",
+        "path": "assets/intro.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "README.md embeds assets/intro.png; the 2632×838 RGBA image matches p. 2 Figure 1 overview (query card, Traditional ERM/Ours panels, cue checklist and Answer: Angry). It is a rendered PNG, not an editable generator."
+      },
+      {
+        "repository_url": "https://github.com/dingdongwang/EmotionThinker",
+        "path": "EmotionCoT/pipeline/prosody_labeling.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Public pipeline code exposes the speaker/prosody/stress/intonation fields used by Figure 2 and Appendix prompts; it supports method semantics only and is not a Figure/Table layout source."
+      },
+      {
+        "repository_url": "https://github.com/dingdongwang/EmotionThinker",
+        "path": "EmotionCoT/pipeline/prosody_features.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Public DSP implementation documents pitch, energy, speaking rate and contour measurements referenced by Figure 2; no plotting or table-generation code is present."
+      },
+      {
+        "repository_url": "https://github.com/dingdongwang/EmotionThinker",
+        "path": "EmotionCoT/pipeline/api_call.py",
+        "role": "other",
+        "tool": "Python/OpenAI API",
+        "evidence": "Public augmentation code supports the GPT-4o prompt semantics in Figure 5, but does not generate the PDF prompt card or any chart/table."
+      }
+    ],
+    "search_note": "PDF homepage/project link and OpenReview forum were checked, followed by gh repo metadata and recursive tree inspection. The author repository exactly matches the paper title and contains one matching overview render (assets/intro.png) plus method/prompt-support code, but no plot*, figure*, table*, TeX/TikZ/PGF, SVG, notebook, or editable Figure 2–9/Table 1–8 source. The inventory CSV had classified the repository as repository_without_visual_source because no compact visual file was registered; direct inspection justifies partial_visual_source for Figure 1 only. assets/EmotionThinker.png is a second overview-family render without a documented one-to-one PDF-figure mapping."
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 7,
+    "appendix_figures": 5,
+    "appendix_tables": 1,
+    "dominant_figure_typography": {
+      "family": [
+        "NimbusRomNo9L",
+        "ChalkboardSE",
+        "Aptos",
+        "ArialMT",
+        "CambriaMath"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 8.5,
+        "maximum": 15.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "NimbusRomNo9L",
+        "NimbusRomNo9L-Medi",
+        "Computer Modern math",
+        "Dingbats"
+      ],
+      "body_size_pt": 8.2,
+      "header_size_pt": 8.8,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figures 1–3 use pastel blue/cream/lilac/green/yellow cards with dark outlines for method roles; Figure 4 uses blue cards with red/green text highlights; Table 1 uses red crosses/green checks, Tables 2–7 use monochrome rules with bold/underline and a shaded ours row, and Appendix Figures 5–9/Table 8 are grayscale prompt/text objects.",
+    "vector_raster_mix": "Body, captions, equations, table text and rules are PDF vector objects. Figure 1 has a matching author PNG render; Figures 2–4 mix embedded cards/icons with PDF text, while Figures 5–9 are gray prompt-card compositions with embedded Aptos text. Table 8 is vector long-form text with rules. No public editable chart/diagram/table generator was found.",
+    "style_consistency": "Nimbus Roman and Computer Modern remain stable for publication text and tables, with consistent Figure/Table caption syntax and booktabs-like table rules. Handwritten pastel diagrams, red/green qualitative cards and Aptos grayscale prompt cards form separate local subsystems rather than one global visual language."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "conceptual_diagram",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: EmotionThinker generates emotion predictions with explanatory reasoning by leveraging speaker traits, prosody, semantics, and logic, in contrast to traditional models that provide only categorical outputs.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ChalkboardSE-Regular",
+          "ChalkboardSE-Bold",
+          "NimbusRomNo9L-Regu"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 10.0,
+          "maximum": 15.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#FCF8F1",
+          "#0D2332",
+          "#CED7E1",
+          "#C6CFB5",
+          "#B4B0D2",
+          "#FAE9A7",
+          "#EE8452",
+          "#0A0F5A",
+          "#FFFFFF",
+          "#000000"
+        ],
+        "semantic_mapping": "左侧 query 和右侧两张模型卡用位置、图标和轮廓区分 baseline/ours；浅绿、浅蓝、浅紫、黄色高亮分别对应 speaker、prosody、semantic、logic cue。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 4,
+        "annotations": 12,
+        "data_marks_estimate": 15
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "query → model processing → answer",
+        "y": "upper Traditional ERM versus lower Emotion-Thinker card",
+        "color": "pastel cue categories and model roles",
+        "shape": "rounded cards, robot/brain/lightbulb icons, waveform",
+        "line": "solid arrows and dark card outlines",
+        "facet": "Traditional ERM versus Ours: Emotion-Thinker",
+        "text": "direct labels, cue checklist, Think/Answer text"
+      },
+      "data_and_statistics": "定性方法接口；图中 Angry 是示例答案，不是总体评测值。没有样本、分母、聚合或不确定性。",
+      "evidence_relation": "引言关于 SER 只是分类且无法解释 why → Figure 1 先建立标签-only 与 cue-grounded reasoning 的接口差异 → Figure 2/3 展开数据与 RL 机制 → Table 2–4/8 给出定量和案例证据。",
+      "design_strengths": [
+        "从 query 到 answer 的阅读方向清楚。",
+        "相同 Angry 示例使解释层差异醒目。",
+        "图标、颜色、文本高亮和 checklist 为 cue 角色提供冗余编码。",
+        "作者仓库 assets/intro.png 可复用为 overview 渲染资产。"
+      ],
+      "design_weaknesses": [
+        "手写字体、图标和长 Think 文本在论文尺寸下密集。",
+        "pastel 类别在灰度或色觉受限时区分变弱。",
+        "没有样本/选择规则，caption 也未说明 Angry 只是示例。",
+        "仓库没有可编辑的绘图脚本。"
+      ],
+      "reusable_pattern": "用同一 query/answer 的 baseline–proposed 双卡片，把只给标签与 cue→reasoning→标签的差异放入一个 headline 画布；定量版本应在 caption 中补样本、评测设置和不确定性。",
+      "evidence": {
+        "page": 2,
+        "label": "p. 2 Figure 1 图形、图内标签与 caption；与作者仓库 assets/intro.png 构图核对",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "pipeline",
+        "conceptual_diagram",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "dataset",
+        "method_interface",
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 2: EmotionCoT-35K data curation pipeline.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ChalkboardSE",
+          "ArialMT",
+          "NimbusRomNo9L"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.5,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#FCF3E7",
+          "#E4EEF7",
+          "#EFECF6",
+          "#476B7E",
+          "#C7D1D4",
+          "#FFFFFF",
+          "#000000"
+        ],
+        "semantic_mapping": "米色、浅蓝和淡紫背景分别区分 collection/features、reasoning LLM 与 generated CoT；箭头和标题编码阶段顺序。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "data sources → feature extraction → reasoning LLM → generated CoT",
+        "y": "two stacked left stages versus right stages",
+        "color": "stage-specific pastel card backgrounds",
+        "shape": "rounded cards, code/prompt blocks, icons and arrows",
+        "line": "stage connectors",
+        "facet": "Data Collection, Key Feature Extraction, Reasoning LLM, Generated CoT Data",
+        "text": "stage headings, bullets, 200+ hours/35k samples, prompt and CoT example"
+      },
+      "data_and_statistics": "图内写出 200+ hours、35k samples、若干来源和 Emotion: Happy 示例；这是数据构造示意，不是可由图计算的质量或性能估计，没有过滤率、分母或不确定性。",
+      "evidence_relation": "数据稀缺与细粒度 prosody supervision 缺口 → Figure 2 的自动标注/LLM 生成路径 → Table 1 的 feature coverage → Figure 5 与 Appendix B.3 的 prompt 细节。",
+      "design_strengths": [
+        "四阶段的输入—处理—输出顺序完整。",
+        "生成的 <think>/<answer> 示例把抽象 pipeline 连接到训练格式。",
+        "panel 标题和项目符号让主要阶段在无 legend 时仍可定位。"
+      ],
+      "design_weaknesses": [
+        "Reasoning LLM 和 CoT 示例文字密集，窄图缩放后难读。",
+        "caption 只给标题，未说明各阶段或输入规模。",
+        "没有标出过滤保留率、人工质检、split 或质量阈值。",
+        "浅色 panel 边界和细小代码文本不利于灰度打印。"
+      ],
+      "reusable_pattern": "用“来源/统计 → 特征 → reasoning prompt → 带标签示例”的四段卡片解释数据构造；同时在图或 caption 中给质量门槛和 split。",
+      "evidence": {
+        "page": 3,
+        "label": "p. 3 Figure 2 四阶段 pipeline 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3: Architecture of EmotionThinker with the proposed GRPO-PTR framework. The upper part depicts the high-level GRPO-PTR training pipeline, where only the policy model is optimized. The lower part details PTR strategy, which progressively introduces reasoning reward to stabilize training and enhance reasoning.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "ChalkboardSE",
+          "CambriaMath"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 9.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#F8E6CB",
+          "#CADDFD",
+          "#E6EEFB",
+          "#CBC6D5",
+          "#D7E4D2",
+          "#EBF8E8",
+          "#E6E2EF",
+          "#000000"
+        ],
+        "semantic_mapping": "黄色 policy、蓝色 reference、淡紫 reward model、绿色 reward functions/format/outcome，紫色 τ 和虚线框表示 trust/group 机制；模块标题和箭头提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 18,
+        "data_marks_estimate": 25
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "query/rollout → reward computation → group normalization → advantage",
+        "y": "upper high-level pipeline versus lower PTR detail",
+        "color": "policy/reference/reward component roles",
+        "shape": "module boxes, output cards, icons and plus/multiply symbols",
+        "line": "solid data-flow arrows versus dashed grouping/constraint arrows",
+        "facet": "GRPO-PTR training pipeline and reward decomposition",
+        "text": "O_i, R_i, A_i, R_f, R_o, R_t, τ and reward labels"
+      },
+      "data_and_statistics": "纯机制架构；O_i、R_i、A_i 是组内候选/reward/advantage 的符号，没有样本、聚合、分母、误差或 empirical uncertainty。",
+      "evidence_relation": "标准 GRPO 只监督 outcome、可能 reward hacking → Figure 3 组合 format/outcome/reasoning/trust/progressive → §3.3 公式 → Table 4 组件消融与 Table 6/7 超参敏感性。",
+      "design_strengths": [
+        "上层接口与下层 reward 细节分开，阅读层级明确。",
+        "only policy optimized 和 unstable→stable 直接标出训练边界。",
+        "reward 组件、group normalization 和 τ 的位置明确。"
+      ],
+      "design_weaknesses": [
+        "模块、符号和箭头密度高，小字号下需反复回看正文。",
+        "颜色承担 reward 类型语义，灰度区分较弱。",
+        "trust weight、progressive threshold、空组处理不在图内定义。"
+      ],
+      "reusable_pattern": "上层给端到端接口、下层给 reward/constraint decomposition，并以 stability arrow 连接二者；符号密集图应在 caption/旁注提供 key。",
+      "evidence": {
+        "page": 5,
+        "label": "p. 5 Figure 3、caption 与 §3.3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "screenshot"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "failure",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 4: Case study comparing emotional reasoning across models on a sad utterance. Red highlights mark descriptions inconsistent with the ground truth, whereas green highlights indicate correct evidence.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ChalkboardSE-Regular",
+          "ChalkboardSE-Bold",
+          "NimbusRomNo9L-Regu"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#D4DEF3",
+          "#E3ECF8",
+          "#EDF4FA",
+          "#602527",
+          "#56874A",
+          "#FFFFFF",
+          "#000000"
+        ],
+        "semantic_mapping": "淡蓝卡片区分三行模型输出；红色文本标不一致/错误，绿色文本标与 ground truth 相符的 cue；模型名和行位置提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "model rows and within-row think → answer text order",
+        "y": "three model output cards plus question card",
+        "color": "red inconsistency versus green correct evidence",
+        "shape": "rounded text cards and question illustration",
+        "line": null,
+        "facet": "Qwen2.5-Omni-7B, Base + GRPO, EmotionThinker",
+        "text": "model names, <think>/<answer>, highlighted cue phrases"
+      },
+      "data_and_statistics": "单个 selected/case utterance 的定性输出；没有总体分母、抽样规则、重复或不确定性，红/绿高亮是人工解释编码而非统计分类。",
+      "evidence_relation": "Table 2 总体 accuracy/reasoning → Figure 4 直观展示 failure/grounding → Table 3 human check 与 Appendix Table 8 长文本扩展；不独立证明泛化。",
+      "design_strengths": [
+        "同一问题、模型名和输出格式使横向比较直接。",
+        "红/绿高亮把抽象 reasoning quality 转成可见错误和支持证据。",
+        "与 Table 2/3 相邻，定量和定性证据容易互相定位。"
+      ],
+      "design_weaknesses": [
+        "文本量大且小字号，颜色对灰度/色觉不友好。",
+        "只有一个案例且没有选择规则或代表性声明。",
+        "caption 没有说明文本截断、匿名或 case selection；转义换行降低可扫描性。"
+      ],
+      "reusable_pattern": "用统一输入的多行 qualitative cards 做局部错误/支持证据高亮，并与定量表并置、明确非代表性边界。",
+      "evidence": {
+        "page": 8,
+        "label": "p. 8 Figure 4 三行模型输出、question card、红/绿高亮与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot"
+      ],
+      "purpose": [
+        "reproduction",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 5: Prompt template used to elicit emotion reasoning traces from GPT-4o.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Aptos",
+          "Aptos-Bold"
+        ],
+        "size_pt": {
+          "minimum": 8.5,
+          "median": 8.5,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 3,
+        "hex": [
+          "#D9D9D9",
+          "#F7F7F7",
+          "#000000"
+        ],
+        "semantic_mapping": "浅灰卡片/标题、近白 prompt 背景和黑色正文构成信息层级，无类别色彩。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "gray card hierarchy",
+        "shape": "outer card and prompt sections",
+        "line": null,
+        "facet": null,
+        "text": "metadata keys, bold requirements, XML tags and word limit"
+      },
+      "data_and_statistics": "复现 prompt；包含 groundtruth/transcription/speaker/prosody placeholders、声学优先要求、50–200 words 和 <think>/<answer> 输出约束。没有样本或质量统计。",
+      "evidence_relation": "Figure 2 的 GPT-4o CoT stage → Figure 5 的输入字段和输出格式 → EmotionCoT-35K → Table 2/4 reasoning results；补足复现而非效果证明。",
+      "design_strengths": [
+        "字段、行为约束和 XML 输出格式集中。",
+        "灰度层级在 200 dpi 下稳定、可打印。",
+        "与 Appendix B.3 及仓库 api_call.py 的调用语义可互相核对。"
+      ],
+      "design_weaknesses": [
+        "卡片很长，placeholder、指令和 ground-truth injection 同时出现。",
+        "“不要知道 ground-truth”与上方传入该字段的张力需正文解释。",
+        "caption 没有说明这是合成 CoT 生成 prompt。"
+      ],
+      "reusable_pattern": "用灰度单卡展示 prompt schema、行为约束和输出格式；将训练标签占位符与推理可见字段分区，避免目标泄漏歧义。",
+      "evidence": {
+        "page": 17,
+        "label": "p. 17 Figure 5 prompt card 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot"
+      ],
+      "purpose": [
+        "reproduction",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 6: Prompt template for generating reward model training data (Part 1).",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Aptos",
+          "Aptos-Bold"
+        ],
+        "size_pt": {
+          "minimum": 8.5,
+          "median": 9.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 3,
+        "hex": [
+          "#D9D9D9",
+          "#F7F7F7",
+          "#000000"
+        ],
+        "semantic_mapping": "灰度标题条、正文卡片和黑色 rubric 文本区分页面层级。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "gray card hierarchy",
+        "shape": "prompt card and rubric blocks",
+        "line": null,
+        "facet": "Factual Alignment and Interpretative Quality rubric",
+        "text": "1–5 quality descriptions and target-score instructions"
+      },
+      "data_and_statistics": "模板将 Factual Alignment 与 Interpretative Quality 分成 1–5 ordinal target scores；分数规则是标签生成条件，不是被试均值或误差。",
+      "evidence_relation": "§3.3.2 的 101,400 (q,r,g) tuples → Figure 6/7 质量 prompt → reward model → Figure 3 的 R_t → Table 2/3 reasoning scores。",
+      "design_strengths": [
+        "Part 1 明确事实贴合和解释说服力的不同职责。",
+        "逐级 1–5 rubric 比单一 high-quality 标签更可复现。",
+        "与 Figure 7 形成连续、同视觉语法的 rubric。"
+      ],
+      "design_weaknesses": [
+        "文字密集，caption 未说明需与 Figure 7 合读。",
+        "没有把 GPT 生成、过滤数量或质量分布绑定到图。",
+        "没有 inter-rater 或自动评分 uncertainty。"
+      ],
+      "reusable_pattern": "将 reward-data 质量维度拆为连续 Part 1/2 rubric cards，并在 caption 明示两卡共同组成一个 generator。",
+      "evidence": {
+        "page": 19,
+        "label": "p. 19 Figure 6 prompt card、Part 1 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot"
+      ],
+      "purpose": [
+        "reproduction",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 7: Prompt template for generating reward model training data (Part 2).",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Aptos",
+          "Aptos-Bold"
+        ],
+        "size_pt": {
+          "minimum": 8.5,
+          "median": 9.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 3,
+        "hex": [
+          "#D9D9D9",
+          "#F7F7F7",
+          "#000000"
+        ],
+        "semantic_mapping": "延续 Figure 6 的灰度标题条、正文底和黑色 rubric。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "gray card hierarchy",
+        "shape": "prompt card and rubric blocks",
+        "line": null,
+        "facet": "Caption Completeness and Fluency & Structure Clarity rubric",
+        "text": "1–5 descriptions, audio-only requirement, target score and length"
+      },
+      "data_and_statistics": "给出 Caption Completeness、Fluency & Structure Clarity 的 1–5 rubric，以及 50–200 word 和只基于音频的生成要求；不是 empirical distribution。",
+      "evidence_relation": "Figure 6 的 FA/IQ rubric → Figure 7 的 CC/fluency rubric → reward tuples → Table 2/3 evaluation；两图共同补全 reward-data construction。",
+      "design_strengths": [
+        "与 Figure 6 的灰度、字号和层级一致。",
+        "四维评价职责和生成长度约束都显式出现。",
+        "Part 2 保留可复制的字段/要求文本。"
+      ],
+      "design_weaknesses": [
+        "字段有可见拼写变体，如 factural_alignment_score、caption_completness_score、clarity_cohenrences_score。",
+        "脱离 Figure 6 无法得到完整 rubric/input。",
+        "caption 没有指向配对卡片或说明分页关系。"
+      ],
+      "reusable_pattern": "长 rubric 采用连续 Part 1/2 卡片，但应统一字段名，并在每张 caption 中指向配对卡。",
+      "evidence": {
+        "page": 24,
+        "label": "p. 24 Figure 7 prompt card、Part 2 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot"
+      ],
+      "purpose": [
+        "reproduction",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 8: Prompt template for emotion reasoning evaluation (Part 1).",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Aptos",
+          "Aptos-Bold"
+        ],
+        "size_pt": {
+          "minimum": 8.5,
+          "median": 9.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 3,
+        "hex": [
+          "#D9D9D9",
+          "#F7F7F7",
+          "#000000"
+        ],
+        "semantic_mapping": "灰度卡片层级和黑色字段/正文构成 evaluator prompt 的结构。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 13,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "gray card hierarchy",
+        "shape": "prompt card, horizontal separators and code fields",
+        "line": null,
+        "facet": "context schema and Factual Alignment start",
+        "text": "metadata keys, reference/model explanation placeholders and 1–5 scale"
+      },
+      "data_and_statistics": "模板读取 ground-truth emotion、transcription、speaker traits/prosody metadata，并接收 reference/model explanation；1–5 是 evaluator 输出尺度，不报告实际评分统计。",
+      "evidence_relation": "Appendix E evaluator 定义 → Figure 8/9 的 metadata、四维 rubric、JSON 输出 → Table 2 GPT-based reasoning 与 Table 3 human check。",
+      "design_strengths": [
+        "context schema、reference/model text 和第一项 factual alignment 顺序清楚。",
+        "代码字段直接出现，便于实现核对。",
+        "灰度卡片可在没有颜色时保持层级。"
+      ],
+      "design_weaknesses": [
+        "Part 1 停在第一评价维度，离开 Figure 9 不完整。",
+        "长字段和占位符在单栏尺寸下细小。",
+        "pred_reasoning’ 等引号/字段变体降低机器复现确定性。"
+      ],
+      "reusable_pattern": "采用 context schema → reference/model text → rubric 的 evaluator prompt 顺序，并在 Part 1 caption 中明确下一卡的字段范围。",
+      "evidence": {
+        "page": 25,
+        "label": "p. 25 Figure 8 prompt card、Part 1 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot"
+      ],
+      "purpose": [
+        "reproduction",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 9: Prompt template for emotion reasoning evaluation (Part 2).",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Aptos",
+          "Aptos-Bold"
+        ],
+        "size_pt": {
+          "minimum": 8.5,
+          "median": 9.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 3,
+        "hex": [
+          "#D9D9D9",
+          "#F7F7F7",
+          "#000000"
+        ],
+        "semantic_mapping": "延续 Figure 8 的灰度标题条、正文底和黑色 rubric/JSON 文本。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 15,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "gray card hierarchy",
+        "shape": "prompt card, rubric sections and JSON block",
+        "line": null,
+        "facet": "four evaluation dimensions and output format",
+        "text": "dimension names, 1–5 guidance and JSON keys/comment"
+      },
+      "data_and_statistics": "给出四项 1–5 scoring instruction 和 JSON output contract；没有真实 score、评分者、重复或 uncertainty。页面顶部仍写 two dimensions，但正文列出四维。",
+      "evidence_relation": "Figure 8 上下文输入 → Figure 9 完整四维 rubric/JSON → Table 2 GPT aggregate 与 Table 3 human assessment；与 Figure 6/7 共享维度名但承担 evaluator 角色。",
+      "design_strengths": [
+        "输出 JSON schema 可直接复制，维度和 key 一一对应。",
+        "把指标操作定义保留在附录，而非只给缩写。",
+        "黑白层级适合长 prompt 的复现展示。"
+      ],
+      "design_weaknesses": [
+        "与 Figure 8 分页后重复 prompt 头部。",
+        "two dimensions 与随后四维列表冲突。",
+        "caption 未提醒需和 Figure 8 合读，也未解释自动与人工评价关系。"
+      ],
+      "reusable_pattern": "把长 evaluator prompt 拆为 context/rubric/output 两卡，并在页眉/页脚保持 Part 1 of 2 和一致的维度计数。",
+      "evidence": {
+        "page": 26,
+        "label": "p. 26 Figure 9 prompt card、Part 2 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "dataset",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 1: Comparison of different speech captioning datasets across various acoustic features. Reasoning denotes the availability of emotion reasoning with chain-of-thought (CoT) annotations.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "NimbusRomNo9L-Medi",
+          "Dingbats"
+        ],
+        "body_size_pt": 8.2,
+        "header_size_pt": 8.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "text_color"
+      ],
+      "uncertainty": "No sample-size, coverage denominator, annotation-quality or uncertainty information; check/cross cells are availability indicators.",
+      "data_and_statistics": "布尔覆盖矩阵：7 个数据集 × Reasoning 和 9 个 acoustic features；EmotionCoT-35K 行全为 ✓，不等于独立质量验证。",
+      "evidence_relation": "§3.1 的 reasoning/prosody 数据缺口 → Table 1 feature coverage → Figure 2 pipeline/Figure 5 prompt → Table 2/4/5 训练与性能。",
+      "design_strengths": [
+        "两层表头把 Reasoning 与 Acoustic Feature block 分开。",
+        "✓/✗ 在窄表中快速暴露 coverage pattern。",
+        "横线和竖分隔保持较多列的扫描结构。"
+      ],
+      "design_weaknesses": [
+        "长数据集名和 9 个 feature 在窄表中拥挤。",
+        "颜色/符号没有表下注明判定标准。",
+        "没有 feature 定义、样本分母或缺失原因。"
+      ],
+      "reusable_pattern": "以 reasoning + feature coverage 矩阵描述数据集能力；补充符号语义、分母和 coverage 判定。",
+      "evidence": {
+        "page": 4,
+        "label": "p. 4 Table 1、caption与 ✓/✗ coverage cells",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 2: Performance comparison across models. Emotion recognition is measured by accuracy (%), while reasoning quality is assessed on the overall test dataset on four dimensions: Factual Alignment (FA.), Interpretative Quality (IQ.), Caption Completeness (CC.), and Fluency and Structure (FS.), each on a 5-point scale. Top two results are highlighted in bold and underline, respectively.",
+        "word_count": 55,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "NimbusRomNo9L-Medi",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best",
+        "cell_color"
+      ],
+      "uncertainty": "No seed, interval, reviewer spread, or uncertainty; rows report point estimates, four-dataset accuracy and GPT-based 1–5 reasoning means.",
+      "data_and_statistics": "四 benchmark 的 unweighted accuracy (%)、四集 Avg，以及 overall test 上 FA/IQ/CC/FS 1–5 reasoning means；Avg 分母/加权方式未说明。",
+      "evidence_relation": "Figure 1 的解释性 headline 与 Figure 3 的 RL mechanism → Table 2 总体结果 → Figure 4/3/Appendix Table 8 的定性扩展与 Table 4–7 消融。",
+      "design_strengths": [
+        "两组 grouped header 把 outcome 与 reasoning quality 放在同一决策面。",
+        "模型按 General/Emotion Focused/Omni LLM 分组。",
+        "粗体、下划线和底部灰行同时编码 top-two 与 ours。"
+      ],
+      "design_weaknesses": [
+        "17×11 密度高，缩写和双 Avg 增加阅读负担。",
+        "没有重复、区间、显著性或 Avg 分母。",
+        "caption 没有写出 EmotionThinker 的具体值或主要优胜范围。"
+      ],
+      "reusable_pattern": "用双指标 grouped header 和按模型家族分组的 booktabs 表连接主任务性能与解释评分；应加入分母和不确定性。",
+      "evidence": {
+        "page": 7,
+        "label": "p. 7 Table 2 grouped header、17 model rows、highlighting与 caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 3: Human evaluation results on emotion reasoning based on a consistent 100-sample set.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "NimbusRomNo9L-Medi"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "100 outputs / 5 models / 4 reviewers are stated in nearby prose, but the table gives no reviewer-level spread, inter-rater agreement, interval or uncertainty.",
+      "data_and_statistics": "FA/IQ/CC/FS/Avg 的人工 1–5 均值；每模型 20 条匿名输出，表内没有分布。",
+      "evidence_relation": "Table 2 GPT-based ranking → Table 3 human consistency check → Figure 4/Appendix Table 8 qualitative evidence。",
+      "design_strengths": [
+        "复用 Table 2 的四维列顺序，自动/人工结果易对照。",
+        "一位小数适合小规模 human score。",
+        "EmotionThinker 行粗体/灰底成为视觉锚点。"
+      ],
+      "design_weaknesses": [
+        "右侧 inset 加缩写后可读性有限。",
+        "caption/表头未写 scale、reviewer 数或 agreement。",
+        "单一 Avg 掩盖 reviewer/维度差异。"
+      ],
+      "reusable_pattern": "用与自动评价相同维度顺序做小规模 human check，并在表注同时给样本分配、reviewer 数和 agreement。",
+      "evidence": {
+        "page": 7,
+        "label": "p. 7 Table 3 右侧人工评价表及相邻 §4.2",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 4: Ablation study on different training strategies for average speech emotion recognition accuracy (SER) and emotion reasoning (ER) score, evaluated on the overall test dataset. Variants V1–V6 are built upon Baseline 2.",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "NimbusRomNo9L-ReguItal"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 4,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "No seed, interval or significance; average SER accuracy and ER score are point estimates on the overall test dataset.",
+      "data_and_statistics": "Baseline 1/2 与 V1–V6 的平均 SER accuracy (%)、ER score；各 variant 映射 SFT、GRPO、trained RM、trust、progressive。",
+      "evidence_relation": "Figure 3 reward components → Table 4 RM/trust/progressive component ablation → Table 5 prerequisite 与 Table 6/7 hyperparameter sweeps。",
+      "design_strengths": [
+        "baseline→SFT→rule-RL→PTR 的链条在行顺序中可读。",
+        "caption 写明 V1–V6 继承 Baseline 2。",
+        "V6 粗体/灰底收束 full strategy。"
+      ],
+      "design_weaknesses": [
+        "Training Strategy 文本在右侧窄表中拥挤。",
+        "表内不解释 variant 的训练数据/预算差异。",
+        "均值无不确定性，组件效果可能和训练过程混杂。"
+      ],
+      "reusable_pattern": "以 baseline→单组件/组合 variant 的行顺序做消融表，同时报告 outcome 与 reasoning 指标并声明继承关系。",
+      "evidence": {
+        "page": 8,
+        "label": "p. 8 Table 4 右侧 ablation 表及 caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 5: Prosody perception comparison across pitch (Pit.), speed (Spee.), energy (Ene.), intonation (Into.), and stress (Stre.). Evaluation is based on accuracy (%).",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "NimbusRomNo9L-Medi"
+        ],
+        "body_size_pt": 8.2,
+        "header_size_pt": 8.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "1,000 unseen utterances are mentioned in nearby prose; no split details, repeated runs, intervals or uncertainty appear.",
+      "data_and_statistics": "Qwen2.5-Omni-7B 与 EmotionThinker-Base 在五类 prosody attribute 上的 accuracy (%)，每项为点估计。",
+      "evidence_relation": "§3.2 prosody prerequisite → Table 5 cue sensitivity → EmotionThinker-Base → Table 4 SFT/RL 与 Figure 4 grounded case。",
+      "design_strengths": [
+        "两行五 cue 直接显示 SFT 前后差异。",
+        "caption 定义单位和缩写。",
+        "置于分析开头，符合先验证 prosody 再做 RL 的顺序。"
+      ],
+      "design_weaknesses": [
+        "没有 cue 的分母、来源、难度或标注误差。",
+        "Pit./Spee./Ene./Into./Stre. 对脱离正文读者不自然。",
+        "unseen split 和 repeated-run uncertainty 缺失。"
+      ],
+      "reusable_pattern": "在机制链前给出窄的 prerequisite table，把属性列并排，同时报告样本构成和重复/不确定性。",
+      "evidence": {
+        "page": 9,
+        "label": "p. 9 Table 5 左上 prosody comparison 与 caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 6: GRPO-PTR with varying K settings.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "NimbusRomNo9L-Medi",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.2,
+        "header_size_pt": 8.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No runtime, memory, token-cost, seed, interval or uncertainty column; efficiency is discussed in prose rather than measured in the table.",
+      "data_and_statistics": "K=4/6/8/10/16 每输入 sampled candidates 的四 benchmark accuracy (%) 与 Avg；没有实际 cost 变量。",
+      "evidence_relation": "Figure 3 group candidates → Table 6 K sensitivity → prose chooses K=8 → Table 7 reward weights → Table 2 headline。",
+      "design_strengths": [
+        "单变量 K sweep 简洁。",
+        "benchmark 列序一致，Avg 便于看整体。",
+        "粗体列最优值提供快速定位。"
+      ],
+      "design_weaknesses": [
+        "caption 没有定义 K、accuracy 单位或 efficiency 解释。",
+        "Iemocap/Meld/Radess/Savee 大小写和拼写不一致。",
+        "以 accuracy 代理 cost 却不给 wall-clock/memory，不能独立支持 efficiency claim。"
+      ],
+      "reusable_pattern": "对 rollout/sample count 做 sensitivity table，同时提供真实计算成本列或明确只是性能代理。",
+      "evidence": {
+        "page": 9,
+        "label": "p. 9 Table 6 右上 K sweep 与 caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 7: Sensitivity analysis on reward penalty.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math",
+          "CMMI/CMSY"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Only point accuracies are shown; no ER score, seed, repeated-run spread, interval or uncertainty.",
+      "data_and_statistics": "固定 α_f=0.3，改变 α_o/α_t，报告四 benchmark accuracy (%) 和 Avg；reward penalty 不是单独的可观测指标。",
+      "evidence_relation": "Figure 3 weighted reward → Table 7 α_o/α_t sensitivity → Table 4 full-vs-components → Table 2 headline。",
+      "design_strengths": [
+        "极简 sweep 让 reasoning weight 过高时的整体下降可见。",
+        "四 benchmark 与 Avg 并列，可识别局部/整体差异。"
+      ],
+      "design_weaknesses": [
+        "caption 名称与 reward-weight 内容不完全对齐。",
+        "没有 α_f、指标单位、reward formula 或 reasoning score。",
+        "数学下标在窄表中小且没有 uncertainty。"
+      ],
+      "reusable_pattern": "对 reward coefficients 做单变量 sensitivity，表头/表注写明固定权重、指标和选择规则。",
+      "evidence": {
+        "page": 9,
+        "label": "p. 9 Table 7 右下 reward-weight sweep 与 caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8: Case study comparing emotion reasoning outputs from EmotionThinker and 12 representative SpeechLLMs on the same audio sample. The ground-truth label is sad, and the analysis highlights differences in prosodic cue recognition, semantic integration, and logical coherence across models. EmotionThinker demonstrates more accurate and comprehensive capture of acoustic information, together with stronger logical consistency in its emotion reasoning.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "NimbusRomNo9L-Medi"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单个 sad audio sample 的长文本定性输出，没有 accuracy 分母、抽样规则、评审者、重复或 uncertainty；caption 的 12 representative SpeechLLMs 与实际可数的 10 个外部模型/12 个总行不一致。",
+      "data_and_statistics": "Ground Truth、EmotionThinker (ours) 和 10 个命名外部模型的 reasoning 文本；没有把 cue、hallucination 或 coherence 转成结构化频数。",
+      "evidence_relation": "Figure 4 的三模型短卡 → Table 8 的 Appendix 扩展输出 → Table 2 四 benchmark/GPT aggregate 与 Table 3 human check；也回收 Figure 5/8–9 的 prompt/evaluator 语义。",
+      "design_strengths": [
+        "Model/Reasoning 两列适合保留完整长文本。",
+        "Ground Truth/ours 在开头建立参照。",
+        "横线和 column divider 让不同模型的 grounding/hallucination 可逐行比较。"
+      ],
+      "design_weaknesses": [
+        "四页长文本密度高，p. 21–23 没有重复完整 header。",
+        "caption 的模型数量与实际行数冲突。",
+        "单一样本且没有 selection rule；部分输出错误预测 emotion，只能作为 qualitative failure evidence。"
+      ],
+      "reusable_pattern": "对同一输入保留 GT、ours 和 baselines 的完整自然语言输出，使用可分页两列长表；应重复 header、标注 selection rule，并补结构化错误标签/分母。",
+      "evidence": {
+        "page": 20,
+        "label": "p. 20–23 Table 8 caption、header、12 rows及跨页续表",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 establishes the classification-to-explanation interface; Figure 2 gives the EmotionCoT-35K data pipeline and Table 1 quantifies feature coverage; Figure 3 supplies GRPO-PTR architecture; Table 5 tests prosody as a prerequisite; Table 2/3 report overall and human results; Figure 4 and Table 8 show grounding/failure cases; Table 4/6/7 close component, K and reward-weight ablations; Figures 5–9 preserve prompt and evaluator details in the appendix.",
+    "caption_system": "Figures 1–4 mostly use title plus comparison/encoding, with Figure 3 naming upper/lower regions and Figure 4 defining red/green highlights. Figures 5–9 captions only name prompt templates and parts, with little self-contained setup or finding. Table 2 has the strongest unit/metric/top-two explanation; Tables 3/6/7 are terse; Table 8 states a finding but overclaims the number of representative models.",
+    "table_header_system": "Table 1 uses Dataset/Reasoning plus a two-level Acoustic Feature block; Table 2 uses two metric blocks; Table 4 uses Variations/Training Strategy plus SER/ER; Tables 3 and 5–7 use compact single-level headers; Table 8 uses Model/Reasoning for long text. Black/white rules are stable while narrow-table abbreviations and units depend on nearby prose.",
+    "method_result_ablation_link": "Figure 2/Table 1 → prosody SFT → Table 5 → Figure 3 GRPO-PTR → Table 2 main comparison; Table 4 removes RM/trust/progressive components, Table 6 changes K and Table 7 changes reward weights, while Figure 4/Table 8 supply qualitative grounding. The chain supports the paper narrative but lacks seeds, cost columns, denominators and aggregate error rates.",
+    "main_appendix_link": "Section 3.1 points to Figure 2 and Appendix B; Section 3.2 points to Table 5 and Appendix C; Sections 3.3/4.2 point to Figures 3/4 and Appendices D–F. Figure 5 is B.3, Figures 6/7 are D.2, Figures 8/9 are E, and Table 8 is F. Appendix adds prompts and long outputs but no editable visual source.",
+    "typography_consistency": "Publication text/table typography is consistently Nimbus Roman with Computer Modern math; Figure 1–4 diagrams introduce ChalkboardSE and Figure 5–9 prompt cards use Aptos. The distinction is legible as modular but not globally unified.",
+    "color_consistency": "Main diagrams reuse pale blue/cream/lilac/green role colors and dark outlines, while Tables and appendix prompt cards intentionally stay grayscale. Red/green cue highlights in Figure 4 and checks/crosses in Table 1 provide semantics but are not robust to grayscale/color-vision limitations."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 same-input dual cards make categorical output versus cue-grounded reasoning legible in one headline canvas.",
+      "Figure 2 data→features→reasoning LLM→labeled example and Figure 3 rollout→reward decomposition form a useful paired data/method interface.",
+      "Table 2 grouped headers, Table 4 baseline-to-component rows and Figure 4/Table 8 same-input qualitative cards connect headline, mechanism and failure evidence.",
+      "Gray prompt cards can preserve reproducibility details, but Part 1/2 captions should state the pairing and field names should be consistent."
+    ],
+    "highest_value_objects": [
+      "Figure 1 for problem/method interface and headline contrast.",
+      "Figure 3 for the GRPO-PTR reward/trust/progressive mechanism.",
+      "Table 2 for the central accuracy-plus-reasoning comparison.",
+      "Table 4 and Table 5 for component ablation and prosody prerequisite.",
+      "Figure 4 for a concrete grounding/failure contrast; Table 8 is a useful but single-case appendix expansion."
+    ],
+    "failure_patterns": [
+      "Small text and high information density in diagrams, qualitative cards and the four-page long table.",
+      "Pastel and red/green encodings are not grayscale/color-vision safe despite some textual redundancy.",
+      "Tables 2/4/5/6/7 and Table 8 omit seeds, intervals or denominators; K efficiency is discussed without actual cost.",
+      "Table 8 caption model count conflicts with visible rows, and Figures 5–9 expose prompt spelling/count inconsistencies that weaken machine reproduction."
+    ],
+    "one_sentence_visual_strategy": "Use classification→cue-grounded reasoning→prosody SFT→progressive trust-aware RL→overall/ablation/case as the visual spine, with pastel architecture and grouped result tables for method/performance and grayscale prompt cards/longtable for reproducibility boundaries; the public repository supplies only a matching Figure 1 render."
+  }
+}

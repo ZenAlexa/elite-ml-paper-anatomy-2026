@@ -1,0 +1,2500 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-4826a74c05ee",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/socialfoundations/lm-harmony",
+      "https://github.com/huggingface/transformers"
+    ],
+    "selected_repository": "https://github.com/socialfoundations/lm-harmony",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/socialfoundations/lm-harmony",
+        "path": "notebooks/analyze_results.ipynb",
+        "role": "plot_script",
+        "tool": "Jupyter; Matplotlib; Seaborn; SciPy/sklearn",
+        "evidence": "GH notebook cells 14, 16, 20, 21, 24, 30, 33, 39, 42, 49, 52, 59, 63, 66, 69–72 generate the rank plots, bars, scatter and heatmaps corresponding to PDF Figures 1–8, 9–10 and 12–15."
+      },
+      {
+        "repository_url": "https://github.com/socialfoundations/lm-harmony",
+        "path": "notebooks/all_results.json",
+        "role": "data_file",
+        "tool": "JSON; pandas",
+        "evidence": "Notebook cell 9 loads direct_eval/train_before_test score series and their stderr series used by the plotted rankings and uncertainty-aware alignment."
+      },
+      {
+        "repository_url": "https://github.com/socialfoundations/lm-harmony",
+        "path": "assets/results.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "README preview shows the direct-versus-train-before-test mean Kendall-tau grouped-bar family; it is visually related but is not the embedded PDF asset."
+      }
+    ],
+    "search_note": "PDF 首页、正文与第 33 页 reproducibility statement 明确链接 socialfoundations/lm-harmony；source inventory 也选中该仓库并将本地状态标为 partial_visual_source。GitHub 树和 README 已核查，真正的绘图源是 notebooks/analyze_results.ipynb，数据是 notebooks/all_results.json，assets/results.png 只是 README 预览；assets/banner.png 是无关的机器人/课堂插图。local corpus/visual_sources/iclr-2026-4826a74c05ee/ 只有 10 个任务 YAML 配置，没有 Figure/Table source。GH 树未发现该 PDF 的 paper TeX、TikZ/PGF、table generator 或最终排版资产，因此图形 grammar/data 可追溯但表格排版和 PDF 版面不能宣称 exact_visual_source。"
+  },
+  "paper_style": {
+    "main_figures": 8,
+    "main_tables": 2,
+    "appendix_figures": 7,
+    "appendix_tables": 6,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Liberation Sans",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 11.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "NimbusMonL-Regu",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.0,
+      "header_size_pt": 8.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Booktabs tables use black/gray. Direct evaluation and train-before-test are consistently blue/orange (approximately #0173B2/#DE8F05); heatmaps use the source-exact Seaborn YlGnBu_r sequential palette with a 0–1 colorbar; PCA bars reuse one color; Figure 1 cycles husl colors by model and Figures 7/11 use family categorical colors. Numeric annotations provide partial redundancy for heatmaps and bars, but the 61-color rank plot is not grayscale-safe.",
+    "vector_raster_mix": "Most bars, lines, text, axes and table rules are PDF vector objects. Heatmap cells/colorbars and some imported plot surfaces include rasterized/indexed resources; the resulting figures are mixed vector/raster, while Tables 1–8 are predominantly vector text/rules.",
+    "style_consistency": "The ICLR two-column main paper uses stable serif body/caption typography and sans-serif plot text, booktabs tables, repeated direct/TBT paired panels, and shared 0–1 Kendall/PCA axes. Appendix matrices preserve task order and color domains. Main weaknesses are the missing legends for Figure 11 and the 61-series Figure 1, plus short captions for several tables and appendix plots."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 1: Rankings of 61 language models on two question-answering benchmarks: Natural Questions Open and ARC Challenge. Top: Direct evaluation leads to inconsistent rankings. Although both benchmarks test for question-answering ability, the resulting model rankings show substantial disagreement. Bottom: Train-before-test aligns model rankings. Note: For each of the two plots, we greedily align model rankings as much as possible without violating confidence intervals, thus revealing only those ranking changes that are statistically significant. See Appendix C.1.",
+        "word_count": 77,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "uncertainty_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 61,
+        "hex": [
+          "#F77189",
+          "#BB9832",
+          "#50B131",
+          "#33B07A",
+          "#36ADA4",
+          "#3BA3EC",
+          "#A48CF4",
+          "#E866F4",
+          "#F66EBA",
+          "#E6832F"
+        ],
+        "semantic_mapping": "Each color identifies one model and is reused in both direct and train-before-test panels; translucent bands encode rank intervals.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": 61,
+        "legend_items": 0,
+        "annotations": 122,
+        "data_marks_estimate": 122
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "The two benchmark endpoints, Natural Questions Open and ARC Challenge",
+        "y": "Model rank, reversed so rank 1 is at the top",
+        "color": "Model identity across the two panels",
+        "shape": "Circular endpoint markers",
+        "line": "A connecting rank path for each model",
+        "facet": "Two vertical panels: Direct evaluation and Train-before-test",
+        "text": "Model labels at the left, endpoint rank numbers at the right, and panel titles"
+      },
+      "data_and_statistics": "61 models are ranked on each of two QA benchmarks. Rank intervals are derived from score confidence intervals; Appendix C.1's Algorithms 1–3 constrain the greedy alignment so only statistically significant changes are exposed. Direct rankings cross densely, whereas TBT rankings are visually more aligned. No error bars or seed aggregation are shown beyond the rank bands.",
+      "evidence_relation": "Introduction's contradictory-ranking problem leads to equal benchmark-specific preparation; this local two-task demonstration is then generalized by Figures 2–5 and supported by the C.1 ranking algorithms.",
+      "design_strengths": [
+        "A single view makes rank reversals and the shared model identity concrete.",
+        "The same color mapping across panels and the reversed rank axis make directional movement legible.",
+        "The confidence-rank band preserves the paper's significance-aware qualification."
+      ],
+      "design_weaknesses": [
+        "Sixty-one colored paths are crowded and have no 61-item legend.",
+        "Color is not redundant with shape or line style and is weak in grayscale.",
+        "The exact interval and greedy-ordering semantics require Appendix C.1."
+      ],
+      "reusable_pattern": "For two rankings of the same entities, use paired bump panels with a shared identity color, reversed rank axis, endpoint labels, and an uncertainty band; above roughly twenty entities, add filtering or a searchable legend.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "bbox": [
+          89,
+          20,
+          524,
+          270
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 5,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 2: Mean ranking agreement between each benchmark and all others. We calculate Kendall’s τ between each benchmark and every other benchmark, and then average the results. Compared to direct evaluation, train-before-test consistently improves ranking agreement. A detailed comparison of Kendall’s τ values for every benchmark pair is provided in Appendix B.1. On average, the overall average Kendall’s τ is 0.52 for direct evaluation and 0.76 for train-before-test.",
+        "word_count": 68,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#0173B2",
+          "#DE8F05"
+        ],
+        "semantic_mapping": "Blue denotes Direct evaluation and orange denotes Train-before-test.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "above plot, upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "24 benchmark names, sorted by their direct-evaluation mean",
+        "y": "Mean Kendall τ from 0 to 1",
+        "color": "Evaluation scheme: Direct evaluation versus Train-before-test",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "Rotated benchmark tick labels and y-axis tick labels"
+      },
+      "data_and_statistics": "Each bar is the mean Kendall τ between one benchmark and the other 23 benchmarks. Across all 276 pairs, the aggregate mean is 0.52 for direct evaluation and 0.76 for TBT; bars are point estimates without intervals or pair counts.",
+      "evidence_relation": "Figure 1's local rank contrast becomes the paper's headline over 24 tasks; Figures 9–10 preserve the pairwise matrix behind these per-benchmark averages.",
+      "design_strengths": [
+        "The paired bars and common 0–1 scale make the direction of improvement immediate.",
+        "Sorting by the direct baseline preserves the baseline difficulty gradient.",
+        "The caption supplies the aggregation denominator and points to the complete matrices."
+      ],
+      "design_weaknesses": [
+        "Twenty-four rotated labels are dense.",
+        "Averaging hides pairwise heterogeneity and provides no uncertainty display.",
+        "The direct/TBT colors require the small legend and are not sufficient in grayscale."
+      ],
+      "reusable_pattern": "Use a fixed task order and a common 0–1 axis for per-task baseline/method bars, then link to a full pairwise matrix for auditability.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 2",
+        "bbox": [
+          90,
+          200,
+          523,
+          364
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 3: Cross-category ranking agreement for direct evaluation (left) and train-before-test (right). We categorize benchmarks into language understanding (LU), commonsense reasoning (CR), question answering (QA), physics/biology/chemistry (PBC), math (Math), and medicine (Med), see Table 1. Kendall’s τ is averaged across all pairs of benchmarks that belong to two given categories. The diagonal entries represent intra-category agreement and the others represent inter-category agreement. Train-before-test improves both intra- and inter-category ranking agreement in all instances.",
+        "word_count": 74,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 256,
+        "hex": [
+          "#081D58",
+          "#41B6C4",
+          "#FFFFD9"
+        ],
+        "semantic_mapping": "YlGnBu_r intensity encodes mean Kendall τ from 0 to 1; cell text provides the rounded value.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 72,
+        "data_marks_estimate": 72
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "Six benchmark categories: LU, CR, QA, PBC, Math, Med",
+        "y": "The same six categories",
+        "color": "Mean Kendall τ for pairs of benchmarks across the category pair",
+        "shape": null,
+        "line": null,
+        "facet": "Direct evaluation (left) and Train-before-test (right)",
+        "text": "Two-decimal cell annotations and category tick labels"
+      },
+      "data_and_statistics": "Each cell averages Kendall τ over benchmark pairs in two categories; the diagonal uses intra-category pairs and off-diagonals use inter-category pairs. Reported examples include LU 0.52→0.75 and Math 0.55→0.84; all shown instances improve.",
+      "evidence_relation": "The overall mean in Figure 2 is decomposed into category-level intra/inter evidence; Figure 13 repeats the same geometry for ties-aware τ-b.",
+      "design_strengths": [
+        "Identical panel geometry and color domain support left/right comparison.",
+        "Diagonal semantics are stated, preventing an intra/inter mix-up.",
+        "Numeric annotations retain the value when color contrast is imperfect."
+      ],
+      "design_weaknesses": [
+        "Heatmap color and small text compete at PDF scale.",
+        "Category means hide pair counts and within-category outliers.",
+        "Color is the main quantitative encoding despite the numerical labels."
+      ],
+      "reusable_pattern": "Use paired category heatmaps with a fixed order, identical sequential scales, diagonal/off-diagonal definitions, and values printed in cells; add pair counts when category sizes differ.",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 3",
+        "bbox": [
+          90,
+          20,
+          524,
+          238
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 4: Ranking agreement between perplexity rankings and downstream benchmark rankings under direct evaluation (top) and train-before-test (bottom). Perplexity rankings are consistent with each other under both evaluation schemes, with an average Kendall’s τ of 0.76 and 0.78, respectively. However, for direct evaluation, agreement between perplexity rankings and downstream rankings is low, with an average Kendall’s τ of just 0.48. Fortunately, train-before-test results in higher agreement between perplexity and downstream, increasing average Kendall’s τ to 0.74.",
+        "word_count": 77,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 256,
+        "hex": [
+          "#081D58",
+          "#41B6C4",
+          "#FFFFD9"
+        ],
+        "semantic_mapping": "YlGnBu_r intensity encodes Kendall τ; cell text gives the corpus/benchmark value.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 144,
+        "data_marks_estimate": 144
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "24 downstream benchmark names",
+        "y": "Perplexity corpora: Wiki, Stack, Arxiv",
+        "color": "Kendall τ between corpus perplexity ranking and downstream ranking",
+        "shape": null,
+        "line": null,
+        "facet": "Direct evaluation (top) and Train-before-test (bottom)",
+        "text": "Cell values, corpus labels, panel titles, and colorbar labels"
+      },
+      "data_and_statistics": "The matrix cells are Kendall τ between each of three 2025 perplexity corpora and each downstream benchmark, under each evaluation scheme. Perplexity-to-perplexity mean τ is 0.76/0.78, while perplexity-to-downstream increases from 0.48 to 0.74; no cell uncertainty is shown.",
+      "evidence_relation": "The Figure 2 ranking-agreement claim is probed for a measurement connection: Figure 4 compares perplexity and downstream under the same regime, while Figure 5 changes the model training state.",
+      "design_strengths": [
+        "Rows expose cross-corpus consistency rather than only one pooled score.",
+        "Top/bottom panels keep task columns aligned.",
+        "The colorbar and annotations make a dense cross-metric lookup possible."
+      ],
+      "design_weaknesses": [
+        "Twenty-four columns and two colorbars leave little reading space.",
+        "Caption does not give row document counts or the Gemma exclusion context.",
+        "Point estimates lack corpus/task uncertainty."
+      ],
+      "reusable_pattern": "Represent measurement-source-by-task agreement as a rows-by-tasks heatmap with paired evaluation panels; state row sample sizes and exclusions alongside it.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 4",
+        "bbox": [
+          90,
+          20,
+          524,
+          249
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5: Ranking agreement between perplexity rankings before fine-tuning (direct evaluation) and downstream benchmark rankings after fine-tuning (train-before-test) for base models (top) and instruction-tuned models (bottom). Unlike Figure 4 where both rankings in each comparison use the same evaluation scheme, here we test whether pre-fine-tuning perplexity can predict post-fine-tuning downstream performance. Base models show strong correlation (average Kendall’s τ = 0.78), suggesting perplexity is a good predictor of model potential. This indicates that the ranking consistency we observe reflects inherent model potential rather than artifacts introduced by fine-tuning. Instruction-tuned models show much weaker correlation (average Kendall’s τ = 0.51).",
+        "word_count": 97,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 256,
+        "hex": [
+          "#081D58",
+          "#41B6C4",
+          "#FFFFD9"
+        ],
+        "semantic_mapping": "YlGnBu_r intensity encodes Kendall τ; cell text supplies rounded values.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 144,
+        "data_marks_estimate": 144
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "24 downstream benchmark names",
+        "y": "Wiki, Stack, Arxiv perplexity corpora",
+        "color": "Agreement between direct pre-FT perplexity and TBT post-FT downstream rankings",
+        "shape": null,
+        "line": null,
+        "facet": "Base model (top) and instruction-tuned model (bottom)",
+        "text": "Cell annotations and panel titles"
+      },
+      "data_and_statistics": "Each cell compares direct pre-fine-tuning perplexity ranking with TBT post-fine-tuning downstream ranking. Average τ is 0.78 for base models and 0.51 for instruction-tuned models; this is a cross-state point-estimate comparison with no intervals.",
+      "evidence_relation": "Figure 4's same-regime perplexity connection is tested across pre/post fine-tuning states; the IT result is an explicit boundary on the latent-potential interpretation.",
+      "design_strengths": [
+        "The same heatmap grammar as Figure 4 isolates the model-state change.",
+        "The caption makes the pre/post and direct/TBT roles explicit.",
+        "Base and IT heterogeneity is visible rather than collapsed into one claim."
+      ],
+      "design_weaknesses": [
+        "The two 3×24 matrices remain difficult to read at page scale.",
+        "Model counts and Gemma exclusions are not in the figure.",
+        "No uncertainty or significance key accompanies the 0.78/0.51 cells."
+      ],
+      "reusable_pattern": "Separate same-state and cross-state ranking questions into matched heatmaps; put training state in panel titles and in the caption, not only in surrounding prose.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 5",
+        "bbox": [
+          90,
+          145,
+          524,
+          462
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6: Explained variance ratios of the top five principal components of the benchmark score matrix, under direct evaluation (left) and train-before-test (right). Train-before-test substantially increases the amount of variance explained by the first principal component, from 70% to 86%. This indicates the model potential is dominated by one single latent factor.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#0173B2"
+        ],
+        "semantic_mapping": "One blue bar series per panel; panel title encodes direct versus TBT.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "Principal components PC1–PC5",
+        "y": "Variance explained ratio from 0 to 1",
+        "color": "A single method-neutral bar color",
+        "shape": null,
+        "line": null,
+        "facet": "Direct evaluation (left) and Train-before-test (right)",
+        "text": "Percentage labels above bars and panel titles"
+      },
+      "data_and_statistics": "PCA is applied to the standardized 24-benchmark score matrix; the first five components explain about 91% (direct) and 97% (TBT), with PC1 changing from 70% to 86%. Bars and percentage annotations are point estimates.",
+      "evidence_relation": "Category-level agreement in Figure 3 is followed by a score-matrix structural diagnostic; Figures 7–8 and Table 8 test the PC1 interpretation against compute and family slices.",
+      "design_strengths": [
+        "Same 0–1 y-axis and five-component order make concentration visible.",
+        "Percentage labels make the PC1 contrast legible without estimating bar height.",
+        "The paired layout avoids confusing overall variance with a family-specific case."
+      ],
+      "design_weaknesses": [
+        "Rounded percentages hide small residual component differences.",
+        "PCA preprocessing and sign convention are not encoded in the panel.",
+        "The latent-factor interpretation goes beyond what bars alone identify."
+      ],
+      "reusable_pattern": "Use paired explained-variance bars with identical component order and direct annotations when communicating a low-dimensionality transition; state standardization and cumulative sums in caption/prose.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 6",
+        "bbox": [
+          90,
+          20,
+          523,
+          238
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 7: PC1 scores under train-before-test align with the pre-training compute.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#0173B2",
+          "#DE8F05",
+          "#029E73",
+          "#CC78BC",
+          "#CA9161"
+        ],
+        "semantic_mapping": "Point color identifies Pythia, Llama, Qwen, Gemma, or Yi family.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 38
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "above plot, three-column legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "Pre-training compute (FLOPs), logarithmic",
+        "y": "TBT PC1 score",
+        "color": "Model family",
+        "shape": "Circular scatter marker",
+        "line": null,
+        "facet": null,
+        "text": "Axis labels, ticks, and family legend"
+      },
+      "data_and_statistics": "Approximately 38 models with public token counts are plotted. Pre-training FLOPs are derived as 6 × #Parameters × #Tokens (Table 4); no fitted line, correlation summary, error ellipse, or uncertainty is shown.",
+      "evidence_relation": "Figure 6's PC1 concentration is compared with a scale variable; Table 4 supplies the exact model/cost rows, while Figure 11 shows all 61 PC1 scores beyond this subset.",
+      "design_strengths": [
+        "Logarithmic x-axis accommodates multiple compute orders of magnitude.",
+        "Family colors expose within- and between-family structure.",
+        "The paired Table 4 makes each plotted cost derivation auditable."
+      ],
+      "design_weaknesses": [
+        "The short caption omits the log scale, subset rule, family key, and FLOPs formula.",
+        "No trend line or numeric association is reported.",
+        "The inset has no model labels and its legend is visually tight."
+      ],
+      "reusable_pattern": "For a partially observed scale relationship, use log-x family-colored points and a companion exact cost table; put inclusion criteria and the derived-cost equation in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 7",
+        "bbox": [
+          330,
+          175,
+          523,
+          370
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 8: Explained variance ratios of the top five principal components of the QWEN score matrix. For train-before-test, the explained variance ratio of PC1 increases to 93%. Controlling the model family to QWEN has made the score matrix essentially rank one.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#0173B2"
+        ],
+        "semantic_mapping": "One blue bar series per direct/TBT panel; panel title carries the condition.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "Principal components PC1–PC5",
+        "y": "Variance explained ratio from 0 to 1",
+        "color": "Single bar color",
+        "shape": null,
+        "line": null,
+        "facet": "Direct evaluation and Train-before-test",
+        "text": "Percentage labels and panel titles"
+      },
+      "data_and_statistics": "PCA is recomputed on the Qwen-only score matrix. PC1 increases from 74% under direct evaluation to 93% under TBT; the remaining four components are shown as rounded percentages, without uncertainty.",
+      "evidence_relation": "This family-controlled case follows Figure 6's all-model PCA and is cross-checkable against the Qwen row in Table 8; it narrows rather than proves the rank-one interpretation.",
+      "design_strengths": [
+        "Identical component order and y-axis make the Qwen change comparable with Figure 6.",
+        "PC1 percentage is directly annotated.",
+        "The family-control boundary is visible in both title and caption."
+      ],
+      "design_weaknesses": [
+        "A single family cannot establish a general family-invariant mechanism.",
+        "No Qwen sample count or preprocessing detail is in the caption.",
+        "Rounded bars do not convey stability or uncertainty."
+      ],
+      "reusable_pattern": "Repeat the aggregate PCA visual on a controlled family slice with the same axes and labels, then provide all families in a companion table.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 8",
+        "bbox": [
+          90,
+          20,
+          524,
+          238
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 20,
+      "module": "appendix B.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 9: Cross benchmark ranking agreement under direct evaluation. Benchmarks are sorted based on the training dataset size. Kendall’s τ is calculated for every benchmark pair.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 256,
+        "hex": [
+          "#081D58",
+          "#41B6C4",
+          "#FFFFD9"
+        ],
+        "semantic_mapping": "YlGnBu_r intensity encodes direct Kendall τ from 0 to 1; numeric annotations duplicate cell intensity.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 576,
+        "data_marks_estimate": 576
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "24 benchmarks sorted by training dataset size",
+        "y": "The same 24 benchmarks",
+        "color": "Pairwise direct Kendall τ",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "Cell annotations, diagonal 1s, rotated task labels, colorbar"
+      },
+      "data_and_statistics": "The symmetric 24×24 matrix contains 276 benchmark-pair Kendall τ values plus the diagonal. It retains low and negative cells rather than selecting only favorable pairs; values are point estimates with no intervals.",
+      "evidence_relation": "This is the full pairwise audit behind Figure 2's per-benchmark means and the 274/276 pair-improvement comparison with Figure 10.",
+      "design_strengths": [
+        "Full pair coverage exposes outliers and negative agreements.",
+        "Fixed task ordering and 0–1 color domain make the direct/TBT pair auditable.",
+        "Numerical cells preserve values if color reproduction changes."
+      ],
+      "design_weaknesses": [
+        "The 24×24 labels and annotations are hard to read at normal size.",
+        "No pair counts or uncertainty are attached to cells.",
+        "The caption omits the overall direct mean and must be read with surrounding text."
+      ],
+      "reusable_pattern": "Place the complete pairwise matrix in an appendix with a stable ordering and color scale, while using an aggregate bar in the main text.",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 9",
+        "bbox": [
+          90,
+          95,
+          522,
+          405
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 21,
+      "module": "appendix B.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 10: Cross benchmark ranking agreement under train-before-test. Benchmarks are sorted based on the training dataset size. Kendall’s τ is calculated for every benchmark pair.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 256,
+        "hex": [
+          "#081D58",
+          "#41B6C4",
+          "#FFFFD9"
+        ],
+        "semantic_mapping": "YlGnBu_r intensity encodes TBT Kendall τ from 0 to 1; numeric annotations duplicate cell intensity.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 576,
+        "data_marks_estimate": 576
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "24 benchmarks in the Figure 9 order",
+        "y": "The same 24 benchmarks",
+        "color": "Pairwise TBT Kendall τ",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "Cell annotations, diagonal 1s, task labels, colorbar"
+      },
+      "data_and_statistics": "The symmetric 24×24 matrix reports TBT Kendall τ for all benchmark pairs and preserves the diagonal. It supplies the pair-level values behind the overall TBT mean and the comparison to Figure 9; no intervals are drawn.",
+      "evidence_relation": "This is the TBT counterpart to Figure 9 and the pairwise evidence for Figure 2's aggregate uplift; Figures 14–15 repeat the pair in ties-aware τ-b form.",
+      "design_strengths": [
+        "Exact same matrix geometry makes direct/TBT cell comparison possible.",
+        "All pairs remain visible instead of only the average.",
+        "The source notebook explicitly reproduces the heatmap grammar."
+      ],
+      "design_weaknesses": [
+        "Dense labels and tiny annotations limit page-scale readability.",
+        "No tie/uncertainty or per-pair sample-size key is shown.",
+        "The caption does not restate the overall TBT value."
+      ],
+      "reusable_pattern": "Keep paired full matrices geometrically identical and link them from the aggregate comparison so any visual change is attributable to the evaluation regime.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 10",
+        "bbox": [
+          90,
+          247,
+          522,
+          555
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 23,
+      "module": "appendix B.3",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 11: PC1 scores under train-before-test.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#0173B2",
+          "#DE8F05",
+          "#029E73",
+          "#CC78BC",
+          "#CA9161"
+        ],
+        "semantic_mapping": "Bar color is intended to identify model family, but the figure provides no family legend.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": 5,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 61
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "y",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "TBT PC1 score, approximately −14 to 7",
+        "y": "61 model names",
+        "color": "Model-family categorical color",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "Model names on the y-axis"
+      },
+      "data_and_statistics": "The chart displays the TBT PC1 score for all 61 models, including models not eligible for Figure 7's public-token compute subset. Scores are point estimates; there are no error bars, score labels, or explicitly drawn zero reference line.",
+      "evidence_relation": "It expands Figure 7's partial compute-linked sample to the full model membership in Table 2 and provides model-level detail for the all-model PCA in Figure 6.",
+      "design_strengths": [
+        "Horizontal bars accommodate long model identifiers and 61 rows.",
+        "The full model set prevents Figure 7's compute availability filter from being mistaken for the population.",
+        "A zero-centered x-axis shows sign and spread."
+      ],
+      "design_weaknesses": [
+        "Family colors have no legend, so their semantics cannot be recovered from the figure alone.",
+        "No exact values or uncertainty are printed.",
+        "The six-word caption is not self-contained."
+      ],
+      "reusable_pattern": "Use horizontal bars for a large named population, but always include a family key and an exact score table when color carries a grouping variable.",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 11",
+        "bbox": [
+          90,
+          145,
+          522,
+          650
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 30,
+      "module": "appendix C.2",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 12: Mean ranking agreement between each benchmark and all others, measured by Kendall’s tau-b, with non-statistically significant performance differences being treated as ties. We calculate Kendall’s τ-b between each benchmark and every other one, and then average. Compared to direct evaluation, train-before-test consistently improves ranking agreement–often by a large margin. On average, the overall average Kendall’s τ is 0.58 for direct evaluation and 0.77 for train-before-test.",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#0173B2",
+          "#DE8F05"
+        ],
+        "semantic_mapping": "Blue/orange encode direct/TBT, while tau-b and ties are a statistical treatment rather than a color encoding.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "above plot, upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "24 benchmark names in the Figure 2 order",
+        "y": "Mean Kendall tau-b from 0 to 1",
+        "color": "Direct evaluation versus Train-before-test",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "Rotated benchmark labels and y ticks"
+      },
+      "data_and_statistics": "Each bar averages ties-aware Kendall tau-b between a benchmark and the other benchmarks. Overall mean tau-b is 0.58 for direct and 0.77 for TBT; non-significant model comparisons are treated as ties and no interval is drawn.",
+      "evidence_relation": "This is the significance-aware robustness re-expression of Figure 2; Figures 13–15 carry the same treatment to category and full pair matrices.",
+      "design_strengths": [
+        "It changes the estimand while preserving the main Figure 2 geometry.",
+        "The caption defines ties and reports the aggregate result.",
+        "The same method colors make the robustness comparison visually cheap to parse."
+      ],
+      "design_weaknesses": [
+        "The caption's phrase 'large margin' is not accompanied by a margin/error encoding.",
+        "Task labels remain dense and pair-level tie counts are absent.",
+        "The figure does not show how many comparisons become ties."
+      ],
+      "reusable_pattern": "For a statistical robustness analysis, retain the original bar ordering, colors, and axis domain while stating the alternate estimand and tie rule in the caption.",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 12",
+        "bbox": [
+          90,
+          20,
+          522,
+          280
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 30,
+      "module": "appendix C.2",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 13: Cross-category ranking agreement for direct evaluation (left) and train-before-test (right), measured by Kendall’s tau-b, with non-statistically significant performance differences being treated as ties. We consider language understanding (LU), commonsense reasoning (CR), question answering (QA), physics/biology/chemistry (PBC), math (Math), and medicine (Med) categories. Kendall’s τ-b is averaged across all pairs of benchmarks that belong to two given categories. The diagonal represents the intra-category agreement and the others represent the inter-category agreement. train-before-test improves both intra- and inter-category ranking agreement in all instances.",
+        "word_count": 85,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 256,
+        "hex": [
+          "#081D58",
+          "#41B6C4",
+          "#FFFFD9"
+        ],
+        "semantic_mapping": "YlGnBu_r intensity encodes category-level tau-b; cell numbers provide the rounded values.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 72,
+        "data_marks_estimate": 72
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "LU, CR, QA, PBC, Math, Med",
+        "y": "The same six categories",
+        "color": "Mean ties-aware Kendall tau-b",
+        "shape": null,
+        "line": null,
+        "facet": "Direct evaluation (left) and TBT (right)",
+        "text": "Two-decimal cell values and category labels"
+      },
+      "data_and_statistics": "Each cell averages tau-b over benchmark pairs in the two category sets, with non-significant model differences tied; diagonal cells are intra-category and other cells inter-category. All reported category instances improve under TBT.",
+      "evidence_relation": "Figure 3's ordinary-τ category decomposition is re-run with the Appendix C.2 significance rule; Figures 12, 14 and 15 complete the robustness chain.",
+      "design_strengths": [
+        "Matched category order and color scale make τ versus τ-b differences inspectable.",
+        "The caption defines ties and diagonal semantics.",
+        "Cell values reduce dependence on color perception."
+      ],
+      "design_weaknesses": [
+        "No pair count or tie density is shown.",
+        "Tiny annotations and sequential color remain the only quantitative encodings.",
+        "The lowercase train-before-test in the final sentence is inconsistent with title casing elsewhere."
+      ],
+      "reusable_pattern": "Reuse the main category heatmap for an alternate statistic, changing only the estimand definition and caption so readers can attribute differences correctly.",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 13",
+        "bbox": [
+          90,
+          295,
+          524,
+          610
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 31,
+      "module": "appendix C.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 14: Cross benchmark ranking agreement under direct evaluation, measured by Kendall’s tau-b with insignificant model comparisons treated as ties.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 256,
+        "hex": [
+          "#081D58",
+          "#41B6C4",
+          "#FFFFD9"
+        ],
+        "semantic_mapping": "YlGnBu_r intensity encodes direct ties-aware Kendall tau-b; cell text duplicates the value.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 576,
+        "data_marks_estimate": 576
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "24 benchmarks in the full-matrix order",
+        "y": "The same 24 benchmarks",
+        "color": "Direct Kendall tau-b with ties",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "Cell annotations, task labels, diagonal, colorbar"
+      },
+      "data_and_statistics": "This 24×24 matrix recomputes direct benchmark-pair agreement with insignificant model comparisons treated as ties. It preserves all pairs and the diagonal; it is a point-estimate alternate statistic with no uncertainty layer.",
+      "evidence_relation": "It is the ties-aware counterpart to Figure 9 and the direct half of the Figure 14/15 pair supporting Figure 12's tau-b average.",
+      "design_strengths": [
+        "Full pair coverage and fixed ordering enable cell-by-cell comparison with Figure 9.",
+        "The caption gives the essential statistical treatment.",
+        "The matrix retains unfavorable cells rather than only the headline mean."
+      ],
+      "design_weaknesses": [
+        "Dense labels are difficult at page scale.",
+        "Tie counts and pair denominators are not visualized.",
+        "The caption does not report the overall tau-b mean."
+      ],
+      "reusable_pattern": "For an alternate pairwise metric, preserve the original matrix geometry and ordering, and change only the metric/tie definition in the caption.",
+      "evidence": {
+        "page": 31,
+        "label": "Figure 14",
+        "bbox": [
+          90,
+          245,
+          522,
+          560
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 32,
+      "module": "appendix C.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 15: Cross benchmark ranking agreement under train-before-test, measured by Kendall’s tau-b with insignificant model comparisons treated as ties.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Liberation Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 256,
+        "hex": [
+          "#081D58",
+          "#41B6C4",
+          "#FFFFD9"
+        ],
+        "semantic_mapping": "YlGnBu_r intensity encodes TBT ties-aware Kendall tau-b; cell text duplicates the value.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 576,
+        "data_marks_estimate": 576
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "24 benchmarks in the Figure 14 order",
+        "y": "The same 24 benchmarks",
+        "color": "TBT Kendall tau-b with ties",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "Cell annotations, task labels, diagonal, colorbar"
+      },
+      "data_and_statistics": "This 24×24 matrix reports TBT benchmark-pair agreement after insignificant model comparisons are treated as ties. It provides the full pairwise counterpart to the 0.77 overall tau-b mean; no uncertainty is shown.",
+      "evidence_relation": "It pairs with Figure 14 to close the significance-aware direct/TBT comparison and feeds the aggregate/category summaries in Figures 12–13.",
+      "design_strengths": [
+        "Identical geometry allows TBT versus direct comparison without layout confounding.",
+        "The complete matrix retains family/task heterogeneity.",
+        "The caption states the tie treatment explicitly."
+      ],
+      "design_weaknesses": [
+        "The matrix is difficult to scan alongside 24 rotated labels and annotations.",
+        "No tie-density key or pair-level uncertainty is provided.",
+        "The caption does not state the aggregate value or any boundary case."
+      ],
+      "reusable_pattern": "Use a matched full matrix for the method condition and its ties-aware robustness counterpart; link both to the aggregate bar rather than replacing the aggregate with the dense matrix.",
+      "evidence": {
+        "page": 32,
+        "label": "Figure 15",
+        "bbox": [
+          90,
+          245,
+          522,
+          560
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 4,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 1: We categorize benchmarks into language understanding (LU), commonsense reasoning (CR), question answering (QA), physics/biology/chemistry (PBC), math (Math), and medicine (Med).",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 6,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; this is a taxonomy table, not a performance estimate.",
+      "data_and_statistics": "Six category rows list all 24 benchmark names; benchmark counts are implicit in the comma-separated cells.",
+      "evidence_relation": "Defines the category axes used in Figures 3/13 and the grouping logic behind the full matrices in Figures 9/10/14/15.",
+      "design_strengths": [
+        "Compact two-column key fixes the task taxonomy.",
+        "Black-and-white booktabs is robust to printing.",
+        "The category abbreviations recur consistently in heatmaps."
+      ],
+      "design_weaknesses": [
+        "Long benchmark lists are dense in the second column.",
+        "The caption does not state per-category counts or evaluation metrics.",
+        "The right-column float requires readers to connect it to later figures."
+      ],
+      "reusable_pattern": "Declare the benchmark taxonomy once in a compact two-column table and reuse the exact category order in every matrix.",
+      "evidence": {
+        "page": 4,
+        "label": "Table 1",
+        "bbox": [
+          292,
+          294,
+          508,
+          386
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 5,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "experimental_design",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 2: Models considered, categorized by model family.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 6,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; this table enumerates model membership.",
+      "data_and_statistics": "Six family rows enumerate 61 model suffixes, including base and instruction-tuned variants; no performance values are present.",
+      "evidence_relation": "Supplies the model denominator for all results, the family mapping for Figure 7/11 and Tables 4/7/8, and the population behind Figure 1.",
+      "design_strengths": [
+        "Exact membership is recorded once rather than repeated in captions.",
+        "Family rows are easy to locate.",
+        "Two-column width accommodates the long suffix lists."
+      ],
+      "design_weaknesses": [
+        "Comma-separated suffixes are difficult to scan.",
+        "The caption does not define base/IT or give the total count.",
+        "There is no separate parameter-size or variant column."
+      ],
+      "reusable_pattern": "Use one row per model family for exact membership, then give size/condition metadata in a separate reproducibility table.",
+      "evidence": {
+        "page": 5,
+        "label": "Table 2",
+        "bbox": [
+          132,
+          76,
+          502,
+          240
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 22,
+      "module": "appendix B.2",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3: Bits per byte (BPB) of eight excluded GEMMA models compared to PYTHIA-410M across the three newly collected corpora. The GEMMA models exhibit abnormally high BPB values on Wiki and Stack, likely due to the greater average sequence length in these two datasets. Specifically, Arxiv has an average of 163 words per document, compared to 250 for Stack and 1502 for Wiki.",
+        "word_count": 63,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; BPB values are point estimates used for a data-pipeline diagnostic.",
+      "data_and_statistics": "Eight Gemma variants and one Pythia-410M reference are reported on Arxiv, Wiki and Stack; values use three decimal places. The group break separates Gemma from Pythia.",
+      "evidence_relation": "Diagnoses why Gemma is excluded from the Figure 4 perplexity analysis; it turns a potentially hidden missing subgroup into an explicit failure case.",
+      "design_strengths": [
+        "Shows the raw abnormal values and a named reference.",
+        "Consistent three-decimal precision makes the anomaly visible.",
+        "Caption supplies document-length context and a plausible mechanism."
+      ],
+      "design_weaknesses": [
+        "One Pythia reference cannot establish the anomaly's breadth.",
+        "No rolling-window configuration or exact sample count is in the table.",
+        "No uncertainty accompanies the exclusion diagnostic."
+      ],
+      "reusable_pattern": "When excluding a subgroup for a measurement failure, provide compact raw diagnostics, a reference, and the data-scale context in the appendix.",
+      "evidence": {
+        "page": 22,
+        "label": "Table 3",
+        "bbox": [
+          160,
+          110,
+          450,
+          330
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 24,
+      "module": "appendix B.3",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4: The models used in Figure 7. The number of training tokens of these models is publicly available. We compute the number of pre-training FLOPs as 6 × #Parameters × #Tokens.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 38,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 5,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; parameters/tokens are inputs and FLOPs are a deterministic derived cost.",
+      "data_and_statistics": "Thirty-eight public-token-count models are listed across five family groups. Parameter values use about two decimals, tokens one decimal, and FLOPs two decimals; the column precisions intentionally differ by quantity.",
+      "evidence_relation": "Provides the exact model/cost lookup for Figure 7 and documents the subset restriction created by public token counts.",
+      "design_strengths": [
+        "Cost formula and units are visible in the caption/header.",
+        "The table makes every scatter point auditable.",
+        "Family ordering mirrors the model taxonomy."
+      ],
+      "design_weaknesses": [
+        "Family groups rely mainly on row ordering and whitespace.",
+        "Training-token source URLs are not included.",
+        "Mixed precision across columns requires careful alignment."
+      ],
+      "reusable_pattern": "Pair any compute scatter with a table of model, parameter, token and derived FLOPs values, plus a clear inclusion rule.",
+      "evidence": {
+        "page": 24,
+        "label": "Table 4",
+        "bbox": [
+          100,
+          180,
+          515,
+          650
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 25,
+      "module": "appendix B.4",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 5: We calculate Kendall’s τ between each benchmark and every other benchmark, and then average the results.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 24,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; each value is a benchmark-level mean over the other benchmarks.",
+      "data_and_statistics": "Rows are the 24 benchmarks; columns compare Direct evaluation (0 shot), Direct evaluation (5 shot), and Train-before-test. Values use two decimals; overall means are 0.52, 0.61 and 0.76.",
+      "evidence_relation": "Extends Figure 2 with a 5-shot direct preparation baseline and preserves per-benchmark values behind the aggregate 89% pairwise win statement.",
+      "design_strengths": [
+        "Conditions are explicit in the column headers.",
+        "All 24 tasks are retained rather than only the aggregate.",
+        "Consistent two-decimal formatting supports column comparison."
+      ],
+      "design_weaknesses": [
+        "Caption does not define shot semantics, TBT, or the aggregation denominator.",
+        "No sample/pair count or uncertainty is provided.",
+        "The table tests preparation intensity but is not a component ablation."
+      ],
+      "reusable_pattern": "Add a lower-cost preparation baseline as a column in an appendix table, keeping one row per task and the condition in the header.",
+      "evidence": {
+        "page": 25,
+        "label": "Table 5",
+        "bbox": [
+          100,
+          95,
+          512,
+          365
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 26,
+      "module": "appendix B.6",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 6: The overall average Kendall’s τ across all benchmark pairs for models in each size bin.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; each row is an overall mean for a model-size stratum.",
+      "data_and_statistics": "Six size-bin rows plus All models report Direct evaluation and Train-before-test mean τ to two decimals; bins are [0,1), [1,2), [2,3), [6,7), [7,8), [9,10) B.",
+      "evidence_relation": "Controls for model size after Figure 7's compute association; it is paired with Table 7's family control and Table 8's family PCA.",
+      "design_strengths": [
+        "Simple three-column structure makes direction within each bin obvious.",
+        "All models row reconnects the stratified values to the headline.",
+        "Two-decimal precision is stable."
+      ],
+      "design_weaknesses": [
+        "No number of models or benchmark pairs per bin is reported.",
+        "Bin boundary convention is not explained in the caption.",
+        "All models is separated mainly by position, not a strong rule."
+      ],
+      "reusable_pattern": "For size-stratified robustness, state bin boundaries, retain an overall row, and add n per bin so a large direction cannot hide a tiny stratum.",
+      "evidence": {
+        "page": 26,
+        "label": "Table 6",
+        "bbox": [
+          105,
+          90,
+          510,
+          350
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 27,
+      "module": "appendix B.7",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 7: The overall average Kendall’s τ across all benchmark pairs for each model family.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; values are family-level benchmark-pair means.",
+      "data_and_statistics": "Five family rows plus All models report direct and TBT mean τ to two decimals: Llama .51/.65, Pythia .25/.88, Qwen .57/.79, Gemma .43/.77, Yi .25/.30, all .52/.76.",
+      "evidence_relation": "Makes family heterogeneity visible after the overall headline; Yi's low TBT value is an explicit boundary, while Table 8 tests the corresponding PCA structure.",
+      "design_strengths": [
+        "Keeps low-performing Yi rather than reporting only favorable families.",
+        "Direct/TBT columns are immediately comparable.",
+        "The overall row links back to Figure 2."
+      ],
+      "design_weaknesses": [
+        "No n_models, parameter range or pair count appears.",
+        "Family/compute confounding cannot be inspected in the table.",
+        "The caption is too short to explain why family control matters."
+      ],
+      "reusable_pattern": "Family-stratified result tables should preserve exceptional groups and include membership counts and size ranges.",
+      "evidence": {
+        "page": 27,
+        "label": "Table 7",
+        "bbox": [
+          200,
+          100,
+          410,
+          225
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 27,
+      "module": "appendix B.7",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 8: Explained variance ratios for the top five principal components of the score matrix for each model family, under direct evaluation and train-before-test, respectively.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; percentages are rounded explained-variance ratios, not intervals.",
+      "data_and_statistics": "Rows are Llama, Pythia, Qwen, Gemma and Yi. Two grouped header levels separate Direct Evaluation PC1–PC5 from Train-before-test PC1–PC5; percentages are integer-rounded.",
+      "evidence_relation": "Expands Figure 6's all-model PCA and Figure 8's Qwen case across families, allowing family structure to be compared with Table 7's ranking agreement.",
+      "design_strengths": [
+        "Two-level grouped header aligns the same PC index across conditions.",
+        "Integer percentages are easy to scan for PC1 concentration.",
+        "All five families remain visible, including Yi's weaker concentration."
+      ],
+      "design_weaknesses": [
+        "Eleven columns force small type in a single-column appendix layout.",
+        "Rounding hides small residual components and there is no family n.",
+        "No cumulative explained-variance column is provided."
+      ],
+      "reusable_pattern": "Use grouped condition headers and aligned component indices for family-wise PCA tables; add sample counts and cumulative variance for interpretability.",
+      "evidence": {
+        "page": 27,
+        "label": "Table 8",
+        "bbox": [
+          200,
+          225,
+          410,
+          345
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 establishes local direct-versus-TBT rank disagreement; Figure 2 aggregates across 24 benchmarks; Figure 3 decomposes by category; Figures 4–5 test perplexity/downstream connections and base/IT boundaries; Figures 6–8 move to PCA, compute and family-controlled structure. Appendix Figures 9–10 and Tables 3–8 provide full matrices, a Gemma failure diagnostic, cost rows, few-shot and size/family stratifications; Figures 12–15 repeat the chain with ties-aware Kendall tau-b.",
+    "caption_system": "All objects use Figure N:/Table N: prefixes. Main result captions commonly state setup, comparison, aggregation and the directional finding; full matrices use shorter definition captions. Figure 1 uses bold Top/Bottom/Note subheads. Figure 7, Figure 11 and Tables 2, 5–7 are not self-contained because they omit subset, family, shot or denominator details.",
+    "table_header_system": "Tables 1–2 are taxonomy headers; Tables 3–7 use one-level headers with evaluation condition in the metric columns; Table 8 uses two grouped levels for Direct Evaluation/Train-before-test and PC1–PC5. Booktabs rules are consistent; row groups often rely on order/whitespace, and most result tables omit n and uncertainty.",
+    "method_result_ablation_link": "Benchmark-specific fine-tuning, LoRA and validation selection are defined in the body/Appendix A.2; Figure 1 and Appendix C.1 expose the ranking-alignment interface; Figures 2–5 are headline/mechanism comparisons; Figures 6–8, Figure 11, Table 4 and Table 8 are PCA/compute structure; Tables 5–7 and Figures 12–15 are preparation, size/family and significance-aware robustness. No component-deletion ablation isolates LoRA, epochs, template or checkpoint selection.",
+    "main_appendix_link": "Figure 2's means are expanded by Figures 9–10; Figure 3's category result by Figure 13; Figure 4's Gemma exclusion by Table 3; Figure 7's compute subset by Table 4; Figure 6/8's PCA story by Figure 11 and Table 8. Appendix objects supply pairwise denominators, failure evidence, costs, stratification and alternate statistics rather than unrelated material.",
+    "typography_consistency": "Nimbus Roman/Computer Modern serif is stable in body, captions and tables, while DejaVu/Liberation/Arial sans-serif is used for plot labels; math symbols use the embedded Computer Modern fonts. Plot text is smaller than body text, and the dense matrices trade readability for complete coverage.",
+    "color_consistency": "Blue/orange is stable for direct/TBT bars; YlGnBu_r and 0–1 colorbars are stable for ordinary and tau-b matrices; one blue is reused for PCA bars; family colors recur in Figure 7 and Figure 11. Figure 1's 61-color husl cycle is an intentional identity encoding but has no legend and weak grayscale redundancy."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Matched direct/TBT panels retain the same task order, axis domain, colors and geometry, so differences read as evaluation-condition changes.",
+      "Aggregate per-task bars in the main text paired with complete benchmark-pair matrices in the appendix form a useful headline-to-audit ladder.",
+      "Rows-as-measurement-source and columns-as-task heatmaps expose perplexity/downstream links while retaining corpus heterogeneity.",
+      "Explained-variance bars followed by a compute scatter plus exact cost table and family/size tables progressively narrow a latent-structure interpretation.",
+      "The tau-b/ties robustness objects reuse the ordinary-tau geometry, changing the estimand without adding visual confounds."
+    ],
+    "highest_value_objects": [
+      "Figure 1: local rank-reversal demonstration and significance-aware TBT interface.",
+      "Figure 2 with Figures 9–10: aggregate 0.52→0.76 headline and complete pairwise audit.",
+      "Figures 4–6: perplexity mechanism, base/IT boundary, and score-matrix PC1 concentration.",
+      "Tables 3/4/7/8 with Figure 11 and Figures 12–15: failure, cost denominator, family boundary, full PC1 distribution and ties-aware closure."
+    ],
+    "failure_patterns": [
+      "Figure 1 and the 24×24 matrices are information-dense at page scale; identity colors lack redundant shape/line encodings.",
+      "Most plots and Tables 5–8 are point estimates without seed aggregation, pair counts or per-task uncertainty; small size/family strata are therefore hard to calibrate.",
+      "Figure 7 has no trend/statistical summary and only includes models with public token counts, so PC1–compute is an observational subset relationship.",
+      "Figure 11 has no family legend; short captions for Table 2, Table 5–7 and Figure 7/11 omit key membership, condition or denominator information.",
+      "Gemma BPB exclusion, weak IT prediction (0.51) and Yi family TBT agreement (0.30) remain visible in appendix evidence but are not central to the headline mean.",
+      "The public source is partial: notebook/data support plot grammar and values, but no PDF TeX/table generator or exact final layout source is available."
+    ],
+    "one_sentence_visual_strategy": "The paper uses Figure 1's direct/TBT rank contrast to introduce equal preparation, Figures 2–5 to move from overall/category agreement to perplexity mechanism, Figures 6–8 to relate agreement to PCA/compute structure, and appendix matrices, diagnostics, stratified tables and tau-b robustness to close the pairwise and family-specific boundaries."
+  }
+}

@@ -1,0 +1,2231 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-8374ca36d622",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/AI4LIFE-GROUP/temporal-saes",
+      "https://github.com/saprmarks/dictionary_learning"
+    ],
+    "selected_repository": "https://github.com/AI4LIFE-GROUP/temporal-saes",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/AI4LIFE-GROUP/temporal-saes",
+        "path": "src/experiments/tsne.py",
+        "role": "plot_script",
+        "tool": "Plotly + scikit-learn TSNE",
+        "evidence": "GitHub tree and file show the MMLU/FineFineWeb/Wikipedia t-SNE data path and three scatter exports; the PDF figure styling is not reproduced as a committed export."
+      },
+      {
+        "repository_url": "https://github.com/AI4LIFE-GROUP/temporal-saes",
+        "path": "src/experiments/probing.py",
+        "role": "plot_script",
+        "tool": "scikit-learn LogisticRegression",
+        "evidence": "GitHub file loads semantic, context and syntax labels and high/low/all feature chunks used by the probing figures; no plotting/export block for the PDF bars is present."
+      },
+      {
+        "repository_url": "https://github.com/AI4LIFE-GROUP/temporal-saes",
+        "path": "src/data.py",
+        "role": "data_file",
+        "tool": "Hugging Face datasets + spaCy",
+        "evidence": "Public data loader supplies MMLU, FineFineWeb and Wikipedia activations/labels referenced by the t-SNE and probing experiments."
+      }
+    ],
+    "search_note": "PDF 第 2 页脚注明确链接 https://github.com/AI4LIFE-GROUP/temporal-saes，OpenReview 为 https://openreview.net/forum?id=bojVI4l9Kn；GitHub README 标题与论文完全对应，树中有 src/experiments/tsne.py、probing.py 和数据 loader。自动 source inventory 将该候选标为 repository_without_visual_source，且 corpus/visual_sources/iclr-2026-8374ca36d622/ 为空；人工检查确认公开仓库提供 t-SNE/probing 的实验代码，但 Figure 1/4/5/6/7/8/9/10/11/12 的 PDF 导出脚本、steering/alignment script 和表格生成器未提交，因此记录为 partial_visual_source，而非 exact_visual_source。"
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 2,
+    "appendix_figures": 7,
+    "appendix_tables": 8,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "Inter",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 7.0,
+        "maximum": 11.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "rendered_estimate",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.0,
+      "header_size_pt": 9.0,
+      "header_weight": "regular",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "图表以浅蓝灰网格、黑色文本和高饱和 categorical series 为主；semantic/context/syntax、SAE family、feature split 与 qualitative success 分别使用颜色，概念图另用柔和 pastel blocks。颜色多数没有纹理或形状冗余，灰度安全性有限。",
+    "vector_raster_mix": "PDF 正文和表格文本为可选取的 Type 1/CID 字体对象；Figures 1–12 由 PDF 中约 150 dpi 的 JPX 图像对象承载，200 dpi 页面渲染用于审计，因此 figure 内字体、线宽和色值均为 rendered estimate，表格/Caption 字体为 pdf_object。",
+    "style_consistency": "主文与附录共享双栏论文版式、Nimbus/Computer Modern caption/table typography、浅网格和小 multiples 语法；Figure 1/5 概念图与 Figure 2/9/12 t-SNE 的 palette/annotation 风格不完全统一，附录高密度对象的字号明显更紧。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 1: A) Human language production involves high-level features such as semantic content and surrounding context, as well as low-level features such as syntactical requirements and specific word choices. B) While existing SAEs mostly recover syntactic information, T-SAEs balance recovery of semantics, syntax, and context. C) When decomposing a sequence composed of three passages: Newton’s Principia, an MMLU genetics question, and the Bhagavat Gita (in English), T-SAEs (bottom) smoothly detect the semantic shifts in the passage, with highly active features strongly correlating to the true content of the text, whereas existing SAEs (such as Matryoshka, top), are much noisier, varying on almost a per-token basis, and do not easily depict these shifts.",
+        "word_count": 112,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#FFF7E8",
+          "#EAF4FF",
+          "#FFD86B",
+          "#F28E2B",
+          "#C63C96",
+          "#3B1FC5",
+          "#2FA5A5",
+          "#6E6FD2",
+          "#FFFFFF",
+          "#222222"
+        ],
+        "semantic_mapping": "奶油色 A 面板、浅蓝色 B 面板和黄色虚线强调概念区域；C 面板用橙、洋红、紫、青等颜色分别标注 Matryoshka 与 Temporal SAE 的特征语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 10,
+        "legend_items": 10,
+        "annotations": 14,
+        "data_marks_estimate": 550
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "C 右侧分成 Matryoshka SAE Features 与 Temporal SAE Features 两组；A/B 以面内文字直接标注",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 4,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "C 面板的 token 顺序；A/B 为无量化流程方向",
+        "y": "C 面板的 feature activation；A/B 为高/低层次信息的垂直层级",
+        "color": "SAE 方法与高/低层语义 feature identity",
+        "shape": "圆角概念框、人物/气泡图标、网络节点以及两条堆叠激活轨迹",
+        "line": "黑色流程箭头、黄色虚线 callout、按 token 的连续激活线",
+        "facet": "A 语言因素、B 现有 SAE 对比、C 三段拼接文本的激活轨迹",
+        "text": "High-level/Low-level、Existing SAEs、Temporal SAEs、三段文本名称和 feature explanations"
+      },
+      "data_and_statistics": "无总体样本或误差统计。C 将 Newton’s Principia、MMLU genetics question 与 Bhagavat Gita 拼接，并各展示 Matryoshka/Temporal 的 top-5 激活特征；竖向分段线与图内文字给出语义切换，但 activation 高度和 token 数只能从渲染图估读。",
+      "evidence_relation": "引言的语言高层/低层因素主张 → 方法的高低 split 与 temporal loss → Figure 1 用 A/B 解释设计、用 C 给出序列级直觉 → Figure 4/8 复现实验轨迹 → Table 1 smoothness。",
+      "design_strengths": [
+        "A/B/C 三段布局把动机、方法差异和可观察结果放在一张图中。",
+        "文本段落、颜色图例和阶段边界共同支撑“语义切换而非逐 token 噪声”的阅读。",
+        "页面宽度足以容纳概念框和两组激活图，适合引言首次建立心智模型。"
+      ],
+      "design_weaknesses": [
+        "C 面板同时使用两种 SAE、十条轨迹和较多小字，缩放后图例很难逐项核对。",
+        "颜色承担主要方法/语义区分，灰度或色弱条件下不易恢复对应关系。",
+        "示例是定性拼接序列，没有样本分母、重复实验或不确定性，不能单独支持普遍性。"
+      ],
+      "reusable_pattern": "用“概念因素 → 表示分工 → 拼接序列轨迹”的三段全宽图先给出机制直觉，再把定量验证留给 probing 和标准指标表。",
+      "evidence": {
+        "page": 2,
+        "label": "p.2 Figure 1 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 5,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "matrix"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 2: TSNE visualizations of Pythia-160m SAE decompositions of MMLU questions, labeled by question category (left), question number (middle column), and token part-of-speech (right). We see that T-SAE high-level features (top) recover semantics and context. The low-level features of T-SAEs (middle row), as well as Matryoshka SAEs (bottom), recover syntactic information.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 12,
+        "hex": [
+          "#E76F51",
+          "#2A9D8F",
+          "#457B9D",
+          "#F4A261",
+          "#E9C46A",
+          "#264653",
+          "#8E6CBE",
+          "#D1495B",
+          "#6CCB77",
+          "#E6E6F0",
+          "#C8D6E5",
+          "#222222"
+        ],
+        "semantic_mapping": "点颜色随列切换：左为 MMLU question category 的 semantic proxy，中为 question number/context，右为 part-of-speech；浅黄色外框/底色突出高层或语义聚类区域，黑色虚线椭圆直接标注局部 cluster。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 4500
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每个 panel 的 t-SNE 1 坐标",
+        "y": "每个 panel 的 t-SNE 2 坐标",
+        "color": "semantic category、question ID 或 token part-of-speech",
+        "shape": "小型散点与黑色虚线椭圆/文字注释",
+        "line": "椭圆虚线与 panel 边界；无数据连接线",
+        "facet": "行是 T-SAE high、T-SAE low、Matryoshka all；列是 semantic/context/syntax labeling",
+        "text": "European history、Professional medicine、Formal logic、Question about ...、Articles/Punctuation/Nouns"
+      },
+      "data_and_statistics": "每格为 Pythia-160m 的 MMLU 表示 t-SNE，颜色编码三种 proxy label；每个问题的末 20 tokens 被编码，图中未给总样本数、重复运行或 t-SNE 稳定性。高层 Temporal 行在语义/上下文列出现聚类，低层与 Matryoshka 在 syntax 列出现 POS 聚类；定量 probe 见 Figure 3。",
+      "evidence_relation": "Figure 1 的高/低层分工直觉 → Figure 2 定性检查 semantic/context/syntax 聚类 → Figure 3 sparse probe 定量验证 → Appendix Figures 9/12 扩展模型与 baseline。",
+      "design_strengths": [
+        "3×3 同坐标语法让行方法与列标签的差异可直接扫读。",
+        "行侧方法标签、列标题、椭圆和图内 cluster 文本提供颜色之外的冗余导航。",
+        "同时展示 semantic/context/syntax 三类 proxy，使“高层恢复语义、低层恢复语法”的机制链可见。"
+      ],
+      "design_weaknesses": [
+        "t-SNE 坐标没有统计意义，面板间几何距离不能当作可比较效应量。",
+        "数千散点和多色叠加在单页缩放后容易遮挡，点密度和小 cluster 难以核验。",
+        "proxy label、椭圆挑选和可视化参数未在 caption 中完整定义，不能代替 causal disentanglement。"
+      ],
+      "reusable_pattern": "用固定的 3×3 方法×标签小 multiples 将表征的 qualitative geometry 与后续 probe 绑定；适合对每种 feature split 做同一套诊断。",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 2 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 3: Accuracy of probes trained on SAE decompositions for various SAEs trained on Gemma2-2b, as well as probes trained directly on model latents (orange), with semantic labels (right), contextual labels (middle), and syntactic labels (right) with varying levels of probe sparsity (setup from (Kantamneni et al., 2025)). Dense probes are trained on all features.",
+        "word_count": 55,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#E91E63",
+          "#4E8A3A",
+          "#F0AE00",
+          "#1616C8",
+          "#E8E8F0",
+          "#222222"
+        ],
+        "semantic_mapping": "粉色为 Temporal SAE，绿色为 Matryoshka SAE，黄色为 BatchTopK SAE，蓝色为 Baseline Model；三列 panel 分别编码 semantic/context/syntax probe。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "三列 panels 右侧的共享图例",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "probe sparsity：1、5、10、20、Dense",
+        "y": "Accuracy",
+        "color": "SAE 或直接 model-latent baseline",
+        "shape": "并列柱",
+        "line": "柱边界与网格线；无趋势连接线",
+        "facet": "Semantics, MMLU；Context, MMLU；Syntax, MMLU",
+        "text": "每个 panel 标题、sparsity tick、方法图例与 Dense 说明"
+      },
+      "data_and_statistics": "Gemma2-2b probing accuracy 的 3 个任务 panel，每个 sparsity 有 4 根柱；未给误差条、重复数或聚合分母，精确柱高仅可由图像估读。Caption 指出 orange 为 model latents、Dense 使用全部 features，但未直接写出数值主发现。",
+      "evidence_relation": "Figure 2 的 t-SNE 聚类 → Figure 3 的 semantic/context/syntax probe → Table 1 检查 reconstruction/autointerp cost → Appendix Figures 7/10/11 检查 split 与跨数据集。",
+      "design_strengths": [
+        "并列柱在相同 sparsity 上对齐四种表示，比较路径清楚。",
+        "共享图例和 panel 标题压缩了重复标注，颜色与方法名一致。",
+        "x 轴把 sparse probe 与 Dense probe 放在同一尺度，读者能看到信息随 feature 数变化。"
+      ],
+      "design_weaknesses": [
+        "无不确定性显示，差异是否稳定无法从图中判断。",
+        "方法只靠颜色区分，灰度打印下 pink/green/yellow/blue 的顺序不可靠。",
+        "caption 的 semantic/context/syntax 方位文字有重复的 “right” 描述，脱离图面会产生歧义。"
+      ],
+      "reusable_pattern": "对每个任务固定 x=sparsity、y=accuracy 和方法颜色，并以同一图例横向比较 SAE/latent baseline；同时保留 Dense 端点显示表示容量边界。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 3 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 4: Top 8 most active Gemma2-2b Temporal SAE features over a concatenated sequence of text. Temporal SAE features exhibit clear phase transitions between sequences, are relatively smooth, and have explanations relevant to the semantic content of each component sequence.",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Space Mono",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 10,
+        "hex": [
+          "#F4B400",
+          "#1F77B4",
+          "#2CA02C",
+          "#17BECF",
+          "#E377C2",
+          "#9467BD",
+          "#D62728",
+          "#FF7F0E",
+          "#E8E8F0",
+          "#222222"
+        ],
+        "semantic_mapping": "八种 feature identity 用高饱和 categorical colors；浅蓝灰网格为背景，竖直虚线与下方括号标示四段文本边界。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 8,
+        "legend_items": 0,
+        "annotations": 11,
+        "data_marks_estimate": 900
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 3,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "拼接文本的 token index",
+        "y": "Feature Activation",
+        "color": "top-8 Temporal SAE feature identity",
+        "shape": "连续彩色激活轨迹/尖峰",
+        "line": "各 feature 的细线轨迹与 phase boundary 虚线",
+        "facet": "单一长序列，按四个文本区段分段",
+        "text": "Formal language、Proper nouns and scientific terms、Numbers and years、Historical literature and academic writing、Technical terms and concepts、Math concepts"
+      },
+      "data_and_statistics": "Gemma2-2b Temporal SAE 的 top-8 most-active features 在 biology/herbicide、Darwin letter、Animal Farm、abelian-groups 四段序列上逐 token 展示。图中没有误差或跨样本聚合；phase transition、相对平滑度和解释文字是定性证据。",
+      "evidence_relation": "Table 1 的 smoothness → Figure 4 用长序列把 smoothness/semantic rollover 变成可读轨迹 → Figure 8 加入三种 baseline → Figure 1 用另一组三段文本复现。",
+      "design_strengths": [
+        "长横轴和下方括号同时表达 token 顺序与四个语义区段。",
+        "直接 feature explanation 与颜色轨迹绑定，读者可将语义解释对准激活阶段。",
+        "同一图兼顾局部尖峰和跨段 phase transition，支持序列级解释主张。"
+      ],
+      "design_weaknesses": [
+        "八条轨迹在局部高激活处叠加，低分辨率下难以确认具体 feature。",
+        "解释来自自动 interpretability，图中没有人工验证、置信度或真实语义标签。",
+        "单个拼接序列具有示例选择性，不能量化所有输入上的 temporal consistency。"
+      ],
+      "reusable_pattern": "在统一 token 轴上以分段括号、边界线和直接语义标注展示 feature activation phase；适合比较任意长上下文表示的局部与全局结构。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 4 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "scatter"
+      ],
+      "purpose": [
+        "dataset",
+        "mechanism",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: Left. We use SAEs to understand user preferences in the HH-RLHF Bai et al. (2022) dataset. The Matryoshka SAE appears to find more random features, whereas the T-SAE is able to capture safety-relevant features. The T-SAE also finds a spurious length correlation in the dataset, where rejected completions are longer than chosen completions. Right. We find that high-level features Pareto dominate baselines in their ability to steer LLMs. Specifically, they are better at preserving coherence while successfully changing the semantics of model generation.",
+        "word_count": 85,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 11,
+        "hex": [
+          "#D8E1FF",
+          "#E4F1B7",
+          "#FFC4BA",
+          "#F3E4D3",
+          "#CDECCF",
+          "#E6B8AF",
+          "#E91E63",
+          "#43A047",
+          "#42A5F5",
+          "#777777",
+          "#222222"
+        ],
+        "semantic_mapping": "左侧淡蓝/浅绿/珊瑚色框表示偏好数据、safety/spurious feature、模型输出与下游动作；右侧粉/绿/蓝点表示 Temporal/Matryoshka/Neuronpedia SAE，灰度条编码 intervention strength。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 4,
+        "annotations": 18,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右侧 scatter 上方/左下的 SAE 图例与下方 intervention-strength 色带",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "右 panel Intervention Success；左 panel 为由数据到 action 的流程方向",
+        "y": "右 panel Coherence；左 panel 为 safety dataset understanding 的层级",
+        "color": "左为 feature/decision role，右为 SAE family 与 intervention strength",
+        "shape": "左为圆角框、箭头和 feature lists；右为散点圆 marker",
+        "line": "左为连接箭头；右为无连接散点与 strength gradient",
+        "facet": "Safety Dataset Understanding 与 Steering Tradeoffs 两个 panel",
+        "text": "Temporal SAE/Matryoshka SAE feature descriptions、Data filtering、SAE steering、Finetuning、Intervention Success/Coherence"
+      },
+      "data_and_statistics": "左侧为 HH-RLHF feature discovery、spurious length-correlation hypothesis 与数据动作；右侧约 30 个 feature interventions 的 success/coherence scatter。没有误差条、样本点明细或 judge agreement；点的 strength 由灰度色带连续表达。",
+      "evidence_relation": "HH-RLHF 数据理解主张 → Figure 5 左侧 feature discovery 与 spurious length path → Table 3–6/ Figure 6 具体证据；steering utility 主张 → Figure 5 右侧 Pareto 视图 → Tables 7–8 文字实例与 feature 对齐。",
+      "design_strengths": [
+        "左右 panel 将 dataset diagnosis 与 intervention utility 连接为同一 case-study 论证。",
+        "流程箭头、feature text、点颜色与 strength 色带提供多层语义导航。",
+        "右图直接呈现 success–coherence tradeoff，能表达高层 feature 的 domination 直觉。"
+      ],
+      "design_weaknesses": [
+        "左侧概念流程混合 hypothesis、significance 与 action，证据与决策边界需要回到正文。",
+        "右图的 intervention success/coherence 依赖 Llama judge 与人工核验，caption 未给评分协议或不确定性。",
+        "散点数量少且没有数值标签/置信度，Pareto 关系容易被个别点支配。"
+      ],
+      "reusable_pattern": "把“发现数据问题”与“控制模型输出”放在同一张左右分栏图：左侧用流程卡片解释机制，右侧用二维 tradeoff 图展示下游收益。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 5 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Correlation of difference in T-SAE feature activations (rejected−chosen) with difference in response length (rejected−chosen). Selected features all have high difference in feature activations between chosen and rejected completions (selected from top 15), yet semantically-relevant features are less correlated with length difference while spurious features are more correlated.",
+        "word_count": 49,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#CC7417",
+          "#3D9A5A",
+          "#E8E8E8",
+          "#FFFFFF",
+          "#222222"
+        ],
+        "semantic_mapping": "橙色柱为 length-related features，绿色柱为 semantically-related features；柱顶 p-value 文字给出显著性标签，白色/浅灰为绘图区。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": 6
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "右上角图例",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "六个被选 feature 的类别标签",
+        "y": "Pearson Correlation with Length Diff",
+        "color": "length-related versus semantically-related",
+        "shape": "矩形柱",
+        "line": "柱边界、水平网格与基线",
+        "facet": "单一相关系数 panel",
+        "text": "transition words and phrases、legal and formal language、the word the、crime and malicious activities、violent or aggressive behavior descriptions、negative comments and insults，以及 p<0.005/p<0.05"
+      },
+      "data_and_statistics": "对 top-15 activation-difference features 的子集计算 activation difference 与 response-length difference 的 Pearson correlation；图中六个柱约为 0.63、0.27、0.37、0.01、0.13、−0.06（从渲染估读），柱顶给出 p-value 标签，但没有样本量、区间或相关检验细节。",
+      "evidence_relation": "Table 6 的 top-15 feature ranking → Figure 6 按 semantic/spurious 类别比较长度相关 → Appendix B.1 对 rejected 长度偏差与实例表格的解释。",
+      "design_strengths": [
+        "按 feature 直接比较 correlation，且橙/绿分组让“spurious length”机制容易扫读。",
+        "零基线和柱顶 p-value 共同表达方向与显著性。",
+        "短图与 Table 6 紧邻，读者可将 feature 名称和平均差异对照。"
+      ],
+      "design_weaknesses": [
+        "p-value 没有给检验、样本量或多重比较定义。",
+        "柱主要靠颜色分类，灰度输出和负值柱的方向辨识较弱。",
+        "相关不等于因果；选择 top-15 后的子集和 feature description 仍可能引入选择偏差。"
+      ],
+      "reusable_pattern": "将 ranking 表中的语义候选按类别分组，再用零基准柱比较与长度差异的相关；适合用作 spurious-correlation 诊断，但要配套样本与检验定义。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Figure 6 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 7: Probing results split across high and low splits for Temporal and Matryoshka SAEs.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#F7A6C8",
+          "#E91E63",
+          "#8E1438",
+          "#DDEBD8",
+          "#9BCB83",
+          "#3E7E2D",
+          "#E8E8F0",
+          "#222222"
+        ],
+        "semantic_mapping": "三种粉色表示 Temporal high/low/all，三种绿色表示 Matryoshka high/low/all；浅色到深色与 split scope 对应，背景为浅蓝灰。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 72
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "三列 panel 右侧共享图例",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "probe sparsity：1、5、10、Dense",
+        "y": "Accuracy",
+        "color": "SAE family 与 high/low/all split",
+        "shape": "每组 6 根并列柱",
+        "line": "柱边界与水平网格",
+        "facet": "Semantics, MMLU；Context, MMLU；Syntax, MMLU",
+        "text": "Temporal SAE – High/Low/All、Matryoshka SAE – High/Low/All"
+      },
+      "data_and_statistics": "在 MMLU 的 semantics/context/syntax 三个 panel 中，将 Temporal 和 Matryoshka 的 high/low/all feature split 分开 probing；没有误差条或数值表，Dense、sparsity 与 split 由横轴和图例定义。",
+      "evidence_relation": "Figure 3 的总 probe → Figure 7 追问高/低 split 的归因 → Table 9 对应 smoothness → 正文 disentanglement 结论。",
+      "design_strengths": [
+        "split scope 通过浅深色和图例明确区分，能直接检查“性能来自哪一组 feature”。",
+        "三任务共享 x/y 语法，适合与 Figure 3 视觉对齐。",
+        "appendix placement 保留了正文主结论所需的拆分细节。"
+      ],
+      "design_weaknesses": [
+        "六色并列柱在每个 sparsity 下拥挤，低分辨率下 split 对照困难。",
+        "没有误差或重复信息，不能判断 small split differences 的稳定性。",
+        "caption 只说 probing results，没有定义 probe 训练/测试分割和 label proxy。"
+      ],
+      "reusable_pattern": "以同一任务 panel 固定 x=sparsity，使用成对的高/低/全 split 色阶；可复用于任何“总性能需要 feature-attribution”诊断。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Figure 7 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 8: Top 8 most active features over the concatenated sequence of text used in Figure 4 for T-SAEs and baselines. Temporal SAE features exhibit clear phase transitions between sequences, are relatively smooth, and have explanations relevant to the semantic content of each component sequence. Baseline SAE features are much noisier or activate consistently over the entire sequence, without exhibiting separation between sequences.",
+        "word_count": 63,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Space Mono",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 11,
+        "hex": [
+          "#F4B400",
+          "#1F77B4",
+          "#2CA02C",
+          "#17BECF",
+          "#E377C2",
+          "#9467BD",
+          "#D62728",
+          "#FF7F0E",
+          "#8C564B",
+          "#E8E8F0",
+          "#222222"
+        ],
+        "semantic_mapping": "每个 SAE panel 的 top-8 feature identity 用颜色区分；浅蓝灰为 grid，三条竖向虚线分隔四段文本。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 8,
+        "legend_items": 32,
+        "annotations": 3,
+        "data_marks_estimate": 3200
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个 SAE panel 右侧重复 feature legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 12,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "共享拼接序列 token index",
+        "y": "Feature Activation",
+        "color": "feature identity（每个 SAE 各选 top 8）",
+        "shape": "连续激活线/尖峰",
+        "line": "线轨迹与 sequence-boundary 虚线",
+        "facet": "Temporal SAE、Matryoshka SAE、BatchTopK SAE、Neuronpedia Matryoshka SAE 四行",
+        "text": "各 panel 的 sae_feature IDs、Test Split、四段文本括号"
+      },
+      "data_and_statistics": "同一 Figure 4 四段序列在四种 SAE/feature decomposition 上并排比较，每行 top-8 活跃 features；无总体误差、重复或聚合，结论依赖图上 smoothness、phase separation 和 legend 轨迹的定性对照。",
+      "evidence_relation": "Figure 4 的 Temporal-only sequence view → Figure 8 加入 Matryoshka/BatchTopK/Neuronpedia baselines → Table 1/9 smoothness 数值与 Appendix C.2 文字解释。",
+      "design_strengths": [
+        "固定序列和相同四段边界使 baseline comparison 具有明确 counterfactual。",
+        "四行同尺度（除内部 y-limit 细节）让噪声、持续激活和 phase separation 直观可见。",
+        "保留 feature legend，便于把 trace 连接到后续解释。"
+      ],
+      "design_weaknesses": [
+        "四个 panel 各有 8 条彩色轨迹，信息密度极高，图例和 feature ID 在页面缩放后难读。",
+        "baseline y-scale/feature selection 与 Temporal 可能不完全可比，caption 没有列出具体缩放。",
+        "仍是单条拼接序列的可视样例，不能给出跨语料的效应分布。"
+      ],
+      "reusable_pattern": "对固定序列使用统一 token 分段和 stacked baseline rows，直接显示同一输入上的 representation density；适合做 temporal-consistency 的 qualitative stress test。",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Figure 8 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 9: TSNE results for T-SAE trained on Llama-3.1-8b-Instruct",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#E76F51",
+          "#2A9D8F",
+          "#457B9D",
+          "#F4A261",
+          "#E9C46A",
+          "#264653",
+          "#8E6CBE",
+          "#D1495B",
+          "#E6E6F0",
+          "#222222"
+        ],
+        "semantic_mapping": "点颜色按 semantic category、question number 或 POS label 复用 Figure 2 的 categorical scheme；浅蓝灰网格为 t-SNE 背景。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 7,
+        "data_marks_estimate": 6000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "t-SNE 1",
+        "y": "t-SNE 2",
+        "color": "semantic/contextual/syntactic proxy label",
+        "shape": "散点",
+        "line": "无数据连接线，仅有网格",
+        "facet": "四行表示（T-SAE all/high/low、baseline model）× 三列标签",
+        "text": "行方法标签与 Semantics/Context/Syntax 列标题"
+      },
+      "data_and_statistics": "Llama-3.1-8b-Instruct 上训练约 20% steps 的 T-SAE，并将 all/high/low feature rows 与 baseline model row 在三个 label view 下做 t-SNE；没有误差或数值 probe，图面只支持可视趋势。",
+      "evidence_relation": "Figure 2/3 的 Pythia/Gemma 小模型证据 → Figure 9 的 8B scaling study → limitations 中对训练步数、单层与 proxy geometry 的边界说明。",
+      "design_strengths": [
+        "把 all/high/low 与 baseline 排成固定四行，扩展性问题与 disentanglement 问题在同一坐标模板中。",
+        "三列标签一致，读者能看出 semantic/context 与 syntax 的相对 cluster pattern。",
+        "完整矩阵比只展示一个最好 panel 更能暴露方法在大模型上的失效或混合信息。"
+      ],
+      "design_weaknesses": [
+        "t-SNE 是非参数降维，面板间点位置没有可比坐标语义。",
+        "8B 只训练 20% steps，caption 没有量化 scaling 条件或重复稳定性。",
+        "无 legend 解释各颜色类别，依赖正文 Figure 2 的阅读背景。"
+      ],
+      "reusable_pattern": "用“表示 split × 语义标签”矩阵扩展小模型 t-SNE；对于大模型可复用，但应同时给出 probe/重复稳定性量化。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Figure 9 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 10: Accuracy of probes trained on SAE decompositions of Wikipedia and FineFineWeb for various SAEs trained on Gemma2-2b, as well as probes trained directly on model latents (orange), with semantic labels (right), contextual labels (middle), and syntactic labels (right) with varying levels of probe sparsity (setup from Kantamneni et al. (2025)). Dense probes are trained on all features.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#4D90FE",
+          "#E84A3C",
+          "#F5B400",
+          "#42A85F",
+          "#F57C00",
+          "#E8E8F0",
+          "#222222"
+        ],
+        "semantic_mapping": "蓝色 Temporal (Previous)、红色 Temporal (Random)、黄色 Matryoshka、绿色 BatchTopK、橙色 LLM Latents；六个 panel 复用同一五方法编码。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 150
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "每个 panel 顶部的重复方法图例",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "probe sparsity：1、5、10、20、Dense",
+        "y": "Accuracy",
+        "color": "Temporal previous/random、Matryoshka、BatchTopK、LLM Latents",
+        "shape": "并列柱",
+        "line": "柱边界与水平网格",
+        "facet": "Gemma2-2b 的 Wikipedia/FFW × semantics/context/syntax 六 panel",
+        "text": "每个 dataset/task 标题与五方法 legend"
+      },
+      "data_and_statistics": "Gemma2-2b 在 Wikipedia 与 FineFineWeb 两个数据集上的三类 probe；每个 panel 5 个方法×5 个 sparsity 的柱值，没有误差条、样本量或精确数值表。",
+      "evidence_relation": "Figure 3 的 Gemma/MMLU 主结果 → Figure 10 的跨数据集与 temporal-pair robustness → Figure 11 Pythia 跨数据集 → Table 2 ablation。",
+      "design_strengths": [
+        "六格小 multiples 在一页内覆盖两个新数据集，方法颜色和 x 轴保持主图一致。",
+        "Temporal (Previous) 与 Temporal (Random) 并列，能隔离 pair selection 的作用。",
+        "Dense 作为容量端点保留了与 Figure 3 的比较接口。"
+      ],
+      "design_weaknesses": [
+        "六个 panel 各自重复 legend，空间利用率低且字号小。",
+        "无误差/重复与结果表，跨数据集差异难以评估稳定性。",
+        "caption 方位文字同样把 syntactic labels 标成 right，文本自洽性不足。"
+      ],
+      "reusable_pattern": "将“数据集 × label type”做成 2×3 bar small multiples，并以 previous/random 对照检验 temporal pair construction；适合附录复现面板。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Figure 10 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 11: Accuracy of probes trained on SAE decompositions of data from FineFineWeb (top), MMLU (middle), and Wikipedia (bottom) for various SAEs trained on Pythia-160m, as well as probes trained directly on model latents (orange), with semantic labels (right), contextual labels (middle), and syntactic labels (right) with varying levels of probe sparsity (setup from Kantamneni et al. (2025)). Dense probes are trained on all features.",
+        "word_count": 65,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#4D90FE",
+          "#E84A3C",
+          "#F5B400",
+          "#42A85F",
+          "#F57C00",
+          "#E8E8F0",
+          "#222222"
+        ],
+        "semantic_mapping": "蓝/红/黄/绿/橙依次编码 Temporal (Previous)、Temporal (Random)、Matryoshka、BatchTopK、LLM Latents，重复用于 12 个 panels。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "每个 panel 上方重复方法图例",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "probe sparsity：1、5、10、20、Dense",
+        "y": "Accuracy",
+        "color": "五种 SAE/latent methods",
+        "shape": "并列柱",
+        "line": "柱边界与水平网格",
+        "facet": "三行 FineFineWeb/MMLU/Wikipedia × 三列 semantics/context/syntax",
+        "text": "dataset/task 标题、五方法 legend 与 sparsity ticks"
+      },
+      "data_and_statistics": "Pythia-160m 在 FineFineWeb、MMLU、Wikipedia 上的 12 个 probe panel；每格比较五种表示与五个 sparsity levels，没有误差或分母，数值来自渲染柱高估计。",
+      "evidence_relation": "Figure 3 的 Gemma/MMLU → Figure 10 的 Gemma 跨数据集 → Figure 11 的 Pythia 跨数据集复现 → Figure 12 的 expanded t-SNE。",
+      "design_strengths": [
+        "大矩阵覆盖三数据集和三 label types，能检查主结论是否只依赖 MMLU。",
+        "所有 panel 复用同一 x、y、color grammar，跨行列比较成本低。",
+        "Temporal (Random) 的对照将方法机制与数据集泛化同时暴露。"
+      ],
+      "design_weaknesses": [
+        "12 个小图和重复 legends 信息密度很高，刻度/方法名可读性有限。",
+        "没有 confidence/variance 或统计检验，跨数据集的微小柱差异不应被过度解读。",
+        "caption 对 semantic/context/syntax 的方位描述有重复错误，独立阅读时会降低可靠性。"
+      ],
+      "reusable_pattern": "以 3×3 dataset×label grid 复用同一方法颜色和 sparsity 轴，作为 main MMLU 图的跨数据集复现模板。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Figure 11 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 12: TSNE visualizations of Pythia-160m SAE decompositions of MMLU questions, labeled by question category (left), question number (middle column), and token part of speech (right). We see that the high-level features from Temporal SAEs (second row) recover semantic and contextual information. The low-level features of Temporal SAEs (third row), as well as Matryoshka and BatchTopK SAEs (fourth and fifth row), recover syntactic information. Baseline model latent (last row) balance a mix of information.",
+        "word_count": 74,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Inter",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#E76F51",
+          "#2A9D8F",
+          "#457B9D",
+          "#F4A261",
+          "#E9C46A",
+          "#264653",
+          "#8E6CBE",
+          "#D1495B",
+          "#E6E6F0",
+          "#222222"
+        ],
+        "semantic_mapping": "复用 Figure 2 的 semantic/context/POS categorical colors；行标签编码 Temporal all/high/low、Matryoshka、BatchTopK 和 baseline model，浅蓝灰网格为背景。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 18,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": 9000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "t-SNE 1",
+        "y": "t-SNE 2",
+        "color": "question category、question number 或 part-of-speech",
+        "shape": "散点",
+        "line": "无连接线，仅有网格",
+        "facet": "六行表示 × 三列 semantic/context/syntax label views",
+        "text": "Temporal SAE (all/high/low)、Matryoshka SAE、BatchTopK SAE、Baseline Model 行标签"
+      },
+      "data_and_statistics": "Pythia-160m MMLU t-SNE 的扩展 baseline 矩阵：Temporal all/high/low、Matryoshka all、BatchTopK all 与 baseline model 共 6 行，三列分别 semantic/context/syntax；没有误差或降维稳定性统计。",
+      "evidence_relation": "Figure 2 的三行核心对照 → Figure 12 加入 BatchTopK、Baseline 与更多 SAE rows → Figure 3/11 probes 对 t-SNE 现象作定量补充。",
+      "design_strengths": [
+        "扩展矩阵把所有 baseline 放在同一 label geometry 中，避免只挑选最好方法。",
+        "行标签清晰、列标签固定，读者可以逐行审阅 semantic/context/syntax 的信息分工。",
+        "caption 明确 high/low 与 baseline 的解释方向，完成对 Figure 2 的 appendix expansion。"
+      ],
+      "design_weaknesses": [
+        "18 个 panels 和高密度点云几乎没有留白，单页输出下局部结构难读。",
+        "没有 legend/类别名，读者必须从 Figure 2 或正文记住颜色映射。",
+        "t-SNE 仍是 proxy geometry，不能证明 causal feature disentanglement 或跨运行稳定性。"
+      ],
+      "reusable_pattern": "沿用 Figure 2 的列标签和颜色，并把更多 baseline 作为行扩展；适合在附录承担完整 coverage，而正文只保留最能说明机制的 3×3。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 12 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 1: Core Performance Metrics. We report smoothness on feature splits when applicable and standard deviations for autointerpretability scores.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Autointerp Score 用 mean ± standard deviation；Smoothness 分为 Full/High/Low，BatchTopK 的不可用 split 单元以 “-” 表示。",
+      "data_and_statistics": "六行 SAE 结果按 Pythia-160m 与 Gemma2-2b 分组；10 列包含 SAE 名称、FVE、Cosine Sim、Fraction Alive、Smoothness Full/High/Low 与 Autointerp Score。Temporal 行的关键值为 Pythia FVE 0.94/Cos 0.93/Alive 0.87/Smoothness 0.12, 0.09, 0.17/Autointerp 0.81 ± 0.17，Gemma FVE 0.75/Cos 0.88/Alive 0.78/Smoothness 0.13, 0.10, 0.15/Autointerp 0.83 ± 0.15；其余 baseline 行同表。",
+      "evidence_relation": "Figure 3 probe gains → Table 1 把 semantic interpretability 与 reconstruction/FVE/Cosine/Alive 放在同一决策面 → Figure 4/8 长序列机制 → Table 2 ablation。",
+      "design_strengths": [
+        "主表把性能、feature health、smoothness 和 autointerp 放在同一宽表，支持“收益没有明显标准指标代价”的对照。",
+        "Pythia/Gemma 行组与 Smoothness 子表头让模型、方法和指标层级可读。",
+        "小数位统一为两位，缺失 split 明确用短横线，不伪造数值。"
+      ],
+      "design_weaknesses": [
+        "10 列压缩在单页宽度内，指标和方法名字号小。",
+        "没有对比差异/高亮或不确定性传播；除 autointerp 外均为点估计。",
+        "Smoothness 指标方向和归一化定义主要留在正文，表格脱离上下文不完全 self-contained。"
+      ],
+      "reusable_pattern": "用两层表头把模型分组、标准 SAE metrics、split smoothness 与 autointerp 放在一张 booktabs 表；适合把新机制的收益/代价并排呈现。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 1 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 2: Difference in performance between ablation and normal Pythia-160m Temporal SAEs.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个单元是 ablation 相对正常 Pythia-160m Temporal SAE 的 signed difference；0.0、-0.1 与两位小数并存，未提供误差或重复统计。",
+      "data_and_statistics": "四行分别为 Random Contrastive、50:50 Split、10:90 Split、No Contrastive；7 列为 FVE、Fraction Alive、Smoothness (High)、Semantics、Context、Syntax 及行名。读者可直接看到 random contrastive 的 Context +0.11/Syntax −0.10，以及 No Contrastive 的 Smoothness +0.07/ Semantics −0.07/Context −0.1。",
+      "evidence_relation": "Temporal loss 与 20:80 split 方法 → Table 2 按 pair/split/loss 做差分消融 → Figure 3/7 的 probe、Table 1 的 smoothness/reconstruction 作为被解释的 outcomes。",
+      "design_strengths": [
+        "差分形式把方向和相对变化直接放入同一小表，避免读者在多组绝对值间反算。",
+        "四个实验行覆盖 pair sampling、split ratio 和 contrastive loss，机制边界清楚。",
+        "signed values 能快速暴露 context/syntax tradeoff，而不是只展示最优结果。"
+      ],
+      "design_weaknesses": [
+        "小数位不完全一致（0.0、-0.1、两位小数），降低列间精度感。",
+        "没有基准绝对值、误差或样本量，差分大小和可靠性需回到 Table 1/正文。",
+        "所有结果挤在一张宽表，长列名 Smoothness (High) 在缩放后可读性下降。"
+      ],
+      "reusable_pattern": "用“ablation − canonical”差分矩阵统一比较训练组件；配合绝对主表和误差信息使用，不把差分本身当作 effect size。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Table 2 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 3: Chosen and rejected examples with maximal difference (rejected−chosen) in feature activations for feature transition words and phrases. In all cases, the rejected example is much longer.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 2,
+      "header_levels": 0,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "对话文本没有数值不确定性；每个 Chosen/Rejected 对是按 transition words and phrases feature 的 rejected−chosen activation difference 选出的 qualitative pair。",
+      "data_and_statistics": "三组 chosen/rejected HH-RLHF dialogue blocks，共 6 行、2 列（状态标签与对话文本），每组都显示 rejected 更长；Human/Assistant 行标签加粗，长文本在同一页内以多行换行。",
+      "evidence_relation": "Figure 5 的 HH-RLHF feature discovery → Table 3 给出 transition-words feature 的实例 → Table 4/5 扩展 legal/formal feature → Table 6 汇总 top-15 ranking。",
+      "design_strengths": [
+        "Chosen/Rejected 垂直对照保留完整语境，比只列 feature name 更能解释 activation difference。",
+        "横线和左侧状态列清楚分隔三组 pair，长文本仍保持阅读顺序。",
+        "caption 明确筛选规则和“rejected much longer”现象，定性证据角色清楚。"
+      ],
+      "design_weaknesses": [
+        "文本量极大、字号小，读者难以核验全部 token 或长度。",
+        "实例是按最大差异挑选的，具有选择性，不能代替总体分布。",
+        "没有实际 activation、token count 或 length difference 数值，feature claim 需结合 Table 6/Figure 6。"
+      ],
+      "reusable_pattern": "用两列 Chosen/Rejected 对话块将 feature-level statistic 落到可读实例；适合展示机制，但应并列提供数量化摘要。",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Table 3 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 4: Chosen and rejected examples with maximal difference (rejected−chosen) in feature activations for feature legal and formal language. In all cases, the rejected example is much longer.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 2,
+      "header_levels": 0,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "对话文本无误差；两组 chosen/rejected pair 按 legal and formal language feature 的 rejected−chosen activation difference 选择，caption 只定义 rejected 更长。",
+      "data_and_statistics": "两组 chosen/rejected HH-RLHF 对话，共 4 行、2 列；第二组包含很长的 paired response，页面底部仍以多行文字填满表格。",
+      "evidence_relation": "Table 3 transition-word examples → Table 4 legal/formal-language examples → Table 5 additional safety-context examples → Figure 6 length-correlation diagnostic。",
+      "design_strengths": [
+        "保留完整 prompt/response 对照，能显示 legal/formal feature 为什么在 rejected response 中升高。",
+        "单一左侧状态列和横线规则适合长文本浏览。",
+        "与 caption 的 feature name 和 length finding 绑定紧密。"
+      ],
+      "design_weaknesses": [
+        "长对话占满页面且部分 response 接近页底，逐句复核成本高。",
+        "正文没有在表内给 activation/length 数值，定性 pair 容易被当成代表性平均案例。",
+        "含有有害/极端语境的样例，但表格没有额外的语义分层或内容索引。"
+      ],
+      "reusable_pattern": "用成对长文本说明一个 feature 的 activation contrast；在 alignment audit 中可复用，但需要与 aggregate rank/correlation 一起展示。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Table 4 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 5: Additional chosen and rejected examples with maximal difference (rejected−chosen) in feature activations for feature legal and formal language. In all cases, the rejected example is much longer.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 2,
+      "header_levels": 0,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "italic"
+      ],
+      "uncertainty": "一组 additional chosen/rejected dialogue，按 legal and formal language feature 的 rejected−chosen activation difference 选择；无误差或数值不确定性。",
+      "data_and_statistics": "单组 chosen/rejected 长文本，共 2 行、2 列；两格均有 “Prior conversation omitted due to space constraints” 斜体说明，内容跨越页面高度。",
+      "evidence_relation": "Table 4 的 legal/formal feature examples → Table 5 additional stress case → Figure 6 将该类 feature 与 length difference 做 correlation → discussion 的 spurious-correlation boundary。",
+      "design_strengths": [
+        "把 space-omitted context 明确写入表格，避免把截断 prompt 误认成完整样本。",
+        "左右窄状态列与大文本列保持一致的 appendix table grammar。",
+        "作为额外案例，补充 Table 4 的单一 pair。"
+      ],
+      "design_weaknesses": [
+        "只有一个 pair，且 chosen/rejected 文本很长，无法支撑普遍性。",
+        "caption 与表格都没有给样本总数、feature activation 或 length 差异。",
+        "复杂/敏感内容会占据视觉注意力，读者可能忽略它只是 ranking-selected evidence。"
+      ],
+      "reusable_pattern": "用一个明确标注上下文缺失的 long-form pair 展示边界案例，并在旁边提供总体统计以避免过度外推。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Table 5 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 6: Top 15 features with greatest difference in mean sequence activation between rejected and chosen completions, averaged over the dataset (HH-RLHF (Bai et al., 2022)).",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "partial_grid",
+      "highlighting": [
+        "text_color"
+      ],
+      "uncertainty": "Average Difference 是 rejected−chosen 的 mean sequence activation difference；表中没有 dispersion 或 significance。前三/中间若干 feature name 以橙/绿/黑文字分组，颜色不是数值 channel。",
+      "data_and_statistics": "Top-15 feature ranking，2 列（Feature、Average Difference），15 行；数值精确到四位小数。最大三项为 varied text concepts 0.1665、etiquette and social behavior guidelines 0.0985、text about personal experiences and opinions 0.0739，随后包含 transition/length、safety 与 technical concepts。",
+      "evidence_relation": "Figure 5 左侧的 feature discovery → Table 6 给出完整 top-15 ranking → Figure 6 选择其中六个 feature 按长度相关性分组 → Tables 3–5 展示代表性 dialogues。",
+      "design_strengths": [
+        "紧凑的 rank table 将 qualitative feature descriptions 与一个明确排序指标连接。",
+        "四位小数足以复现 Figure 5/6 的候选筛选顺序，文本颜色补充 semantic/spurious 分组。",
+        "两列结构在 appendix 中易于快速扫描。"
+      ],
+      "design_weaknesses": [
+        "文字颜色不是冗余编码，灰度下 feature group 关系丢失。",
+        "只列 top 15，没有长尾、样本量或 selection stability。",
+        "平均 activation difference 没有 uncertainty，且 rejected/ chosen 长度混杂需要 Figure 6 才可见。"
+      ],
+      "reusable_pattern": "用“解释性 feature 名称 + 精确 rank statistic”作为 dataset-understanding 的桥梁，再把少数候选送入 correlation 和实例表。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 6 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 7: Examples of steering with medical and literature features. T-SAEs respond to high-level feature steering at various strengths and properly change the semantics of generation while retaining coherence. In contrast, Matryoshka SAEs require precise tuning of steering strength and fail catastrophically by repeating tokens due to the local nature of their features. Outputs are colored green if they achieve at least a score of 2 (out of 3) for both intervention success and coherence.",
+        "word_count": 75,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color",
+        "text_color"
+      ],
+      "uncertainty": "表中输出用绿色背景表示 intervention success 与 coherence 均至少为 2/3；黄色 flexed-arm icons 表示 steering strength 1/2/3。没有误差或评分分布。",
+      "data_and_statistics": "6 行 steering examples，4 列为 Feature、Steering Strength、Temporal SAE、Matryoshka SAE；两组 row group 是 Medical case reports or concepts 与 Book titles and authors。Temporal cells多为可读语义改写并以绿色高亮，Matryoshka cells包含重复/乱码/局部失败文本。",
+      "evidence_relation": "Figure 5 右侧 success/coherence scatter → Table 7 将 medical/literature feature interventions 逐 strength 展开 → Table 8 列出跨 SAE feature descriptions → steering conclusion。",
+      "design_strengths": [
+        "把 strength、方法输出和成功判定放进同一行，直接展示 intervention tradeoff。",
+        "绿色 cell fill 给 qualitative success 一个明确视觉门槛，row groups 让领域对照成立。",
+        "同一 prompt 下 Temporal/Matryoshka 并列，避免只展示单方输出。"
+      ],
+      "design_weaknesses": [
+        "绿色高亮依赖颜色，且 caption 的 2/3 规则没有给单独两项评分。",
+        "表中 baseline 输出包含字面化的 `\\n`/乱码样式，影响可读性与复现判断。",
+        "人工/LLM judge 评分没有 uncertainty、评审一致性或失败计数，案例不能代替总体性能。"
+      ],
+      "reusable_pattern": "用相同 prompt 与多 steering strengths 做双列 output counterfactual，并以明确阈值高亮成功；适合解释 intervention 机制。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 7 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8: Features used for steering interventions on Gemma2-2b.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 29,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Feature description 是离散文本与整数 feature IDs 的组合，无误差/排名或连续不确定性；三列分别列出 Temporal SAE、Matryoshka SAE、Neuronpedia Matryoshka SAE。",
+      "data_and_statistics": "29 行、3 列的长表，列出 medical/legal/math/fashion/books/psychology 等 steering feature descriptions；行间没有竖线，仅有顶部、header 下方和底部横线，单元格多行换行。",
+      "evidence_relation": "Table 7 的 steering output → Table 8 对齐各 SAE 可操纵 feature descriptions → Figure 5 右侧 intervention tradeoff；它支撑“语义 feature 可定位”而非总体 causal efficacy。",
+      "design_strengths": [
+        "三列直接并排呈现自训练 Temporal、Matryoshka 与 Neuronpedia reference 的 feature semantics。",
+        "booktabs 大表避免网格噪声，文本列宽足以容纳多词解释。",
+        "大量 domain examples 使 steering 选择过程比单个成功案例更透明。"
+      ],
+      "design_weaknesses": [
+        "29 行文本在一页内字号小，三列高度不齐时视线容易错行。",
+        "描述是自动解释/人工选择的语义 proxy，未给 feature score、匹配规则或失败比例。",
+        "空缺单元和不同描述粒度不显式标识，跨列的一一对应关系需要读者自行推断。"
+      ],
+      "reusable_pattern": "用三列 feature-description alignment table 记录“要 steer 的概念在不同 SAE 中是什么”；适合审计可操纵对象，但需补 feature id/selection protocol。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Table 8 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 9: Lipschitz, Fourier, Wavelet, and Multiscale smoothness metrics across high and low splits.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Lipschitz/Fourier/Wavelet/Multiscale smoothness 为点估计；“−”表示 BatchTopK 没有 high/low split，未提供误差或重复。两组 stacked metric headers 共用同一三行方法。",
+      "data_and_statistics": "六个方法行分成上下两个三行 subtable，7 列含 SAE name、整体 smoothness 与 High/Low；上半为 Lipschitz/Fourier，下半为 Wavelet/Multiscale，数值统一两位小数。",
+      "evidence_relation": "Figure 7 的 split-specific probing → Table 9 给出四种 smoothness measure 的 split breakdown → Table 1 主表的 Full/High/Low summary → Figure 8 temporal baseline。",
+      "design_strengths": [
+        "多种 smoothness 定义共享方法行，避免单一 metric 支撑 temporal consistency。",
+        "High/Low 子列直接对照，且缺失 split 用 “−” 明示。",
+        "booktabs 和两段 header 让密集指标仍保持层级。"
+      ],
+      "design_weaknesses": [
+        "四种 metric 的方向/归一化不在 caption 中定义，读者需回 Appendix C.1 正文。",
+        "没有 uncertainty，且不同 smoothness 数值尺度不可直接横向比较。",
+        "上下 subtable 在缩小后容易被读成一个七列 header，metric group 边界需要仔细看。"
+      ],
+      "reusable_pattern": "以同一方法行堆叠多个 smoothness definitions，并把 high/low 分裂作为二级列；可复用于检验一个结构性先验是否跨 metric 稳健。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Table 9 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 10: Absorption",
+        "word_count": 3,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "三列指标均为 mean ± standard deviation：Mean Absorption Frac.、Mean Absorption Full、Num Split Features；caption 只有标题，没有定义 ± 或 absorption protocol。",
+      "data_and_statistics": "Temporal SAE 与 Matryoshka SAE 两行、4 列（方法名加三项指标），小数两位；Temporal 为 0.24 ± 0.16、0.28 ± 0.16、2.19 ± 1.74，Matryoshka 为 0.22 ± 0.16、0.25 ± 0.17、1.96 ± 1.18。",
+      "evidence_relation": "Appendix C.3 的 absorption cost question → Table 10 比较 Temporal/Matryoshka 的 feature absorption 与 split-feature count → 主文 Table 1 的 standard performance boundary。",
+      "design_strengths": [
+        "极小表格将额外 absorption cost 与 split feature 数量放在同一决策面。",
+        "mean ± SD 明确显示分散程度，比只报告均值更有信息。",
+        "与正文“comparable absorption”主张直接对齐，便于复现。"
+      ],
+      "design_weaknesses": [
+        "caption 仅为 “Absorption”，脱离正文无法解释三个指标和 ±。",
+        "没有样本数、评估数据或显著性判定，0.02–0.03 的均值差异不应过度解读。",
+        "表格窄且指标名长，缩小后 header 换行明显。"
+      ],
+      "reusable_pattern": "用两行方法、三列 absorption outcomes 的紧凑 booktabs 表补充主表未覆盖的 cost dimension，并在 caption 中定义指标与样本。",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Table 10 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先把语言的高层语义/上下文与低层语法分工画成概念和拼接序列；Figures 2–3 以 t-SNE 与 sparse probing 建立 qualitative-to-quantitative link；Table 1 把 semantic/smoothness gain 与 reconstruction/autointerp 放在一起；Figures 4–5 展示长序列机制和 HH-RLHF/steering utility；Table 2 及 Figures 7–12/ Tables 3–10 将 split、baseline、数据集、案例和成本扩展到附录。",
+    "caption_system": "Caption 统一以 Figure/Table label 开头，主文 Figure 1/4/5 和 appendix Figure 6/8/12 在 caption 直接写出主要观察；probe/t-SNE captions 主要说明设置和编码，uncertainty 定义普遍不足；Table 7 是唯一明确写出绿色成功阈值的案例表。",
+    "table_header_system": "主表使用 booktabs 风格、左侧方法/模型行组和多级 Smoothness header；案例表使用状态/方法输出列；附录 metric tables 用 stacked grouped headers，长 feature-description 表使用三列文本对齐。指标方向、单位和数据分母并非每张表都在 header/caption 完整给出。",
+    "method_result_ablation_link": "Temporal contrastive loss 与 20:80 high/low split 在 Figure 1 概念图和正文公式中定义，Figures 2–4/ Tables 1/9 显示 semantic clustering、probe 与 smoothness，Table 2 以差分形式删除/替换 pair、split 和 contrastive components，形成机制—结果—消融闭环。",
+    "main_appendix_link": "主文保留最能说明机制的 Figure 1–5、Table 1–2；附录用 Table 3–8 的 HH/steering 实例、Figure 6/7/8 的相关/split/baseline、Table 9/10 的 smoothness/absorption，以及 Figures 9–12 的 scaling/cross-dataset/baseline coverage 承接主文调用。",
+    "typography_consistency": "caption/table 文字由 PDF font objects 统一为 Nimbus Roman/Computer Modern math；raster plots 多使用 sans-serif，主文与附录轴标签/legend 近似一致，但 dense appendix matrices 与 multiline tables 的字号更小。",
+    "color_consistency": "Temporal/Matryoshka/BatchTopK 在 bar plots 中反复使用粉/绿/黄（并在附录加入 red/orange baselines），t-SNE 与 line traces 使用多色 categorical palette；语义映射依赖 legend/row labels，缺少跨所有 figure 的固定 colorblind-safe palette。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用概念分工、拼接序列轨迹和 probe/标准指标三层证据解释一个表示学习先验，而不是只展示单一 benchmark。",
+      "将同一输入序列固定下来，在 Temporal 与多个 baseline 的 stacked trace 中对齐 phase boundaries，形成可审计的 sequence-level counterfactual。",
+      "用“绝对主表 + ablation difference table + split/cross-dataset appendix”把收益、代价、机制和泛化放入互相调用的视觉系统。",
+      "对 qualitative steering 输出使用同 prompt、多 strength、方法并列和明确成功阈值，避免只给一个漂亮例子。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：在一张全宽图中把高/低层语言因素、SAE 分工和跨段激活直觉串起来。",
+      "Figure 2 + Figure 3：t-SNE 的定性聚类与 sparse probe 的定量验证形成互补。",
+      "Table 1：同时放置 reconstruction、feature health、smoothness 和 autointerp，是主张成本边界的核心表。",
+      "Figure 4 + Figure 8：同序列 Temporal/baseline trace 是 temporal consistency 最直接的视觉证据。",
+      "Table 2：以 signed differences 对照 pair/split/loss 组件，最清楚地暴露机制 tradeoff。"
+    ],
+    "failure_patterns": [
+      "Figures 2/9/12 的 t-SNE 点云与长 line panels 在高密度 raster 缩放下难读，且降维几何容易被误读为效应量。",
+      "多数 figure/table 没有误差、样本量或重复稳定性；“significant”或“Pareto dominate”依赖正文/LLM judge，而对象自身不闭合。",
+      "caption 对语义方位有重复的 right typo，Table 10 的 caption 只有标题，部分案例表的 baseline 输出含 literal \\n/乱码。",
+      "颜色承担主要 categorical/semantic mapping，缺少纹理、marker 或直接 label 的系统冗余，灰度与色弱读取风险高。",
+      "自动解释、proxy labels、挑选 top features 与案例对照提供的是可读性证据，不是 ground-truth semantic factors 或 causal intervention。"
+    ],
+    "one_sentence_visual_strategy": "以“语言因素分工 → temporal feature geometry → probe/SAE quality → 长序列与安全 steering 机制 → split/baseline/cross-dataset/absorption 附录”组织一套从概念直觉到定量和案例证据的高密度视觉叙事。"
+  }
+}

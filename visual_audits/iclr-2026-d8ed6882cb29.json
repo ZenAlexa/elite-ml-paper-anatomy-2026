@@ -1,0 +1,2397 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-d8ed6882cb29",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/rmovva/wimhf"
+    ],
+    "selected_repository": "https://github.com/rmovva/wimhf",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/rmovva/wimhf",
+        "path": "paper/plots/embedder_and_nemotron_ablation_mean_auc.png",
+        "role": "rendered_asset",
+        "tool": "Matplotlib 3.10.7",
+        "evidence": "GitHub master tree at commit 13f705ea2babb1d9ea56715168dbb3c20b34c827; 2440×934 RGBA PNG with 300 dpi metadata. It is a later seven-dataset mean-AUC/embedding ablation asset in the README, not an exact generator or export for the PDF Figure 1–9 set."
+      }
+    ],
+    "search_note": "The PDF and reading link the author repository https://github.com/rmovva/wimhf. The source-inventory row was no_public_source_found; corpus/visual_sources/iclr-2026-d8ed6882cb29/ has no acquired files. GitHub gh repo view/API on master (latest commit 13f705ea2babb1d9ea56715168dbb3c20b34c827, 2026-05-09) confirmed the title and tree. The tree contains one related rendered plot at paper/plots/embedder_and_nemotron_ablation_mean_auc.png plus notebooks, configs, and model/analysis code, but no exact Figure 1–9 plotting scripts, table generators, paper TeX, TikZ/PGF, SVG, or target numerical exports. The README plot is a later embedding-model update and does not match the PDF’s five-dataset Figure 4, so it is recorded as a partial rendered source only; no weights, datasets, or checkpoints were fetched."
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 1,
+    "appendix_figures": 6,
+    "appendix_tables": 17,
+    "dominant_figure_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "ArialMT",
+        "DejaVuSans",
+        "STIXGeneral",
+        "Optima-Regular",
+        "Monaco",
+        "Menlo"
+      ],
+      "size_pt": {
+        "minimum": 5.5,
+        "median": 8.0,
+        "maximum": 14.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "NimbusRomNo9L-Medi",
+        "CMR9",
+        "CMMI9",
+        "CMSY9",
+        "Inconsolatazi4-Regular"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 8.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "The paper combines a pastel orange/blue/green conceptual palette in Figure 1, categorical dataset colors in Figure 2, green/blue intervention families and blue/orange sampling curves in Figure 3, gray/green/orange/blue method colors in Figure 4–5, green/red/gray failure categories in Figure 6, and a viridis-like sequential heatmap in Figure 7. Tables reuse pale green, pale red, and gray row fills for preferred, dispreferred, and non-significant concepts. Color is usually supplemented by labels, panel position, or numeric text, but several charts remain color-dependent.",
+    "vector_raster_mix": "The PDF is mixed: body text, captions, rules, most charts, and table text are PDF vector objects; Figure 5 is an embedded raster chart, Figure 7 contains an embedded raster heatmap/colorbar, and Figure 1 includes small embedded icon/emoji resources alongside vector boxes and text. Figures 8–9 are vector text-and-border prompt panels. The repository PNG is a separate 300 dpi raster asset and is not treated as an exact target export.",
+    "style_consistency": "Nimbus Roman/Computer Modern typography and thin horizontal rules unify the single-column proceedings pages. Figure internals use ArialMT/DejaVu Sans Type 3 text, while prompt panels use Optima and Monaco/Menlo. The paper consistently pairs compact captions with semantic colors and natural-language labels, but color legends, uncertainty detail, and screenshot typography form local sub-systems."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "abstract",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 1: What’s In My Human Feedback enables automated discovery of preferences from feedback data. We first discover measurable preferences: consistent differences within a pair of responses (rA , rB ), like “emoji usage,” learned by a sparse autoencoder (SAE). Regressing the chosen response y on these features yields expressed preferences, like “win-rate is 15% higher with emojis.”",
+        "word_count": 57,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "Optima-Regular",
+          "Optima-Bold",
+          "Monaco",
+          "Menlo"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#FBD18C",
+          "#D2EAFB",
+          "#ABE08F",
+          "#EAE9E9",
+          "#D5D5D5",
+          "#F3F3F3",
+          "#B7DDF5"
+        ],
+        "semantic_mapping": "Pastel orange response cards, blue SAE/regression cards, green application outcomes, and gray callouts encode the left-to-right measurable→expressed→application pipeline.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Three conceptual stages read left to right: measurable preference, expressed preference, and applications.",
+        "y": "Within-stage rows distinguish response pair, learned concepts, effect examples, and downstream use.",
+        "color": "Pastel panel colors encode stage and outcome role; green/red effect pills encode positive/negative illustrative regression changes.",
+        "shape": "Rounded cards, response snippets, SAE concept pills, arrows, and application badges.",
+        "line": "Solid arrows connect stages; dotted connectors link feature descriptions to illustrative regression effects.",
+        "facet": "Three stage blocks with internal rows; no quantitative facet.",
+        "text": "Stage titles, response excerpts, feature descriptions, y label, +15%/+8%/−20% examples, and curation/personalization labels."
+      },
+      "data_and_statistics": "Conceptual teaser rather than an estimate: it displays a paired response example, three learned concept descriptions, three illustrative regression effects (+15%, +8%, −20%), and two application labels. No sample size, repetition, interval, or uncertainty is encoded.",
+      "evidence_relation": "The abstract problem of unexplained pairwise feedback is compressed into a response-difference→SAE→regression interface. Table 1 and Figure 2 instantiate the discovered concepts; Figure 3 and Tables 9–11 connect the concepts to curation, personalization, and concrete examples.",
+      "design_strengths": [
+        "The three-stage left-to-right path makes the measurable-versus-expressed distinction legible before equations.",
+        "Response snippets, natural-language feature pills, and numeric effect pills provide complementary semantic and quantitative cues.",
+        "Arrows and outcome cards expose how a discovered feature can lead to curation or personalization."
+      ],
+      "design_weaknesses": [
+        "Pastel colors carry stage semantics but the diagram has no explicit legend, so grayscale and color-impaired reading lose some separation.",
+        "Several response excerpts and tiny icons approach the readability limit at paper scale.",
+        "The diagram illustrates the pipeline and its claimed applications but cannot establish their empirical size or reliability."
+      ],
+      "reusable_pattern": "Use a fixed three-stage pipeline—paired data, interpretable latent concepts, and estimated/operational outcomes—with one concrete example repeated across stages.",
+      "evidence": {
+        "page": 1,
+        "label": "Figure 1 on p.1; 180 dpi rendered page inspection",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 2: While some preferences are consistent across datasets, many vary significantly, even flipping from preferred in one dataset to dispreferred in others. We exclude any dataset-feature pairs where the feature does not occur with ≥5% prevalence. Error bars are bootstrapped 95% CIs.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "comparison",
+          "uncertainty_definition",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ArialMT",
+          "DejaVuSans",
+          "NimbusRomNo9L-Regu"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#5BAC9E",
+          "#FF8A63",
+          "#8DA0CB",
+          "#E07AC2",
+          "#A5D854"
+        ],
+        "semantic_mapping": "Point and interval colors identify ChatbotArena, CommunityAlign, HH-RLHF, PRISM, and Reddit.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 11,
+        "data_marks_estimate": 50
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Δ win-rate on a linear percent scale centered on a dashed zero line.",
+        "y": "Ten shared natural-language feature descriptions, ordered as categorical rows.",
+        "color": "Dataset identity across five datasets.",
+        "shape": "Circular point estimates.",
+        "line": "Horizontal bootstrap error bars around each dataset-feature point.",
+        "facet": null,
+        "text": "Feature descriptions, ±40% to +40% ticks, Δ win-rate axis label, and five-item dataset legend."
+      },
+      "data_and_statistics": "Forest-style comparison of ten shared features across five datasets; dataset-feature pairs below 5% prevalence are excluded. Points are length-controlled Δ win-rate estimates and horizontal bars are bootstrapped 95% CIs; the caption does not give per-dataset sample sizes.",
+      "evidence_relation": "Table 1 introduces representative dataset-specific concepts; Figure 2 tests whether shared concepts have stable direction and magnitude. Its reversals motivate the conflict-aware curation and personalization examples in Figure 3, while Tables 12–18 provide the complete dataset inventories.",
+      "design_strengths": [
+        "A common linear x-scale and visible zero reference make sign reversals immediately comparable.",
+        "Long feature descriptions remain directly aligned with the points rather than being relegated to opaque IDs.",
+        "Error bars and a dataset legend preserve the inferential and cross-dataset reading contract."
+      ],
+      "design_weaknesses": [
+        "Fifty points plus long labels make the single-panel plot dense, especially at the rendered paper width.",
+        "Dataset identity is encoded almost entirely by color; the legend has no marker or line-style redundancy and is not grayscale-safe.",
+        "The prevalence filter and bootstrap interval are defined, but denominators and the exact resampling unit remain outside the caption."
+      ],
+      "reusable_pattern": "For cross-context preference comparisons, use a shared zero-centered forest plot with direct feature labels, a small stable dataset palette, and intervals.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2 on p.7; 180 dpi rendered page inspection",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 3: Two applications of WIMHF. (a) Data Curation: On Arena, WIMHF finds that annotators prefer when models fulfill harmful (illegal, sexual, etc.) requests instead of refusing; flipping the chosen and rejected responses for up to 1000 examples that activate this feature increases RewardBench2 safety (green) and preserves overall performance (blue). (b) Personalization: On CA, we show that learning annotator-specific coefficients for a subjective feature—paragraphs vs. lists—improves heldout AUC vs. a fixed global model. Actively sampling examples with the largest feature values (blue line) yields more sample-efficient gains than random samples (orange line). Error bars are bootstrapped 95% CIs, resampling instances in (a) and annotators in (b).",
+        "word_count": 109,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ArialMT",
+          "DejaVuSans",
+          "NimbusRomNo9L-Regu"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 12,
+        "hex": [
+          "#93C989",
+          "#71B470",
+          "#539A5A",
+          "#3D7F44",
+          "#AECCE2",
+          "#89B6D6",
+          "#679DC9",
+          "#4981B9",
+          "#3165A7",
+          "#4C78A8",
+          "#E17A3C",
+          "#999999"
+        ],
+        "semantic_mapping": "Panel (a) uses green shades for Safety and blue shades for Overall across 0–1000 flipped examples; panel (b) uses blue/orange sampling lines and gray global-model reference.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 8,
+        "data_marks_estimate": 25
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper left in (a); upper center in (b)",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Panel (a): number of flipped examples (Base, 250, 500, 750, 1000); panel (b): k training conversations (1, 2, 4, 8, 16) shown as ordered categories.",
+        "y": "Panel (a) RewardBench2 accuracy (%); panel (b) personalized AUC change relative to global model.",
+        "color": "Green/blue bar families identify safety/overall and flip count; blue/orange lines identify active/random sampling; gray dashed line is global model.",
+        "shape": "Bars in (a); circular points in (b).",
+        "line": "Dashed sampling trajectories and gray baseline in (b); black error-bar caps in both panels.",
+        "facet": "Two horizontally arranged application panels labeled a and b.",
+        "text": "Panel labels, # Flipped legend, Safety/Overall labels, active/random/global legend, and numeric tick labels."
+      },
+      "data_and_statistics": "Panel (a) flips labels for up to 1,000 Arena examples and reports RewardBench2 safety and overall accuracy. Panel (b) reports held-out CA personalization AUC gains for k∈{1,2,4,8,16}, comparing active with random sampling. Error bars are bootstrapped 95% CIs, resampling instances in (a) and annotators in (b).",
+      "evidence_relation": "The abstract and Figure 2 identify unsafe and subjective preference axes; Figure 3 turns them into two interventions: relabeling for safety and targeted annotation for personalization. Figure 6 revisits the same anti-refusal relabeling in Elo space, while Tables 7–11 expand subjectivity and qualitative mechanisms.",
+      "design_strengths": [
+        "The two panels pair an intervention result with a sample-efficiency result while keeping each panel internally coherent.",
+        "Color families distinguish the two metrics in panel (a), and line color plus dashed trajectory separate sampling strategies in panel (b).",
+        "Bootstrap units are stated directly in the caption, making the uncertainty encoding interpretable."
+      ],
+      "design_weaknesses": [
+        "The ordered k values are displayed with equal category spacing, so the visual distance does not represent numeric doubling.",
+        "Panel (a) has many closely related shades, which weakens grayscale and low-resolution distinction.",
+        "The shared figure lacks an explicit note about baseline sample counts and the exact AUC estimand beyond the caption wording."
+      ],
+      "reusable_pattern": "Use a paired intervention layout: a grouped outcome chart for the data edit and a sampling-efficiency line chart for the downstream personalized model, with uncertainty units in one caption.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 3 on p.9; 180 dpi rendered page inspection",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 22,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 4: Human preferences are relatively well-explained by a small number of interpretable features, illustrated by the fact that using the SAE features (blue) does not perform substantially worse than an oracle finetuned reward model (grey). Notably, only four features per SAE input are nonzero, on average. Relative to random chance (AUC = 0.5), the SAE achieves 67% of the improvement realized by the reward model. This trend varies by dataset: for example, the interpretable features are highly explanatory on LMArena (93% of reward model AUC relative to random) and PRISM (77%), but there is a more substantial gap on HH-RLHF (30%), suggesting that some datasets are harder to explain with simple rules. Training a linear classifier on the full 1536-dimensional embedding (response-only) gives similar AUC to the SAE, and adding the prompt is not helpful.",
+        "word_count": 136,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ArialMT",
+          "DejaVuSans",
+          "NimbusRomNo9L-Regu"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#CCCCCC",
+          "#66C2A5",
+          "#FC8D62",
+          "#8DA0CB"
+        ],
+        "semantic_mapping": "Gray finetuned reward model, green prompt+response embedding, orange response-only embedding, and blue SAE bars.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 20,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Five categorical datasets: ChatbotArena, CommunityAlign, HH-RLHF, PRISM, and Reddit.",
+        "y": "Held-out preference-prediction AUC on a linear 0.50–0.90 scale.",
+        "color": "Four representation/model baselines.",
+        "shape": "Grouped rectangular bars.",
+        "line": null,
+        "facet": null,
+        "text": "AUC values printed above every bar and a four-item legend."
+      },
+      "data_and_statistics": "Twenty held-out AUC bars (five datasets×four methods): finetuned reward model, prompt+response embedding, response-only embedding, and SAE. The caption states four nonzero SAE features per input on average and relative-to-random comparisons; no intervals, sample sizes, or repeated-run dispersion are shown.",
+      "evidence_relation": "Table 2 establishes that the SAE yields interpretable features; Figure 4 checks the downstream prediction gap against dense embedding and reward-model references. Figure 5 and Tables 3–6 then test semantic matching, embedding/seed robustness, and expert ratings.",
+      "design_strengths": [
+        "Each dataset has the same four bars, making representation loss relative to the oracle easy to scan.",
+        "Numeric labels above bars remove the need to estimate small AUC differences from height alone.",
+        "The gray oracle and blue SAE anchors are stable visual endpoints across all five datasets."
+      ],
+      "design_weaknesses": [
+        "Color is the primary method key and the green/orange/blue bars are not grayscale-safe.",
+        "No uncertainty or sample-size encoding distinguishes a small AUC gap from a stable one.",
+        "The long caption states several relative-to-random percentages, but these are not visually marked as a separate reference series."
+      ],
+      "reusable_pattern": "Keep a fixed grouped-bar grammar across datasets, show exact values on the marks, and include an oracle/reference method as a visual anchor.",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 4 on p.22; 180 dpi rendered page inspection",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 22,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5: Despite not being used in any step of WIMHF, we find that the SAE’s learned features often match annotator-written explanations on the CA dataset. Specifically, 60.4% of annotator explanations match at least one of the four most-active SAE features (vs. 33.3% random; N = 5,000). Matches are judged by gpt-5-low, with the prompt given in Figure 8.",
+        "word_count": 62,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ArialMT",
+          "DejaVuSans",
+          "NimbusRomNo9L-Regu"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#4C78A8",
+          "#E17A3C"
+        ],
+        "semantic_mapping": "Blue Top Features versus orange Random Features in both match-rate panels.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 9,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower right of right panel",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Left panel uses two categorical groups (Top Features, Random Features); right panel uses horizontal linear match-rate scale.",
+        "y": "Left panel explanation match rate (%); right panel five feature-description rows.",
+        "color": "Top versus random feature sets.",
+        "shape": "Vertical bars at left and horizontal bars at right.",
+        "line": "Black error-bar caps around each bar.",
+        "facet": "Two side-by-side subpanels: aggregate match rate and feature-level rates.",
+        "text": "60.4%, 33.3%, N=5000, p=1e−176, five feature descriptions, and Top/Random legend."
+      },
+      "data_and_statistics": "The aggregate panel reports 60.4% versus 33.3% explanation matches over N=5,000. The feature-level panel shows paired match-rate bars with error bars for five displayed feature descriptions, despite the caption referring to four most-active features; the exact denominator/error-bar definition is not printed.",
+      "evidence_relation": "Figure 5 supplies visual evidence for the claim that learned SAE concepts align with annotator explanations; Figure 8 provides the judging prompt and Table 9 gives matched/non-matched examples. Figure 4’s prediction result is therefore supplemented by an external semantic check.",
+      "design_strengths": [
+        "The aggregate contrast is immediately readable and the percentages are printed inside the bars.",
+        "The paired feature-level panel links the overall comparison to concrete concepts rather than only reporting a single average.",
+        "Color and a shared legend preserve the Top/Random comparison across both panels."
+      ],
+      "design_weaknesses": [
+        "The right panel displays five feature rows while the caption says four most-active features, an object-level count inconsistency to reconcile before reuse.",
+        "The chart is embedded as a raster and the small feature labels/error bars are difficult to inspect at paper scale.",
+        "The caption gives N and a p-value but not the uncertainty statistic or the feature-level denominator."
+      ],
+      "reusable_pattern": "Pair one aggregate bar contrast with a feature-level horizontal breakdown, retaining identical treatment colors and marking the judge prompt separately.",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 5 on p.22; 180 dpi rendered page inspection",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 23,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "failure",
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Elo, as computed using Chatbot Arena preferences, changes after re-labeling unsafe examples. As in Figure 3a, we flip the labels of the examples with the largest 1000 values of a misaligned anti-refusal feature, and recompute Elo. We find that several models experience large shifts in Elo after adjusting these labels: in particular, the more recent models that perform better overall on Arena drop more Elo, suggesting that they refuse requests less often.",
+        "word_count": 74,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ArialMT",
+          "DejaVuSans",
+          "NimbusRomNo9L-Regu"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#59AC59",
+          "#FF5959",
+          "#A5A5A5"
+        ],
+        "semantic_mapping": "Green points mark ΔElo>+50, red points mark ΔElo<−50, and gray points are intermediate shifts; the legend explicitly names only the green/red thresholds.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 2,
+        "annotations": 30,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Base Elo on a linear scale.",
+        "y": "Safety-filtered Elo on a linear scale.",
+        "color": "Direction/magnitude category of Elo change after unsafe-example relabeling.",
+        "shape": "Labeled circular model points.",
+        "line": "No data lines; dashed diagonal is y=x.",
+        "facet": null,
+        "text": "Model names adjacent to points, threshold legend, Base Elo/Safety-filtered Elo axes."
+      },
+      "data_and_statistics": "Thirty model Elo pairs from Chatbot Arena preferences before and after flipping the top 1,000 anti-refusal examples. The dashed diagonal is unchanged-Elo reference; green/red legend thresholds are >+50/<−50. No intervals, repeats, or sample counts beyond the 1,000 relabeled examples are shown.",
+      "evidence_relation": "Figure 3a shows the same label edit through RewardBench2 safety/overall accuracy; Figure 6 translates it to model-level Arena Elo consequences. It documents a reward-hacking/failure boundary rather than a new independent intervention.",
+      "design_strengths": [
+        "The diagonal reference provides an immediate unchanged-versus-shift reading.",
+        "Direct model labels make the failure analysis actionable without a large model legend.",
+        "The same 1,000-example perturbation is stated in the caption, keeping the object tied to Figure 3a."
+      ],
+      "design_weaknesses": [
+        "Dense direct labels overlap or approach the plot boundary in the upper-right cluster.",
+        "Gray intermediate points are not explained in the legend, leaving their exact threshold category implicit.",
+        "A single relabeling analysis has no interval or replicate encoding, so visual distance is descriptive rather than a precision claim."
+      ],
+      "reusable_pattern": "Use a before/after scatter with a y=x reference and direct labels for entities whose intervention impact must be traced individually.",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 6 on p.23; 180 dpi rendered page inspection",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 24,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 7: Computing τj subjectivity values using different methods yields highly-correlated results. We compute τj using both restricted maximum likelihood (REML) and the Paule-Mandel (PM) estimates across all 31 statistically significant features in CA, using all annotators with at least 200 annotations. We also randomly split the set of eligible annotators into two halves A and B, and recompute τj using only half of the annotators at a time. All of these different estimation procedures yield τj estimates across the 31 features with high Spearman ρ and p < 0.001.",
+        "word_count": 89,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "abbreviation_definition",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ArialMT",
+          "DejaVuSans",
+          "STIXGeneral",
+          "NimbusRomNo9L-Regu"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 8,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#3E4989",
+          "#31688E",
+          "#26828E",
+          "#35B779",
+          "#6DCD59",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential color maps Spearman ρ from low purple/blue to high yellow; cell text reports the correlation and stars report significance.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 21,
+        "data_marks_estimate": 21
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right colorbar",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Six categorical estimator/pool combinations: full/half A/B×REML/PM.",
+        "y": "The same six combinations in matrix order.",
+        "color": "Spearman correlation ρ of τj estimates.",
+        "shape": "Lower-triangular heatmap cells with diagonal cells.",
+        "line": null,
+        "facet": null,
+        "text": "ρ values, diagonal 1.00 labels, significance stars, title, and p-value key."
+      },
+      "data_and_statistics": "Lower-triangular 6×6 consistency matrix over 31 statistically significant CA features, comparing REML/PM estimates from full and randomly split half annotator pools. Values range visually from 0.69 to 1.00; stars denote p<0.001 or p<0.005. No confidence bands or pool sizes beyond the at-least-200 annotation eligibility rule are shown.",
+      "evidence_relation": "Table 7 defines the subjectivity ranking and Figure 3b uses the subjective feature for personalization; Figure 7 checks whether τj rankings survive estimator and annotator-pool choices. Table 8 extends the subjectivity analysis to demographic groups.",
+      "design_strengths": [
+        "Numeric labels and the sequential color field redundantly encode the same correlation, supporting precise reading.",
+        "The triangular layout avoids duplicate entries while retaining the diagonal baseline.",
+        "The estimator and pool labels make the robustness contrast explicit in one compact object."
+      ],
+      "design_weaknesses": [
+        "A heatmap of correlation plus p-value stars reports consistency but not estimation uncertainty or effect heterogeneity.",
+        "REML/PM and full/half labels are compact and typographically dense.",
+        "Color remains essential for scanning differences, reducing grayscale accessibility despite numeric cell labels."
+      ],
+      "reusable_pattern": "For estimator robustness, use a triangular matrix with both cell values and a sequential colorbar, plus a compact significance key.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 7 on p.24; 180 dpi rendered page inspection",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 27,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "screenshot",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "reproduction",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8: Prompt for comparing annotator explanations to top-activating SAE features using the Community Alignment dataset (Zhang et al., 2025a).",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Optima-Regular",
+          "Optima-Bold",
+          "Monaco",
+          "Menlo"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 2,
+        "hex": [
+          "#000000",
+          "#F5F5F5"
+        ],
+        "semantic_mapping": "Black title strip/border and light body panel distinguish prompt framing from the instruction text.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "None; the prompt is a vertically ordered text block.",
+        "y": "None; sections and numbered rules are stacked top to bottom.",
+        "color": "Black header/border versus light prompt body.",
+        "shape": "Rounded rectangular prompt screenshot with section headings and bullet lists.",
+        "line": "Border and horizontal header separator only.",
+        "facet": null,
+        "text": "Prompt title, task description, feature list, judging rules, examples, and exact output format."
+      },
+      "data_and_statistics": "Reproduction artifact for the CA explanation-match judge: it specifies the annotator context, automated feature list, relevance-only rule, precision rule, and output format. It reports no data or uncertainty itself.",
+      "evidence_relation": "Figure 8 is the prompt referred to by Figure 5 and operationalized by Table 9; it exposes the evaluation interface behind the semantic-match statistic rather than adding a result.",
+      "design_strengths": [
+        "The black title strip and section headings make the prompt hierarchy visible.",
+        "Rules, examples, and output format are all shown in one reproducible artifact.",
+        "Monospace body text preserves the code-like literal formatting of the judge prompt."
+      ],
+      "design_weaknesses": [
+        "The caption identifies the task but does not summarize the key matching rule, so the object is not self-contained outside the page.",
+        "Dense monospace text is small and requires close inspection to recover all rule details.",
+        "No model temperature, versioning, or execution metadata is encoded in the screenshot."
+      ],
+      "reusable_pattern": "When a qualitative judge is central to a claim, publish the exact prompt as a framed, sectioned reproduction artifact next to example outputs.",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 8 on p.27; prompt box and text inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 29,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "screenshot",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "reproduction",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 9: Prompt for describing an SAE feature using a set of example preference pairs that have a large value of the feature.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Optima-Regular",
+          "Optima-Bold",
+          "Monaco",
+          "Menlo"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 2,
+        "hex": [
+          "#000000",
+          "#F5F5F5"
+        ],
+        "semantic_mapping": "Black header/border and light body panel frame the SAE feature-description prompt.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "None; instruction text is read top to bottom.",
+        "y": "None; task overview, instructions, examples, rules, and output are vertically stacked.",
+        "color": "Black framing/header versus light prompt body.",
+        "shape": "Rounded rectangular screenshot with bold section labels and bullet examples.",
+        "line": "Border and header divider.",
+        "facet": null,
+        "text": "Task overview, response-pair notation, example features, additional rules, examples placeholder, and one-description output constraint."
+      },
+      "data_and_statistics": "Reproduction artifact for the LLM that converts top-activating preference pairs into one natural-language SAE concept. It includes no observations or uncertainty; the examples placeholder indicates where feature pairs are injected.",
+      "evidence_relation": "Figure 9 documents Step 2 of the Figure 1 pipeline and the feature-description procedure used before fidelity filtering. Tables 3–4 and 12–18 show the resulting descriptions; Figure 8 documents the separate explanation-match judge.",
+      "design_strengths": [
+        "The task overview explicitly defines response A/B and the single-feature axis before the output rule.",
+        "Concrete example descriptions and negation guidance make the intended concept form inspectable.",
+        "The framed prompt is visually distinct from surrounding appendix prose and can be reused as a protocol artifact."
+      ],
+      "design_weaknesses": [
+        "The caption only names the prompt, so the evaluation contract is not self-contained from caption text alone.",
+        "Long monospace lines and small text make exact transcription difficult at normal paper zoom.",
+        "No sampling seed, LLM configuration, or prompt revision identifier appears in the figure."
+      ],
+      "reusable_pattern": "Pair a concise task overview with positive/negative examples and an exact output contract when documenting an LLM-assisted interpretation step.",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 9 on p.29; prompt box and text inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 5,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: WIMHF extracts a diversity of interpretable, dataset-specific concepts, several of which have large effects on response winrate. “∆win” is the mean change in winrate when a response contains the feature, controlling for length. “Prevalence” is how often a feature occurs in the dataset.",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 20,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 5,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Five dataset groups (HH-RLHF, PRISM, LMArena, Community Alignment, Reddit) contain 20 representative feature rows. The Concept column carries the preferred/dispreferred/not-significant color key; Δwin and prevalence are whole-percent values and length is controlled.",
+      "evidence_relation": "Table 1 is the main evidence surface for dataset-specific concepts and direction. It grounds Figure 2’s shared-feature comparison and the anti-refusal/sustainability examples later used in Figure 3 and Tables 10–11.",
+      "design_strengths": [
+        "Dataset row-group labels make context part of every feature comparison.",
+        "Green/red/gray row fills let readers scan sign and significance status before reading prose.",
+        "Δwin and prevalence sit beside the concept text, keeping effect size and frequency on one line."
+      ],
+      "design_weaknesses": [
+        "The color key is embedded in the Concept header rather than duplicated with a non-color marker, so grayscale interpretation is weaker.",
+        "Long concept descriptions force multi-line rows and make small Δwin differences visually secondary.",
+        "The table reports point estimates without intervals or row-level sample sizes."
+      ],
+      "reusable_pattern": "Use dataset-grouped natural-language rows with a compact semantic color key, then place effect and prevalence columns at the right.",
+      "evidence": {
+        "page": 5,
+        "label": "Table 1 on p.5; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 16,
+      "module": "appendix A.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: Comparison of the SAE against two ablations across all 7 datasets. The SAE produces substantially more interpretable features, as measured by mean fidelity, the number of high-fidelity features (i.e., with statistically significant fidelity scores), and the number of non-redundant high-fidelity features (i.e., features that are both high-fidelity and semantically distinct from one another).",
+        "word_count": 57,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Three methods (SAE, Embed-TopDims, Embed-PCA) are compared over mean fidelity, high-fidelity count, and non-redundant high-fidelity count, averaged over seven datasets. Mean fidelity has two decimals; count fractions retain one decimal.",
+      "evidence_relation": "Table 2 is the explicit feature-interpretability ablation behind Figure 4: it establishes that the SAE supplies more high-fidelity, non-redundant concepts before those concepts are used downstream.",
+      "design_strengths": [
+        "A small number of columns keeps the SAE-versus-ablation decision surface immediately readable.",
+        "Bold SAE values establish the intended winner without extra visual ornament.",
+        "The caption defines both high-fidelity and non-redundant high-fidelity measures."
+      ],
+      "design_weaknesses": [
+        "The seven-dataset aggregation hides dataset heterogeneity that is visible only in later full inventories.",
+        "Mixed precision between mean fidelity and x/32 counts is not explained in the table body.",
+        "No uncertainty or per-dataset dispersion accompanies the aggregate comparison."
+      ],
+      "reusable_pattern": "Put a primary representation and two concise ablations in rows with one interpretability metric per column.",
+      "evidence": {
+        "page": 16,
+        "label": "Table 2 on p.16; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 17,
+      "module": "appendix A.4",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 3: Embedding-model robustness: matched feature pairs from HH-RLHF using OpenAI text-embedding-3-small vs. nomic-ai/modernbert-embedding-base.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Five qualitative matched feature pairs align OpenAI text-embedding-3-small descriptions with nearest ModernBERT descriptions on HH-RLHF. There are no numeric columns or uncertainty estimates.",
+      "evidence_relation": "Table 3 links the embedding-model robustness claim to concrete semantic matches; it complements Figure 4’s prediction comparison without pretending that qualitative matches are a quantitative robustness interval.",
+      "design_strengths": [
+        "Two equal-width columns make each semantic pair easy to compare line by line.",
+        "The table preserves full natural-language descriptions rather than opaque feature IDs.",
+        "The caption names both embedding models and the HH-RLHF scope."
+      ],
+      "design_weaknesses": [
+        "Long monospaced descriptions are visually dense and require row-by-row reading.",
+        "Nearest-neighbor similarity scores and matching threshold are not shown.",
+        "A handful of examples cannot establish coverage across all features."
+      ],
+      "reusable_pattern": "Show paired descriptions side by side for model/representation robustness, with no invented numeric summary.",
+      "evidence": {
+        "page": 17,
+        "label": "Table 3 on p.17; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 17,
+      "module": "appendix A.4",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 4: Across-seed reproducibility: matched feature pairs from two independent SAE runs on HH-RLHF with different random seeds.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Five matched feature pairs compare two independent HH-RLHF SAE runs with different random seeds. The cells are qualitative prose and report no numeric spread.",
+      "evidence_relation": "Table 4 tests seed reproducibility at the feature-description level, extending Table 3’s embedding-model comparison and supporting the claim that the learned concepts are not seed artifacts.",
+      "design_strengths": [
+        "Run A/Run B headers establish a symmetrical comparison.",
+        "Examples retain the semantic specificity needed to judge whether two features are analogues.",
+        "The caption states that the runs are independent and seed-varied."
+      ],
+      "design_weaknesses": [
+        "No cosine similarity, match rate, or selection denominator is shown.",
+        "Five examples cannot reveal how often a run fails to find an analogue.",
+        "Monospace text and narrow line wrapping increase scanning cost."
+      ],
+      "reusable_pattern": "Use paired qualitative columns for seed reproducibility, then report the matching procedure and coverage elsewhere.",
+      "evidence": {
+        "page": 17,
+        "label": "Table 4 on p.17; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 19,
+      "module": "appendix C.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 5: Compared to Inverse Constitutional AI, WIMHF produces more features that statistically significantly predict preference labels. S: # of significant features when performing separate regressions for each method; J: # of significant features in a joint regression with both methods.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No confidence interval or replicate column; integer significant-feature counts have no sampling uncertainty shown.",
+      "data_and_statistics": "Two method rows (WIMHF and ICAI) report integer significant-feature counts in separate (S) and joint (J) regressions across Arena, CA, HH-RLHF, PKU, Reddit, and Total. The total cells are fractions out of 50.",
+      "evidence_relation": "Table 5 is the direct method comparison for feature predictiveness. It operationalizes the claim that WIMHF yields more non-redundant significant features and complements Table 2’s interpretability ablation.",
+      "design_strengths": [
+        "Grouped dataset headers with S/J subcolumns preserve the separate-versus-joint distinction.",
+        "Total fractions give a compact cross-dataset summary while the five dataset groups expose heterogeneity.",
+        "Bold WIMHF cells make the headline comparison quick to locate."
+      ],
+      "design_weaknesses": [
+        "Thirteen columns make the compact table difficult to read at page scale.",
+        "S and J are defined in the caption but the causal meaning of a joint loss remains implicit.",
+        "Counts have no uncertainty or multiple-testing details beyond the surrounding method."
+      ],
+      "reusable_pattern": "Use two-level method-by-dataset headers to show both marginal and joint feature significance without duplicating tables.",
+      "evidence": {
+        "page": 19,
+        "label": "Table 5 on p.19; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 20,
+      "module": "appendix C.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 6: Across 5 datasets, we took the top 10 features per dataset, and first counted how many had a statistically significant prediction coefficient. Of these 47/50 features, we had expert annotators qualitatively rate them for helpfulness and interpretability. 47/47 were rated interpretable by the median of the three annotators, and 41/47 were rated helpful.",
+        "word_count": 58,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Three rating rows (Predictive, Helpful, Interpretable) cross five datasets and a Total column. Values are integer counts among the top ten per dataset, with 47/50 retained for qualitative rating.",
+      "evidence_relation": "Table 6 translates the external-researcher validation into a small count matrix: all 47 retained features are interpretable and 41 are helpful. It follows Table 5’s predictive filter.",
+      "design_strengths": [
+        "The Total column makes the 47/47 and 41/47 headline counts immediately visible.",
+        "Rows separate predictive selection from human usefulness and interpretability.",
+        "The five dataset columns expose whether the qualitative result is concentrated in one corpus."
+      ],
+      "design_weaknesses": [
+        "Counts do not show the three annotators’ raw ratings or disagreement.",
+        "The denominator changes from 50 candidate features to 47 rated features and requires caption reading.",
+        "No uncertainty or inter-rater statistic is shown."
+      ],
+      "reusable_pattern": "Use a compact count matrix for multi-criterion qualitative validation, with an explicit total and denominator note.",
+      "evidence": {
+        "page": 20,
+        "label": "Table 6 on p.20; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 21,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 7: Most and least subjective features in CA, ranked by the estimated random-slope variance τj from the mixed-effects model. βj is the dataset-level mean effect (described in §5.2).",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "italic",
+        "cell_color"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Ten feature descriptions are split into Top 5 most subjective and Bottom 5 least subjective sections. βj and τj are shown to two decimals; alternating light-gray rows aid reading.",
+      "evidence_relation": "Table 7 gives the concrete subjectivity features used to motivate Figure 3b and Figure 7. The top/bottom sections expose both high variation and low-variation controls.",
+      "design_strengths": [
+        "Top/bottom section labels make the ranking boundary explicit.",
+        "Feature text, mean effect βj, and random-slope spread τj share one row, tying interpretation to the statistic.",
+        "Alternating shading improves row tracking across long descriptions."
+      ],
+      "design_weaknesses": [
+        "The grouping is a rank slice rather than a full distribution, so it can overemphasize extremes.",
+        "βj and τj are not accompanied by intervals or annotator counts per row.",
+        "The table caption points to §5.2 for βj, making the exact estimand dependent on body text."
+      ],
+      "reusable_pattern": "Pair interpretable feature names with the mean effect and heterogeneity statistic, and show both extremes under one header.",
+      "evidence": {
+        "page": 21,
+        "label": "Table 7 on p.21; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 25,
+      "module": "appendix D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 8: Features whose coefficients vary significantly with annotator demographics. We show only the features that have a likelihood ratio test (Vuong, 1989) p-value of less than 0.05 after Bonferroni multiple testing correction (i.e., after multiplying the p-value by the number of features tested).",
+        "word_count": 46,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 5,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No confidence interval or replicate column; Bonferroni-adjusted p-values are selection statistics, not effect-size intervals.",
+      "data_and_statistics": "Seventeen rows list significant demographic coefficient differences across five body groups: Age (1), Country (5), Education Level (4), Gender (2), and Political (5). The p-value column uses one-decimal scientific mantissas times powers of ten.",
+      "evidence_relation": "Table 8 extends subjectivity from annotator-level variance to subgroup coefficient differences. It is a demographic robustness slice, not a causal demographic effect estimate.",
+      "design_strengths": [
+        "A Group column makes each demographic contrast explicit and row groups can be scanned by thick separators.",
+        "Scientific p-values are aligned in one right column.",
+        "Alternating gray fills maintain row tracking without competing with the text."
+      ],
+      "design_weaknesses": [
+        "The Bonferroni-adjusted selection rule is in the caption, but effect sizes and direction of subgroup differences are absent.",
+        "Long feature descriptions and scientific notation create high line density.",
+        "The table presents p-values without a visual effect magnitude or subgroup sample-size column."
+      ],
+      "reusable_pattern": "Group heterogeneous feature descriptions by demographic axis, but pair significance with an effect-size column in future versions.",
+      "evidence": {
+        "page": 25,
+        "label": "Table 8 on p.25; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 26,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9: We use gpt-5-low to judge whether the top-activating SAE feature for a given example is mentioned to any extent by the annotator-written explanations for why they picked their preferred response. In the table, we show several examples that were judged as matches (top section) and several examples that were judged as non-matches (bottom section). Excerpts of responses and explanations come from the Community Alignment dataset (Zhang et al., 2025a).",
+        "word_count": 71,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Eleven qualitative examples use Response Excerpt, Annotator Explanation, and Top Feature columns: six match examples and five non-match examples. Gray alternating fills and section rules distinguish the two groups.",
+      "evidence_relation": "Table 9 is the example-level evidence behind Figure 5’s explanation-match rate and Figure 8’s judge prompt. It shows both positive and negative cases rather than only cherry-picked matches.",
+      "design_strengths": [
+        "Three columns align raw response, human rationale, and learned feature for direct semantic inspection.",
+        "Explicit match/non-match section labels connect examples to the binary judge outcome.",
+        "Alternating gray fills and horizontal rules keep long excerpts in their rows."
+      ],
+      "design_weaknesses": [
+        "Long monospaced excerpts are hard to scan and force very small text.",
+        "The table gives examples but no per-example judge confidence or feature activation value.",
+        "The qualitative sample is not a denominator-bearing audit of all 5,000 cases."
+      ],
+      "reusable_pattern": "Show raw excerpt, human explanation, and machine feature in parallel, with matched and non-matched sections.",
+      "evidence": {
+        "page": 26,
+        "label": "Table 9 on p.26; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 27,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "failure",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 10: Examples from CA where the environmental sustainability feature is present. In each case, the other response is preferred, likely because sustainability was not relevant to the user’s request.",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Three CA examples use Prompt, Chosen (Does Not Mention Sustainability), and Rejected (Mentions Sustainability) columns. Gray alternating rows distinguish the long qualitative examples.",
+      "evidence_relation": "Table 10 explains the −34% sustainability association from Table 1 by showing prompts where sustainability is irrelevant: the sustainability-mentioning response is rejected despite its ostensibly positive content.",
+      "design_strengths": [
+        "Column headers encode the preference direction and feature presence in plain language.",
+        "Prompt and both response excerpts allow the contextual irrelevance mechanism to be inspected.",
+        "The examples are short enough to compare within one page."
+      ],
+      "design_weaknesses": [
+        "No activation magnitude, sample denominator, or alternative preference is shown.",
+        "The “likely because” interpretation is qualitative and not independently quantified in the table.",
+        "Long monospace text competes with the bold column headers."
+      ],
+      "reusable_pattern": "Use prompt-context examples to explain why a seemingly positive feature can be a dataset-specific reward-hacking signal.",
+      "evidence": {
+        "page": 27,
+        "label": "Table 10 on p.27; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 28,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "failure",
+        "qualitative_evidence",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 11: Note: These examples include toxic content. Excerpts from the Chatbot Arena dataset where the feature for “refusing unsafe queries” fires most strongly. Annotators almost always choose the response that generates a response, even when it is very toxic/sexual/harmful. Non-relevant sections of the prompts and responses are excluded.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No confidence interval or replicate column; point estimates/counts are descriptive.",
+      "data_and_statistics": "Four Arena examples use Prompt, Chosen (Unsafe), and Rejected (Refusal) columns. Long toxic/sexual/harmful excerpts are presented in alternating gray rows; the caption explicitly flags toxic content.",
+      "evidence_relation": "Table 11 provides qualitative failure evidence for the anti-refusal feature and the safety relabeling intervention in Figure 3a/Figure 6. It shows the unsafe chosen response beside the refusal that Arena labels reject.",
+      "design_strengths": [
+        "Column labels make the safety failure direction explicit.",
+        "The caption and row-level excerpts preserve the exact failure mode instead of hiding it behind a score.",
+        "Four examples cover varied harmful contexts while retaining one common feature."
+      ],
+      "design_weaknesses": [
+        "The examples are intentionally extreme and may not represent the full Arena distribution.",
+        "No activation score, frequency denominator, or uncertainty is displayed.",
+        "Toxic long-form text creates a very high reading burden at paper scale."
+      ],
+      "reusable_pattern": "Pair the problematic prompt with the chosen unsafe and rejected safe responses when documenting a reward-hacking failure.",
+      "evidence": {
+        "page": 28,
+        "label": "Table 11 on p.28; caption/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 30,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 12: All WIMHF features on Chatbot Arena with a high-fidelity interpretation (see §3, step 2). Features are colored based on whether they have a statistically significant relationship with preference, y. “∆win” is the average marginal effect on y when the feature is positive vs. negative, and after controlling for length. “Prevalence” is how often the feature occurs (i.e., is nonzero) across all response pairs in the dataset. We use Bonferroni correction for all significance tests.",
+        "word_count": 77,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 22,
+      "columns": 3,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No interval or replicate column. Bonferroni significance is encoded by row color and summarized in the dataset band; the threshold is p < 0.0023.",
+      "data_and_statistics": "22 high-fidelity natural-language feature rows for Chatbot Arena; each row has a concept, whole-percent Δwin, and whole-percent prevalence. Green, red, and gray row fills encode positive, negative, and non-significant preference relationships; the dataset band reports 7/22 features predicting preference at Bonferroni threshold p < 0.0023.",
+      "evidence_relation": "Table 12 expands Table 1 into the complete Chatbot Arena feature inventory and supplies the object-level evidence for the cross-dataset patterns in Figure 2. It is also the reference table whose caption defines the encoding reused by Tables 13–18.",
+      "design_strengths": [
+        "The dataset band and prediction count orient the reader before the dense rows begin.",
+        "Concept text, Δwin, and prevalence remain aligned across all seven datasets.",
+        "Semantic row colors make preferred/dispreferred/non-significant ordering visible without adding a separate significance column."
+      ],
+      "design_weaknesses": [
+        "Long inventories use small text and require vertical scanning across many rows.",
+        "The color key is compact and embedded inside the Concept header, so gray-scale readers must rely on the Δwin sign and surrounding caption.",
+        "Point estimates have no intervals or feature-level sample counts, so the inventory is descriptive rather than uncertainty-complete."
+      ],
+      "reusable_pattern": "Use one stable full-inventory table per dataset with a fixed concept/effect/prevalence schema and a visible dataset-level significance summary.",
+      "evidence": {
+        "page": 30,
+        "label": "Table 12 on p.30; dataset band/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 31,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 13: All WIMHF features on Community Alignment with a high-fidelity interpretation. See Table 12 for a full explanation of the table’s data.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 31,
+      "columns": 3,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No interval or replicate column. Bonferroni significance is encoded by row color and summarized in the dataset band; the threshold is p < 0.0016.",
+      "data_and_statistics": "31 high-fidelity natural-language feature rows for Community Alignment; each row has a concept, whole-percent Δwin, and whole-percent prevalence. Green, red, and gray row fills encode positive, negative, and non-significant preference relationships; the dataset band reports 29/31 features predicting preference at Bonferroni threshold p < 0.0016.",
+      "evidence_relation": "Table 13 expands Table 1 into the complete Community Alignment feature inventory and supplies the object-level evidence for the cross-dataset patterns in Figure 2. Its caption points back to Table 12 for the shared definitions, so it is not fully self-contained.",
+      "design_strengths": [
+        "The dataset band and prediction count orient the reader before the dense rows begin.",
+        "Concept text, Δwin, and prevalence remain aligned across all seven datasets.",
+        "Semantic row colors make preferred/dispreferred/non-significant ordering visible without adding a separate significance column."
+      ],
+      "design_weaknesses": [
+        "Long inventories use small text and require vertical scanning across many rows.",
+        "The color key is compact and embedded inside the Concept header, so gray-scale readers must rely on the Δwin sign and surrounding caption.",
+        "Point estimates have no intervals or feature-level sample counts, so the inventory is descriptive rather than uncertainty-complete."
+      ],
+      "reusable_pattern": "Use one stable full-inventory table per dataset with a fixed concept/effect/prevalence schema and a visible dataset-level significance summary.",
+      "evidence": {
+        "page": 31,
+        "label": "Table 13 on p.31; dataset band/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 32,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 14: All WIMHF features on HH-RLHF with a high-fidelity interpretation. See Table 12 for a full explanation of the table’s data.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 24,
+      "columns": 3,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No interval or replicate column. Bonferroni significance is encoded by row color and summarized in the dataset band; the threshold is p < 0.0021.",
+      "data_and_statistics": "24 high-fidelity natural-language feature rows for HH-RLHF; each row has a concept, whole-percent Δwin, and whole-percent prevalence. Green, red, and gray row fills encode positive, negative, and non-significant preference relationships; the dataset band reports 15/24 features predicting preference at Bonferroni threshold p < 0.0021.",
+      "evidence_relation": "Table 14 expands Table 1 into the complete HH-RLHF feature inventory and supplies the object-level evidence for the cross-dataset patterns in Figure 2. Its caption points back to Table 12 for the shared definitions, so it is not fully self-contained.",
+      "design_strengths": [
+        "The dataset band and prediction count orient the reader before the dense rows begin.",
+        "Concept text, Δwin, and prevalence remain aligned across all seven datasets.",
+        "Semantic row colors make preferred/dispreferred/non-significant ordering visible without adding a separate significance column."
+      ],
+      "design_weaknesses": [
+        "Long inventories use small text and require vertical scanning across many rows.",
+        "The color key is compact and embedded inside the Concept header, so gray-scale readers must rely on the Δwin sign and surrounding caption.",
+        "Point estimates have no intervals or feature-level sample counts, so the inventory is descriptive rather than uncertainty-complete."
+      ],
+      "reusable_pattern": "Use one stable full-inventory table per dataset with a fixed concept/effect/prevalence schema and a visible dataset-level significance summary.",
+      "evidence": {
+        "page": 32,
+        "label": "Table 14 on p.32; dataset band/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 15",
+      "page": 33,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 15: All WIMHF features on PRISM with a high-fidelity interpretation. See Table 12 for a full explanation of the table’s data.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 23,
+      "columns": 3,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No interval or replicate column. Bonferroni significance is encoded by row color and summarized in the dataset band; the threshold is p < 0.0022.",
+      "data_and_statistics": "23 high-fidelity natural-language feature rows for PRISM; each row has a concept, whole-percent Δwin, and whole-percent prevalence. Green, red, and gray row fills encode positive, negative, and non-significant preference relationships; the dataset band reports 13/23 features predicting preference at Bonferroni threshold p < 0.0022.",
+      "evidence_relation": "Table 15 expands Table 1 into the complete PRISM feature inventory and supplies the object-level evidence for the cross-dataset patterns in Figure 2. Its caption points back to Table 12 for the shared definitions, so it is not fully self-contained.",
+      "design_strengths": [
+        "The dataset band and prediction count orient the reader before the dense rows begin.",
+        "Concept text, Δwin, and prevalence remain aligned across all seven datasets.",
+        "Semantic row colors make preferred/dispreferred/non-significant ordering visible without adding a separate significance column."
+      ],
+      "design_weaknesses": [
+        "Long inventories use small text and require vertical scanning across many rows.",
+        "The color key is compact and embedded inside the Concept header, so gray-scale readers must rely on the Δwin sign and surrounding caption.",
+        "Point estimates have no intervals or feature-level sample counts, so the inventory is descriptive rather than uncertainty-complete."
+      ],
+      "reusable_pattern": "Use one stable full-inventory table per dataset with a fixed concept/effect/prevalence schema and a visible dataset-level significance summary.",
+      "evidence": {
+        "page": 33,
+        "label": "Table 15 on p.33; dataset band/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 16",
+      "page": 34,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 16: All WIMHF features on Reddit with a high-fidelity interpretation. See Table 12 for a full explanation of the table’s data.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 25,
+      "columns": 3,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No interval or replicate column. Bonferroni significance is encoded by row color and summarized in the dataset band; the threshold is p < 0.0020.",
+      "data_and_statistics": "25 high-fidelity natural-language feature rows for Reddit; each row has a concept, whole-percent Δwin, and whole-percent prevalence. Green, red, and gray row fills encode positive, negative, and non-significant preference relationships; the dataset band reports 12/25 features predicting preference at Bonferroni threshold p < 0.0020.",
+      "evidence_relation": "Table 16 expands Table 1 into the complete Reddit feature inventory and supplies the object-level evidence for the cross-dataset patterns in Figure 2. Its caption points back to Table 12 for the shared definitions, so it is not fully self-contained.",
+      "design_strengths": [
+        "The dataset band and prediction count orient the reader before the dense rows begin.",
+        "Concept text, Δwin, and prevalence remain aligned across all seven datasets.",
+        "Semantic row colors make preferred/dispreferred/non-significant ordering visible without adding a separate significance column."
+      ],
+      "design_weaknesses": [
+        "Long inventories use small text and require vertical scanning across many rows.",
+        "The color key is compact and embedded inside the Concept header, so gray-scale readers must rely on the Δwin sign and surrounding caption.",
+        "Point estimates have no intervals or feature-level sample counts, so the inventory is descriptive rather than uncertainty-complete."
+      ],
+      "reusable_pattern": "Use one stable full-inventory table per dataset with a fixed concept/effect/prevalence schema and a visible dataset-level significance summary.",
+      "evidence": {
+        "page": 34,
+        "label": "Table 16 on p.34; dataset band/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 17",
+      "page": 35,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 17: All WIMHF features on PKU with a high-fidelity interpretation. See Table 12 for a full explanation of the table’s data.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 3,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No interval or replicate column. Bonferroni significance is encoded by row color and summarized in the dataset band; the threshold is p < 0.0031.",
+      "data_and_statistics": "16 high-fidelity natural-language feature rows for PKU; each row has a concept, whole-percent Δwin, and whole-percent prevalence. Green, red, and gray row fills encode positive, negative, and non-significant preference relationships; the dataset band reports 7/16 features predicting preference at Bonferroni threshold p < 0.0031.",
+      "evidence_relation": "Table 17 expands Table 1 into the complete PKU feature inventory and supplies the object-level evidence for the cross-dataset patterns in Figure 2. Its caption points back to Table 12 for the shared definitions, so it is not fully self-contained.",
+      "design_strengths": [
+        "The dataset band and prediction count orient the reader before the dense rows begin.",
+        "Concept text, Δwin, and prevalence remain aligned across all seven datasets.",
+        "Semantic row colors make preferred/dispreferred/non-significant ordering visible without adding a separate significance column."
+      ],
+      "design_weaknesses": [
+        "Long inventories use small text and require vertical scanning across many rows.",
+        "The color key is compact and embedded inside the Concept header, so gray-scale readers must rely on the Δwin sign and surrounding caption.",
+        "Point estimates have no intervals or feature-level sample counts, so the inventory is descriptive rather than uncertainty-complete."
+      ],
+      "reusable_pattern": "Use one stable full-inventory table per dataset with a fixed concept/effect/prevalence schema and a visible dataset-level significance summary.",
+      "evidence": {
+        "page": 35,
+        "label": "Table 17 on p.35; dataset band/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 18",
+      "page": 36,
+      "module": "appendix F",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 18: All WIMHF features on Tulu with a high-fidelity interpretation. See Table 12 for a full explanation of the table’s data.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR9",
+          "CMMI9",
+          "CMSY9",
+          "Inconsolatazi4-Regular"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 19,
+      "columns": 3,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "No interval or replicate column. Bonferroni significance is encoded by row color and summarized in the dataset band; the threshold is p < 0.0026.",
+      "data_and_statistics": "19 high-fidelity natural-language feature rows for Tulu; each row has a concept, whole-percent Δwin, and whole-percent prevalence. Green, red, and gray row fills encode positive, negative, and non-significant preference relationships; the dataset band reports 15/19 features predicting preference at Bonferroni threshold p < 0.0026.",
+      "evidence_relation": "Table 18 expands Table 1 into the complete Tulu feature inventory and supplies the object-level evidence for the cross-dataset patterns in Figure 2. Its caption points back to Table 12 for the shared definitions, so it is not fully self-contained.",
+      "design_strengths": [
+        "The dataset band and prediction count orient the reader before the dense rows begin.",
+        "Concept text, Δwin, and prevalence remain aligned across all seven datasets.",
+        "Semantic row colors make preferred/dispreferred/non-significant ordering visible without adding a separate significance column."
+      ],
+      "design_weaknesses": [
+        "Long inventories use small text and require vertical scanning across many rows.",
+        "The color key is compact and embedded inside the Concept header, so gray-scale readers must rely on the Δwin sign and surrounding caption.",
+        "Point estimates have no intervals or feature-level sample counts, so the inventory is descriptive rather than uncertainty-complete."
+      ],
+      "reusable_pattern": "Use one stable full-inventory table per dataset with a fixed concept/effect/prevalence schema and a visible dataset-level significance summary.",
+      "evidence": {
+        "page": 36,
+        "label": "Table 18 on p.36; dataset band/header/body inspected at 180 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 establishes the response-pair→SAE concept→expressed-preference pipeline. Table 1 and Figure 2 show dataset-specific effects and cross-dataset reversals; Figure 3 turns unsafe and subjective features into curation and personalization interventions. Appendix Table 2 tests the SAE against interpretability ablations, Tables 3–8 test embedding/seed, method, expert, and subjectivity robustness, Figures 4–7 provide AUC, explanation-match, Elo-failure, and τ consistency views, Tables 9–11 supply qualitative mechanism examples, Figures 8–9 expose the two LLM prompts, and Tables 12–18 provide complete feature inventories.",
+    "caption_system": "All objects use the label form “Figure/Table n:” followed by a prose caption. Main result captions (Figures 2–3 and Tables 1–2/5–6) combine setup with a stated finding and, when relevant, bootstrap or multiple-testing definitions. Figures 8–9 are prompt captions that identify the artifact but do not summarize its full protocol. Tables 13–18 point back to Table 12 for shared encoding definitions.",
+    "table_header_system": "The feature tables use a natural-language Concept column with an inline green/red/gray preferred-status key, followed by Δwin and Prevalence. Table 5 adds a two-level dataset→S/J header; Tables 3–4 and 9–11 use paired or three-column qualitative headers; Table 7 pairs descriptions with βj/τj; Table 8 pairs demographic Group and Interpretation with scientific p-values. Dense appendix inventories repeat the dataset band plus the fixed three-column body.",
+    "method_result_ablation_link": "Figure 1’s SAE interface leads to Table 2’s SAE-versus-Embed-TopDims/Embed-PCA ablation and Figure 4’s prediction AUC comparison. Figure 2 and Table 1 identify context conflicts; Figure 3 and Figure 6 test the anti-refusal intervention; Figure 3b, Table 7, and Figure 7 connect subjective-feature selection to estimator robustness. Tables 3–6 test semantic, seed, method, and expert validation before Tables 9–18 expose concrete examples and full inventories.",
+    "main_appendix_link": "The main objects are Figure 1/Table 1/Figures 2–3 on pp.1, 5, 7, and 9. Appendix A adds Table 2 and Tables 3–4, Appendix C adds Tables 5–6, Appendix D adds Table 7/Table 8, and Appendix F adds Figures 4–9, Tables 9–18. Figure 3a’s label edit is explicitly revisited by Figure 6; Figure 5 points to Figure 8 and Table 9; Table 1’s concepts are expanded by Tables 12–18.",
+    "typography_consistency": "The paper-level serif family remains stable in body, captions, and tables, with Computer Modern math for β/τ/ρ and percentages. Chart labels use a sans-serif sub-system, and prompt panels use monospace text for literal protocol content. Dense feature inventories preserve the table family but reduce effective reading size through long rows.",
+    "color_consistency": "Green/red/gray semantic fills consistently encode preferred/dispreferred/non-significant feature rows from Table 1 through Tables 12–18. Chart colors are more local: Figure 2 uses five datasets, Figure 3 uses intervention families, Figures 4–5 use method/treatment palettes, Figure 6 uses shift categories, and Figure 7 uses sequential ρ. Numeric labels and panel/legend text partially compensate, but the figures are not globally color-universal."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "A left-to-right measurable→interpretable→operational pipeline that makes the method interface legible before quantitative results.",
+      "Dataset-grouped natural-language feature tables with one effect column, one prevalence column, and a semantic status key.",
+      "A result chain that pairs aggregate comparison with concrete qualitative examples and publishes the exact LLM prompts used for interpretation/judging.",
+      "Before/after intervention plots use an explicit reference (zero, global model, or y=x) and keep the edit or baseline in the caption."
+    ],
+    "highest_value_objects": [
+      "Figure 1: compactly defines WIMHF’s core data-to-action interface.",
+      "Figure 3: connects feature discovery to safety curation and sample-efficient personalization.",
+      "Figure 4 plus Table 2: puts prediction fidelity and the SAE interpretability ablation on compatible decision surfaces.",
+      "Figure 6 and Tables 10–11: make reward-hacking failure modes inspectable at model and example level.",
+      "Tables 12–18: preserve the complete interpretable feature inventories needed to reproduce cross-dataset claims."
+    ],
+    "failure_patterns": [
+      "Several charts rely primarily on color and use small legends/labels, weakening grayscale and low-resolution reading.",
+      "Figures 2–3 and Figure 5 report bootstrap/error-bar results but do not expose all denominators or interval construction details in the object.",
+      "Figure 5’s aggregate caption says four most-active features while its feature-level panel visibly lists five rows; this count should be reconciled before reuse.",
+      "Qualitative tables and prompt screenshots are reproducible in content but omit run metadata such as seeds, model configuration, or judge temperature.",
+      "Dense full inventories provide point estimates and p-value coloring without feature-level uncertainty or sample-size columns."
+    ],
+    "one_sentence_visual_strategy": "The paper uses a human-readable SAE pipeline, dataset-specific colored feature inventories, intervention comparisons, and prompt-backed qualitative checks to turn opaque preference labels into inspectable curation, personalization, and reward-hacking evidence."
+  }
+}

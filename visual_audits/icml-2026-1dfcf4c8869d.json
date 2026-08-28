@@ -1,0 +1,1421 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-1dfcf4c8869d",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/RickZack/FlexRank"
+    ],
+    "selected_repository": "https://github.com/RickZack/FlexRank",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/RickZack/FlexRank",
+        "path": "notebooks/linear_models.ipynb",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "The notebook describes itself as reproducing the Section 4 synthetic study and the three Figure 2 panels. Its source explicitly sets font.size=14, 6x4 inch figures, scatter alpha=0.25 and s=20, red/green frontier lines with circle/x markers, log y-scale, upper-right legend and dpi=200 export."
+      },
+      {
+        "repository_url": "https://github.com/RickZack/FlexRank",
+        "path": "flextrain/src/flextrain/utils/plot.py",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "The official helper defines serif font defaults, font size 14, figure/save dpi 164, marker and line-style maps, 1.8 pt profile curves, 5.5 pt markers, dotted grids and upper-right legends. The repository does not connect this helper to a figure-specific generation command for Figures 4–10."
+      }
+    ],
+    "search_note": "The PDF footnote links https://github.com/RickZack/FlexRank. gh read-only metadata has an exact paper-title description and README links to the same OpenReview/arXiv identities. The recursive tree contains the two listed plotting sources, packages, tests and notebooks, but no paper .tex/.tikz/.pgf, Figure 1/3–10 generator, table generator or committed figure assets. The linear_models notebook is a verified source for Figure 2 only; the generic helper supplies reusable plotting conventions without proving exact parameters for the other PDF objects. The local inventory row was no_public_source_found and the local visual-source directory was empty before this gh check; the updated result is partial_visual_source."
+  },
+  "paper_style": {
+    "main_figures": 8,
+    "main_tables": 1,
+    "appendix_figures": 2,
+    "appendix_tables": 1,
+    "dominant_figure_typography": {
+      "family": [
+        "Computer Modern/CMR",
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Libre Baskerville/Arial diagram labels"
+      ],
+      "size_pt": {
+        "minimum": 4.0,
+        "median": 8.0,
+        "maximum": 14.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Computer Modern Roman/math",
+        "Nimbus Roman No9 L"
+      ],
+      "body_size_pt": 8.0,
+      "header_size_pt": 8.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Theory and method figures use blue/red/green front or condition semantics; result figures use categorical Matplotlib-like method colors; Figure 6 uses a viridis compression scale; Figure 9 uses diagnostic-role colors; Figure 10 uses blue/green dense-vs-GAR pairing. No single global method color key spans every object.",
+    "vector_raster_mix": "PDF text, captions, plot curves and table rules are mostly vector objects. Figure 3 and Figure 6 are embedded RGB raster images, and Figure 1 mixes vector diagram geometry with raster icons. The verified repository has Figure 2 plotting code but no complete figure/table source set.",
+    "style_consistency": "Nimbus Roman/Computer Modern typography and booktabs-like rules are consistent across text/tables. Plot labels are mostly CMR/serif with DejaVu Sans in Figure 9; raster heatmap labels and multi-series legends become small, and Figure 4's absolute/relative axis wording is inconsistent."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "method",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. FLEXRANK takes as input a base model, which is first decomposed by factorizing each linear layer independently. Next, a global ordering is obtained via a dynamic programming subroutine that assumes additivity of errors across layers. This global ordering is then used to extract nested submodels of different sizes, which are stochastically refined through distillation from the base model.",
+        "word_count": 60,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Libre Baskerville",
+          "Arial",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#FFD34F",
+          "#F6A623",
+          "#5AA9E6",
+          "#A8D8F0",
+          "#8E6BBE",
+          "#D96B6B",
+          "#BFD3E6",
+          "#111111"
+        ],
+        "semantic_mapping": "Layer stacks and stage blocks use yellow, purple, red, blue and pale-blue role fills; embedded lightbulb/snowflake icons add yellow/orange and blue; black outlines and arrows carry structural semantics.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": null,
+        "annotations": 12,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Left-to-right three-stage process: Layer Decomposition, Nested Submodel Selection, and Knowledge Consolidation.",
+        "y": "Base/decomposed/deployable model states are stacked vertically within each stage; no quantitative y-axis.",
+        "color": "Role-specific fills distinguish layers, low-rank factors, submodels and deployment states.",
+        "shape": "Rounded boxes, stacked layers, factor blocks, subset braces and model containers encode object type and inclusion.",
+        "line": "Solid arrows and a dotted arrow encode decomposition/transfer and consolidation flow.",
+        "facet": "The three numbered stages are the structural facets.",
+        "text": "Stage labels, layer names, W ≅ UV^T, SubModel 1–4 and shared-weight labels are direct annotations."
+      },
+      "data_and_statistics": "Mechanism diagram only. It has no sample-level statistic, uncertainty or quantitative series; the visible objects are base/decomposed/deployable model states and nested component relations.",
+      "evidence_relation": "Introduces the three stages later implemented in Algorithm 1 and sections 3.1–3.3. The diagram supplies the interface that Figures 2–3 test theoretically and Figures 4–8/10 evaluate empirically.",
+      "design_strengths": [
+        "A numbered three-stage flow makes decomposition, global selection and consolidation separable.",
+        "Nested inclusion, factorization notation and arrows provide redundant cues for the core method claim.",
+        "The base, elastic and deployable states are shown in one visual narrative rather than disconnected schematics."
+      ],
+      "design_weaknesses": [
+        "The DP ranking-preservation assumption and GAR cost conditions are not visible in the overview.",
+        "Mixed embedded icons and diagram text do not have a public editable diagram source.",
+        "Small component labels and many boxes compete for attention at normal two-column zoom."
+      ],
+      "reusable_pattern": "Use a numbered forward pipeline that exposes the state transition from a pretrained model to decomposed, nested and deployable shared-weight models, with inclusion notation placed directly inside the method diagram.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 5,
+      "module": "theory",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "headline",
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2. Nested trained submodels are Pareto Elastic: Comparison of the considered submodels training strategies on the synthetic setting described in App. D.1. Blue points visualize all 1023 submodels, the red line represents the best models and the green one the true Pareto Front. The difference between the red and green lines is the best submodel optimality gap as per Eq. (9), and is zero only for NSL.",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern/CMR plot text",
+          "Nimbus Roman No9 L (caption)"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF0000",
+          "#008000"
+        ],
+        "semantic_mapping": "Blue semi-transparent points are all candidate submodels; red is the best-model curve and green is the true Pareto front.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 5,
+        "data_marks_estimate": 3100
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "Upper right of panel (a); panels (b) and (c) omit the legend.",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Number of Parameters on a linear scale.",
+        "y": "Loss on a logarithmic scale.",
+        "color": "Blue/red/green identify candidate points, best models and true front.",
+        "shape": "Semi-transparent point marks, red circles and green x marks distinguish candidate and frontier layers.",
+        "line": "Red solid best-model and green solid true-front curves encode the optimality gap.",
+        "facet": "Panel facet is the training strategy: PTS, ASL or NSL.",
+        "text": "Panel titles, axis labels and the panel-(a) legend define the strategy and metric semantics."
+      },
+      "data_and_statistics": "Each panel visualizes all 1023 submodels as semi-transparent points plus best-model and true-front curves. The red–green vertical loss gap is the best submodel optimality gap from Eq. (9); the caption states it is zero only for NSL. No repeated-run uncertainty is shown.",
+      "evidence_relation": "Directly instantiates the linear-theory comparison in sections 4.2–4.4 and Theorems 4.1–4.3; it explains why Figure 3/8's nested training mechanism is expected to outperform post-training or all-submodel learning.",
+      "design_strengths": [
+        "All three strategies share axes, so the Pareto gap is visually comparable.",
+        "Candidate points, best curves and the true front provide a three-layer encoding of the theory.",
+        "The caption names the 1023-point search space and defines the key gap."
+      ],
+      "design_weaknesses": [
+        "Only panel (a) carries a legend, forcing readers to retain color semantics across panels.",
+        "Dense point overlap has no density summary or uncertainty representation.",
+        "Synthetic data and the controlled setting remain dependent on Appendix D.1."
+      ],
+      "reusable_pattern": "Arrange failed, competing and theoretically compatible training objectives as same-scale multiples, with candidate cloud, best frontier and attainable frontier kept as visibly distinct layers.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence",
+        "headline"
+      ],
+      "caption": {
+        "text": "Figure 3. FLEXRANK recovers the true Pareto Front in DNNs: points represent independently trained nested submodels, starting from (i) a random weights (red) or (ii) from the DataSVD (green) of a pretrained model (yellow star), with best models highlighted with dashed lines. At convergence, FLEXRANK recovers the (in advance unknown) Pareto front within a single set of shared weights.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern/CMR raster labels",
+          "Nimbus Roman No9 L (caption)"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#F8766D",
+          "#7CD992",
+          "#C12A2A",
+          "#0B7D2B",
+          "#1F77B4",
+          "#F1C40F"
+        ],
+        "semantic_mapping": "Red/orange and green clouds denote independently trained submodels from random and DataSVD initialization; red/green dashed frontiers are their best models; blue is FlexRank and yellow star is the original model.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 5,
+        "data_marks_estimate": 2200
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "Upper right inside the panel.",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 4,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Number of Parameters on a linear scale.",
+        "y": "Loss on a logarithmic scale.",
+        "color": "Initialization/training source and FlexRank/original reference are assigned distinct categorical colors.",
+        "shape": "Point clouds, blue circles and a yellow star distinguish individual candidates, FlexRank and the base model.",
+        "line": "Dashed red/green best-model lines and the blue FlexRank line encode frontier/recovery trajectories.",
+        "facet": null,
+        "text": "Legend and caption identify random, DataSVD, best models, FlexRank and original model."
+      },
+      "data_and_statistics": "A dense single-panel DNN comparison with independently trained nested submodels, best-model dashed envelopes, FlexRank points and an original-model star. The many point marks are representative training outcomes; no run-level uncertainty or sample-selection rule is displayed.",
+      "evidence_relation": "Connects Figure 1's shared nested decomposition and Figure 2's linear theory to DNN recovery; it is evidence for the method's Pareto-front reconstruction before the main LLM/ViT results.",
+      "design_strengths": [
+        "Candidate density, best envelopes and FlexRank convergence appear in one coordinate system.",
+        "The original model and DataSVD/random initialization are visible as concrete anchors.",
+        "A single object communicates recovery of an unknown front without requiring a separate result table."
+      ],
+      "design_weaknesses": [
+        "The point cloud is too dense to inspect individual submodels or convergence variance.",
+        "The caption omits training steps, model architecture and sampling details.",
+        "The verified PDF contains a raster asset but the repository has no dedicated DNN figure generator."
+      ],
+      "reusable_pattern": "Overlay semi-transparent candidate clouds, best-front envelopes, a shared-model trajectory and the original-model anchor to expose both search-space density and recovery outcome.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4. FLEXRANK has the most graceful performance degradation across parameter budget: (top) Average downstream task accuracy over commonsense downstream datasets from lm-eval-harness and (bottom) classification accuracy on the evaluation split of ImageNet1K. In this latter case, the performance gap remains within a 5% margin w.r.t. the full model even pruning up to 70%.",
+        "word_count": 56,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern/CMR plot text",
+          "Nimbus Roman No9 L (caption)"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#7F7F7F",
+          "#D62728",
+          "#9467BD",
+          "#FF7F0E",
+          "#1F77B4",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "Full Model is gray; ACIP, ACIP without LoRA, DataSVD, FlexRank and SVD are red, purple, orange, blue and green respectively.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 8,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "Row-shared legend between the top and bottom rows, and another below the bottom row.",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 5,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 6,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Parameter count (absolute) label with 0.2–1.0 budget-like ticks in the rendered panels.",
+        "y": "Accuracy on linear, model-specific y ranges.",
+        "color": "Fixed method colors encode the six top-row or four bottom-row series.",
+        "shape": "Circles, squares, diamonds and triangles identify method series.",
+        "line": "Dashed/solid curves and a gray dashed full-model horizontal reference show degradation against the full model.",
+        "facet": "Rows facet Llama language models versus ViT vision models; columns facet model size.",
+        "text": "Model titles, axis labels, row legends and panel positions label dataset/model conditions."
+      },
+      "data_and_statistics": "Six accuracy–parameter curves: three Llama models over lm-eval-harness commonsense averages and three ViT models over ImageNet1K evaluation accuracy. Full-model horizontal references and method curves are deterministic point traces with no error bars, intervals, per-task decomposition or repetition count.",
+      "evidence_relation": "Main result for sections 5.1 and 5.2: it connects the method's nested low-rank profiles to cross-architecture accuracy–budget behavior and precedes Figure 5's broader compression-family comparison and Table 1's post-adaptation result.",
+      "design_strengths": [
+        "A 2×3 matrix exposes both model-family and model-size coverage.",
+        "Row-shared legends reduce repeated labels while preserving a common method key within each family.",
+        "Full-model references make degradation direction visually immediate."
+      ],
+      "design_weaknesses": [
+        "The axis says absolute parameter count while displayed ticks appear to be normalized 0.2–1.0 fractions.",
+        "Different y ranges across panels impede direct vertical comparison of absolute accuracy.",
+        "Small red/purple/green markers are hard to distinguish in grayscale, and the 5% margin is not a statistical uncertainty definition."
+      ],
+      "reusable_pattern": "Use architecture-family rows and model-size columns with fixed method marker/color mappings and row-level legends, while making absolute versus relative budget semantics explicit.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5. FLEXRANK is competitive beyond rank-based approaches. Comparison with LLM-PRUNER, LAYERSKIP and a baseline that trains the same FLEXRANK submodels independently at equal total budget. Dashed lines denote non-elastic methods.",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern/CMR plot text",
+          "Nimbus Roman No9 L (caption)"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#7F7F7F",
+          "#FF7F0E",
+          "#8C564B",
+          "#1F77B4",
+          "#9467BD",
+          "#2CA02C",
+          "#D62728"
+        ],
+        "semantic_mapping": "Full Model is gray; DataSVD, independent submodels, FlexRank, ACIP, LLM-Pruner and LayerSkip receive orange, brown, blue, purple, green and red series colors.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 3,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "Below the plot in a two-row legend.",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 6,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Relative parameter count on a linear scale.",
+        "y": "Llama3.2-1B accuracy on a linear scale.",
+        "color": "Seven methods/baselines use categorical colors.",
+        "shape": "Method-specific circle, square, diamond and triangle markers identify the curves.",
+        "line": "Dashed lines denote non-elastic methods; solid curves denote the remaining series, with a dashed full-model reference.",
+        "facet": null,
+        "text": "Title, axis labels, below-plot legend and caption define model, metric and non-elastic semantics."
+      },
+      "data_and_statistics": "One Llama-3.2-1B panel compares FlexRank, DataSVD, independent FlexRank submodels, ACIP, LLM-Pruner, LayerSkip and the full model at relative parameter budgets. The independent baseline uses the same selected profiles and total budget; curves are point traces without run-level uncertainty.",
+      "evidence_relation": "Tests whether the shared nested approach remains competitive with pruning, variable-depth and independently trained alternatives, complementing Figure 4's rank-family result and the matched-budget discussion in section 5.",
+      "design_strengths": [
+        "A common relative-budget axis makes cross-family degradation visible.",
+        "The independent-submodel baseline isolates weight sharing as a mechanism-level comparison.",
+        "The caption defines the dashed non-elastic encoding rather than leaving it to inference."
+      ],
+      "design_weaknesses": [
+        "Seven curves and a two-row legend consume most of a small single-column object.",
+        "Budget matching and optimizer/data differences are not visualized, and methods have non-identical x samples.",
+        "No repeated-run or task-level uncertainty is shown."
+      ],
+      "reusable_pattern": "Compare a shared-weight elastic model with independent profiles and orthogonal compression families on one relative-budget axis, using line style to expose elastic versus non-elastic behavior.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 6. FLEXRANK takes into account parameter importance (GPT-2): Heatmaps of compression ratio of model components over submodels labeled by relative size w.r.t. the full model.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Raster sans-serif/serif heatmap labels",
+          "Nimbus Roman No9 L (caption)"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 6.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 8,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#3E4989",
+          "#31688E",
+          "#26828E",
+          "#35B779",
+          "#6DCD59",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis colorbars from 0.0 to 1.0 encode component compression ratio; four panel labels encode relative submodel size.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": null,
+        "annotations": 8,
+        "data_marks_estimate": 192
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Categorical component columns with rotated layer/module names.",
+        "y": "Categorical component rows indexed 0–11.",
+        "color": "Viridis cell color encodes compression ratio and its colorbar gives the 0–1 scale.",
+        "shape": "Rectangular cells encode component-by-submodel entries.",
+        "line": null,
+        "facet": "Four heatmaps facet by relative size 0.80×, 0.60×, 0.40× and 0.20×.",
+        "text": "Rotated component labels, row indices, panel rate labels and colorbar ticks provide direct annotations."
+      },
+      "data_and_statistics": "Four 12-by-4 component matrices (approximately 192 colored cells) show compression ratios for GPT-2 submodels at four relative sizes. The central attention c_proj component remains less truncated in the third heatmap; no uncertainty or repeated profile sampling is shown.",
+      "evidence_relation": "Component-level ablation for the importance-aware DP in section 5.3, linking Figure 1's layer decomposition to the global profile selection and later training/sampling ablations in Figures 7–8.",
+      "design_strengths": [
+        "Side-by-side matrices expose non-uniform component allocation more directly than one aggregate ratio.",
+        "A continuous shared color scale makes budget-to-component changes visible.",
+        "The panel sequence aligns with the narrative from larger to smaller submodels."
+      ],
+      "design_weaknesses": [
+        "Rotated component names and colorbar ticks are very small at single-column width.",
+        "The caption does not explicitly define the direction of compression ratio or the column naming scheme.",
+        "No profile-generation source or uncertainty is public."
+      ],
+      "reusable_pattern": "Use fixed component rows and a shared sequential colorbar across budget panels to expose which modules are retained or truncated by an adaptive profile algorithm.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 7. Limits of SVD initialization, need for submodel training (GPT-2). (a) Superimposed green and orange curves show DataSVD converging with a few hundred samples. (b) Independent layer training (green) is ineffective, while end-to-end submodel training (orange) consolidates local into global nestedness.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern/CMR plot text",
+          "Nimbus Roman No9 L (caption)"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728"
+        ],
+        "semantic_mapping": "Blue/orange/green/red distinguish SVD or initialization, DataSVD/submodel training, independent layer training and original-model reference.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "Upper right inside each panel.",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 4,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Number of Parameters in units of 10^7 on a linear scale.",
+        "y": "Loss on a linear scale.",
+        "color": "Condition-specific categorical colors identify initialization/training choices.",
+        "shape": "Circles, squares, diamonds and star markers identify curves and original model.",
+        "line": "Connecting curves encode loss trajectory over parameter count.",
+        "facet": "Panel (a) facets calibration sample size; panel (b) facets independent-layer versus end-to-end submodel training.",
+        "text": "Panel labels, legends and caption directly define sample/training conditions."
+      },
+      "data_and_statistics": "Two GPT-2 loss–parameter panels. Panel (a) overlays SVD, DataSVD-256 and DataSVD-1024 samples plus Original; panel (b) compares initialization, end-to-end submodel training and independent-layer training plus Original. Curves have no error bars or repetitions; 'few hundred' samples is qualitative.",
+      "evidence_relation": "Ablates DataSVD calibration and cross-layer training requirements from sections 3.1/3.3 and 5.3; panel (b) provides a mechanism explanation for Figure 8's joint-sampling advantage.",
+      "design_strengths": [
+        "Two focused panels keep initialization and training-mechanism questions separate.",
+        "Common axes and explicit caption color keys make the controlled comparisons legible.",
+        "The end-to-end versus independent-layer contrast addresses a concrete alternative explanation."
+      ],
+      "design_weaknesses": [
+        "No exact convergence threshold, sample-size uncertainty or seed information is shown.",
+        "Independent layer training can differ in optimization path as well as information flow, limiting attribution.",
+        "Small legends and plot labels are difficult to inspect in the narrow column."
+      ],
+      "reusable_pattern": "Place initialization sensitivity and mechanism-isolation curves in adjacent panels with shared units, and make the color-to-condition mapping explicit in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8. Joint submodel training is essential for elasticity (GPT-2): independently trained submodels lack nested structure and degrade across parameter budgets.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern/CMR plot text",
+          "Nimbus Roman No9 L (caption)"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#9467BD",
+          "#7F7F7F",
+          "#A52A2A"
+        ],
+        "semantic_mapping": "Blue is FlexRank; orange/green/red/purple are four single-budget runs; gray is Pareto Frontier and dark red star is Original model.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 3,
+        "data_marks_estimate": 50
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "Upper right inside the panel.",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 6,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Number of Parameters in units of 10^7 on a linear scale.",
+        "y": "Loss on a logarithmic scale.",
+        "color": "Categorical colors separate FlexRank, four target-budget runs, Pareto Frontier and Original model.",
+        "shape": "Circle, square, triangle and diamond markers identify training conditions; star marks Original.",
+        "line": "Curves trace each model's loss across parameter budgets; Pareto reference is dashed.",
+        "facet": null,
+        "text": "Legend names four single-budget values and the two reference curves."
+      },
+      "data_and_statistics": "One GPT-2 panel compares FlexRank with submodels trained only at approximately 8.5e7, 5.2e7, 3.6e7 and 1.1e7 budgets, plus Pareto Frontier and Original model. Single-budget traces are point curves without uncertainty; the log axis emphasizes multi-level loss degradation.",
+      "evidence_relation": "Tests joint profile sampling from section 3.3 and the PTS/ASL failure logic in section 4. It is the key ablation behind the claim that shared training preserves elasticity across budgets.",
+      "design_strengths": [
+        "Joint training and single-budget counterfactuals share one parameter axis, making interference visible.",
+        "The Pareto frontier and Original model anchor distinguish structural degradation from the full-model endpoint.",
+        "Log loss scale reveals failures across orders of magnitude."
+      ],
+      "design_weaknesses": [
+        "High-parameter traces converge visually and the seven-item legend is dense.",
+        "Budget-specific training data, optimization and repeat conditions are not visible.",
+        "No uncertainty or failure threshold is displayed despite the strong 'essential' caption claim."
+      ],
+      "reusable_pattern": "Overlay one jointly trained elastic curve with multiple single-budget counterfactuals and an attainable frontier, using a log outcome axis when interference spans several loss levels.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 24,
+      "module": "appendix C.3",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "scatter",
+        "bar",
+        "line",
+        "matrix"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 9. Analysis of the validity of ranking preservation assumption for DP submodel selection",
+        "word_count": 14,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#1F77B4",
+          "#777777"
+        ],
+        "semantic_mapping": "Orange scatter and blue/red step diagnostics encode ranking/regret, green/red bars encode DP matches/misses, and gray lines/table cells provide structural references.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": 3,
+        "legend_items": null,
+        "annotations": 14,
+        "data_marks_estimate": 1100
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 4,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Panel A uses proxy percentile rank (linear 0–100); B uses categorical DP outcome; C uses a non-uniform log/symlog-like regret axis with 0.5, 1, 1.5, 2, 5 and 12 ticks; D is a metric/value table.",
+        "y": "Panel A true percentile rank, B returned-budget percentage and C DP-failure budgets below threshold are linear percentages; D has no axis.",
+        "color": "Orange rank points, green/red match bars, blue step and red regret markers encode diagnostic roles.",
+        "shape": "Scatter points, bars, step segments, circular markers and table cells encode the four diagnostic views.",
+        "line": "A diagonal agreement reference, C blue step/CDF and gray threshold lines encode agreement and regret boundaries.",
+        "facet": "A global rank agreement, B exact-budget correctness, C miss regret and D scalar metrics are the four panels.",
+        "text": "Panel titles, scope labels, percentages and D's metric/value rows directly identify denominators and headline scalars."
+      },
+      "data_and_statistics": "A reports global rank agreement over all exhaustive profiles; B reports DP exact-budget matches 94.1% and misses 5.9%; C reports the CDF of relative regret over DP misses; D repeats Global Spearman 0.991, pairwise violation 3.70%, exact-match 94.1%, mean regret 0.176% and max regret 11.58%. These are controlled diagnostic summaries, not main-model uncertainty intervals.",
+      "evidence_relation": "Tests the additive/ranking-preservation premise used by Algorithm 2 and section 3.2. It supplies scope-separated evidence for a theory assumption and should not be read as a general nonlinear-network guarantee; the controlled-setting description differs between the main text/C.3 and Appendix D.1.",
+      "design_strengths": [
+        "Agreement, exactness, failure regret and scalar summary are closed in one appendix object.",
+        "Scope labels distinguish all profiles, exact budgets and DP misses, reducing denominator ambiguity.",
+        "The table D makes the key values recoverable even when the plots are small."
+      ],
+      "design_weaknesses": [
+        "The composite object mixes linear, categorical and log-like x semantics without explaining them in the caption.",
+        "The caption omits panel scopes, denominator definitions and the source of the 94.1%/0.176% values.",
+        "No uncertainty is shown, and the controlled evidence has a textual setting discrepancy elsewhere in the PDF."
+      ],
+      "reusable_pattern": "For a selection assumption, pair global rank agreement with exact-budget success, regret over failures and a scope/metric table, making every denominator explicit within the object.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 25,
+      "module": "appendix D.4",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 10. GAR enables practical speedup following the theoretical prediction: Relative cost of a forward pass of (i) the usual (blue) and the GAR factorizations (Sec. 3.5) relative to the forward of a matrix M ∈ Rm×n, varying the active rank k, for m = n = 4096 and an input of 8192 tokens. All measurements have been profiled on one NVIDIA RTX5090 GPU with torch.compile activated.",
+        "word_count": 67,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern/CMR plot text",
+          "Nimbus Roman No9 L (caption)"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#1F77B4",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "Blue identifies the usual two-linear dense factorization and green identifies GAR; dotted/solid and circle/square distinguish lower bounds from measurements.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 3,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "Upper left inside the panel.",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Active rank k shown at powers-of-two ticks from 2^2 through 2^12 on a log-like scale.",
+        "y": "Runtime ratio versus dense on a linear 0–2 scale.",
+        "color": "Blue versus green separates dense/two-linear from GAR.",
+        "shape": "Circles mark dense measurements and squares mark GAR measurements; lower bounds use the same color with different line style.",
+        "line": "Dotted lower-bound and solid/dashed measurement curves trace theoretical and measured cost.",
+        "facet": null,
+        "text": "Title gives m=n and token count; legend, y=1 annotation and caption identify runtime conditions."
+      },
+      "data_and_statistics": "Runtime ratios are measured for m=n=4096 and 8192 input tokens across active rank k; the plot pairs dense and GAR lower bounds with measured curves and places a y=1 dense-speed threshold. Profiling uses one RTX5090 and torch.compile; no repeats, quantiles or uncertainty are shown.",
+      "evidence_relation": "Connects the GAR complexity expression in section 3.5 and Equation (7) to the practical inference discussion in Appendix D.4; it is a conditional runtime validation, not a cross-hardware guarantee.",
+      "design_strengths": [
+        "Theoretical lower bounds and measurements are paired in the same coordinate system.",
+        "The y=1 reference makes the practical speedup boundary immediately visible.",
+        "Caption states matrix dimensions, token count, GPU and compilation condition."
+      ],
+      "design_weaknesses": [
+        "One GPU and one matrix/input scale do not establish general latency behavior.",
+        "Powers-of-two active-rank ticks are log-like but their scale is not explained in the caption.",
+        "The compact legend and blue/green pairs rely on line/marker redundancy that becomes small in print."
+      ],
+      "reusable_pattern": "Pair analytic lower bounds with measured runtime curves and a fixed speedup threshold, and put hardware, input shape, rank range and compiler settings in the caption.",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1. FLEXRANK submodels can be finetuned with LoRA: average accuracy over math and code domains, at varying elastic sizes. “Base” denotes the performance of the original model.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman/math",
+          "Nimbus Roman No9 L"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Each numeric cell includes a ± term, but the PDF does not define whether it is a seed, task, sample or other dispersion measure, and gives no repetition count or interval procedure.",
+      "data_and_statistics": "Five rows (Base, 1×, 0.8×, 0.6×, 0.4×) and four score columns compare Math/Code for Llama-3.2-1B and Llama-3.2-3B. Values are average accuracy over math and code domains; examples include 25.69±0.99 to 13.58±0.63 for 1B Math and 18.33±2.35 to 1.22±0.61 for 1B Code. Precision is two decimals for center and ± values.",
+      "evidence_relation": "Main post-adaptation result in section 5.2, distinct from Figure 4's zero-shot budget curves. It tests whether FlexRank profiles remain useful after separate LoRA finetuning and supplies a downstream deployment complement to the main accuracy plots.",
+      "design_strengths": [
+        "Two Llama sizes, two domains and five relative sizes share a compact two-level header.",
+        "Base and elastic rows make the post-adaptation degradation path easy to scan.",
+        "The table fits the main-result page beside the ablation figures without adding a new metric family."
+      ],
+      "design_weaknesses": [
+        "The ± statistic and its aggregation unit are undefined, so apparent differences cannot be calibrated.",
+        "No task-level breakdown, repetition count or failure value is shown.",
+        "Long numeric cells in a small single-column table slow horizontal comparison."
+      ],
+      "reusable_pattern": "Use a two-level model/domain header and aligned relative-size rows for post-adaptation evidence, but define the uncertainty unit and aggregation directly in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 14,
+      "module": "appendix A.1",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 2. Comparison of prior Transformer compression methods from the perspective of nested low-rank decomposition.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman/math",
+          "Nimbus Roman No9 L"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Not applicable to this literature capability matrix; check/cross marks are categorical claims rather than uncertainty encodings.",
+      "data_and_statistics": "Nine method rows compare Method, Decomposition, Rank Selection, Target Arch., Acc. Compensation, Gradient-Free, Nestedness and Train-once/deploy-everywhere. Entries include Naive SVD, FWSVD, DRONE, ASVD, SVD-LLM, SVD-LLM V2, A^3, ACIP and FlexRank (ours); columns mix prose, equations and ✓/✗ marks rather than numerical precision.",
+      "evidence_relation": "Appendix A.1 positions FlexRank against prior Transformer compression families, including the non-factorized methods discussed as orthogonal. It supports the method taxonomy and baseline choice but is not an experiment or theorem table.",
+      "design_strengths": [
+        "Decomposition, selection, compensation, nestedness and deployment are aligned as one comparison surface.",
+        "The last FlexRank row makes the claimed combination of capabilities easy to locate.",
+        "Check/cross symbols avoid using color as the sole encoding of categorical capability."
+      ],
+      "design_weaknesses": [
+        "The caption does not define the ✓/✗ criteria or the boundary of Train-once, deploy-everywhere.",
+        "Capability terms such as accuracy compensation may not be semantically identical across cited papers.",
+        "Long method descriptions and compact type make column-by-column verification costly."
+      ],
+      "reusable_pattern": "Build a literature matrix around decomposition, selection, nestedness and deployment claims, but define each categorical column and cite the evidence basis in the table note.",
+      "evidence": {
+        "page": 14,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 introduces decomposition, DP selection and consolidation; Figures 2–3 explain nestedness through controlled theory and DNN recovery; Figures 4–5 test accuracy-budget behavior across architectures and compression families; Table 1 tests post-adaptation; Figures 6–8 isolate profile importance, initialization and joint training; Table 2, Figure 9 and Figure 10 add literature positioning, DP diagnostics and GAR runtime.",
+    "caption_system": "Figures 2–8 and 10 mostly use a bold finding title followed by setup, encoding/comparison and finding; Figure 1 and Figure 9 are more descriptive. Figure 9 omits panel scope/denominator definitions, Table 1 omits ± semantics and Figure 4's 5% margin is not uncertainty.",
+    "table_header_system": "Table 1 uses a two-level model-size/domain header for post-adaptation accuracy; Table 2 uses capability columns for decomposition, selection, compensation, nestedness and deployment. Both use horizontal booktabs-style rules without vertical grids.",
+    "method_result_ablation_link": "The sequence Figure 1 → Figures 2–3 → Figures 4–5/Table 1 → Figures 6–8 links interface, theory, main result, broader comparison, post-adaptation and mechanism ablations; Figure 9 and Figure 10 condition the DP and GAR claims. Controlled-setting and task-averaging boundaries limit broad causal interpretation.",
+    "main_appendix_link": "The main paper retains the pipeline, nestedness theory, DNN recovery, LLM/ViT curves, post-adaptation table and core ablations. Appendix A supplies literature comparison, C supplies DP assumption diagnostics and D supplies GAR runtime and experimental conditions; proofs and some denominator details remain outside the main visual narrative.",
+    "typography_consistency": "PDF-object text consistently uses Nimbus Roman/Computer Modern, with DejaVu Sans in the Figure 9 diagnostics and mixed fonts/icons in Figure 1. Figure 6 rotated labels, Figure 8 legend and Table 2 long entries are the smallest/highest-density regions.",
+    "color_consistency": "Figures 2–5 share a broadly Matplotlib-like categorical language but do not maintain a global method color key; Figure 6's viridis, Figure 9's diagnostic colors and Figure 10's dense/GAR colors are object-specific. Markers, line styles, labels and table symbols provide partial redundancy."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "A numbered decomposition→DP→consolidation pipeline that shows base, nested and deployable states.",
+      "Same-scale PTS/ASL/NSL theory multiples with candidate cloud, best curve and true frontier layers.",
+      "Architecture-family small multiples plus matched-budget external comparison and post-adaptation table.",
+      "Component heatmaps and paired initialization/training/joint-sampling ablations that isolate mechanisms.",
+      "Ranking agreement/exactness/regret scope panels and lower-bound/measurement runtime pairing."
+    ],
+    "highest_value_objects": [
+      "Figure 2: clearest visual statement of the nestedness theory.",
+      "Figure 4: broad Llama/ViT main result across parameter budgets.",
+      "Figure 8: strongest joint-training counterfactual ablation.",
+      "Figure 9: scope-separated DP ranking diagnostic.",
+      "Figure 10: theory-to-runtime GAR connection."
+    ],
+    "failure_patterns": [
+      "Only Figure 2 has a verified paper-specific plotting notebook; no complete Figure 1/3–10 or Table 1/2 generator is public.",
+      "Figure 4 mixes an absolute axis label with relative-looking ticks, while Figure 9 mixes panel scales without caption explanation.",
+      "Small legends, rotated heatmap labels and long capability cells reduce print-scale readability; color redundancy is incomplete in red/green and blue/green pairs.",
+      "Most figures are deterministic point traces; Table 1 ± terms, Figure 4's margin and Figure 9's regret scope lack complete uncertainty/denominator definitions.",
+      "Figure 9 controlled ranking diagnostics and Figure 10 single-GPU profiling should not be generalized to arbitrary nonlinear architectures or deployment hardware."
+    ],
+    "one_sentence_visual_strategy": "FlexRank turns shared low-rank deployment into a chain of decomposition/DP interface, nestedness theory, cross-architecture budget curves, post-adaptation and mechanism ablations, and appendix DP/GAR diagnostics, but relies on limited public source code and mostly representative point estimates."
+  }
+}

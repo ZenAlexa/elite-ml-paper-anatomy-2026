@@ -1,0 +1,1634 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-7f071490c87d",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/harrya32/hyperparameter-trajectory-inference",
+      "https://github.com/harrya32/HTI",
+      "https://github.com/dnkit24/sinkhorn-hti"
+    ],
+    "selected_repository": "https://github.com/harrya32/hyperparameter-trajectory-inference",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/harrya32/hyperparameter-trajectory-inference",
+        "path": "DTR-Bench/surrogate_eval_plots.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Author-linked evaluator contains Cancer reward/penalty-versus-lambda plotting and standard-error aggregation; its committed output is not the target Figure 2 or Figure 5 composite."
+      },
+      {
+        "repository_url": "https://github.com/harrya32/hyperparameter-trajectory-inference",
+        "path": "DTR-Bench/surrogate_eval_hinge.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Author-linked evaluator contains the nonlinear Cancer reward sweep underlying Table 4; no target PDF figure/table export is committed."
+      },
+      {
+        "repository_url": "https://github.com/harrya32/hyperparameter-trajectory-inference",
+        "path": "DTR-Bench/surrogate_eval_reacher.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Author-linked evaluator plots Reacher penalty/reward sweeps with markers and error bars; it is related to Table 3/Figure 5 but not an exact composite source."
+      },
+      {
+        "repository_url": "https://github.com/harrya32/hyperparameter-trajectory-inference",
+        "path": "DTR-Bench/surrogate_ett_quantiles.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Author-linked script contains a commented history/forecast/true/surrogate plot block for ETT samples; it does not reproduce the 4×3 central-80% interval grid in Figure 3."
+      },
+      {
+        "repository_url": "https://github.com/harrya32/hyperparameter-trajectory-inference",
+        "path": "quantile_regression/plotting.ipynb",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Author-linked notebook defines history/true future/quantile forecast plotting and a forecast-start reference line; its plot is a related diagnostic, not the target Figure 3 export."
+      },
+      {
+        "repository_url": "https://github.com/harrya32/hyperparameter-trajectory-inference",
+        "path": "generative_dropout/generate_2moons_dropout_data.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Author-linked generator creates dropout-specific two-moons scatter diagnostics; it documents the data visual pathway but not a target Figure/Table composite."
+      }
+    ],
+    "search_note": "The PDF explicitly links the author repository harrya32/hyperparameter-trajectory-inference in Appendix C and the reproducibility statement. gh metadata/tree inspection confirms the author repository and its HTI predecessor, plus the listed evaluator scripts, notebooks, and dropout diagnostic plots; no committed Figure 1–5 composite, target report TeX, or exact figure-generation script was found. The local inventory selected dnkit24/sinkhorn-hti because its README title is exact and it contains report/table_results.tex and sinkhorn-hti/scripts/regenerate_figs.py, but those files belong to an entropic-OT course-project report: the script produces a 2×4 L-BFGS/entropic trajectory figure and the table reports a different wall-time/NLL/CD comparison. They are therefore not counted as exact target sources. The status is partial_visual_source because related author plotting/data pathways are available while exact target visual sources are absent."
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 7,
+    "appendix_figures": 2,
+    "appendix_tables": 8,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 9.0,
+      "header_size_pt": 9.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Main plots use a Matplotlib-like categorical palette: blue/orange/green/red/purple/brown identify methods or conditions, and pale same-color fills represent trajectory/interval variation. Figure 2 uses blue versus red for true/surrogate; Figure 3 uses a green true interval plus method colors; Figure 4 uses blue/red conceptual manifolds. Tables remain monochrome booktabs with directional arrows and parenthetical standard errors.",
+    "vector_raster_mix": "The 200 dpi page renders show vector/text content for Figures 1–3 and 5, captions, rules, and tables. Figure 4 is the sole embedded raster object: eight 512×512 RGB images with alpha masks at 2812 ppi on p.16, surrounded by vector caption/text. Thus the paper is vector-dominant with one raster conceptual diagram.",
+    "style_consistency": "Nimbus Roman No9 L and Computer Modern math dominate body, captions, equations, and tables; DejaVu Sans Type3 appears in plot/raster labels. Booktabs rules, centered headers, and compact method/metric tables are stable across main and appendix. Figure 3/4 label density and color dependence are the main local departures from the otherwise restrained style."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 7,
+      "module": "ablation / §5.1",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "scatter",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Dots represent true samples from the temporal process across t ∈ [0, 1], lines represent model estimated trajectories from t = 0 to t = 1. Each condition has a distinct colour.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#5B8FF9",
+          "#E45756",
+          "#59A14F",
+          "#8E6BBE"
+        ],
+        "semantic_mapping": "Four condition identities use blue, red, green, and purple; lighter colored true dots indicate larger t, while same-color paths indicate the estimated trajectory for that condition.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 16,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 4800
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "2-D sample coordinate x",
+        "y": "2-D sample coordinate y",
+        "color": "condition c; lightness of true dots indicates larger t",
+        "shape": "small dots for true samples; line paths for estimates",
+        "line": "thin solid estimated trajectories",
+        "facet": "four Lagrangian variants K_I, K_I−Û, K_θ, K_θ−Û",
+        "text": "panel labels (a)–(d) and variant names"
+      },
+      "data_and_statistics": "Synthetic conditional semicircle process with four conditions, three observed times t∈{0,0.5,1}, and 100 samples per condition/time. Each panel shows colored true samples and multiple inferred paths; held-out t∈{0.25,0.75} are evaluated in Table 1. No aggregate uncertainty or numeric axis scale is encoded.",
+      "evidence_relation": "§4 learned metric and density potential → four matched ablations in Figure 1 → withheld-time NLL/CD in Table 1 → claim that both inductive biases recover non-Euclidean conditional paths.",
+      "design_strengths": [
+        "Matched coordinate frames make curvature and condition crossing comparable.",
+        "Four panels expose the separate and joint effects of metric and potential.",
+        "Dots/lines and time lightness create a compact true-versus-estimated visual key."
+      ],
+      "design_weaknesses": [
+        "Condition identity is primarily color-coded and is not grayscale-safe.",
+        "Dense dots and paths overlap, while axes carry no numeric ticks or units.",
+        "The caption does not name the four panels or define the lightness/time mapping."
+      ],
+      "reusable_pattern": "Use a common coordinate frame and matched ablation panels to show how each mechanism changes a geometric path.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 1; p.7 rendered figure and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 8,
+      "module": "results / §5.2.1 Cancer therapy",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2: P_NK vs. λ_nk for ground truth policies and our surrogate policy.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#6A96C1",
+          "#ED4D3D",
+          "#DDEAF7",
+          "#FCE0DE"
+        ],
+        "semantic_mapping": "Blue is the ground-truth policy and red is the HTI surrogate; pale same-color bands surround the two trajectories.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 22
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "reward-weight hyperparameter λ_NK",
+        "y": "average per-episode NK penalty P_NK",
+        "color": "true versus HTI surrogate policy",
+        "shape": "circular point markers",
+        "line": "solid trajectory lines; translucent bands show run variation",
+        "facet": null,
+        "text": "axis labels and two-item legend"
+      },
+      "data_and_statistics": "Cancer reward-weighting evaluation over λ_NK from 0 to 10, comparing ground-truth policies with the surrogate trajectory. The main text states 20 runs and standard errors; the figure band is visible but its exact aggregation is not defined in the caption.",
+      "evidence_relation": "Cancer reward Table 2 gives scalar policy utility; Figure 2 checks the mechanistic NK-preservation trajectory that the λ_NK penalty is meant to control.",
+      "design_strengths": [
+        "A single shared axis makes true/surrogate tracking immediately legible.",
+        "The band adds variation information without obscuring the trajectory.",
+        "The upper-right legend is compact and does not cover the main crossing region."
+      ],
+      "design_weaknesses": [
+        "The caption does not define the shaded band as SE/SD or state the held-out and anchor settings.",
+        "Color carries both series identity and interval identity, weakening grayscale reproduction.",
+        "P_NK is not expanded in the caption, so the mechanism requires body text."
+      ],
+      "reusable_pattern": "Pair a mechanism trajectory with a scalar outcome table when the scalar metric alone could hide a policy trade-off.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 2; p.8 rendered figure and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 9,
+      "module": "results / §5.3 quantile regression",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: Central 80% prediction intervals from HTI surrogates compared with the true intervals on randomly selected ETTm2 samples, for direct (top), CFM (second row), MFM (third row), and our (bottom) approach.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#000000",
+          "#59A14F",
+          "#FFBF86",
+          "#ED4D3D",
+          "#C9B3DE",
+          "#6A96C1"
+        ],
+        "semantic_mapping": "Black is history, green is the true central interval, and orange/red/purple/blue identify Direct/CFM/MFM/Ours interval bands.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 12,
+        "data_marks_estimate": 180
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "time",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper left of first panel",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "time step 0–15",
+        "y": "oil temperature",
+        "color": "true interval and method-specific surrogate interval",
+        "shape": null,
+        "line": "black history line; thin colored interval boundaries",
+        "facet": "4 method rows × 3 randomly selected ETTm2 samples",
+        "text": "row ordering and shared legend"
+      },
+      "data_and_statistics": "Three randomly selected ETTm2 inputs are shown across a 12-step history and 3-step forecast. Each method row overlays its central 80% interval with the green true interval; Table 5 aggregates MSE over held-out τ∈{0.1,0.25,0.5,0.75,0.9}.",
+      "evidence_relation": "Table 5 supplies aggregate forecast error; Figure 3 tests whether the surrogate reproduces interval width and shape for individual samples, supporting the higher-dimensional quantile-regression transfer claim.",
+      "design_strengths": [
+        "Shared scales and a method-by-sample matrix support fast shape comparison.",
+        "History, true interval, and surrogate interval are visually separated.",
+        "One legend avoids repeating six labels in all twelve small panels."
+      ],
+      "design_weaknesses": [
+        "Twelve small axes and colored fills become hard to read at page scale.",
+        "The caption omits sample IDs, horizon details, and the estimator behind the true/method bands.",
+        "Methods rely mainly on color; the grid has little line/marker redundancy."
+      ],
+      "reusable_pattern": "Use a method-by-instance interval matrix with shared scales and one legend, while stating the sample-selection and interval-construction rules.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 3; p.9 rendered figure and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 16,
+      "module": "appendix A / inference-time adjustment",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4: Example inference-time adjustment enabled by HTI. We illustrate disparate user preferences affecting desired NN behaviour (desired λ level) for different users in this abstract example. Having a fixed number of trained NNs (p_{θ_{λ_i}}) only allows partial exploration of the full hyperparameter trajectory, while an HTI surrogate model ((p̂(·|x_i, λ))_{λ∈Λ}) can estimate outputs across the entire spectrum of hyperparameters (estimated conditional probability paths represented by solid blue/red lines). Crucially, hyperparameter-induced dynamics can differ amongst input conditions (x_i), as the true conditional distributions move along their own respective manifolds (M_{x_i}), so an effective HTI model must learn conditional dynamics.",
+        "word_count": 99,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#2F8DF5",
+          "#F05B62",
+          "#DCEBFF",
+          "#FCE2E2",
+          "#333333",
+          "#F3C5AF"
+        ],
+        "semantic_mapping": "Blue/red manifolds and paths represent two conditional input cases; pale fills show manifolds, black/gray labels and connectors show anchors, users, and λ requests, and peach icons show user instances.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "left conceptual ambient space; right user-demand lane",
+        "y": "conditional manifolds and vertical λ request list",
+        "color": "input-condition/manifold identity and solid path identity",
+        "shape": "point clouds, manifold envelopes, user icons, brace",
+        "line": "solid conditional paths and dotted anchor-to-demand connectors",
+        "facet": "left distribution geometry versus right finite-anchor/user requests",
+        "text": "p_{θ_{λ_i}}, M_{x_i}, λ levels, brace, and R^d label"
+      },
+      "data_and_statistics": "Conceptual example rather than a measured dataset; sparse anchor distributions are shown for two input conditions and user-specific desired λ levels. The panel contains no statistical uncertainty, sample denominator, or quantitative axis.",
+      "evidence_relation": "Appendix A’s inference-time adjustment interface → Figure 4’s sparse anchors/continuous conditional paths → main Figure 1 and Algorithm 2’s path construction and sampling → claim that HTI supports conditional, user-specific adjustment.",
+      "design_strengths": [
+        "The geometry lane and user-demand lane make the method interface concrete.",
+        "Solid/dotted paths, labels, and spatial grouping redundantly distinguish anchors from inferred trajectories.",
+        "The caption explicitly states the conditional-dynamics mechanism and fixed-anchor comparison."
+      ],
+      "design_weaknesses": [
+        "The embedded raster tiles and small formulas are less robust to zoom and grayscale.",
+        "The long caption carries much of the interpretation and arrives after the main results.",
+        "User λ examples are abstract and do not show a measured output or task metric."
+      ],
+      "reusable_pattern": "Show sparse anchors and continuous conditional paths in one conceptual plane, with a separate demand lane connecting geometry to inference-time use.",
+      "evidence": {
+        "page": 16,
+        "label": "Figure 4; p.16 rendered figure and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 29,
+      "module": "appendix E / sparsity investigation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 5: Surrogate model reward in Cancer (left) and Reacher (right).",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#9467BD",
+          "#8C564B"
+        ],
+        "semantic_mapping": "Six method categories use the Matplotlib-like blue/orange/green/red/purple/brown palette; each method has a same-color reward band.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 54
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower right in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "number of anchor distributions",
+        "y": "average surrogate reward",
+        "color": "method identity and same-color band",
+        "shape": "circular anchor-count markers",
+        "line": "solid method trajectories",
+        "facet": "Cancer left; Reacher right",
+        "text": "panel axis titles and repeated method legends"
+      },
+      "data_and_statistics": "Sparsity sweep over anchor counts: Cancer at 3,5,7,9,11 and Reacher at 2,3,4,5. Rewards are compared across six methods; translucent bands show run variation, but the caption does not define the estimator. The appendix text states that gaps widen as anchors become sparse.",
+      "evidence_relation": "Appendix E tests the boundary of the interpolation claim: dense anchors make methods converge, while sparse anchors expose the inductive-bias advantage claimed after Tables 2–4.",
+      "design_strengths": [
+        "Matched task panels and a common x-axis concept expose the sparsity trend.",
+        "The endpoint convergence and widening gaps are visible without a separate table.",
+        "The common method palette supports cross-panel comparison."
+      ],
+      "design_weaknesses": [
+        "The title-only caption omits band semantics, anchor-generation details, and the direction of the sparsity effect.",
+        "Six colored series are difficult to distinguish in grayscale and have little marker/line-style redundancy.",
+        "No values or sample counts are printed on the plot."
+      ],
+      "reusable_pattern": "Use matched task panels and a common anchor-density axis to expose where interpolation inductive bias matters.",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 5; p.29 rendered figure and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "ablation / §5.1",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 1: NLL and CD at t ∈ {0.25, 0.75}.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean over 20 runs; the parenthetical value is the standard error stated in §5, but the caption does not repeat the definition.",
+      "data_and_statistics": "Four Lagrangian variants: K_I 105.713 (2.42), 0.323 (0.003); K_θ 23.008 (4.62), 0.158 (0.009); K_I−Û −0.532 (0.057), 0.016 (0.001); K_θ−Û −0.662 (0.046), 0.016 (0.001).",
+      "evidence_relation": "Quantifies Figure 1’s four visual ablations at withheld times and closes the geometry mechanism claim with NLL and circle-distance evidence.",
+      "design_strengths": [
+        "Small method/metric layout is readable beside Figure 1.",
+        "NLL and geometry-specific CD jointly test likelihood and path feasibility."
+      ],
+      "design_weaknesses": [
+        "No bold or best marker makes the winning row less immediate.",
+        "The caption omits the 20-run SE definition and does not name the panel variants."
+      ],
+      "reusable_pattern": "Place a compact withheld-time ablation table directly beside a matched geometric plot.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 1; p.7 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results / §5.2.1 Cancer therapy",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: Average surrogate Cancer reward across λ_nk ∈ {1, 2, 3, 4, 6, 7, 8, 9}.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean over 20 runs; the parenthetical value is the standard error stated in §5, but the caption does not repeat the definition.",
+      "data_and_statistics": "Eight held-out reward weights: Direct −38.35 (10.65), NLOT 9.26 (10.55), K_θ 30.63 (8.50), CFM 36.03 (6.46), MFM 41.05 (4.16), K_I 48.72 (7.22), K_I−Û 83.62 (5.37), K_θ−Û 102.49 (5.46).",
+      "evidence_relation": "Headline Cancer policy utility for the same surrogate suite used in Figure 1; Figure 2 supplies the NK-preservation mechanism trajectory.",
+      "design_strengths": [
+        "A single upward-arrow metric makes ranking direction explicit.",
+        "The short method list fits the left column and pairs with Figure 2."
+      ],
+      "design_weaknesses": [
+        "Per-λ dispersion, anchor locations, and training cost are not shown.",
+        "No explicit best-value highlighting is used."
+      ],
+      "reusable_pattern": "Keep a headline result table to one metric and one held-out aggregation when a companion mechanism curve is adjacent.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 2; p.8 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "results / §5.2.2 Reacher",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3: Average surrogate Reacher rewards across λ_c ∈ {2, 3, 4}.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean over 20 runs; the parenthetical value is the standard error stated in §5, but the caption does not repeat the definition.",
+      "data_and_statistics": "Eight methods at three held-out control weights: Direct −6.711 (0.070), MFM −6.561 (0.053), K_I−Û −6.397 (0.031), K_I −6.307 (0.041), CFM −6.251 (0.028), NLOT −6.173 (0.038), K_θ −6.158 (0.033), K_θ−Û −6.093 (0.036).",
+      "evidence_relation": "Extends Table 2’s reward-weighting comparison to Reacher and tests whether the full method remains best under a different control task.",
+      "design_strengths": [
+        "Stable method/metric grammar makes cross-task ranking easy to scan.",
+        "Three-decimal negative rewards preserve small differences."
+      ],
+      "design_weaknesses": [
+        "Caption omits baseline anchors, reward decomposition, and SE definition.",
+        "Lack of highlighting requires manual comparison of close values."
+      ],
+      "reusable_pattern": "Reuse the same method/metric table grammar across environments so readers do not relearn the layout.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 3; p.8 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 9,
+      "module": "results / §5.2.3 nonlinear Cancer",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 4: Average surrogate Cancer_nl reward across λ_nk ∈ {1, 2, 3, 4, 6, 7, 8, 9}.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean over 20 runs; the parenthetical value is the standard error stated in §5, but the caption does not repeat the definition.",
+      "data_and_statistics": "Eight held-out nonlinear-reward weights: K_I 42.84 (5.86), Direct 49.50 (17.90), NLOT 52.63 (6.52), K_θ 54.44 (7.66), CFM 69.70 (7.73), MFM 78.44 (4.47), K_I−Û 86.21 (6.32), K_θ−Û 91.94 (11.46).",
+      "evidence_relation": "Robustness slice for the hinge/nonlinear Cancer scalarization; the changed reward definition is specified in Appendix C.2.2.",
+      "design_strengths": [
+        "Same table grammar makes the harder objective comparable with Table 2.",
+        "Caption names the held-out λ grid and metric direction."
+      ],
+      "design_weaknesses": [
+        "Hinge threshold and nonlinearity are not explained in the caption.",
+        "Large Direct uncertainty is visible only through parenthetical values without a separate uncertainty key."
+      ],
+      "reusable_pattern": "Reuse the main comparison table in a deliberately harder objective and let the module/caption carry the changed task semantics.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 4; p.9 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 9,
+      "module": "results / §5.3 quantile regression",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 5: MSE of surrogate ETTm2 forecasts compared to NNs trained across quantiles τ ∈ {0.1, 0.25, 0.5, 0.75, 0.9}.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean over 20 runs; the parenthetical value is the standard error stated in §5, but the caption does not repeat the definition.",
+      "data_and_statistics": "Seven methods over five held-out quantiles: Direct 1.845 (0.065), CFM 1.402 (0.008), MFM 1.387 (0.022), K_I 0.765 (0.070), K_I−Û 0.651 (0.076), K_θ 0.620 (0.057), K_θ−Û 0.608 (0.034).",
+      "evidence_relation": "Aggregate forecast error for Figure 3’s interval-shape comparison and the higher-dimensional quantile-regression transfer claim.",
+      "design_strengths": [
+        "Held-out quantiles and downward direction are explicit.",
+        "The scalar MSE table complements rather than duplicates the qualitative grid."
+      ],
+      "design_weaknesses": [
+        "Input/output horizons, test count, and uncertainty construction are omitted.",
+        "No visual best-value marker is provided."
+      ],
+      "reusable_pattern": "Use the metric table for aggregate error and reserve neighboring small multiples for distributional shape.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 5; p.9 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 10,
+      "module": "results / §5.4 generative dropout",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 6: WD of surrogate two moons distributions from ground-truth diffusion models, trained at dropout p ∈ {0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9}.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean over 20 runs; the parenthetical value is the standard error stated in §5, but the caption does not repeat the definition.",
+      "data_and_statistics": "Eight methods on held-out dropout settings: K_I 0.570 (0.020), MFM 0.480 (0.020), CFM 0.464 (0.021), Direct 0.450 (0.013), K_θ 0.404 (0.018), NLOT 0.291 (0.022), K_θ−Û 0.079 (0.003), K_I−Û 0.060 (0.001).",
+      "evidence_relation": "Final main-text application table; it tests density-bias variants on a distribution-distance estimand with held-out dropout levels.",
+      "design_strengths": [
+        "Metric direction and held-out settings are named.",
+        "Compact rows fit beside the §5.4 narrative without extra visual decoding."
+      ],
+      "design_weaknesses": [
+        "No plot companion or sample count is shown.",
+        "The caption does not explain the WD estimator or the 20-run aggregation."
+      ],
+      "reusable_pattern": "A one-metric distribution-distance table can close an application sequence when direction and evaluation grid are explicit.",
+      "evidence": {
+        "page": 10,
+        "label": "Table 6; p.10 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 10,
+      "module": "ablation / §5.5 metric learning",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 7: G_θG ablations in 2D experiments.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean over 20 runs; the parenthetical value is the standard error stated in §5, but the caption does not repeat the definition.",
+      "data_and_statistics": "Two metric parameterizations across four 2-D tasks: fixed R_θG E R_θG^T gives semicircle NLL/CD −0.602 (0.033)/0.016 (0.001), Cancer 98.72 (6.32), Reacher −6.122 (0.080), Dropout WD 0.076 (0.003); learned R_θG E_θG R_θG^T gives −0.662 (0.046)/0.016 (0.001), 102.49 (5.46), −6.093 (0.036), 0.079 (0.003).",
+      "evidence_relation": "Cross-task ablation connecting §4.3 metric parameterization to the semicircle, Cancer, Reacher, and dropout results; the body text notes the learned-eigenvalue trade-off.",
+      "design_strengths": [
+        "Grouped headers align unlike task metrics in one full-width decision surface.",
+        "Metric arrows and formulas make the comparison structurally explicit."
+      ],
+      "design_weaknesses": [
+        "The caption does not decode which row is fixed versus learned.",
+        "Mixed reward/likelihood/distance scales and no best marking slow cross-column comparison."
+      ],
+      "reusable_pattern": "Use a full-width grouped table for one shared component tested across otherwise different evaluation metrics.",
+      "evidence": {
+        "page": 10,
+        "label": "Table 7; p.10 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 20,
+      "module": "appendix / Appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8: Hyperparameters for semicircle experiments in §5.1.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration constants rather than repeated estimates; no error bars, intervals, ranks, or uncertainty cells are shown.",
+      "data_and_statistics": "Sixteen settings: α=0.05 for Û models/0 otherwise; h_y=0.05; h_x=N/A; 2001 epochs; G_θG rate 5×10⁻³, MLP [128,128], ReLU, eigenvalue budget 2; g_θg/T_θT MLP [64,64,64,64]; S_θS [1024,1024]; shared rate 10⁻⁴; ReLU; 15 spline knots; FiLM 16; LBFGS 10 iterations; min–max update ratio 1:10.",
+      "evidence_relation": "Table 8 specifies the semicircle CLOT models behind Figure 1 and Table 1.",
+      "design_strengths": [
+        "Stable Hyperparameter/Value headers make the configuration reproducible.",
+        "Booktabs rules and aligned values support scanning long parameter lists."
+      ],
+      "design_weaknesses": [
+        "The dense two-column list requires body text to connect individual settings to an experiment.",
+        "No highlighting or grouping separates shared defaults from task-specific overrides."
+      ],
+      "reusable_pattern": "Use a two-column Hyperparameter/Value table and state task-specific overrides in the surrounding prose.",
+      "evidence": {
+        "page": 20,
+        "label": "Table 8; p.20 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 22,
+      "module": "appendix / Appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9: Hyperparameters for our surrogate models in the cancer therapy experiment in §5.2.1 and §5.2.3.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration constants rather than repeated estimates; no error bars, intervals, ranks, or uncertainty cells are shown.",
+      "data_and_statistics": "Sixteen settings: α=0.01 for Û models/0 otherwise; h_y=h_x=1.0; 2001 epochs; G_θG rate 5×10⁻³, [128,128], ReLU, eigenvalue budget 2; map/potential [64,64,64,64]; spline [1024,1024]; shared rate 10⁻⁴; ReLU; 15 knots; FiLM 16; LBFGS 3 iterations; min–max update ratio 1:10.",
+      "evidence_relation": "Table 9 specifies the CLOT variants used in Tables 2 and 4, with the same settings shared by the linear and hinge Cancer experiments.",
+      "design_strengths": [
+        "Stable Hyperparameter/Value headers make the configuration reproducible.",
+        "Booktabs rules and aligned values support scanning long parameter lists."
+      ],
+      "design_weaknesses": [
+        "The dense two-column list requires body text to connect individual settings to an experiment.",
+        "No highlighting or grouping separates shared defaults from task-specific overrides."
+      ],
+      "reusable_pattern": "Use a two-column Hyperparameter/Value table and state task-specific overrides in the surrounding prose.",
+      "evidence": {
+        "page": 22,
+        "label": "Table 9; p.22 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 23,
+      "module": "appendix / Appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 10: Hyperparameters for the direct surrogate model in the cancer therapy experiment in §5.2.1.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration constants rather than repeated estimates; no error bars, intervals, ranks, or uncertainty cells are shown.",
+      "data_and_statistics": "Eight settings: 10000 epochs; early-stopping patience 100; validation set 10%; batch size 256; learning rate 10⁻³; hidden sizes [64,64,64,64]; Swish; FiLM layer size 16.",
+      "evidence_relation": "Table 10 specifies the Direct baseline rows in Tables 2 and 4.",
+      "design_strengths": [
+        "Stable Hyperparameter/Value headers make the configuration reproducible.",
+        "Booktabs rules and aligned values support scanning long parameter lists."
+      ],
+      "design_weaknesses": [
+        "The dense two-column list requires body text to connect individual settings to an experiment.",
+        "No highlighting or grouping separates shared defaults from task-specific overrides."
+      ],
+      "reusable_pattern": "Use a two-column Hyperparameter/Value table and state task-specific overrides in the surrounding prose.",
+      "evidence": {
+        "page": 23,
+        "label": "Table 10; p.23 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 23,
+      "module": "appendix / Appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 11: Hyperparameters for the CFM surrogate model in the cancer treatment experiment in §5.2.1.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration constants rather than repeated estimates; no error bars, intervals, ranks, or uncertainty cells are shown.",
+      "data_and_statistics": "Eight settings: 10000 epochs; patience 100; validation 10%; batch size 1000; learning rate 10⁻³; hidden sizes [64,64,64,64]; Swish; FiLM size 16.",
+      "evidence_relation": "Table 11 specifies the CFM baseline rows in Tables 2 and 4.",
+      "design_strengths": [
+        "Stable Hyperparameter/Value headers make the configuration reproducible.",
+        "Booktabs rules and aligned values support scanning long parameter lists."
+      ],
+      "design_weaknesses": [
+        "The dense two-column list requires body text to connect individual settings to an experiment.",
+        "No highlighting or grouping separates shared defaults from task-specific overrides."
+      ],
+      "reusable_pattern": "Use a two-column Hyperparameter/Value table and state task-specific overrides in the surrounding prose.",
+      "evidence": {
+        "page": 23,
+        "label": "Table 11; p.23 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 24,
+      "module": "appendix / Appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 12: Hyperparameters for the MFM surrogate model in the cancer treatment experiment in §5.2.1.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 14,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration constants rather than repeated estimates; no error bars, intervals, ranks, or uncertainty cells are shown.",
+      "data_and_statistics": "Thirteen settings: 2000 epochs; patience 100; validation 10%; batch size 128; interpolant/vector-field rates 10⁻⁴/10⁻³; both hidden sizes [64,64,64]; SELU; FiLM 16; ε=0.001; α=1; σ=3.",
+      "evidence_relation": "Table 12 specifies MFM in Tables 2 and 4; surrounding prose gives task-specific σ overrides for Reacher, ETT, and dropout.",
+      "design_strengths": [
+        "Stable Hyperparameter/Value headers make the configuration reproducible.",
+        "Booktabs rules and aligned values support scanning long parameter lists."
+      ],
+      "design_weaknesses": [
+        "The dense two-column list requires body text to connect individual settings to an experiment.",
+        "No highlighting or grouping separates shared defaults from task-specific overrides."
+      ],
+      "reusable_pattern": "Use a two-column Hyperparameter/Value table and state task-specific overrides in the surrounding prose.",
+      "evidence": {
+        "page": 24,
+        "label": "Table 12; p.24 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 25,
+      "module": "appendix / Appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 13: Hyperparameters for reacher experiment in §5.2.2.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration constants rather than repeated estimates; no error bars, intervals, ranks, or uncertainty cells are shown.",
+      "data_and_statistics": "Sixteen settings: α=0.001 for Û models/0 otherwise; h_y=2.0; h_x=1.0; 2001 epochs; G_θG rate 5×10⁻³, [128,128], ReLU, eigenvalue budget 2; map/potential [64,64,64,64]; spline [1024,1024]; shared rate 10⁻⁴; ReLU; 15 knots; FiLM 16; LBFGS 3 iterations; min–max update ratio 1:10.",
+      "evidence_relation": "Table 13 is the Reacher reproduction anchor for Table 3.",
+      "design_strengths": [
+        "Stable Hyperparameter/Value headers make the configuration reproducible.",
+        "Booktabs rules and aligned values support scanning long parameter lists."
+      ],
+      "design_weaknesses": [
+        "The dense two-column list requires body text to connect individual settings to an experiment.",
+        "No highlighting or grouping separates shared defaults from task-specific overrides."
+      ],
+      "reusable_pattern": "Use a two-column Hyperparameter/Value table and state task-specific overrides in the surrounding prose.",
+      "evidence": {
+        "page": 25,
+        "label": "Table 13; p.25 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 26,
+      "module": "appendix / Appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 14: Hyperparameters for ETT experiment in §5.3.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration constants rather than repeated estimates; no error bars, intervals, ranks, or uncertainty cells are shown.",
+      "data_and_statistics": "Sixteen settings: α=0.01 for Û models/0 otherwise; h_y=h_x=1.0; 1001 epochs; G_θG rate 5×10⁻³, [128,128], ReLU, eigenvalue budget 3; eight-layer [64,64,64,64,64,64,64,64] map/potential MLP; spline [1024,1024]; rate 10⁻⁴; 15 knots; FiLM 16; LBFGS 10 iterations; min–max update ratio 1:10.",
+      "evidence_relation": "Table 14 parameterizes Table 5 and Figure 3 for the ETT quantile experiment.",
+      "design_strengths": [
+        "Stable Hyperparameter/Value headers make the configuration reproducible.",
+        "Booktabs rules and aligned values support scanning long parameter lists."
+      ],
+      "design_weaknesses": [
+        "The dense two-column list requires body text to connect individual settings to an experiment.",
+        "No highlighting or grouping separates shared defaults from task-specific overrides."
+      ],
+      "reusable_pattern": "Use a two-column Hyperparameter/Value table and state task-specific overrides in the surrounding prose.",
+      "evidence": {
+        "page": 26,
+        "label": "Table 14; p.26 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 15",
+      "page": 27,
+      "module": "appendix / Appendix C",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 15: Hyperparameters for dropout experiment in §5.4.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Not applicable: configuration constants rather than repeated estimates; no error bars, intervals, ranks, or uncertainty cells are shown.",
+      "data_and_statistics": "Sixteen settings: α=0.01 for Û models/0 otherwise; h_y=0.2; h_x=1.0; 2001 epochs; G_θG rate 5×10⁻³, [128,128], ReLU, eigenvalue budget 3; map/potential [64,64,64,64]; spline [1024,1024]; rate 10⁻⁴; 15 knots; FiLM 16; LBFGS 10 iterations; min–max update ratio 1:10.",
+      "evidence_relation": "Table 15 parameterizes Table 6 for the two-moons dropout experiment.",
+      "design_strengths": [
+        "Stable Hyperparameter/Value headers make the configuration reproducible.",
+        "Booktabs rules and aligned values support scanning long parameter lists."
+      ],
+      "design_weaknesses": [
+        "The dense two-column list requires body text to connect individual settings to an experiment.",
+        "No highlighting or grouping separates shared defaults from task-specific overrides."
+      ],
+      "reusable_pattern": "Use a two-column Hyperparameter/Value table and state task-specific overrides in the surrounding prose.",
+      "evidence": {
+        "page": 27,
+        "label": "Table 15; p.27 rendered table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 and Table 1 establish the learned metric/density-potential mechanism on conditional semicircles; Tables 2–4 transfer the same surrogate suite to linear and nonlinear reward weighting; Table 5 and Figure 3 transfer it to quantile intervals; Table 6 and Table 7 close the main-text generative and metric-parameterization tests; Figure 5 then probes the sparsity boundary in Appendix E. Algorithms 1–2 and Tables 8–15 provide training, sampling, and reproduction support.",
+    "caption_system": "Captions generally combine a title with a metric/evaluation grid and comparison. Figure 1 and Figure 3 decode visual marks or row order, while result-table captions name held-out settings but defer 20-run standard-error semantics to §5. Figure 4 is the most self-contained caption; Figure 5 is title-only and leaves the band and sparsity interpretation to prose.",
+    "table_header_system": "Tables 1–6 use compact Method plus a directional metric header (NLL/CD/Reward/MSE/WD); Table 7 adds grouped task headers and repeats arrows; Tables 8–15 use Hyperparameter/Value. Booktabs top/mid/bottom rules and no cell colors keep the table family coherent.",
+    "method_result_ablation_link": "Figure 1/Table 1 isolate the density potential and learned metric, while Table 7 isolates eigenvalue parameterization across four 2-D tasks. Tables 2–6 evaluate the full method and baselines on policy, forecast, and distribution metrics, preserving the mechanism-to-result chain.",
+    "main_appendix_link": "Main objects point readers to Appendix C for datasets, model settings, and training protocols. Appendix A Figure 4 explains the inference-time interface, Appendix B Algorithm 2 explains sampling, Tables 8–15 expose hyperparameters, and Appendix E Figure 5 tests the sparsity limit of the headline interpolation claim.",
+    "typography_consistency": "PDF text uses a stable Nimbus Roman/Computer Modern family, with DejaVu Sans-like plot labels. Table body/header scale is consistent across main and appendix; small multiples and the raster conceptual panel compress local legibility.",
+    "color_consistency": "The same categorical method colors recur across interval and sparsity plots, while Figure 1 and Figure 4 use blue/red or four-condition palettes for geometry. Color is semantically coherent but rarely paired with distinct marker or line-style identities, so grayscale robustness is weak."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Matched mechanism-ablation panels plus a withheld-time table.",
+      "One-metric result tables with explicit directional arrows and held-out grids.",
+      "Method×instance interval small multiples with shared scales and one legend.",
+      "Matched task panels using anchor density as a robustness axis.",
+      "Stable booktabs Method/metric and Hyperparameter/Value table grammars."
+    ],
+    "highest_value_objects": [
+      "Figure 1 + Table 1",
+      "Figure 3 + Table 5",
+      "Table 7",
+      "Figure 5"
+    ],
+    "failure_patterns": [
+      "Captions defer standard-error/band definitions and sample denominators to body text.",
+      "Figure 5 has no finding or uncertainty statement in its caption.",
+      "Color carries most method/condition identity and degrades in grayscale.",
+      "Figure 3 and Figure 4 are label-dense at page scale.",
+      "Exact target figure/table source files are absent from the public author repository."
+    ],
+    "one_sentence_visual_strategy": "Use compact geometry and interval visuals to make conditional trajectories inspectable, then repeat a disciplined one-metric table grammar across application settings and place reproducibility and sparsity boundaries in the appendix."
+  }
+}

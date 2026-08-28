@@ -1,0 +1,4057 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-0c8eb54755cf",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "aflah02/TokenSmith",
+      "eleutherai/gpt-neox",
+      "swiss-ai/apertus-tech-report"
+    ],
+    "selected_repository": "allegro-lab/hubble",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "notebooks/bigplot.ipynb",
+        "role": "plot_script",
+        "tool": "gh api + raw GitHub download",
+        "evidence": "Notebook cell 14 fixes serif font sizes; plotting cells define the duplicate-bin small multiples, purple/green palette, marker/stroke conventions, SEM error bars, and shared legends used by Figures 2, 4–16, 22, and 23."
+      },
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "plotting_data/README.md",
+        "role": "data_file",
+        "tool": "gh api",
+        "evidence": "README maps privacy.csv, testset.csv, copyright_passages.csv, copyright_paraphrases.csv, and copyright_checkpoints.csv to the task/metric families represented in the PDF."
+      },
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "plotting_data/privacy.csv",
+        "role": "data_file",
+        "tool": "gh api + local visual source mirror",
+        "evidence": "Privacy-domain plotting data; local mirror exists under corpus/visual_sources/iclr-2026-0c8eb54755cf/allegro-lab__hubble/plotting_data/privacy.csv."
+      },
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "plotting_data/testset.csv",
+        "role": "data_file",
+        "tool": "gh api + local visual source mirror",
+        "evidence": "Testset-domain plotting data; local mirror exists under corpus/visual_sources/iclr-2026-0c8eb54755cf/allegro-lab__hubble/plotting_data/testset.csv."
+      },
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "plotting_data/copyright_passages.csv",
+        "role": "data_file",
+        "tool": "gh api + local visual source mirror",
+        "evidence": "Copyright passage plotting data used by the core line-plot family; local mirror exists."
+      },
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "plotting_data/copyright_paraphrases.csv",
+        "role": "data_file",
+        "tool": "gh api + local visual source mirror",
+        "evidence": "MRPC/PAWS paraphrase plotting data; local mirror exists."
+      },
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "plotting_data/copyright_checkpoints.csv",
+        "role": "data_file",
+        "tool": "gh api + local visual source mirror",
+        "evidence": "Timing/checkpoint plotting data for Figure 13; local mirror exists."
+      },
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "experiments/20250421_dgx_dclm_ablation_runs/llama32_1B_lr6en4_standard_100B/src_config.yml",
+        "role": "other",
+        "tool": "gh api + local visual source mirror",
+        "evidence": "Standard Hubble 1B experiment configuration; local mirror exists and anchors the run-condition naming."
+      },
+      {
+        "repository_url": "https://github.com/allegro-lab/hubble",
+        "path": "experiments/20250421_dgx_dclm_ablation_runs/llama32_1B_lr6en4_perturbed_100B/src_config.yml",
+        "role": "other",
+        "tool": "gh api + local visual source mirror",
+        "evidence": "Perturbed Hubble 1B experiment configuration; local mirror exists and anchors the perturbation condition."
+      }
+    ],
+    "search_note": "PDF is the checklist and object-fact source. The source-inventory row was checked against the local mirror and GitHub API. GitHub repository allegro-lab/hubble is public (default branch main); README title/abstract match the paper, and commit f9abf4b7cf75eef99053f9325a94ca1d20628d74 (2026-04-15) was the latest visible commit during audit. The repository contains a plotting notebook, plotting CSVs, README/configs, and experiment utilities, but no published editable PDF/SVG/TikZ figure assets or paper TeX. Therefore the source is partial: exact plot grammar/palette is available for the notebook-backed family, while the PDF remains authoritative for the complete 23-figure/15-table inventory and for F1/F3/F17–F21 details."
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 1,
+    "appendix_figures": 20,
+    "appendix_tables": 14,
+    "dominant_figure_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "NimbusRomNo9L-Medi",
+        "DejaVuSerif",
+        "DejaVuSans",
+        "CMR10",
+        "CMMI10"
+      ],
+      "size_pt": {
+        "minimum": 4.8,
+        "median": 6.5,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "NimbusRomNo9L-Medi",
+        "Consolas",
+        "DMMono-Light",
+        "CMR10",
+        "CMMI10"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 8.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Core result plots use recurring purple/green shades for model size and corpus scale, with marker/line-style redundancy for standard versus perturbed conditions. MIA plots switch to a four-method categorical palette; unlearning plots use method-specific markers plus red/cyan/yellow reference symbols. Domain backgrounds and monospace prompt highlights are local accents rather than a single global palette.",
+    "vector_raster_mix": "The PDF uses vector text/lines for tables, captions, conceptual Figure 1, ROC curves, and scatter axes, while notebook-backed multi-panel curves are embedded/mixed rendered plots. All 62 PDF pages were rendered at 180 dpi; no editable figure asset was treated as the inventory authority.",
+    "style_consistency": "Caption numbering, serif body typography, duplicate-bin x-axis, core standard/perturbed encodings, and grouped booktabs-like tables are stable across the suite. Local deviations are intentional for the conceptual insertion schematic, prompt-definition tables, MIA ROC panels, and unlearning target scatter."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1: Inserting a perturbation. First, we sample a training sequence from the standard training process to be perturbed. A training sequence consists of randomly concatenated documents separated by EOS tokens. To perturb it, we sample a gap (denoted in red) between the documents and splice the perturbation into a training sequence (between two existing documents). Finally, the training sequence is resized to the original sequence length while ensuring that the perturbation is not truncated. Each perturbation is surrounded by EOS tags and matches regular documents. However, unlike regular documents, perturbation data never gets broken up across two separate training sequences and at most one perturbation example is inserted per sequence.",
+        "word_count": 111,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#D9D9D9",
+          "#4D4D4D",
+          "#D73027",
+          "#9970AB",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Gray/black document and EOS blocks establish the standard sequence; red indicates the sampled gap and purple indicates inserted perturbation data.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Left-to-right sequence position, with a fixed Seq Length = 2048 frame",
+        "y": "Two rows and block heights are structural, not numeric",
+        "color": "Red marks the sampled gap; purple marks inserted perturbation data; gray/black blocks are regular documents and EOS separators",
+        "shape": "Rounded rectangular document spans, EOS tags, and a highlighted insertion block",
+        "line": "Horizontal sequence alignment, vertical comparison, and resize/placement arrows",
+        "facet": "Standard versus Perturbed rows",
+        "text": "Seq Length = 2048, Standard, Perturbed, EOS, and Perturbation data"
+      },
+      "data_and_statistics": "Deterministic mechanism illustration; it contains no sampled observations, estimator, replicate count, or uncertainty display.",
+      "evidence_relation": "Section 3.1 introduces perturbation insertion and reports the total inserted tokens/sequences in prose. Figure 1 is the interface that makes the “regular document but never split” intervention inspectable; Figures 2 and 13–16 then measure its memorization consequences.",
+      "design_strengths": [
+        "The aligned rows make the counterfactual training-data operation immediately legible.",
+        "EOS labels, color, and placement jointly identify the inserted span.",
+        "The fixed-length frame connects the conceptual operation to the actual 2048-token training setup."
+      ],
+      "design_weaknesses": [
+        "The resizing arrow and long sequence spans are small at double-column reading size.",
+        "Color carries the gap/perturbation distinction with limited grayscale redundancy.",
+        "The schematic does not expose a concrete token count or the randomization distribution for gaps."
+      ],
+      "reusable_pattern": "Use an aligned standard/perturbed sequence pair with one explicitly highlighted insertion and a fixed-length frame to explain a data intervention before quantitative results.",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 1 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2: Memorization of sensitive data can be diluted by training on larger corpora. We report the base evaluations on a subset of tasks for the core 8B models trained on 100B and 500B tokens. The core runs are described in §3.2 and evaluations are described in §3.3. For the same duplicate level, memorization is weaker for the model trained on 500B tokens compared to 100B. Figure 22 compares these trends against the 1B models, and larger models memorize at lower duplications. These experiments represent multiple interventions in one training run, and Figure 23 plots these results for our interference models, which confirm minimal interference across domains.",
+        "word_count": 109,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1B7837",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Dark/light green identify the 100B and 500B corpus sizes in the 8B core runs; neutral stroke/marker roles identify standard versus perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 15,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 8,
+        "data_marks_estimate": 1800
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates: 0, 1, 4, 16, 64, 256; symlog-style spacing in the plotting source but labels are shown as duplicate bins",
+        "y": "Norm LL, Word Recall, or Accuracy according to row/task; panel-specific linear ranges",
+        "color": "Purple/green families encode corpus size (100B/500B) and lighter/darker shades separate scale; black stroke/marker roles encode standard versus perturbed",
+        "shape": "Circle/dashed standard versus square/solid perturbed; color shade identifies 100B versus 500B",
+        "line": "Lines connect duplicate bins; dashed standard and solid perturbed are repeated across panels",
+        "facet": "15 task panels arranged as Copyright, Privacy, Testset",
+        "text": "Dataset titles, row labels, Duplicates, Corpus Size, Corpus Type, standard, perturbed"
+      },
+      "data_and_statistics": "Core Hubble 8B evaluations over duplicate bins for 100B and 500B training corpora. Curves are point estimates with SEM error bars in the plotting source where available; the figure does not expose per-bin sample counts.",
+      "evidence_relation": "This is the main domain-agnostic dilution result. It operationalizes the paper’s claim that increasing corpus size spaces perturbations and weakens memorization, while Figure 22 supplies the 1B/8B size comparison and Figure 23 tests cross-domain interference.",
+      "design_strengths": [
+        "The repeated x-axis and row labels make three risk domains comparable without changing the reading grammar.",
+        "Stroke and marker redundancy keeps standard/perturbed identity visible beyond hue.",
+        "A single shared legend and aligned panels efficiently support the central dilution claim."
+      ],
+      "design_weaknesses": [
+        "Fifteen panels force small tick labels and make local y scales easy to overlook.",
+        "Color is still necessary for corpus size and is not fully grayscale safe.",
+        "SEM/error-bar meaning and exact per-task sample counts are not stated in the caption."
+      ],
+      "reusable_pattern": "Use a domain-row small-multiple grid with a shared duplicate axis and redundant stroke/marker encoding, reserving color shade for corpus or model scale.",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Figure 2 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 3: Unlearning performance on with Hubble 8B in copyright and privacy. Three key reference points are included in each subplot: the perturbed model (red X), representing performance before unlearning; the standard model (cyan X), which is trained without perturbations; and the desired model (yellow star), which achieves standard model’s performance on the forget set while retaining the perturbed model’s performance elsewhere. Improvement is indicated by the arrow (left arrow). See Appendix G for the full results.",
+        "word_count": 81,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#1B9E77",
+          "#7570B3",
+          "#D95F02",
+          "#D73027",
+          "#2C7FB8",
+          "#FFD92F",
+          "#333333"
+        ],
+        "semantic_mapping": "Green triangles, purple pluses, and orange circles identify SatImp, RMU, and RR; red/cyan X marks are perturbed/standard references and yellow star is the desired point.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 6,
+        "annotations": 6,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower center",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 3,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Unlearn score/metric on the horizontal axis; panels invert or vary numeric direction according to the PDF axes",
+        "y": "Keep or Test performance, with Gutenberg norm LL or YAGO accuracy",
+        "color": "Green, purple, orange identify SatImp, RMU, RR; red/cyan/yellow identify perturbed, standard, desired references",
+        "shape": "Triangle, plus, circle for methods; X and star for references",
+        "line": "Solid/dashed arrows point toward the desired reference and show improvement direction",
+        "facet": "Gutenberg versus YAGO columns; Keep versus Test rows",
+        "text": "Unlearn, Keep, Test, perturbed, standard, desired, method legend"
+      },
+      "data_and_statistics": "Four empirical trade-off panels over unlearning configurations; method points are point estimates without error bars or replicate ranges. Reference points define the target behavior rather than a fitted frontier.",
+      "evidence_relation": "Section 6.2 introduces RMU, RR, and SatImp and uses Figure 3 as the headline benchmark. Figures 20–21 expand the same target geometry to full scales and alternate retain sets, turning the compact headline into a boundary/failure analysis.",
+      "design_strengths": [
+        "Reference symbols make the desired behavior explicit instead of leaving the reader to infer a target from the cloud.",
+        "The 2×2 domain/retain layout links utility and forgetting in one view.",
+        "Method marker shapes and color provide redundant identity for the small set of methods."
+      ],
+      "design_weaknesses": [
+        "The caption’s phrase “performance on with” is grammatically defective.",
+        "Axis direction and arrow semantics require careful reading because norm LL and accuracy move differently.",
+        "No uncertainty or configuration labels are attached to individual method points."
+      ],
+      "reusable_pattern": "Use a target-anchored scatter: place perturbed, standard, and desired reference symbols on the same axes as methods, then use arrows to show the intended movement.",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Figure 3 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 35,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: Core results on Copyright Passages. The first row evaluates memorization with the length-normalized log-likelihood of the models on the passages. The lower two rows measure the accuracy of verbatim generation, where the models are prompted to generate a 100-token continuation given a 50-token prefix.",
+        "word_count": 46,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 7,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256 on a discrete/symlog-labelled axis",
+        "y": "Norm LL, Exact Match, or RougeL by row",
+        "color": "Purple/green shades identify model size and corpus budget; standard/perturbed are separated by marker and stroke",
+        "shape": "Circle/dashed standard and square/solid perturbed across 1B/8B and 100B/500B",
+        "line": "Connected duplicate curves with standard dashed and perturbed solid line styles",
+        "facet": "Three copyright datasets × three metrics",
+        "text": "Dataset titles, row metric labels, Duplicates, Standard, Perturbed, model/budget labels"
+      },
+      "data_and_statistics": "Hubble core copyright passage evaluations; the bottom two rows use 50-token prompts and 100-token continuations. Curves include SEM error bars in the source plotting workflow, but per-bin n is not printed.",
+      "evidence_relation": "Appendix D.1 expands the copyright claim that loss-based metrics detect memorization earlier than generative metrics. Figure 4 is paired with Figure 5’s paraphrase-choice test and supports the metric-dependence discussion in Section 5.",
+      "design_strengths": [
+        "Metric rows share dataset columns, making the evaluation protocol visible as a matrix.",
+        "The five recurring model identities retain the paper-wide core comparison.",
+        "The caption defines the prompt/continuation lengths for the generative rows."
+      ],
+      "design_weaknesses": [
+        "The dense legend and 9-panel layout shrink labels at page scale.",
+        "“RougeL” capitalization differs from the usual ROUGE-L styling.",
+        "The caption does not define the error-bar statistic or duplicate-bin sample sizes."
+      ],
+      "reusable_pattern": "Organize a domain result by dataset columns and metric rows so loss, generation success, and task-specific measures can be compared with one legend.",
+      "evidence": {
+        "page": 35,
+        "label": "p.35 Figure 4 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 35,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5: Core results on Copyright Paraphrases. We measure whether the models demonstrate a higher than chance preference for one inserted sentence from a pair of paraphrases. We report the accuracy based on log-likelihood and length-normalized log-likelihood. Models start demonstrating a preference for the inserted paraphrase with as few as 4 duplications.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 5,
+        "data_marks_estimate": 260
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Accuracy or length-normalized accuracy",
+        "color": "Purple/green corpus/model series; standard versus perturbed is encoded in marker/stroke",
+        "shape": "Circle/dashed versus square/solid markers and lines",
+        "line": "Connected curves with dashed standard and solid perturbed styles",
+        "facet": "MRPC/PAWS × Acc/Length Norm",
+        "text": "Dataset, metric, Duplicates, Standard, Perturbed, model/budget legend"
+      },
+      "data_and_statistics": "Paraphrase-choice accuracy for MRPC and PAWS; the inserted sentence is compared with a held-out paraphrase. Curves include SEM error bars in the source workflow; no per-bin sample count is printed.",
+      "evidence_relation": "Appendix D.1 uses Figure 5 to distinguish memorization of one paraphrase from generalization to its paired alternative. It complements passage generation in Figure 4 and the paraphrased-biography experiment in Figure 15.",
+      "design_strengths": [
+        "The compact 2×2 structure keeps metric and dataset factors explicit.",
+        "The shared duplicate axis supports the caption’s “as few as 4” finding.",
+        "Marker and stroke redundancy makes the inserted/standard condition distinction recoverable."
+      ],
+      "design_weaknesses": [
+        "Accuracy scales differ subtly between panels and are not summarized in the caption.",
+        "The legend is necessarily small because five corpus/model series repeat.",
+        "Chance level is not drawn as an explicit reference line despite the caption’s higher-than-chance framing."
+      ],
+      "reusable_pattern": "Use a metric×dataset grid with a common duplication axis and add a chance reference line when the caption makes a chance comparison.",
+      "evidence": {
+        "page": 35,
+        "label": "p.35 Figure 5 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 38,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Attack success rates on ECtHR. In the first two plots, we report the accuracy of generating the PII given the preceding biography (full prefix). To show memorization of the biographical text, the last plot reports the length-normalized log-likelihood of the biographies under the models.",
+        "word_count": 46,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 4,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Word Recall, Prefix Match, or Norm LL",
+        "color": "Core purple/green model and corpus series; standard/perturbed by stroke/marker",
+        "shape": "Circle/dashed standard and square/solid perturbed",
+        "line": "Connected duplicate curves; standard dashed and perturbed solid",
+        "facet": "Three ECtHR metrics",
+        "text": "ECtHR Gen (full prefix), ECtHR Likelihood, metric labels, Duplicates, legend"
+      },
+      "data_and_statistics": "ECtHR full-prefix PII generation and biography likelihood across duplicate bins. Error bars are visible in the plotting family where available; exact attack candidate counts are described in surrounding appendix text, not on the plot.",
+      "evidence_relation": "Figure 6 is the ECtHR counterpart to YAGO Figures 7–8: it shows that the available full-prefix attack format can be paired with a text-likelihood measure, while the attack taxonomy limits comparability across datasets.",
+      "design_strengths": [
+        "The three metrics share one duplicate axis and can be read as attack-versus-memory evidence.",
+        "The panel titles state the prefix condition instead of forcing inference from the caption.",
+        "The repeated model legend preserves cross-figure identity."
+      ],
+      "design_weaknesses": [
+        "The last panel’s likelihood scale differs from the first two success scales.",
+        "No chance/reference line is drawn for the attack panels.",
+        "Error-bar definition and per-bin n are not available from the PDF alone."
+      ],
+      "reusable_pattern": "Pair attack success panels with a text-likelihood panel under a common exposure axis to separate reconstruction from memorization of the biography itself.",
+      "evidence": {
+        "page": 38,
+        "label": "p.38 Figure 6 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 39,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7: Attack success rates on YAGO. Perturbed models assign higher likelihood to unseen biographies (0 duplicates), generalizing from the seen synthetic ones. Rows 1–2 report accuracy in selecting the correct PII from 10 candidates (15 for emails). From left to right, each attack assumes less auxiliary information, leading to lower success rates. Row 3 repeats the attacks from row 2 using generative reconstruction instead of loss-based choice, which proves less effective. Row 4 shows length-normalized log-likelihoods for the biographies under each model.",
+        "word_count": 85,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 8,
+        "data_marks_estimate": 520
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Accuracy, Word Recall, or Norm LL by row",
+        "color": "Purple/green core model/corpus series; standard/perturbed stroke and marker roles",
+        "shape": "Circle/dashed standard versus square/solid perturbed",
+        "line": "Lines connect duplicate bins; repeated dashed/solid condition styles",
+        "facet": "Attack format rows × auxiliary-information columns",
+        "text": "Infill/Gen labels, full prefix/full suffix, intro prefix, name only, Duplicates, legend"
+      },
+      "data_and_statistics": "YAGO synthetic biographies evaluated with 10 candidates (15 for email) for choice attacks and generative reconstruction for word recall; curves are point estimates with source error bars but no printed per-panel sample sizes.",
+      "evidence_relation": "The figure is the main direct-PII evidence: it maps the attack taxonomy from Table 9 to success curves and supports the text claim that auxiliary information raises extraction success. Figure 8 decomposes heterogeneity by PII type.",
+      "design_strengths": [
+        "Rows and columns encode attack strength without changing the duplicate axis.",
+        "The full-prefix/full-suffix baseline gives a clear high-information anchor.",
+        "The bottom likelihood row links attack results to memorization of the underlying biography."
+      ],
+      "design_weaknesses": [
+        "The 4-row × 3-column layout is dense and the lowest row has only one panel spanning the grid.",
+        "YAGO panel-specific y ranges make visual magnitude comparisons unsafe without reading ticks.",
+        "The caption’s “less effective” conclusion has no explicit chance line or uncertainty summary."
+      ],
+      "reusable_pattern": "Use a matrix whose columns progressively remove side information and whose rows separate choice, generation, and likelihood; keep the exposure axis fixed.",
+      "evidence": {
+        "page": 39,
+        "label": "p.39 Figure 7 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 40,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 8: Attack success rates on YAGO by PII type. Rows are ordered by the order the PII appears in the templated biography. Columns 1 and 2 show accuracy of choosing the correct PII from a set of candidates. Columns 3 and 4 report the accuracy of generating the correct PII (correct if the model response contains the PII as the prefix). Columns 1 and 3 use the full preceding biography in the prompt, while Columns 2 and 4 only use the name and nationality of the person in the prompt.",
+        "word_count": 91,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 28,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 8,
+        "data_marks_estimate": 1200
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Accuracy or Prefix Match",
+        "color": "Core model/corpus colors with standard/perturbed marker-stroke redundancy",
+        "shape": "Circle/dashed standard and square/solid perturbed",
+        "line": "Connected duplicate curves with standard/perturbed line styles",
+        "facet": "PII type rows × infill/generation and prefix-information columns",
+        "text": "PII row labels, Infill/Gen headers, full prefix/intro prefix, Accuracy/Prefix Match, Duplicates, legend"
+      },
+      "data_and_statistics": "Seven PII types × four attack formats, with candidate-choice accuracy or generated prefix match. Curves and visible SEM error bars are repeated from the source plotting workflow; the PDF does not print n per PII type.",
+      "evidence_relation": "Figure 8 turns the aggregate YAGO result in Figure 7 into a heterogeneity test. It is linked to the seven-slot biography construction in Appendix A/D and identifies fields such as email/UUID whose extraction behavior differs.",
+      "design_strengths": [
+        "The row order mirrors the biography template, preserving a data-generation-to-evaluation link.",
+        "The four columns separate choice from generation and full from reduced context.",
+        "Repeated axes/legend make field-specific deviations visible without a new encoding system."
+      ],
+      "design_weaknesses": [
+        "Twenty-eight panels make labels and local scales very small.",
+        "Shared colors do not encode PII type, so row labels must be read closely.",
+        "The caption defines prefix correctness but not the error-bar estimator or candidate sampling randomness."
+      ],
+      "reusable_pattern": "Arrange heterogeneous private fields as rows and attack interfaces as columns, retaining one fixed exposure axis to expose where aggregate leakage hides field-level differences.",
+      "evidence": {
+        "page": 40,
+        "label": "p.40 Figure 8 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 43,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9: Core results on Personachat. Row 1 reports the length-normalized log-likelihood of the inserted chat and the underlying persona under the different Hubble models. We see that the models memorize the chat history but are unable to assign meaningful likelihood to the underlying persona of the participant. Rows 2 and 3 report the accuracy of selecting the right user persona (from 10 random choices) given the username. Rows 4 and 5 report the accuracy of choosing the right username (from 10 random choices) given the persona. Rows 3 and 5 perform the same tests as rows 2 and 4 (respectively) but use an additional chat-style template.",
+        "word_count": 107,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 10,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Norm LL, perplexity, accuracy, acc_norm, or acc_mutual_info by panel",
+        "color": "Purple/green core model/corpus series; standard/perturbed marker-stroke roles",
+        "shape": "Circle/dashed standard and square/solid perturbed",
+        "line": "Connected curves, standard dashed and perturbed solid",
+        "facet": "Likelihood row; persona-choice rows; username-choice rows with prompted variants",
+        "text": "Personachat, Infill on Persona/Username, Prompted, metric labels, Duplicates, legend"
+      },
+      "data_and_statistics": "Personachat indirect PII evaluations: likelihood of inserted chat/persona and choice accuracy among 10 random candidates. Error bars appear in the plotting family; candidate construction and template differences are defined in Table 10.",
+      "evidence_relation": "Table 10 defines the four prompt formats. Figure 9 then establishes the asymmetry that chat history is memorized while persona inference is weak, with username inference stronger in the reverse direction.",
+      "design_strengths": [
+        "The row sequence follows the causal attack direction: source chat/persona likelihood, then persona and username choices.",
+        "Prompted/non-prompted variants are adjacent, making template effects inspectable.",
+        "A single legend and duplicate axis align indirect leakage with Figures 6–8."
+      ],
+      "design_weaknesses": [
+        "Variable-width row layout makes empty/absent panels and metric transitions harder to parse.",
+        "Per-panel metric labels are small and scales differ widely.",
+        "The caption says “meaningful likelihood” without a numerical baseline or uncertainty interpretation."
+      ],
+      "reusable_pattern": "Use an attack-direction grid: place source likelihood first, then choice tasks and prompted variants in adjacent rows with a shared exposure axis.",
+      "evidence": {
+        "page": 43,
+        "label": "p.43 Figure 9 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 45,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 10: Core results on ELLie and MUNCH.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 2,
+        "data_marks_estimate": 180
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Exact Match, Norm LL, acc, or acc_norm",
+        "color": "Purple/green corpus/model series with standard/perturbed marker-stroke roles",
+        "shape": "Circle/dashed standard and square/solid perturbed",
+        "line": "Connected duplicate curves, dashed standard and solid perturbed",
+        "facet": "ELLIE Gen/ELLIE likelihood × MUNCH accuracy variants",
+        "text": "ELLIE, MUNCH, metric labels, Duplicates, legend"
+      },
+      "data_and_statistics": "Four test-set contamination panels with accuracy/likelihood point estimates and visible source error bars. The paper’s surrounding text explains that shared first sentences place related examples in different duplication bins; the plot itself does not show pair structure.",
+      "evidence_relation": "Figure 10 is a failure/boundary result within Appendix D.3: it cautions that ELLIE’s contamination structure makes dilution interpretation invalid. Figure 11–12 provide less confounded test-set variants.",
+      "design_strengths": [
+        "The compact 2×2 makes the ELLIE versus MUNCH contrast immediate.",
+        "Metrics are named in each panel rather than hidden in a caption-only key.",
+        "The recurring legend preserves comparability with the rest of the testset family."
+      ],
+      "design_weaknesses": [
+        "The very short caption gives no metric or model context; it is not self-contained.",
+        "The failure mechanism (shared first sentence) is absent from the visual encoding.",
+        "Different y scales make cross-panel height comparisons misleading."
+      ],
+      "reusable_pattern": "When a benchmark is structurally confounded, pair its headline plot with a visually compact failure panel and state the confound in the caption, not only in body prose.",
+      "evidence": {
+        "page": 45,
+        "label": "p.45 Figure 10 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 46,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 11: Core results on Test Sets (Part 1). Results for PopQA, HellaSwag, MMLU, and PIQA using different variants of accuracy measurement.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 9,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 7,
+        "data_marks_estimate": 500
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Exact Match, F1, acc, acc_norm, or acc_mutual_info",
+        "color": "Purple/green core model/corpus series; standard/perturbed marker-stroke roles",
+        "shape": "Circle/dashed standard and square/solid perturbed",
+        "line": "Connected curves with dashed standard and solid perturbed styles",
+        "facet": "Test-set dataset groups × accuracy variants",
+        "text": "Dataset titles, metric labels, Duplicates, Standard, Perturbed, legend"
+      },
+      "data_and_statistics": "Test-set accuracy variants for four datasets; curves are point estimates with source SEM/error-bar displays where available. The caption does not define each accuracy normalization or per-bin example count.",
+      "evidence_relation": "Figure 11 expands the aggregate Testset row in Figure 2 into metric variants, supporting the claim that memorizing contaminated examples does not guarantee generalization. Figure 12 focuses the same question on WinoGrande format changes.",
+      "design_strengths": [
+        "The dataset/metric matrix exposes metric sensitivity without changing the x-axis.",
+        "Metric names are placed in panels, reducing dependence on a long caption.",
+        "A common legend keeps standard/perturbed and corpus scale stable across test sets."
+      ],
+      "design_weaknesses": [
+        "Nine panels and multiple accuracy names create high label density.",
+        "The caption does not identify which panel uses which metric beyond the plot labels.",
+        "No chance/reference lines or uncertainty definitions are given."
+      ],
+      "reusable_pattern": "Use a dataset×metric grid for contamination studies, but define every normalization and draw a chance baseline when it is scientifically relevant.",
+      "evidence": {
+        "page": 46,
+        "label": "p.46 Figure 11 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 47,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 12: Core results and variants on WinoGrande. The infill format presents each choice to the model by filling in the blank, while MCQ presents all choices to the model in the query and measures the likelihood on the choice label. Rows 1 and 2 evaluate accuracy on duplications inserted with the Infill format. Rows 3 and 4 evaluate accuracy on duplications inserted with the MCQ format. Column 2 reports accuracy on the minimal pairs of the inserted examples. Rows 1 and 4 use the Infill format for evaluation while rows 2 and 3 use the MCQ format for evaluation.",
+        "word_count": 100,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "The notebook palette uses purple/green model and corpus roles; circles/dashed strokes denote standard while squares/solid strokes denote perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 12,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 9,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Accuracy, acc_norm, or acc_mutual_info",
+        "color": "Purple/green core model/corpus series; standard/perturbed marker-stroke roles",
+        "shape": "Circle/dashed standard and square/solid perturbed",
+        "line": "Connected duplicate curves with standard dashed/perturbed solid",
+        "facet": "Insertion/evaluation format rows × overall/paired/variant columns",
+        "text": "WinoGrande Infill, MCQ, paired, acc_norm, acc_mutual_info, Duplicates, legend"
+      },
+      "data_and_statistics": "WinoGrande contamination under infill and MCQ insertion/evaluation combinations, including minimal pairs. Error bars are visible in the plot family; the caption defines the format semantics but not uncertainty or sample counts.",
+      "evidence_relation": "Figure 12 is the focused evidence for the paper’s “no cross-format generalization” claim. It refines Figure 11’s test-set metrics and explains why the same duplicate count can produce different observed accuracy.",
+      "design_strengths": [
+        "The caption and panel titles jointly encode the four-way format crossing.",
+        "The paired column preserves a direct minimal-pair check rather than only overall accuracy.",
+        "Repeated duplicate bins and legend make format differences the only moving part."
+      ],
+      "design_weaknesses": [
+        "The format abbreviations and long titles are difficult at small panel width.",
+        "Rows 1–4 require reading the caption to decode insertion versus evaluation format.",
+        "Chance levels for the binary choice task are not drawn."
+      ],
+      "reusable_pattern": "Use a format-crossed small-multiple matrix with a dedicated minimal-pair column to distinguish memorization of inserted strings from task-level generalization.",
+      "evidence": {
+        "page": 47,
+        "label": "p.47 Figure 12 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 48,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 13: Forgetting curves for the intermediate checkpoints of Timing runs. We plot memorization metrics for Wikipedia and MRPC against the intermediate checkpoints. We report results on the subset of examples duplicated 256 times. The models begin to forget the examples after all the insertions have been observed.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.2,
+          "median": 6.8,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#000000",
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B"
+        ],
+        "semantic_mapping": "Black standard/perturbed traces anchor the plot; purple/green traces identify timing variants.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 4,
+        "data_marks_estimate": 260
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "time",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Training Steps from 0 to 48,000",
+        "y": "Norm LL for Wikipedia or Accuracy for MRPC",
+        "color": "Black for standard/perturbed; purple/green hues identify InsertRange timing variants",
+        "shape": "Circle markers and line styles distinguish standard, perturbed, and insertion schedules",
+        "line": "Dotted standard and solid perturbed; colored solid/dashed schedule traces",
+        "facet": "Wikipedia and MRPC panels",
+        "text": "Training Steps, Duplicates=256 context, InsertRange timing legend"
+      },
+      "data_and_statistics": "Intermediate-checkpoint trajectories restricted to examples duplicated 256 times. The lines are point estimates; no uncertainty band/error bars or checkpoint sample sizes are displayed.",
+      "evidence_relation": "Figure 13 provides the temporal mechanism behind the ordering best practice in Section 4: exposure followed by no continued insertion allows forgetting. Figure 14 tests final models trained with different insertion windows.",
+      "design_strengths": [
+        "The checkpoint x-axis directly represents training order rather than an abstract condition label.",
+        "A shared two-panel layout links loss and paraphrase-choice forgetting.",
+        "Line style and color together distinguish the standard/perturbed/timing conditions."
+      ],
+      "design_weaknesses": [
+        "Training-step labels are sparse, so exact exposure boundaries are hard to recover.",
+        "Multiple timing traces overlap and the legend is dense.",
+        "The caption does not define the averaging/uncertainty protocol for checkpoints."
+      ],
+      "reusable_pattern": "Use intermediate checkpoints to show when a memorization effect emerges or decays, then pair the trajectory with final timing-window comparisons.",
+      "evidence": {
+        "page": 48,
+        "label": "p.48 Figure 13 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 49,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 14: Evaluation on the InsertRange models. Models that were trained on perturbations only in the early stages of training have lower performance on the memorization tasks than models trained on perturbations in the late stages of training. InsertRange(x,y) denotes a model trained on a corpus with perturbations inserted in batches between x% and y% of training.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#000000",
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#D9D9D9"
+        ],
+        "semantic_mapping": "Standard/perturbed and six InsertRange windows use stroke/marker plus purple/green timing colors; the distinction is partly redundant but not grayscale-safe.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 16,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 8,
+        "data_marks_estimate": 1000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Norm LL, Accuracy, or Word Recall by task",
+        "color": "Black/purple/green families encode standard, perturbed, and InsertRange windows",
+        "shape": "Marker shape and stroke style distinguish standard/perturbed/timing variants",
+        "line": "Connected duplicate curves; condition-specific line styles",
+        "facet": "Copyright, Privacy, Testset task rows; each panel a timing condition comparison",
+        "text": "InsertRange(0,25), (0,50), (25,50), (50,75), (50,100), (75,100), Duplicates, legend"
+      },
+      "data_and_statistics": "Final-model memorization curves for timing-window interventions across the paper’s three domains. Error bars are visible in the source plot family; exact model count and per-bin n are not printed on the figure.",
+      "evidence_relation": "Figure 14 is the final-model complement to checkpoint forgetting in Figure 13. It supports the ordering best practice and provides the domain-spanning evidence that early-only insertion is less persistent than late insertion.",
+      "design_strengths": [
+        "A common task grid lets timing effects be compared across risk domains.",
+        "The InsertRange definition in the caption makes the intervention intervals interpretable.",
+        "The fixed duplicate axis separates exposure quantity from exposure timing."
+      ],
+      "design_weaknesses": [
+        "The many task panels and timing labels are dense.",
+        "Several InsertRange variants are close in color/line appearance and are not grayscale-safe.",
+        "The caption states an ordering result but does not define uncertainty or the fitted/averaged statistic."
+      ],
+      "reusable_pattern": "Use a timing-window family of curves with one fixed exposure axis, and define interval semantics in the caption so ordering is separated from duplication intensity.",
+      "evidence": {
+        "page": 49,
+        "label": "p.49 Figure 14 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 51,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 15: Performance of Hubble perturbed models trained on paraphased insertions. The models do not generalize from paraphrased examples seen in training to the original examples. However, PII can be reconstructed from models trained on paraphrased biographies, even with stronger attacks.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B",
+          "#404040",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Purple/green model-size families and marker shapes separate standard, perturbed, and perturbed-paraphrase models.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 7,
+        "data_marks_estimate": 450
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Accuracy, Word Recall, or MMLU Accuracy",
+        "color": "Purple/green shades encode model size and standard/perturbed/paraphrase condition",
+        "shape": "Circle/diamond/x markers distinguish standard, perturbed, and perturbed-paraphrase series",
+        "line": "Connected duplicate curves with condition-specific styles",
+        "facet": "YAGO infill/generation attack strengths plus MMLU",
+        "text": "YAGO/MMLU, full prefix/suffix, intro prefix, name only, Duplicates, model-condition legend"
+      },
+      "data_and_statistics": "Paraphrased insertion models evaluated on original YAGO/MMLU examples; curves show point estimates with no explicit uncertainty in the PDF. The same duplicate bins permit comparison with Figures 7 and 12.",
+      "evidence_relation": "Appendix E.2 tests whether perturbation memory transfers across paraphrase transformations. The result separates robust PII reconstruction from poor generalization to original copyright/test-set examples.",
+      "design_strengths": [
+        "The top-to-bottom progression mirrors weakening prompt information and changes from infill to generation.",
+        "The model-condition legend makes paraphrased training a distinct experimental factor.",
+        "YAGO and MMLU in one figure ties privacy and test-set transfer to a common intervention."
+      ],
+      "design_weaknesses": [
+        "Six series over many panels produce dense overlaps and a small legend.",
+        "The caption typo “paraphased” is retained from the PDF.",
+        "No uncertainty or chance baselines are shown for the accuracy/reconstruction curves."
+      ],
+      "reusable_pattern": "Use a matched original-versus-paraphrased training-condition palette across attack-strength rows to test transfer without changing the evaluation grammar.",
+      "evidence": {
+        "page": 51,
+        "label": "p.51 Figure 15 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 52,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 16: Deeper models memorize slightly more than shallower models. We train three 1B-parameter models with 8, 16, and 32 layers, adjusting width to keep total parameters constant (≈ 1.2B). All models are pre-trained on 100B tokens. As shown in Figure 16, the deeper (narrower) model memorizes slightly more than the base 16-layer model, while the shallower (wider) model memorizes less.",
+        "word_count": 62,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#762A83",
+          "#9970AB",
+          "#C2A5CF",
+          "#1B7837",
+          "#5AAE61",
+          "#7FBF7B"
+        ],
+        "semantic_mapping": "Purple/green shades identify depth variants and standard/perturbed marker-stroke styles identify corpus type.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 16,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 7,
+        "data_marks_estimate": 1000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Norm LL, Accuracy, or Word Recall",
+        "color": "Purple/green hues encode architecture depth; standard/perturbed styles encode corpus type",
+        "shape": "Circle/dashed standard and square/solid perturbed; depth is color family",
+        "line": "Connected curves with standard dashed and perturbed solid styles",
+        "facet": "Copyright, Privacy, Testset task panels",
+        "text": "Architecture, Base, 2x Depth, .5x Depth, Corpus Type, standard, perturbed, Duplicates"
+      },
+      "data_and_statistics": "Approximately 1.2B-parameter models with 8/16/32 layers, all trained on 100B tokens; task curves are point estimates with source error bars where available. Width adjustment and layer counts are supplied by the caption/text rather than panel annotations.",
+      "evidence_relation": "Appendix E.3 isolates depth at near-constant parameter count. Figure 16 extends Figure 22’s model-size comparison by testing architecture shape while preserving the core duplicate/task matrix.",
+      "design_strengths": [
+        "The constant-parameter design is stated in the caption, making the architectural contrast interpretable.",
+        "The repeated domain panels reveal whether a depth effect is broad or task-specific.",
+        "Corpus type remains visible instead of being silently absorbed into the architecture color."
+      ],
+      "design_weaknesses": [
+        "Depth color and corpus condition compete for legend attention.",
+        "The caption’s “slightly” finding is hard to quantify without a summary or uncertainty.",
+        "Dense repeated panels make exact differences difficult to read."
+      ],
+      "reusable_pattern": "Hold parameter count and training tokens fixed, then reuse the domain small-multiple grammar to expose architecture-shape effects rather than confounding them with task selection.",
+      "evidence": {
+        "page": 52,
+        "label": "p.52 Figure 16 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 55,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 17: ROC plot for MIA attacks on Gutenberg Unpopular passages. Non-members are taken from all examples where dup ≠ 0 and members are all examples where dup = 0.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#377EB8",
+          "#E69F00",
+          "#4DAF4A",
+          "#E41A1C",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Blue, orange, green, and red identify Loss, MinK%, MinK%++, and ZLib; gray grid/reference elements remain neutral.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 200
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 4,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "False Positive Rate, linear 0–1",
+        "y": "True Positive Rate, linear 0–1",
+        "color": "Blue/orange/green/red identify Loss, MinK%, MinK%++, ZLib",
+        "shape": "No point markers; each attack is a distinct curve",
+        "line": "Smooth/step-like ROC traces, with a diagonal reference/grid",
+        "facet": "Single ROC panel for Gutenberg Unpopular",
+        "text": "ROC Curves for All MIA Metrics, AUC, TPR@1%FPR, False Positive Rate, True Positive Rate"
+      },
+      "data_and_statistics": "Binary membership discrimination for Gutenberg Unpopular; Loss AUC=0.629; MinK% AUC=0.629; MinK%++ AUC=0.666; ZLib AUC=0.622. The plot reports aggregate ROC curves and low-FPR TPR annotations, not uncertainty or replicate bands. Members/non-members are defined by duplicate composition in the caption.",
+      "evidence_relation": "Appendix F.1 expands the compact AUC tables (Tables 11–14) into full ROC geometry for Gutenberg Unpopular. Reading the low-FPR operating point alongside AUC prevents a single scalar from hiding attack behavior.",
+      "design_strengths": [
+        "The common axes and four-color method identity enable direct cross-dataset ROC comparison.",
+        "AUC and low-FPR TPR are printed in the legend, linking curve shape to operational summaries.",
+        "The diagonal/grid reference provides a visual null benchmark."
+      ],
+      "design_weaknesses": [
+        "The legend is long and occupies plot area.",
+        "The caption’s members/non-members sentence is semantically easy to misread because dup ≠ 0 is called non-member and dup = 0 member.",
+        "No bootstrap/replicate uncertainty is shown for ROC or TPR annotations."
+      ],
+      "reusable_pattern": "Use identical ROC axes across evaluation sets and report both global AUC and a low-false-positive operating point in the legend.",
+      "evidence": {
+        "page": 55,
+        "label": "p.55 Figure 17 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 55,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 18: ROC plot for MIA attacks on YAGO biographies. Non-members are taken from all examples where dup ≠ 0 and members are all examples where dup = 0.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#377EB8",
+          "#E69F00",
+          "#4DAF4A",
+          "#E41A1C",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Blue, orange, green, and red identify Loss, MinK%, MinK%++, and ZLib; gray grid/reference elements remain neutral.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 200
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 4,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "False Positive Rate, linear 0–1",
+        "y": "True Positive Rate, linear 0–1",
+        "color": "Blue/orange/green/red identify Loss, MinK%, MinK%++, ZLib",
+        "shape": "No point markers; each attack is a distinct curve",
+        "line": "Smooth/step-like ROC traces, with a diagonal reference/grid",
+        "facet": "Single ROC panel for YAGO biographies",
+        "text": "ROC Curves for All MIA Metrics, AUC, TPR@1%FPR, False Positive Rate, True Positive Rate"
+      },
+      "data_and_statistics": "Binary membership discrimination for YAGO biographies; Loss AUC=0.692; MinK% AUC=0.692; MinK%++ AUC=0.714; ZLib AUC=0.676. The plot reports aggregate ROC curves and low-FPR TPR annotations, not uncertainty or replicate bands. Members/non-members are defined by duplicate composition in the caption.",
+      "evidence_relation": "Appendix F.1 expands the compact AUC tables (Tables 11–14) into full ROC geometry for YAGO biographies. Reading the low-FPR operating point alongside AUC prevents a single scalar from hiding attack behavior.",
+      "design_strengths": [
+        "The common axes and four-color method identity enable direct cross-dataset ROC comparison.",
+        "AUC and low-FPR TPR are printed in the legend, linking curve shape to operational summaries.",
+        "The diagonal/grid reference provides a visual null benchmark."
+      ],
+      "design_weaknesses": [
+        "The legend is long and occupies plot area.",
+        "The caption’s members/non-members sentence is semantically easy to misread because dup ≠ 0 is called non-member and dup = 0 member.",
+        "No bootstrap/replicate uncertainty is shown for ROC or TPR annotations."
+      ],
+      "reusable_pattern": "Use identical ROC axes across evaluation sets and report both global AUC and a low-false-positive operating point in the legend.",
+      "evidence": {
+        "page": 55,
+        "label": "p.55 Figure 18 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 19",
+      "page": 56,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 19: ROC plot for MIA attacks on MMLU examples. Non-members are taken from all examples where dup ≠ 0 and members are all examples where dup = 0.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#377EB8",
+          "#E69F00",
+          "#4DAF4A",
+          "#E41A1C",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Blue, orange, green, and red identify Loss, MinK%, MinK%++, and ZLib; gray grid/reference elements remain neutral.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 200
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 4,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "False Positive Rate, linear 0–1",
+        "y": "True Positive Rate, linear 0–1",
+        "color": "Blue/orange/green/red identify Loss, MinK%, MinK%++, ZLib",
+        "shape": "No point markers; each attack is a distinct curve",
+        "line": "Smooth/step-like ROC traces, with a diagonal reference/grid",
+        "facet": "Single ROC panel for MMLU examples",
+        "text": "ROC Curves for All MIA Metrics, AUC, TPR@1%FPR, False Positive Rate, True Positive Rate"
+      },
+      "data_and_statistics": "Binary membership discrimination for MMLU examples; Loss AUC=0.673; MinK% AUC=0.672; MinK%++ AUC=0.743; ZLib AUC=0.644. The plot reports aggregate ROC curves and low-FPR TPR annotations, not uncertainty or replicate bands. Members/non-members are defined by duplicate composition in the caption.",
+      "evidence_relation": "Appendix F.1 expands the compact AUC tables (Tables 11–14) into full ROC geometry for MMLU examples. Reading the low-FPR operating point alongside AUC prevents a single scalar from hiding attack behavior.",
+      "design_strengths": [
+        "The common axes and four-color method identity enable direct cross-dataset ROC comparison.",
+        "AUC and low-FPR TPR are printed in the legend, linking curve shape to operational summaries.",
+        "The diagonal/grid reference provides a visual null benchmark."
+      ],
+      "design_weaknesses": [
+        "The legend is long and occupies plot area.",
+        "The caption’s members/non-members sentence is semantically easy to misread because dup ≠ 0 is called non-member and dup = 0 member.",
+        "No bootstrap/replicate uncertainty is shown for ROC or TPR annotations."
+      ],
+      "reusable_pattern": "Use identical ROC axes across evaluation sets and report both global AUC and a low-false-positive operating point in the legend.",
+      "evidence": {
+        "page": 56,
+        "label": "p.56 Figure 19 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 20",
+      "page": 58,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 20: Unlearning results on Gutenberg Unpopular. Unlearning results using (out-of-domain, unseen) Wikitext (lower row) and (in-domain, seen) Keep set (upper row) as the retain sets. None of the unlearning methods simultaneously achieve the target behavior on both the seen Keep set (left column) and the unseen Test set (right column).",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#1B9E77",
+          "#7570B3",
+          "#D95F02",
+          "#D73027",
+          "#2C7FB8",
+          "#FFD92F",
+          "#333333"
+        ],
+        "semantic_mapping": "Green triangles, purple pluses, and orange circles identify SatImp, RMU, and RR; red/cyan X marks are perturbed/standard references and yellow star is the desired point.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 2,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Unlearn score/metric, linear",
+        "y": "Gutenberg (norm LL) on Keep or Test",
+        "color": "Green SatImp, purple RMU, orange RR; reference symbols are present in the compact Figure 3 but not repeated as colored series here",
+        "shape": "Triangle, plus, circle for SatImp, RMU, RR",
+        "line": "Method points/short paths with no connecting trend line; panel boundary and axes provide references",
+        "facet": "Retain Keep versus Wikitext × evaluation Keep versus Test",
+        "text": "Retain: Keep/Wikitext, Keep/Test, Unlearn, method legend"
+      },
+      "data_and_statistics": "Full-scale unlearning configurations on Gutenberg (norm LL); point clouds are empirical method outputs without uncertainty bars. The design compares seen Keep versus unseen Wikitext retain and tests simultaneous target attainment across seen and unseen evaluations.",
+      "evidence_relation": "These panels expand Figure 3’s headline target geometry and show its failure boundary across retain-set choices. They make the claim about no simultaneous target behavior inspectable rather than relying on the compact main figure.",
+      "design_strengths": [
+        "The 2×2 retain/evaluation factorial keeps the unlearning question stable while exposing generalization failure.",
+        "Separate axes preserve useful resolution for norm LL versus accuracy.",
+        "Three method markers are consistent with Figure 3 and Table 15."
+      ],
+      "design_weaknesses": [
+        "The absence of a repeated desired/reference symbol makes the target boundary less immediate than in Figure 3.",
+        "Method points are unlabeled individually, so configuration-level variation cannot be traced.",
+        "No uncertainty or hyperparameter encoding is shown; the reader must use Table 15 for grid context."
+      ],
+      "reusable_pattern": "Expand a compact target scatter into a retain-set×evaluation grid to test whether an apparent unlearning success transfers to unseen data.",
+      "evidence": {
+        "page": 58,
+        "label": "p.58 Figure 20 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 21",
+      "page": 59,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 21: Unlearning results on YAGO biographies. Unlearning results using (out-of-domain, unseen) Wikitext (lower row) and (in-domain, seen) Keep set (upper row) as the retain sets. None of the unlearning methods simultaneously achieve the target behavior on both the seen Keep set (left column) and the unseen Test set (right column).",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#1B9E77",
+          "#7570B3",
+          "#D95F02",
+          "#D73027",
+          "#2C7FB8",
+          "#FFD92F",
+          "#333333"
+        ],
+        "semantic_mapping": "Green triangles, purple pluses, and orange circles identify SatImp, RMU, and RR; red/cyan X marks are perturbed/standard references and yellow star is the desired point.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 2,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Unlearn score/metric, linear",
+        "y": "YAGO (acc) on Keep or Test",
+        "color": "Green SatImp, purple RMU, orange RR; reference symbols are present in the compact Figure 3 but not repeated as colored series here",
+        "shape": "Triangle, plus, circle for SatImp, RMU, RR",
+        "line": "Method points/short paths with no connecting trend line; panel boundary and axes provide references",
+        "facet": "Retain Keep versus Wikitext × evaluation Keep versus Test",
+        "text": "Retain: Keep/Wikitext, Keep/Test, Unlearn, method legend"
+      },
+      "data_and_statistics": "Full-scale unlearning configurations on YAGO (acc); point clouds are empirical method outputs without uncertainty bars. The design compares seen Keep versus unseen Wikitext retain and tests simultaneous target attainment across seen and unseen evaluations.",
+      "evidence_relation": "These panels expand Figure 3’s headline target geometry and show its failure boundary across retain-set choices. They make the claim about no simultaneous target behavior inspectable rather than relying on the compact main figure.",
+      "design_strengths": [
+        "The 2×2 retain/evaluation factorial keeps the unlearning question stable while exposing generalization failure.",
+        "Separate axes preserve useful resolution for norm LL versus accuracy.",
+        "Three method markers are consistent with Figure 3 and Table 15."
+      ],
+      "design_weaknesses": [
+        "The absence of a repeated desired/reference symbol makes the target boundary less immediate than in Figure 3.",
+        "Method points are unlabeled individually, so configuration-level variation cannot be traced.",
+        "No uncertainty or hyperparameter encoding is shown; the reader must use Table 15 for grid context."
+      ],
+      "reusable_pattern": "Expand a compact target scatter into a retain-set×evaluation grid to test whether an apparent unlearning success transfers to unseen data.",
+      "evidence": {
+        "page": 59,
+        "label": "p.59 Figure 21 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 22",
+      "page": 61,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 22: Larger models memorize at lower duplicates. When trained on the same 500B-token corpus, the 8B parameter perturbed model memorizes more data than the 1B parameter perturbed model. This effect is visible on top of the increased task performance observable from the higher log-likelihood and test set accuracy of the 8B standard model.",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#762A83",
+          "#1B7837",
+          "#404040",
+          "#FFFFFF",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Purple/green identify 1B/8B size; dotted/solid condition lines and marker roles identify standard/perturbed.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 16,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 6,
+        "data_marks_estimate": 950
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Norm LL, Accuracy, or Word Recall",
+        "color": "Purple versus green identify 1B versus 8B model size; standard/perturbed use line/marker style",
+        "shape": "Dotted/solid standard/perturbed with size-specific markers",
+        "line": "Dotted standard, solid perturbed",
+        "facet": "Copyright, Privacy, Testset task panels",
+        "text": "Model Size, Corpus Type, 1B, 8B, standard, perturbed, Duplicates, legend"
+      },
+      "data_and_statistics": "Core 1B/8B models trained on the same 500B-token corpus; domain/task curves are point estimates with source error bars where available. The figure compares size while holding corpus budget fixed.",
+      "evidence_relation": "Figure 22 supplies the size axis omitted from the main Figure 2, supporting the claim that larger models memorize at lower duplicates while also improving standard task scores. Figure 16 tests a different architectural factor.",
+      "design_strengths": [
+        "Holding the 500B corpus fixed isolates model size more cleanly than Figure 2.",
+        "The line-style encoding keeps standard/perturbed semantics stable while hue changes role.",
+        "The same task grid makes the size effect comparable to the core result."
+      ],
+      "design_weaknesses": [
+        "The caption combines memorization and task-performance claims without identifying panel-specific metrics.",
+        "Purple/green hues are not grayscale-safe and the legend is small.",
+        "Error-bar statistic and exact per-task sample sizes remain implicit."
+      ],
+      "reusable_pattern": "Change one controlled factor—model size—inside an otherwise fixed domain small-multiple grid, and keep all condition encodings stable across figures.",
+      "evidence": {
+        "page": 61,
+        "label": "p.61 Figure 22 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 23",
+      "page": 62,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 23: The perturbed model matches the behavior of domain-specific models on the respective set of evaluations. The perturbed model matches the copyright_only model in memorizing the copyright passages and paraphrases, privacy_only model in generating memorized PII from biographies and chat, and testset_only model in memorizing the testsets. Thus, the perturbed model can be used to study individual domains despite being jointly trained on all three domains.",
+        "word_count": 70,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "DejaVuSerif",
+          "DejaVuSans",
+          "CMR10",
+          "CMMI10"
+        ],
+        "size_pt": {
+          "minimum": 4.8,
+          "median": 6.2,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "source_exact",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#404040",
+          "#762A83",
+          "#1B9E77",
+          "#E6AB02",
+          "#D95F02",
+          "#7570B3",
+          "#66A61E"
+        ],
+        "semantic_mapping": "Five training-condition labels are encoded by distinct hues/markers; panel domain supplies the intended matching relation.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 16,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 7,
+        "data_marks_estimate": 1050
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 5,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Duplicates 0–256",
+        "y": "Norm LL, Accuracy, or Word Recall",
+        "color": "Condition-specific categorical palette: standard, perturbed, testset_only, copyright_only, privacy_only",
+        "shape": "Distinct marker shapes and line styles for five training conditions",
+        "line": "Condition-specific connected curves; repeated duplicate axis",
+        "facet": "Copyright, Privacy, Testset task panels",
+        "text": "Domain condition legend, Duplicates, standard, perturbed, testset_only, copyright_only, privacy_only"
+      },
+      "data_and_statistics": "Interference check across joint and domain-only perturbation models. Curves compare memorization/accuracy by duplicate bin; no uncertainty definition or per-domain sample count is shown in the PDF.",
+      "evidence_relation": "Figure 23 closes the domain-agnostic narrative by testing whether multiple interventions interfere. It is the direct visual evidence for the paper’s claim that joint perturbation can support domain-specific analyses.",
+      "design_strengths": [
+        "The same task grid as Figures 2 and 22 makes domain interference a controlled visual comparison.",
+        "Domain-only conditions are named directly in the legend, so the comparison is auditable.",
+        "The figure uses both condition identity and repeated panel domain to align the intended matching."
+      ],
+      "design_weaknesses": [
+        "Five condition series create overlap and a crowded legend.",
+        "Colors/markers are not fully grayscale-safe across all five conditions.",
+        "The caption says “matches” but the plot supplies no formal tolerance or uncertainty criterion."
+      ],
+      "reusable_pattern": "Use joint-versus-domain-only curves within the same task grid, and state the matching criterion explicitly rather than treating visual overlap as a formal equivalence test.",
+      "evidence": {
+        "page": 62,
+        "label": "p.62 Figure 23 visual, caption, and axes/legend",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1: ROC AUC scores of baseline MIAs on Gutenberg Unpopular for our largest perturbed model (8B, 500B tokens). Dup indicates the duplication level of members. Dup ≠ 0 treats all inserted perturbations as members. Non-members are always drawn from perturbations inserted 0 times. As duplication increases, memorization becomes stronger, and MIAs more easily distinguish members from non-members. See Appendix F for the full table and more H UBBLE MIA settings.",
+        "word_count": 71,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "No error bars, replicate rows, or interval notation; entries are aggregate ROC AUC values.",
+      "data_and_statistics": "Four MIA score summaries (Loss, MinK%, MinK%++, ZLib) across Dup ≠ 0, 1, 4, 16, 64, 256; values range from roughly 0.53 to 1.0.",
+      "evidence_relation": "Main Section 3.3/4 uses Table 1 to make the MIA–duplication monotonicity concrete; Tables 11–14 and Figures 17–19 expand model and dataset coverage.",
+      "design_strengths": [
+        "The duplicate columns make the exposure threshold easy to scan.",
+        "The super-header fixes model and corpus context once.",
+        "Bold best values provide a low-cost visual cue for attack strength."
+      ],
+      "design_weaknesses": [
+        "Dup ≠ 0 versus Dup = 1 semantics need the caption and are easy to conflate.",
+        "The table reports no sample sizes or variability.",
+        "Long grouped labels are compressed in a narrow table."
+      ],
+      "reusable_pattern": "Use a two-level super-header with exposure bins as columns and attack scores as rows; define the member set in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 1 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "dataset",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 2: H UBBLE perturbation datasets on Hugging Face, grouped by domain and data type. Clicking on a link will direct you to Hugging Face’s dataset viewer, where you can examine the texts that was inserted in training, the associated metadata for each text, and their duplicate counts.",
+        "word_count": 50,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "cell_color",
+        "text_color"
+      ],
+      "uncertainty": "No quantitative uncertainty; this is a dataset inventory rather than an estimate table.",
+      "data_and_statistics": "Fifteen dataset identifiers: 3 copyright passages, 2 paraphrase datasets, 2 biography datasets, 1 chat dataset, and 7 test-set datasets split into Standard/New.",
+      "evidence_relation": "Appendix A.1 is the source-of-truth catalog for all later domain rows and prompt/evaluation figures; it also provides the link targets needed to reproduce the perturbation data.",
+      "design_strengths": [
+        "Row grouping mirrors the paper’s three risk domains and data types.",
+        "Identifiers are sufficiently explicit to map to external dataset viewers.",
+        "The catalog separates Standard versus New test-set sources."
+      ],
+      "design_weaknesses": [
+        "The table is mostly a list, so dataset sizes and duplicate counts are deferred elsewhere.",
+        "Colored link styling is not fully robust to grayscale or plain-text export.",
+        "Caption grammar has “texts that was inserted”."
+      ],
+      "reusable_pattern": "Use a grouped catalog table with stable machine-readable dataset slugs, and put counts/metadata in a companion statistics table rather than hiding them in prose.",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Table 2 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "dataset",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 3: Number of duplicates inserted per perturbation dataset.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; entries are intended insertion counts per duplicate bin.",
+      "data_and_statistics": "Sixteen dataset rows with integer counts, including blank cells where a dataset uses only powers-of-16 duplication levels.",
+      "evidence_relation": "Appendix A.2 quantifies the design behind Table 1 and Figures 2/4–16. It is the denominator context for the paper’s statement that low-duplicate bins have more examples than the 256× bin.",
+      "design_strengths": [
+        "Duplicate levels are fixed as columns, enabling direct count comparisons.",
+        "Domain group rules preserve the experimental hierarchy.",
+        "Blank cells visibly signal unavailable levels rather than fabricated zeros."
+      ],
+      "design_weaknesses": [
+        "The table does not distinguish planned from realized counts.",
+        "The 0/1/4/16/64/256 sequence is easy to read as continuous rather than discrete assignment bins.",
+        "One source rendering contains a visually awkward “]4000” glyph in the Piqa row."
+      ],
+      "reusable_pattern": "Use fixed exposure-bin columns and domain row groups for an intervention inventory; leave structurally absent bins blank and explain them in the caption.",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Table 3 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 4: Percentage of training data overwritten by duplicated perturbation data. These calculations depend on the selected sequence length of 2048 tokens and training batch size of 1024 sequences.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; deterministic corpus accounting based on fixed sequence length and batch size.",
+      "data_and_statistics": "Percentages for token/sequence coverage and a mean perturbations-per-batch quantity: 0.08%, 0.016%, 1.67%, 0.34%, 17, and 3.4.",
+      "evidence_relation": "Table 4 supplies the intervention sparsity bound used in Section 3.1 to argue that perturbations are a small fraction of training data; it contextualizes the no-general-capability-degradation claim.",
+      "design_strengths": [
+        "The two corpus columns isolate the dilution effect with minimal visual overhead.",
+        "Units are embedded in row labels and caption.",
+        "The table avoids decorative formatting and is quickly auditable."
+      ],
+      "design_weaknesses": [
+        "Mixed percent/count precision is not explicit in the header.",
+        "No total-token denominator is shown in the body.",
+        "Average perturbations per batch could be mistaken for an integer count because the row mixes 17 and 3.4."
+      ],
+      "reusable_pattern": "Use a two-condition compact accounting table when the intervention fraction is a key validity bound; keep deterministic assumptions in the caption.",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Table 4 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5: Hubble model configuration.",
+        "word_count": 5,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 27,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; all entries are model/training configuration values.",
+      "data_and_statistics": "Architecture, optimizer, precision, batch, sequence length, and schedule settings for Hubble 1B and Hubble 8B. Values mix categorical settings and scientific notation.",
+      "evidence_relation": "Appendix B.1 is the reproducibility anchor for every core and ablation curve. It explains why the size/corpus comparisons in Figures 2, 4–16, 22, and 23 are not merely label changes.",
+      "design_strengths": [
+        "A stable parameter-name column makes the two-model comparison efficient.",
+        "The architecture/training block separation prevents optimizer rows from being confused with model geometry.",
+        "Exact configuration strings and scientific notation are retained."
+      ],
+      "design_weaknesses": [
+        "The table is tall and several values are merged across columns, requiring visual scanning.",
+        "Warmup ratio and LR schedule assumptions are not expanded into timelines.",
+        "No hardware/run identifier is attached to each configuration row."
+      ],
+      "reusable_pattern": "Present reproduction-critical settings as a two-model side-by-side table with a visible architecture/training separator and preserve machine-readable values.",
+      "evidence": {
+        "page": 29,
+        "label": "p.29 Table 5 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Zero-shot benchmark results using the Pythia suite. We report results for models of comparable size and training token budgets (≤ 500B) and also include OLMo and Llama models. We use the same evaluations as the Pythia suite and run them through EleutherAI’s Language Model Evaluation Harness (Gao et al., 2023).",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 10,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No error bars or replicate summaries; benchmark entries are single reported scores.",
+      "data_and_statistics": "Pythia-style zero-shot task scores for Hubble, Pythia, Bloom, OPT, OLMo, and Llama comparators at matched-ish scale/token budgets.",
+      "evidence_relation": "Appendix C checks general capability preservation of Hubble models and supports the claim that perturbations do not materially degrade unrelated benchmark performance.",
+      "design_strengths": [
+        "Scale row groups make like-for-like comparison easy.",
+        "Task abbreviations and token-count footnote preserve benchmark provenance.",
+        "The table reports a broad comparator set without multiplying figures."
+      ],
+      "design_weaknesses": [
+        "Tokenizers differ, so token counts are not perfectly commensurate.",
+        "No uncertainty/sample count is visible.",
+        "Ten columns are dense and model names wrap."
+      ],
+      "reusable_pattern": "Use scale-based row groups and a fixed benchmark-column contract when validating that a perturbation intervention leaves general capability comparable.",
+      "evidence": {
+        "page": 31,
+        "label": "p.31 Table 6 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 32,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7: Five-shot benchmark results using the Pythia suite. Five-shot benchmark results on models of comparable size and training token budgets (≤ 500B) and also include OLMo and Llama models. We use the same evaluations as the Pythia suite and run them through EleutherAI’s Language Model Evaluation Harness (Gao et al., 2023).",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 10,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty or replicate summaries; benchmark scores are reported as single values.",
+      "data_and_statistics": "Five-shot scores across the same Pythia-style tasks and comparator families, including paired Hubble standard/perturbed rows.",
+      "evidence_relation": "Table 7 tests whether the perturbation condition changes few-shot capability differently from zero-shot capability in Table 6; it feeds the no-degradation boundary in Appendix C.",
+      "design_strengths": [
+        "Paired Hubble Standard/Perturbed rows make the intervention contrast explicit.",
+        "Footnotes disclose inserted training sets, reducing hidden contamination ambiguity.",
+        "The repeated column contract supports zero-shot/five-shot comparison."
+      ],
+      "design_weaknesses": [
+        "The table is wide and the Hubble row labels wrap awkwardly.",
+        "Footnote markers and benchmark names compete for limited header space.",
+        "No variability or task-level significance context is supplied."
+      ],
+      "reusable_pattern": "Keep zero-shot and few-shot tables structurally identical, adding only the condition rows and contamination footnotes needed for the contrast.",
+      "evidence": {
+        "page": 32,
+        "label": "p.32 Table 7 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 33,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8: Benchmark results using the DCLM v1 eval suite. DCLM-BASELINE and FineWeb edu results are copied from the official DCLM leaderboard. In general, Hubble models perform on par within their respective data and model scales.",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; scores and compute descriptors are reported as point values, with external leaderboard provenance noted in the caption.",
+      "data_and_statistics": "DCLM v1 benchmark rows for DCLM-BASELINE, FineWeb edu, Pythia, Hubble, OPT; FLOPS use scientific notation and task scores use one decimal.",
+      "evidence_relation": "This table is the independent general-evaluation check for the Hubble suite. It keeps benchmark performance claims separate from memorization plots and identifies which baseline numbers are copied from an official leaderboard.",
+      "design_strengths": [
+        "The descriptor columns expose scale and compute context before scores.",
+        "The two scale groups avoid comparing 1B and 8B rows as if they were interchangeable.",
+        "External-source provenance is explicitly acknowledged."
+      ],
+      "design_weaknesses": [
+        "FLOPS and token values use mixed scientific/decimal formatting.",
+        "Leaderboard-copying limits direct uncertainty interpretation.",
+        "The “on par” caption finding is qualitative rather than tied to a predeclared tolerance."
+      ],
+      "reusable_pattern": "Place resource descriptors next to benchmark scores and group by model scale; explicitly mark externally copied baselines.",
+      "evidence": {
+        "page": 33,
+        "label": "p.33 Table 8 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 36,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 9: Attack Definitions for YAGO. PII attacks are listed below in increasing order of strength (fewer additional PII known to the attacker). Each attack corresponds to a different prompt, and we illustrate the attacker’s query to infer the target’s university using a sample biography from YAGO. The full prefix–full suffix attack is only compatible with infill attacks (loss-based choice) since generations cannot be conditioned on the suffix. Attack success rates are presented in Figure 7, and a breakdown of success rate by PII type is given in Figure 8.",
+        "word_count": 96,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "underline",
+        "cell_color",
+        "text_color"
+      ],
+      "uncertainty": "No uncertainty; this is a prompt/interface specification.",
+      "data_and_statistics": "Four ordered attack formats with compatible Infill/Gen interfaces and example queries for a missing university slot.",
+      "evidence_relation": "Table 9 is the operational key for Figures 7–8: the panels’ “full prefix”, “intro prefix”, and “name only” labels are traceable to concrete prompts.",
+      "design_strengths": [
+        "The example query makes auxiliary-information strength tangible.",
+        "The row order encodes increasing attack strength.",
+        "Color/underline distinguishes templated slots from candidate/suffix text."
+      ],
+      "design_weaknesses": [
+        "Monospace prompt text is small and long lines wrap.",
+        "Slot highlighting depends on color and underlining, not a formal legend.",
+        "The full-prefix/full-suffix compatibility constraint is easy to miss."
+      ],
+      "reusable_pattern": "Define attack interfaces with one concrete prompt example per strength level, and connect each row explicitly to the result figure labels.",
+      "evidence": {
+        "page": 36,
+        "label": "p.36 Table 9 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 41,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 10: Indirect PII Attack Definitions. The instantiated indirect PII inference attacks are listed below. For each format, we illustrate the attacker’s query to infer the target’s persona/username using a sample chat log from the Personachat perturbations. Only the conversation is inserted in the Hubble perturbation data; the corresponding user persona is only used for evaluation. Candidates are drawn from other examples in the dataset.",
+        "word_count": 70,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "underline",
+        "cell_color",
+        "text_color"
+      ],
+      "uncertainty": "No uncertainty; prompt definitions and candidate-selection comments only.",
+      "data_and_statistics": "Four indirect PII prompt formats with example query and comments describing likelihood comparison against nine distractors.",
+      "evidence_relation": "Table 10 supplies the prompt contract for Figure 9’s five-row Personachat results and clarifies that persona is evaluation-only, not inserted training data.",
+      "design_strengths": [
+        "Context blocks establish what was inserted versus what is evaluated.",
+        "Comments state the distractor count and likelihood-comparison rule.",
+        "Prompted variants are paired directly with their base format."
+      ],
+      "design_weaknesses": [
+        "Long monospace examples make the table vertically tall.",
+        "The candidate placeholder is visually dependent on shading/underlining.",
+        "“Defitions” is misspelled in the PDF caption."
+      ],
+      "reusable_pattern": "Place inserted context, evaluation-only context, query template, and distractor rule in one prompt-specification table before showing indirect leakage results.",
+      "evidence": {
+        "page": 41,
+        "label": "p.41 Table 10 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 53,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 11: ROC AUC scores of baseline MIAs for the H UBBLE 8B (500B tokens) perturbed model. Dup indicates the duplication level of members. Dup ≠ 0 treats all inserted perturbations as members. Non-members are always drawn from perturbations inserted 0 times. As duplication increases, memorization becomes stronger, and it becomes easier for membership inference attacks (MIA) to distinguish between members and non-members.",
+        "word_count": 63,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty or replicate rows; entries are ROC AUC point summaries.",
+      "data_and_statistics": "Four attacks across six duplication-member definitions for Gutenberg Unpopular, YAGO biographies, and MMLU, totaling 12 metric rows for Hubble 8B (500B tokens) perturbed.",
+      "evidence_relation": "Tables 11–14 are the appendix expansion of main Table 1. The perturbed/standard and 8B/1B pairing isolates whether MIA signal arises from inserted memorization rather than ordinary model membership behavior.",
+      "design_strengths": [
+        "Repeated table geometry makes model and corpus condition comparisons direct.",
+        "Evaluation row groups expose cross-domain attack transfer.",
+        "Dup semantics are restated in each caption for standalone use."
+      ],
+      "design_weaknesses": [
+        "Eight columns and long evaluation labels are dense.",
+        "Bold highlighting is inconsistent across standard versus perturbed tables.",
+        "Point AUC values hide sample-size and ROC-estimation variability."
+      ],
+      "reusable_pattern": "Use a repeated evaluation×attack×exposure-bin matrix for MIA sensitivity analyses, keeping model condition in a super-header and domain in row groups.",
+      "evidence": {
+        "page": 53,
+        "label": "p.53 Table 11 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 53,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 12: Membership inference performance on various benchmarks with Hubble 1B Perturbed. The Dup values indicate the composition of the seen set: for example, Dup ≠ 0 means the attack compares all seen data against unseen data, whereas Dup = K means the attack compares unseen data against data that was included exactly K times in the seen set.",
+        "word_count": 58,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty or replicate rows; entries are ROC AUC point summaries.",
+      "data_and_statistics": "Four attacks across six duplication-member definitions for Gutenberg Unpopular, YAGO biographies, and MMLU, totaling 12 metric rows for Hubble 1B Perturbed (500B tokens).",
+      "evidence_relation": "Tables 11–14 are the appendix expansion of main Table 1. The perturbed/standard and 8B/1B pairing isolates whether MIA signal arises from inserted memorization rather than ordinary model membership behavior.",
+      "design_strengths": [
+        "Repeated table geometry makes model and corpus condition comparisons direct.",
+        "Evaluation row groups expose cross-domain attack transfer.",
+        "Dup semantics are restated in each caption for standalone use."
+      ],
+      "design_weaknesses": [
+        "Eight columns and long evaluation labels are dense.",
+        "Bold highlighting is inconsistent across standard versus perturbed tables.",
+        "Point AUC values hide sample-size and ROC-estimation variability."
+      ],
+      "reusable_pattern": "Use a repeated evaluation×attack×exposure-bin matrix for MIA sensitivity analyses, keeping model condition in a super-header and domain in row groups.",
+      "evidence": {
+        "page": 53,
+        "label": "p.53 Table 12 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 54,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 13: Membership inference performance on various benchmarks with Hubble 8B Standard. The Dup values indicate the composition of the seen set: for example, Dup ≠ 0 means the attack compares all seen data against unseen data, whereas Dup = K means the attack compares unseen data against data that was included exactly K times in the seen set.",
+        "word_count": 58,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty or replicate rows; entries are ROC AUC point summaries.",
+      "data_and_statistics": "Four attacks across six duplication-member definitions for Gutenberg Unpopular, YAGO biographies, and MMLU, totaling 12 metric rows for Hubble 8B Standard (500B tokens).",
+      "evidence_relation": "Tables 11–14 are the appendix expansion of main Table 1. The perturbed/standard and 8B/1B pairing isolates whether MIA signal arises from inserted memorization rather than ordinary model membership behavior.",
+      "design_strengths": [
+        "Repeated table geometry makes model and corpus condition comparisons direct.",
+        "Evaluation row groups expose cross-domain attack transfer.",
+        "Dup semantics are restated in each caption for standalone use."
+      ],
+      "design_weaknesses": [
+        "Eight columns and long evaluation labels are dense.",
+        "Bold highlighting is inconsistent across standard versus perturbed tables.",
+        "Point AUC values hide sample-size and ROC-estimation variability."
+      ],
+      "reusable_pattern": "Use a repeated evaluation×attack×exposure-bin matrix for MIA sensitivity analyses, keeping model condition in a super-header and domain in row groups.",
+      "evidence": {
+        "page": 54,
+        "label": "p.54 Table 13 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 54,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 14: Membership inference performance on various benchmarks with Hubble 1B Standard. The Dup values indicate the composition of the seen set: for example, Dup ≠ 0 means the attack compares all seen data against unseen data, whereas Dup = K means the attack compares unseen data against data that was included exactly K times in the seen set.",
+        "word_count": 58,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty or replicate rows; entries are ROC AUC point summaries.",
+      "data_and_statistics": "Four attacks across six duplication-member definitions for Gutenberg Unpopular, YAGO biographies, and MMLU, totaling 12 metric rows for Hubble 1B Standard (500B tokens).",
+      "evidence_relation": "Tables 11–14 are the appendix expansion of main Table 1. The perturbed/standard and 8B/1B pairing isolates whether MIA signal arises from inserted memorization rather than ordinary model membership behavior.",
+      "design_strengths": [
+        "Repeated table geometry makes model and corpus condition comparisons direct.",
+        "Evaluation row groups expose cross-domain attack transfer.",
+        "Dup semantics are restated in each caption for standalone use."
+      ],
+      "design_weaknesses": [
+        "Eight columns and long evaluation labels are dense.",
+        "Bold highlighting is inconsistent across standard versus perturbed tables.",
+        "Point AUC values hide sample-size and ROC-estimation variability."
+      ],
+      "reusable_pattern": "Use a repeated evaluation×attack×exposure-bin matrix for MIA sensitivity analyses, keeping model condition in a super-header and domain in row groups.",
+      "evidence": {
+        "page": 54,
+        "label": "p.54 Table 14 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 15",
+      "page": 57,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 15: Grid search configurations for unlearning methods. Each method is tuned over the listed hyperparameters. RMU and RR involve partial fine-tuning, while SatImp uses full fine-tuning.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Consolas",
+          "DMMono-Light",
+          "CMR10",
+          "CMMI10"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; cells enumerate candidate grid values rather than estimates.",
+      "data_and_statistics": "Eleven hyperparameter rows covering training type, layers/targets, LoRA/LoRRA, alpha/steering, optimizer values, batch size, epochs, and sample length.",
+      "evidence_relation": "Table 15 is the configuration key for Figures 3, 20, and 21. It prevents the unlearning scatter from being read as a single tuned run and exposes the partial/full fine-tuning distinction.",
+      "design_strengths": [
+        "Method columns allow grid differences to be scanned row by row.",
+        "Dashes preserve the distinction between inapplicable and missing settings.",
+        "The caption identifies partial versus full fine-tuning."
+      ],
+      "design_weaknesses": [
+        "Comma-separated grids are hard to compare quantitatively.",
+        "There is no selected configuration or score trace back to individual scatter points.",
+        "Mixed symbols (α, β, β1/β2) require surrounding notation."
+      ],
+      "reusable_pattern": "Use a method-column hyperparameter grid to document search breadth, and provide a configuration identifier if result points need traceability.",
+      "evidence": {
+        "page": 57,
+        "label": "p.57 Table 15 caption, header, and body",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "The visual narrative starts with Figure 1’s perturbation insertion interface, moves to the headline dilution grid (Figure 2), and then grounds the benchmark boundary with the main MIA Table 1 and unlearning Figure 3. Appendix Figures 4–12 expand copyright, direct/indirect privacy, and test-set contamination; Figures 13–16 test timing, paraphrase transfer, and architecture; Tables 2–10 provide dataset, model, benchmark, and prompt contracts; Tables 11–15 and Figures 17–23 close MIA, unlearning, size, and interference boundaries.",
+    "caption_system": "Captions consistently begin “Figure/Table N:” and usually sequence title → experimental setup → encoding/metric key → comparison or finding. The strongest captions (Figures 2, 7, 13–16, 22–23; Tables 1, 9–10) define the intervention or point to companion objects. Several appendix captions are terse (Figure 10) or retain typographical errors (“paraphased”, “Defitions”), and uncertainty definitions are rarely in captions.",
+    "table_header_system": "Tables use bold serif headers, grouped horizontal rules, and compact super-headers. Exposure bins (Dup ≠ 0, 1, 4, 16, 64, 256) recur as a stable column contract for MIA/count tables; scale groups recur in benchmark tables; prompt/configuration tables switch to descriptive columns and monospace blocks.",
+    "method_result_ablation_link": "Figure 1 defines the data intervention; Figures 2, 4–12 quantify domain-specific memorization; Figures 13–16 vary timing, paraphrase, and architecture; Tables 3–5 and 15 expose counts/configurations; Figures 17–21 test MIA and unlearning operating behavior. The links are strongest when the same duplicate axis and model legend recur.",
+    "main_appendix_link": "The three main figures and Table 1 state dilution, MIA, and unlearning claims. Appendix D decomposes risk domains, Appendix E varies timing/paraphrase/architecture, Appendix F expands MIA, Appendix G expands unlearning, and Appendix I checks model size and domain interference. Every appendix object is traceable to a main claim or design contract.",
+    "typography_consistency": "Nimbus Roman No9 L and Computer Modern math dominate PDF text; DejaVu/monospace fonts appear in embedded plots and prompt tables. The outer caption and table hierarchy are stable, but dense 28-panel grids use small embedded labels and mixed font families.",
+    "color_consistency": "Purple/green condition roles recur across notebook-backed core plots, while MIA and unlearning introduce local categorical palettes. Marker/stroke redundancy is systematic for standard versus perturbed, but five-condition interference plots, timing windows, and prompt highlights are not reliably grayscale-safe."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Use a fixed duplicate-bin x-axis and a shared standard/perturbed marker-stroke contract across domain small multiples.",
+      "Pair a headline aggregate grid with domain/metric/attack-strength expansions so the central effect and its heterogeneity remain linked.",
+      "Define intervention interfaces and attack prompts as standalone diagrams/tables before asking result figures to carry their semantics.",
+      "Anchor trade-off claims with explicit reference points (desired/standard/perturbed) and expand them in a retain-set×evaluation grid."
+    ],
+    "highest_value_objects": [
+      "Figure 1: concise, auditable interface for the perturbation operation.",
+      "Figure 2: headline dilution result with cross-domain repetition and corpus-scale contrast.",
+      "Figure 3: target-anchored unlearning benchmark with explicit reference models.",
+      "Tables 1, 9, and 15: MIA metric/exposure contract, attack-prompt contract, and unlearning-search contract."
+    ],
+    "failure_patterns": [
+      "Dense appendix composites (Figures 8, 14, 16, 22, 23) make local ticks, legends, and error bars difficult to inspect.",
+      "Most quantitative objects are point-estimate curves or tables without visible replicate counts or uncertainty definitions.",
+      "Color carries model size, timing, domain condition, or prompt role in different local palettes; grayscale and color-vision robustness is partial.",
+      "A few captions are terse or grammatically defective, and several findings use visual overlap/matching without an explicit tolerance."
+    ],
+    "one_sentence_visual_strategy": "Hubble uses a stable duplicate-bin small-multiple grammar to move from a concrete perturbation interface through dilution and domain-specific leakage to timing, architecture, MIA, unlearning, and interference boundaries."
+  }
+}

@@ -1,0 +1,2216 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-fe86008e62d4",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/modichirag/GPT-opt/tree/polar",
+      "https://github.com/NoahAmsel/PolarExpress"
+    ],
+    "selected_repository": "https://github.com/modichirag/GPT-opt/tree/polar",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/modichirag/GPT-opt/tree/polar",
+        "path": "plot.py",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "plot_final_loss_vs_lr and plot_data define the learning-rate, epoch and time curves, the method palette, line styles, and linewidth=2 used by the GPT-2 training-figure family (Figures 1, 4, 6, 11–13)."
+      },
+      {
+        "repository_url": "https://github.com/modichirag/GPT-opt/tree/polar",
+        "path": "gptopt/plot_utils.py",
+        "role": "plot_script",
+        "tool": "matplotlib/numpy",
+        "evidence": "plot_data scales epoch/time axes and plots method curves with the repository color/linestyle map; this is the helper used by plot.py."
+      },
+      {
+        "repository_url": "https://github.com/modichirag/GPT-opt/tree/polar",
+        "path": "configs/gpt-Large-fine1B.yaml",
+        "role": "other",
+        "tool": null,
+        "evidence": "Author-linked polar branch configuration records FineWeb, GPT-2-Large dimensions, 1B-token training, learning-rate sweeps, weight decay and five-step settings; it is an experiment-setting source rather than a rendered-figure file."
+      },
+      {
+        "repository_url": "https://github.com/NoahAmsel/PolarExpress",
+        "path": "plotsforpolar.ipynb",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "Notebook markdown says it reproduces Figure 2; cell 4 calls plot_figure2(l1=0.03, n_steps=3, degree=5), and cell 1 specifies serif/Computer Modern, grid, line widths and export settings."
+      },
+      {
+        "repository_url": "https://github.com/NoahAmsel/PolarExpress",
+        "path": "polar_express.py",
+        "role": "other",
+        "tool": "numpy/torch",
+        "evidence": "Package code supplies optimal_composition and the polynomial coefficients imported by plotsforpolar.ipynb; it supports the Figure 2 polynomial construction but is not itself a plotting file."
+      }
+    ],
+    "search_note": "The automated visual-source inventory row is no_public_source_found and the local corpus/visual_sources/iclr-2026-fe86008e62d4 directory plus visual_source_files_local.csv contain no acquired files. The PDF explicitly links the modichirag/GPT-opt polar branch; gh API verification found its author README, plot.py, gptopt/plot_utils.py, configuration and result JSON tree, but no exported figure assets and no matching plot source for Figures 3, 5, 7–10 or 14–18. The directly title-matched NoahAmsel/PolarExpress repository contains a notebook that explicitly reproduces Figure 2 and the underlying polar_express.py package. A full-title/method GitHub repository search found no additional exact candidate. Therefore this is partial rather than exact visual-source coverage; no datasets, checkpoints or model weights were fetched."
+  },
+  "paper_style": {
+    "main_figures": 6,
+    "main_tables": 0,
+    "appendix_figures": 12,
+    "appendix_tables": 0,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "Nimbus Mono L"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 14.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [],
+      "body_size_pt": null,
+      "header_size_pt": null,
+      "header_weight": "regular",
+      "provenance": "rendered_estimate",
+      "confidence": "low"
+    },
+    "palette_strategy": "正文 GPT-2 training family uses source-confirmed method colors: PolarExp #000000, You #8A2BE2, Jordan #FF0000 and AdamW #00518F, with line styles as partial redundancy. Theory Figure 2 uses three viridis-like polynomial colors; Figures 14–16 add Newton/SGD colors, Figure 17 uses method color × initializer line style, and Figure 18 uses dimension color × restart line style. Color carries most method identity in the dense multi-series plots, so gray-scale safety is mixed.",
+    "vector_raster_mix": "The PDF has vector text, captions, axes, rules and chart paths for 17 figures; pdfimages identifies one 1592×471 RGB image with an alpha mask on p.5 (Figure 2). Thus the paper is mostly vector with one rasterized theory figure and vector surrounding text.",
+    "style_consistency": "Nimbus Roman No9 L/Computer Modern math, thin black axes, light dashed grids and a small serif plot grammar recur across main and appendix figures. The training family keeps PolarExp/You/Jordan semantics stable, while H.3 and J introduce additional local palettes. Figure 2 uses larger theory labels and the appendix dashboards compress labels but preserve the same serif frame."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "results / GPT-2 training",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1: Training a GPT-2-Large model (774M params) on 1 billion tokens from the FineWeb dataset (Penedo et al., 2024). The label muon-<name> refers to implementing Muon using <name> to compute the polar factor. Left: final validation loss across learning rates. Right: validation loss across epochs using the best learning rate. The best learning rate (lr) and final validation loss for each method were muon-You (lr = 0.02): 3.399, muon-Jordan (lr = 0.02): 3.398 and muon-PolarExp (lr = 0.02): 3.340.",
+        "word_count": 80,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#000000",
+          "#8A2BE2",
+          "#FF0000"
+        ],
+        "semantic_mapping": "PolarExp 黑色实线，You 紫色点线，Jordan 红色点划线；颜色/线型共同表示 polar-factor 实现。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左 panel 右上；右 panel 复用该 legend 语义",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左：log learning rate；右：linear epoch",
+        "y": "左：final validation loss；右：validation loss",
+        "color": "Muon polar-factor method",
+        "shape": null,
+        "line": "实线/点线/点划线对应 PolarExp/You/Jordan",
+        "facet": "左 sweep 与右最佳学习率 trajectory",
+        "text": "坐标轴、方法 legend、caption 数值"
+      },
+      "data_and_statistics": "GPT-2-Large (774M)，FineWeb 1B tokens。左图为每个学习率 run 的 final validation loss，右图为各方法 best learning rate 的 epoch trajectory；未报告 seed、误差带或 inferential test。",
+      "evidence_relation": "引言把 Polar Express 接入 Muon；Figure 1 将同预算的三个 polar-factor 实现放在 validation-loss 比较面上；Figure 5 检查所需迭代数与 SVD 成本，Figures 11–13 补 training/time、weight decay 与 10B-token 切片。",
+      "design_strengths": [
+        "sweep 与 trajectory 成对呈现调参结果和动态",
+        "黑色 PolarExp 曲线易追踪",
+        "caption 直接给出 best lr 与 loss"
+      ],
+      "design_weaknesses": [
+        "headline 依赖最佳学习率选择且没有主实验 seed/区间",
+        "右 panel 需跨 panel 复用左侧 legend",
+        "灰度小尺寸下方法身份仍较依赖颜色"
+      ],
+      "reusable_pattern": "用“学习率 sweep + best-lr trajectory”成对呈现优化器比较，并在 caption 给出每组最优点与训练预算.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 5,
+      "module": "theory / optimal polynomial",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 2: The evolution of the first three optimal polynomials p1, p2, and p3 and the corresponding lower bounds ℓ_{t+1} = p_t(ℓ_t) and upper bounds u_{t+1} = 2 − ℓ_{t+1}, as described in Theorem 3.1. The horizontal black line shows y = 1. The polynomial degree is d = 5. We set ℓ_1 = 0.03 and u_1 = 1.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 11,
+          "maximum": 14
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#5B2A86",
+          "#44A29D",
+          "#E5D31A"
+        ],
+        "semantic_mapping": "三 panel 的 viridis 风格曲线依次表示 p1、p2、p3；浅色填充表示输入/输出 bounds 矩形。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "各 panel 右上 p_t legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 3.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "输入奇异值 x ∈ [0,2]",
+        "y": "polynomial output p_t(x) ∈ [0,2]",
+        "color": "panel/polynomial step",
+        "shape": null,
+        "line": "曲线实线；bounds 虚线；y=1 黑色 reference",
+        "facet": "p1→p2→p3 横向分镜",
+        "text": "bounds 标签 ℓ_t/u_t 与 p_t legend"
+      },
+      "data_and_statistics": "理论构造而非重复实验：d=5，初始化 [ℓ_1,u_1]=[0.03,1]，每步按 ℓ_{t+1}=p_t(ℓ_t)、u_{t+1}=2−ℓ_{t+1} 收缩区间；无 seed 或不确定性。",
+      "evidence_relation": "公式 (5)→(6) 的矩阵/标量等价与 Theorem 3.1 的 greedy-is-optimal 结论 → Figure 2 把每一步 polynomial/bounds 可视化 → Algorithm 1 在线组合；Appendices C/E 给证明，Appendix A 给代码。",
+      "design_strengths": [
+        "横向 storyboard 使组合多项式与区间递推直观",
+        "bounds 虚线矩形与 y=1 reference 同时定义目标和状态",
+        "参数与定理指针写入 caption"
+      ],
+      "design_weaknesses": [
+        "曲线主要依赖颜色且没有 degree 对照",
+        "区间标签在缩小图中较小",
+        "示意实例不呈现误差曲线或不确定性"
+      ],
+      "reusable_pattern": "用“每步函数 + 输入/输出集合 + reference target”的横向分镜呈现可组合理论算法.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 2 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 8,
+      "module": "results / convergence",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3: Convergence of degree-5 polynomial methods. Polar Express outperforms other methods at every iteration when tuned properly. Left panel: synthetic matrix with σ_max = 1, σ_min = 10^-6. Right panel: gradient from randomly-initialized GPT-2 model on a batch of language modeling data. Shaded region shows 90% interval over 20 batches of data.",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 14
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#228B22",
+          "#FF0000",
+          "#8A2BE2",
+          "#000000",
+          "#777777",
+          "#B0B0B0"
+        ],
+        "semantic_mapping": "Newton-Schulz 绿、Jordan 红、You 紫，以及三种 ell 的 PolarExp 黑/灰；颜色、marker 和线型共同编码方法/初始化下界。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "两 panel 下方横向 shared legend",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 6,
+        "line_styles": 4,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "两个 panel 均为 linear iteration",
+        "y": "左：log spectral error；右：linear normalized error [0,1]",
+        "color": "method 与 PolarExp 的 ell",
+        "shape": "不同 marker 对应方法/ell",
+        "line": "实线/虚线/点线/点划线",
+        "facet": "左 synthetic；右 GPT-2 gradient",
+        "text": "面板标题、legend、右 panel shaded interval"
+      },
+      "data_and_statistics": "左为 σ_max=1、σ_min=10^-6 且奇异值按 log scale 均匀的 synthetic matrix；右为随机初始化 GPT-2 layer-4 mlp.c-proj gradient。按 iteration 画谱范数误差；右 panel 的 shaded region 是 20 个 batch 的 90% interval，不是训练 seed interval。",
+      "evidence_relation": "Theorem 3.3 的 degree-dependent convergence → synthetic/真实 gradient 的 spectral-error 检验 → Figure 5 的 task-utility iteration ablation → Appendix H.1 的 Frobenius/cosine 与 top-spectrum 诊断。",
+      "design_strengths": [
+        "理论极端条件与真实 gradient 并列",
+        "左 log y 使长尾收敛可见",
+        "caption 明确定义 20-batch 90% band"
+      ],
+      "design_weaknesses": [
+        "左右 panel y scale 不同，直接高度比较可能误读",
+        "六系列主要依赖颜色/legend",
+        "ell 调优后的优势不等于未知谱分布下的保证"
+      ],
+      "reusable_pattern": "用 synthetic 极端条件 + 真实中间表示的并列机制图，把 theorem metric 与应用对象接起来.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 3 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 9,
+      "module": "results / GPT-2 training",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 4: Training a GPT-2-Small (124M) model on 1 Billion tokens of the FineWeb data set (Penedo et al., 2024). muon-<method> denotes Muon with 5 iterations of <method> to compute polar(M ). No weight decay is used. Left: final validation loss vs. learning rate. The best final validation losses for each method were adamw(lr =0.0005): 4.197, muon-Jordan(lr =0.01): 3.639, muon-You(lr =0.01): 3.629 and muon-PolarExp(lr =0.005): 3.588. Right: Validation loss vs. training iteration.",
+        "word_count": 72,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#00518F",
+          "#000000",
+          "#8A2BE2",
+          "#FF0000"
+        ],
+        "semantic_mapping": "AdamW 蓝，PolarExp 黑实线，You 紫点线，Jordan 红点划线；颜色/线型表示方法。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左 panel 右上；右 panel 复用该 legend 语义",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左：log learning rate；右：linear training epoch/iteration",
+        "y": "final validation loss 或 validation loss",
+        "color": "optimizer/polar method",
+        "shape": null,
+        "line": "实线/点线/点划线",
+        "facet": "sweep 与 best-lr trajectory",
+        "text": "方法 legend 与轴标题"
+      },
+      "data_and_statistics": "GPT-2-Small 124M、FineWeb 1B tokens、无 weight decay、每个 Muon 方法 5 iterations。左为 sweep 极值，右为 best-lr trajectory；没有 seed/区间或 inferential test。",
+      "evidence_relation": "Muon 方法接口 → Figure 4 在较小 GPT-2 上复现 Figure 1 的 loss 比较 → Figure 5 解释 5–6 iterations 的 utility/cost → Figures 11–13 追加 training/time、weight-decay/10B 结果。",
+      "design_strengths": [
+        "包含 AdamW 外部基线",
+        "sweep 与动态曲线互补",
+        "caption 定义 method、预算并给 best values"
+      ],
+      "design_weaknesses": [
+        "学习率点数有限且没有不确定性",
+        "颜色/legend 负担高",
+        "consistent 结论限定在单一 GPT-2/FineWeb 设置"
+      ],
+      "reusable_pattern": "在一张图内配对优化器 sweep 与 training trajectory，并在 caption 明确迭代次数和正则化条件.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 4 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 10,
+      "module": "ablation / Muon approximation",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 5: Ablating the number of iterations of Polar Express used to implement Muon, and comparing to computing polar(M ) exactly via an SVD. Left: using > 6 iterations or the SVD does not improve final validation loss. Right: Runtime of Muon is not sensitive to the number of iterations of Polar Express, but the SVD makes it significantly slower. All runs use GPT-2-Small with 1 Billion tokens of FineWeb data, learning rate 0.05, and weight decay 0.1.",
+        "word_count": 78,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 9,
+          "maximum": 11
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#377FA8",
+          "#E67E22"
+        ],
+        "semantic_mapping": "蓝色 PolarExpress 与橙色 SVD；颜色在左右 bar panel 中保持方法语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左 panel legend；右 panel 复用颜色",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "categorical iterations 2,3,4,5,6,7,10,20,30,SVD",
+        "y": "左：final validation loss；右：median training step time (s)",
+        "color": "PolarExpress/SVD",
+        "shape": null,
+        "line": "bar height",
+        "facet": "左质量、右成本",
+        "text": "x 类别标签与 y 单位"
+      },
+      "data_and_statistics": "GPT-2-Small、FineWeb 1B、lr=0.05、weight decay=0.1。左为 final validation loss，右为单步中位 runtime；caption 未给 median 的样本数、重复数或 seed；没有 inferential test。",
+      "evidence_relation": "Figure 3 的谱误差 → Figure 5 检验更精确是否提高 Muon utility 及其成本 → 选择 5–6 iterations 而不是 exact SVD → Appendix H.1 Figure 9/10 检查小奇异方向和 top-spectrum。",
+      "design_strengths": [
+        "质量与成本放在同一对象",
+        "categorical x 直接展示 iteration saturation",
+        "SVD 作为橙色 exact baseline 清晰"
+      ],
+      "design_weaknesses": [
+        "左右 y 单位不同且无误差条",
+        "3.58–3.60 的 loss 差异很小",
+        "缺少 step-time 分布/硬件/重复说明"
+      ],
+      "reusable_pattern": "用并列“质量 bar + 成本 bar”表达近似精度的 diminishing returns，并把 exact baseline 放到同一 categorical axis.",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 5 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 10,
+      "module": "results / 10B-token training",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 6: Training GPT-2-Large on 10 billion tokens of FineWeb with weight decay 0.1. Best final validation losses were muon-Jordan (lr = 0.002): 2.921, muon-You (lr = 0.002): 2.919 and muon-PolarExp (lr = 0.002): 2.913.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#000000",
+          "#8A2BE2",
+          "#FF0000"
+        ],
+        "semantic_mapping": "PolarExp 黑实线，You 紫点线，Jordan 红点划线；颜色/线型=Muon polar-factor 实现。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左 panel 右上；右 panel 复用该 legend 语义",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左：log learning rate；右：linear epoch",
+        "y": "final validation loss 或 validation loss",
+        "color": "Muon polar method",
+        "shape": null,
+        "line": "实线/点线/点划线",
+        "facet": "sweep 与 best-lr trajectory",
+        "text": "方法 legend、best lr/loss caption"
+      },
+      "data_and_statistics": "GPT-2-Large、FineWeb 10B tokens、weight decay 0.1。左为 final validation loss sweep，右为 best-lr epoch curve；无 seed/区间。",
+      "evidence_relation": "正文 Figures 1/4 的 1B-token headline → Figure 6 检查更长 token 与 weight decay → Appendix Figure 13 给完整 validation/training/time dashboard；证据支持小幅 lead 而非泛化保证。",
+      "design_strengths": [
+        "额外 token budget 检查 headline 持续性",
+        "best lr 与 loss 直接可读",
+        "复用前图的视觉合同"
+      ],
+      "design_weaknesses": [
+        "只有一个长训练配置且无不确定性",
+        "caption 未明说右 panel 的 best-lr trajectory",
+        "方法身份仍主要靠颜色"
+      ],
+      "reusable_pattern": "对 headline 追加更长预算/正则化条件，并沿用同一 sweep+trajectory 视觉合同.",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 6 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 27,
+      "module": "appendix G / finite precision",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 7: Effects of stabilizing the update rules with a safety factor and cushioning, as described in Appendix G. The blue curve is the optimal degree-5 polynomial for the interval [0.005, 1]. It is has numerical issues because it maps singular values near 0.8 down to almost zero and maps 1 + ε to approximately u_{t+1} + 25ε. The stabilized version is better because it ensures p_t(x)/x ≥ 0.236 and maps all x ≤ 1.01 to at most u_{t+1}.",
+        "word_count": 79,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 8,
+          "median": 11,
+          "maximum": 14
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝=Before stabilizing，橙=After stabilizing，黑=0.236x 安全下界；虚线 bounds 作为几何参照。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 3,
+        "data_marks_estimate": 100
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "图上方居中横向 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 3,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "归一化 singular value x",
+        "y": "polynomial output/ratio",
+        "color": "stabilization state",
+        "shape": null,
+        "line": "before/after 实线；bounds 虚线",
+        "facet": "单一函数面板",
+        "text": "ℓ_{t+1}、u_{t+1}、0.236x、x≤1.01"
+      },
+      "data_and_statistics": "degree-5、输入区间 [0.005,1] 的 polynomial map；图解 0.8 附近下冲与 1+ε 放大问题，以及 safety factor/cushioning 修复；没有重复或不确定性统计。",
+      "evidence_relation": "Appendix G 的 finite-precision failure mode → Figure 7 以函数几何显示修复 → Figure 3/5 的 bfloat16 稳定实现；属于 robustness/mechanism 而非 task performance。",
+      "design_strengths": [
+        "将 bfloat16 风险转成可见函数形状",
+        "0.236x 与 bounds 是可核验 reference",
+        "before/after 对照直接"
+      ],
+      "design_weaknesses": [
+        "0.8/1.01 处缺少直接 callout",
+        "几何判据未给 bit-level 或误差统计",
+        "颜色在灰度下不稳健"
+      ],
+      "reusable_pattern": "叠加原始坏函数、稳定函数和安全下界/reference，说明数值修复的几何理由.",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 7 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 27,
+      "module": "appendix H.1 / convergence metrics",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 8: Convergence of degree-5 polynomial methods measured in Frobenius norm and cosine similarity. Test matrices are gradients of two layers of a randomly-initialized GPT-2 model on a batch of language modeling data. Polar Express outperforms other methods.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#2B8C2B",
+          "#FF0000",
+          "#8A2BE2",
+          "#A9A9A9"
+        ],
+        "semantic_mapping": "Newton-Schulz 绿、Jordan 红、You 紫、PolarExp 灰；marker/line style 对方法作冗余编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "底部横向 shared legend",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 4,
+        "line_styles": 4,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "iteration（linear）",
+        "y": "上行 relative Frobenius error；下行 cosine similarity",
+        "color": "method",
+        "shape": "circle/x/square/plus",
+        "line": "方法对应线型",
+        "facet": "列=Layer 1 attn.c_attn / Layer 3 mlp.c_fc；行=metric",
+        "text": "列标题、行 y labels、bottom x label"
+      },
+      "data_and_statistics": "两个随机初始化 GPT-2 layer gradient、一个 language-modeling batch；逐 iteration 绘制 relative Frobenius error 与 cosine similarity。浅色包络在 PDF 可见，但 caption 未定义其聚合、seed 或覆盖率。",
+      "evidence_relation": "Figure 3 的 spectral-error claim → Figure 8 检查更宽松的 Frobenius/cosine metric → Figure 5 的 5–6 iteration utility → Figure 10 的 top-spectrum projection。",
+      "design_strengths": [
+        "对象列 × 指标行使比较路径稳定",
+        "marker/line 冗余提升方法追踪性",
+        "共享 legend 减少重复"
+      ],
+      "design_weaknesses": [
+        "band 统计语义缺失",
+        "legend 与 caption 距离紧",
+        "宽松 metric 不能自动推广为所有任务的保证"
+      ],
+      "reusable_pattern": "用“对象列 × 指标行”的小倍图比较机制 metric，并明确其与主谱范数 metric 的层次.",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 8 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 29,
+      "module": "appendix H.1 / small singular directions",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9: Impact of small singular directions of momentum matrix on optimization quality. We compare three variations of the Muon update rule. Exact Muon (green) processes the momentum M = UΣV^T by mapping each singular value to 1: polar(M) = UV^T. Truncated Muon (orange) maps the larger singular values to 1 and the smaller singular values to 0. Reverse Muon (blue) maps the larger ones to 1 and the smaller ones to −1. Computations are performed in bfloat32. All runs train GPT-2 Small on 1 billion tokens of FineWeb data with learning rate 0.05 and weight decay 0.1. When the cutoff that defines “large” and “small” singular values is γ ≈ 10^-3, all three methods perform well, showing that the small singular directions do not matter. Bottom panel shows the polynomial defined by composing five iterations of Polar Express. Five iterations is just enough for singular values ≥ 10^-3 to nearly converge.",
+        "word_count": 152,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 9,
+          "maximum": 14
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#008000",
+          "#F28E2B",
+          "#1F77B4"
+        ],
+        "semantic_mapping": "Exact/true polar 绿、Truncated 橙、Reverse 蓝；颜色对应 singular-value mapping 变体。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "unknown",
+        "legend_present": true,
+        "legend_placement": "上 panel 左上；下 panel 不重复",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "cutoff γ（log）",
+        "y": "上：final validation loss；下：five-step polynomial output",
+        "color": "Exact/Truncated/Reverse mapping",
+        "shape": "circle/x（上）",
+        "line": "连接离散 cutoff 的线；true-polar reference",
+        "facet": "上 optimization quality；下 polynomial map",
+        "text": "γ≈10^-3、数值标注与 legend"
+      },
+      "data_and_statistics": "GPT-2 Small、FineWeb 1B、lr=0.05、weight decay=0.1、bfloat32。上图是不同 cutoff 的 final loss，下图是五次 Polar Express composition；固定设置，未给 seed/区间。",
+      "evidence_relation": "Figure 5 的 iteration saturation → Figure 9 隔离 small-singular-direction cutoff → Figure 10 测 top-spectrum convergence；是主 headline 与近似器有效精度之间的机制桥。",
+      "design_strengths": [
+        "任务输出与机制 polynomial map 上下对齐",
+        "caption 完整定义三种 Muon mapping 与训练条件",
+        "log cutoff 揭示有效阈值"
+      ],
+      "design_weaknesses": [
+        "三颜色在灰度下难分",
+        "离散 cutoff 点少且没有不确定性",
+        "bottom y 语义需依赖 caption"
+      ],
+      "reusable_pattern": "把任务输出随 cutoff 的变化与内部 polynomial map 上下配对，直接检验误差是否进入任务.",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 9 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 29,
+      "module": "appendix H.1 / top-spectrum convergence",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 10: Convergence of degree-5 polynomial methods, considering only singular values larger than σ_max / 10^3. Test matrices are gradients of two layers of a randomly-initialized GPT-2 model on a batch of language modeling data. Polar Express converges in just five or six iterations and outperforms other methods.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#2B8C2B",
+          "#FF0000",
+          "#8A2BE2",
+          "#A9A9A9"
+        ],
+        "semantic_mapping": "四种 degree-5 方法由绿/红/紫/灰及 marker 区分；保持 Figure 8 的方法语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "底部横向 shared legend",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 4,
+        "line_styles": 4,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "iteration（linear）",
+        "y": "top-spectrum relative Frobenius error/cosine",
+        "color": "method",
+        "shape": "circle/x/square/plus",
+        "line": "方法对应线型",
+        "facet": "列=两个 GPT-2 gradient layer；行=metric",
+        "text": "σ_max/10^3 cutoff、列/行标题"
+      },
+      "data_and_statistics": "只保留 singular values > σ_max/10^3；两个随机初始化 GPT-2 layer gradient、一个 language-modeling batch；比较 projected relative Frobenius/cosine 曲线。未报告 seed/区间定义，浅色包络若视为 band 也没有 caption 说明。",
+      "evidence_relation": "Figure 9 的 γ≈10^-3 任务边界 → Figure 10 测相关 top subspace 的 5–6 step convergence → Figure 5 将该步数用于 Muon utility；支持“足够精度”而非全谱精确。",
+      "design_strengths": [
+        "与 Figure 8 同构，差异只在 top-spectrum 投影",
+        "cutoff 与 5–6 iterations 写入 caption",
+        "共享 legend 便于跨图比较"
+      ],
+      "design_weaknesses": [
+        "可见浅色包络没有统计定义",
+        "同构图需要更醒目的 projection 说明",
+        "仍主要依赖颜色/小 marker"
+      ],
+      "reusable_pattern": "在全空间 metric 后复用同布局的任务相关子空间 metric，展示近似器的有效精度边界.",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 10 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 31,
+      "module": "appendix H.2 / 1B-token training",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "experimental_design",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 11: Training GPT-2 on 1 billion tokens of FineWeb data (Penedo et al., 2024) without weight decay. The label muon-<method> denotes Muon with 5 iterations of <method> to compute polar(M ). Top left: final validation loss vs. learning rate. Bottom left: final training loss vs. learning rate. Top right: validation loss vs. number of iterations for best learning rate. Bottom right: training loss vs. time for best learning rate.",
+        "word_count": 70,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#000000",
+          "#8A2BE2",
+          "#FF0000",
+          "#00518F"
+        ],
+        "semantic_mapping": "Muon 方法沿用 PolarExp 黑、You 紫、Jordan 红；Small row 另有 AdamW 深蓝。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左列各 row legend；右列复用语义",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左列 log learning rate；右上 linear iteration；右下 linear time",
+        "y": "validation/training loss",
+        "color": "method；Small row 可含 AdamW",
+        "shape": null,
+        "line": "Muon method line styles",
+        "facet": "row=GPT-2-Large/Small；panel=validation/training/epoch/time",
+        "text": "subfigure labels、四 panel axis titles"
+      },
+      "data_and_statistics": "1B FineWeb、无 weight decay、5 iterations。Large best validation（subcaption）You 3.390、Jordan 3.401、PolarExp 3.344；Small 含 AdamW 3.370、Jordan 3.233、You 3.234、PolarExp 3.231。左为 sweep，右为 best-lr trajectory/time；无 seed/区间。",
+      "evidence_relation": "Figure 1/4 validation headline → Figure 11 补 training loss 与 wall-clock → Figures 12/13 加 weight decay/10B 对照；把“step 优势”扩展到过程与时间视角。",
+      "design_strengths": [
+        "四 panel 覆盖 validation/training/steps/time",
+        "模型规模按 row 对齐",
+        "沿用方法颜色使跨图比较容易"
+      ],
+      "design_weaknesses": [
+        "混合 x 轴、重复 legend 增加扫描成本",
+        "time 曲线缩放/硬件细节未在 caption 给出",
+        "不同 row 的 y 范围和方法集合不完全一致"
+      ],
+      "reusable_pattern": "将质量、训练过程与 wall-clock 放进固定 2×2 dashboard，并用 row 区分模型规模.",
+      "evidence": {
+        "page": 31,
+        "label": "Figure 11 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 32,
+      "module": "appendix H.2 / weight-decay rerun",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 12: Training GPT-2 on 1 billion tokens of FineWeb data (Penedo et al., 2024) with weight decay 0.1. The label muon-<method> denotes Muon with 5 iterations of <method> to compute polar(M ). Top left: final validation loss vs. learning rate. Bottom left: final training loss vs. learning rate. Top right: validation loss vs. number of iterations for best learning rate. Bottom right: training loss vs. time for best learning rate.",
+        "word_count": 71,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#000000",
+          "#8A2BE2",
+          "#FF0000"
+        ],
+        "semantic_mapping": "PolarExp 黑、You 紫、Jordan 红；同一方法颜色贯穿四 panel。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 240
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左列各 row legend；右列复用语义",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左列 log learning rate；右上 linear iterations；右下 linear time",
+        "y": "validation/training loss",
+        "color": "Muon polar method",
+        "shape": null,
+        "line": "实线/点线/点划线",
+        "facet": "row=Large/Small；panel=validation/training/epoch/time",
+        "text": "四 panel axis titles"
+      },
+      "data_and_statistics": "1B FineWeb、weight decay=0.1、5 iterations。Large best validation：Jordan 3.390、You 3.401、PolarExp 3.344；Small：Jordan 3.638、You 3.641、PolarExp 3.587。无 seed/区间。",
+      "evidence_relation": "Figure 1/4 baseline → Figure 12 控制 weight decay → Figure 6/13 检查更长 token；支撑 ranking broadly unchanged，但不替代跨任务证据。",
+      "design_strengths": [
+        "复用 Figure 11 结构，weight decay 成为唯一显著变化",
+        "四种训练视角完整",
+        "跨图比较成本低"
+      ],
+      "design_weaknesses": [
+        "没有把无 wd 与本图差值直接画在一起",
+        "图内字号/legend 偏小",
+        "未报告 seed/spread"
+      ],
+      "reusable_pattern": "对正则化干预复用基准复合图，使控制变量成为唯一主要视觉变化.",
+      "evidence": {
+        "page": 32,
+        "label": "Figure 12 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 33,
+      "module": "appendix H.2 / 10B-token training",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 13: Training GPT-2 on 10 billion tokens of FineWeb data (Penedo et al., 2024). The label muon-<method> denotes Muon with 5 iterations of <method> to compute polar(M ). Top left: final validation loss vs. learning rate. Bottom left: final training loss vs. learning rate. Top right: validation loss vs. number of iterations for best learning rate. Bottom right: training loss vs. time for best learning rate.",
+        "word_count": 67,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#000000",
+          "#8A2BE2",
+          "#FF0000",
+          "#00518F"
+        ],
+        "semantic_mapping": "PolarExp 黑、You 紫、Jordan 红；Small row 加 AdamW 深蓝。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左列各 row legend；右列复用语义",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左列 log learning rate；右上 linear epoch；右下 linear time",
+        "y": "validation/training loss",
+        "color": "method；Small row 可含 AdamW",
+        "shape": null,
+        "line": "Muon method line styles",
+        "facet": "row=Large/Small；panel=validation/training/epoch/time",
+        "text": "四 panel axis titles与subcaption"
+      },
+      "data_and_statistics": "FineWeb 10B、5 iterations。Large best validation：Jordan 2.921、You 2.919、PolarExp 2.913；Small best validation subcaption 含 AdamW 3.370、Jordan 3.233、You 3.234、PolarExp 3.231。无不确定性。",
+      "evidence_relation": "Figure 6 的 10B validation → Figure 13 补 training/time 与 Small 对照 → J.1 检查 Algorithm 3/head split 的 GPT-Small 12-run runtime；支撑小幅长预算 lead，不支撑泛化保证。",
+      "design_strengths": [
+        "固定 2×2 dashboard 便于与 Figures 11/12 比较",
+        "质量与计算时间同时可读",
+        "长预算条件在 caption 明确"
+      ],
+      "design_weaknesses": [
+        "信息密度高且 caption 依赖 subcaption",
+        "长时间轴使细小差异难读",
+        "没有 seed/spread"
+      ],
+      "reusable_pattern": "用固定 2×2 grammar 扩展训练预算，保持不同 budget 的 loss/time 阅读顺序.",
+      "evidence": {
+        "page": 33,
+        "label": "Figure 13 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 34,
+      "module": "appendix H.3 / CIFAR10 ResNet20",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 14: CIFAR10 with a RESNET20. Shaded regions show range over three random seeds. The best validation accuracy for each method was sgd-m (lr = 0.1): 0.855 Adamw (lr = 0.01): 0.878 muon-You (lr = 0.001): 0.887, muon-Newton (lr = 0.001): 0.890, muon-Jordan (lr = 0.001): 0.891, muon-PolarExp (lr = 0.001): 0.893.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#FF0000",
+          "#228B22",
+          "#000000",
+          "#8A2BE2",
+          "#E07E39"
+        ],
+        "semantic_mapping": "AdamW 蓝、Jordan 红、Newton 绿、PolarExp 黑、You 紫、SGD-m 橙；颜色为主要方法身份。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个 panel 上方各自 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "learning rate（log）",
+        "y": "左 validation score（linear）；右 training loss（log）",
+        "color": "six optimizer/muon methods",
+        "shape": "圆点 marker",
+        "line": "部分方法用虚/点线",
+        "facet": "左 validation；右 training",
+        "text": "legend、three-seed shaded bands、best values"
+      },
+      "data_and_statistics": "CIFAR10/ResNet20，x 为 learning-rate sweep；band 是 three random seeds 的 range。best validation 为 SGD-m 0.855、AdamW 0.878、You 0.887、Newton 0.890、Jordan 0.891、PolarExp 0.893；无跨方法 inferential test。",
+      "evidence_relation": "主文 GPT-2 headline → H.3 跨任务检查 → Figure 14 给出一个 PolarExp 小幅 lead；Figures 15/16 的排序变化将“consistent advantage”限定在 GPT-2/FineWeb。",
+      "design_strengths": [
+        "明确的三 seed range 弥补主训练图缺口",
+        "validation 与 training loss 同时呈现",
+        "log sweep 覆盖宽"
+      ],
+      "design_weaknesses": [
+        "六色 legend 灰度下难读",
+        "best value 仍是 sweep 极值",
+        "上下 panel y scale 不同"
+      ],
+      "reusable_pattern": "跨任务图用统一“validation score + training loss”双 panel，并在 caption 写明 seed 数与 range 聚合.",
+      "evidence": {
+        "page": 34,
+        "label": "Figure 14 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 34,
+      "module": "appendix H.3 / CIFAR100 ResNet110",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 15: CIFAR100 with RESNET110. Shaded regions show range over three random seeds. The best validation accuracy for each method was sgd-m (lr = 0.1): 0.602, Adamw (lr = 0.01): 0.643, muon-Jordan (lr = 0.001): 0.660, muon-Newton (lr = 0.001): 0.663. muon-PolarExp (lr = 0.001): 0.663, muon-You (lr = 0.001): 0.665,",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#FF0000",
+          "#228B22",
+          "#000000",
+          "#8A2BE2",
+          "#E07E39"
+        ],
+        "semantic_mapping": "六种 optimizer/muon 方法由蓝、红、绿、黑、紫、橙区分；PolarExp 与 Newton 接近。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个 panel 上方各自 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "learning rate（log）",
+        "y": "左 validation score（linear）；右 training loss（log）",
+        "color": "six methods",
+        "shape": "圆点 marker",
+        "line": "方法线型部分不同",
+        "facet": "左 validation；右 training",
+        "text": "legend 与 three-seed shaded bands"
+      },
+      "data_and_statistics": "CIFAR100/ResNet110，band=three random seeds 的 range。best validation：SGD-m 0.602、AdamW 0.643、Jordan 0.660、Newton 0.663、PolarExp 0.663、You 0.665（Muon lr=0.001）；无 inferential test。",
+      "evidence_relation": "Figure 14 的 CIFAR10 → Figure 15 更难任务/更深 ResNet；PolarExp 与 Newton 并列而 You 略高，削弱跨任务一致优势。",
+      "design_strengths": [
+        "与 Figure 14 同构，任务变化成为主变量",
+        "保留并列/负面结果",
+        "three-seed band 明确"
+      ],
+      "design_weaknesses": [
+        "caption 末尾保留不完整逗号",
+        "颜色数量高而形状冗余有限",
+        "训练预算/epoch 未写入 caption"
+      ],
+      "reusable_pattern": "用同构图比较任务难度变化，让并列和失败结果保持可见而非只写正文.",
+      "evidence": {
+        "page": 34,
+        "label": "Figure 15 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 34,
+      "module": "appendix H.3 / CIFAR10 ViT",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 16: CIFAR10 with a VIT. Shaded regions show range over three random seeds. The best validation accuracy for each method was sgd-m (lr = 10^-1): 0.809, muon-PolarExp (lr = 10^-5): 0.860, Adamw (lr = 10^-3): 0.861, muon-Jordan (lr = 10^-5): 0.861, muon-You (lr = 10^-5): 0.865, muon-Newton (lr = 10^-4): 0.874.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#FF0000",
+          "#228B22",
+          "#000000",
+          "#8A2BE2",
+          "#E07E39"
+        ],
+        "semantic_mapping": "AdamW/SGD-m/三种 Muon 变体由六种颜色区分；Newton/You/AdamW 优于 PolarExp 的排序可见。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个 panel 上方各自 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "learning rate（log）",
+        "y": "左 validation score（linear）；右 training loss（log）",
+        "color": "six methods",
+        "shape": "圆点 marker",
+        "line": "方法线型部分不同",
+        "facet": "左 validation；右 training",
+        "text": "legend、three-seed shaded bands、best values"
+      },
+      "data_and_statistics": "CIFAR10/ViT，band=three random seeds 的 range。best validation：SGD-m 0.809、PolarExp 0.860、AdamW 0.861、Jordan 0.861、You 0.865、Newton 0.874；无跨方法 inferential test。",
+      "evidence_relation": "H.3 跨架构检查 → Figure 16 显示 Newton/You/AdamW 高于 PolarExp → 与 Figures 14/15 一起限定主文“consistent improvement”只适用于特定 GPT-2/FineWeb 条件。",
+      "design_strengths": [
+        "交叉曲线与 band 直接暴露排序变化",
+        "与 ResNet 图保持同一 visual contract",
+        "negative transfer 没有被隐藏"
+      ],
+      "design_weaknesses": [
+        "六色 legend 与宽 log sweep 信息密集",
+        "best sweep 极值不等于总体显著性",
+        "上下 y scale 不同"
+      ],
+      "reusable_pattern": "把 negative transfer/failure case 放进与 headline 相同的 panel grammar，避免只报告成功任务.",
+      "evidence": {
+        "page": 34,
+        "label": "Figure 16 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 36,
+      "module": "appendix I / spectrum-aware initialization",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "efficiency_cost",
+        "other"
+      ],
+      "caption": {
+        "text": "Figure 17: Benefits of the spectrum-aware initialization scheme of Appendix I. Using this scheme improves convergence of both Newton-Schulz and Polar Express on a synthetic 32×32 matrix with σ_j(M) = j^-5. Note that we count the spectrum-aware initialization as an additional iteration.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#3776AB",
+          "#FF7F0E"
+        ],
+        "semantic_mapping": "蓝/橙表示 Newton-Schulz/PolarExp；Standard 与 Spectrum-Aware 由实线/虚线区分。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左下图内 legend，分 method/initializer 两组",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "iteration（linear）",
+        "y": "spectral error（linear）",
+        "color": "method",
+        "shape": null,
+        "line": "initializer=Standard/Spectrum-Aware 实线/虚线",
+        "facet": "单一 synthetic matrix 面板",
+        "text": "legend 与 caption 的 additional-iteration 规则"
+      },
+      "data_and_statistics": "32×32 synthetic matrix，σ_j(M)=j^-5；比较两种方法及两种初始化的 spectral-error 曲线，spectrum-aware initialization 计作额外 iteration；无 seed/区间。该扩展在正文脚注说明未用于 Muon experiments。",
+      "evidence_relation": "Appendix I 的谱隙初始化构造 → Figure 17 测 convergence acceleration → 与 Figure 3 synthetic baseline 对照；属于扩展方法，不直接支持 Muon GPT-2 accuracy headline。",
+      "design_strengths": [
+        "颜色/线型正交编码两个因素",
+        "额外 iteration 规则清楚",
+        "合成谱条件可复现"
+      ],
+      "design_weaknesses": [
+        "legend 两级语义需来回查",
+        "无 runtime/成本 panel",
+        "合成谱隙与实际 gradient 的联系未呈现"
+      ],
+      "reusable_pattern": "颜色编码算法、线型编码初始化，把两个因素的交互放在一张低复杂度曲线图.",
+      "evidence": {
+        "page": 36,
+        "label": "Figure 17 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 37,
+      "module": "appendix J / rectangular fast iteration",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 18: Effects of using Algorithm 3 on runtime on a GPU. We run T = 6 iterations of a degree-5 polynomial method on matrices with various dimensions n and aspect ratios α. Restart interval = 6 is Algorithm 3, restart interval = 1 is equivalent to the baseline (that is, not using Algorithm 3), and restart interval = 3 is an intermediate method that calls Algorithm 3 once to do the first three iterations and again to do the last three iterations for greater stability. When α ≫ 1, increasing the restart interval significantly reduces the runtime.",
+        "word_count": 98,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#66C2A5",
+          "#FC8D62",
+          "#8DA0CB"
+        ],
+        "semantic_mapping": "颜色表示 n=1024/2048/4096；实线/虚线/点线表示 restart interval=1/3/6。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上图内 legend，分 n/restart interval 两组",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "aspect ratio α=m/n（log）",
+        "y": "GPU runtime seconds（log）",
+        "color": "matrix dimension n",
+        "shape": null,
+        "line": "restart interval 1/3/6 的实/虚/点线",
+        "facet": "n × restart interval 两因素",
+        "text": "legend、α≫1 趋势与 caption"
+      },
+      "data_and_statistics": "GPU timing：T=6、degree-5、n=1024/2048/4096，α 为 aspect ratio；restart=1 baseline、3 两段三步、6 Algorithm 3。未报告 timing 重复次数、误差或硬件细节。",
+      "evidence_relation": "Appendix J rectangular fast iteration → Figure 18 测 aspect-ratio/runtime trade-off → J.1 将 Algorithm 3/head splitting 接到 GPT-Small 12-run practical check；属于 efficiency/cost 扩展，不能替代 accuracy evidence。",
+      "design_strengths": [
+        "log–log 坐标揭示 scaling",
+        "颜色 × 线型正交编码规模与稳定性",
+        "baseline/intermediate/Algorithm 3 同图比较"
+      ],
+      "design_weaknesses": [
+        "无 timing spread/重复统计",
+        "六条曲线及远置 legend 交叠",
+        "“significantly”是趋势描述而非统计检验"
+      ],
+      "reusable_pattern": "用 log–log scaling 与“规模颜色 × 稳定性线型”双因素编码，并把 baseline 放入同一图内.",
+      "evidence": {
+        "page": 37,
+        "label": "Figure 18 — PDF rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [],
+  "cross_object_system": {
+    "visual_narrative": "Figure 2 makes odd-polynomial interval contraction visible; Figure 3 connects the theorem metric to a real GPT-2 gradient; Figures 1/4/6 turn the approximation into Muon validation-loss comparisons; Figure 5 separates useful approximation accuracy from runtime. Appendix Figures 7–10 explain numerical stability and top-spectrum relevance, Figures 11–16 extend training/task slices and expose a cross-task boundary, and Figures 17–18 cover non-headline spectral-gap and rectangular-runtime extensions.",
+    "caption_system": "All captions begin with Figure N rather than a bold conclusion title. Main captions combine setup, panel key and best values; mechanism captions define line/interval semantics; H.2/H.3 captions define the panel grammar and three-seed bands. Figures 8/10 visibly contain light envelopes without a caption-level statistical definition, while Figure 15 retains a terminal comma from the PDF.",
+    "table_header_system": "Not applicable: the 38-page PDF contains no Table object. Algorithm 1 (p.7), Algorithm 2 (p.25) and Algorithm 3 (p.36) are algorithm boxes, and the two Table references in the text point to cited works.",
+    "method_result_ablation_link": "Theorem 3.1/3.3 and Figure 2 define the polynomial method; Figure 3 tests spectral convergence; Figures 1/4/6 compare Muon task outcomes; Figure 5 chooses 5–6 iterations and rejects exact SVD on cost grounds; Figures 7–10 isolate stabilization and effective singular directions; Figures 14–16 delimit cross-task transfer.",
+    "main_appendix_link": "The body calls Appendix A for code, C–E for proofs/equivalence, G for finite precision, H.1 for effective convergence and small singular directions, H.2 for training/time reruns, H.3 for image-classification failure cases, and I/J for extensions. The appendix figures preserve the main method colors where appropriate but add uncertainty bands only in H.3.",
+    "typography_consistency": "PDF object fonts and rendered estimates give a stable Nimbus Roman/Computer Modern serif system, with plot labels around 6–10 pt and theory titles up to about 14 pt. The appendix 2×2 dashboards are denser, but panel titles, axis labels and captions follow the same hierarchy; source rcParams confirm serif/LaTeX and linewidth conventions for the training family.",
+    "color_consistency": "PolarExp black, You purple and Jordan red recur across the GPT-2 family; AdamW is deep blue when present. Green/orange/blue are reused locally for Newton/SGD, stabilization or dimensions, and line styles/markers provide some redundancy. Dense six-method H.3 curves remain color-dependent and are not fully gray-scale safe."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 Figure 2 的逐步函数—区间 storyboard 将理论 composition 变成可检查的状态转移。",
+      "用 Figure 3 的 synthetic + real-gradient 双 panel 连接 worst-case spectral metric 与实际对象，并明确 20-batch band。",
+      "用 Figure 5 的质量 bar + runtime bar 定义近似精度的 diminishing-return 决策面。",
+      "用 Figures 9/10 的 cutoff/有效子空间配对，把“任务足够精度”与“全谱精确”区分开。",
+      "用 Figures 14–16 保持同构并呈现跨任务 failure，限定 headline 的 transfer boundary。"
+    ],
+    "highest_value_objects": [
+      "Figure 2：公式—定理—Algorithm 1 的方法接口。",
+      "Figure 3：理论误差与真实 GPT-2 gradient 的机制证据。",
+      "Figure 5：Muon utility 与 exact-SVD runtime 的共同决策面。",
+      "Figures 9–10：small singular directions、top-spectrum 与 5–6 iteration 选择的桥。",
+      "Figures 14–16：对“consistent improvement”的跨任务边界与反例。"
+    ],
+    "failure_patterns": [
+      "主 GPT-2 headline 多来自最佳学习率 sweep，缺少主实验 seed/不确定性。",
+      "训练图主要依赖颜色和小 legend；灰度、小尺寸及多方法比较的辨识度有限。",
+      "Figures 8/10 可见浅色包络却没有 caption-level 聚合/覆盖率定义。",
+      "Figure 7 的 “It is has” 语病与 Figure 15 的尾逗号属于 caption 质量问题。",
+      "Figures 17/18 的 synthetic/rectangular runtime 扩展没有直接连接到 Muon accuracy headline，需保持证据边界。"
+    ],
+    "one_sentence_visual_strategy": "论文用区间收缩理论图、谱误差机制图和 Muon loss/cost 消融构成主线，再用有效奇异子空间、训练复合图和跨任务失败图限定“5–6 步足够且优势可迁移”的边界。"
+  }
+}

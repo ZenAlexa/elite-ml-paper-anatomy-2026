@@ -1,0 +1,2316 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-b4d312dbe2a3",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/ByteDance-Seed/par-protein",
+      "https://par-protein.github.io"
+    ],
+    "selected_repository": "https://github.com/ByteDance-Seed/par-protein",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "README.md",
+        "role": "other",
+        "tool": "Markdown",
+        "evidence": "README title and links identify the ICML 2026 PAR paper/project and reproducibility entry points."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "assets/generation_over_scale_with_rmsd_4_samples.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "2823×1521 public PNG matches the RGB pixels of the PDF Figure 2 embedded image exactly; it is a rendered asset, not layout source."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "example_multi_scale_generation.ipynb",
+        "role": "plot_script",
+        "tool": "Jupyter/PyMOL",
+        "evidence": "Generates the multi-scale PDB sequence and optional PyMOL images corresponding to the Figure 2 process, but does not reproduce the paper canvas."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "example_prompt_generation.ipynb",
+        "role": "plot_script",
+        "tool": "Jupyter/PyMOL",
+        "evidence": "Uses a 16-point prompt and optional PyMOL rendering, supporting Figure 3 semantics without paper-specific layout code."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "example_motif_scaffold.ipynb",
+        "role": "plot_script",
+        "tool": "Jupyter/PyMOL",
+        "evidence": "Provides zero-shot motif scaffold generation and optional structure rendering supporting Figure 4 semantics."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "example_compute_metric.ipynb",
+        "role": "other",
+        "tool": "Jupyter/Python",
+        "evidence": "Computes sc-RMSD, designability, diversity and secondary-structure metrics used by the paper, but does not format its tables."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "compute_motif_success.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Computes motif success under the repository evaluation criteria, supporting Table 11-related evidence."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "script_utils/motif_scaffold/copy_paste_into_latex.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Processes motif/foldseek summaries for copy-paste reporting; no evidence that it is the paper Table 11 generator."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "configs/model/ca_par_60m.yaml",
+        "role": "other",
+        "tool": "YAML",
+        "evidence": "Records the 60M Cα PAR model and default [64,128,256] scale configuration used to interpret Tables 4, 6 and 12."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "configs/experiment_config/inference_rmsd_par.yaml",
+        "role": "other",
+        "tool": "YAML",
+        "evidence": "Records evaluation lengths [50,100,150,200,250], 100 samples/length and inference settings; it is not a figure generator."
+      },
+      {
+        "repository_url": "https://github.com/ByteDance-Seed/par-protein",
+        "path": "configs/experiment_config/inference_motif_zero_shot.yaml",
+        "role": "other",
+        "tool": "YAML",
+        "evidence": "Records motif zero-shot inference settings supporting Figure 4/Table 11 interpretation; no paper layout source."
+      }
+    ],
+    "search_note": "The local visual-source inventory is stale for this paper (no_public_source_found) and the local corpus/visual_sources/icml-2026-b4d312dbe2a3 directory is absent. The PDF homepage https://par-protein.github.io resolves to ByteDance-Seed/par-protein, whose gh metadata directly names the ICML 2026 Oral paper. Its tree contains one exact Figure 2 rendered PNG plus generation/metric notebooks, scripts and configs, but no paper TeX, TikZ/PGF, SVG, chart/table generator or style file. Therefore the paper has partial visual source: Figure 2 asset is exact, while the remaining layout and visual parameters are observed from the PDF."
+  },
+  "paper_style": {
+    "main_figures": 6,
+    "main_tables": 5,
+    "appendix_figures": 4,
+    "appendix_tables": 10,
+    "dominant_figure_typography": {
+      "family": [
+        "ByteSans",
+        "SFRM0900",
+        "Computer Modern Roman",
+        "Computer Modern Math",
+        "DejaVu Sans"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.2,
+        "maximum": 14.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "ByteSans",
+        "SFRM0900",
+        "Computer Modern Roman",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 7.5,
+      "header_size_pt": 8.5,
+      "header_weight": "mixed",
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "palette_strategy": "定量图复用蓝/珊瑚/绿色离散系列；attention 图复用蓝—绿—黄连续色带；蛋白 cartoon 多为结构材质色而非统一数值语义。",
+    "vector_raster_mix": "架构图、蛋白 montage、line/bar/histogram/heatmap 主要为 PDF 中的栅格嵌入；表格文本、规则和字体对象保留为 PDF 对象。没有找到可重建论文版式的公开矢量排版源。",
+    "style_consistency": "正文双栏、附录分页、booktabs/部分网格表格、粗体 caption 标题和数学字体总体一致；嵌入栅格图的标签字号与颜色材质存在局部波动，且灰度安全性不是全局保证。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1 Overview of PAR. PAR comprises the autoregressive (AR) transformer Tθ and the flow-based backbone decoder vθ. During training, we downsample a backbone x ∈ R^{L×3} into multi-scale representations {x¹, …, xⁿ}. AR transformer performs next-scale prediction, producing conditional embeddings (z¹, …, zⁿ) from (bos, …, xⁿ⁻¹). The shared flow-based decoder learns to denoise backbones xⁱ at each scale conditioned on zⁱ. At inference, PAR autoregressively generates xⁱ until the final structure x is constructed.",
+        "word_count": 76,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.5,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#B7D6F3",
+          "#F6C8EE",
+          "#FFF3B8",
+          "#EDEFF1",
+          "#0C3C50",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "淡蓝表示 backbone/AR 区域，粉色表示 flow decoder，淡黄表示尺度/条件，深色用于边框和标签。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 25,
+        "data_marks_estimate": 35
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左到右的数据/结构流",
+        "y": "模块容器和上下游 lane",
+        "color": "backbone、AR transformer、flow decoder、scale 条件角色",
+        "shape": "尺度块、模块框和箭头端点",
+        "line": "solid arrows for training/inference flow",
+        "facet": "single full-width pipeline with repeated decoder blocks",
+        "text": "module labels, x/z symbols, scale names and bos"
+      },
+      "data_and_statistics": "概念流程图；标注 x∈R^{L×3}、{x¹,…,xⁿ}、(z¹,…,zⁿ) 和 bos，未表达样本聚合、分母或不确定性。",
+      "evidence_relation": "引言的全局到局部生成问题 → Figure 1 的 AR/flow 接口 → §3 的多尺度训练与推理 → Figure 2 的逐尺度实例以及 Figure 6/10 的 attention 机制。",
+      "design_strengths": [
+        "全宽布局把训练、推理、尺度转换和共享 decoder 放到一条可追踪路径。",
+        "模块符号、箭头、框色和空间位置形成多重接口线索。",
+        "后续实验可直接复用 Tθ、vθ 和 scale 术语。"
+      ],
+      "design_weaknesses": [
+        "模块标注密集且字号小，缩放后阅读成本较高。",
+        "训练与 inference 的差异主要靠文字和箭头，没有显式线型 key。",
+        "配色在灰度输出中依赖框和位置，色盲条件下角色区分有限。"
+      ],
+      "reusable_pattern": "先用全宽左到右架构图固定“backbone—尺度—条件—decoder”接口，再让结果图沿用相同符号。",
+      "evidence": {
+        "page": 2,
+        "label": "p.2 Figure 1 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "method_interface",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 2 Samples generated by PAR over scales. We illustrate PAR’s generation process across five scales. Much like sculpting a statue, the model first formulates the global structural layout at coarse scales and progressively refines the details at later scales.",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#F2D97D",
+          "#7AA5D8",
+          "#E9705B",
+          "#9BC7D1",
+          "#E7A14E"
+        ],
+        "semantic_mapping": "蛋白 cartoon 的暖/冷颜色主要区分结构片段和展示材质；列位置编码 scale，末列数字编码 sc-RMSD。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 20,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 Scale 1 到 Scale 5 的列方向",
+        "y": "行标签对应长度 50/100/200/250",
+        "color": "蛋白结构片段/材质颜色",
+        "shape": "ribbon/cartoon 几何与行列位置",
+        "line": "scale direction arrow",
+        "facet": "4 length rows × 5 scales",
+        "text": "Scale、Length 和最终 sc-RMSD"
+      },
+      "data_and_statistics": "代表性生成样例而非分布估计；行长度为 50/100/200/250，最后一列显示约 0.51/1.00/1.79/1.55 Å 的 sc-RMSD；没有误差或重复分布。",
+      "evidence_relation": "Figure 1 的尺度接口 → Figure 2 的 coarse-to-fine 单样本可视化 → §3.3 生成过程 → Table 4/12 的 scale 配置消融。",
+      "design_strengths": [
+        "20 格同时呈现长度和尺度两个因素，阅读顺序由箭头固定。",
+        "终点 sc-RMSD 把结构样例和可量化质量连接起来。",
+        "公开 PNG 与 PDF 嵌入图 RGB 像素完全一致，复现锚点明确。"
+      ],
+      "design_weaknesses": [
+        "精选样例没有失败或不确定性，不能代表生成变异。",
+        "长蛋白 ribbon 在小格中细节拥挤。",
+        "蛋白颜色不是跨图统一的尺度语义，灰度下精确比较较弱。"
+      ],
+      "reusable_pattern": "使用“样本长度 × 生成阶段”的定性矩阵，将过程证据与终点质量数值并置。",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 2 visual and caption",
+        "bbox": null,
+        "basis": "source_exact"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "headline",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 3 Backbone generation with human prompt. Given a small number of points (e.g., 16) as prompt, PAR can generate protein backbones that adhere to the global arrangements specified by these points, without any finetuning. For visualization, input points are interpolated to match the length of the generated structure.",
+        "word_count": 49,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#F2D97D",
+          "#7AA5D8",
+          "#E9705B",
+          "#9BC7D1",
+          "#E7A14E",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蛋白 cartoon 的颜色区分结构片段；上下行和列配对才是 prompt/generated 的主要语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 16,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "列对应 prompt/generated 配对",
+        "y": "上行 Prompt、下行 Generated structure",
+        "color": "结构片段颜色",
+        "shape": "ribbon/cartoon 形状和列配对",
+        "line": null,
+        "facet": "two rows × eight columns",
+        "text": "Prompt (16 points)、结构类别与 P/A/R 标签"
+      },
+      "data_and_statistics": "16 个稀疏点作为 prompt，图展示八个 prompt/生成配对；正文/Table 5 在 588 个测试结构上报告 RMSD/TM-score，图面本身没有成功率或误差分布。",
+      "evidence_relation": "Figure 1 的条件 embedding → Figure 3 的人工 prompt qualitative test → Table 5 的结构一致性定量证据 → §4.2 prompt-following 结论。",
+      "design_strengths": [
+        "上下行严格配对，不需要在图外寻找对应输出。",
+        "caption 明确 16 points、插值和不 finetuning，减少输入语义歧义。"
+      ],
+      "design_weaknesses": [
+        "只给精选成功样例，没有失败或多样性分布。",
+        "八列标签字号偏小，类别标签没有颜色图例。"
+      ],
+      "reusable_pattern": "条件生成采用“输入条件行—输出结构行”配对网格，并在 caption 说明稀疏点插值和训练条件。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 3 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "headline",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 4 Zero-shot motif scaffolding. Given a motif structure, PAR can generate diverse, plausible scaffold structures that accurately preserve the motif via teacher-forcing the motif coordinates at each scale, without additional conditioning or fine-tuning.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#4BAE7B",
+          "#F1D85B",
+          "#9CB6D5",
+          "#5E86B4",
+          "#78909C",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Motif 用黄色/绿色结构，Scaffold 用蓝色结构；右下角 Motif/Scaffold 图例与上下行位置冗余编码角色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 8,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 14,
+        "data_marks_estimate": 8
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "列对应 motif/scaffold 配对",
+        "y": "上行 Input Motif、下行 PAR Generation",
+        "color": "Motif/Scaffold 颜色与圆点图例",
+        "shape": "ribbon/cartoon 形状",
+        "line": null,
+        "facet": "two rows × four columns",
+        "text": "scRMSD/Motif-RMSD 数字与 Motif/Scaffold legend"
+      },
+      "data_and_statistics": "四个代表性 motif/scaffold 对；局部 scRMSD 与 Motif-RMSD 标注结构保真度。Table 11 进一步按任务、1000 samples 和 scRMSD≤2 Å/Motif-RMSD≤1 Å/pLDDT≥70/pAE≤5 统计成功。",
+      "evidence_relation": "Figure 1 的多尺度条件机制 → Figure 4 的 motif-preserving 例子 → Table 11 benchmark 与 novelty → motif criteria/§C.5。",
+      "design_strengths": [
+        "输入与输出成对，颜色图例明确 motif/scaffold 角色。",
+        "局部 RMSD 标注把定性结构和可检验指标相连。",
+        "caption 明确 teacher-forcing 且排除额外 fine-tuning。"
+      ],
+      "design_weaknesses": [
+        "四个样例不足以覆盖 benchmark 的失败率。",
+        "RMSD 标注和 ribbon 交叠，缩放后较拥挤。",
+        "色彩承担角色语义，灰度仍需依赖上下行位置。"
+      ],
+      "reusable_pattern": "motif 任务使用“输入 motif—生成 scaffold”配对网格，固定颜色图例并标注局部结构误差。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 4 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 5 Scaling effects of PAR. Performance of four metrics over varying training steps and model sizes, (a) FPSD vs. PDB, (b) FPSD vs. AFDB, (c) fS(T), (d) sc-RMSD.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#5C8FE8",
+          "#F07E82",
+          "#43B86B",
+          "#222222"
+        ],
+        "semantic_mapping": "60M/200M/400M 分别为蓝/珊瑚/绿；黑线为 (d) 的 sc-RMSD 随模型规模变化。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 4,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "前三面板为 training steps (k)，(d) 为 model size",
+        "y": "FPSD、fS(T)、sc-RMSD 指标",
+        "color": "model size series",
+        "shape": "圆点 marker",
+        "line": "solid series lines",
+        "facet": "2×2 metric facets",
+        "text": "panel letters、legend、metric names和下降/上升箭头"
+      },
+      "data_and_statistics": "约 200/400/600k training steps，模型为 60M/200M/400M；FPSD 随训练/容量下降，fS(T) 上升，sc-RMSD 随容量下降。正文选定设置约为 PDB 187、AFDB 170；无误差带或重复信息。",
+      "evidence_relation": "Table 1 的主 benchmark → Figure 5 的训练/容量趋势 → Table 2 的采样效率与 Table 15 的训练成本 → scaling 结论。",
+      "design_strengths": [
+        "2×2 facets 将质量与训练/容量趋势集中表达。",
+        "模型规模颜色跨面板复用，适合快速横向比较。",
+        "坐标指标和方向符号减少读轴歧义。"
+      ],
+      "design_weaknesses": [
+        "各面板重复 legend 占据绘图区。",
+        "无误差带和重复次数，趋势稳定性不可见。",
+        "不同 y 量纲和范围不适合直接比较幅度。"
+      ],
+      "reusable_pattern": "用固定模型规模颜色和 2×2 metric facets 同时展示训练预算与容量效应，成本细节交给表格。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 5 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "heatmap"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 6 Visualization of the average attention scores in PAR autoregressive transformer over 5 scales. Obtained from samples with lengths in (128, 256]. We provide attention map visualization for shorter proteins in §C.9",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#263494",
+          "#2F75B5",
+          "#36A5C4",
+          "#73C7A8",
+          "#D8ED8B",
+          "#FEF8A5"
+        ],
+        "semantic_mapping": "蓝—绿—黄连续色带编码 attention score；灰色区域表示未使用的矩阵格。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 3,
+        "data_marks_estimate": 75
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "scale 1–5",
+        "y": "scale 1–5",
+        "color": "attention score colorbar",
+        "shape": null,
+        "line": null,
+        "facet": "Layer 0/5/11 facets",
+        "text": "Layer labels and shared 0–1 colorbar"
+      },
+      "data_and_statistics": "50 个测试样本、长度 (128,256] 的平均 attention，并按 scale 归一化；图面没有 error bar、区间或更多重复统计。",
+      "evidence_relation": "Figure 1 的 next-scale prediction → Figure 6 的长蛋白 attention 机制 → Figure 10 的短蛋白 3/4-scale 对照 → 多尺度 AR 解释。",
+      "design_strengths": [
+        "三个 layer 横向对齐，共享色条和灰色无效区清楚表达矩阵结构。",
+        "caption 的 §C.9 指针建立主文—附录复核链。"
+      ],
+      "design_weaknesses": [
+        "平均/归一化细节不在图面。",
+        "方格与 colorbar 在双栏缩放后偏细。",
+        "attention 结论依赖正文文字，颜色灰度安全性有限。"
+      ],
+      "reusable_pattern": "attention 图统一矩阵坐标、固定顺序色带和共享 colorbar，并用附录切片覆盖不同长度/尺度。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Figure 6 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "mechanism",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7 Designability analysis of multi-scale SDE/ODE sampling methods. Naively reducing the SDE sampling steps substantially degrades the designability (red). Using ODE alone exhibits limited designability (purple). Orchestrating SDE and ODE sampling enables reduced sampling steps while retaining designability (blue and green).",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#F07E82",
+          "#5C8FE8",
+          "#43B86B",
+          "#8C69C4"
+        ],
+        "semantic_mapping": "红/蓝/绿/紫分别表示不同 SDE/ODE protocol，caption 同时给出颜色与 protocol 语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 4,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "variable diffusion steps（2–400）",
+        "y": "Designability (%)",
+        "color": "SDE/ODE protocol",
+        "shape": "circle/square/triangle/diamond",
+        "line": "solid/different protocol lines",
+        "facet": "single protocol comparison panel",
+        "text": "legend protocol strings and red/purple/blue/green mapping"
+      },
+      "data_and_statistics": "每个点是一个 diffusion-step 设定的 designability 百分比；低 SDE steps、ODE-only 和 SDE/ODE orchestration 的 failure/可行区间由曲线表达；无误差和样本分母。",
+      "evidence_relation": "Table 2 的离散 runtime/quality → Figure 7 的连续步数 failure/efficiency 曲线 → Table 8 的推理配置。",
+      "design_strengths": [
+        "颜色、marker 和 caption 三重定义四个 protocol。",
+        "低步数失败模式可见，补充 Table 2 的离散比较。"
+      ],
+      "design_weaknesses": [
+        "协议名称长，legend 负担大。",
+        "没有 runtime 轴，无法从图直接换算总成本。",
+        "无误差或重复运行信息。"
+      ],
+      "reusable_pattern": "把可变阶段步数作为 x，使用颜色+形状编码 protocol，并在 caption 直接解释 failure 和可行区间。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Figure 7 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 8 Ablation with self-conditioning. Self-conditioning consistently improves backbone generation performance of PAR across varying protein lengths, showing that both methods are compatible. Results are obtained with 60M PAR.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#5F8FE5",
+          "#E77E82"
+        ],
+        "semantic_mapping": "蓝柱为 PAR，珊瑚柱为 w/o self-condition；并列位置提供额外区分。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 10,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "protein length 50/100/150/200/250",
+        "y": "sc-RMSD (Å)",
+        "color": "PAR vs. w/o self-condition",
+        "shape": "adjacent bar position",
+        "line": null,
+        "facet": "one grouped-bar panel",
+        "text": "bar-top numeric values and legend"
+      },
+      "data_and_statistics": "PAR sc-RMSD 为 0.79/0.88/1.43/1.81/1.97，去 self-conditioning 为 0.88/1.08/1.57/1.86/2.02；60M PAR、五个长度，无误差/重复数。",
+      "evidence_relation": "Figure 1 conditioning 接口 → Figure 8 self-conditioning 消融 → Table 8 inference setting → 长度鲁棒性结论。",
+      "design_strengths": [
+        "柱顶直接标数值，五个长度的差异不需读轴。",
+        "两系列、真实长度条件和短 caption 使结论快速可读。"
+      ],
+      "design_weaknesses": [
+        "没有误差条，差异变异不可见。",
+        "柱顶标签在小字号下拥挤。",
+        "单一 sc-RMSD 没有 designability 补充。"
+      ],
+      "reusable_pattern": "少系列消融使用分组柱和柱顶数值，x 轴直接使用真实长度条件。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Figure 8 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9 Protein length distribution for long protein finetuning.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 1,
+        "hex": [
+          "#5C8FE8"
+        ],
+        "semantic_mapping": "单色蓝柱的高度编码 residue-length density。",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 45
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Residue Length（约 280–760）",
+        "y": "Density",
+        "color": "#5C8FE8 bar height",
+        "shape": null,
+        "line": null,
+        "facet": "single distribution panel",
+        "text": null
+      },
+      "data_and_statistics": "long-protein finetuning 数据的 residue-length density；约 300–400 区域较高，500–700 为稀疏尾部；未给 bin width、总样本数或不确定性。",
+      "evidence_relation": "长蛋白数据构造 → Figure 9 训练分布 → Table 9 的 300–700 结果 → long-protein robustness。",
+      "design_strengths": [
+        "在外推结果前明确 finetuning 覆盖范围。",
+        "坐标单位和尾部范围清楚，单色图形负担低。"
+      ],
+      "design_weaknesses": [
+        "缺少 bin width、样本数和密度归一化说明。",
+        "单系列无法展示不同数据来源或训练/测试分层。"
+      ],
+      "reusable_pattern": "在长度外推实验前放置带单位的 density histogram，明确 finetuning 覆盖范围。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Figure 9 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 10 Visualization of the average attention scores in PAR autoregressive transformer over 3/4 scales. Left Length ∈ (32, 64]. Right Length ∈ (64, 128].",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#263494",
+          "#2F75B5",
+          "#36A5C4",
+          "#73C7A8",
+          "#D8ED8B",
+          "#FEF8A5"
+        ],
+        "semantic_mapping": "与 Figure 6 相同的蓝—绿—黄 attention 色带，灰色表示无效矩阵格。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": 75
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "scale index",
+        "y": "scale index",
+        "color": "attention score colorbar",
+        "shape": null,
+        "line": null,
+        "facet": "3-scale/4-scale rows × Layer 0/5/11 columns",
+        "text": "length/Layer headers and two colorbars"
+      },
+      "data_and_statistics": "短蛋白 3/4-scale 的平均 attention 切片；上行长度 (32,64]、下行 (64,128]，每行三层；无误差或聚合区间。",
+      "evidence_relation": "Figure 6 主文长蛋白 attention → Figure 10 短蛋白切片 → Figure 1 的多尺度 AR 机制与 §C.9。",
+      "design_strengths": [
+        "行、列、layer 三个维度同时可复核；色带和无效格处理与 Figure 6 一致。",
+        "附录切片增强了主文 attention 结论的可复现性。"
+      ],
+      "design_weaknesses": [
+        "六个矩阵和两个 colorbar 信息密度高。",
+        "caption 没有重复平均/归一化细节。",
+        "顺序色带灰度中间值的区分有限。"
+      ],
+      "reusable_pattern": "将主文矩阵按长度/尺度切片扩展为统一网格，保持 colorbar、Layer 标题和无效区处理一致。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 10 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1 Unconditional backbone generation performance. We follow Geffner et al. [14] in adopting FPSD and fS to evaluate the model’s ability to capture the data distribution. PARpdb denotes the 400M model finetuned on the PDB subset.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.4,
+        "header_size_pt": 8.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有 SD/SE/CI；表内仅用方向箭头、best/second-best 和 failure-free 数值。",
+      "data_and_statistics": "同一 backbone benchmark 比较 designability、sc-RMSD、FPSD(PDB/AFDB)、fS(C/A/T)、diversity、novelty 与 secondary structure；PAR400=96.0%/1.01 Å/313.9/296.4/2.24/6.60/16.71，PARpdb=96.6%/1.04 Å/161.0/228.4/2.57/7.42/23.61。",
+      "evidence_relation": "Figure 1 的方法接口 → Table 1 主质量/分布比较 → Figure 5 scaling → Table 2 和 Table 3–5 消融。",
+      "design_strengths": [
+        "把质量、分布、结构属性和新颖性放在同一决策面。",
+        "二层表头、方向箭头、分组和 best/second-best 降低横向比较成本。"
+      ],
+      "design_weaknesses": [
+        "8 列字号小，需跨层表头扫描。",
+        "样本分母、聚合方式和误差不在表中。"
+      ],
+      "reusable_pattern": "主表按指标族分组，用二层表头和方向箭头固定 benchmark 语义。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 1 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2 Sampling efficiency. Combining SDE and ODE sampling across scales yields a 2.5× inference speedup compared to the single-scale 400-step baseline, shown in the first and the last row. We generate 100 samples at each length.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.6,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "无 SD/SE/CI；不可用设置用 `–`，不是零；每长度 100 samples 是 caption 给出的分母。",
+      "data_and_statistics": "5 个 protocol 组、9 行，分别列出 length 150/200 的 time(s) 与 designability；最快 S/O/O 为 67/97 与 68/94，All ODE 为 312/28，Proteina SDE 为 131/97 与 170/92。",
+      "evidence_relation": "Figure 5 cost/scaling → Table 2 schedule/runtime → Figure 7 步数 failure 曲线 → Table 8/15 成本边界。",
+      "design_strengths": [
+        "runtime 和质量同列，直接支持策略选择。",
+        "`–` 保留不可用情况，避免失败被编码成零。",
+        "caption 明确 100 samples 和 2.5× baseline。"
+      ],
+      "design_weaknesses": [
+        "steps 表达较长，baseline 定义需结合第一/最后行理解。",
+        "没有硬件、重复运行或不确定性。"
+      ],
+      "reusable_pattern": "多阶段采样表并列每阶段 steps、runtime、质量和显式失败符号。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 2 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 3 Mitigating exposure bias for PAR. We adopted various training strategies to mitigate the exposure bias for multi-scale autoregressive modeling. These techniques are consistently effective effective in improving structure quality. NCL: Noisy Context Learning. SS: Schedule Sampling. Results are obtained with 60M PAR trained for 100K steps.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "没有 SD/SE/CI、样本分母或失败标记。",
+      "data_and_statistics": "Teacher Forcing sc-RMSD/FPSD/fS=2.20、99.66/37.64、2.53/5.56/29.67；+NCL=1.58、89.70/23.69、2.54/5.85/28.37；+NCL&SS=1.48、90.66/24.59、2.54/5.84/28.77；60M PAR、100K steps。",
+      "evidence_relation": "Figure 1 的 AR rollout → Table 3 exposure-bias 策略 → Table 4/5 配置/条件消融。",
+      "design_strengths": [
+        "行数少，机制对照直接。",
+        "箭头、缩写和 2 位精度足以识别策略差异。"
+      ],
+      "design_weaknesses": [
+        "caption 有 PDF 原文的 `effective effective` 重复。",
+        "FPSD/fS 子指标集中在单列，横向扫描稍慢。"
+      ],
+      "reusable_pattern": "小型消融表只保留机制相关变体和三组直接指标，缩写放 caption。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Table 3 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 11,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 4 Multi-scale formulation. We ablate different strategies for scale configuration in downsampling. Results are obtained with 60M PAR.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.6,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "没有 SD/SE/CI；高亮默认/选定 scale 配置。",
+      "data_and_statistics": "比较 {64,256}、{64,128,256}、四/五 scale 与 {L/4,L/2,L}；选定三-scale 行 designability/sc-RMSD=85.0/1.39，FPSD=279.63/267.35，fS=2.15/6.52/20.35。",
+      "evidence_relation": "Figure 2 的五尺度流程 → Table 4 scale set 选择 → Table 12 flexible scale 与 Figure 6/10 attention。",
+      "design_strengths": [
+        "首列保留可复制的离散 scale set。",
+        "高亮行使默认设计成为视觉锚点。"
+      ],
+      "design_weaknesses": [
+        "scale 的长度语义需读方法段。",
+        "没有不确定性或明确的选择阈值。"
+      ],
+      "reusable_pattern": "配置消融表以离散 scale set 为首列，并用同一组质量/分布指标衡量取舍。",
+      "evidence": {
+        "page": 11,
+        "label": "p.11 Table 4 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 11,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 5 Structural consistency for prompted generation. Using a transformer to encode prior-scale structural conditions shows better prompt-following than direct input. Results are obtained with 60M PAR.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.6,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "没有 SD/SE/CI；588 testing structures 的分母在正文而非表内。",
+      "data_and_statistics": "Direct Input RMSD=2.13/3.38/6.51 Å、TM=.58/.61/.59；Trans. Encode RMSD=1.45/2.72/5.75 Å、TM=.60/.64/.61；Reference 行提供 TM 基准。",
+      "evidence_relation": "Figure 3 prompt grid → Table 5 reference fidelity/prompt adherence → Figure 1 条件编码。",
+      "design_strengths": [
+        "RMSD/reference 与 TM/prompt 分成两组，输入编码比较清楚。",
+        "caption 直接陈述 transformer encoding 的 prompt-following 优势。"
+      ],
+      "design_weaknesses": [
+        "区间和单位较短，样本量需正文补充。",
+        "Reference 行不完整，无方差。"
+      ],
+      "reusable_pattern": "条件生成消融表用 reference fidelity 和 prompt similarity 双指标组，并保留 reference anchor。",
+      "evidence": {
+        "page": 11,
+        "label": "p.11 Table 5 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6 Hyperparameters for PAR models. Tθ: autoregressive transformer; vθ: flow-based atomic decoder.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.4,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "配置表无不确定性或统计区间。",
+      "data_and_statistics": "Tθ/vθ 模块分组列出表示维度、条件维度、时间/位置编码、heads、layers 和参数；参数规模为 60M/200M/400M，heads=12/12/12/16，layers=12/12/15/18。",
+      "evidence_relation": "Figure 1 模块名 → Table 6 可复现超参数 → Figure 5 scaling → Table 13 容量消融。",
+      "design_strengths": [
+        "模块角色和容量并列，复现实验配置成本低。",
+        "交替底色帮助沿行追踪相同超参数。"
+      ],
+      "design_weaknesses": [
+        "混合文本/数值格式和单位不完全统一。",
+        "没有训练硬件或 batch 条件。"
+      ],
+      "reusable_pattern": "两层表头把模块、模型规模和复现超参数收束到一个配置表。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Table 6 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7 Category of unconditional backbone generation baselines.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "分类表没有数值不确定性。",
+      "data_and_statistics": "FrameDiff、RFDiffusion、ESM3、Genie2、Proteina、PAR 六个 baseline 行，Type 和 Framework 记录范式/实现框架。",
+      "evidence_relation": "Table 1 baseline 行 → Table 7 taxonomy → 结果比较中的方法命名。",
+      "design_strengths": [
+        "三列极简，快速固定 baseline 类别和框架。"
+      ],
+      "design_weaknesses": [
+        "分类边界和版本没有 caption 解释。",
+        "底色只突出 PAR，关系表达较少。"
+      ],
+      "reusable_pattern": "大型 benchmark 前置一个小 taxonomy 表，固定方法类别和实现框架。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Table 7 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "experimental_design",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 8 Inference configuration and runtime comparison between PAR and Proteina.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "没有重复运行误差；时间是单次 runtime。",
+      "data_and_statistics": "PAR 与 Proteina 并列 Model size、self conditioning、pair representation、sampling steps、length、#Samples、Time；PAR time=67/68 s，Proteina=137/170 s。",
+      "evidence_relation": "Table 2 schedule/runtime → Table 8 完整配置 → Figure 7 步数机制 → Table 15 training cost。",
+      "design_strengths": [
+        "模型开关、steps、样本数和 time 同表，成本可审计。"
+      ],
+      "design_weaknesses": [
+        "斜杠式 steps 需正文解释。",
+        "硬件、batch 和重复测量缺失。"
+      ],
+      "reusable_pattern": "成本对照同时列容量、关键开关、步数、样本数和时间，而非只报速度倍数。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Table 8 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 9 Long protein generation. scR: sc-RMSD (Å) ↓. DesA: Designability (%) ↑.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 8.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无 SD/SE/CI、样本分母或长度分布重复。",
+      "data_and_statistics": "Proteina/PAR 在长度 300/400/500/600/700 的 scR/DesA：Proteina=1.91/85、2.70/61、4.09/49、7.90/21、13.32/4；PAR=1.28/93、1.65/72、3.19/52、6.80/29、11.29/10。",
+      "evidence_relation": "Figure 9 finetuning 长度分布 → Table 9 长度外推结果 → long-protein robustness。",
+      "design_strengths": [
+        "长度组与两项核心指标重复对齐，趋势直观。",
+        "caption 给出 scR/DesA 单位和方向。"
+      ],
+      "design_weaknesses": [
+        "11 列字号小，训练/测试分母不在表中。",
+        "只有两方法且无不确定性。"
+      ],
+      "reusable_pattern": "用“长度组 × sc-RMSD/Designability”重复表头保持外推趋势对齐。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 9 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 10 Foldseek cluster diversity.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "无置信区间、样本分母或 Foldseek threshold。",
+      "data_and_statistics": "γ=.35/.40/.45/.50/.60/.70/.80 对应 designable clusters=119/126/142/140/164/160/146，.60 为峰值。",
+      "evidence_relation": "Table 1 diversity/novelty → Table 10 γ 敏感性 → motif/scaffold 多样性。",
+      "design_strengths": [
+        "两列直接暴露 γ—cluster 关系，高亮候选参数。"
+      ],
+      "design_weaknesses": [
+        "cluster threshold 和分母未在 caption 解释。",
+        "高亮选择规则需正文补充。"
+      ],
+      "reusable_pattern": "对 γ/threshold 网格使用两列敏感性表，并高亮最终采用值。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 10 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 11 Zero-shot motif scaffold benchmark. PAR* indicates our zero-shot model, producing 1000 samples, while other baselines require finetuning. Baseline results are taken directly from Geffner et al. [14], which reports results using 1000 samples. SR: success rate.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 24,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无误差或任务级成功率区间；历史 baseline 结果不是本次统一重跑。",
+      "data_and_statistics": "约 24 个 motif task 行、五个方法 Unique Solutions(%) 列和 PAR* Novelty；PAR* 生成 1000 samples，其他 baseline finetuning，SR 规则在 caption/正文定义。",
+      "evidence_relation": "Figure 4 motif 例子 → Table 11 逐任务 benchmark → Table 10 diversity → zero-shot/scaffold 结论。",
+      "design_strengths": [
+        "逐任务结果避免平均值掩盖困难 motif。",
+        "zero-shot/finetuning、样本数、SR 和 novelty 语义有说明。"
+      ],
+      "design_weaknesses": [
+        "24×7 信息密度高，字号小。",
+        "baseline 取自 Geffner et al. 的历史结果，横向可比性依赖来源说明。"
+      ],
+      "reusable_pattern": "motif benchmark 保留逐任务矩阵、统一样本数和 zero-shot/finetuned 标签，并分离 success 与 novelty。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Table 11 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 12 Inference with flexible scale configuration.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 7.4,
+        "header_size_pt": 8.4,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无 SD/SE/CI；未见五尺度推理作为结果行保留。",
+      "data_and_statistics": "PAR 3-scale=96.6/1.04/160.99/228.44/2.57/7.42/23.61；w/o scale emb=92.8/1.16/175.09/246.34/2.54/7.66/26.68；5-scale inference=72.6/1.74/177.01/246.76/2.56/7.53/26.78。",
+      "evidence_relation": "Table 4 scale formulation → Table 12 scale embedding/未见 scale → Figure 6/10 attention。",
+      "design_strengths": [
+        "default、组件移除和 unseen configuration 同表，机制 failure 可见。"
+      ],
+      "design_weaknesses": [
+        "5-scale 行和训练配置关系需正文解释。",
+        "无样本量、误差，fS 三项挤在单列。"
+      ],
+      "reusable_pattern": "灵活配置表同时报告 default、组件移除和 unseen configuration，避免只展示成功设置。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Table 12 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 13 Effect of AR module and decoder size. Both AR and decoder utilize transformer-based architectures.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无 SD/SE/CI 或 cost 列。",
+      "data_and_statistics": "400M AR+60M decoder=1.26/87.80；60M AR+400M decoder=1.01/96.00；60M/60M=1.19/92.60，列为 sc-RMSD/designability。",
+      "evidence_relation": "Figure 1 双模块架构 → Table 13 AR/decoder 容量分离 → Figure 5 scaling。",
+      "design_strengths": [
+        "少量交叉容量组合直接隔离模块贡献。"
+      ],
+      "design_weaknesses": [
+        "只报告两项质量指标，无法判断成本或 novelty。",
+        "参数量需与 Table 6 交叉读取，无误差。"
+      ],
+      "reusable_pattern": "双模块系统用小型交叉容量表，最少组合隔离各模块的贡献。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 13 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 14 RMSE and LDDT across different downsample sizes.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无误差、样本量或聚合区间。",
+      "data_and_statistics": "RMSE 在 downsample size 16/32/64/128 为 .362/.275/.217/.170；LDDT 四个 size 均为 1。",
+      "evidence_relation": "Figure 1 downsample → Table 14 structural fidelity → Table 4 scale configuration。",
+      "design_strengths": [
+        "size 轴与两个 fidelity 指标紧凑排列，RMSE 单调趋势可核验。"
+      ],
+      "design_weaknesses": [
+        "LDDT 全为 1，缺少分辨率/统计解释。",
+        "RMSE 单位未在列头显示，样本规模缺失。"
+      ],
+      "reusable_pattern": "预处理接口验证采用 size×fidelity 小表，为生成结果表提供基础证据。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 14 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 15",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 15 Training time.",
+        "word_count": 4,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "ByteSans",
+          "SFRM0900",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "单次 wall-clock，没有重复或区间。",
+      "data_and_statistics": "100K steps、8×H100、batch 15、diffusion multiplicity 2：Proteina 400M=18 hrs，PAR 60+400M=23 hrs。",
+      "evidence_relation": "Figure 5 model scaling → Table 15 training cost → Table 2/8 inference cost，形成质量—成本边界。",
+      "design_strengths": [
+        "极简成本锚点可与主结果和推理效率配对。"
+      ],
+      "design_weaknesses": [
+        "硬件、batch 和 steps 不在 caption。",
+        "`60+400M` 的模块含义需 Table 6。"
+      ],
+      "reusable_pattern": "成本附录记录 model、wall-clock 和复现实验条件，明确主结果的成本边界。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Table 15 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 定义多尺度 AR/flow 接口；Figure 2 展示 coarse-to-fine 过程；Table 1/Figure 5 建立质量与 scaling 主比较；Figure 3–4/Table 5 处理 prompt 与 motif；Table 2/Figure 7/Table 8/15 建立采样和训练成本；Table 3–5、12–14 完成消融；Figure 6/10 提供 attention 机制证据。",
+    "caption_system": "Figure/Table 标签均位于 caption 起始，标题短语通常粗体；主文 caption 较常包含 setup、指标和协议定义，附录 caption 更短。Figure 3、4、7、8 与 Table 2、3 直接陈述主发现，Figure 5、6、9、10 偏描述性。",
+    "table_header_system": "质量指标持续使用方向箭头；二层表头按长度、数据集、模块或 metric family 分组；多尺度和模型模块保留数学符号/缩写，caption 补充定义。",
+    "method_result_ablation_link": "Figure 1 的 Tθ/vθ 和 scale 数据流在 Table 1、Figure 2/5、Table 3–5、Figure 6 中复现；Table 13 将 AR 与 decoder 容量拆开，提供局部归因链。",
+    "main_appendix_link": "Figure 6 指向 Figure 10/§C.9；Figure 4 与 Table 10/11 扩展 motif 多样性；Figure 9 与 Table 9 对接长蛋白分布/结果；Table 2 与 Figure 7/Table 8 对接采样效率；Table 6、13、14、15 补配置、接口和成本。",
+    "typography_consistency": "正文与附录延续 ByteSans/Computer Modern 混合字体，表格主体约 8–9 pt，数学变量使用数学字体；小型栅格图的标签在不同对象间略有字号差异。",
+    "color_consistency": "定量图将蓝/珊瑚/绿色用于模型或 protocol，attention 图跨 Figure 6/10 复用连续色带；protein cartoon 的颜色是局部结构材质语义，不能视为全局变量编码。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用全宽架构图固定模块—尺度—条件接口，再让结果/消融复用相同符号。",
+      "用“长度或配置 × 阶段或指标”的定性网格和二层表头，把结构生成过程变成逐格可核验对象。",
+      "把 runtime、steps、模型容量和 designability 放在同一决策面，并用 `–` 保留不可用设置。",
+      "主文机制图显式链接附录切片，使 attention、长序列外推和 motif 结果形成可追踪证据链。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：方法接口和数据流。",
+      "Table 1：质量、分布和结构属性的主比较。",
+      "Figure 5：训练步数/模型容量 scaling。",
+      "Table 2 + Figure 7：采样质量—成本和低步数 failure。",
+      "Figure 4 + Table 11：zero-shot motif 证据链。",
+      "Figure 2：公开 PNG 与 PDF 像素级对应，复现价值最高。"
+    ],
+    "failure_patterns": [
+      "定性 montage 缺少失败样例和变异/不确定性。",
+      "主表与附录表几乎都没有 SD/SE/CI 或表内样本分母。",
+      "窄表、多层表头和 attention 小图在缩放后字号偏小。",
+      "颜色在灰度和色觉受限条件下不是全局安全编码。",
+      "Table 3 caption 有 `effective effective` 编辑重复；Table 9/10/15 等短 caption 依赖正文补硬件、阈值或聚合规则。"
+    ],
+    "one_sentence_visual_strategy": "论文用稳定的多尺度架构符号贯穿定性样例、质量/效率主比较、attention 机制和附录消融，形成“全局到局部”的视觉叙事，但定量图表的排版复现和不确定性说明仍主要依赖 PDF 而非公开视觉源。"
+  }
+}

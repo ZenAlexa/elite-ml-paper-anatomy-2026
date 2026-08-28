@@ -26,22 +26,22 @@ MAIN_ORDER = [
     "other",
 ]
 
-# The execution budget keeps the conference-equal main-body totals at
-# 7 figures, 4 tables, 1 algorithm, and 13 displayed equations. Sparse
+# The execution budget maps the conference-equal observations onto a nine-page
+# ICLR main body: 6 figures, 4 tables, 1 algorithm, and 13 displayed equations. Sparse
 # per-module means remain visible in separate observed-ceiling columns.
 EXECUTION_BUDGET = {
     "abstract": (0, 0, 0, 0),
     "introduction": (1, 0, 0, 0),
     "related_work": (0, 0, 0, 0),
-    "method": (2, 0, 1, 6),
+    "method": (1, 0, 1, 6),
     "theory": (0, 0, 0, 6),
     "experimental_design": (0, 1, 0, 0),
-    "results": (2, 2, 0, 1),
-    "ablation": (2, 1, 0, 0),
+    "results": (3, 2, 0, 1),
+    "ablation": (1, 1, 0, 0),
     "conclusion": (0, 0, 0, 0),
     "limitations": (0, 0, 0, 0),
     "other": (0, 0, 0, 0),
-    "appendix": (7, 6, 1, 20),
+    "appendix": (8, 7, 1, 20),
 }
 
 
@@ -67,7 +67,7 @@ def main() -> None:
             iclr_share_ceiling = ceiling(
                 float(source["iclr_normalized_word_share"]) * 100
             )
-            draft_words = ceiling(5800 * share_ceiling / 100)
+            draft_words = ceiling(5220 * share_ceiling / 100)
 
         recommended = EXECUTION_BUDGET[module]
         rows.append(
@@ -79,7 +79,7 @@ def main() -> None:
                 ),
                 "conference_equal_share_percent_ceil": share_ceiling,
                 "iclr_share_percent_ceil": iclr_share_ceiling,
-                "draft_words_at_5800_ceil": draft_words,
+                "draft_words_at_5220_ceil": draft_words,
                 "observed_mean_words_ceil": ceiling(source["estimated_words_mean"]),
                 "observed_figures_mean_ceil": ceiling(
                     source["conference_equal_figures_mean"]

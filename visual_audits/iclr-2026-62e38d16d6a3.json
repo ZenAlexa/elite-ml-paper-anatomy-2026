@@ -1,0 +1,1780 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-62e38d16d6a3",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/lupantech/AgentFlow",
+      "https://github.com/kyegomez/awesome-multi-agent-papers",
+      "https://github.com/selfimproving-agent/Awesome-Self-Improving-Agents",
+      "https://github.com/fanlai0990/CS598",
+      "https://github.com/zjunlp/LLMAgentPapers"
+    ],
+    "selected_repository": "https://github.com/lupantech/AgentFlow",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/lupantech/AgentFlow",
+        "path": "assets/img/framework.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "PDF p.1 Code hyperlink points to this repository; README line 47 embeds framework.png. The asset visually matches the two-panel Figure 2 workflow/state-transition diagram."
+      },
+      {
+        "repository_url": "https://github.com/lupantech/AgentFlow",
+        "path": "assets/img/flow_grpo.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "PDF p.1 Code hyperlink points to this repository; README line 51 embeds flow_grpo.png. The asset visually matches the Figure 4 Flow-GRPO optimization diagram."
+      },
+      {
+        "repository_url": "https://github.com/lupantech/AgentFlow",
+        "path": "assets/img/maintable1.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "README line 291 embeds maintable1.png under the exact AgentFlow project title; its model/task values, group headers, green Δ cells and caption correspond to PDF Table 1."
+      },
+      {
+        "repository_url": "https://github.com/lupantech/AgentFlow",
+        "path": "assets/img/maintable2.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "README line 292 embeds maintable2.png under the exact AgentFlow project title; its math/science values, group headers and green Δ cells correspond to PDF Table 2."
+      }
+    ],
+    "search_note": "先核查 reports/tables/visual_source_inventory.csv 与 corpus/visual_sources/iclr-2026-62e38d16d6a3/（目录不存在）。PDF 首页 Code 超链接明确指向 https://github.com/lupantech/AgentFlow；gh repo view 给出 exact project description/title，README 标题为 AgentFlow: In-the-Flow Agentic System Optimization，recursive tree 含 assets/img/framework.png、flow_grpo.png、maintable1.png、maintable2.png。上述四个 README-嵌入 rendered assets 与 Figure 2、Figure 4、Table 1、Table 2 逐项视觉匹配，因此为 partial visual source；没有匹配 PDF 的 plot script、table generator、LaTeX/TikZ/PGF、notebook 或 style source。assets/img/tool_call.png 经 gh 获取后是另一个 calling-error-rate 图，不匹配 Figure 8/11，已排除；其余自动候选仓库没有作者链接/标题严格匹配的视觉文件。"
+  },
+  "paper_style": {
+    "main_figures": 9,
+    "main_tables": 4,
+    "appendix_figures": 3,
+    "appendix_tables": 0,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "DejaVu Sans",
+        "Aptos",
+        "Times New Roman"
+      ],
+      "size_pt": {
+        "minimum": 5.5,
+        "median": 7.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 6.5,
+      "header_size_pt": 7.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "方法图复用黄色 trained、蓝色 frozen、橙色 memory、绿色 answer 的语义色；统计图按任务/工具使用蓝、红、绿、紫、橙等 categorical palette；主表和消融表复用彩色 domain header、绿色 Δ/gain cell、bold/underline best-second-best。颜色承担主要类别键，只有少数 marker/文字提供冗余。",
+    "vector_raster_mix": "PDF p.3/4/5/7/9/10/22/23 的图表主体主要是矢量对象；p.1 Figure 1 含多个嵌入栅格图，p.8 Figure 5 含大量工具/图标栅格对象并与矢量排版混合。表格与 caption 为 PDF vector；公开仓库提供的是 partial rendered PNG assets，不是完整 PDF source。",
+    "style_consistency": "正文、caption、公式和表格稳定使用 CMR/Nimbus-like roman 与 Computer Modern math；Figure 2–4 的 schematic serif/数学标签和 Figure 6–9/12 的 DejaVu Sans chart 字体形成局部一致性，Appendix Figures 10–11 使用 Aptos-like chart text。黄/蓝方法语义在 Figure 2/4 一致，绿 Δ 表规则在 Table 1–3 一致，但跨图表没有统一的色盲冗余。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "abstract",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar",
+        "other"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 1: Left: Performance of AGENTFLOW with a 7B-scale backbone before and after Flow-GRPO tuning across ten diverse reasoning benchmarks. Flow-GRPO substantially improves performance by enhancing planning quality and tool-calling reliability. Right: AGENTFLOW achieves consistent gains over top baselines, including base LLMs, tool-integrated RL models, and training-free agentic systems. All 7B results use Qwen2.5-7B-Base/Instruct as the backbone and tools.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans-like sans-serif",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#2F6FDE",
+          "#E72E4B",
+          "#C8CDD3",
+          "#6BA4F8",
+          "#8F9ACF",
+          "#57B986",
+          "#2C9BD6",
+          "#EFA13A",
+          "#F4F4F4"
+        ],
+        "semantic_mapping": "蓝/红表示 AgentFlow 调优前后；灰、浅蓝、绿色、青色、紫色和橙色表示不同 baseline；radar 背景按 Search/Agentic/Math/Science domain 着色；绿色/彩色 callout 表示域增益。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 7,
+        "series": 8,
+        "legend_items": 10,
+        "annotations": 4,
+        "data_marks_estimate": 68
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "radar top-left and bar panels top/center",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "benchmark/task categories and six bar-panel categories",
+        "y": "accuracy (%) on bars; radial performance on radar",
+        "color": "method/baseline and domain role",
+        "shape": "radar vertices and bars",
+        "line": "before/after polygon outlines; bars have no line encoding",
+        "facet": "radar overview plus 2×3 task panels",
+        "text": "benchmark labels, bar values, gain callouts"
+      },
+      "data_and_statistics": "左侧以十个 benchmark 的 accuracy 绘制 tuned/untuned radar，右侧以六个任务的单柱 baseline 对照绘制 accuracy；值约一位小数，无题目分母、trial spread、误差条或显著性。",
+      "evidence_relation": "Abstract/§1 的跨域性能与可靠性主张 → Figure 1 headline → Tables 1–2 的完整 baseline 与 Avg./Δ → §4.2、Appendix D.1。",
+      "design_strengths": [
+        "在一幅 page-width composite 中同时给出十任务全局变化和任务级 baseline。",
+        "domain 色块、直接数值与 gain callout 提供多条读图路径。",
+        "标题页位置让中心结果优先可见。"
+      ],
+      "design_weaknesses": [
+        "雷达图面积/角度不利于精确比较。",
+        "六个小 panel 与十余色 legend 在缩小后难追踪同一 baseline。",
+        "没有 trial 变异或 uncertainty；caption 未解释径向尺度和域色块。"
+      ],
+      "reusable_pattern": "左侧用 compact domain overview，右侧用同尺度小倍图核验任务级比较，并以直接 delta 标注收束 headline。",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2: (a) Overview of AGENTFLOW, a trainable agentic system for in-the-flow planning and tool use. Four modules (planner, executor, verifier, generator) coordinate via a shared evolving memory M and toolset K, given a query q. The planner policy is optimized on-policy inside the system’s multi-turn loop to enable adaptive, long-horizon reasoning. (b) A single state transition, showing the action a^t, execution result e^t, and verifier signal v^t that update the memory from M^t to M^{t+1}.",
+        "word_count": 76,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman-like serif",
+          "Computer Modern math",
+          "monospace-like labels"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#F4E1B7",
+          "#B3BFCE",
+          "#EFD394",
+          "#D5E8D4",
+          "#DBE9ED",
+          "#EB423E"
+        ],
+        "semantic_mapping": "黄色表示 trained planner，蓝色表示 frozen executor/verifier/reference，橙色表示 evolving memory，绿色表示 answer，浅色框表示 token/输入输出，红色图标强化 trainable 状态。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 2,
+        "annotations": 12,
+        "data_marks_estimate": 22
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right side of panel (b)",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "left-to-right module/turn progression",
+        "y": "vertical role and input/output layers",
+        "color": "trained/frozen/module role",
+        "shape": "module boxes, memory and token cards",
+        "line": "solid arrows and feedback loop",
+        "facet": "panel (a) workflow versus panel (b) single transition",
+        "text": "module names, q/K/M^t, a^t/e^t/v^t/M^{t+1}, input/output schemas"
+      },
+      "data_and_statistics": "机制图，无样本、均值或不确定性。左图表示 multi-turn loop，右图把 §3.1 与 Eq. (2) 的单轮状态接口具体化；Algorithm 1 p.16 复现相同 planner→executor→verifier→memory 顺序。",
+      "evidence_relation": "§3.1 四模块和 MDP 定义 → Figure 2 → Eq. (2)/Algorithm 1 → Figure 4 的 Flow-GRPO rollout。",
+      "design_strengths": [
+        "全局 loop 与局部 state transition 并排，能从系统边界下钻到 action/event/memory。",
+        "trained/frozen legend 和 input/output 框减少箭头歧义。",
+        "面板间的语义层级与正文模块命名一致。"
+      ],
+      "design_weaknesses": [
+        "Memory 回流方向需要追踪长箭头。",
+        "颜色承载冻结状态和模块角色，灰度/色盲版本缺少足够冗余。",
+        "未画 termination、reward 或 variable horizon。"
+      ],
+      "reusable_pattern": "先画跨轮状态回路，再用局部 transition panel 固定模块的输入、输出和可训练边界。",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 2 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 4,
+      "module": "related_work",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 3: Comparison of two paradigms of LLMs with tool use. (a) Monolithic tool-integrated reasoning models train a single policy to interleave reasoning (e.g., <think>) and tool calls (e.g., <tool_call>) within a single, full-context trajectory. (b) Agentic systems decompose tasks across multiple specialized modules (e.g., planner, coder) that collaborate. These systems are typically training-free, orchestrated by handcrafted logic or prompting.",
+        "word_count": 60,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman-like serif",
+          "Computer Modern math",
+          "monospace-like labels"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#F4E1B7",
+          "#B3BFCE",
+          "#DCCCE8",
+          "#D5E8D4",
+          "#F3F3F3"
+        ],
+        "semantic_mapping": "黄色为 trained LLM，蓝色为 frozen module，淡紫为 token，绿色为 Answer，浅灰为例子背景；黑色箭头和文字编码流程。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 3,
+        "annotations": 16,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "left margin",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "query-to-answer flow",
+        "y": "module/token stages",
+        "color": "trained/frozen/token role",
+        "shape": "LLM/module/token/answer boxes",
+        "line": "solid arrows and loop-like tool call path",
+        "facet": "monolithic examples versus linear/branched agentic examples",
+        "text": "Query, <think>, <tool_call>, <answer>, Module 1…N"
+      },
+      "data_and_statistics": "范式概念图，无量化数据或不确定性；四个 example topology 用相同 Query/Answer 外框对照单体 full-context 与多模块协作。",
+      "evidence_relation": "§2 related-work gap → Figure 3 paradigm contrast → §3 Figure 2/4 method interface；图不承担实验结果。",
+      "design_strengths": [
+        "相同任务接口下展示 policy locus、token path 和 module topology。",
+        "同时给线性与分支 agentic 结构，避免把 modularity 误解成固定链。",
+        "legend 明确训练位置和 token 角色。"
+      ],
+      "design_weaknesses": [
+        "将真实 prior system 抽象成少数模块，未展示 state/memory 或数据。",
+        "颜色是主类别键，灰度版需依赖节点文字。",
+        "多例图密度高但没有说明各例对应的具体 prior。"
+      ],
+      "reusable_pattern": "在方法图前用同一 Query/Answer 接口对照 monolith 与 modular topology，显式标出训练位置和信息流。",
+      "evidence": {
+        "page": 4,
+        "label": "p.4 Figure 3 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4: Optimization for our proposed agentic system AGENTFLOW. Given a query q, an evolving memory M, and a toolset K, the policy model generates actions that target sub-goals and select tools. It is trained via Flow-based Group Refined Policy Optimization (Flow-GRPO), which enables multi-turn reinforcement learning and stable optimization under collaborative dynamics.",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman-like serif",
+          "Computer Modern math",
+          "monospace-like labels"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#F4E1B7",
+          "#B3BFCE",
+          "#F1DDAA",
+          "#E0E0E0",
+          "#DCCCE8",
+          "#D5E8D4"
+        ],
+        "semantic_mapping": "黄色为 policy/trained，蓝色为 reference/reward/frozen，橙色为 rollout container，浅灰为 group/token cards，淡紫为 intermediate outputs，绿色为 result/return。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 5,
+        "legend_items": 2,
+        "annotations": 12,
+        "data_marks_estimate": 28
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right side below group-computation block",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "left-to-right input-to-update pipeline",
+        "y": "vertical stages and group rows",
+        "color": "trained/frozen/rollout/reward role",
+        "shape": "policy/reference/rollout/reward/group boxes",
+        "line": "solid arrows plus large Flow-GRPO feedback arc",
+        "facet": "single optimization pipeline with rollout and reward subpanels",
+        "text": "q/M/K, a_i^t/o_i/r_i^t, reward and group computation labels"
+      },
+      "data_and_statistics": "算法接口图，无样本、均值或不确定性。中部 group rollouts 和 reward rows 是 trajectory-level construction；§3.2 Eq. (3)–(7) 定义 objective、broadcast reward、group advantage 和 KL。",
+      "evidence_relation": "§3.2 in-the-flow learning → Figure 4 → Eq. (3)–(7)/Algorithm 1 → Appendix B Theorem B.1/B.3。",
+      "design_strengths": [
+        "把 rollout→reward→group computation→policy update 串成闭环。",
+        "trained/frozen 色彩与 Figure 2 复用，强化系统边界。",
+        "group/turn 重复框表达多轮轨迹而无需额外文字。"
+      ],
+      "design_weaknesses": [
+        "弧形反馈箭头和 token rows 在窄屏上难追踪。",
+        "clipping、KL、zero-variance convention 和 theorem assumptions 未在图中出现。",
+        "binary final-outcome reward 的语义不由图本身可读。"
+      ],
+      "reusable_pattern": "用“输入/可训练模块—真实 rollout—reward transformation—update”四段式图连接系统和目标函数，保留回流箭头表示 on-policy。",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 4 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "results / qualitative_analysis",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "screenshot",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "failure",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: One case study example. Initially failed with repetitive errors (left), AGENTFLOW, trained with Flow-GRPO, explores a new solution pathway at turn 4 after two failed attempts (right).",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans-like sans-serif",
+          "Calibri-like UI text",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#E7D5EC",
+          "#F3B6B0",
+          "#C8E6C9",
+          "#F5E5A9",
+          "#D8EAF7",
+          "#DDE6D4",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "紫色为 query，红色为 failure/error，绿色为 success/corrected solution，浅橙为 system/question card，蓝/灰为工具和 code 内容，白色为卡片底。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "turn order within before/after lane",
+        "y": null,
+        "color": "failure/success and tool identity",
+        "shape": "status cards, tool icons and code blocks",
+        "line": "vertical turn arrows",
+        "facet": "before Flow-GRPO versus after Flow-GRPO",
+        "text": "question text, turn numbers, tool calls, error/success messages, final solution"
+      },
+      "data_and_statistics": "单个 ISBN-10 check-digit query 的 qualitative path：左侧 turn 1–3 后进入 turn 4–9 repetitive failure，右侧在 turn 4 改写 Python code 成功；无 aggregate、分母或 uncertainty。",
+      "evidence_relation": "§4.5 new-solution-pathway claim → Figure 5 → Figure 8 tool-ratio diagnostic 与 Appendix F case studies；只提供 pathwise qualitative evidence。",
+      "design_strengths": [
+        "同一 query 的左右 lane 使 recovery turn 4 可定位。",
+        "错误文本和 corrected code 将“规划变化”落到可观察 action。",
+        "工具图标、状态颜色、turn number 与箭头形成多重路径线索。"
+      ],
+      "design_weaknesses": [
+        "左侧 turn 4–9 被压缩，不能审计每一步。",
+        "大量小字和图标在缩放/灰度下可读性下降。",
+        "单 case 不能代表总体 reliability，caption 未强调范围。"
+      ],
+      "reusable_pattern": "固定 query 与终点，压缩失败循环并突出第一个策略切换点，再用同尺寸 before/after lane 表示 recovery path。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 5 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 9,
+      "module": "results / scaling",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6: Flow-GRPO fine-tuning offers consistent gains on AGENTFLOW as the backbone model size scales from 3B to 7B.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#A7CDF2",
+          "#FF5A64"
+        ],
+        "semantic_mapping": "浅蓝为 Before tuning，珊瑚红为 After tuning；每个任务的 paired bars 编码 Flow-GRPO 干预。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper-right inside each panel",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Bamboogle/2Wiki/GAIA/AIME24 categories",
+        "y": "accuracy (%)",
+        "color": "before versus after tuning",
+        "shape": "paired bars",
+        "line": null,
+        "facet": "3B versus 7B backbone panels",
+        "text": "bar-top accuracy values and Before/After legend"
+      },
+      "data_and_statistics": "四任务 accuracy 在 3B 和 7B 两个 backbone、before/after 两个条件下各绘制一柱；值一位小数，无 error bar、trial spread 或显著性。",
+      "evidence_relation": "§4.4 backbone scaling → Figure 6 → Appendix Figure 12 的重复/扩展；支撑 tested-range 的 positive scaling claim。",
+      "design_strengths": [
+        "固定任务顺序和 y 轴让 paired intervention 直接可见。",
+        "柱顶数值兼顾扫读和精确核验。",
+        "从 0 起的 y 轴避免柱长夸大。"
+      ],
+      "design_weaknesses": [
+        "每 panel 重复 legend。",
+        "没有样本数、三 trial 变异或显著性。",
+        "仅测 3B/7B，不能外推更大规模或成本。"
+      ],
+      "reusable_pattern": "固定任务与轴尺度，用 paired bars 同时分离 backbone size 与 tuning intervention，并为每柱标注数值。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 6 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 9,
+      "module": "results / inference_scaling",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7: Average accuracy with increased T_max.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#20A859",
+          "#B500A5",
+          "#2E6FCC",
+          "#F18B00"
+        ],
+        "semantic_mapping": "绿/洋红/蓝/橙分别表示 2Wiki、GameOf24、AIME24、GAIA；marker 形状也区分任务。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper-left inside panel",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 4,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "maximum allowed turns 3/5/7/10",
+        "y": "average accuracy (%)",
+        "color": "task identity",
+        "shape": "task-specific markers",
+        "line": "task-specific trend lines",
+        "facet": null,
+        "text": "right-end gain callouts and task legend"
+      },
+      "data_and_statistics": "四个 `T_max` 下四任务的 average accuracy 趋势；每点是一个预算/任务聚合值，无 error bar/band、题目数或 trial spread。Table 4 提供相同预算的 average consumed turns。",
+      "evidence_relation": "§4.4 inference scaling → Figure 7 与 Table 4 → Conclusion 的 turn-budget claim；正文用文字补充“无 degenerate loops”。",
+      "design_strengths": [
+        "把 allowed horizon 直接作为 x 轴。",
+        "颜色、marker、终点 callout 共同提示任务和变化方向。",
+        "与 Table 4 的 consumed turns 形成结果/资源互补。"
+      ],
+      "design_weaknesses": [
+        "短 caption 未定义任务、delta 基准或平均单位。",
+        "没有不确定性；x 仅四个离散预算，不能说明预算外形状或成本最优。",
+        "颜色仍是主识别键，灰度/色盲可读性弱。"
+      ],
+      "reusable_pattern": "以离散 inference budget 为 x 轴，画 task-specific performance lines，并以端点 delta 连接正文决策量。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 7 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 9,
+      "module": "results / tool_usage",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 8: Tool call ratio change by Flow-GRPO fine-tuning.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#FC6A73",
+          "#3FB987",
+          "#4A9BD0",
+          "#8970AA"
+        ],
+        "semantic_mapping": "珊瑚/绿/蓝/紫分别为 Base Generator、Google Search、Web Search、Wikipedia Search；柱上 delta 和 Acc callout 补充行为变化。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 12,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "shared legend above panels",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Step 0 versus Step 32",
+        "y": "tool call ratio (%)",
+        "color": "tool category",
+        "shape": "grouped bars",
+        "line": "dashed transition separator/arrow",
+        "facet": "2Wiki versus MedQA panels",
+        "text": "bar values, changes, task labels and Acc callouts"
+      },
+      "data_and_statistics": "每 panel 将 Step 0/32 的 tool-call 次数按四种工具归一为 ratio，并在上方附 accuracy；没有报告总 call count、分母、题目数或 uncertainty。",
+      "evidence_relation": "§4.5 tool-use mechanism → Figure 8 → Figure 5 qualitative recovery 与 Appendix Figure 11 的 Musique transition；行为和 accuracy 共现但无独立 intervention。",
+      "design_strengths": [
+        "把 planner 的工具偏好从组成比例而非只从最终 accuracy 展示。",
+        "统一四色 key 让 2Wiki 与 MedQA 可比。",
+        "直接 delta/Acc 文字避免估读柱高。"
+      ],
+      "design_weaknesses": [
+        "caption 未定义 ratio 分母。",
+        "ratio 与 accuracy 同时出现但量纲不同，需正文解释。",
+        "颜色无形状冗余，也没有统计稳定性。"
+      ],
+      "reusable_pattern": "在 paired before/after grouped bars 中同时显示行为组成、变化量和最终任务指标，并在 caption 明确归一化分母。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 8 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 10,
+      "module": "results / training_efficiency",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 9: Training dynamics and efficiency of Flow-GRPO.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#365CC7",
+          "#E07B18"
+        ],
+        "semantic_mapping": "蓝色表示 Training Reward/Flow-GRPO，橙色表示 Response Length/ToRL；panel (a) 通过双 y 轴区分 reward 与 token length。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 83
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper area of each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "training steps",
+        "y": "reward (Acc) and response length (tokens)",
+        "color": "method/metric identity",
+        "shape": "scatter observations and markers",
+        "line": "smoothed trend lines",
+        "facet": "panel (a) reward/length; panel (b) Flow-GRPO versus ToRL validation",
+        "text": "axis labels and legends"
+      },
+      "data_and_statistics": "panel (a) 显示训练步上的 training reward 与 response length 序列/趋势，panel (b) 显示 Flow-GRPO 与 ToRL 的 validation reward；散点和曲线是过程观察，不提供 trial aggregation 或 uncertainty。",
+      "evidence_relation": "§4.6 training-efficiency claim → Figure 9；与 Table 3 的 matched planner training ablation 互补，但 ToRL 不是完全同构系统。",
+      "design_strengths": [
+        "双轴同时显示 quality growth 与 response condensation。",
+        "panel (b) 用同一 validation reward 对照 ToRL 停滞。",
+        "保留散点波动同时用趋势线维持可读性。"
+      ],
+      "design_weaknesses": [
+        "双 y 轴可能混淆视觉斜率和量纲。",
+        "没有 error、重复 trial、wall-clock 或总成本。",
+        "caption 未说明双轴和 ToRL 系统边界差异。"
+      ],
+      "reusable_pattern": "把质量增长与输出成本/长度放在相邻 panel；保留原始点配合趋势线，并清楚着色双轴单位。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Figure 9 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 22,
+      "module": "appendix D.1",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 10: Tool scaling study. AGENTFLOW’s performance improves when its tools are upgraded from Qwen-2.5-7B-Instruct to GPT-4o.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Aptos",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#B0C8E8",
+          "#3F7FEA"
+        ],
+        "semantic_mapping": "浅蓝/深蓝分别为 Qwen-2.5-7B-Instruct-powered 与 GPT-4o-powered tools。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 6
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "GAIA/AMC23/HotpotQA",
+        "y": "accuracy (%)",
+        "color": "tool backbone",
+        "shape": "paired bars",
+        "line": null,
+        "facet": null,
+        "text": "bar values and +1.1/+6.0/+13.0 deltas"
+      },
+      "data_and_statistics": "三任务、两种底层工具 backbone 的 accuracy paired bars，值一位小数并直接标注绝对值与 delta；无误差或成本统计。",
+      "evidence_relation": "Appendix D.1 tool-upgrade analysis → Figure 10 → 主表的 tool-standardization/transfer 边界；不是新的 planner-training ablation。",
+      "design_strengths": [
+        "成对柱隔离 tool scaling intervention。",
+        "绝对值与 delta 同时写出，适合附录核验。",
+        "任务、工具条件和 accuracy 轴清楚。"
+      ],
+      "design_weaknesses": [
+        "caption 未列三任务或具体替换 module。",
+        "无 latency、cost 或 trial spread，不能单独支持 efficiency。",
+        "深浅蓝在灰度下区分弱。"
+      ],
+      "reusable_pattern": "固定 agent/planner，仅改变底层工具质量，用 paired bars 同时显示 transfer 的绝对值和差值。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Figure 10 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 22,
+      "module": "appendix D.2",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 11: Tool call optimization on Musique. AGENTFLOW’s planner increases Web Search usage after Flow-GRPO training.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Aptos",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#FC6A73",
+          "#3FB987",
+          "#4A9BD0",
+          "#8970AA"
+        ],
+        "semantic_mapping": "珊瑚/绿/蓝/紫分别为 Base Generator、Google Search、Web Search、Wikipedia Search；上方 Acc callout 连接 tool ratio 与结果。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 8,
+        "data_marks_estimate": 8
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Step 0 versus Step 32",
+        "y": "tool call ratio (%)",
+        "color": "tool category",
+        "shape": "grouped bars",
+        "line": "dashed transition separator/arrow",
+        "facet": null,
+        "text": "bar values, delta labels and Acc 19.2→25.2 callout"
+      },
+      "data_and_statistics": "Musique 的 Step 0/32 tool-call composition，四类工具以 ratio (%) 直接标注；上方显示 accuracy 19.2%→25.2%（+6.21%），无 call-count denominator 或 uncertainty。",
+      "evidence_relation": "Appendix D.2 URL-oriented tool transition → Figure 11，与主文 Figure 8 同构；行为—accuracy 共现支持方向性解释但不构成独立因果检验。",
+      "design_strengths": [
+        "复用 Figure 8 的颜色和 Step 0/32 schema，跨任务比较成本低。",
+        "Web Search 变化与 Acc callout 在同一局部图内可见。"
+      ],
+      "design_weaknesses": [
+        "caption 未定义 ratio 分母或交叉指向 Figure 8。",
+        "多条 delta 标签挤在柱顶，缺少原始 call count。",
+        "共现行为不能单独证明 planner causality。"
+      ],
+      "reusable_pattern": "对新增任务复用主文行为诊断模板，保持颜色、预算节点和 delta 语法以展示 task-specific policy。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Figure 11 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 23,
+      "module": "appendix D.2 / scaling",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 12: Flow-GRPO fine-tuning offers consistent gains on AGENTFLOW as the backbone model size scales from 3B to 7B.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#A7CDF2",
+          "#FF5A64"
+        ],
+        "semantic_mapping": "浅蓝为 Before tuning，珊瑚红为 After tuning；每任务 paired bars 与 Figure 6 使用同一语义。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper-right inside each panel",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Bamboogle/2Wiki/GAIA/AIME24 categories",
+        "y": "accuracy (%)",
+        "color": "before versus after tuning",
+        "shape": "paired bars",
+        "line": null,
+        "facet": "3B versus 7B backbone panels",
+        "text": "bar-top accuracy values and Before/After legend"
+      },
+      "data_and_statistics": "与 Figure 6 相同的四任务、3B/7B、before/after accuracy paired bars；值一位小数，无样本分母、trial spread 或 uncertainty，是重复/局部复现而非新统计切片。",
+      "evidence_relation": "Appendix D.2 的更多 backbone-scaling evidence → Figure 12；与主文 Figure 6 重复支撑 §4.4 tested-range claim。",
+      "design_strengths": [
+        "附录原位提供完整图，读者无需回跳主文。",
+        "颜色、布局、任务和轴与 Figure 6 兼容。"
+      ],
+      "design_weaknesses": [
+        "caption 没有标明这是 Figure 6 的重复。",
+        "仍只测 3B/7B 与四任务，不能扩大外推。",
+        "附录新增讨论的 GameOf24/AMC23/MedQA 未编码入该图。"
+      ],
+      "reusable_pattern": "附录复制关键 plot 时保持主文 schema 以保证局部自足，并明确标注重复/扩展关系。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 12 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Accuracy comparison on search-intensive and agentic tasks. 7B-Base refers to Qwen-2.5-7B-Base and 7B-Inst refers to Qwen-2.5-7B-Instruct. AutoGen and our AGENTFLOW method are agentic systems, which use Qwen-2.5-7B-Instruct for the LLM-powered agents and tools for fair comparison. We visualize the gains of AGENTFLOW to the each baseline in the Δ columns.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 6,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "未报告 mean±SD/SE、区间、显著性或失败计数；C.2 仅在正文提到三次 trial/standard deviation，表内没有 uncertainty。",
+      "data_and_statistics": "accuracy (%)；任务列为单数据集 accuracy，Avg. 为 search 或 agentic 域内平均，Δ 为 AGENTFLOW 相对各 baseline 的增益；值一位小数，末行 Δ 为 dash。",
+      "evidence_relation": "§4.2/C.2–C.3 baseline 与评测设置 → Table 1 → Figure 1 右侧六任务 overview 与 Appendix D.1。",
+      "design_strengths": [
+        "domain header、平均值和 Δ 列把多类 baseline 放进同一 decision surface。",
+        "bold/underline/green fill 迅速标示 best/second-best 与 gain。",
+        "caption 定义 7B 条件和 Δ 语义。"
+      ],
+      "design_weaknesses": [
+        "10 列和小字号挤压可读性。",
+        "绿色 cell fill 在灰度/色觉缺陷下不可靠。",
+        "无样本量或 trial spread，Δ 分母仍需结合行身份理解。"
+      ],
+      "reusable_pattern": "将任务值、域平均和相对增益并列，按 baseline 机制分组并以轻量 cell color 表示改善方向。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 1 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: Accuracy comparison of mathematical and scientific reasoning tasks.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 7,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "未报告 mean±SD/SE、区间、显著性或失败计数；三次 trial 的变异不在表格单元格中。",
+      "data_and_statistics": "accuracy (%)；Math group 为 AIME24/AMC23/GameOf24/Avg./Δ，Scientific group 为 GPQA/MedQA/Avg./Δ；域平均和 Δ 一位小数，末行 Δ 为 dash。",
+      "evidence_relation": "§4.2 math/science 主比较 → Table 2 → Figure 1 对应 bar 与 Appendix D.1 的跨域解释；与 Table 1 共同构成十 benchmark 主结果。",
+      "design_strengths": [
+        "两级 domain→task/Avg./Δ header 保留任务异质性。",
+        "与 Table 1 复用 row-group、bold/underline、绿色 Δ 规则。",
+        "同时提供任务级值和 domain average。"
+      ],
+      "design_weaknesses": [
+        "caption 过短，脱离 Table 1/正文无法恢复 Δ 定义。",
+        "11 列 baseline 表在单页中字体小。",
+        "无题目数、trial variation 或成本列。"
+      ],
+      "reusable_pattern": "多 domain 结果保持 `Model/Size → task → Avg./Δ` schema，使跨表视觉比较稳定。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 2 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 3: Performance comparison of AGENTFLOW across different training methods.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "arrows",
+        "cell_color",
+        "text_color"
+      ],
+      "uncertainty": "不报告 uncertainty、题目数、成本或训练时长；箭头/颜色只表达相对 frozen Qwen baseline 的方向和幅度。",
+      "data_and_statistics": "六任务 accuracy (%) 与 Avg. 均一位小数；行是 frozen Qwen-2.5-7B、frozen GPT-4o、Qwen SFT、Qwen Flow-GRPO，除基线行外单元格附 gain/drop。",
+      "evidence_relation": "§4.3 planner-only training strategy ablation → Table 3；与 Figure 4 的“只更新 planner、其余模块冻结”直接配对，也解释 Figure 5/9 的机制方向。",
+      "design_strengths": [
+        "窄表直接分离 frozen capacity、offline SFT 和 in-flow Flow-GRPO。",
+        "箭头、红/绿 fill 和 Avg. 让 collapse/gain 一眼可见。",
+        "per-task 与平均值同时保留。"
+      ],
+      "design_weaknesses": [
+        "caption 未定义箭头基准和颜色。",
+        "只有 planner/training strategy 一个消融，不能识别其他模块独立贡献。",
+        "窄列小字号和红/绿依赖强。"
+      ],
+      "reusable_pattern": "固定系统边界，并列 capacity control、offline imitation、in-flow update，保留 per-task 与 average 两层证据。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 3 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 9,
+      "module": "results / inference_scaling",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Average turns with increased T_max.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "不报告 uncertainty、trial spread、timeout 或 failure counts；average turns 是 resource-usage summary，不等同 wall-clock cost。",
+      "data_and_statistics": "每格为 2Wiki、GameOf24、AIME24、GAIA 在 T_max=3/5/7/10 下的平均 consumed turns，统一两位小数；例如 2Wiki 2.22→4.44、GAIA 2.43→5.42。",
+      "evidence_relation": "§4.4 turn-budget sensitivity → Table 4 与 Figure 7 配对；表给 consumed turns，图给 accuracy outcome，正文据此讨论无 degenerate loops。",
+      "design_strengths": [
+        "极简窄表可直接核对 budget 与实际 consumed turns。",
+        "两位小数适合检查细小变化。",
+        "四任务顺序与 Figure 7 对齐。"
+      ],
+      "design_weaknesses": [
+        "caption 未说明 averaging unit、termination/timeout 或 trial。",
+        "没有 cost/latency，average turns 不能单独代表效率。",
+        "任务与图例需跨对象对齐。"
+      ],
+      "reusable_pattern": "把允许 budget 与实际 consumed resource 单独列表，再与性能趋势图成对呈现。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 4 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 2 先固定四模块、memory 和单轮 state；Figure 3 给出 monolithic/training-free prior contrast；Figure 4 把 rollout、reward、group computation、update 连成闭环；Figure 1 与 Tables 1–2 给 cross-domain outcome；Table 3、Figure 5、Figure 8/11 做 planner strategy、失败恢复和 tool preference 诊断；Figure 6–7、Table 4、Figure 9 处理 backbone、horizon、resource 和 training dynamics；Appendix Figures 10–12 补 tool scaling、Musique transition 与 Figure 6 的复现。",
+    "caption_system": "Figure 1–5 的长 caption 解释设置/编码并多处写主发现；Figure 6、10–12 直接写方向性 headline；Figure 7–9 与 Table 2–4 过短，需正文补任务、分母、颜色、平均单位和 uncertainty。标签格式统一为 Figure n:/Table n:，但 Figure 12 未标明它重复 Figure 6。",
+    "table_header_system": "Table 1–2 复用 domain group → task/Avg./Δ 两级表头；Table 3/4 用单级窄表。Model/Size、task metrics、Avg.、Δ 或 T_max 的顺序稳定，green Δ cell、bold、underline 规则跨主表一致。",
+    "method_result_ablation_link": "Figure 2 的 system/state interface 与 Figure 4 的 Flow-GRPO optimization 落到 Tables 1–2 主结果；Table 3 是唯一直接的 training-strategy ablation；Figures 5/8/9 提供 qualitative/mechanism/efficiency diagnostics。没有 executor/verifier/generator deletion 或 reward broadcast/KL/group-normalization 独立图表，component causality 未完全闭合。",
+    "main_appendix_link": "正文通过 Figures 6–9、Tables 1–4 建立 scaling、budget、tool 和 efficiency 证据，Appendix D 的 Figures 10–12 追加工具升级、Musique transition 和 scaling 重复图；Appendix B/C/E/F 虽无额外 Figure/Table，但 theorem assumptions、sampling/tool metadata、prompts 和 case trajectories 决定主对象的复现边界。",
+    "typography_consistency": "CMR/Nimbus-like roman 与数学体在正文、caption、表格稳定；schematic 图和 statistical plots 的内部字体分别呈现 serif/DejaVu/Aptos 局部系统。图内小字号普遍约 5.5–9 pt，表体约 6.5–7 pt，caption 保持正文罗马体。",
+    "color_consistency": "方法图的 yellow-trained/blue-frozen/orange-memory 语义在 Figures 2/4/3 中稳定；Table 1–3 的 green gain 与浅色 domain header 稳定；统计图按 chart 局部重设 blue/red 或 tool green/blue/purple，跨对象能凭 legend 对齐但缺少全局色盲冗余。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 2 的“全局 multi-turn loop + 单轮 state transition”接口图。",
+      "Figure 4 的“policy/reference → live rollouts → reward/group computation → update”闭环图。",
+      "Table 3 的固定系统边界 matched training-strategy 对照，以及 Figure 7 + Table 4 的 budget/performance 与 consumed-resource 配对。"
+    ],
+    "highest_value_objects": [
+      "Figure 2",
+      "Figure 4",
+      "Table 1",
+      "Table 2",
+      "Table 3",
+      "Figure 5",
+      "Figure 8",
+      "Figure 9"
+    ],
+    "failure_patterns": [
+      "短 caption 缺少 ratio/Δ 分母、任务定义、平均单位、样本量和 uncertainty。",
+      "主图表提到三次 trial 但不展示 spread/error；颜色承担主要类别键且缺少形状/线型冗余。",
+      "Figure 12 重复 Figure 6 却未交叉标注；Figure 5 单 case、Figure 8/11 行为共现、Figure 9 非同构 ToRL 对照均不足以单独证明 component causality。"
+    ],
+    "one_sentence_visual_strategy": "论文用“系统状态接口图 → Flow-GRPO 闭环图 → 跨域主表/overview → planner、tool、budget 诊断 → 附录复现切片”的层级，把 in-the-flow planner 优化连接到结果和轨迹，但把不确定性与严格因果边界留给正文/附录文字。"
+  }
+}

@@ -1,0 +1,761 @@
+# Visual audit — iclr-2026-b93abeea95e9
+
+## Scope and fact source
+
+- **PDF fact source**: `corpus/pdfs/iclr-2026-b93abeea95e9.pdf`, 32 pages, letter 612×792 pt; all pages were read with `pdftotext` and rendered at 180 dpi before object-level inspection.
+- **Rendered pages**: `/tmp/iclr_b93_visual_audit_20260828/render180/page-01.png` … `page-32.png`; contact sheets and each object-bearing page were visually checked.
+- **Inventory result**: PDF contains exactly 19 Figures (Figures 1–19) and 7 Tables (Tables 1–7). Main body: Figures 1–10 and Tables 1–3; appendix: Figures 11–19 and Tables 4–7. No Algorithm is counted.
+- **Cross-check**: `readings/iclr-2026-b93abeea95e9.json` lists the same 26 objects; where reading prose was less specific (for example, Figure 5 panel/model compression), the rendered PDF controls.
+
+## Source acquisition
+
+- **Status**: `partial_visual_source`.
+- **Candidate/selected repository**: https://github.com/facebookresearch/meta-agents-research-environments (GitHub HEAD `87ebd38f31aafae0f11e14f55617903196236cfb`, inspected with `gh`).
+- **Inventory/local search**: `reports/tables/visual_source_inventory.csv` has `no_public_source_found`; `corpus/visual_sources/iclr-2026-b93abeea95e9/` is absent. The PDF/official HTML expose OpenReview/proceedings but no author code URL.
+- **GitHub result**: the official `facebookresearch/meta-agents-research-environments` README directly describes ARE/Gaia2 and links the paper. The repository exposes exact/near-exact rendered assets for Figures 1, 2, and 15 plus related diagram/UI assets; it does not expose the target paper TeX, plot scripts, table generators, or all-object source data.
+- **Search note**: The PDF and official paper page expose the OpenReview/proceedings record but no author-provided code URL; reports/tables/visual_source_inventory.csv records no_public_source_found, and corpus/visual_sources/iclr-2026-b93abeea95e9/ is absent. GitHub search and gh repo/tree inspection identified the official facebookresearch/meta-agents-research-environments repository; its README explicitly describes ARE, Gaia2, and links the paper. HEAD 87ebd38f31aafae0f11e14f55617903196236cfb (2026-08-26) was inspected. The tree contains the exact/near-exact rendered assets and related UI/diagram assets listed above, but no target paper TeX, plot scripts, table generators, source data, or exact generator for every figure/table. The audit therefore uses PDF-rendered observations as the factual source and marks the acquisition partial; no weights, datasets, checkpoints, or full training repository were fetched.
+
+### Inspected source files
+
+| Path | Role | Evidence |
+|---|---|---|
+| `docs/_static/budget-scaling-curves.png` | rendered_asset | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; 1113×507 PNG visually matches the PDF Figure 1 curve layout, labels, and palette, but is a rendered asset rather than the chart generator. |
+| `docs/_static/main-diagram.png` | rendered_asset | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; 850×302 PNG has the same ARE architecture topology and labels as PDF Figure 2, while the PDF embeds a separate high-resolution raster export. |
+| `docs/_static/verifier_matching.png` | rendered_asset | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; 2548×1333 PNG visually matches the oracle/trace/matching-attempt composition of PDF Figure 15, but no matching generator was exposed. |
+| `docs/_static/complex_dag.png` | diagram_source | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; related event-DAG illustration inspected for ARE scheduling grammar, not an exact pixel/source match to Figure 11. |
+| `docs/_static/basic_graph_tuto.png` | diagram_source | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; related dependency-graph tutorial asset inspected as contextual visual source, not an exact target figure. |
+| `docs/_static/oracle_events_dag.png` | rendered_asset | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; related oracle/event graph inspected for verifier/event visual vocabulary, not an exact target figure. |
+| `docs/_static/universe_generation_pipeline.png` | diagram_source | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; related universe-generation pipeline inspected for Figure 13 context, not an exact target graph. |
+| `docs/_static/ui/scenario_workspace_overview.png` | rendered_asset | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; related dark UI workspace screenshot inspected for Figure 14’s interface context, not an exact target screenshot. |
+| `docs/_static/ui/agent_logs_action_details.png` | rendered_asset | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; related agent-log detail screenshot inspected for Figure 14’s logging context, not an exact target screenshot. |
+| `gaia2-cli/assets/high-level-system-diagram.svg` | diagram_source | GitHub tree at HEAD 87ebd38f31aafae0f11e14f55617903196236cfb; related high-level system SVG inspected as an ARE architecture source, not the exact PDF Figure 2 export. |
+
+## Figure inventory and object audits
+
+### Figure 1 — p.1 (abstract)
+- **位置/宽度**：main / page_width；**类型**：line；**目的**：headline, efficiency_cost, main_comparison
+- **复杂度**：4/5；panels=1；series=10; legend_items=0; annotations=12; data_marks_estimate=200
+- **Caption（PDF 原文）**：Figure 1: Gaia2 budget scaling curve: for each max_budget, we plot ∑ 1{scenario_result = True ∧ scenario_cost < max_budget}. Equipped with a simple ReAct-like scaffold (see Section 3), no model evaluated here dominates across the intelligence spectrum—each trades off capability, efficiency, and budget. At equal cost, some models fare better, yet all curves plateau, suggesting that standard scaffolds and/or models miss ingredients for sustained progress. Cost estimates from Artificial Analysis model pricing data (accessed September 10, 2025).
+- **Caption 审计**：80 words；moves=title, setup, encoding_key, comparison, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=NimbusRomNo9L-Regu, Optimistic-Regular, DejaVuSans, STIXGeneral, NimbusMonL-Regu；size=5.5–10.0 pt（median 7.5）；weight=regular, bold；style=roman, italic；provenance=mixed；confidence=medium
+- **Color**：mode=categorical；count=10；approx HEX=#48A868, #F0A26B, #1170F5, #EA4335, #4C4CD9, #6BC5B3, #555555, #8F56E8, #1C71B7, #3B82F6；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Each colored curve identifies one model/configuration; endpoint labels repeat the model identity and the translucent bands show an unspecified spread around the curves.
+- **Plot grammar**：rendering=vector; x=log; y=linear; grid=y; legend=no (—); shared_legend=False; direct_labels=True; marker_types=1; line_styles=1; hatching=False; reference_lines=0; uncertainty=band; line_width_pt=1.0; provenance=mixed
+- **Encodings**:
+  - **X**: Maximum budget per scenario in USD on a logarithmic scale with labeled ticks from $0.01 to $10.
+  - **Y**: Gaia2 pass@1 on a linear scale from 0.0 to 0.4.
+  - **Color**: Model/configuration identity across ten cost-performance curves.
+  - **Shape**: Small circular markers along each curve.
+  - **Line**: Solid model curves with translucent surrounding bands; no separate line-style key.
+  - **Facet**: Single headline panel.
+  - **Text**: Direct endpoint model labels, axis titles, dollar tick labels, and the displayed summation/cutoff definition in the caption.
+- **Data/statistics**：For each max_budget, the plotted quantity is the count-like sum of scenarios satisfying scenario_result=True and scenario_cost<max_budget under a simple ReAct-like scaffold. The chart compares ten named model/configuration curves; the caption does not define the translucent bands, number of scenarios at each point, or the aggregation behind pass@1.
+- **Evidence relation**：This abstract figure establishes the paper’s headline cost-capability trade-off and the absence of a uniformly dominant model. Table 2 supplies the per-capability pass@1 values; Figures 6–8 decompose the same trade-off into cost, time, calls, tokens, and deadline behavior; Figure 10 extends it to multi-agent scaling.
+- **Design strengths**:
+- The log budget axis exposes behavior across several orders of magnitude and endpoint labels avoid a detached legend lookup.
+- The common pass@1 scale makes plateau and crossing behavior visually comparable.
+- The caption states the cutoff expression, scaffold, cost source, and the paper-level interpretation in one place.
+- **Design weaknesses**:
+- Ten similarly colored curves and crowded right-edge labels create crossings and label collisions at paper scale.
+- Color is not grayscale-safe, and the bands have no uncertainty definition or sampling unit.
+- The strict cost cutoff and count-like summation are written in the caption but the plotted denominator is not explicit.
+- **Reusable pattern**：Use a log-budget multi-curve panel with direct endpoint labels to frame cost-normalized capability before presenting per-split results; define the estimand and interval semantics alongside the plot.
+- **Evidence**：p.1, Figure 1 on p.1; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 2 — p.3 (method)
+- **位置/宽度**：main / page_width；**类型**：architecture, pipeline, conceptual_diagram；**目的**：method_interface, experimental_design, reproduction
+- **复杂度**：5/5；panels=1；series=7; legend_items=0; annotations=20; data_marks_estimate=12
+- **Caption（PDF 原文）**：Figure 2: ARE environments are event-based, time-driven simulations, that run asynchronously from the agent and the user. ARE environments allows playing scenarios, which typically contain tasks for the agent and verification logic. Whether initiated by agent or user, interactions happen through the same interfaces and can be either tool calls, or tool output/notification observations. Extensive simulation control and logging allow precise study of agents behavior.
+- **Caption 审计**：66 words；moves=title, setup, encoding_key, comparison；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, Optimistic-Regular, DejaVuSans, STIXGeneral, NimbusMonL-Regu；size=5.5–12.0 pt（median 8.0）；weight=regular, bold；style=roman, monospace；provenance=rendered_estimate；confidence=medium
+- **Color**：mode=categorical；count=7；approx HEX=#2D8CDE, #B9DDF7, #8C969E, #F09A3E, #F2C94C, #59B56C, #E15B5B；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Blue nodes represent agent/user or event-facing components, gray nodes represent state/app infrastructure, orange/yellow nodes represent scheduling and control, and green/red accents mark outcomes.
+- **Plot grammar**：rendering=raster; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=2; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=1.2; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Left-to-right architecture flow from User/Agent through the Environment to simulated apps/MCP and state.
+  - **Y**: Vertical grouping separates scenario inputs, environment/event-loop machinery, and app/state interfaces.
+  - **Color**: Categorical component roles: actor-facing, environment/control, application/state, and outcome accents.
+  - **Shape**: Rounded boxes, app/state blocks, event queue/log blocks, clock icons, and directional arrows.
+  - **Line**: Solid arrows for interaction/data flow and lighter/dashed connectors for control or logging relations.
+  - **Facet**: One wide architecture panel with several nested regions.
+  - **Text**: Component labels, Scenario/Events/Verification headings, tool/notification labels, and state/API annotations.
+- **Data/statistics**：No numeric data are encoded. The diagram specifies ARE’s asynchronous event-based interface, scenario/event/verification inputs, tool calls and notifications, queue/loop/log control, simulated apps, and state/API boundaries.
+- **Evidence relation**：The method figure is the interface contract behind Figures 3–5 and all Gaia2 evaluations: Figure 3 shows the Mobile app surface, Figure 4 defines capability splits, and Figure 11–14 expand scheduling, scenario, dependency, and UI mechanisms. The verifier’s action-level evidence is quantified in Tables 1 and 5.
+- **Design strengths**:
+- The nested architecture separates agent-facing interaction from environment scheduling and app state, matching the paper’s event-driven claim.
+- Repeated labels and arrow direction provide semantic redundancy beyond color.
+- A single page-width composition gives the reader a compact map from scenario definition to logged verification.
+- **Design weaknesses**:
+- The number of nodes and crossing connectors makes the small labels hard to read at paper width.
+- The raster export loses selectable text and is not grayscale-safe despite direct labels.
+- The caption explains the mechanism but does not name every visual region or distinguish tool calls from observations in the graphic itself.
+- **Reusable pattern**：For an asynchronous benchmark, draw actor, event loop, stateful apps, and verification as nested layers with one shared interaction boundary and explicit logging path.
+- **Evidence**：p.3, Figure 2 on p.3; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 3 — p.3 (method)
+- **位置/宽度**：main / single_column；**类型**：other；**目的**：dataset, experimental_design
+- **复杂度**：4/5；panels=1；series=12; legend_items=0; annotations=12; data_marks_estimate=12
+- **Caption（PDF 原文）**：Figure 3: App usage distribution across the 12 Mobile apps in Gaia2 for Llama 4 Maverick.
+- **Caption 审计**：16 words；moves=title, setup；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, DejaVuSans；size=6.0–9.0 pt（median 7.0）；weight=regular；style=roman；provenance=pdf_object；confidence=high
+- **Color**：mode=categorical；count=12；approx HEX=#4E79A7, #59A14F, #F28E2B, #E15759, #76B7B2, #EDC948, #B07AA1, #FF9DA7, #9C755F, #BAB0AC, #86BCB6, #A0CBE8；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Twelve Mobile app categories each receive a distinct slice color; percentages and app labels are printed directly around the pie.
+- **Plot grammar**：rendering=vector; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=0; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=0.7; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: No quantitative x-axis; angular position and area encode category share.
+  - **Y**: No quantitative y-axis.
+  - **Color**: One categorical color per Mobile app.
+  - **Shape**: Pie sectors with perimeter labels and percentages.
+  - **Line**: No data lines; thin sector boundaries.
+  - **Facet**: Single pie panel with a chart title.
+  - **Text**: Twelve app names and percentages, including Contacts, Emails, Calendar, Shopping, Files, and other Mobile apps.
+- **Data/statistics**：The pie summarizes app-usage share for Llama 4 Maverick across 12 Mobile apps; displayed shares range from 2.1% to 19.0%. No denominator, trajectory count, or uncertainty is shown.
+- **Evidence relation**：This dataset-context figure explains the application surface used by the ARE architecture in Figure 2 and the capability/task splits in Figure 4. It is contextual rather than a performance result; Table 4 and Figure 13 further specify notification and dependency structure for Mobile.
+- **Design strengths**:
+- Direct labels and percentages make the chart readable without a legend.
+- The single pie gives a fast qualitative impression of which app surfaces dominate usage.
+- It is placed next to the ARE method discussion, so the dataset context is available before results.
+- **Design weaknesses**:
+- Twelve slices are difficult to compare precisely and the categorical palette is not grayscale-safe.
+- The caption omits the sample/trajectory denominator and the definition of “app usage.”
+- Small perimeter labels compete for space and force the reader to infer close shares from printed values.
+- **Reusable pattern**：Use direct labels for a small application taxonomy only when the chart is contextual; retain a sorted bar chart for precise comparison or more categories.
+- **Evidence**：p.3, Figure 3 on p.3; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 4 — p.5 (experimental_design)
+- **位置/宽度**：main / page_width；**类型**：qualitative_grid；**目的**：experimental_design, dataset, method_interface
+- **复杂度**：5/5；panels=1；series=7; legend_items=0; annotations=21; data_marks_estimate=21
+- **Caption（PDF 原文）**：Figure 4: The seven core agent capabilities evaluated by the splits of Gaia2.
+- **Caption 审计**：13 words；moves=title, setup；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, DejaVuSans, Optimistic-Regular；size=7.0–11.0 pt（median 8.5）；weight=regular, bold；style=roman, monospace；provenance=mixed；confidence=medium
+- **Color**：mode=categorical；count=7；approx HEX=#8EC9F0, #B7A8E8, #EFA2C2, #F1D06B, #76C5A5, #6DC6C8, #A9A9A9；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Each capability row uses a pastel task-card color; row labels and bold prose provide the main identity, while color groups the example task and explanation.
+- **Plot grammar**：rendering=vector; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=1; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=0.8; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Three semantic columns: Capability, Example Task, and Explanation.
+  - **Y**: Seven capability rows ordered from Execution through Agent2Agent/Noise.
+  - **Color**: Pastel row identity and task cards, not a quantitative scale.
+  - **Shape**: Rounded task cards, row bands, bold capability labels, and horizontal rules.
+  - **Line**: Horizontal separators and no vertical grid; no data lines.
+  - **Facet**: Single qualitative grid.
+  - **Text**: Capability names, task prompts, and explanatory definitions for each split.
+- **Data/statistics**：Qualitative taxonomy of seven Gaia2 capability splits: Execution, Search, Ambiguity, Adaptability, Time, Agent2Agent, and Noise. It encodes no scores, sample sizes, or uncertainty.
+- **Evidence relation**：The design grid is the experimental index for Figure 5 and Table 2, which report scores per split. Time, Agent2Agent, and Noise are subsequently expanded by Figures 8–10 and Table 7; the row definitions therefore connect the benchmark design to result slices.
+- **Design strengths**:
+- A fixed three-column structure pairs each capability with an example and an operational explanation.
+- Rows are scannable and use short labels before the detailed task text.
+- The grid acts as a useful lookup key for later split names in the quantitative objects.
+- **Design weaknesses**:
+- Pastel color does not add information beyond row placement and is not grayscale-safe.
+- The caption only names the seven capabilities, so the task semantics require reading the figure body.
+- Long explanation cells create uneven row density and make the bottom rows harder to scan.
+- **Reusable pattern**：Define a benchmark taxonomy with one stable row per capability and a compact example/explanation column before showing per-capability scores.
+- **Evidence**：p.5, Figure 4 on p.5; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 5 — p.7 (results)
+- **位置/宽度**：main / page_width；**类型**：bar；**目的**：main_comparison, experimental_design
+- **复杂度**：5/5；panels=7；series=7; legend_items=8; annotations=24; data_marks_estimate=70
+- **Caption（PDF 原文）**：Figure 5: Gaia2 scores per capability split. Models are reranked independently for each capability, highlighting where they excel or struggle.
+- **Caption 审计**：20 words；moves=title, setup, comparison, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=5.0–9.0 pt（median 6.5）；weight=regular, bold；style=roman；provenance=pdf_object；confidence=high
+- **Color**：mode=categorical；count=8；approx HEX=#2F80ED, #65C2A5, #555555, #E6A06F, #EF4035, #7A24FF, #3514F5, #5B5DEB；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Provider colors identify Meta, OpenAI, xAI, Anthropic, Google, Alibaba, Moonshot AI, and DeepSeek; a star marks the highest reasoning setting used.
+- **Plot grammar**：rendering=vector; x=categorical; y=linear; grid=y; legend=yes (bottom-right of the panel grid); shared_legend=False; direct_labels=True; marker_types=0; line_styles=0; hatching=False; reference_lines=0; uncertainty=error_bar; line_width_pt=0.8; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Independently reranked categorical model names within each capability panel.
+  - **Y**: Pass@1 on a linear 0–100 scale, with horizontal grid lines.
+  - **Color**: Provider identity; bar height encodes score and black caps show the visible spread/error mark.
+  - **Shape**: Rectangular bars, with a star annotation for reasoning models.
+  - **Line**: No data lines; black error-bar caps atop bars.
+  - **Facet**: Seven small bar panels: Execution, Search, Ambiguity, Adaptability, Time, Noise, and Agent2Agent, arranged four over three.
+  - **Text**: Panel titles, rotated model labels, pass@1 axis labels, provider legend, and the reasoning-setting note.
+- **Data/statistics**：Seven capability panels display ten ranked model bars per panel (70 visible marks), with independent reranking. Scores are pass@1; the paper’s Table 2 includes 15 model rows and reports values over three runs, while this compressed figure omits a per-panel uncertainty definition.
+- **Evidence relation**：Figure 4 defines these splits and Table 2 is the full numeric matrix. Figure 5 turns that matrix into an at-a-glance capability profile, motivating Figures 6–8’s cost/time/behavior decompositions and the Agent2Agent ablations in Figures 9–10 and Table 3.
+- **Design strengths**:
+- Small multiples keep the same pass@1 scale while exposing where each model excels or struggles.
+- Independent within-panel ranking makes the best and worst models immediately visible for each capability.
+- Provider colors plus printed model labels support both family-level and model-level reading.
+- **Design weaknesses**:
+- Independent reranking breaks horizontal model alignment across panels, making cross-capability trajectories difficult to follow.
+- Rotated labels and 70 bars are very small at paper scale; the palette is not grayscale-safe.
+- The visible error caps are not defined in the caption, and the figure shows fewer models than the full Table 2 matrix without explaining the selection.
+- **Reusable pattern**：Use shared-scale small multiples for capability slices, but preserve a stable model order or add a companion table when cross-panel comparison is a primary question.
+- **Evidence**：p.7, Figure 5 on p.7; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 6 — p.8 (results)
+- **位置/宽度**：main / page_width；**类型**：scatter, bar；**目的**：efficiency_cost, main_comparison
+- **复杂度**：4/5；panels=2；series=8; legend_items=8; annotations=22; data_marks_estimate=31
+- **Caption（PDF 原文）**：Figure 6: Left: Gaia2 score vs average scenario cost in USD. Right: Time taken per model to successfully solve Gaia2 scenarios compared to Humans.
+- **Caption 审计**：24 words；moves=title, setup, comparison；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=5.5–9.0 pt（median 7.0）；weight=regular, bold；style=roman；provenance=pdf_object；confidence=high
+- **Color**：mode=categorical；count=8；approx HEX=#2F80ED, #65C2A5, #555555, #E6A06F, #EF4035, #7A24FF, #3514F5, #5B5DEB, #178A16；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Provider palette maps model points/bars to families and the green Human bar is a separate reference.
+- **Plot grammar**：rendering=vector; x=linear; y=linear; grid=y; legend=yes (right of time panel); shared_legend=True; direct_labels=True; marker_types=1; line_styles=0; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=0.8; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Left: average scenario cost in USD on a linear scale; right: minutes per successfully solved scenario on a linear scale.
+  - **Y**: Left: overall Gaia2 pass@1; right: categorical model/Human rows.
+  - **Color**: Provider identity, with Human shown in green as a non-model reference.
+  - **Shape**: Left circular model points; right horizontal bars.
+  - **Line**: No trend lines; right bars are solid.
+  - **Facet**: Two side-by-side panels, cost/performance scatter and time-per-solved bar comparison.
+  - **Text**: Direct model labels, axes with USD/minutes, panel titles, and a provider legend.
+- **Data/statistics**：The left panel compares roughly 15 model configurations by overall pass@1 and average scenario cost. The right panel compares the same model set plus Humans by time per successfully solved scenario. No interval, denominator, or human protocol is encoded.
+- **Evidence relation**：This figure operationalizes the abstract budget trade-off in Figure 1 and the overall column of Table 2. It is complemented by Figure 7’s calls/tokens views and Figure 8’s deadline-sensitive Time split; the cost/time evidence motivates cost-normalized reporting in the conclusion.
+- **Design strengths**:
+- The paired panels place quality, monetary cost, and operational time on one deployment-oriented decision surface.
+- Direct labels reduce lookup cost for the scatter and the shared provider legend supports family comparisons.
+- The Human bar makes the otherwise model-only benchmark legible against an external task-completion reference.
+- **Design weaknesses**:
+- The right panel has no uncertainty or sample-size encoding, even though “successfully solved” conditions can vary by model.
+- Provider color is not grayscale-safe and the legend is detached from the scatter labels.
+- Different mark grammars and x/y orientations require a caption-level explanation of which direction is desirable.
+- **Reusable pattern**：Pair a cost/performance scatter with a horizontal operational-time comparison when deployment constraints are part of the claim, keeping units in both axes.
+- **Evidence**：p.8, Figure 6 on p.8; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 7 — p.8 (results)
+- **位置/宽度**：main / page_width；**类型**：scatter；**目的**：mechanism, efficiency_cost, main_comparison
+- **复杂度**：3/5；panels=2；series=8; legend_items=0; annotations=18; data_marks_estimate=30
+- **Caption（PDF 原文）**：Figure 7: Left: Gaia2 pass@1 versus average model calls per scenario. The performance of models is highly correlated to the number of tool calls, emphasizing the importance of exploration. Right: Gaia2 pass@1 score versus average output tokens per scenario (log scale). Claude 4 Sonnet, while costing a lot exists beyond the Pareto frontier.
+- **Caption 审计**：55 words；moves=title, setup, encoding_key, comparison, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=5.5–9.0 pt（median 7.0）；weight=regular, bold；style=roman；provenance=pdf_object；confidence=high
+- **Color**：mode=categorical；count=8；approx HEX=#2F80ED, #65C2A5, #555555, #E6A06F, #EF4035, #7A24FF, #3514F5, #5B5DEB；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Provider colors are reused for the model points; direct labels name each model and therefore partially duplicate color.
+- **Plot grammar**：rendering=vector; x=unknown; y=linear; grid=y; legend=no (—); shared_legend=False; direct_labels=True; marker_types=1; line_styles=0; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=0.8; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Left average LLM calls per scenario on a linear scale; right average output tokens per scenario on a logarithmic scale.
+  - **Y**: Overall Gaia2 pass@1 on a linear scale in both panels.
+  - **Color**: Provider/model identity through the shared categorical palette.
+  - **Shape**: Circular model points with direct labels.
+  - **Line**: No fitted or Pareto boundary line is drawn.
+  - **Facet**: Two side-by-side driver panels: calls and output tokens.
+  - **Text**: Direct model labels, call/token units, log-scale note, and panel titles.
+- **Data/statistics**：Approximately 15 model points are shown in each panel. The figure relates overall pass@1 to average model calls and average output tokens per scenario; the caption states a correlation and a Pareto-frontier interpretation but reports no coefficient, denominator, or uncertainty.
+- **Evidence relation**：Figure 7 decomposes the efficiency/cost relation from Figures 1 and 6 into exploration (calls) and verbosity (tokens). The observations lead into the Time and Agent2Agent sections, where orchestration and collaboration are tested directly in Figures 8–10.
+- **Design strengths**:
+- The two scatter panels use a common outcome axis, making behavioral drivers comparable.
+- The log token axis accommodates orders-of-magnitude differences without compressing high-output models.
+- Direct labels make outliers such as Claude 4 Sonnet visible without a legend search.
+- **Design weaknesses**:
+- No fitted trend, reference frontier, or explicit statistical summary is drawn despite the caption’s correlation/frontier language.
+- Direct labels overlap in the low-score region and the provider palette is not grayscale-safe.
+- The caption does not state whether calls/tokens are averaged over successful, all, or fixed-budget scenarios.
+- **Reusable pattern**：Use matched driver scatters with one shared outcome axis and a log transform only where the unit range demands it; annotate any claimed frontier explicitly.
+- **Evidence**：p.8, Figure 7 on p.8; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 8 — p.9 (results)
+- **位置/宽度**：main / page_width；**类型**：bar, scatter；**目的**：main_comparison, efficiency_cost, mechanism
+- **复杂度**：4/5；panels=2；series=2; legend_items=2; annotations=16; data_marks_estimate=12
+- **Caption（PDF 原文）**：Figure 8: Left: Pass@1 on Gaia2-Time in default vs. instant. Right: Inverse scaling on Time—reasoning-heavy models are slower and miss deadlines.
+- **Caption 审计**：23 words；moves=title, setup, encoding_key, comparison, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=5.5–9.0 pt（median 7.0）；weight=regular, bold；style=roman；provenance=pdf_object；confidence=high
+- **Color**：mode=mixed；count=4；approx HEX=#BFDCCF, #E5A275, #A9A9A9, #6EC4B2；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Left uses filled/full bars for Instant versus Default time mode and provider/model accents; right uses a single teal point color for GPT models.
+- **Plot grammar**：rendering=vector; x=linear; y=linear; grid=y; legend=yes (upper center of left panel); shared_legend=False; direct_labels=True; marker_types=1; line_styles=0; hatching=False; reference_lines=0; uncertainty=error_bar; line_width_pt=0.8; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Left time pass@1 on a linear 0–35 scale; right Execution pass@1 on x and Time pass@1 on y, both linear.
+  - **Y**: Left categorical model rows; right Time pass@1.
+  - **Color**: Mode and model accents distinguish Instant/full bars from Default/filled portions and the GPT-model points.
+  - **Shape**: Horizontal bars with caps on the left and labeled circular points on the right.
+  - **Line**: No trend line; black interval caps on left bars.
+  - **Facet**: Two panels: default-versus-instant bars and GPT-model inverse-scaling scatter.
+  - **Text**: Mode legend, direct bar values, model labels, axes with pass@1, and the “temporal responsiveness” y-axis wording.
+- **Data/statistics**：The left panel compares eight models under default and instant generation latency, with visible error caps and printed values. The right panel plots four GPT-model points to show lower Time pass@1 at higher Execution pass@1. The caption does not define the error bars or denominator.
+- **Evidence relation**：Figure 8 makes the time bottleneck in Figure 6 explicit and links the Execution and Time rows introduced in Figures 4–5/Table 2. Table 6’s parallel-tool-calling ablation and Figure 18’s pre/post ReAct hooks test alternative orchestration responses to this mechanism.
+- **Design strengths**:
+- The mode comparison and inverse-scaling panel directly align an intervention (remove generation latency) with the observed failure pattern.
+- Printed values and a legend make the bar contrast readable without estimating lengths.
+- The shared pass@1 terminology connects the visual to Table 2 and the capability taxonomy.
+- **Design weaknesses**:
+- The left panel overlays two modes with a visual fill convention that is easy to misread at small size.
+- Error bars are visible but undefined, and the right scatter has only four points with no uncertainty.
+- The truncated/categorical model axis and mixed panel orientations require careful caption reading.
+- **Reusable pattern**：Show a latency intervention beside the resulting quality-versus-speed relationship; use explicit mode swatches and define the interval statistic in the caption.
+- **Evidence**：p.9, Figure 8 on p.9; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 9 — p.9 (ablation)
+- **位置/宽度**：main / page_width；**类型**：conceptual_diagram, bar；**目的**：mechanism, ablation, qualitative_evidence
+- **复杂度**：4/5；panels=2；series=3; legend_items=3; annotations=14; data_marks_estimate=6
+- **Caption（PDF 原文）**：Figure 9: Agent2Agent tests whether LLM agents can collaborate through message passing in order to solve Gaia2 tasks via sub-task decomposition. For lighter-weight LLMs, collaboration in Agent2Agent results in a lower incidence of tool call errors. Left: Sample exchange between Llama 4 Maverick main vs app agent in an Agent2Agent scenario. Right: Frequency of errors per tool call (lower is better) on Gaia-2 mini for Llama 4 Maverick and Claude 4 Sonnet.
+- **Caption 审计**：72 words；moves=title, setup, encoding_key, comparison, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu, NimbusMonL-Regu；size=5.5–10.0 pt（median 7.0）；weight=regular, bold；style=roman, monospace；provenance=mixed；confidence=medium
+- **Color**：mode=mixed；count=5；approx HEX=#C9DDF7, #B5D2F2, #BDBDBD, #8AC0EF, #4A98EA；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Light blue message bubbles distinguish the qualitative exchange, while gray/light-blue/blue bars encode r=0, r=.5, and r=1 in the error-frequency panel.
+- **Plot grammar**：rendering=raster; x=categorical; y=linear; grid=y; legend=yes (right of bar panel); shared_legend=False; direct_labels=True; marker_types=0; line_styles=0; hatching=False; reference_lines=0; uncertainty=error_bar; line_width_pt=0.9; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Right panel: two categorical model groups, each containing collaboration ratios r=0, 0.5, and 1.0.
+  - **Y**: Right panel frequency of tool-call errors (%) on a linear 0–6 scale; left panel has no axes.
+  - **Color**: Message-role bubbles on the left and collaboration ratio on the right.
+  - **Shape**: Speech/message bubbles and grouped bars with black error caps.
+  - **Line**: No trend lines; arrows in the message exchange indicate direction.
+  - **Facet**: Left qualitative main-agent/app-agent exchange and right quantitative error-frequency chart.
+  - **Text**: JSON-like task/action text, role labels, ratio legend, model names, and “lower is better” framing in the caption.
+- **Data/statistics**：The left half is one illustrative Llama 4 Maverick message exchange. The right half has six bars (two models×three Agent2Agent ratios) with error caps and reports tool-call error frequency; the caption does not give the run count or interval definition.
+- **Evidence relation**：This object introduces the message-passing mechanism and the operational-stability outcome for the Agent2Agent section. Figure 10 tests pass@k/token scaling with the same ratio r, while Table 3 tests heterogeneous main/app pairings.
+- **Design strengths**:
+- The qualitative exchange grounds the otherwise abstract ratio variable in a concrete tool interaction.
+- The adjacent grouped bars connect collaboration to a measurable failure mode and preserve a lower-is-better direction.
+- The caption explicitly assigns left/right roles and states the main lighter-model trend.
+- **Design weaknesses**:
+- The composite mixes a screenshot-like message example and a quantitative chart at a small scale, creating unequal visual density.
+- Color is the only treatment key for the three ratios and is not grayscale-safe.
+- The denominator for “frequency of errors per tool call” and the uncertainty statistic are omitted.
+- **Reusable pattern**：Pair a minimal protocol trace with a small outcome chart when introducing a systems mechanism, but keep the quantitative denominator and error semantics adjacent.
+- **Evidence**：p.9, Figure 9 on p.9; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 10 — p.10 (ablation)
+- **位置/宽度**：main / page_width；**类型**：line；**目的**：ablation, main_comparison, efficiency_cost
+- **复杂度**：4/5；panels=2；series=3; legend_items=3; annotations=8; data_marks_estimate=48
+- **Caption（PDF 原文）**：Figure 10: Increasing the number of multi-agent collaborators in Gaia2 scenarios by increasing the Agent2Agent ratio “r” improves pass@k scaling laws for Llama 4 Maverick, but does not improve token cost vs score tradeoffs with repeated sampling for Claude 4 Sonnet.
+- **Caption 审计**：42 words；moves=title, setup, encoding_key, comparison, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=5.5–9.0 pt（median 7.0）；weight=regular, bold；style=roman；provenance=pdf_object；confidence=high
+- **Color**：mode=categorical；count=3；approx HEX=#2F9BF4, #9BCDF4, #B5B5B5；redundant=True；grayscale_safe=False；provenance=rendered_estimate；The three line colors encode Agent2Agent ratio r=1.0, r=0.5, and r=0.0; translucent bands repeat each series’ spread.
+- **Plot grammar**：rendering=vector; x=log; y=linear; grid=y; legend=yes (bottom center below both panels); shared_legend=True; direct_labels=False; marker_types=1; line_styles=1; hatching=False; reference_lines=0; uncertainty=band; line_width_pt=1.0; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Total tokens per scenario on a logarithmic 100K–10M scale.
+  - **Y**: Pass@k on a linear scale, with separate ranges for Llama 4 Maverick and Claude 4 Sonnet.
+  - **Color**: Agent2Agent ratio r=1.0/full, r=0.5/partial, and r=0.0/single agent.
+  - **Shape**: Circular markers connected by solid lines.
+  - **Line**: Solid lines for each ratio with translucent bands; shared legend beneath the panels.
+  - **Facet**: Two model panels, Llama 4 Maverick left and Claude 4 Sonnet right.
+  - **Text**: Panel model labels, ratio legend, total-token axis, pass@k labels, and log-scale note.
+- **Data/statistics**：Two model panels show three ratio series over repeated-sampling token budgets, with roughly eight points per series and visible bands. The caption states that increasing r improves Llama scaling but not Claude’s token-cost/score trade-off; the band statistic and repeated-sampling denominator are not defined.
+- **Evidence relation**：Figure 10 is the main Agent2Agent scaling ablation following Figure 9’s error mechanism. Table 3 adds cross-model pairings, while Figure 19 reports spawned-agent counts; together they connect collaboration ratio, team composition, and compute scaling.
+- **Design strengths**:
+- A shared x-axis concept and common ratio legend make the two model responses directly comparable.
+- Log token scaling makes the cost of repeated sampling visible over a broad range.
+- The caption states the asymmetric main finding rather than implying universal collaboration gains.
+- **Design weaknesses**:
+- The bands are prominent but have no uncertainty definition, and the panel y-ranges differ enough to complicate absolute comparison.
+- Three close blue/gray colors are not grayscale-safe and the legend is separated from the line endpoints.
+- The caption does not define pass@k, the sampling unit, or whether token cost includes all agents.
+- **Reusable pattern**：Use paired log-budget scaling panels with a shared intervention legend when a mechanism is expected to be model-dependent; define band semantics and cost accounting in the caption.
+- **Evidence**：p.10, Figure 10 on p.10; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 11 — p.17 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：network, tree, conceptual_diagram；**目的**：method_interface, theory_mechanism, reproduction
+- **复杂度**：4/5；panels=1；series=4; legend_items=0; annotations=14; data_marks_estimate=10
+- **Caption（PDF 原文）**：Figure 11: Event dependency graph illustrating ARE scheduling patterns. Events E1 and E5 execute in parallel after simulation start, and E2/E3 executing in parallel after their prerequisites, both need to be executed for E4 to execute. Conditional execution is shown through Cond1 leading to validation (Val) with true/false outcomes.
+- **Caption 审计**：51 words；moves=title, setup, encoding_key；headline_bold=False；self_contained=False；main_finding_stated=False
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=6.0–11.0 pt（median 8.0）；weight=regular, bold；style=roman；provenance=rendered_estimate；confidence=medium
+- **Color**：mode=categorical；count=4；approx HEX=#2D90E5, #8C969E, #69BE62, #E83B3B；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Blue/gray nodes encode event states, while green check and red cross encode true/false validation outcomes; labels and node shapes provide redundancy.
+- **Plot grammar**：rendering=raster; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=3; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=1.2; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Left-to-right dependency order from start through E1/E5, E2/E3, E4, and conditional validation.
+  - **Y**: Vertical placement separates parallel branches and the conditional outcome path.
+  - **Color**: Event state and validation outcome roles.
+  - **Shape**: Rounded event boxes, a diamond validation node, and check/cross outcome icons.
+  - **Line**: Solid arrows for dependencies and dashed arrows for conditional/parallel relations.
+  - **Facet**: Single event-DAG panel.
+  - **Text**: start, E1–E5, Cond1, Val, True, False, and arrow direction.
+- **Data/statistics**：Conceptual event dependency graph with approximately ten labeled nodes and explicit parallel branches, prerequisite joins, conditional validation, and true/false outputs. No quantitative data are shown.
+- **Evidence relation**：This appendix object expands Figure 2’s event-loop architecture into a concrete scheduling grammar. Figure 12 applies it to multi-turn execution; Figure 16 inserts a conditional trigger; Figure 14 shows the corresponding DAG in the UI.
+- **Design strengths**:
+- Parallel branches, join prerequisites, and conditional outcomes are visible in one compact graph.
+- Node labels and shapes remain interpretable without relying solely on color.
+- The diagram is directly usable as a mental model for the scenario runtime described in the surrounding text.
+- **Design weaknesses**:
+- Dashed versus solid arrow semantics are not explained in the caption.
+- The raster export and small labels limit zoom-free reading; color outcomes are not grayscale-safe.
+- The graph is illustrative and does not identify which concrete Gaia2 scenario generated it.
+- **Reusable pattern**：Show asynchronous benchmark semantics with explicit parallel branches, join conditions, and a separate conditional validation node rather than a generic sequential flowchart.
+- **Evidence**：p.17, Figure 11 on p.17; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 12 — p.18 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：conceptual_diagram, other；**目的**：method_interface, theory_mechanism, reproduction
+- **复杂度**：5/5；panels=1；series=5; legend_items=0; annotations=24; data_marks_estimate=20
+- **Caption（PDF 原文）**：Figure 12: Sequence diagram of a multi-turn scenario in ARE. The agent is paused between turns, i.e., between calling send message to user and receiving send message to agent, and adapts its strategy in response to an asynchronous notification from the environment, a new email.
+- **Caption 审计**：46 words；moves=title, setup, encoding_key, main_finding；headline_bold=False；self_contained=False；main_finding_stated=False
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu, NimbusMonL-Regu；size=5.5–10.0 pt（median 7.5）；weight=regular, bold；style=roman, monospace；provenance=rendered_estimate；confidence=medium
+- **Color**：mode=categorical；count=5；approx HEX=#B8E6B8, #77C4F2, #F3D36D, #F09A3E, #E88B8B；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Lifeline and state colors separate User, Environment, and Agent activity; green/yellow/red blocks indicate running, paused, and terminated states, and orange marks the asynchronous email.
+- **Plot grammar**：rendering=raster; x=none; y=time; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=3; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=1.0; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Three lifelines arranged User, Environment, Agent from left to right.
+  - **Y**: Top-to-bottom temporal sequence across two turns, including a pause and asynchronous notification.
+  - **Color**: Actor lifelines and execution-state annotations.
+  - **Shape**: Lifelines, activation bars, directional message arrows, and labeled state boxes.
+  - **Line**: Horizontal call/observation arrows and vertical dotted lifelines.
+  - **Facet**: One sequence diagram with turn boundary and validation annotations.
+  - **Text**: AUI/tool names, observations, Agent Running/Paused/Terminated, Validation, and Notification new Email labels.
+- **Data/statistics**：A concrete two-turn scenario trace: user notification, agent tool calls and observations, user follow-up, an asynchronous new-email event, resumed execution, and final validation. It encodes order and pause state but no duration values.
+- **Evidence relation**：Figure 12 instantiates the event and notification semantics from Figures 2 and 11 and the scenario taxonomy in Figure 4. It is the appendix mechanism behind the Time/Adaptability claims and supports Figure 16’s conditional-trigger design.
+- **Design strengths**:
+- Lifelines and explicit state labels make pause/resume behavior more concrete than a prose-only description.
+- The orange asynchronous notification is visually distinct from the regular request/response arrows.
+- Tool names are retained in monospaced text, preserving the implementation interface.
+- **Design weaknesses**:
+- Many arrows and labels create a dense vertical trace; small tool names are hard to read at paper scale.
+- The caption does not specify the exact turn boundary, event timing, or validation condition.
+- Color-state semantics are not fully redundant in grayscale.
+- **Reusable pattern**：Use a sequence diagram with explicit environment notifications and agent state blocks to communicate asynchronous multi-turn execution; label the pause boundary as a first-class event.
+- **Evidence**：p.18, Figure 12 on p.18; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 13 — p.19 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：tree, network；**目的**：method_interface, dataset, reproduction
+- **复杂度**：4/5；panels=1；series=2; legend_items=0; annotations=14; data_marks_estimate=11
+- **Caption（PDF 原文）**：Figure 13: The dependency graph of Mobile apps. Shopping and File system are independent apps. Contacts is the root for rest of the apps.
+- **Caption 审计**：24 words；moves=title, setup, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=6.0–11.0 pt（median 8.0）；weight=regular, bold；style=roman；provenance=rendered_estimate；confidence=medium
+- **Color**：mode=categorical；count=2；approx HEX=#2D90E5, #8C969E；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Blue marks Seed and Persona Generation, while gray marks Mobile apps; node labels redundantly identify every app.
+- **Plot grammar**：rendering=raster; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=2; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=1.1; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Dependency depth from Seed/Persona Generation to Contacts and downstream apps.
+  - **Y**: Rows separate the root/dependent app tier from independent Shopping/Files and the CityApp leaf.
+  - **Color**: Generation-stage versus app-node role.
+  - **Shape**: Rounded boxes and directed arrows.
+  - **Line**: Solid dependency arrows; no quantitative line encoding.
+  - **Facet**: Single Mobile dependency graph.
+  - **Text**: Seed, Persona Generation, Contacts, Shopping, Chats, Messages, Calendar, RentAFlat, Cab, Files, and CityApp labels.
+- **Data/statistics**：Directed Mobile app dependency graph with about eleven nodes. Contacts is the root for most downstream apps; Shopping and Files are independent; RentAFlat leads to CityApp. No frequencies or uncertainty are shown.
+- **Evidence relation**：The graph expands Figure 3’s Mobile application context into the generation dependency mechanism. Table 4’s notification policies and Figure 12’s email scenario depend on these app relationships; the surrounding appendix text explicitly notes remaining cross-app consistency gaps.
+- **Design strengths**:
+- Root, independent components, and downstream dependencies are immediately visible through topology.
+- Direct labels avoid a separate legend and make the graph usable as implementation documentation.
+- The sparse layout leaves enough whitespace to distinguish independent apps from Contacts descendants.
+- **Design weaknesses**:
+- The caption says “root for rest” while Shopping and Files are exceptions; this is understandable but not fully formal.
+- The raster diagram does not encode dependency type or priority beyond arrows and position.
+- Color adds little beyond node role and is not grayscale-safe.
+- **Reusable pattern**：Represent synthetic-universe generation as a dependency tree with explicit independent branches and a named root, then pair it with a written consistency policy.
+- **Evidence**：p.19, Figure 13 on p.19; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 14 — p.21 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：screenshot；**目的**：method_interface, reproduction, qualitative_evidence
+- **复杂度**：5/5；panels=3；series=6; legend_items=0; annotations=30; data_marks_estimate=None
+- **Caption（PDF 原文）**：Figure 14: ARE scenario view with event DAG (top), scenario run (bottom left) and agent logs (bottom right).
+- **Caption 审计**：18 words；moves=title, setup, encoding_key；headline_bold=False；self_contained=False；main_finding_stated=False
+- **Typography**：family=DejaVuSans, NimbusMonL-Regu；size=5.0–10.0 pt（median 7.0）；weight=regular, bold；style=roman, monospace；provenance=rendered_estimate；confidence=low
+- **Color**：mode=mixed；count=6；approx HEX=#252525, #53215B, #1E6D92, #216B61, #A43B8A, #B8B8B8；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Dark UI chrome separates the event DAG, run panel, and logs; purple/teal/blue cards indicate event/app/log categories and gray controls provide interface chrome.
+- **Plot grammar**：rendering=raster; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=0; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=None; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Three UI regions: wide event DAG at top, scenario run at bottom left, and agent logs at bottom right, plus a navigation sidebar.
+  - **Y**: Vertical composition separates design-time graph from execution-time run/log views.
+  - **Color**: UI state/category and panel hierarchy, not numeric data.
+  - **Shape**: Cards, panels, tree nodes, buttons, and log entries.
+  - **Line**: DAG edges and UI separators; no quantitative lines.
+  - **Facet**: Top DAG plus two bottom panes in a single screenshot.
+  - **Text**: App sidebar, event labels, run transcript, logs, controls, and panel titles.
+- **Data/statistics**：Product screenshot illustrating ARE’s scenario workspace. It encodes no statistical quantities; the visual evidence is interface affordance, event inspection, replay/run monitoring, and detailed agent log access.
+- **Evidence relation**：Figure 14 is the UI realization of Figure 2’s logging/control architecture and Figure 11’s event graph. It supports the reproduction claim by showing how scenario construction, execution, and trace inspection are co-located; Figures 15–18 then document verifier and orchestration internals.
+- **Design strengths**:
+- The screenshot demonstrates the three operational views named in the caption and preserves their spatial relationship.
+- A real UI state makes the zero-code scenario annotation and trace-analysis claims concrete.
+- Dark chrome and bright cards create hierarchy between workspace and content.
+- **Design weaknesses**:
+- The screenshot is text-dense and most labels are unreadable at the paper’s display size.
+- The caption does not identify the app/task or state shown, so the evidence is difficult to reproduce from the image alone.
+- Color and dark-mode contrast are tied to the product theme rather than an accessible data legend.
+- **Reusable pattern**：For tool-driven benchmark infrastructure, show one workspace screenshot that visibly joins scenario graph, run transcript, and inspectable logs; annotate the concrete task and UI state in the caption.
+- **Evidence**：p.21, Figure 14 on p.21; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 15 — p.27 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：qualitative_grid, conceptual_diagram；**目的**：method_interface, failure, qualitative_evidence
+- **复杂度**：5/5；panels=1；series=5; legend_items=0; annotations=26; data_marks_estimate=27
+- **Caption（PDF 原文）**：Figure 15: Illustration of a failure (top) and a success (down) of the matching trajectory process.
+- **Caption 审计**：16 words；moves=title, setup, comparison；headline_bold=False；self_contained=False；main_finding_stated=False
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=6.0–11.0 pt（median 8.0）；weight=regular, bold；style=roman；provenance=rendered_estimate；confidence=medium
+- **Color**：mode=categorical；count=5；approx HEX=#2D90E5, #FFAE00, #67C46A, #EA4A4A, #A9B0B7；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Blue Agent actions, orange Oracle actions, green matching/success, red mismatch/failure, and gray grouping boxes encode the trajectory-matching process.
+- **Plot grammar**：rendering=raster; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=3; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=1.0; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Left oracle graph and three matching-attempt columns read left-to-right.
+  - **Y**: Trace 1 success is above Trace 2 failure; each trace contains Agent and Oracle action sequences.
+  - **Color**: Action role and match outcome.
+  - **Shape**: Rounded action nodes, trace containers, attempt headers, and success/failure pills.
+  - **Line**: Vertical sequence arrows and colored cross-trace matching arrows.
+  - **Facet**: Oracle graph plus Trace 1/Trace 2 qualitative rows with three attempts.
+  - **Text**: Oracle/Agent Action labels, Matching Attempt 1–3, Trace labels, and Success/Failure outcomes.
+- **Data/statistics**：Qualitative illustration of trajectory matching: an oracle action graph is compared against agent traces over three matching attempts, with a successful top trace and failed lower trace. No counts or probabilities are encoded.
+- **Evidence relation**：This is the principal visual explanation of the ARE Verifier mechanism behind Tables 1 and 5. It connects Figure 11’s dependency constraints to action-level matching, causality, timing, and failure semantics discussed in Appendix B.2.
+- **Design strengths**:
+- The paired success/failure rows make the verifier’s acceptance boundary concrete.
+- Oracle and Agent roles use both color and labels, and the attempt columns expose matching order.
+- The compact visual supports the paper’s distinction between trajectory/action verification and final-state comparison.
+- **Design weaknesses**:
+- The dense arrow routing is difficult to follow without the surrounding verifier prose.
+- The caption only says failure/success and does not define what constitutes a match or why Trace 2 fails.
+- Color is not grayscale-safe and the raster export limits inspection of the small action labels.
+- **Reusable pattern**：Explain a sequence verifier with an oracle row, candidate trace rows, explicit matching attempts, and terminal success/failure badges rather than only a final-state diff.
+- **Evidence**：p.27, Figure 15 on p.27; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 16 — p.28 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：conceptual_diagram, tree；**目的**：method_interface, theory_mechanism, reproduction
+- **复杂度**：4/5；panels=4；series=3; legend_items=0; annotations=20; data_marks_estimate=20
+- **Caption（PDF 原文）**：Figure 16: Insertion of a conditional trigger event in a multi-turn scenario.
+- **Caption 审计**：12 words；moves=title, setup；headline_bold=False；self_contained=False；main_finding_stated=False
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=6.0–10.0 pt（median 8.0）；weight=regular, bold；style=roman；provenance=rendered_estimate；confidence=medium
+- **Color**：mode=categorical；count=4；approx HEX=#9ED2F5, #F2A4A4, #D9A1EC, #6E6E6E；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Blue nodes denote agent actions/messages, pink nodes denote user actions, purple denotes the inserted Trigger, and gray/black arrows denote graph structure.
+- **Plot grammar**：rendering=raster; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=2; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=0.9; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Within each mini-diagram, directed event order flows left-to-right or top-to-bottom.
+  - **Y**: Top row shows the original two-turn graph; bottom row shows the modified graph with Trigger before Turn 2.
+  - **Color**: Agent/user/trigger event role.
+  - **Shape**: Circular action/message nodes and a rounded Trigger node.
+  - **Line**: Directed arrows between events and turn boundary arrows.
+  - **Facet**: Four mini-diagrams arranged as original Turn 1/Turn 2 above modified Turn 1/Turn 2 below.
+  - **Text**: User Action, Agent Action, Agent Message, Trigger, Turn 1, and Turn 2 labels.
+- **Data/statistics**：Conceptual before/after graph for inserting a conditional verifier trigger into a multi-turn scenario. It encodes event order and turn partitioning, not measured values.
+- **Evidence relation**：Figure 16 operationalizes the multi-turn validation strategy introduced by Figure 12 and Figure 11’s conditional events. It explains how the verifier is called between turns and supports the online/offline validation discussion in Appendix B.2.2.
+- **Design strengths**:
+- The four mini-diagrams make the before/after insertion operation visible without a long graph rewrite.
+- Turn labels and explicit Trigger node identify the execution boundary that matters for validation.
+- Color and node labels distinguish actor roles and the new control event.
+- **Design weaknesses**:
+- The caption does not state where the trigger is evaluated or what condition it checks.
+- Repeated mini-diagrams consume space while leaving arrow semantics implicit.
+- The pastel palette is not grayscale-safe and labels become tiny in the composite.
+- **Reusable pattern**：Show a control-flow modification as aligned before/after mini-graphs with stable event labels and one visually salient inserted node.
+- **Evidence**：p.28, Figure 16 on p.28; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 17 — p.29 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：screenshot, qualitative_grid；**目的**：failure, qualitative_evidence, method_interface
+- **复杂度**：3/5；panels=1；series=1; legend_items=0; annotations=12; data_marks_estimate=None
+- **Caption（PDF 原文）**：Figure 17: An example of an agent exploiting the judge by embedding conditional logic in the message to the user. The message contains no meaningful information but successfully passes the judge’s evaluation.
+- **Caption 审计**：33 words；moves=title, setup, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=NimbusRomNo9L-Regu, NimbusMonL-Regu, Optimistic-Regular；size=6.0–11.0 pt（median 8.0）；weight=regular, bold；style=roman, monospace；provenance=pdf_object；confidence=high
+- **Color**：mode=grayscale；count=0；approx HEX=—；redundant=True；grayscale_safe=True；provenance=rendered_estimate；Light-gray code/message panel and black text encode the exploit; no color channel carries a data variable.
+- **Plot grammar**：rendering=vector; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=0; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=0.8; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: No quantitative x-axis; the message/code block is read top-to-bottom.
+  - **Y**: No quantitative y-axis; vertical order separates Thought, Action, and the conditional content.
+  - **Color**: None; grayscale code/message styling.
+  - **Shape**: Rounded light-gray container with bold section labels and monospaced code.
+  - **Line**: No data lines.
+  - **Facet**: Single qualitative exploit panel.
+  - **Text**: Thought, Action, JSON keys, conditional template statements, and the embedded user message.
+- **Data/statistics**：Qualitative verifier-hacking example: an agent embeds conditional logic in a user-facing message so that the message contains no meaningful information yet passes the judge. It shows no frequency or success-rate measurement.
+- **Evidence relation**：Figure 17 is the failure-mode evidence motivating the “style” soft check and verifier hardening in Appendix B.2.3. Tables 1 and 5 quantify verifier agreement/precision/recall, while Figure 15 explains the intended matching semantics being exploited.
+- **Design strengths**:
+- The full code-like payload preserves the concrete exploit mechanism instead of reducing it to a schematic.
+- Monospaced formatting separates executable/template content from prose labels.
+- The caption explicitly states the semantic failure and successful judge outcome.
+- **Design weaknesses**:
+- The long code block is difficult to read at paper scale and requires surrounding prose to identify which conditional branch is harmful.
+- There is no side annotation pointing to the judge-sensitive portion of the message.
+- The figure demonstrates possibility but provides no prevalence or quantitative severity.
+- **Reusable pattern**：For a qualitative failure mode, show the minimal concrete payload in a monospaced container and state the false-positive consequence in the caption.
+- **Evidence**：p.29, Figure 17 on p.29; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 18 — p.30 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：architecture, pipeline, conceptual_diagram；**目的**：method_interface, ablation, reproduction
+- **复杂度**：4/5；panels=2；series=4; legend_items=0; annotations=16; data_marks_estimate=6
+- **Caption（PDF 原文）**：Figure 18: Proposed ReAct loop with pre/post steps in Gaia2, allowing flexible behaviors.
+- **Caption 审计**：14 words；moves=title, setup, encoding_key；headline_bold=False；self_contained=False；main_finding_stated=False
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=6.0–11.0 pt（median 8.0）；weight=regular, bold；style=roman；provenance=rendered_estimate；confidence=medium
+- **Color**：mode=categorical；count=5；approx HEX=#5E42D0, #3D82EA, #5BC8BC, #718095, #A8B0BC；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Purple/blue/teal boxes identify pre-step, core step, and post-step layers; gray boxes expand the standard ReAct iteration and blue dashed lines mark the zoom relation.
+- **Plot grammar**：rendering=raster; x=none; y=none; grid=none; legend=no (—); shared_legend=False; direct_labels=True; marker_types=None; line_styles=3; hatching=False; reference_lines=0; uncertainty=none; line_width_pt=1.1; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Left full ReAct step is connected by a zoom relation to the right standard ReAct iteration.
+  - **Y**: Vertical order is Pre Steps → Step → Post Steps on the left and Build history → Generate output → Execute tool/log on the right.
+  - **Color**: Stage role and zoomed execution substeps.
+  - **Shape**: Nested panels, rounded process boxes, arrows, magnifying-glass icon, and dashed zoom connectors.
+  - **Line**: Solid process arrows and dashed zoom/return connectors.
+  - **Facet**: Two linked architecture views.
+  - **Text**: Full ReAct Step, Pre Steps, Step, Post Steps, One standard ReAct Iter, and three standard iteration labels.
+- **Data/statistics**：Conceptual orchestration diagram showing configurable pre/post hooks around a standard ReAct step and the three internal substeps of history construction, LLM generation, and tool/log execution. No numeric data are encoded.
+- **Evidence relation**：Figure 18 explains the scaffold used for all main results and the intervention tested in Table 6. It links Figure 2’s environment interface to the implementation-level ReAct loop and frames parallel-tool-calling as a scaffold ablation.
+- **Design strengths**:
+- The zoom metaphor connects a high-level reusable step to its concrete implementation sequence.
+- Pre, core, and post stages are visually separated and arrow direction is easy to read.
+- The figure gives a compact reusable abstraction for the model-agnostic scaffold described in the appendix.
+- **Design weaknesses**:
+- The caption does not define what pre/post methods observe or how they affect termination.
+- Dashed zoom connectors and return arrows require interpretation from the surrounding paragraph.
+- The raster export makes small process labels difficult to inspect.
+- **Reusable pattern**：Present orchestration as a reusable outer step with a zoomed inner standard iteration, using consistent stage colors and explicit hook boundaries.
+- **Evidence**：p.30, Figure 18 on p.30; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Figure 19 — p.32 (appendix)
+- **位置/宽度**：appendix / page_width；**类型**：bar；**目的**：main_comparison, mechanism, efficiency_cost
+- **复杂度**：3/5；panels=1；series=7; legend_items=0; annotations=14; data_marks_estimate=11
+- **Caption（PDF 原文）**：Figure 19: Average number of agents spawned in Agent2Agent evaluations on Gaia2-mini tasks across models. In any Agent2Agent scenario, main-agents can (in principle) spawn an unlimited number of app-agents before scenario timeout. In practice, behavior in Agent2Agent settings is relatively consistent across model families.
+- **Caption 审计**：44 words；moves=title, setup, comparison, main_finding；headline_bold=False；self_contained=True；main_finding_stated=True
+- **Typography**：family=DejaVuSans, NimbusRomNo9L-Regu；size=5.5–9.0 pt（median 7.0）；weight=regular, bold；style=roman；provenance=pdf_object；confidence=high
+- **Color**：mode=categorical；count=7；approx HEX=#EF4035, #E6A06F, #65C2A5, #3514F5, #2F80ED, #7A24FF, #555555；redundant=True；grayscale_safe=False；provenance=rendered_estimate；Provider colors identify the model families; the direct x-axis labels name all eleven models and black caps show visible variability.
+- **Plot grammar**：rendering=vector; x=categorical; y=linear; grid=y; legend=no (—); shared_legend=False; direct_labels=True; marker_types=0; line_styles=0; hatching=False; reference_lines=0; uncertainty=error_bar; line_width_pt=0.9; provenance=rendered_estimate
+- **Encodings**:
+  - **X**: Categorical model names ordered by average spawned collaborators.
+  - **Y**: Average spawned LLM agent instances per Gaia2-Mini scenario; the visible axis is truncated to roughly 2.6–4.0.
+  - **Color**: Provider/model family.
+  - **Shape**: Vertical bars with black error caps.
+  - **Line**: No trend or reference line.
+  - **Facet**: Single bar panel.
+  - **Text**: Eleven model labels, title with r=1, y-axis unit, and direct categorical names.
+- **Data/statistics**：Eleven model bars report average app-agent collaborators in Agent2Agent evaluations at r=1, with black error caps. The caption states that main agents can in principle spawn unlimited app-agents but observed behavior is relatively consistent; the uncertainty statistic and scenario denominator are not defined.
+- **Evidence relation**：Figure 19 complements Figure 10’s ratio/token scaling and Figure 9’s collaboration mechanism by showing realized team size. It provides an appendix check on whether top A2A behavior is simply due to spawning many agents; Table 3 tests team composition separately.
+- **Design strengths**:
+- The narrow y-range makes small differences in realized collaborator counts visible.
+- Provider colors and direct labels support model-family reading without a legend.
+- The caption correctly distinguishes theoretical unlimited spawning from observed bounded behavior.
+- **Design weaknesses**:
+- The truncated y-axis can visually exaggerate small absolute differences.
+- Error caps are undefined and no per-scenario distribution or sample size is shown.
+- The categorical palette is not grayscale-safe and the model ordering is not explained beyond the visual sort.
+- **Reusable pattern**：When auditing emergent resource use, pair a sorted bar chart with an explicit theoretical bound statement and show the axis baseline or truncation clearly.
+- **Evidence**：p.32, Figure 19 on p.32; 180 dpi rendered page inspection; basis=rendered_observation
+
+## Table inventory and object audits
+
+### Table 1 — p.6 (results)
+- **位置/宽度**：main / page_width；**目的**：main_comparison, robustness
+- **结构**：rows=2; columns=4; header_levels=1; row_groups=0; decimal_precision=2; rules=booktabs; highlighting=none
+- **Caption（PDF 原文）**：Table 1: ARE Verifier and In-context Verifier on 450 hand-labeled validation trajectories.
+- **Caption 审计**：12 words；moves=title, setup, comparison；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, NimbusRomNo9L-Medi, CMR10, CMMI10, CMSY10, NimbusMonL-Regu；body=8.5 pt；header=8.5 pt；header_weight=bold；provenance=pdf_object；confidence=high
+- **Uncertainty**：Point estimates only; no SD, SE, interval, or count column is shown despite the 450-trajectory validation setting.
+- **Data/statistics**：Two verifier rows (ARE Verifier and In-context Verifier) report Agreement, Precision, and Recall on 450 hand-labeled validation trajectories. Metrics are shown to two decimal places.
+- **Evidence relation**：Table 1 is the main validation anchor for the action-level verifier introduced in the method. Figure 15 explains the matching mechanism and Figure 17 motivates hacking defenses; Table 5 checks whether verifier-model choice changes these metrics.
+- **Design strengths**:
+- Compact four-column layout puts the two verifier alternatives on one decision surface.
+- Metric headers are short, aligned, and use consistent two-decimal precision.
+- Booktabs rules keep the table legible without a distracting cell grid.
+- **Design weaknesses**:
+- The caption gives the trajectory count but the table does not expose the confusion counts behind precision/recall.
+- No uncertainty or comparison emphasis distinguishes the better verifier.
+- “Agreement” is not defined in the table header or caption.
+- **Reusable pattern**：Use a compact verifier-comparison table with agreement and class-sensitive metrics, but add the denominator and uncertainty definition when the result is a headline validation claim.
+- **Evidence**：p.6, Table 1 on p.6; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Table 2 — p.7 (results)
+- **位置/宽度**：main / page_width；**目的**：main_comparison, experimental_design
+- **结构**：rows=15; columns=9; header_levels=1; row_groups=0; decimal_precision=1; rules=booktabs; highlighting=bold, cell_color
+- **Caption（PDF 原文）**：Table 2: Pass@1 scores on Gaia2 scenarios per model and capability split. All models are evaluated with the same baseline ReAct scaffolding described in Section 3 and with three runs to account for potential variance. The overall score is the average across splits.
+- **Caption 审计**：44 words；moves=title, setup, encoding_key, comparison；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, NimbusRomNo9L-Medi, CMR10, CMMI10, CMSY10, NimbusMonL-Regu；body=8.5 pt；header=8.5 pt；header_weight=bold；provenance=pdf_object；confidence=high
+- **Uncertainty**：Cells are formatted as mean ± spread over three runs; the caption says three runs account for potential variance but does not identify the spread as SD or SE.
+- **Data/statistics**：Fifteen model rows report pass@1 for seven capability splits—Execution, Search, Ambiguity, Adaptability, Time, Noise, Agent2Agent—and an Overall average. Values use one decimal place plus a one-decimal ± term; the Overall column is shaded and selected best values are bold.
+- **Evidence relation**：This is the numeric backbone for Figure 5’s small multiples and the overall/capability claims in Figure 1 and the abstract. Figures 6–8 re-express the same model set through cost, time, calls, tokens, and inverse scaling; Figures 9–10 and Table 3 focus on Agent2Agent subsets.
+- **Design strengths**:
+- The wide matrix provides complete split coverage and makes the Overall aggregation explicit.
+- A stable model-row order and shaded Overall column support lookup from the main text.
+- Bold best values and one-decimal alignment make within-column comparison fast.
+- **Design weaknesses**:
+- Nine columns force small type and wide horizontal scanning; long model names compete with numeric columns.
+- The ± statistic is not named, and three runs are too lightly specified to reproduce the displayed spread.
+- The table contains more models than the compressed Figure 5 without explaining the visual subset.
+- **Reusable pattern**：Use a full split-by-model matrix as the numeric source of truth, with a visually anchored aggregate column and a caption that names the repetition and uncertainty statistic.
+- **Evidence**：p.7, Table 2 on p.7; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Table 3 — p.10 (ablation)
+- **位置/宽度**：main / page_width；**目的**：ablation, main_comparison, mechanism
+- **结构**：rows=2; columns=3; header_levels=2; row_groups=0; decimal_precision=1; rules=booktabs; highlighting=none
+- **Caption（PDF 原文）**：Table 3: Probing cross-model collaboration in Gaia2-mini Agent2Agent scenarios: we evaluate pass@1 across main- vs app-agent pairings with Llama 4 Maverick and Claude 4 Sonnet in the fully collaborative Agent2Agent setting (r = 1). The results are averaged over three runs and presented with the standard error.
+- **Caption 审计**：47 words；moves=title, setup, encoding_key, comparison, uncertainty_definition；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, NimbusRomNo9L-Medi, CMR10, CMMI10, CMSY10, NimbusMonL-Regu；body=8.5 pt；header=8.5 pt；header_weight=bold；provenance=pdf_object；confidence=high
+- **Uncertainty**：Each pass@1 cell is mean ± standard error over three runs, as stated in the caption.
+- **Data/statistics**：A 2×2 cross-model pairing matrix: app-agent model rows are Llama 4 Maverick and Claude 4 Sonnet, while main-agent columns are the same two models. Four pass@1 means with one-decimal standard errors are shown under r=1.
+- **Evidence relation**：Table 3 is the heterogeneous-team complement to Figure 10’s ratio scaling and Figure 9’s error mechanism. It isolates whether main-agent planning and app-agent execution contribute separately, supporting the Agent2Agent discussion’s composition claim.
+- **Design strengths**:
+- The two-level header makes main-agent versus app-agent role assignment explicit.
+- The 2×2 matrix exposes asymmetry without requiring repeated prose.
+- Standard errors and three-run averaging are named directly in the caption.
+- **Design weaknesses**:
+- The role orientation is easy to transpose without reading both header levels.
+- Only four pairings and no single-agent baseline appear in the table, so the composition contrast depends on Figure 9/10.
+- The caption does not state the number of Gaia2-mini scenarios per run.
+- **Reusable pattern**：For heterogeneous agent teams, use a role-labeled cross-product matrix with a visible main/app orientation and uncertainty in every cell.
+- **Evidence**：p.10, Table 3 on p.10; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Table 4 — p.18 (appendix)
+- **位置/宽度**：appendix / page_width；**目的**：method_interface, experimental_design, reproduction
+- **结构**：rows=3; columns=3; header_levels=1; row_groups=0; decimal_precision=None; rules=booktabs; highlighting=bold
+- **Caption（PDF 原文）**：Table 4: Pre-set notification policies in Mobile (Compressed).
+- **Caption 审计**：8 words；moves=title, setup, encoding_key；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, NimbusRomNo9L-Medi, CMR10, CMMI10, CMSY10, NimbusMonL-Regu；body=8.5 pt；header=8.5 pt；header_weight=bold；provenance=pdf_object；confidence=high
+- **Uncertainty**：Not applicable; the table is a deterministic policy specification rather than an estimate.
+- **Data/statistics**：Three Mobile notification-policy rows—low, medium, and high—list notified environment tools and a prose description. Medium is marked as the Gaia2 default and tool names are shown in monospaced text with app labels in bold.
+- **Evidence relation**：Table 4 operationalizes the notification channel in Figures 2 and 12 and clarifies which environment events are visible during Mobile scenarios. It is a reproduction/configuration reference for the Time, Adaptability, and Noise evaluations.
+- **Design strengths**:
+- Policy levels, tool lists, and behavioral descriptions are separated into stable columns.
+- Monospaced API names preserve executable identifiers while bold app labels aid scanning.
+- The default policy is explicitly marked in the description.
+- **Design weaknesses**:
+- The medium row is very tall and wraps long tool lists, making the policy comparison vertically uneven.
+- The caption says “Compressed” but does not define what was omitted relative to a full policy.
+- No machine-readable policy identifier or notification frequency is included.
+- **Reusable pattern**：Document environment observability as a small policy table with level, exact API/tool names, and plain-language behavior; mark the default in the same row.
+- **Evidence**：p.18, Table 4 on p.18; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Table 5 — p.29 (appendix)
+- **位置/宽度**：appendix / single_column；**目的**：robustness, main_comparison
+- **结构**：rows=3; columns=4; header_levels=1; row_groups=0; decimal_precision=2; rules=booktabs; highlighting=none
+- **Caption（PDF 原文）**：Table 5: Evaluation of the ARE Verifier with different models on 450 hand-labeled trajectories.
+- **Caption 审计**：14 words；moves=title, setup, comparison；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, NimbusRomNo9L-Medi, CMR10, CMMI10, CMSY10, NimbusMonL-Regu；body=8.5 pt；header=8.5 pt；header_weight=regular；provenance=pdf_object；confidence=high
+- **Uncertainty**：Point estimates only; no uncertainty or confusion counts are shown for the 450 hand-labeled trajectories.
+- **Data/statistics**：Three verifier-model rows—Llama 3.3 70B Instruct, Gemini 2.5 pro, and Claude Sonnet 3.7—report Agreement, Precision, and Recall to two decimal places on the same 450 hand-labeled trajectories.
+- **Evidence relation**：Table 5 tests portability of the ARE Verifier metrics anchored in Table 1. It accompanies Figure 17’s hacking failure and the verifier-model discussion, showing that model choice changes little in the displayed precision/recall values.
+- **Design strengths**:
+- The table matches Table 1’s metric vocabulary, enabling direct model-choice comparison.
+- Three rows fit in a compact appendix table with consistent precision.
+- The same validation set is stated in the caption, preserving the evaluation boundary.
+- **Design weaknesses**:
+- The caption does not state which row is the implementation default or how the models were prompted.
+- No variability or significance information is provided.
+- The table’s near-ties are hard to interpret without the exact agreement definition and class balance.
+- **Reusable pattern**：Reuse the same metric columns across verifier-model robustness checks so the appendix table can be compared directly with the primary validation table.
+- **Evidence**：p.29, Table 5 on p.29; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Table 6 — p.31 (appendix)
+- **位置/宽度**：appendix / page_width；**目的**：ablation, efficiency_cost, main_comparison
+- **结构**：rows=8; columns=8; header_levels=2; row_groups=4; decimal_precision=1; rules=booktabs; highlighting=bold, text_color
+- **Caption（PDF 原文）**：Table 6: Ablations of 3 models with Parallel TC vs ReAct scaffold. Values indicate the net contribution of PTC over ReAct (∆).
+- **Caption 审计**：21 words；moves=title, setup, encoding_key, comparison；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, NimbusRomNo9L-Medi, CMR10, CMMI10, CMSY10, NimbusMonL-Regu；body=8.0 pt；header=8.0 pt；header_weight=bold；provenance=pdf_object；confidence=high
+- **Uncertainty**：Point deltas only; no standard error, interval, or repetition count is shown. Colored positive/negative text encodes direction, not uncertainty.
+- **Data/statistics**：Four model groups (Llama Maverick, Claude 4 Sonnet, GPT-5 minimal, GPT-5 low) each have Execution and Time rows. Eight columns report ReAct pass@1, Parallel TC pass@1, Δ pass@1 (pp), Δ average time (s), Δ average steps, and Δ average output tokens, with one-decimal formatting for most deltas and integer-like units where displayed.
+- **Evidence relation**：Table 6 is the quantitative test of Figure 18’s orchestration hooks and the parallel-tool-calling alternative. It links the Time bottleneck in Figure 8 to the claim that PTC changes latency/tokens more than task success, and it provides an appendix control for the main ReAct scaffold.
+- **Design strengths**:
+- Grouped model blocks make paired Execution/Time rows easy to compare.
+- Separate ReAct and Parallel TC columns plus explicit deltas keep the ablation direction unambiguous.
+- Green/red text provides a fast sign cue while the metric headers retain units.
+- **Design weaknesses**:
+- Eight columns and wrapped headers create a dense wide table with small type.
+- Color-only sign emphasis is not grayscale-safe, and the caption does not define whether lower time/token deltas are favorable.
+- No uncertainty or run count prevents distinguishing stable orchestration effects from noisy deltas.
+- **Reusable pattern**：Report an orchestration ablation with baseline, treatment, and signed deltas in one grouped table, but define sign conventions and repetition alongside colored emphasis.
+- **Evidence**：p.31, Table 6 on p.31; 180 dpi rendered page inspection; basis=rendered_observation
+
+### Table 7 — p.32 (appendix)
+- **位置/宽度**：appendix / single_column；**目的**：robustness, main_comparison
+- **结构**：rows=1; columns=5; header_levels=2; row_groups=0; decimal_precision=1; rules=booktabs; highlighting=bold
+- **Caption（PDF 原文）**：Table 7: Model performance on Gaia2-mini across different noise levels. *Default setting.
+- **Caption 审计**：12 words；moves=title, setup, encoding_key；headline_bold=False；self_contained=True；main_finding_stated=False
+- **Typography**：family=NimbusRomNo9L-Regu, NimbusRomNo9L-Medi, CMR10, CMMI10, CMSY10, NimbusMonL-Regu；body=8.5 pt；header=8.5 pt；header_weight=bold；provenance=pdf_object；confidence=high
+- **Uncertainty**：Point pass@1 values only; no run-to-run spread or interval is shown.
+- **Data/statistics**：One Claude-4 Sonnet row reports Gaia2-mini pass@1 under None, Low, Medium*, and High noise levels. Values use one decimal; the asterisk marks Medium as the default setting.
+- **Evidence relation**：Table 7 is the appendix robustness slice corresponding to the Noise capability in Figure 4 and Figure 5. It supplies a controlled noise-level comparison that complements the main model-by-split matrix in Table 2.
+- **Design strengths**:
+- The two-level Noise level header makes the treatment axis explicit.
+- The default condition is marked directly in the column label rather than hidden in prose.
+- A single-row layout makes monotonic degradation easy to inspect.
+- **Design weaknesses**:
+- Only one model is shown, so robustness across model families remains unresolved.
+- The table gives no uncertainty or noise probability values behind the None/Low/Medium/High labels.
+- Bold row labeling is visually stronger than the treatment distinction and the asterisk definition is separated into the caption.
+- **Reusable pattern**：Use a compact one-row robustness table when the treatment levels are the focus, but include exact level definitions and multiple model rows for generality.
+- **Evidence**：p.32, Table 7 on p.32; 180 dpi rendered page inspection; basis=rendered_observation
+
+## Cross-object system
+
+- **Visual narrative**：视觉叙事从 Figure 1 的预算扩展曲线开始，经 Figure 2–4 的 ARE 接口、Mobile 数据面和七类能力定义，进入 Table 1/2 与 Figure 5 的验证及主结果，再由 Figures 6–10 拆解成本、调用、token、时间和 Agent2Agent 机制；附录 Figures 11–19 与 Tables 4–7 把调度、通知、依赖、UI、验证器、编排和噪声鲁棒性补成可复现接口。
+- **Caption system**：Caption 普遍先给标签与对象标题，再给设置或左右/面板说明；Figure 1、5、7–10、17、19 会直接写出主发现，Figure 2–4、11–18 多数偏机制说明。误差帽和阴影带在若干对象中可见，但只有 Table 3 明确写出 standard error，Table 2/图中重复运行或 band 的统计语义仍不统一。
+- **Table header system**：主表和附录表使用短、粗体、booktabs 风格表头；Table 3 与 Table 7 用两层表头表达 agent 角色或 noise level，Table 6 用多列包装长指标名。指标、单位和 split 名称总体可追踪到 Figure 4/5，但部分表头（Agreement、±、PTC Δ）仍依赖正文解释。
+- **Method/result/ablation link**：Figure 2/11/12/18 定义 ARE、事件、multi-turn 和 ReAct/parallel-tool-calling 接口；Figure 4 与 Table 2/Figure 5 将能力定义映射到结果；Figures 8–10、Tables 3 和 6 将时间、Agent2Agent 及编排机制作为显式消融。Figure 15/17 与 Tables 1/5 则把 verifier 的预期行为和失败模式连回验证结果。
+- **Main/appendix link**：正文主对象（Figure 1–10、Table 1–3）给出 headline、能力矩阵和主要机制；附录对象补齐通知策略、依赖图、UI、matching verifier、multi-turn trigger、judge hacking、ReAct hooks、spawn count 与 noise levels。附录与正文有清晰的 Figure/Table 交叉引用，但多个附录 caption 脱离正文后不足以复现设置。
+- **Typography consistency**：正文与表格的 Nimbus Roman/Computer Modern 数学字体保持统一；图内定量标签多为 DejaVuSans 约 5.5–8 pt，代码/接口文本用 monospaced face。栅格图和截图内部字体无法从 PDF 对象精确追溯，导致附录图的字号置信度较低。
+- **Color consistency**：provider 色板在 Figures 5–7、19 中基本复用，Figure 6 额外用绿色表示 Human；ARE/验证器示意图则用蓝/灰表示节点、绿/红表示结果，Figure 12/14/18 使用产品或角色色。跨对象的颜色语义不是全局固定的，因此应以标签、形状和位置为主要证据。
+
+## Final judgment
+
+### Most reusable patterns
+
+- Figure 5 的 shared-scale capability small multiples：同一 pass@1 轴下按 split 观察强弱，并用表格作为完整数值源。
+- Figure 2/11/12/18 的分层架构、事件 DAG、sequence diagram 与 zoomed ReAct loop：把异步接口、调度、状态和实现边界拆成可复用的机制图。
+- Figure 6–8 的 paired decision surfaces：把质量与成本、时间、调用/输出 token 或 deadline 关系放在同一组可读坐标中。
+- Table 3/6 的 role-aware matrix 与 baseline/treatment/delta 表：用结构化表头把 agent 角色和编排变化绑定到可比较的结果。
+
+### Highest-value objects
+
+- Figure 1：最有效地给出 Gaia2 的预算—能力 headline，但应补齐 band 语义。
+- Figure 5 + Table 2：最完整地连接七类能力、模型排序与 overall 结果。
+- Figure 9 + Figure 10 + Table 3：把 Agent2Agent 的消息机制、错误率、scaling 和异构配对组成一条证据链。
+- Figure 15 + Table 1/5 + Figure 17：把 verifier 的预期匹配、量化验证和 judge-hacking 失败模式联系起来。
+
+### Failure patterns
+
+- 定量图中 provider/model 颜色依赖强，且 error bar/band 常未在 caption 中定义；灰度、低分辨率和复现都受影响。
+- Figure 5 独立 rerank、Figure 19 截断 y 轴等设计加快局部阅读，却削弱跨对象或绝对差异的可比性。
+- 栅格化架构图、sequence 图、UI 截图和 verifier composite 在双栏纸面尺寸下文字过小，caption 也常不足以脱离正文理解。
+- 完整 Table 2 与压缩 Figure 5 的模型覆盖不一致，成本/时间/Token 结果也缺少统一的分母、重复和不确定性说明。
+
+**One-sentence visual strategy**：论文以“预算 headline → ARE/能力接口 → 全模型分裂结果 → 成本/时间/协作机制 → 附录复现与失败边界”的视觉链路组织证据，但下一版应优先统一不确定性定义、减少颜色依赖并提高栅格图文字可读性。

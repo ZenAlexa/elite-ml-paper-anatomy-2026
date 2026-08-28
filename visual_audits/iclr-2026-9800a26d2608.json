@@ -1,0 +1,1213 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-9800a26d2608",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/Rezaei-Parham/Synthetic-Selection"
+    ],
+    "selected_repository": "https://github.com/Rezaei-Parham/Synthetic-Selection",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/Rezaei-Parham/Synthetic-Selection/tree/256aace2f9887b2e07639c267f47666ca24e44ba",
+        "path": "Synthetic Experiments/mean_alignment.py",
+        "role": "plot_script",
+        "tool": "Seaborn/Matplotlib",
+        "evidence": "Official repository at commit 256aace2f9887b2e07639c267f47666ca24e44ba; lines 213–273 set p=600, 11 cosine-similarity points, 100 trials, mako palette, 6-point theory lines, SD fill bands, circular empirical points, legend/grid, and dpi=300. This is the exact plotting grammar for Figure 1(a), although the PDF is a final combined three-panel vector render."
+      },
+      {
+        "repository_url": "https://github.com/Rezaei-Parham/Synthetic-Selection/tree/256aace2f9887b2e07639c267f47666ca24e44ba",
+        "path": "Synthetic Experiments/ns_growth.py",
+        "role": "plot_script",
+        "tool": "Seaborn/Matplotlib",
+        "evidence": "Official repository at commit 256aace2f9887b2e07639c267f47666ca24e44ba; lines 299–369 set the n_s/p sweep 2–10 with 11 points, 100 trials, the same mako/line/band/scatter/legend/grid grammar, and dpi=300. This is the exact plotting grammar for Figure 1(b)."
+      },
+      {
+        "repository_url": "https://github.com/Rezaei-Parham/Synthetic-Selection/tree/256aace2f9887b2e07639c267f47666ca24e44ba",
+        "path": "Synthetic Experiments/covariance_scaling.py",
+        "role": "plot_script",
+        "tool": "Seaborn/Matplotlib",
+        "evidence": "Official repository at commit 256aace2f9887b2e07639c267f47666ca24e44ba; lines 284–344 set covariance scale 0.5–5 with 11 points, 100 trials, the same mako/line/band/scatter/legend/grid grammar, and dpi=300. This is the exact plotting grammar for Figure 1(c)."
+      }
+    ],
+    "search_note": "先核查 `reports/tables/visual_source_inventory.csv`：该行把论文映射到 `Rezaei-Parham/Synthetic-Selection`，但状态仍为 `repository_without_visual_source`；`corpus/visual_sources/iclr-2026-9800a26d2608/` 不存在。随后以 `gh` 只读核查官方仓库 README 的精确标题 `High-dimensional Analysis of Synthetic Data Selection`、arXiv 链接和项目页，并固定到 main commit 256aace2f9887b2e07639c267f47666ca24e44ba。仓库的三个 `Synthetic Experiments` 脚本逐一对应 PDF Figure 1 的三个面板，故状态修正为 `partial_visual_source`；仓库没有 Figure 2 的最终 bar-chart 生成器、表格生成器、LaTeX 源或最终表格资产。`.ipynb_checkpoints/visualize_selection-checkpoint.py` 生成的是 2×5 PCA scatter，不是 PDF Figure 2，因此未登记为视觉源。"
+  },
+  "paper_style": {
+    "main_figures": 1,
+    "main_tables": 3,
+    "appendix_figures": 1,
+    "appendix_tables": 10,
+    "dominant_figure_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "NimbusRomNo9L-Medi",
+        "CMR10",
+        "CMMI10",
+        "CMSY10",
+        "ArialMT",
+        "DejaVuSans",
+        "DejaVuSans-Oblique",
+        "TimesNewRomanPSMT"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 9.0,
+        "maximum": 17.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "NimbusRomNo9L-Medi",
+        "CMR10",
+        "CMMI10",
+        "CMSY10"
+      ],
+      "body_size_pt": 8.0,
+      "header_size_pt": 8.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figure 1 uses Seaborn `mako` as a three-level sequential palette for ρ_s, with theory/empirical redundancy through line versus circle. Figure 2 uses teal for Covariance matching and slate gray for baselines with direct labels. All tables use monochrome rules and text; there is no paper-wide method color key.",
+    "vector_raster_mix": "All inspected Figure/Table objects are vector/text objects in the PDF. `pdfimages -list` returns no embedded raster images; Figure 1 and Figure 2 are vector chart paths, and tables are vector rules/text.",
+    "style_consistency": "The paper body/tables use Nimbus Roman and Computer Modern math; Figure 1 uses Arial/DejaVuSans from the verified Seaborn/Matplotlib scripts; Figure 2 uses TimesNewRomanPSMT. Geometry and vector rendering are consistent, but font-family mismatch and small appendix labels are visible system-level weaknesses."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 7,
+      "module": "theory",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line",
+        "scatter",
+        "area"
+      ],
+      "purpose": [
+        "headline",
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 1: Excess risk using training data from N(µ_t, Σ_t) and synthetic data from N(µ_s, Σ_s), where Σ_t, Σ_s are Kac–Murdock–Szegő matrices (Toeplitz matrices with geometrically decaying entries) with parameters ρ_t, ρ_s, scaled so that Tr[MᵀM]=p. We pick ||µ_t||₂ = ||µ_s||₂ = 2√p, ρ_t=0.9, p=600, n_t=1200, n_s=1200, unless varying the parameters in the plot. Each value is computed from 100 i.i.d. trials, the error band is at 1 standard deviation, and theoretical predictions are continuous lines. Different curves correspond to different values of ρ_s. (a) Changing the cosine similarity of the mean does not impact the risk (here, Σ_s is scaled by η := ρ_s). (b) Larger ρ_s gives lower risk since Σ_s is closer to Σ_t. (c) Scaling Σ_s reduces the risk.",
+        "word_count": 123,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "ArialMT",
+          "DejaVuSans",
+          "DejaVuSans-Oblique"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 9.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 3,
+        "hex": [
+          "#3E356B",
+          "#357BA3",
+          "#4AC2AD"
+        ],
+        "semantic_mapping": "mako 的深紫—蓝—青三档按 ρ_s 区分曲线；同一 ρ_s 用连续理论线与圆点经验值成对编码，SD 带使用对应颜色的透明填充。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 3,
+        "data_marks_estimate": 33
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 6.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Panel (a) cosine similarity of means on 0–1; (b) synthetic-to-feature ratio n_s/p on 2–10; (c) covariance scale on approximately 1–5.",
+        "y": "Excess risk on a shared linear vertical quantity within each panel.",
+        "color": "Three sequential mako colors encode ρ_s; theory and empirical values share the color.",
+        "shape": "Circular empirical markers distinguish observations from continuous theory lines.",
+        "line": "Thick continuous lines encode theoretical predictions; the same-color translucent band encodes ±1 SD.",
+        "facet": "Three side-by-side panels facet mean alignment, more synthetic data, and covariance scaling.",
+        "text": "Repeated upper-right legends explicitly name ρ_s=.9/.5/.1 for theory and empirical series; panel subtitles are below each plot."
+      },
+      "data_and_statistics": "Synthetic Gaussian Kac–Murdock–Szegő experiments use p=600, n_t=1200 and n_s=1200 by default, 11 x positions per panel and 100 i.i.d. trials at each position. Empirical points are trial means, translucent bands are one standard deviation, and continuous lines are the theoretical predictions; the paper does not show raw trial marks.",
+      "evidence_relation": "The figure is the visual counterpart of the Gaussian excess-risk derivation: panel (a) tests mean-direction irrelevance, panel (b) tests the n_s/p dependence, and panel (c) tests covariance scaling. The exact panel plotting logic is present in the official repository scripts `Synthetic Experiments/mean_alignment.py`, `ns_growth.py`, and `covariance_scaling.py` at commit 256aace2f9887b2e07639c267f47666ca24e44ba.",
+      "design_strengths": [
+        "The three panels map one theoretical decomposition to three falsifiable parameter sweeps.",
+        "Theory lines, empirical points, and SD bands separate prediction from finite-trial evidence without a second figure.",
+        "Axes, repeated legends, marker shape, and line/band distinction make the mapping recoverable in grayscale.",
+        "The source uses one coherent seaborn `mako` palette and common plot grammar across all panels."
+      ],
+      "design_weaknesses": [
+        "Six legend entries are repeated in every panel, consuming plot area and forcing small labels.",
+        "The bands overlap heavily and their one-standard-deviation definition is only in the caption.",
+        "Panel (b) labels n_s/p but the caption describes “more synthetic data” rather than stating the plotted range; the common y-scale is not explicitly announced.",
+        "The exact hex values are not authored in the repository source (only `mako` is named), so palette color values are rendered estimates."
+      ],
+      "reusable_pattern": "Use aligned small multiples for independent parameter sweeps, keep a shared y quantity, encode theoretical prediction as a continuous line and empirical replication as circular points plus a translucent SD band, and put the parameter-specific finding in the caption.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 1",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 49,
+      "module": "appendix C leak experiment",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 2: The portion of samples chosen from the set of leaked images shows that our proposed algorithm reliably selects real samples among the pool of generated examples.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "TimesNewRomanPSMT"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#339999",
+          "#929FAD"
+        ],
+        "semantic_mapping": "Covariance matching 用青绿色突出目标方法；其余 selector 用统一的蓝灰色。条内百分比文本提供独立的数值编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 14,
+        "data_marks_estimate": 14
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Horizontal percentage scale, 0–60 for CLIP and 0–70 for DINO, encodes the portion of selected samples that are leaked target images.",
+        "y": "Categorical selector names encode the selection algorithm; order is descending within each panel.",
+        "color": "Teal marks Covariance matching; slate-gray bars mark other algorithms.",
+        "shape": null,
+        "line": null,
+        "facet": "Two horizontal bar panels facet CLIP-based versus DINO-based algorithms.",
+        "text": "Every bar has a directly printed percentage; panel subtitles and axis labels state the denominator concept."
+      },
+      "data_and_statistics": "The leak pool contains 1K target-distribution images disjoint from the 200 real reference images and 4K StableDiffusion1.4 images; each method selects 800. The plotted statistic is the percentage of the 800 selected samples drawn from the leaked set. CLIP panel values are 66.15, 51.8, 40.79, 32.31, 19.25, 18.25, 18.21, and 4.33%; DINO panel values are 70.14, 46.17, 35.16, 32.32, and 18.79% for the displayed methods.",
+      "evidence_relation": "Appendix C uses this controlled insertion test to operationalize the claim that a selector should prefer real target-distribution samples when they are available. Covariance matching has the largest leaked fraction in both feature-extractor panels, complementing the accuracy tables without claiming that leak fraction is itself accuracy.",
+      "design_strengths": [
+        "Direct labels eliminate legend lookup and preserve exact percentages.",
+        "The same method ordering and two-panel comparison expose the robustness of the mechanism across CLIP and DINO features.",
+        "A single accent color focuses attention on the proposed method while gray preserves baseline comparability."
+      ],
+      "design_weaknesses": [
+        "The caption does not define the denominator (800 selections) or the CLIP/DINO panel distinction; the surrounding Appendix C prose is required for a self-contained reading.",
+        "The two x-axis maxima differ, which weakens direct magnitude comparison across panels.",
+        "No uncertainty, repeated-run variability, or raw selection-count denominator is shown in the plot itself.",
+        "The repository checkpoint named `visualize_selection-checkpoint.py` is an unrelated PCA scatter diagnostic, not this final bar chart; no exact Figure 2 plot source was found."
+      ],
+      "reusable_pattern": "For a controlled selection test, use horizontal bars sorted within each feature-extractor panel, direct-label every percentage, and reserve one accent color for the proposed selector while keeping all baselines neutral.",
+      "evidence": {
+        "page": 49,
+        "label": "Figure 2",
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "main CIFAR-10 truncated StyleGAN2-Ada",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Covariance matching outperforms all baselines across three training paradigms on CIFAR-10, when the synthetic data is generated via five truncated StyleGAN2-Ada models.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 accuracy 单元格为均值 ± 1 个标准差；正文默认实验以 10 个随机 seeds 汇总，表中不提供置信区间或原始分布。",
+      "data_and_statistics": "Rows compare No synthetic, seven named selection baselines, Covariance matching (ours), and the Real upper bound; columns are Scratch, Distillation, and Pretrained ResNet-18. Values are CIFAR-10 test accuracy percentages; Covariance matching is 54.00/59.77/69.20 versus the strongest baseline at 52.83/58.32/68.21 in the three paradigms.",
+      "evidence_relation": "This is the primary empirical result for five truncated StyleGAN2-Ada generators and the standard n_t=200, n_s=800-per-class setup. It directly tests the method claim that matching covariance improves downstream classification across training regimes.",
+      "design_strengths": [
+        "One repeated method-by-training-paradigm matrix makes the headline comparison scan quickly.",
+        "A Real upper bound anchors the attainable accuracy and keeps synthetic augmentation gains interpretable.",
+        "Two-decimal means and SDs maintain precision consistently across all cells."
+      ],
+      "design_weaknesses": [
+        "The caption says “all baselines” but does not repeat the n_t/n_s sample counts or the 10-seed aggregation.",
+        "A long method column plus three result columns makes table text small at double-column width.",
+        "No explicit bold/best marker or effect-size column communicates the size of the improvement."
+      ],
+      "reusable_pattern": "Use rows for selection algorithms, columns for fixed training paradigms, and include both a no-synthetic baseline and a real-data upper bound in the same compact matrix.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 1",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 9,
+      "module": "main CIFAR-10 T2I mixture",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2: Covariance matching performs on par with the best baseline across three training paradigms on CIFAR-10, when the synthetic data is generated via various T2I generative models.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 accuracy 单元格为均值 ± 1 个标准差；正文默认实验以 10 个随机 seeds 汇总，表中不提供置信区间或原始分布。",
+      "data_and_statistics": "The same 10-row by 4-column accuracy matrix as Table 1 compares the three training paradigms under mixed T2I data (SANA-1.5, PixArt-α, and StableDiffusion1.4). Covariance matching gives 54.45/59.17/66.69%; the highest baseline reaches 54.15/59.43/66.00%.",
+      "evidence_relation": "This table transfers the main CIFAR-10 test from truncated generators to a mixed text-to-image pool, so the selection method is tested against generator-family variation rather than only one synthetic source.",
+      "design_strengths": [
+        "Reusing Table 1’s geometry makes the T2I robustness comparison directly alignable.",
+        "The Real upper bound is repeated, preserving a common scale across generator settings.",
+        "The caption provides the generator-family condition and the on-par interpretation."
+      ],
+      "design_weaknesses": [
+        "The table does not list per-generator results, so heterogeneity inside the T2I mixture is hidden.",
+        "The identical layout across Tables 1 and 2 creates little visual cue that the data source changed.",
+        "No explicit visual mark distinguishes ties or practical equivalence."
+      ],
+      "reusable_pattern": "When changing only the synthetic generator family, preserve the result-matrix geometry so readers can compare robustness without relearning the table grammar.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 2",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 9,
+      "module": "main ImageNet-100 and RxRx1",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3: Covariance matching performs on par with the best baselines for two additional datasets. In (a), we train a ResNet-18 from scratch on ImageNet-100 with synthetic images from StyleGAN-XL and T2I models. In (b), we train a linear model on top of an ImageNet-pretrained ResNet for perturbation classification on a small subset of RxRx1 (Sypetkowski et al., 2023) augmented with synthetic images from MorphGen (Demirel et al., 2025).",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Panel (a) reports mean ± 1 SD over 5 seeds; panel (b) follows the standard repeated-run aggregation (10 seeds in the surrounding setup). No confidence intervals are shown.",
+      "data_and_statistics": "Composite table: (a) has 7 visible method rows and columns Method, Truncated models, and T2I models for ImageNet-100; (b) has 7 rows and columns Method and MorphGen for RxRx1. Accuracy is reported in percent. Covariance matching reaches 57.52/53.07 in (a) and 90.00 in (b), with a Real upper bound of 62.67 in (a).",
+      "evidence_relation": "The two sub-tables extend the selection claim to a broad natural-image dataset and a specialized fluorescence-microscopy perturbation task. The separate panel headers tie each result to its generator and dataset context.",
+      "design_strengths": [
+        "The composite layout conserves space while keeping distinct datasets and generators labeled.",
+        "A single method column and repeated row ordering permit cross-panel baseline reading.",
+        "The caption supplies the model/task distinction that the compact cells cannot carry."
+      ],
+      "design_weaknesses": [
+        "Rows are not identical across (a) and (b), making vertical comparisons easy to misread.",
+        "The seed-count exception for (a) is absent from the table object itself and must be recovered from the paper text.",
+        "The narrow sub-tables leave little room for dataset-specific denominators or sample counts."
+      ],
+      "reusable_pattern": "For heterogeneous datasets, use labeled subpanels with local column headers, keep method rows aligned where possible, and put task-specific training details in the caption.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 3",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 48,
+      "module": "appendix C transformer transfer",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Covariance matching outperforms all baselines when fully training a transformer model on a mix of real and synthetic data.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 accuracy 单元格为均值 ± 1 个标准差；正文默认实验以 10 个随机 seeds 汇总，表中不提供置信区间或原始分布。",
+      "data_and_statistics": "Rows match Table 1’s selection methods; two-level headers split four result columns into ViT and Swin-T, each with Scratch and Distillation, plus the Method column. Accuracy percentages show Covariance matching at 46.09/49.53 for ViT and 46.64/50.73 for Swin-T, below the corresponding Real upper bounds but above baselines.",
+      "evidence_relation": "Appendix C varies the downstream architecture while keeping the truncated StyleGAN2-Ada selection setup, testing whether the main comparison survives a transformer model rather than only ResNet-18.",
+      "design_strengths": [
+        "Two-level headers explicitly bind Scratch/Distillation to ViT versus Swin-T.",
+        "The same baseline vocabulary as Table 1 makes transfer results easy to locate.",
+        "The Real upper bound remains an interpretable ceiling."
+      ],
+      "design_weaknesses": [
+        "The table is dense at page width and requires careful two-level header tracking.",
+        "The caption omits the patch size, optimizer, and learning rate described in surrounding prose.",
+        "No compact visual indicator marks the best synthetic method in each transformer column."
+      ],
+      "reusable_pattern": "Use grouped architecture headers over matched training regimes to show robustness across downstream model families without changing the method rows.",
+      "evidence": {
+        "page": 48,
+        "label": "Table 4",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 49,
+      "module": "appendix C zero-diversity generators",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 5: Covariance matching performs on par with the best baselines across three training paradigms on CIFAR-10, when the synthetic data is generated via a StyleGAN2-Ada model and two zero-diversity generators.",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 accuracy 单元格为均值 ± 1 个标准差；正文默认实验以 10 个随机 seeds 汇总，表中不提供置信区间或原始分布。",
+      "data_and_statistics": "The standard three accuracy columns compare Scratch, Distillation, and Pretrained across a mixed pool containing StyleGAN2-Ada and two collapsed prototypes. Covariance matching scores 58.97/64.85/72.38%; K-means is 60.20/65.03/72.83% and DS3 is 53.74/59.16/69.43%.",
+      "evidence_relation": "This controlled failure/mechanism experiment tests whether selectors avoid low-diversity collapsed clusters. The surrounding text explains that DS3 over-selects the two collapsed clusters while K-means and Covariance matching retain more non-collapsed samples.",
+      "design_strengths": [
+        "The familiar accuracy matrix makes the zero-diversity stress test comparable with main tables.",
+        "The Real upper bound shows the remaining gap under the collapsed-generator pool.",
+        "The caption names the pathological generator condition rather than hiding it in prose."
+      ],
+      "design_weaknesses": [
+        "The table alone does not expose the fraction selected from each generator, so the mechanism is inferred from surrounding text.",
+        "“On par” is not operationalized with a predefined equivalence criterion.",
+        "No diversity or cluster-composition metric appears beside accuracy."
+      ],
+      "reusable_pattern": "Pair a controlled pathological generator condition with the same downstream accuracy matrix, then explain the failure mechanism using a companion distributional diagnostic.",
+      "evidence": {
+        "page": 49,
+        "label": "Table 5",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 49,
+      "module": "appendix C DINO-v2 truncated",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 6: Covariance matching outperforms all baselines across three training paradigms on CIFAR-10, when the synthetic data is generated via truncated generative models and features are extracted with DINO-v2.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 accuracy 单元格为均值 ± 1 个标准差；正文默认实验以 10 个随机 seeds 汇总，表中不提供置信区间或原始分布。",
+      "data_and_statistics": "Eight visible method rows (No synthetic, six selection methods, Covariance matching, and Real upper bound as printed) and three accuracy columns cover Scratch, Distillation, and Pretrained. DINO-v2 features yield Covariance matching 54.97/59.41/68.87%, versus best baseline 52.93/58.69/68.04%.",
+      "evidence_relation": "Repeating the truncated-generator experiment with DINO-v2 instead of CLIP tests feature-extractor dependence. It is the table counterpart to the DINO branch of the leak bar plot.",
+      "design_strengths": [
+        "The feature-extractor change is localized to the caption while the matrix remains comparable to Table 1.",
+        "The result columns and uncertainty formatting stay stable across the robustness appendix.",
+        "The Real upper bound anchors the feature-extractor comparison."
+      ],
+      "design_weaknesses": [
+        "The exact method list is shorter than Table 1, so row alignment across tables requires attention.",
+        "The caption does not state DINO-v2 layer/checkpoint details or selection feature dimension.",
+        "No paired comparison or per-seed relationship is shown."
+      ],
+      "reusable_pattern": "Hold the generator and downstream evaluation fixed while changing the feature extractor, and preserve the same accuracy table grammar to isolate robustness.",
+      "evidence": {
+        "page": 49,
+        "label": "Table 6",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 50,
+      "module": "appendix C DINO-v2 T2I",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 7: Covariance matching performs on par with the best baseline across three training paradigms on CIFAR-10, when the synthetic data is generated via text-to-image (T2I) generative models and features are extracted with DINO-v2.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 accuracy 单元格为均值 ± 1 个标准差；正文默认实验以 10 个随机 seeds 汇总，表中不提供置信区间或原始分布。",
+      "data_and_statistics": "The T2I/DINO-v2 matrix reports accuracy for the same three training paradigms. Covariance matching is 52.65/58.78/67.04%, close to the strongest baselines 52.33/58.80/66.68%.",
+      "evidence_relation": "This table crosses the T2I generator condition with DINO-v2 features, completing the feature-extractor robustness pair (Tables 6–7) and testing the claim beyond CLIP features.",
+      "design_strengths": [
+        "The stable column grammar makes the crossed robustness condition easy to compare with Table 2.",
+        "The caption defines T2I for readers entering the appendix at this point.",
+        "The repeated no-synthetic and real-upper-bound anchors keep absolute scale visible."
+      ],
+      "design_weaknesses": [
+        "The compact table does not identify the individual T2I model contributions.",
+        "The “on par” conclusion is qualitative and has no explicit decision threshold.",
+        "Changing both generator family and feature extractor at once makes attribution depend on reading the table pair."
+      ],
+      "reusable_pattern": "Arrange robustness tests as a small crossed family of tables with identical columns, changing one captioned condition at a time where possible.",
+      "evidence": {
+        "page": 50,
+        "label": "Table 7",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 50,
+      "module": "appendix C theoretical-objective ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 8: Covariance matching performs on par with Alpha matching across the experiments on CIFAR-10.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Each accuracy cell is mean ± 1 SD; the table does not show confidence intervals. The surrounding text identifies Alpha matching as more costly because it computes eigenvalues of the current sample covariance.",
+      "data_and_statistics": "Three two-row experiment groups (Zero-diversity models, Truncated models, T2I models) compare Covariance matching and Alpha matching across Scratch, Distillation, and Pretrained. The table reports near-matched accuracies, e.g. truncated 54.00/59.77/69.20 versus 52.25/59.18/68.32.",
+      "evidence_relation": "This is the direct ablation of the theoretically motivated Alpha objective against the cheaper greedy covariance implementation. It links practical performance to the computational-cost discussion immediately preceding the table.",
+      "design_strengths": [
+        "Three explicit experiment group labels prevent the algorithm comparison from losing dataset context.",
+        "Paired rows make within-condition differences visible without a separate figure.",
+        "The compact table supports both performance and efficiency-cost reasoning."
+      ],
+      "design_weaknesses": [
+        "There is no runtime or eigenvalue-count column, so “more costly” remains prose-only.",
+        "The first column’s group labels and second column’s method labels create a multi-level reading burden.",
+        "No statistical test distinguishes the near-matched values."
+      ],
+      "reusable_pattern": "For algorithm ablations, stack paired methods inside labeled experiment blocks and place the efficiency trade-off in adjacent prose or an explicit resource column.",
+      "evidence": {
+        "page": 50,
+        "label": "Table 8",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 50,
+      "module": "appendix C over-parameterized regime",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 9: Covariance matching outperforms all baselines across three training paradigms on CIFAR-10, when the synthetic data is generated via truncated StyleGAN2-Ada models (Karras et al., 2019) in the over-parameterized regime with 200 training and 200 augmenting synthetic samples.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 accuracy 单元格为均值 ± 1 个标准差；正文默认实验以 10 个随机 seeds 汇总，表中不提供置信区间或原始分布。",
+      "data_and_statistics": "The standard three accuracy columns repeat the Table 1 methods with n_t=200 and n_s=200, so n_t+n_s=400<p=512. Covariance matching reports 48.95/53.28/66.62%, versus the best baseline 48.09/52.65/66.41%, and the Real upper bound 50.79/54.66/68.97%.",
+      "evidence_relation": "This controlled change moves from the under-parameterized standard setup to an over-parameterized feature regime while retaining the generator and downstream paradigms, testing whether the quantitative trend survives the sample/feature ratio reversal.",
+      "design_strengths": [
+        "The caption explicitly states the 200+200 regime and therefore identifies the key design change.",
+        "The repeated method matrix makes trend comparison with Table 1 direct.",
+        "The upper bound quantifies the smaller remaining headroom in this regime."
+      ],
+      "design_weaknesses": [
+        "The table does not include a visual marker for the regime or the p=512 comparison beyond caption text.",
+        "Accuracy gaps are small and lack uncertainty-aware significance annotation.",
+        "The repeated dense matrix adds appendix length without showing the trend graphically."
+      ],
+      "reusable_pattern": "Reuse the primary comparison matrix for a single regime change and state the changed sample/feature relation in the caption so robustness is attributable.",
+      "evidence": {
+        "page": 50,
+        "label": "Table 9",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 51,
+      "module": "appendix C distributional diagnostics",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 10: Covariance matching selects samples that better match the target distribution according to various evaluation metrics.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "All cells are reported as mean ± 1 SD; the table itself does not state the number of repeated seeds or a confidence-interval procedure. Arrows in headers identify the preferred direction; no uncertainty visualization is used.",
+      "data_and_statistics": "Eight method rows compare FID↓, KID↓, Precision↑, Recall↑, Density↑, Coverage↑, and Covariance Shift↓. Metrics have different scales: FID and Covariance Shift are large distances, KID is near 0.4–0.8, and the remaining measures are around 0.3–0.9. Covariance matching is best or near-best on FID 242.09, KID 0.41, Recall 0.50, Coverage 0.68, and Covariance Shift 95.55.",
+      "evidence_relation": "The table supplies the distributional mechanism behind the accuracy gains: covariance matching aligns both fidelity/diversity-coupled metrics and covariance distance, supporting the paper’s explanation beyond downstream accuracy.",
+      "design_strengths": [
+        "Directional arrows make heterogeneous metric optimization legible in a single table.",
+        "The metric breadth distinguishes diversity-sensitive outcomes from quality-only outcomes.",
+        "A method-by-metric matrix exposes the mechanism claim without relying on a color scale."
+      ],
+      "design_weaknesses": [
+        "Seven metrics with different units are difficult to scan and cannot be compared by raw magnitude.",
+        "The caption does not define feature space, evaluation sample count, or seed count.",
+        "No bold/best marker or normalized effect size identifies winners across columns; metric arrow symbols carry much of the interpretation."
+      ],
+      "reusable_pattern": "For distributional diagnostics with mixed units, use explicit ↑/↓ header directions, retain raw metric scales, and pair the matrix with prose that explains which metrics carry the mechanism claim.",
+      "evidence": {
+        "page": 51,
+        "label": "Table 10",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 51,
+      "module": "appendix C dataset-size ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 11: An ablation on the size of the real and synthetic datasets used for training shows results consistent with those reported in Table 1.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Each accuracy cell is mean ± 1 SD; the table gives no confidence intervals and does not repeat the seed count in its caption. The six columns are the (n_t,n_s) pairs (200,600), (200,800), (200,1000), (300,600), (300,800), and (300,1000).",
+      "data_and_statistics": "Rows use the standard selection-method vocabulary; six accuracy columns vary real-reference and selected-synthetic sample sizes while training from scratch. Covariance matching ranges from 51.91 to 55.80%, and the Upper bound from 57.85 to 62.79%, across the six pairs.",
+      "evidence_relation": "This is the sample-size ablation of the standard CIFAR-10 setup. It tests whether the covariance-matching advantage persists as both real and synthetic data budgets change, connecting the empirical trend to the sample-ratio discussion.",
+      "design_strengths": [
+        "Column headers encode both sample counts compactly and expose the full 2×3 design.",
+        "Repeating the method rows preserves comparison with Table 1.",
+        "The Upper bound row provides a budget-dependent ceiling."
+      ],
+      "design_weaknesses": [
+        "Six numeric columns make the table wide and the paired counts hard to parse without rereading the header.",
+        "The caption says “consistent” but does not define the comparison criterion.",
+        "No visual grouping separates changes in n_t from changes in n_s beyond tuple notation."
+      ],
+      "reusable_pattern": "Encode a two-factor data-budget ablation as tuple column headers, keep method rows fixed, and include an upper-bound row to show how the attainable ceiling moves.",
+      "evidence": {
+        "page": 51,
+        "label": "Table 11",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 51,
+      "module": "appendix C covariance-matching variants",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 12: The look-ahead algorithm with k ∈ {50, 100} and the Hungarian algorithm perform on par with the greedy implementation of covariance matching across three training paradigms on CIFAR-10, when the synthetic data is generated via five truncated StyleGAN2-Ada models.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "每个 accuracy 单元格为均值 ± 1 个标准差；正文默认实验以 10 个随机 seeds 汇总，表中不提供置信区间或原始分布。",
+      "data_and_statistics": "Four rows compare Look-ahead (50), Look-ahead (100), Hungarian, and Greedy Covariance Matching across Scratch, Distillation, and Pretrained accuracy. Greedy reaches 54.00/59.77/69.20%; the alternatives remain within the same broad range. k is a look-ahead compute parameter, not an accuracy axis.",
+      "evidence_relation": "This ablation checks whether extra local look-ahead or a global Hungarian matching strategy materially improves the greedy implementation used in the main experiments. The caption and surrounding text connect performance parity to an efficiency choice.",
+      "design_strengths": [
+        "The short four-row table isolates implementation variants without baseline clutter.",
+        "The three training-paradigm columns keep the ablation tied to the main result matrix.",
+        "The caption states both k values and the synthetic-generator condition."
+      ],
+      "design_weaknesses": [
+        "No wall-clock, memory, or selection-cost measurement accompanies the efficiency purpose.",
+        "“On par” is not backed by a predeclared tolerance or test.",
+        "Method names alone do not explain which variant is sequential, pairwise, or globally matched."
+      ],
+      "reusable_pattern": "Compare implementation variants in a short method-only matrix, while naming the compute knob and retaining the same downstream columns as the headline result.",
+      "evidence": {
+        "page": 51,
+        "label": "Table 12",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 52,
+      "module": "appendix C text classification",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 13: Covariance matching outperforms all baselines on the Ironic-Tweet dataset.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "CMR10",
+          "CMMI10",
+          "CMSY10"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Accuracy cells are mean ± 1 SD; the table does not state a confidence-interval procedure or seed count in the caption. The surrounding setup uses 100 real tweets and 300 selected GPT-generated tweets per class, with all-mpnet-base-v2 sentence embeddings.",
+      "data_and_statistics": "Six method rows (No synthetic, Center Matching, Random, K-means, DS3, Covariance Matching) and one Tweet Irony accuracy column report 64.60, 70.80, 67.97, 68.85, 69.73, and 71.49% respectively.",
+      "evidence_relation": "This table tests whether the theory-driven covariance selector transfers from image features to text embeddings and a binary irony classification task, closing the paper’s cross-domain generality claim.",
+      "design_strengths": [
+        "The one-outcome-column layout is immediately readable and makes the cross-domain result prominent.",
+        "The caption names the dataset rather than leaving the task implicit.",
+        "The no-synthetic baseline shows that the synthetic augmentation contributes before comparing selectors."
+      ],
+      "design_weaknesses": [
+        "The table does not repeat the text generator, embedding model, or sample counts from surrounding prose.",
+        "Method capitalization differs from some earlier tables (e.g. “Center Matching”), weakening system consistency.",
+        "One metric and one dataset cannot separate selection quality from task-specific text-generation artifacts."
+      ],
+      "reusable_pattern": "For a cross-domain transfer result, use a minimal method-by-one-outcome table, keep a no-synthetic baseline, and move domain-specific data-generation details into the caption or nearby setup.",
+      "evidence": {
+        "page": 52,
+        "label": "Table 13",
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "正文 Figure 1 first makes the Gaussian excess-risk theory falsifiable through three parameter sweeps. Tables 1–3 then establish the accuracy claim on the primary image task and two additional datasets. Appendix C keeps the same matrices while varying architecture, generator diversity, feature extractor, sample regime, metric, algorithm variant, and modality; Figure 2 isolates the leak-selection mechanism.",
+    "caption_system": "Captions are sentence-style, begin with a literal Figure/Table label, and usually combine a one-line claim with experimental context. Main captions state the comparison and finding; appendix captions are shorter, so denominators, seed counts, and feature-extractor details often remain in surrounding prose. Figure 1 is unusually self-contained about parameters and SD bands; Figure 2 is not self-contained about its denominator.",
+    "table_header_system": "Tables use booktabs-style horizontal rules, no vertical grid, a left Method column, and numeric result columns with two decimal places. Grouped headers identify training paradigms or model families; Table 3 uses labeled subpanels and Table 8 uses experiment blocks. No cell-color or bold best/second-best system is used.",
+    "method_result_ablation_link": "The method claim is introduced through covariance matching in CLIP feature space and Gaussian theory. Tables 1–3 are the headline downstream results; Table 10 supplies distributional mechanism evidence; Tables 4–9 and 11–13 vary architecture, diversity, feature extractor, parameter regime, budget, and modality; Table 8 and Table 12 isolate objective/implementation cost. Figure 2 directly tests the selector’s preference for leaked real samples.",
+    "main_appendix_link": "The main body gives one theory figure and three result tables; Appendix C repeats their matrix grammar rather than inventing new visual idioms. Appendix Figure 2 is the only additional figure and supplies mechanism evidence. Appendix A–B contain proofs and definitions but no PDF Figure/Table objects.",
+    "typography_consistency": "Tables and paper text share Nimbus Roman/Computer Modern math families, while Figure 1 embeds Arial/DejaVuSans from Seaborn/Matplotlib and Figure 2 embeds TimesNewRomanPSMT. All objects are vector, but figure/table font-family mismatch and 5–8 pt appendix text reduce visual-system consistency.",
+    "color_consistency": "The paper has no global color key across all objects. Figure 1 uses a sequential mako palette for ρ_s and theory/empirical line-marker pairing; Figure 2 uses teal for Covariance matching and slate gray for baselines; tables are grayscale. Within each object the encodings are redundant enough for grayscale, but colors are not reusable as a cross-object method identity."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Theory-to-evidence small multiples: align parameter sweeps, share a response quantity, and distinguish continuous prediction, empirical points, and replication spread.",
+      "Stable method-by-regime table matrices: keep rows and column semantics fixed as generator, architecture, feature extractor, or sample regime changes.",
+      "Mechanism companion diagnostics: use a directly labeled selector bar chart or a metric matrix to explain why downstream accuracy changes.",
+      "Use explicit grouped headers and task-specific captions for crossed robustness and ablation conditions."
+    ],
+    "highest_value_objects": [
+      "Figure 1",
+      "Table 1",
+      "Table 10",
+      "Figure 2",
+      "Table 13"
+    ],
+    "failure_patterns": [
+      "Appendix captions frequently omit denominators, seed counts, feature details, and operational definitions of “on par”.",
+      "Dense tables and repeated legends rely on very small text and require surrounding prose to recover the design.",
+      "No global color identity or explicit best/second-best marking links Covariance matching across tables and figures.",
+      "Figure 2 uses unequal x-axis maxima and lacks uncertainty, weakening cross-panel quantitative comparison."
+    ],
+    "one_sentence_visual_strategy": "A compact vector-first system uses one theory small multiple, repeated accuracy matrices for controlled robustness, and a directly labeled leak/metric diagnostic to move from theoretical covariance alignment to empirical downstream and mechanistic evidence."
+  }
+}

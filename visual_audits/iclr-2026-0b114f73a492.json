@@ -1,0 +1,3196 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-0b114f73a492",
+  "source_acquisition": {
+    "status": "no_public_source_found",
+    "repository_candidates": [
+      "https://openreview.net/forum?id=M3CeHnZKNC",
+      "https://proceedings.iclr.cc/paper_files/paper/2026/file/b2b502c3629beadda06311386d2c6f73-Paper-Conference.pdf",
+      "https://github.com/triton-lang/triton",
+      "https://github.com/triton-lang/triton/issues/2522",
+      "https://github.com/vllm-project/vllm",
+      "https://github.com/yueliu1999/Awesome-Efficient-Inference-for-LRMs",
+      "https://github.com/hemingkx/Awesome-Efficient-Reasoning",
+      "https://github.com/tritrang88/awesome-llm-symbolic-reasoning"
+    ],
+    "selected_repository": null,
+    "visual_source_files": [],
+    "search_note": "PDF 首页/正文/参考文献提供 OpenReview、proceedings PDF、Triton issue、vLLM 与 Nsight 等链接；reading source inventory 将该 paper 标为 no_public_source_found，且 corpus/visual_sources/iclr-2026-0b114f73a492/ 不存在。已用 gh 按完整标题、ThinKV、作者/方法名和 code search 检查候选；命中的 Awesome-Efficient-Inference-for-LRMs、Awesome-Efficient-Reasoning、awesome-llm-symbolic-reasoning 是 survey/list，triton/vllm 是依赖项目，未发现作者/论文专属仓库或 Figure 1–18 的 TeX/TikZ/PGF、plot/table generator、editable image source。故不把候选仓库或 survey README 记为本文 visual source；所有 figure 颜色/字号/线宽/布局均为 PDF 200 dpi rendered_estimate 或 PDF font-object 观察，未获取 weights、datasets、checkpoints。"
+  },
+  "paper_style": {
+    "main_figures": 11,
+    "main_tables": 5,
+    "appendix_figures": 7,
+    "appendix_tables": 10,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 6.8,
+        "maximum": 9.5
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 8.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "正文示意和结果图使用多色语义 palette：R/E/T 与 compression method 反复用蓝/橙/红/绿/紫，FullKV/空白用灰/黑；热图使用红色或 viridis-like sequential。颜色通常配合 marker、位置、文字或 hatching，但没有统一的色盲/灰度安全承诺。",
+    "vector_raster_mix": "PDF 正文 Figure 1、Figure 5、Figure 6 与 Table/Algorithm/Listing 结构主要是 vector text/paths；Figure 2–4、7–11 与 appendix Figures 13–18 主要嵌入 raster plots。200 dpi 全文渲染覆盖了所有含对象页，figure-level rendering 记为 vector/raster/mixed 而非 source-exact。",
+    "style_consistency": "论文/表格以 Nimbus Roman No9 L 与 Computer Modern math 为主，嵌入绘图出现 Helvetica、Times New Roman、DejaVuSans Type3 等字体对象；caption 与 booktabs/partial-grid 表格风格稳定。Figure 1/6 的概念图、Figure 8/10 的高密度 composite 和 appendix 热图在字号、palette 与 legend 策略上有局部差异。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "conceptual_diagram",
+        "scatter"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Illustrative comparison of KV cache compression methods as tokens are generated: (a) Existing techniques: SnapKV, RocketKV, H2O, RaaS, LazyEviction and R-KV, and (b) ThinKV (Ours). (c) Accuracy vs. TPOT comparison for GPT-OSS-20B evaluated on LiveCodeBench.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#B8D4EF",
+          "#A9D36E",
+          "#F3B26F",
+          "#E47B7B",
+          "#9A4DCC",
+          "#F1D36B",
+          "#C9C9C9",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝色/绿色/橙色/红色单元区分缓存、当前与 thought 类型，紫色/黄色用于散点方法与重点，灰色表示淘汰；(c) 以位置、星形和文字标签重复编码速度/准确性角色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 6,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 70
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "上部 token/grid 按生成步推进；散点子图为 Time Per Output Token (ms)",
+        "y": "散点子图为 LiveCodeBench Accuracy (%)；网格示意图的纵向位置承载阶段",
+        "color": "Existing methods、R/E/T thought categories、cached/evicted/current token 角色",
+        "shape": "四类方法小网格、星形 ThinKV 与圆点/文字标记",
+        "line": "流程箭头和散点趋势位置；没有独立线型图例",
+        "facet": "(a) existing token policies、(b) ThinKV grid、(c) accuracy–TPOT scatter",
+        "text": "Prefill/Decode、Reasoning/Execution/Transition Thoughts、Accurate/Fast、方法名及 TPOT"
+      },
+      "data_and_statistics": "概念图和散点混合；(c) 是单次 GPT-OSS-20B/LiveCodeBench 方法级比较，未给出样本数、重复、误差或置信界限。网格部分是 token 状态示意而非统计样本。",
+      "evidence_relation": "引言的 KV cache 长输出瓶颈 → Figure 1 对比 token-level 方法与 ThinKV 接口 → Figures 2–5 给出压缩/稀疏/重要性/关联机制 → Figures 6–7 展示实现 → Figures 8–11 与 Tables 1–5 验证准确率、吞吐和消融。",
+      "design_strengths": [
+        "全宽三段式构图把“已有方法—本文机制—系统权衡”压缩到一个可复述的 headline。",
+        "散点直接标注方法名，避免再查找颜色图例。",
+        "token 状态通过颜色、形状、箭头和文字多重编码，流程方向清晰。"
+      ],
+      "design_weaknesses": [
+        "网格示意、散点和大量小标注共享一个画布，缩放后文字密度高。",
+        "颜色承担缓存状态、thought 类型和方法身份，灰度打印时需依赖文字/位置。",
+        "散点没有重复实验或不确定性，caption 也未定义 TPOT 方向和点的配置。"
+      ],
+      "reusable_pattern": "采用“全宽概念接口 + 局部定量 trade-off”组合：先把状态转移画成可读的 token 网格，再用同页 Pareto-like scatter 绑定速度与准确率。",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "theory",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 2: Accuracy-compression tradeoff of quantization, eviction and hybrid approaches.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#E47B7B",
+          "#C9C9C9",
+          "#A9D36E",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Quantization 红色、Eviction 灰色、Hybrid 绿色；黑色网格和文字用于坐标与参数标注。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 5,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "顶部中央",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Compression Ratio，log scale，约 10⁰–10²",
+        "y": "Accuracy (%)，linear",
+        "color": "三种压缩路径 Quantization/Eviction/Hybrid",
+        "shape": "圆、方、三角 marker 区分三条线",
+        "line": "每种方法一条连续折线",
+        "facet": "single panel",
+        "text": "a=0.125、a=0.0625、b=0.035、b=0.017、b=0.010 参数文字"
+      },
+      "data_and_statistics": "GPT-OSS-20B on LiveCodeBench 的压缩率–准确率点线比较；a/b 表示量化和 eviction 缩放参数。图中是单一设置的点估计，无 seed、误差或区间。",
+      "evidence_relation": "§2 的 Mem(KV) ∝ (I+bLgen)×aβ 与量化导致生成长度膨胀的理论动机 → Figure 2 的三路径 trade-off → ThinKV 的 hybrid Pareto 叙事 → Tables 1–3 与 Figure 8 的主结果。",
+      "design_strengths": [
+        "log x 轴使 1–100 倍压缩区间可同图比较。",
+        "三种路径用 marker、颜色和 legend 重复区分。",
+        "参数标注让读者知道曲线节点对应的 a/b 配置。"
+      ],
+      "design_weaknesses": [
+        "caption 没有明确 log 轴、a/b 含义或样本配置。",
+        "右栏 inset 尺寸较小，刻度和参数标注在双栏阅读中偏密。",
+        "“Pareto-optimal”是正文主张，图面本身未画 frontier 或不确定性。"
+      ],
+      "reusable_pattern": "用 log 压缩轴承载跨数量级资源权衡，并将同一面板中的方法曲线保持少量系列、显式参数点。",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 2 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 3,
+      "module": "theory",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3: Layer-wise attention sparsity across decode steps for R1-Llama-8B on AIME and R1-Llama-70B on LiveCodeBench.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 6.8,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#B8D4EF",
+          "#F3B26F",
+          "#E47B7B",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色折线表示 sparsity；蓝/桃/粉的纵向底色分别编码 Reasoning、Execution、Transition 区域。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 3,
+        "annotations": 4,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "各 panel 右下角",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Decode Step，linear，约 0–10000",
+        "y": "Attention Sparsity (%)，0–100",
+        "color": "蓝色 sparsity trace 与三种 thought-region 背景色",
+        "shape": "无主要 marker；panel 标题区分模型/数据集",
+        "line": "单条蓝色 noisy line",
+        "facet": "(a) R1-Llama-8B Layer 10/AIME；(b) R1-Llama-70B Layer 4/LiveCodeBench",
+        "text": "Region legend、模型/数据集标题和纵向区域含义"
+      },
+      "data_and_statistics": "两个 LRM/layer/dataset 的 decode-step sparsity trace；每个 panel 是一条轨迹，没有聚合、重复、误差带或阈值区间的统计定义。",
+      "evidence_relation": "Observation 1a/1b 的 tri-modal sparsity → Figure 3 为 R/E/T 分段提供观测接口 → Table 7 关键词仅作解释标签，Figure 4/5 分别验证重要性与 inter-thought association。",
+      "design_strengths": [
+        "背景带把长序列中的 thought 阶段直接对齐到曲线。",
+        "上下 panel 保持同一 y 语义，跨模型对比路径短。",
+        "图例解释了区域颜色，避免把底色误读成置信带。"
+      ],
+      "design_weaknesses": [
+        "纵向色带容易被理解为 uncertainty band，caption 未声明它是阶段标记。",
+        "每 panel 重复 legend 占用 inset 空间，且没有共享坐标刻度说明。",
+        "sparsity 阈值、层选择和重复数量在图中不可复核。"
+      ],
+      "reusable_pattern": "把连续时间序列与阶段背景带组合，用“轨迹 + 分段语义”呈现机制观察，而不是把阶段另做离散图。",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 3 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 4,
+      "module": "theory",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "box"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: Counterfactual importance of thought categories for GPT-OSS-20B on AIME and LiveCodeBench.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#B8D4EF",
+          "#F3B26F",
+          "#E47B7B",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "R/E/T 分别为蓝/橙/红；黑色空心点标记 outlier，白底和黑色边线承载箱线结构。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "左上角",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "box",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "AIME 2024、LiveCodeBench 两个 categorical dataset，每组 R/E/T",
+        "y": "Counterfactual Thought Importance，约 0.30–0.70",
+        "color": "thought category R/E/T 与 Outlier",
+        "shape": "box/whisker 与 outlier circle",
+        "line": "箱体边界、median/whisker 线",
+        "facet": "single panel，dataset 为 x-axis 分组",
+        "text": "Reasoning (R)、Execution (E)、Transition (T)、Outlier legend"
+      },
+      "data_and_statistics": "GPT-OSS-20B 的 thought-segment KL counterfactual importance；正文说明每段结果平均 50 rollouts，图面显示分布箱体和 outlier，但未给出具体 n、均值/中位数数值或区间定义。",
+      "evidence_relation": "Observation 2 的 R > E > T hierarchy → Figure 4 给出分布证据 → TBQ 在 §4.2 将 thought importance 映射到 precision；Figure 5 解释 inter-thought dynamics。",
+      "design_strengths": [
+        "boxplot 同时显示中心、离散与异常 thought，适合支持 hierarchy。",
+        "R/E/T 颜色与 legend 直接对应方法语义。",
+        "两个任务并列减少跨图比较成本。"
+      ],
+      "design_weaknesses": [
+        "只有 y 轴标题和 legend，箱线统计量/whisker 规则未在 caption 解释。",
+        "颜色区分三类但对灰度和色觉差异不完全安全。",
+        "图的 50-rollout 聚合和 outlier 判定没有可视化样本量。"
+      ],
+      "reusable_pattern": "将分布型机制证据放在同一任务分组轴上，并用颜色+箱线结构同时呈现类别层级与异常段。",
+      "evidence": {
+        "page": 4,
+        "label": "p.4 Figure 4 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 4,
+      "module": "theory",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: Pairwise thought associations for GPT-OSS-20B on AIME. c_j^α denotes thought segment type and its position in CoT.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 6.8,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 8,
+        "hex": [
+          "#8B0000",
+          "#C52B2B",
+          "#E23B3B",
+          "#F4A3A3",
+          "#FAE6E6",
+          "#B8D4EF",
+          "#F3B26F",
+          "#A9D36E"
+        ],
+        "semantic_mapping": "红色 sequential 强度表示 pairwise association；R/E/T 边界和标签用蓝/橙/绿/粉色标记 thought 类型。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 6,
+        "data_marks_estimate": 784
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右侧 colorbar",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Thought position (Thought Type || Position)，influence/source segment",
+        "y": "Thought position (Thought Type || Position)，target/subsequent segment",
+        "color": "association score 0–1 的红色 sequential intensity",
+        "shape": "矩阵 cell；R/E/T 标签和块边界",
+        "line": "块边界/高亮轮廓，没有数据折线",
+        "facet": "single triangular association matrix",
+        "text": "c_j^α、R/E/T segment labels 与 colorbar"
+      },
+      "data_and_statistics": "AIME 上 GPT-OSS-20B 的 directed pairwise association score；下三角/有效区域表达后续 thought 对先前 thought 的依赖，未报告聚合样本数或不确定性。",
+      "evidence_relation": "Observation 3 的 T 触发后历史影响衰减 → Figure 5 以 directed matrix 显示 R/E/T 关联 → Figure 6 的 TBE eviction policy 使用 inter-thought dynamics；额外 prompts 在 Figure 15。",
+      "design_strengths": [
+        "二维矩阵保留 thought position 的方向性，比单一平均关联更能显示块结构。",
+        "sequential colorbar 与 R/E/T 边界同时给出强度和语义分区。",
+        "caption 定义 c_j^α，最低限度支持脱离正文阅读。"
+      ],
+      "design_weaknesses": [
+        "窄 inset 中 x/y 长标签和 R1…R28 密集，读数成本高。",
+        "空白三角、色彩强度和块边界需要同时解释，caption 没有说明三角方向。",
+        "红色强度不是灰度安全的定量编码，未显示 score 数值或显著性。"
+      ],
+      "reusable_pattern": "对有方向的 inter-segment 机制使用带分块边界的矩阵，而不是把所有 thought 压成无向相关热图。",
+      "evidence": {
+        "page": 4,
+        "label": "p.4 Figure 5 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 6: Walkthrough of ThinKV with τ = g = block size = 4, R = {2}.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#B8D4EF",
+          "#F3B26F",
+          "#E47B7B",
+          "#C9C9C9",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝/橙/红分别为 Reasoning/Execution/Transition；灰色为 Evicted Token，黑线/箭头为 block 映射与元数据。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 5,
+        "series": null,
+        "legend_items": 4,
+        "annotations": 25,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "底部/中部",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 decode step 0 到 subsequent steps 的流程顺序",
+        "y": "TBQ buffer、logical blocks、physical GPU DRAM blocks、CT metadata 四个层次",
+        "color": "thought type 与 eviction state",
+        "shape": "KV token cells、logical/physical block boxes、cross mark",
+        "line": "a–d 映射箭头、刷新/分配路径",
+        "facet": "TBQ、logical KV blocks、physical KV blocks、Continuous Thinking Block Table、legend",
+        "text": "4-bit/16-bit、A–P、Block 0–4、Retain 2、mask/indices 与 τ=g=block size=4"
+      },
+      "data_and_statistics": "确定性 walkthrough 图；用 block size=4、R={2} 的小例子解释 TBQ buffer、TBE eviction、physical reuse 和 Continuous Thinking Block Table。不存在统计样本或不确定性编码。",
+      "evidence_relation": "§4 方法四组件（thought decomposition/TBQ/TBE）→ Figure 6 连接 logical-to-physical block 接口 → §5 Continuous Thinking kernel 与 Figure 7 gather benchmark → Listing 1 和 Tables 2–5 的系统结果。",
+      "design_strengths": [
+        "把抽象策略落到 logical/physical block 与 mask 字段，接口边界很清楚。",
+        "同一图展示 token、内存、metadata 三个层次，能解释“无 compaction 的槽位复用”。",
+        "示例参数写进 caption，读者可以按小规模状态追踪箭头。"
+      ],
+      "design_weaknesses": [
+        "全宽图信息量很大，a–d 箭头和多个 block 行需要放大阅读。",
+        "颜色同时表示 thought type 和 eviction，灰度下需依赖 X/文字。",
+        "walkthrough 只给一个状态演化实例，不能直接推断所有层/批次成本。"
+      ],
+      "reusable_pattern": "使用“小型可执行状态例子 + 三层内存视图 + metadata 表”描述系统算法接口，适合复用到分页缓存或在线 compaction 设计。",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 6 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 6,
+      "module": "method",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "line",
+        "bar"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 7: Performance of sequential and overlapped gather kernel across batch sizes.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 6.8,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#E47B7B",
+          "#C9C9C9",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "红色折线/圆点为 TPOT；灰色 bars 为 gather time 或 slowdown，黑色坐标/网格。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": 36
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "各 panel 左上角",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Batch Size categorical: 1, 2, 4, 8, 16, 32, 64, 128, 256",
+        "y": "上 panel 左/右轴 TPOT(ms)/Normalized Gather Time；下 panel TPOT(ms)/Percentage(%)",
+        "color": "red TPOT line 与 gray gather bars",
+        "shape": "circle marker 与 bar",
+        "line": "TPOT solid red line",
+        "facet": "(a) Sequential Gather；(b) Overlapped (Parallel) Gather",
+        "text": "panel title、双轴 legend 与 batch labels"
+      },
+      "data_and_statistics": "A100/H200 gather kernel profiling 的 batch-size 曲线和柱；性能点估计，未提供重复次数、测量误差或硬件采样分布。",
+      "evidence_relation": "§5.1 gather-based compaction 的 memory-hole/irregular-access 成本 → Figure 7 对 sequential/overlapped gather 开销分解 → Continuous Thinking 选择并行 block reuse → Table 2/3 与 Figure 9 验证系统效率。",
+      "design_strengths": [
+        "line+bar 双编码同时显示最终 TPOT 与 gather 分项成本。",
+        "两个 panel 共享 batch-size 轴语义，直接对照顺序与重叠。",
+        "图例和双 y 轴标题使单位比纯归一化柱图更可追踪。"
+      ],
+      "design_weaknesses": [
+        "双 y 轴会增加 TPOT、normalized time 和 percentage 的读数负担。",
+        "caption 未指定 GPU、左右轴单位及 overlapped 的具体实现。",
+        "窄 inset 下 9 个 batch 标签和两套 legend 较拥挤。"
+      ],
+      "reusable_pattern": "用同一 x 轴的“总耗时折线 + 分项成本柱图”比较 kernel 变体，保留系统瓶颈的可解释分解。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 7 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 8: ThinKV compared with SoTA eviction baselines, reported as pass@1 accuracy.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#C9C9C9",
+          "#E47B7B",
+          "#B8D4EF",
+          "#F3B26F",
+          "#9A4DCC",
+          "#A9D36E",
+          "#000000"
+        ],
+        "semantic_mapping": "FullKV 灰色基线；H2O/RaaS/LazyEviction/R-KV 为红/蓝/橙/紫；ThinKV 绿色星形并配 memory-share 文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 48,
+        "data_marks_estimate": 450
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "全图顶部共享",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 4,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Token Budget categorical: 64–4096（MATH panels 到 2048）",
+        "y": "pass@1 Accuracy (%)，各 panel 线性范围",
+        "color": "六个 compression method；ThinKV 用绿色星形，FullKV 为灰色 baseline",
+        "shape": "x/circle/square/triangle/diamond/star 等 method marker",
+        "line": "每 method 在 token budget 上的 accuracy 折线；FullKV horizontal baseline",
+        "facet": "4 model columns × 3 dataset rows: R1-Llama-8B/70B、GPT-OSS-20B、AceReason-14B × AIME/LiveCodeBench/MATH-500",
+        "text": "panel model/task labels、ThinKV Avg. Prec (3.2–3.8b)、% of FullKV Memory Used / ThinKV v/ Others"
+      },
+      "data_and_statistics": "四模型×三任务的 pass@1 accuracy 曲线；每个点对应 token budget，旁注给出 ThinKV 平均 precision 与相对 FullKV memory share。没有 error bar、seed 数或置信区间。",
+      "evidence_relation": "§6.2 headline 的 near-lossless accuracy/高压缩主张 → Figure 8 与 Tables 1–3 的 accuracy/throughput 主比较 → Figure 10/11、Tables 4–5 分解组件和成本 → appendix Tables 8–15 扩展模型、任务和条件。",
+      "design_strengths": [
+        "12 panel 统一 x/y 语义，支持跨模型、任务、budget 的一眼比较。",
+        "共享 legend、FullKV baseline、ThinKV star 和 memory annotation 同时编码性能与成本。",
+        "在正文中承担主要 benchmark 证据，覆盖多种 LRM 和任务。"
+      ],
+      "design_weaknesses": [
+        "12 panel + 多行文字使每个 panel 的刻度和 small annotation 变小。",
+        "方法颜色和 marker 较多，灰度打印与色觉差异下识别成本高。",
+        "caption 未列模型、任务、预算范围或 memory annotation 的分母定义。"
+      ],
+      "reusable_pattern": "采用规则化 model×dataset small multiples，让同一方法颜色贯穿所有面板，并在方法曲线旁补充压缩成本而不另起一张图。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Figure 8 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 9: vLLM system throughput versus user-latency comparison.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#F3B26F",
+          "#A9D36E",
+          "#B8D4EF",
+          "#000000"
+        ],
+        "semantic_mapping": "FullKV/R-KV/ThinKV 用橙/绿/蓝；黑色网格和坐标。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上角",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "User Latency (s)，linear，约 0–1000",
+        "y": "System Throughput (Reqs/s)，linear，约 0–0.4",
+        "color": "FullKV、R-KV、ThinKV method",
+        "shape": "圆点并以线连接配置",
+        "line": "每方法一条折线",
+        "facet": "single panel，vLLM system comparison",
+        "text": "legend method labels"
+      },
+      "data_and_statistics": "vLLM system-level throughput–user-latency operating points；点/线是系统测量值，没有 batch/configuration labels、重复或误差显示。",
+      "evidence_relation": "§6.2 从 kernel 成本到 vLLM 用户层 → Figure 9 连接 throughput 与 user latency → Table 2/3 的 GPU throughput 与 appendix Table 12/14 的 batch/TPR 扩展。",
+      "design_strengths": [
+        "将 throughput 与 user-facing latency 放在同一 trade-off 平面。",
+        "三条方法轨迹简单，适合快速比较系统位置。",
+        "legend 清晰，不依赖密集 direct labels。"
+      ],
+      "design_weaknesses": [
+        "caption 未说明负载、batch、GPU、请求并发和点的扫参维度。",
+        "窄 inset 中 x 轴跨度大，方法曲线未标注具体 operating point。",
+        "没有 uncertainty 或重复运行范围，难判断曲线差异的稳定性。"
+      ],
+      "reusable_pattern": "用二维 operating-frontier 图把 kernel/缓存策略的结果提升到用户 latency 与 service throughput 层。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 9 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 10: ThinKV ablation experiments: (a) recall rate of tokens with Top-10 attention scores for R1-Llama-8B on AIME, (b) ThinKV eviction curve. Impact of (c) refresh rate (τ) for GPT-OSS-20B model on LiveCodeBench, (d) Impact of compression on generation length for R1-Llama-8B, (e) impact of block-size on throughput, (f) % breakdown of thoughts for R1-Llama-8B.",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#E47B7B",
+          "#B8D4EF",
+          "#F3B26F",
+          "#9A4DCC",
+          "#A9D36E",
+          "#C9C9C9",
+          "#000000",
+          "#FFFFFF",
+          "#D88C3A"
+        ],
+        "semantic_mapping": "各 panel 以方法/组件/ thought type 使用不同颜色与 hatching；ThinKV 绿色，FullKV 灰色，Reasoning/Execution/Transition 为蓝/橙/红。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 30,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "各 panel 顶部或内部",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 3,
+        "line_styles": 1,
+        "hatching": true,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "按 panel 为 Token Budget、Decode Step、Refresh Rate τ、Dataset、Block Size、Dataset categorical/linear",
+        "y": "Recall Rate、KV Cache Size、Accuracy、Normalized Generation Length、Normalized Throughput、Percentage",
+        "color": "method/component/thought type；hatch 为部分方法/配置冗余编码",
+        "shape": "bar、circle/line marker 与 hatch",
+        "line": "eviction curve 与 block-size throughput curve",
+        "facet": "(a) recall；(b) eviction；(c) refresh；(d) generation length；(e) block size；(f) thought breakdown",
+        "text": "Top-10、KV Cache Budget=1024、value labels、panel letters与方法名"
+      },
+      "data_and_statistics": "六个独立 ablation panel，混合 point/bar/line；(a)–(f) 分别测 recall、eviction trajectory、refresh rate、压缩对长度、block size throughput、thought mix。柱/线为点估计，未显示重复或不确定性。",
+      "evidence_relation": "主结果 Figure 8/Tables 1–3 → Figure 10 将 accuracy、长度、吞吐和 thought composition 拆成可操作旋钮 → Figure 11/Table 4/5 继续分解 layer、precision 和 per-layer overhead。",
+      "design_strengths": [
+        "六个 panel 覆盖机制到系统成本，直接对应论文组件问题。",
+        "bar 的数值标签、hatching 和颜色提供一定冗余。",
+        "panel (b) 的 KV budget reference line 让 eviction 触发条件可读。"
+      ],
+      "design_weaknesses": [
+        "六 panel 的 x/y 单位与比较对象差异大，caption 虽逐项列出但阅读负担高。",
+        "不同 panel 的颜色语义不完全共享，legend 位置重复且密集。",
+        "很多柱/曲线没有误差或 sample-size 线索，ablation 稳健性不可从图面判断。"
+      ],
+      "reusable_pattern": "把一个系统 ablation 设计成“机制曲线 + 配置柱图 + 成本 breakdown”的单页矩阵，适合按研究问题而非按图类型组织证据。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 10 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "line",
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 11: (a) Impact of |L*|, |T| and minR on LiveCodeBench accuracy for R1-Llama-8B, (b) analysis of precision assignment for R1-Llama-8B on AIME and R1-Llama-70B on LiveCodeBench.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 6.8,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#C9C9C9",
+          "#E47B7B",
+          "#A9D36E",
+          "#B8D4EF",
+          "#F3B26F",
+          "#9A4DCC",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "panel (a) 三条参数曲线用灰/红/绿；panel (b) precision assignment 条件用多色实心柱，Baseline 为灰色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 7,
+        "legend_items": 6,
+        "annotations": 15,
+        "data_marks_estimate": 45
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "顶部/内部",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 3,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "panel (a) 分别为 # of Layers、# of Thoughts、min(R) 的 categorical sweep；panel (b) AIME/LiveCodeBench groups",
+        "y": "Accuracy (%)，linear",
+        "color": "三种选参轴/多种 precision assignment 条件",
+        "shape": "circle/square/diamond 曲线 marker 与 grouped bars",
+        "line": "panel (a) 三条 accuracy line",
+        "facet": "(a) layer/thought/min-retention sweeps；(b) assignment grouped bars",
+        "text": "|L*|、|T|、minR、数值 labels 与 precision condition legend"
+      },
+      "data_and_statistics": "panel (a) 为三条超参数 sweep，panel (b) 为 AIME 与 LiveCodeBench 的 precision assignment grouped bars；点/柱为 accuracy 点估计，无误差。",
+      "evidence_relation": "Figure 10 的 refresh/block/length ablations → Figure 11 直接验证 layer subset、thought count、minimum retention 与 precision assignment → Table 4 汇总组件组合的 accuracy/performance。",
+      "design_strengths": [
+        "将结构选择参数和 precision assignment 放在同一 ablation 对象中，避免只报告最终配置。",
+        "panel (a) marker 与 panel (b) 柱形互补，数值标签支持局部读数。",
+        "两任务 grouped bars 使 assignment 的任务依赖可见。"
+      ],
+      "design_weaknesses": [
+        "panel (a) 三个小 x 轴各自不同，读者需回到标题理解参数。",
+        "panel (b) assignment 条件较多且 legend 密集，颜色辨识成本高。",
+        "caption 未列具体 assignment 名称、层数/阈值范围或重复统计。"
+      ],
+      "reusable_pattern": "用“结构超参数小 multiples + 任务分组 precision bars”将配置敏感性与跨任务验证连接起来。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Figure 11 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 12: Illustration of eviction policy π’s k-means-based eviction mechanism.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#E47B7B",
+          "#F3B26F",
+          "#A9D36E",
+          "#9A4DCC",
+          "#B8D4EF",
+          "#000000"
+        ],
+        "semantic_mapping": "K-means cluster/centroid 用红/橙/绿/紫分组，V/K 行和保留 token 由位置、星形与箭头重复表达。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 15,
+        "data_marks_estimate": 50
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "cache position 0–15 / key-token order",
+        "y": "V cache、K cache、K-means clustering 与 retained centroids 的流程层次",
+        "color": "cluster identity 与 retained/evicted state",
+        "shape": "token boxes、cluster circles、centroid star/mark",
+        "line": "K-means/grouping 和保留 key/value 的方向箭头",
+        "facet": "V/K cache rows → cluster assignment → retained key centroids/value mapping",
+        "text": "token indices 0…15、π、K/V、centroid/retain labels"
+      },
+      "data_and_statistics": "附录 D.4 的 k-means eviction 机制示意；用小型 token/key/value 例子说明代表 key 与对应 value 的保留映射，属于算法接口而非统计图。",
+      "evidence_relation": "Figure 5 的 thought association → §4.3 eviction policy π → Figure 12 展开 k-means representative key 选择 → Figure 6/Listing 1 的 physical block 执行。",
+      "design_strengths": [
+        "以 K/V 两行和 centroid 映射同时保存 key/value 对应关系。",
+        "星形 retained centroid 与 cluster circle 使 eviction decision 可追踪。",
+        "附录图补齐正文 Figure 6 未展开的 policy 细节。"
+      ],
+      "design_weaknesses": [
+        "说明性 token 数量小，不能证明 k-means 在真实序列上的收益。",
+        "cluster 颜色没有独立 legend，需依赖相邻文字和箭头。",
+        "复杂箭头和对象重叠在窄页面上有较高解释成本。"
+      ],
+      "reusable_pattern": "用“toy cache rows + clustering stage + retained pointer mapping”将一个 eviction policy 变成可操作的状态图。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Figure 12 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 13: Visualization of attention maps across different thought types. At decode time only a single query is present; maps are broadcasted for clarity of visualization.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#35B779",
+          "#FDE725",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "viridis-like sequential 强度表示 attention weight；深紫低、黄/绿高，白色用于网格背景。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 900
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Key Positions，categorical token positions",
+        "y": "Query Positions，categorical/broadcast visualization",
+        "color": "attention map intensity，sequential viridis-like",
+        "shape": "heatmap cells",
+        "line": "无折线；cell grid/axes",
+        "facet": "3 thought-type rows × 3 examples/steps columns",
+        "text": "Reasoning Thoughts、Execution Thoughts、Transition Thoughts row labels"
+      },
+      "data_and_statistics": "三类 thought 的 attention weight matrix qualitative grid；caption 明确单 query 在 decode 时被 broadcast 以便显示。没有聚合、误差或数值 colorbar 说明。",
+      "evidence_relation": "§3.1 attention sparsity 机制 → Figure 13 以 raw attention map 直观展示 thought-type 差异 → Figures 3/14 的长序列 sparsity traces 与 Figure 5/15 的 association maps。",
+      "design_strengths": [
+        "九格 small multiples 保留 thought type × map example 的结构。",
+        "sequential heatmap 让局部稀疏/高权重条带直观可见。",
+        "caption 主动澄清 broadcast，避免把图误读为多 query 观测。"
+      ],
+      "design_weaknesses": [
+        "没有 colorbar、数值刻度或 prompt/step 标识，定量比较不可复核。",
+        "panel/row 标注小，图面接近色块浏览。",
+        "颜色在灰度和色觉差异下难以保持 attention 强度排序。"
+      ],
+      "reusable_pattern": "对不适合折线的注意力局部结构使用“thought-type 行 × 例子列”的 qualitative heatmap，并在 caption 说明显示变换。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Figure 13 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 14: Layer-wise attention sparsity across decode steps for different models and datasets.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#B8D4EF",
+          "#F3B26F",
+          "#E47B7B",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色 sparsity trace；蓝/桃/粉背景带表示 Reasoning/Execution/Transition；黑字/边线。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": 9,
+        "legend_items": 3,
+        "annotations": 18,
+        "data_marks_estimate": 450
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "各 panel 右下或内部",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Decode Step，linear，各模型序列长度不同",
+        "y": "Attention Sparsity (%)，linear",
+        "color": "trace 与三类 thought background region",
+        "shape": "无主要 marker；panel title/layer text",
+        "line": "每 panel 一条 noisy sparsity line",
+        "facet": "3×3 model/dataset/layer panels；底部三 panel 为 GPT-OSS-20B hard-to-distinguish layers",
+        "text": "model、dataset、Layer 12/4/7/15/14/3/20/23/22"
+      },
+      "data_and_statistics": "九个模型–数据集–层切片的 attention sparsity 轨迹；三张 GPT-OSS-20B panel 明示 hard-to-distinguish cases。无误差带和样本重复。",
+      "evidence_relation": "Figure 3 的两例观察 → Figure 14 扩展不同模型/数据集并暴露模糊边界 → Appendix E.4 说明层选择困难 → Figure 11 的 |L*| ablation。",
+      "design_strengths": [
+        "九个 panel 展示跨模型/层的外部稳健性与失败样例。",
+        "统一背景带和 y 语义使 trace 可横向浏览。",
+        "把难分层明确标出，避免只展示支持性案例。"
+      ],
+      "design_weaknesses": [
+        "九图共享的视觉密度高，caption 未提供每个 panel 的数据集/layer 对照表。",
+        "背景色可能被误认成不确定性 band。",
+        "没有阈值、样本量和失败边界的定量标识。"
+      ],
+      "reusable_pattern": "在附录使用规则化多 panel 轨迹覆盖模型/层异质性，并显式保留“难以区分”的负面切片。",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Figure 14 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 15: Additional visualization of pairwise thought associations for different input prompts from different datasets (AIME and LiveCodeBench).",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#8B0000",
+          "#C52B2B",
+          "#E23B3B",
+          "#F4A3A3",
+          "#FAE6E6",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "红色 sequential association strength；白色为空/无效三角区域。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 1200
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "各 panel 右侧 colorbar",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Thought position (Thought Type || Position)",
+        "y": "Thought position (Thought Type || Position)",
+        "color": "pairwise association score 0–1，红色 sequential",
+        "shape": "triangular matrix cells",
+        "line": "无折线；R/E/T block boundary",
+        "facet": "3 prompt-specific association matrices，AIME/LiveCodeBench",
+        "text": "thought position tick labels and per-panel colorbar"
+      },
+      "data_and_statistics": "三个不同 prompt/dataset 的 pairwise association matrix；每 panel 有独立 colorbar，未报告重复/聚合与不确定性。",
+      "evidence_relation": "Figure 5 的单一 AIME 机制图 → Figure 15 提供多 prompt/dataset robustness slice → Observation 3 与 TBE eviction rationale 的附录扩展。",
+      "design_strengths": [
+        "保持 Figure 5 的矩阵语法，追加 prompt/domain 切片，便于看结构是否复现。",
+        "每 panel colorbar 保持 score 方向可读。",
+        "三 panel 横向对照比单一 exemplar 更能支持 robustness。"
+      ],
+      "design_weaknesses": [
+        "caption 没有列各 panel 的 prompt 与具体数据集对应，脱离正文难定位。",
+        "三套长 tick labels 和 colorbar 造成高密度。",
+        "红色 sequential 对灰度不友好，且没有显著性/误差信息。"
+      ],
+      "reusable_pattern": "复用正文机制矩阵的坐标和颜色，将额外 prompt/domain 作为小 multiples 展开，避免改变语义而只增加覆盖面。",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Figure 15 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 16: Quantization sensitivity analysis of KV cache for (a) reasoning, (b) execution and (c) transition thoughts.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 6.8,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#E47B7B",
+          "#B8D4EF",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Key 红色三角、Value 蓝色星/marker；黑色 grid/axes。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 42
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "panel 内/上方",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Quantization bits categorical 1–8",
+        "y": "Accuracy (%)，linear",
+        "color": "K/Key red、V/Value blue",
+        "shape": "triangle 与 star/circle marker",
+        "line": "K/V accuracy curves",
+        "facet": "(a) Reasoning、(b) Execution、(c) Transition",
+        "text": "Quantization Sensitivity 标题、K/V legend、thought type labels"
+      },
+      "data_and_statistics": "INT quantization 下固定其余 KV 为 8-bit，对 K 或 V 在单一 thought type 中做 bit sweep；点估计没有误差带。",
+      "evidence_relation": "TBQ 的 thought-adaptive precision assignment → Figure 16 说明 R K/V 敏感、E 约 4 bit 稳定、T 可至 2 bit → Figure 11/Table 4 的 precision assignment 与 component ablation。",
+      "design_strengths": [
+        "三个 thought type 同构 panel，K/V 两条曲线能直接比较敏感性。",
+        "marker 和颜色重复区分 Key/Value，便于黑白辅助识别。",
+        "附录把精度选择从最终配置还原成 sweep 证据。"
+      ],
+      "design_weaknesses": [
+        "caption 未写 fixed 8-bit 条件、模型/数据集和 INT 格式。",
+        "panel y 轴与 legend 较小，曲线平台差异可能难读。",
+        "无误差或重复信息，不能判断小幅差异稳定性。"
+      ],
+      "reusable_pattern": "使用同构 thought-type facets 和 K/V 双曲线展示量化敏感性，使最终 bit assignment 有可追踪的局部依据。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Figure 16 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "types": [
+        "scatter",
+        "pareto"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 17: Accuracy vs KV cache size comparison of ThinKV against SoTA baselines for R1-Llama-70B on LiveCodeBench.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#F3B26F",
+          "#B8D4EF",
+          "#A9D36E",
+          "#F1D36B",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "LazyEviction/PM-KVQ/R-KV/ThinKV 用橙/蓝/绿/黄；黑线和星形为 Pareto Frontier。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 5,
+        "annotations": 1,
+        "data_marks_estimate": 45
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右下角",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 4,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "KV Cache Size (GB)，linear，约 0–1.6",
+        "y": "Accuracy (%)，linear，约 0–60",
+        "color": "baseline/method identity",
+        "shape": "triangle/diamond/square/circle configurations",
+        "line": "black Pareto Frontier line",
+        "facet": "single R1-Llama-70B/LiveCodeBench panel",
+        "text": "legend method names and Pareto Frontier"
+      },
+      "data_and_statistics": "对各方法扫 token budget/precision configuration 的 accuracy–KV size 点集；ThinKV 点形成作者标注的 Pareto frontier。未显示每配置重复或误差。",
+      "evidence_relation": "Appendix E.11 将 Figure 2 的 hybrid frontier 论点扩展到 R1-Llama-70B → Figure 17 对比 LazyEviction/PM-KVQ/R-KV → Figure 8/Tables 1–3 的主结果。",
+      "design_strengths": [
+        "明确把 cache size 与 accuracy 置于同一 Pareto 平面，直接服务 efficiency claim。",
+        "配置点而非单一代表点呈现压缩 regime，能显示 frontier 形状。",
+        "黑色 frontier 线与彩色方法点有结构冗余。"
+      ],
+      "design_weaknesses": [
+        "frontier 线的计算规则、配置范围和 dominance 定义未写在 caption。",
+        "Inset 中 4 类点和 legend 易重叠，点没有 direct labels。",
+        "没有不确定性，少量 accuracy 差异可能被过度解读。"
+      ],
+      "reusable_pattern": "将每个方法的配置扫参点保留在 accuracy–resource 平面，并用显式 frontier 线把“最佳权衡”从单一 bar 结果中分离出来。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Figure 17 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 18: Latency breakdown across different batch sizes.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#B8D4EF",
+          "#F3B26F",
+          "#A9D36E",
+          "#E47B7B",
+          "#000000"
+        ],
+        "semantic_mapping": "Attention/MLP/TBE/Thought Refresh 四段用蓝/橙/绿/红；黑色文字/轴。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 8,
+        "data_marks_estimate": 8
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "顶部中央",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Batch Size categorical: 8、32",
+        "y": "Percentage (%)，0–100 stacked total",
+        "color": "Attention、MLP、TBE、Thought Refresh runtime shares",
+        "shape": "100% stacked bars",
+        "line": "无数据折线；bar segment boundaries",
+        "facet": "single panel",
+        "text": "segment percentage labels与legend"
+      },
+      "data_and_statistics": "代表 decode step 的 100% stacked latency breakdown；两种 batch size 的 segment percentage 点估计，未给出绝对 latency、重复或误差。",
+      "evidence_relation": "§5/§6 的 system overhead claim → Figure 18 说明 Attention/MLP 占主导、TBE+refresh 约 14% → Table 5 per-layer time/call-rate 与 Figure 7 gather cost。",
+      "design_strengths": [
+        "百分比总和归一到 100%，直接显示核心执行与 ThinKV overhead 的相对比例。",
+        "segment 内数字标签使小的 TBE/refresh 部分仍可读。",
+        "batch size 对照紧凑，适合附录成本核查。"
+      ],
+      "design_weaknesses": [
+        "仅两个 batch size，不能显示连续 scaling 趋势。",
+        "没有绝对 latency，百分比无法转换为用户级时间。",
+        "颜色承载四类操作，灰度下标签与位置负担增加。"
+      ],
+      "reusable_pattern": "用 100% stacked bar 在附录把整体 runtime 分解为核心算子与新增机制，作为 throughput/TPOT 结果的成本解释。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 18 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Comparison of ThinKV with KV quantization baselines.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "未报告 mean±SD、SE、区间或显著性；每个单元是 accuracy (%) 点估计。",
+      "data_and_statistics": "两组模型 R1-Qwen-14B 与 QwQ-32B、四种方法（Baseline/KIVI/PM-KVQ/ThinKV），列为 Model、Method、Bit-Width、AIME、LiveCodeBench；k=1024 条件。精度列两位小数，bit-width 一位/整数混合。",
+      "evidence_relation": "§6.2 accuracy comparison → Table 1 给出量化 baseline 对照 → Figure 8 的多模型/多任务曲线与 Tables 2–3 的系统吞吐。",
+      "design_strengths": [
+        "模型组和方法组在窄栏中仍可直接查值。",
+        "ThinKV 行绿色/粗体，best 值视觉优先级清晰。",
+        "AIME 与 LiveCodeBench 并列，准确率分母一致。"
+      ],
+      "design_weaknesses": [
+        "标题未说明 k=1024、指标是 pass@1 或重复设置。",
+        "行底色颜色语义依赖颜色，灰度下主要依靠粗体。",
+        "小数精度跨 Bit-Width 与 accuracy 列不完全一致。"
+      ],
+      "reusable_pattern": "在同一表内按模型 block 对齐 quantization baselines，并以颜色+粗体突出本文方法，适合正文快速核查。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 1 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2: Throughput (tokens/s) comparison on GPUs. *Mem. ftprnt: Memory footprint (%) normalized to FullKV.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；吞吐、batch 与 memory footprint 均为单次/汇总点估计。",
+      "data_and_statistics": "列为 Method、Tok. Budget、Mem. ftprnt (%)*、A100 Batch、A100 Tok/s、GH200 Batch、GH200 Tok/s；FullKV/R-KV(seq)/R-KV(ovl)/ThinKV 与第二组 iso-batch/iso-compression control。Mem. ftprnt 分母由脚注定义为 FullKV，吞吐为 tokens/s，精度含整数和一位小数。",
+      "evidence_relation": "Figure 7 gather kernel cost → Table 2 把 A100/GH200、memory share、batch 与 tokens/s 放到同一决策面 → Figure 9 vLLM latency/throughput 与 Table 3 最大 batch。",
+      "design_strengths": [
+        "同时列资源 footprint、batch 和吞吐，支持系统选择而非只看 accuracy。",
+        "A100/GH200 两层 header 组织硬件差异，ThinKV 行绿色/粗体。",
+        "脚注明确 memory footprint 的归一化分母。"
+      ],
+      "design_weaknesses": [
+        "窄栏七列数字密集，header 缩写较多。",
+        "没有 GPU 型号配置、warm-up、重复和测量误差。",
+        "iso-batch/iso-compression 的控制关系需要正文才能完全解释。"
+      ],
+      "reusable_pattern": "把 throughput、batch capacity 和 normalized memory 放在跨硬件双层表头下，形成可复用的系统决策表。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 2 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 3: ThinKV throughput on R1-Llama-8B (A100-80GB, 32K generation) with 2048 token budget.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；Acc.、max batch 和 throughput 为点估计。",
+      "data_and_statistics": "FullKV 与 ThinKV 两行；列为 Method、Acc.、Batch Size (max)、Token Budget、Throughput。硬件/生成长度/预算设置写入 caption；accuracy 为整数、throughput 一位小数。",
+      "evidence_relation": "Table 2 的跨 GPU throughput → Table 3 固定 R1-Llama-8B/A100/32K 条件做 max-batch 对照 → Figure 8 accuracy 与 Table 4/5 overhead。",
+      "design_strengths": [
+        "短表把 headline throughput 与最大 batch 直接绑定。",
+        "caption 自带模型、GPU、generation length 和 budget，脱离正文可读。",
+        "ThinKV 高亮同时兼顾准确率与吞吐。"
+      ],
+      "design_weaknesses": [
+        "只有两行，无法展示不同 batch/预算的 scaling。",
+        "未给测量重复或 latency 分布。",
+        "Acc. 缩写没有在表头扩展为具体指标。"
+      ],
+      "reusable_pattern": "用固定硬件/序列长度的极简对照表，作为复杂跨硬件表后的可复核 anchor。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 3 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 4: Impact of ThinKV components on accuracy, performance (iso-batch) for GPT-OSS-20B on LiveCodeBench.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有 mean±SD/SE 或区间；Accuracy、Batch Size、Norm. Throughput、Norm. Latency 是点估计。",
+      "data_and_statistics": "列为 Method、Avg. Precision / Eviction Budget、Accuracy、Batch Size、Norm. Throughput、Norm. Latency；FullKV、TBQ、TBE512/TBE1024/TBE2048、ThinKV(TBQ+TBE)。accuracy 两位小数，归一化性能为约一位/两位混合。",
+      "evidence_relation": "Figure 10/11 的组件 ablation → Table 4 将 TBQ/TBE budget 与 iso-batch accuracy/throughput/latency 汇总 → Table 5 per-layer overhead。",
+      "design_strengths": [
+        "同一行同时显示 accuracy 与性能，直接检查组件 trade-off。",
+        "eviction budget 与 average precision 放在同一配置列，避免脱离实验条件。",
+        "FullKV/ThinKV 高亮帮助读者定位端点。"
+      ],
+      "design_weaknesses": [
+        "长复合表头在 inset 中占空间，缩写未全部展开。",
+        "“norm.” 的分母和 iso-batch 约束需正文补足。",
+        "无不确定性或运行次数，组件间小差异容易被过读。"
+      ],
+      "reusable_pattern": "以“方法配置 + accuracy + iso-batch 系统代价”一行一配置，适合组件消融的决策面汇总。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 4 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 5: Per-layer time breakdown (%) and call rates across decode steps.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "没有误差/重复/区间；百分比和 call-rate 百分比为 breakdown 点估计，dashes/zeros 表示未调用或无占比。",
+      "data_and_statistics": "六个 operation 行：Thought Refresh、R-KV Eviction、Gather Time、TBE Eviction、Attention、MLP；两组列 ThinKV Time Breakdown (%) / ThinKV # Calls (%) 与 R-KV 对应列，双层 header。ThinKV header 绿色、R-KV 灰色；数值为百分比，含 dash/0。",
+      "evidence_relation": "Figure 7 gather 分项 → Table 5 比较 ThinKV/R-KV 的 per-layer time 与 call rate → Figure 18 进一步按 batch 展示总 latency breakdown。",
+      "design_strengths": [
+        "时间占比与调用频率并列，能分辨“调用少但单次贵”和“调用多”的来源。",
+        "ThinKV/R-KV 双组表头颜色与横线层次明确。",
+        "operation 行覆盖核心 Attention/MLP 与新增 TBE/refresh。"
+      ],
+      "design_weaknesses": [
+        "五列中复合双层 header 较难在窄栏阅读。",
+        "没有绝对毫秒、batch、GPU 或每层数量，百分比不能还原成本。",
+        "灰/绿 header 颜色不是灰度安全的唯一分组线索。"
+      ],
+      "reusable_pattern": "对系统 overhead 使用 operation×(time share, call rate) 交叉表，把运行时间和调用机制放在同一结构中。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Table 5 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 6: Summary of notation used in the paper.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 19,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "italic"
+      ],
+      "uncertainty": "符号词典，无统计不确定性、精度或估计量。",
+      "data_and_statistics": "两列 Symbol/Description，19 个数据行，覆盖 A、L、y_i、Y_i、Y_0…Y_{N−1}、S_i^ℓ/S_i^{ℓ*}、(K_i^ℓ,V_i^ℓ)、(~K_i^ℓ,~V_i^ℓ)、T、θ、L*、τ、B、ρ、ψ、k、π、R 等；数学符号斜体/数学字体，描述列为正文罗马体。",
+      "evidence_relation": "正文定义、公式和 Algorithm 1 → Table 6 作为附录 notation anchor → Figure 6/12 与 Listing 1 使用相同 symbol 接口。",
+      "design_strengths": [
+        "集中定义符号，降低 Figure 6 和公式的复读成本。",
+        "booktabs 极简规则适合长描述，数学符号与说明列区分清楚。",
+        "附录位置使正文不被长 glossary 打断。"
+      ],
+      "design_weaknesses": [
+        "19 个符号行较长，描述仍需结合正文段落。",
+        "没有按 thought/block/policy 分组，检索特定符号要逐行扫。",
+        "caption 未说明波浪符号/上标下标的阅读规则。"
+      ],
+      "reusable_pattern": "将所有跨图复用的数学符号集中到两列表，作为算法图和公式的命名契约。",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Table 6 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "method_interface",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 7: Keyword list to interpret different thought types.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "关键词示例，不是统计估计；无数值不确定性。",
+      "data_and_statistics": "三行 Reasoning、Transition、Execution，列/行展示每类的 illustrative keyword list；行 label 粗体，列表为文字。caption/正文声明关键词只是 illustrative mapping，不是完备分类器。",
+      "evidence_relation": "Figure 3 的 sparsity region 需要语义标签 → Table 7 给 R/T/E keyword examples → Figure 6/10/11 将 R/T/E 作为 thought-adaptive policy 的编码。",
+      "design_strengths": [
+        "为连续 sparsity region 提供可读的语言锚点。",
+        "三类 thought 行结构简单，读者可快速查找。",
+        "附录正文明确其 illustrative 边界，避免把关键词表当 ground truth。"
+      ],
+      "design_weaknesses": [
+        "关键词并不覆盖 lexical variation，分类失败边界不在表内。",
+        "没有 prompt/model/context 例子，脱离正文只能作为标签字典。",
+        "窄表长关键词可能造成行高和换行不均。"
+      ],
+      "reusable_pattern": "把解释性类别放入小型关键词字典，同时明确它只用于解释可视化区域而非决定性分类规则。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Table 7 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 8: Comparison of ThinKV and R-KV on GSM8K using MobileLLM-R1-950M.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；Compression 为倍数、GSM8K 为 accuracy 点估计。",
+      "data_and_statistics": "FullKV/R-KV/ThinKV 三行，Method、Compression、GSM8K 三列；compression 为 1/6/24 倍，accuracy 一位小数。FullKV 灰、ThinKV 绿/粗体。",
+      "evidence_relation": "Appendix E.6 generalization → Table 8 将轻量 MobileLLM-R1-950M/GSM8K 加入模型外推 → Figure 8 主 LRM 多任务结果。",
+      "design_strengths": [
+        "短表清楚展示压缩倍数与 accuracy 的 trade-off。",
+        "模型/任务设置写入 caption，方法行易定位。",
+        "ThinKV 高压缩端点通过绿色和粗体强调。"
+      ],
+      "design_weaknesses": [
+        "只有三行，缺少 generation length、budget 和重复信息。",
+        "compression 分母/定义依赖正文。",
+        "accuracy 的小数精度与正文其他表略有差异。"
+      ],
+      "reusable_pattern": "以最小三行表呈现新模型/任务的 sanity generalization，同时保留压缩强度列。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Table 8 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 9: Accuracy of ThinKV vs FullKV across reasoning effort levels for GPT-OSS-120B on LiveCodeBench.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；High/Medium effort 下各方法为 accuracy 点估计。",
+      "data_and_statistics": "列 Method、Reasoning Effort、Accuracy；High 与 Medium 各自 FullKV/ThinKV 两行，两个 row groups。accuracy 一位小数；正文还说明固定 k=1024 和平均 precision 3.6 bit。",
+      "evidence_relation": "Appendix E.7 的 reasoning-effort robustness → Table 9 检查 GPT-OSS-120B 高/中 effort → Figure 8 GPT-OSS-20B multi-budget 结果。",
+      "design_strengths": [
+        "把 effort level 作为显式 row group，避免只报一个平均值。",
+        "FullKV/ThinKV 成对相邻，差值容易读取。",
+        "caption 指明模型、任务和维度。"
+      ],
+      "design_weaknesses": [
+        "k=1024/3.6-bit 等关键条件不在 caption。",
+        "两 effort 组没有长序列/成本列，无法判断效率代价。",
+        "没有重复或 uncertainty，1–2 点差异的稳定性未知。"
+      ],
+      "reusable_pattern": "按 reasoning effort 分组做配对 baseline/ours 表，复用在可调推理预算的 robustness 报告中。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Table 9 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 10: Impact of data format choices on accuracy for R1-Llama-8B.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；AIME/LiveCodeBench 是 accuracy 点估计。",
+      "data_and_statistics": "Method、AIME、LiveCodeBench 三列；Baseline、ThinKV w/ INT、ThinKV 三行。数值混合整数/一位/两位小数；灰/绿高亮。正文说明 INT4/INT2 与 NVFP4/ternary scaling 对照。",
+      "evidence_relation": "TBQ data-format design → Table 10 将 conventional integer quantization 与最终格式隔离 → Figure 16 的 quantization sensitivity。",
+      "design_strengths": [
+        "两任务并列，能看到格式选择的跨任务影响。",
+        "三行极简，baseline 与 proposed format 差异清晰。",
+        "caption 明确对象是 data format choices。"
+      ],
+      "design_weaknesses": [
+        "INT 位宽和 scaling 细节不在表头。",
+        "没有 compression/memory 或 generation length 伴随指标。",
+        "缺少不确定性，accuracy drop 的稳健性不可从表面判断。"
+      ],
+      "reusable_pattern": "用小型 cross-task ablation 表隔离 data representation 选择，避免把格式与其他组件混杂。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Table 10 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 11: LLM accuracy comparison on LongWriter task.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；Llama-8B/Phi-14B 为 accuracy 点估计。",
+      "data_and_statistics": "Method、Llama-8B、Phi-14B 三列；FullKV、H2O (5%)、ThinKV (3.75%) 三行，accuracy 一位小数；灰/绿/粗体。",
+      "evidence_relation": "Appendix E.10 generalization beyond LRMs → Table 11 在 LongWriter 两个普通 LLM 上检查 |T|=1 setting → Figure 8 的 reasoning-model 主比较。",
+      "design_strengths": [
+        "模型作为列、方法作为行，跨模型比较快捷。",
+        "压缩预算直接放在 H2O/ThinKV 方法名中。",
+        "表格很短，适合作为外推 sanity check。"
+      ],
+      "design_weaknesses": [
+        "LongWriter judge、prompt 数和 response length 不在表内。",
+        "5%/3.75% 分母和预算定义需正文。",
+        "没有效率列，generalization 只看 accuracy。"
+      ],
+      "reusable_pattern": "在模型列之间横向比较统一方法行，并将压缩比例嵌入方法标签以保持设定可见。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Table 11 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 12: Throughput comparison under different batch sizes implemented in vLLM.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；throughput 为 tokens/s 点估计，FullKV budget 用 dash。",
+      "data_and_statistics": "Method、Batch Size、Budget、Throughput 四列；Batch 8 与 256 两组，每组 R-KV(ovl)/ThinKV，batch 8 另含 FullKV；throughput 一位小数。",
+      "evidence_relation": "Table 2 的跨硬件吞吐 → Table 12 在 vLLM 中固定 batch 8/256 做 scaling → Figure 9 latency/throughput 与 Figure 18 latency breakdown。",
+      "design_strengths": [
+        "row group 明确 batch-size comparison，ThinKV paired with R-KV(ovl)。",
+        "Throughput 单位在 caption/表头可追踪。",
+        "大 batch 的 1.35× 叙事有直接数值支撑。"
+      ],
+      "design_weaknesses": [
+        "缺少 GPU、sequence length、warm-up 和运行次数。",
+        "FullKV 在 batch 256 缺失不是失败说明，需正文解释。",
+        "只有两个 batch 点，不能形成连续 scaling 曲线。"
+      ],
+      "reusable_pattern": "用固定 batch row groups 做同框 vLLM throughput 对照，适合报告不同负载下的 scale-out。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Table 12 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 13: Accuracy comparison between thinking, non-thinking, and ThinKV-enabled thinking modes on Qwen3-8B evaluated on LiveCodeBench.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；accuracy 为一位小数点估计。",
+      "data_and_statistics": "Method、Mode、Avg. Precision / Eviction Budget、Accuracy (%) 四列；FullKV Non-Thinking/Thinking 与 ThinKV Thinking 两个 budget rows；灰/绿高亮。",
+      "evidence_relation": "Appendix E.13 Qwen3 thinking flag → Table 13 对比 thinking/non-thinking 与 ThinKV → Figure 8/9 的 reasoning efficiency 结论扩展到可切换 mode。",
+      "design_strengths": [
+        "将 mode 与 compression setting 同时放在表中，避免把 non-thinking 当作单纯 baseline。",
+        "Accuracy 与 avg precision/eviction budget 相邻，设定透明。",
+        "caption 明确 Qwen3-8B 和 LiveCodeBench。"
+      ],
+      "design_weaknesses": [
+        "Non-Thinking/Thinking 的 generation length 与成本不在表内。",
+        "长复合表头在窄栏中需要缩小字体。",
+        "仅四个点，缺少重复和 uncertainty。"
+      ],
+      "reusable_pattern": "在 mode-switch 模型中把 capability mode、compression config 和 accuracy 放在同一行，突出“思考本身”的对照。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Table 13 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 14: Comparison of Time-per-Request (TPR), Accuracy, and Intelligence/Watt (Intel./Watt).",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；TPR(s)、Accuracy(%)、Intel./Watt 均为平均/汇总点估计，数值精度约一位/两位。",
+      "data_and_statistics": "Method、Token Budget、TPR (s)、Accuracy (%)、Intel./Watt 五列；FullKV 与 R-KV(seq)/R-KV(ovl)/ThinKV 在 512/1024/2048 budget 下成组。TPR/accuracy 一位小数，Intel./Watt 两位；方法颜色和粗体突出 ThinKV。",
+      "evidence_relation": "§6 system utility 主张 → Table 14 把 end-to-end TPR、accuracy、Intelligence/Watt 放在同一 token-budget 面 → Figure 9/18 与 Tables 2/3/12 的系统成本补充。",
+      "design_strengths": [
+        "性能、质量和 energy-like utility 同时呈现，决策面完整。",
+        "四个 row groups 让同 budget 方法比较直接。",
+        "caption 解释 TPR 与 Intel./Watt 缩写，表可独立查阅。"
+      ],
+      "design_weaknesses": [
+        "Intel./Watt 的计算与功耗测量条件不在表中。",
+        "十行×五列窄表数字密集，方法标签易换行。",
+        "缺少 uncertainty，平均值的变异性不可见。"
+      ],
+      "reusable_pattern": "用 token-budget row groups 将端到端 latency、quality 和综合 utility 绑定，作为单独 throughput 表的补充。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Table 14 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 15",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 15: Ablation of Prefill and Decode Settings for Hybrid (SnapKV + ThinKV) compression.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "没有误差/重复/区间；accuracy 为整数点估计。",
+      "data_and_statistics": "Method、Prefill Precision / Eviction Budget、Decode Precision / Eviction Budget、Accuracy 四列；FullKV、ThinKV、SnapKV+ThinKV 两个 prefill budget rows；4-bit、3.7/3.8-bit 与 512/2048/4096 budget；绿色/粗体突出 ThinKV rows。",
+      "evidence_relation": "Appendix E.16 说明 ThinKV 与 prefill SnapKV 正交 → Table 15 检查 hybrid prefill/decode settings → Figure 10/11 与 Table 4 的 component/format ablations。",
+      "design_strengths": [
+        "把 prefill 与 decode 两阶段设置并列，清楚表达组合边界。",
+        "Accuracy 与每阶段 budget 同行，便于判断压缩代价。",
+        "附录表为正文“可正交组合”主张提供具体 setting。"
+      ],
+      "design_weaknesses": [
+        "长复合表头和配置字符串在窄栏中可读性低。",
+        "只有一个任务/少量点，没有 latency/memory 伴随量。",
+        "没有不确定性，2–6 点 accuracy 差异不可判断稳定性。"
+      ],
+      "reusable_pattern": "用两阶段配置列显式表达 prefill/decode 组合，适合分析可组合的压缩策略。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Table 15 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "视觉叙事从 Figure 1 的 KV compression/accuracy–TPOT headline 开始，经 Figure 2 的 quantization–eviction trade-off、Figures 3–5 的 sparsity/importance/association 三个机制观察，再由 Figure 6 的 TBQ/TBE/block walkthrough 和 Figure 7 的 gather cost 进入系统设计；Figure 8–11 与 Tables 1–5 汇总主结果和 ablation，Figures 12–18 与 Tables 6–15 扩展 notation、prompt/layer、模型、batch、utility 与 hybrid setting。",
+    "caption_system": "caption 统一以 “Figure/Table N:” 开头，通常先给标题再给模型/任务或 panel setup；只有 Figure 5、Table 2、Table 14 等少数对象定义符号/缩写，颜色、背景带、error/box 语义多依赖图例或正文。caption 多为报告性而非粗体 headline，Figure 17 明确写出 Pareto comparison/finding。",
+    "table_header_system": "正文表用窄 inset、粗体 header、booktabs/partial-grid 横线、FullKV 灰色与 ThinKV 绿色；双层 header 主要用于 GPU（Table 2）和 ThinKV/R-KV breakdown（Table 5）。表头大多包含单位和方法配置，但 norm./Acc./Budget 等缩写与分母仍需正文。",
+    "method_result_ablation_link": "Figure 6 将 thought type、TBQ/TBE、logical/physical blocks 具象化；Figures 3–5/12/13–16 提供机制和失败/敏感性证据；Figures 8–11、Tables 1–5 将 accuracy、memory、throughput、latency 和组件 ablation 对齐；Tables 8–15 进一步测试模型/effort/mode/batch/utility/hybrid 边界。",
+    "main_appendix_link": "正文 Figures 1–11 与 Tables 1–5 给 headline、机制和系统决策面；附录 Table 6/7 负责 notation/keyword contract，Figure 12 展开 eviction policy，Figures 13–16 展开 attention/association/quantization slices，Figure 17/18 与 Tables 8–15 覆盖 generalization、Pareto、vLLM、Qwen、TPR/Intel.-per-Watt 和 SnapKV hybrid。Algorithm 1 与 Listing 1 是 PDF 中的独立对象，按 schema 不计入 figures/tables 数组，但在附录链路中保留。",
+    "typography_consistency": "PDF 字体对象以 NimbusRomNo9L regular/medium/italic、Computer Modern math 和 NimbusMonL 为主，嵌入图中另有 Helvetica/TimesNewRoman/DejaVuSans。正文 caption/表格层级一致，但 raster 图内部字号和外部 caption 不总是同一 family；估计属性均明确标注 rendered_estimate。",
+    "color_consistency": "R/E/T 在多处采用蓝/橙/红，FullKV 常为灰，ThinKV 常为绿；但 Figure 1/6 状态色、Figure 5/15 红色 heatmap、Figure 13 viridis、Figure 17 Pareto 方法色及 Figure 10/11 ablation palette 存在局部重映射。marker、文字、panel 位置和 hatching 提供部分冗余，整体仍非灰度/色盲安全。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用全宽 Figure 1/6 的概念状态图先固定方法接口，再用少系列 quantitative plot 逐步填充 trade-off、kernel cost 和 benchmark 证据。",
+      "用 model×dataset small multiples（Figure 8、14）或 thought-type facets（Figures 13、15、16）保持相同坐标语义，扩展覆盖面而不改变读图规则。",
+      "把 accuracy 与 memory/throughput/latency/utility 同行或同面板呈现（Tables 2–4、14；Figures 9、17、18），使压缩策略成为可决策的多目标证据。",
+      "对系统机制用 block walkthrough、operation breakdown 和 paired ablation（Figure 6、Table 5、Figure 18），同时保留组件接口和成本解释。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：把方法定位、token 状态和 accuracy–TPOT headline 合并，是全文视觉入口。",
+      "Figure 8：12-panel 主结果覆盖多模型/任务/预算，并在曲线旁附带 memory/precision 信息。",
+      "Figure 6：将 TBQ/TBE 与 logical-to-physical block/metadata 接口落到可追踪 toy state。",
+      "Table 2 与 Table 4：分别把系统资源决策面和组件 iso-batch 决策面压缩到可核查表。",
+      "Figure 17：用 configuration sweep 的 Pareto 平面补足单一预算表的 trade-off 叙事。"
+    ],
+    "failure_patterns": [
+      "高密度 composite（Figure 8/10/11、appendix Figures 14/15）在双栏/附录字号下承载过多 panel、legend 和注释。",
+      "多处颜色承担 method、thought type、状态和背景带语义，且 heatmap/boxplot 缺少统一的灰度或色觉冗余。",
+      "大多数结果对象只提供点估计，未显示 seed、重复、误差、样本量或失败值；caption 也很少定义 uncertainty。",
+      "caption 常省略硬件、budget、分母、阈值/legend 规则和 panel 对照，脱离正文的自包含性有限。"
+    ],
+    "one_sentence_visual_strategy": "ThinKV 以“全宽概念接口 → thought-level 机制证据 → block/kernel 系统实现 → accuracy–memory–latency 多目标结果 → 附录覆盖与消融”的阶梯式视觉系统证明 thought-adaptive KV compression 的定位与边界。"
+  }
+}

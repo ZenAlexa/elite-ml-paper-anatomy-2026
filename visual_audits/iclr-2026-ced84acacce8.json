@@ -1,0 +1,1567 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-ced84acacce8",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/ucker/why-low-precision-training-fails",
+      "https://github.com/Dao-AILab/flash-attention",
+      "https://github.com/karpathy/nanoGPT"
+    ],
+    "selected_repository": "https://github.com/ucker/why-low-precision-training-fails",
+    "visual_source_files": [],
+    "search_note": "PDF p.1 explicitly links the selected repository, whose README description/title exactly matches the paper. Read-only gh repo view, recursive tree, and code searches confirmed implementation files but no plot*, figure*, visual*, table*, LaTeX/TikZ/PGF, SVG, notebook, style, or plotting script; exact-title repository search returned only this repository. Dao-AILab/flash-attention and karpathy/nanoGPT are cited ecosystem candidates, not validated visual sources. Figure 10 is an issue screenshot and has no author-owned editable visual source."
+  },
+  "paper_style": {
+    "main_figures": 7,
+    "main_tables": 0,
+    "appendix_figures": 6,
+    "appendix_tables": 0,
+    "dominant_figure_typography": {
+      "family": [
+        "NimbusRomNo9L",
+        "CMR10",
+        "CMMI10",
+        "DejaVu Sans",
+        "Arial",
+        "Calibri",
+        "Cambria Math",
+        "Times New Roman"
+      ],
+      "size_pt": {
+        "minimum": 3.0,
+        "median": 5.5,
+        "maximum": 13.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [],
+      "body_size_pt": null,
+      "header_size_pt": null,
+      "header_weight": "regular",
+      "provenance": "rendered_estimate",
+      "confidence": "low"
+    },
+    "palette_strategy": "Local blue/red line grammars serve failure, mechanism, and stabilization curves; red/blue diverging maps serve matrices; blue/orange lines distinguish Llama tokens; a blue-to-yellow sequential map serves spectral norms; and the token grid uses a multi-colour diverging scale. No global colour dictionary exists and hue carries several important distinctions.",
+    "vector_raster_mix": "Most axes, heatmap cells, labels, and plotted lines are vector PDF content. Figure 1 contains small embedded raster/icon objects; Figure 10 contains two embedded raster screenshots; indexed raster colour-bar strips appear beside several otherwise vector-like maps. The document is mixed rather than uniformly vector.",
+    "style_consistency": "Captions and body equations consistently use Nimbus Roman/Computer Modern, while plotted labels mix Arial/DejaVu Sans and Figure 1/10 imported office or screenshot fonts. Main plots share a compact grid/blue-red grammar; appendix matrices and screenshots are denser and less unified."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 3,
+      "module": "method/theory",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Analysis in different sections. Our paper traces the causal chain of training failure (blue box) in reverse to identify the root causes.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Cambria Math",
+          "Times New Roman",
+          "Arial",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8.5,
+          "maximum": 13
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#2F75B5",
+          "#D9EAF7",
+          "#FFFFFF",
+          "#1B9E77",
+          "#D62728",
+          "#F28E2B",
+          "#000000"
+        ],
+        "semantic_mapping": "Blue marks the traced/selected chain and section tabs; pale blue encloses the causal panel; green marks claims/positive terms; red/orange emphasize error or endpoint; black and white carry text and boxes.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 0
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "causal-panel, section, claim, and endpoint emphasis",
+        "shape": "section cards, rounded boxes, and arrows",
+        "line": "directional arrows and box outlines",
+        "facet": "left section navigation versus right root-cause chain",
+        "text": "section names, claims, formulas, and the loss-explosion endpoint"
+      },
+      "data_and_statistics": "Conceptual synthesis rather than a sampled estimate. It compresses δ/O localization → common low-rank R and positive bias → spectral-norm growth → loss explosion, then places dynamic maximum as the mitigation. No sample size, uncertainty, aggregation, or fitted statistic is shown.",
+      "evidence_relation": "Connects §3.2 Claim 1, §3.3.1 Claim 2, §3.3.2 Claim 3, and §4. Figures 2–6 instantiate failure/localization/mechanism and Figure 7 instantiates the intervention; Algorithms 1–3 supply implementation details.",
+      "design_strengths": [
+        "Makes the long causal chain scannable before the equations.",
+        "Binds section numbers, claims, mechanism terms, and intervention into one navigational object."
+      ],
+      "design_weaknesses": [
+        "Equation, arrows, claim text, and endpoint compete in a small canvas.",
+        "Mixed imported typography and hue-dependent emphasis are fragile under grayscale or downscaling."
+      ],
+      "reusable_pattern": "Use a reverse causal map to connect a high-level failure, local arithmetic boundary, mechanism decomposition, and minimal intervention before dense quantitative panels.",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "experimental_design/failure",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "failure",
+        "experimental_design",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 2: The failure case using BF16 and flash attention results in a sudden loss explosion, while the stable configuration converges.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans-Bold",
+          "Arial"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5,
+          "maximum": 7
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#2F6DB0",
+          "#D9534F",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "High-precision and low-precision configurations are separated by blue/red trajectory color; the neutral gray role is the grid/background.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "training steps",
+        "y": "validation loss",
+        "color": "precision configuration: high precision versus low precision",
+        "shape": "small point markers on the trajectories",
+        "line": "two loss trajectories",
+        "facet": null,
+        "text": "axis labels, title, and precision legend"
+      },
+      "data_and_statistics": "One fixed failure replay, not a seed-level aggregate. The low-precision curve falls toward roughly 3–4 and jumps near 7,000 steps to about 7–8; the high-precision curve continues to converge. No uncertainty, denominator, repeated runs, or formal failure threshold is displayed.",
+      "evidence_relation": "First empirical object after Figure 1: establishes the failure node that §3.2 diagnoses through tiling, layer, and precision substitutions. Appendix Figure 10 provides community context rather than a matched replication.",
+      "design_strengths": [
+        "Immediate failure/stability contrast with one metric and step axis.",
+        "The jump is visually unmistakable."
+      ],
+      "design_weaknesses": [
+        "Inset labels and caption color mapping are small.",
+        "One replay cannot communicate occurrence frequency or variability; explosion is a visual decision rather than a quantified threshold."
+      ],
+      "reusable_pattern": "Open a numerical-instability paper with a matched failure/control trajectory, then reuse the axis vocabulary for intervention plots.",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 4,
+      "module": "results/mechanism",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3: W^Q of attention head 8 has the largest spectral norm. Subsequent analysis focuses on this head.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 3.8,
+          "median": 5.2,
+          "maximum": 7.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#2F70C0",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Blue line/markers encode head-wise spectral norm and gray carries the grid.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "attention-head identity (Head 1–12)",
+        "y": "spectral norm",
+        "color": "single blue data series against neutral grid",
+        "shape": "point markers, with numeric values printed near points",
+        "line": "connected head-wise trajectory",
+        "facet": null,
+        "text": "direct values, head names, and axis labels"
+      },
+      "data_and_statistics": "A single layer-1 head-wise snapshot used to choose head 8 (about 6.27) for downstream analysis. Values are displayed without seed aggregation, uncertainty, normalization, or inferential comparison.",
+      "evidence_relation": "Operationalizes the spectral-alignment probe and determines the head used in Figures 4–6. Figure 11 later broadens the spectral-norm view across layers and training steps.",
+      "design_strengths": [
+        "Direct numeric labels make the selected head auditable.",
+        "Compact categorical line is easy to scan."
+      ],
+      "design_weaknesses": [
+        "Direct labels and rotated head names are tiny.",
+        "No error/replication information or complete selection protocol; a connected line may imply continuity between categorical heads."
+      ],
+      "reusable_pattern": "Use a directly labeled screening plot to justify which module/head receives the expensive mechanism analysis, then show the broader map in an appendix.",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 3",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 6,
+      "module": "theory/mechanism",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4: PK, X, and (PK)[T ]^T X[T ] at different batch indices and training steps. (c) and (f) show that (PK)[T ]^T X[T ] for different tokens and training steps have some similar columns in input features 546 and 678.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5,
+          "maximum": 7.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 4,
+        "hex": [
+          "#3B4CC0",
+          "#F7F7F7",
+          "#B40426",
+          "#D9D9D9"
+        ],
+        "semantic_mapping": "Blue/red encode signed matrix values and white/gray the neutral background; the structure of similar columns is read mainly through the diverging hue pattern.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": null,
+        "legend_items": 6,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "feature/token indices or input/output dimensions",
+        "y": "token/output-feature indices",
+        "color": "signed matrix magnitude",
+        "shape": "rectangular heatmap cell",
+        "line": null,
+        "facet": "two batch/training settings × PK, X, and rank-1 outer-product panels",
+        "text": "panel titles, indices, and panel letters"
+      },
+      "data_and_statistics": "Selected slices: batch 190/training 6610/token 50 and batch 209/training 6619/token 718. The evidence is visual structural alignment; no rank estimate, cosine distribution, similarity threshold, uncertainty, or across-slice aggregation is plotted.",
+      "evidence_relation": "Visual bridge from Eq. (2) rank-1 terms to the common R approximation in Eq. (3) and Claim 2. It precedes Figure 5 coefficient accumulation and Figure 11 global spectral context.",
+      "design_strengths": [
+        "Repeated geometry and color bars enable comparison of PK, X, and the derived outer products.",
+        "Panel titles preserve selected batch/step provenance."
+      ],
+      "design_weaknesses": [
+        "Six dense maps and tiny ticks are difficult to quantify.",
+        "Separate color bars complicate cross-panel comparison; similar columns are asserted visually rather than summarized by a reproducible metric."
+      ],
+      "reusable_pattern": "Place source matrices and the derived rank-1 object in a consistent grid, with repeated conditions in rows, when explaining a mechanistic decomposition.",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 4",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 7,
+      "module": "results/mechanism",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: Analysis of δ = rowsum(dO ◦ O).",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5,
+          "maximum": 7.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#D62728",
+          "#BDBDBD",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Blue encodes O-like quantities, red encodes dO/output error, gray is grid, and white is the background. Color distinguishes paired variables and the dual axes.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 5,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right/inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "iteration in (a), feature index in (b–c)",
+        "y": "cumulative δ difference, O/dO, or output error/dO; panels (b–c) use paired linear y scales",
+        "color": "blue/red variable identity and axis pairing",
+        "shape": "small point markers on traces",
+        "line": "cumulative and local value/error trajectories",
+        "facet": "cumulative bias versus value/sign probes",
+        "text": "panel labels, variable names, feature positions, and local legends"
+      },
+      "data_and_statistics": "One replay and selected token T=718. Panel (a) follows cumulative (δ_lp−δ_hp)[T] over iterations 6580–6680; panels (b–c) emphasize features 20 and 29. No intervals, repeated trajectories, or full-token aggregation are shown.",
+      "evidence_relation": "Turns Claim 2’s scalar coefficient into a local sign-alignment check: positive cumulative δ difference, then dO and output-error signs that make the product positive. Figure 6 continues from the output-error panel to P̄V arithmetic.",
+      "design_strengths": [
+        "Three panels keep accumulation, gradient magnitude, and error sign together.",
+        "Dual axes reveal the tiny gradient/error scale beside the larger output signal."
+      ],
+      "design_weaknesses": [
+        "Dual axes and color-only variable identity impose reading burden.",
+        "Short caption leaves panel semantics to prose; selected token/features limit generality."
+      ],
+      "reusable_pattern": "Use a cumulative panel plus aligned local sign panels to connect a scalar mechanism coefficient to the upstream/downstream quantities that generate it.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 5",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 7,
+      "module": "results/mechanism",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 6: Analysis of P̄V",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5,
+          "maximum": 7.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#D62728",
+          "#BDBDBD",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Blue encodes P̄, red encodes V/error, gray is grid, and white is background. Hue separates the two y-axis quantities.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right/inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token position (or zoomed token t)",
+        "y": "P̄, V, or cumulative output error on paired linear y scales",
+        "color": "P̄ versus V/error variable and second axis",
+        "shape": "small point/triangle marks on traces",
+        "line": "full-token, cumulative-error, and zoomed error trajectories",
+        "facet": "full-token context, cumulative error, and detail view",
+        "text": "feature/variable names, axes, legends, and panel letters"
+      },
+      "data_and_statistics": "Selected T=718 and feature i=20. Panel (a) shows mostly negative V[:,i]; panels (b–c) show negative error jumps where P̄[T,i]=1. No event-frequency distribution or uncertainty is shown.",
+      "evidence_relation": "Follows Figure 5’s sign correlation and supports Eq. (4)–(5), Claim 3, and the bit-level arithmetic example on pages 8–9. It is the last main-body diagnostic before Figure 7.",
+      "design_strengths": [
+        "Full-token and zoomed panels make the jump location concrete.",
+        "Paired P̄/error traces preserve the proposed arithmetic ordering."
+      ],
+      "design_weaknesses": [
+        "Dual axes and tiny tick labels make magnitude comparisons fragile.",
+        "Color-only variable identity is not robust in grayscale; one token/feature slice cannot establish event frequency."
+      ],
+      "reusable_pattern": "Pair a global event trace with a zoomed local panel, keeping the trigger variable and accumulated error visually aligned.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 6",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 9,
+      "module": "ablation/mitigation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7: Validation losses for classical flash attention and the stablized flash attention with AdamW, Muon optimizers, and GPT-2M model.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5,
+          "maximum": 7.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#D62728",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Blue is stabilized FA, red is classical FA, and gray is grid. The two series are separated almost entirely by hue.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 6,
+        "annotations": 3,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "training steps on a log scale",
+        "y": "validation loss on a log scale",
+        "color": "classical versus stabilized Flash Attention",
+        "shape": null,
+        "line": "two loss trajectories; red termination/vertical growth encodes failure",
+        "facet": "GPT-2S+AdamW, GPT-2S+Muon, GPT-2M+AdamW",
+        "text": "configuration titles, log-scale labels, legends, and panel letters"
+      },
+      "data_and_statistics": "Three deterministic training curves: GPT-2S/AdamW and GPT-2S/Muon are described to 600K steps and GPT-2M/AdamW to 100K. Stabilized FA uses β=2 and classical FA explodes. No seed aggregation, confidence bands, final-loss table, or runtime/memory overhead is present.",
+      "evidence_relation": "Main-body validation of the dynamic-maximum intervention in §4 and Algorithm 3. It closes the chain from Figures 2–6 to a practical mitigation; Appendix C/E gives conditional behavior and pseudocode.",
+      "design_strengths": [
+        "Common log-axis small multiples make the intervention comparison easy to scan.",
+        "Early convergence and late explosion remain visible in one grammar."
+      ],
+      "design_weaknesses": [
+        "Color is the only method discriminator.",
+        "Truncated exploding curves and different budgets complicate cross-panel magnitude comparison; no uncertainty or cost object accompanies “minimal”."
+      ],
+      "reusable_pattern": "Use matched small multiples for a numerical intervention across optimizer/model stress points, retaining common log axes and a fixed control color.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 7",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 18,
+      "module": "appendix/cross-model mechanism",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "line",
+        "matrix"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8: Similar (PK)[T ]^T X[T ] discovered at different tokens in Llama-3.1-8B. (c)-(f) show the similar columns.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5,
+          "maximum": 7.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#3B4CC0",
+          "#F7F7F7",
+          "#B40426",
+          "#1F77B4",
+          "#FF7F0E",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Heatmap blue/white/red encodes matrix magnitude; blue/orange lines distinguish token 3/4; gray is grid. Token identity is also written in titles/legends.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 10,
+        "series": 2,
+        "legend_items": 8,
+        "annotations": 10,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "unknown",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right for line panels; right-side color bars for heatmaps",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "hidden/head dimensions in heatmaps and head dimension in lower line charts",
+        "y": "head/hidden dimensions or line-chart value",
+        "color": "heatmap magnitude and blue/orange token identity",
+        "shape": "rectangular heatmap cells or line markers",
+        "line": "selected-column traces for “brown” and “fox”",
+        "facet": "two token heatmaps and four selected-column line groups",
+        "text": "layer/head/token/column/cosine labels and panel letters"
+      },
+      "data_and_statistics": "One Llama-3.1-8B layer-1/head-13 sentence example (“The quick brown fox jumps over the lazy dog”), selected columns, and cosine similarities around 0.999994/0.999993. This is a qualitative structural observation with no Llama training outcome, uncertainty, or population distribution.",
+      "evidence_relation": "Appendix D extends the common-R observation beyond GPT-2 while explicitly limiting the claim: the paper states that the Llama pattern does not imply Llama will definitely fail in BF16 training. It supports structural robustness, not failure generalization.",
+      "design_strengths": [
+        "Repeated heatmap/line pairing makes selected columns inspectable.",
+        "Cosine similarity and model/token context remain visible in panel titles."
+      ],
+      "design_weaknesses": [
+        "Ten axes in a page-width object are very small.",
+        "Mixed scales prevent direct cross-panel reading; selected columns and one sentence are not a systematic cross-model test."
+      ],
+      "reusable_pattern": "Pair a global representation map with per-column traces and an explicit similarity value when transporting a mechanism observation without overclaiming failure generality.",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 8",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 19,
+      "module": "appendix/cross-model mechanism",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9: Two maxima observed in Llama-3.1-8B. The first token has maxima due to the attention sink.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 3.5,
+          "median": 5,
+          "maximum": 7.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#4C78A8",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Blue point marks encode attention probability; gray is the grid and no color comparison is carried.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": 900
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.4,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "key position",
+        "y": "attention probability",
+        "color": "single blue point series",
+        "shape": "small point marks",
+        "line": null,
+        "facet": "six layer/head/query examples",
+        "text": "direct layer/head/query titles and panel letters"
+      },
+      "data_and_statistics": "Six selected Llama queries show a first-token attention-sink maximum and another high maximum at a later key position, with most other points near zero. No frequency estimate, uncertainty, or prevalence threshold is given.",
+      "evidence_relation": "Supports Appendix D.2’s multiple-maxima premise that motivates the P̄=1 arithmetic mechanism, but is not an author-run Llama failure experiment. Figure 13 returns to GPT-2 for temporal activation/loss alignment.",
+      "design_strengths": [
+        "Common axes make the repeated two-maxima pattern comparable.",
+        "Direct titles preserve layer/head/query provenance."
+      ],
+      "design_weaknesses": [
+        "Dense near-zero points collapse into a band.",
+        "Six hand-selected examples cannot quantify prevalence; “two maxima” may read broader than the shown queries."
+      ],
+      "reusable_pattern": "Use same-scale small multiples to show a recurrent attention pattern across selected contexts, with model scope explicit.",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 9",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 21,
+      "module": "appendix/community failure evidence",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "screenshot",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 10: Loss curves of two independent runs of GPT-2 training with flash attention in BF16 reported in the Github issue of nanoGPT.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 8,
+          "maximum": 18
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#2F80D0",
+          "#17191A",
+          "#C23B78",
+          "#C18B5A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Panel (a) uses a blue loss line on a light screenshot; panel (b) uses magenta/orange run lines on a dark screenshot; white carries background/text in the light panel.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper/inside panel (b)",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Step in (a) and iter in (b)",
+        "y": "loss",
+        "color": "independent run/screenshot series",
+        "shape": null,
+        "line": "loss traces as preserved in issue screenshots",
+        "facet": "nanoGPT Issue #303 versus Issue #524",
+        "text": "screenshot UI titles, panel captions, and issue labels"
+      },
+      "data_and_statistics": "Two community-reported runs, not a controlled author-run aggregate. Panel (a) has a short step range; panel (b) shows two trajectories through roughly 130k iterations. No raw data, dates, seeds, uncertainty, or harmonized y-scale are supplied.",
+      "evidence_relation": "Provides independent failure context referenced by §3.1 and complements author Figure 2; it is background/reproduction evidence rather than a replacement for the fixed replay or causal substitutions.",
+      "design_strengths": [
+        "Preserves community provenance and more than one observed failure report.",
+        "Stacked screenshots retain the original visual evidence."
+      ],
+      "design_weaknesses": [
+        "Raster text and dark/light backgrounds conflict with main-plot style.",
+        "Scales and UI labels differ; only issue numbers identify provenance and no editable visual source is linked."
+      ],
+      "reusable_pattern": "Use clearly labeled external screenshots only as contextual failure evidence, separate from controlled experiments.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 10",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 23,
+      "module": "appendix/global spectral context",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 11: Spectral norm across layers and training steps.",
+        "word_count": 9,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 11,
+        "hex": [
+          "#0B2E6B",
+          "#38598C",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Dark blue is low spectral norm and yellow is high spectral norm; the color bar is labeled Spectral Norm Value.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 72,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "right color bar",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.3,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "training step",
+        "y": "model-layer/parameter-group identity",
+        "color": "spectral norm magnitude",
+        "shape": "rectangular cell per layer/group/time bin",
+        "line": null,
+        "facet": null,
+        "text": "long row names, ticks, title, and color-bar label"
+      },
+      "data_and_statistics": "Longitudinal heatmap over the GPT-2 replay, with approximately 72 rows (six attention/MLP weight groups × 12 layers) and sampled training steps. It shows an outlier band rather than a distribution, uncertainty, denominator, or cross-run statistic.",
+      "evidence_relation": "Appendix expansion of spectral-norm localization in §3.2, connected to Figures 3–5; supplies global context for selecting the exceptional attention module/head.",
+      "design_strengths": [
+        "One dense layer-by-time view exposes the abnormal band and timing.",
+        "Row labels preserve parameter-group identity."
+      ],
+      "design_weaknesses": [
+        "Long labels and tiny cells are difficult to read.",
+        "Sequential hue is printer-dependent and no numeric table or uncertainty accompanies the outlier."
+      ],
+      "reusable_pattern": "Use a layer-by-time heatmap to triage where instability emerges, then pair it with a direct-label screening plot.",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 11",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 24,
+      "module": "appendix/token diagnostic",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence",
+        "other"
+      ],
+      "caption": {
+        "text": "Figure 12: Token difference visualization",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 3,
+          "median": 4,
+          "maximum": 7
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 7,
+        "hex": [
+          "#2C7BB6",
+          "#ABD9E9",
+          "#FFFFBF",
+          "#FDAE61",
+          "#D7191C",
+          "#D9D9D9",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "D_diff magnitude/sign is encoded by a blue-to-red diverging scale; neutral cells/borders are gray/white and token identity is written in cells.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 100,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "right color bar",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.3,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "token/grid position",
+        "y": "token/grid row or segment",
+        "color": "D_diff value",
+        "shape": "bordered rectangular cell",
+        "line": null,
+        "facet": null,
+        "text": "token strings, sum annotation, and D_diff color-bar label"
+      },
+      "data_and_statistics": "Dense token-level difference visualization with a visible “Sum: 1.81e-06” annotation, but no readable axis units, sample denominator, aggregation definition, or uncertainty. The PDF text extractor emits unrelated/fragmented token strings; the rendered grid and caption are the only reliable visual semantics.",
+      "evidence_relation": "Appendix-only diagnostic not called by the central visual chain; it sits beside Figure 13 and additional details and does not carry the central failure or mitigation decision.",
+      "design_strengths": [
+        "Direct token labels and color bar make local-difference inspection apparent.",
+        "Warm outlier cells are easy to locate."
+      ],
+      "design_weaknesses": [
+        "Cell text and color differences are too small for reliable reading.",
+        "Caption omits axis/definition information and extraction corruption makes this the least auditable figure."
+      ],
+      "reusable_pattern": "For token-level diagnostics, pair a cell grid with direct token labels and an explicit diverging scale, and define the difference and axes in the caption/header.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 12",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 24,
+      "module": "appendix/temporal diagnostic",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 13: Correlation between multiple maxima occurrences and loss curve.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Arial-Bold",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 4,
+          "median": 5.5,
+          "maximum": 8
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#D62728",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Blue is validation loss, red is activated SFA-condition count, and gray is grid; separate left/right axis labels redundantly state the variable identity.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "training steps",
+        "y": "validation loss on the left and activated SFA-condition count on the right (both linear)",
+        "color": "loss versus condition-count series and matching axis labels",
+        "shape": "small circular point markers",
+        "line": "two time trajectories",
+        "facet": null,
+        "text": "title, dual axis labels, multiplier, legend, and training-step ticks"
+      },
+      "data_and_statistics": "One trajectory from approximately 0–14,000 steps. The activated-condition count rises around 7,000–10,000 steps before/alongside the loss jump; no lag estimate, predictive threshold, repeated runs, or uncertainty is shown.",
+      "evidence_relation": "Visualizes Appendix E.1’s leading-indicator suggestion and complements Figure 2; it is not an independent mitigation result and does not replace Figure 7’s matched curves.",
+      "design_strengths": [
+        "Shared x-axis makes temporal ordering visible.",
+        "Dual axes preserve each quantity’s native scale."
+      ],
+      "design_weaknesses": [
+        "Dual-axis overlay can imply calibrated correlation without lag/statistical analysis.",
+        "Single-run timing is insufficient for prediction; hue dependence weakens print robustness."
+      ],
+      "reusable_pattern": "Use a dual-axis time trace only with a clearly labeled time base, and pair visual lead/lag with an explicit lag or prediction metric.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 13",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 gives the reverse causal map; Figure 2 establishes failure; Figure 3 chooses the exceptional head; Figure 4 visualizes the shared low-rank direction; Figure 5 links δ accumulation to signs; Figure 6 localizes the P̄V rounding event; Figure 7 tests dynamic maximum. Figures 8–13 extend structural, community, longitudinal, token, and temporal context in the appendix.",
+    "caption_system": "Captions use the serif body font and Figure n: prefix. Figures 1–4 and 7 include setup/comparison or a finding, while Figures 5, 6, 11, and 12 are terse labels. Figures 8–10 and 13 provide partial scope but leave scales or selections to panel titles/prose; no caption uses a bold conclusion header.",
+    "table_header_system": "No tables or table headers are physically present. Quantitative variable definitions are carried by plot axes, legends, colour bars, and nearby prose.",
+    "method_result_ablation_link": "Algorithms 1–3 and equations define the arithmetic boundary; Figures 2–6 provide failure/localization/mechanism evidence; Figure 7 provides the intervention comparison. The link is strong in the main paper, but precision substitutions and targeted outcomes are not consolidated in a table.",
+    "main_appendix_link": "Appendix D Figures 8–9 broaden structural/multiple-maxima observations with an explicit Llama scope limit; Figure 10 documents community context; Figure 11 expands spectral tracking; Figures 12–13 add diagnostics. Algorithms 1–3 and Appendices B/C/E provide implementation/proof context. Figure 13 is called from E.1; Figure 12 is largely uncited by the main storyline.",
+    "typography_consistency": "Captions/body equations are consistent Nimbus Roman/Computer Modern, but plotted labels mix Arial/DejaVu Sans and imported office/screenshot fonts. Main figures are readable at rendered size; appendix matrices and screenshots are substantially denser.",
+    "color_consistency": "Blue/red is reused for precision, O/dO, classical/stabilized FA, and loss/count, but semantic assignment changes by figure. Diverging maps and sequential spectral maps use local bars; no shared palette legend or redundant line-style convention exists."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Reverse-map a long numerical mechanism into failure, localization, root cause, and intervention nodes (Figure 1).",
+      "Use a fixed replay and precision/module substitutions before causal interpretation (Figures 2–3 and surrounding text).",
+      "Pair source matrices with derived rank-1 maps, cumulative coefficients, local sign traces, and a zoomed arithmetic event (Figures 4–6).",
+      "Validate a minimal intervention with common axes across optimizer/model small multiples (Figure 7), while placing implementation edge cases in appendix algorithms."
+    ],
+    "highest_value_objects": [
+      "Figure 1 for navigation.",
+      "Figure 4 for the low-rank mechanism.",
+      "Figure 5 for connecting δ to gradient/output signs.",
+      "Figure 6 for the P̄V event.",
+      "Figure 7 for the practical stabilization decision.",
+      "Figure 11 for global layer/time context."
+    ],
+    "failure_patterns": [
+      "Very short or non-self-contained captions for Figures 5, 6, 11, and 12.",
+      "Color-only variable identity and dual y-axes without scale/lag guidance.",
+      "Selected single trajectories/slices presented without uncertainty or population context.",
+      "Appendix heatmaps and token grids with labels too small for reliable reading.",
+      "Screenshots with inconsistent UI, scales, and typography.",
+      "No visual cost/overhead object for the minimal intervention claim."
+    ],
+    "one_sentence_visual_strategy": "The paper uses a reverse causal map plus progressively local diagnostics—from replayed loss failure through low-rank/sign/rounding evidence to a common-axis stabilization test—while moving dense cross-model and token-level context to an appendix without editable plotting sources."
+  }
+}

@@ -1,0 +1,1568 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-f8c3d1a8ada1",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/mzhmxzh/RodriguesNetwork"
+    ],
+    "selected_repository": "https://github.com/mzhmxzh/RodriguesNetwork",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/mzhmxzh/RodriguesNetwork",
+        "path": "tests/plotly/FK/visualize_dataset.py",
+        "role": "plot_script",
+        "tool": "plotly",
+        "evidence": "LEAP hand FK sample and robot overlay; source uses lightblue/lightgreen traces with opacity 0.5."
+      },
+      {
+        "repository_url": "https://github.com/mzhmxzh/RodriguesNetwork",
+        "path": "tests/plotly/FK/visualize_model.py",
+        "role": "plot_script",
+        "tool": "plotly",
+        "evidence": "Loads a FK checkpoint and overlays ground-truth robot mesh with predicted links using lightblue/lightgreen traces."
+      },
+      {
+        "repository_url": "https://github.com/mzhmxzh/RodriguesNetwork",
+        "path": "tests/plotly/Motion/visualize_dataset.py",
+        "role": "plot_script",
+        "tool": "plotly",
+        "evidence": "Renders UR5 frame trajectories; frame colors interpolate RGB (173,216,230) to (144,238,144)."
+      },
+      {
+        "repository_url": "https://github.com/mzhmxzh/RodriguesNetwork",
+        "path": "tests/plotly/Motion/visualize_saved_dataset.py",
+        "role": "plot_script",
+        "tool": "plotly",
+        "evidence": "Renders saved 16-frame UR5 trajectories with the same light-blue to light-green frame gradient."
+      },
+      {
+        "repository_url": "https://github.com/mzhmxzh/RodriguesNetwork",
+        "path": "tests/plotly/Motion/visualize_model.py",
+        "role": "plot_script",
+        "tool": "plotly",
+        "evidence": "Shows observed/predicted motion overlays, computes trajectory errors, uses the same RGB frame gradient, and hides 3D axes."
+      },
+      {
+        "repository_url": "https://github.com/mzhmxzh/RodriguesNetwork",
+        "path": "tests/plotly/visualize_robot_model.py",
+        "role": "plot_script",
+        "tool": "plotly",
+        "evidence": "Robot mesh renderer used by the FK and motion visualization scripts."
+      },
+      {
+        "repository_url": "https://github.com/mzhmxzh/RodriguesNetwork",
+        "path": "src/utils/robot_model.py",
+        "role": "other",
+        "tool": "plotly/urdf_parser",
+        "evidence": "Provides get_plotly_data for URDF/mesh-based robot traces; supports related qualitative renders but not PDF layout."
+      }
+    ],
+    "search_note": "自动 source inventory 行仍为 no_public_source_found，且 corpus/visual_sources/iclr-2026-f8c3d1a8ada1/ 缺失。PDF、reading 与 OpenReview 页面没有代码 URL；随后 gh 以完整标题/方法名命中 mzhmxzh/RodriguesNetwork，README 明确为 official repo，main HEAD 为 d867464c146ac1e1449c36f67dc5718fa109a801。API tree 只有 tests/plotly 的 robot/trajectory renderer 与模型实现，没有 Figure/Table 静态绘图、排版或导出源（无 figure*/table*/plot* 结果脚本、ipynb、tex、tikz、pgf、svg 或图表资产）；故这些文件仅作为 Figure 4/5 相关的 partial visual source，完整 PDF 仍是事实源。未拉取数据集、权重或 checkpoint。"
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 3,
+    "appendix_figures": 1,
+    "appendix_tables": 9,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Times New Roman",
+        "Computer Modern Math",
+        "Cambria Math",
+        "DejaVu Serif"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 12.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Times New Roman",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 8.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "结果图固定 MLP 橙、GCN 红、BoT 紫、Transformer 浅蓝、Rodrigues 绿；Figure 4 独立使用 link-wise error 的 sequential 深蓝→黄；Figure 1/2 以橙/绿/紫/蓝编码理论与 feature/module 角色，表格使用黑/灰。",
+    "vector_raster_mix": "正文文字、booktabs 表格和 Figure 3/6 坐标/曲线是 PDF vector；Figure 1/2 的图标、Figure 4 的 hand render、Figure 5 的 robot render/insets 是 raster 与 vector 标注的 mixed rendering；未见整页栅格化。",
+    "style_consistency": "caption 均采用 label + 粗体标题片段 + setup/encoding 的 LaTeX 语法，表格均无竖线 booktabs；模型类别色在 Figure 3/5/6 可追踪，然而概念图、pastel error map 与 Matplotlib 统计图不是完全统一的品牌色系，小字号和 Figure 5 inset 是共同可读性瓶颈。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "abstract",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1: We introduce the Neural Rodrigues Operator, a learnable extension of the classical Rodrigues’ Rotation Formula from robot control, where the original coefficients are replaced with trainable weights and joint angles are generalized to abstract features. Built upon this operator, the Rodrigues Network leverages the kinematic structure of articulated systems to advance a wide range of action-learning tasks.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#F28E2B",
+          "#63A86B",
+          "#5B9BD5",
+          "#A6A6A6",
+          "#F2F2F2",
+          "#000000"
+        ],
+        "semantic_mapping": "橙色表示 classical rotation/fixed coefficients，绿色表示 learnable/message passing，蓝灰表示 feature/application blocks，黑灰表示箭头与文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 14,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Classical Operator → Learnable Operator → Applications 的阶段顺序",
+        "y": "operator 内的公式/参数与 feature lane",
+        "color": "classical、learnable、feature/application 角色",
+        "shape": "robot/hand thumbnails、矩阵、节点与虚线框",
+        "line": "实线/箭头表示信息流，虚线表示应用框",
+        "facet": "三个横向区域",
+        "text": "阶段、operator、weights/features 与三类应用直接标签"
+      },
+      "data_and_statistics": "概念图；把 fixed Rodrigues coefficients 与 joint state 对照到 trainable weights 与 joint features，并列出 motion prediction、imitation learning、hand pose estimation 三类应用。没有样本分母、效果量、重复或不确定性。",
+      "evidence_relation": "引言对无结构 token 的问题 → Eqs. (3)–(8) 的 Rodrigues 重参数化 → Figure 1 classical/learnable 对照 → Figure 2 block 接口 → Figures 3–5 与 Tables 1–3 的三类任务结果。",
+      "design_strengths": [
+        "经典算子、可学习改造和应用范围在一幅全宽图中形成连续叙事。",
+        "左右 operator 面板近似同构，箭头、标签和颜色提供冗余阅读线索。"
+      ],
+      "design_weaknesses": [
+        "中间与右侧小字/缩略图在单页缩放下偏小。",
+        "未给出通道数、层数、张量形状或可量化指标；pastel 类别灰度区分弱。"
+      ],
+      "reusable_pattern": "采用“经典算子 → 可学习算子 → 应用族”的三段式概念桥，并在输出端补充维度、假设和可验证指标。",
+      "evidence": {
+        "page": 1,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2: Rodrigues Block. It comprises three components: a Rodrigues Layer for passing information from joints to links, constructed with our Multi-Channel Neural Rodrigues Operator; a Joint Layer for passing information from links to joints; and a Self-Attention Layer for global information exchange with all the links and the global token.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#7E63B8",
+          "#F2A900",
+          "#70AD47",
+          "#5B9BD5",
+          "#F2F2F2",
+          "#000000"
+        ],
+        "semantic_mapping": "紫色 F、橙色 Θ、蓝色 G、绿色 Rodrigues、黄色 Linear/Attention，黑色为数据流。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 36
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "robot illustration → Rodrigues Layer → Joint Layer → Self-attention Layer",
+        "y": "link F、joint Θ 与 global token G 的 lane",
+        "color": "feature 类型与处理模块",
+        "shape": "层框、节点、Linear/Multi-Head Attention blocks",
+        "line": "箭头表示逐层数据流",
+        "facet": "左场景 + 三个模块框",
+        "text": "层名、update/exchange 动作、F/Θ/G 直接标签"
+      },
+      "data_and_statistics": "方法架构图；显示 joint→link、link→joint 和 all-link/global-token exchange，不包含参数量、样本数、重复或不确定性。",
+      "evidence_relation": "Eqs. (9)–(11) 与 §4.1–§4.3 component definitions → Figure 2 三层接口 → D.1–D.4 任务特化 → Table 11 组件消融和 Table 12 超参敏感性。",
+      "design_strengths": [
+        "三层顺序、F/Θ/G lane 和 global token 同屏，局部传播与全局交换可直接对照。",
+        "左侧 robot scene 把抽象 block 绑定到 articulated actor。"
+      ],
+      "design_weaknesses": [
+        "模块内部字小且箭头密集。",
+        "没有显示 block 堆叠深度、channel 数或 hand cross-attention 特化；global token 是否启用需查正文。"
+      ],
+      "reusable_pattern": "以“局部结构传播 → 反向更新 → 全局交换”的三框接口组织结构化网络，并在图旁补充 C_J/C_L/B 与可选分支。",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 3: Fitting forward kinematics with different network backbones (MSE↓). The Rodrigues network achieves significantly lower error (left) with faster convergence during training (right).",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "DejaVu Serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#F28E2B",
+          "#E64B35",
+          "#7E63B8",
+          "#75AADB",
+          "#238B45"
+        ],
+        "semantic_mapping": "MLP/GCN/BoT/Transformer/Rodrigues 的曲线颜色依次为橙、红、紫、浅蓝、绿；左 bar panel 统一使用蓝色，方法名和位置承担额外编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 9,
+        "data_marks_estimate": 55
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "log",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "右 panel upper-right",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左 panel categorical backbone；右 panel linear training iterations 10k–100k",
+        "y": "log MSE",
+        "color": "five backbone series（右 panel）",
+        "shape": "左侧柱体与柱顶数值",
+        "line": "右侧 training curves 与透明波动带",
+        "facet": "MSE vs backbones / MSE vs training iters",
+        "text": "panel titles、方法 legend、柱顶数值"
+      },
+      "data_and_statistics": "LEAP hand forward-kinematics fitting。左 panel 数值为 MLP 6.32e−04、GCN 5.07e−04、BoT 5.37e−06、Transformer 5.26e−06、Rodrigues 2.82e−07；右 panel 显示至 100k iterations 的 training MSE 曲线。小 error bar 和 band 的重复单位、聚合方式与样本分母未定义。",
+      "evidence_relation": "§3 operator expressivity → §5.1 LEAP hand FK setup → Figure 3 accuracy/convergence → Table 1/Figure 5 motion generalization → Table 11 组件机制核验。",
+      "design_strengths": [
+        "终点 bar 与训练动态 line 成对回答误差和收敛速度，log y 展示数量级差异。",
+        "右 panel legend 与左侧数值标注使 Rodrigues 优势可快速定位。"
+      ],
+      "design_weaknesses": [
+        "左右 x 语义不同，caption 未明确 categorical 与 iteration 的差异。",
+        "band/error bar 没有统计定义；左侧所有柱体同色，方法辨识依赖位置和文字。"
+      ],
+      "reusable_pattern": "用“终点 bar + 收敛 line”同时展示表达能力与优化动态，并在 caption 说明误差统计和不同 x 语义。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 4: Visualization of forward kinematics prediction on an example configuration. Errors are plotted on each link with color scales, with darker colors indicating larger errors.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#213B9A",
+          "#2C7FB8",
+          "#41B6C4",
+          "#A1D76A",
+          "#FDE725"
+        ],
+        "semantic_mapping": "每个 link 的 fitting MSE 由深蓝/青过渡到黄，深色表示更大误差；Ground Truth 为几何参照。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 6,
+        "legend_items": 0,
+        "annotations": 7,
+        "data_marks_estimate": 102
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "MLP → GCN → BoT → Transformer → Rodrigues → Ground Truth",
+        "y": "17-link hand geometry",
+        "color": "link-wise fitting error",
+        "shape": "robot/hand mesh geometry",
+        "line": null,
+        "facet": "six model/configuration columns",
+        "text": "model labels与竖直 error colorbar"
+      },
+      "data_and_statistics": "同一 example configuration 的 LEAP hand 17-link predicted pose 与 Ground Truth 对照；正文强调 baseline fingertip error 与 Rodrigues minimal error。没有跨样本聚合、样本分母、重复或不确定性。",
+      "evidence_relation": "Figure 3 aggregate MSE → Figure 4 link/fingertip error localization → 正文 GCN artifact/Rodrigues minimal-error 解释 → Table 1/Figure 5 motion evidence。",
+      "design_strengths": [
+        "统一视角、同一配置和 Ground Truth 末列让 spatial error pattern 易于比较。",
+        "误差直接落在 link geometry 上，能定位 aggregate MSE 隐藏的 fingertips failure。"
+      ],
+      "design_weaknesses": [
+        "单一 configuration 不能代表总体分布。",
+        "竖直 colorbar 与各 hand 缩放后较小，绝对颜色范围和灰度等级不够清楚。"
+      ],
+      "reusable_pattern": "在 aggregate 定量图后使用 model×geometry montage 定位局部误差，并同时提供样本选择规则、colorbar 数值范围和跨样本统计。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5: Results for motion prediction in Cartesian space.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "DejaVu Serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#F28E2B",
+          "#E64B35",
+          "#7E63B8",
+          "#75AADB",
+          "#238B45"
+        ],
+        "semantic_mapping": "MLP/GCN/BoT/Transformer/Rodrigues 的模型类别色用于五个轨迹 inset 和右侧 scaling curves；红点标记 end-effector。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 20,
+        "data_marks_estimate": 85
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右 panel upper-right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 5,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左 panel frame index/trajectory time；右 panel trainset size 10^3–10^6",
+        "y": "左为 end-effector position inset；右为 log Test MSE",
+        "color": "五种 backbone",
+        "shape": "UR5 frame renders、红色 endpoint marker、trajectory markers",
+        "line": "模型轨迹实线、GT 虚线、B-spline interpolation",
+        "facet": "trajectory visualization + testset performance",
+        "text": "observed/predicted frame labels、model inset titles、right legend"
+      },
+      "data_and_statistics": "Cartesian motion prediction：左侧 8 observed + 8 predicted frames，单一 example 的 top-down end-effector trajectory，红点为 endpoint，B-spline 连接；右侧比较 10^3/10^4/10^5/10^6 training pairs 的 test MSE。没有 uncertainty、run count 或 sample aggregation 定义。",
+      "evidence_relation": "§5.1 6-DoF UR5 与 16-frame Cartesian interpolation/IK → Figure 5a observed/predicted trajectory → Table 1 10^5 主比较 → Figure 5b scaling → Tables 5/10 的训练与成本边界。",
+      "design_strengths": [
+        "定性几何、五模型 inset 和训练规模曲线在同一对象中闭合 Cartesian/joint-space 主张。",
+        "observed→predicted 分界和公开 Plotly renderer 为轨迹复用提供清晰起点。"
+      ],
+      "design_weaknesses": [
+        "五个 inset 很小，frame、GT、model 和 endpoint 语义依赖 subcaption/legend。",
+        "右侧没有 uncertainty 或测试分母，颜色在灰度输出中容易混淆。"
+      ],
+      "reusable_pattern": "用上层时序/几何示例解释下层 aggregate scaling，并在图注写明训练规模、测试分母和重复单位。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 22,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 6: Comparing our method to different baseline configurations in motion prediction with trainset size = 10^5.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "DejaVu Serif",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#F28E2B",
+          "#E64B35",
+          "#7E63B8",
+          "#75AADB",
+          "#238B45"
+        ],
+        "semantic_mapping": "四种 baseline 的模型规模曲线使用橙/红/紫/浅蓝，绿色虚线为固定 Rodrigues (3M) reference。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 4,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "两个 panel lower-left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "model parameter tiers 1M/3M/10M/30M",
+        "y": "log train/test MSE",
+        "color": "MLP、GCN、BoT、Transformer、Rodrigues",
+        "shape": "model-size markers",
+        "line": "solid baseline curves + green dashed Rodrigues reference",
+        "facet": "Train MSE vs model parameters / Test MSE vs model parameters",
+        "text": "panel titles、legend、1.93e−06 与 2.56e−06 reference labels"
+      },
+      "data_and_statistics": "约 1M/3M/10M/30M baseline configurations 与固定 3M Rodrigues 对照；正文解释 MLP/GCN test error 上升、BoT/Transformer 饱和，Rodrigues reference 较低。为 configuration-level point curves，无重复或不确定性。",
+      "evidence_relation": "主文 3M parameter fairness claim → Figure 6 baseline capacity/tuning alternative → Table 12 Rodrigues channel/depth sensitivity → Table 10 motion runtime。",
+      "design_strengths": [
+        "train/test 成对 panel 让 overfitting 与 saturation 形状可见。",
+        "固定绿色 reference 把 Rodrigues 与多种 baseline capacity 放进同一尺度。"
+      ],
+      "design_weaknesses": [
+        "两个 panel 重复 legend，占用本已有限的图面。",
+        "离散 x 档位和无误差范围使调参规则、近邻差异和稳定性仍不透明。"
+      ],
+      "reusable_pattern": "用 train/test scaling plot 检验 capacity alternative，并在 caption/附表给出每档实际参数、调参规则和重复统计。",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Motion prediction in Cartesian space with trainset size = 10^5.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "mean ± values; FK/motion table does not define repetition unit or denominator; no interval or significance column.",
+      "data_and_statistics": "UR5 Cartesian motion at trainset 10^5。列为 ErrorT (mm)、ErrorR (°)、Errorθ (°)、MSE and Train MSE (×10^-6)，全部 lower-is-better。Rodrigues: 1.21±0.17、0.16±0.04、0.06±0.00、2.56±0.39、1.93±0.34；Transformer test MSE 12.86±1.25 为 strongest baseline。",
+      "evidence_relation": "Figure 5 的 trajectory/scaling → Table 1 固定-size main comparison → Appendix C.2 metric definitions、Table 5 training setup、Table 10 runtime → Figure 6/Table 11 robustness/ablation。",
+      "design_strengths": [
+        "几何误差、test loss 和 train loss 同屏，且主比较行粗体。",
+        "统一小数精度与无竖线规则适合快速横向扫描。"
+      ],
+      "design_weaknesses": [
+        "± 的重复单位、checkpoint 与 test/train 分母需查附录；Error 缩写未在表内展开。",
+        "页宽横向表较密，成本/参数量不在同一表。"
+      ],
+      "reusable_pattern": "保留“任务几何误差 + test/train loss”决策面，但在 header/caption 写清 aggregation、重复单位、checkpoint 和方向。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: Baseline comparisons on the imitation learning benchmark. Simulated success rate.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "任务 success rate 为 5 random seeds 的 mean ± standard deviation；Average 只有均值，未给跨任务不确定性。",
+      "data_and_statistics": "五个 ManiSkill task 的 simulated success rate；正文给出每任务 100 evaluation rollouts、5 seeds。Rodrigues-DP Average 0.61、UNet-DP 0.58、Transformer-DP 0.44；PlugCharger Rodrigues 0.10 低于 UNet 0.13，PushCube 近 1.00。",
+      "evidence_relation": "固定 Diffusion Policy outer framework/约 17M 参数 → Table 2 五任务结果 → 正文 task-dependent benefits/failure → Tables 6–7 training 与 demo budget。",
+      "design_strengths": [
+        "任务列对齐且平均值提供快速入口；最佳单元格粗体。",
+        "黑白 booktabs 保证打印可读。"
+      ],
+      "design_weaknesses": [
+        "Average 没有 ±；任务列没有显式 rollout/seed header，也没有 failure/sensor/cost 列。",
+        "接触动力学边界需依赖正文解释。"
+      ],
+      "reusable_pattern": "采用 task×backbone 主表并保留 overall mean，同时在 header 写 mean ± SD、seed 和 rollout 分母，并标注任务异质性。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3: Baseline comparisons on the FreiHAND dataset. We use the standard protocol and report metrics on 3D joint and 3D mesh accuracy. PA-MPVPE and PA-MPJPE numbers are in mm.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "单个 standard-protocol point estimates；没有重复、不确定性或测试样本分母。",
+      "data_and_statistics": "FreiHAND standard protocol；PA-MPVPE/PA-MPJPE 单位 mm，F@5/F@15 为准确度指标且箭头标方向。Ours 5.9、5.6、0.793、0.991；HaMeR published 6.0/5.7/0.785/0.990，reproduced 6.2/5.9/0.774/0.989；MobRecon PA-MPJPE 5.7 低于 Ours。",
+      "evidence_relation": "Figure 1 hand application → §5.3 HaMeR replacement → Table 3 published/reproduced comparison → Appendix A/C.4/D.4 MANO、数据集、训练与参数量。",
+      "design_strengths": [
+        "published 与 reproduced HaMeR 并列，减少单一复现基线误读。",
+        "箭头、单位、横线分组和 Ours 粗体清楚。"
+      ],
+      "design_weaknesses": [
+        "“state-of-the-art”不能覆盖 MobRecon 的最低 PA-MPJPE；参数量、数据协议和不确定性不在表内。",
+        "Method 单元格嵌入引用使横向扫描变慢。"
+      ],
+      "reusable_pattern": "保留 published/reproduced 强基线和方向箭头，限定逐指标 claim，并把参数/协议作为 companion row 或附表。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4: Training hyperparameters for forward kinematics fitting experiment.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无不确定性；这是 FK fitting 的训练配置表。",
+      "data_and_statistics": "三组 Parameter name/Value pairs：Training iterations 100,000、Optimizer Adam、Learning rate 0.0003；Batch size 1024、Validate every 500 iterations、Weight decay 0。",
+      "evidence_relation": "Figure 3 FK convergence → Table 4 optimizer/schedule → C.1 sampling 与 D.1 architecture → Table 9 runtime。",
+      "design_strengths": [
+        "三组 key-value 并排，紧凑地覆盖核心训练开关。"
+      ],
+      "design_weaknesses": [
+        "第三组表头在 PDF 中为单数 Parameter；hardware/seed/checkpoint selection 未列。"
+      ],
+      "reusable_pattern": "小型超参集合用成对 key-value 宽表，并追加随机性、硬件与 checkpoint 选择。",
+      "evidence": {
+        "page": 16,
+        "label": "Table 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 5: Training hyperparameters for motion prediction in Cartesian space experiment.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无不确定性；这是 Cartesian motion training setup。",
+      "data_and_statistics": "Training iterations 100,000、Optimizer Adam、Learning rate 0.0001、Batch size 1024、Validate every 500 iterations、Weight decay 0、Input frames 8、Output frames 8、DoFs 6。",
+      "evidence_relation": "Figure 5 observed/predicted 8+8 frames → Table 5 schedule/DoFs → C.2 UR5 interpolation、split 与 metrics → Table 10 runtime。",
+      "design_strengths": [
+        "把输入/输出时间窗、DoFs 与优化器同屏。"
+      ],
+      "design_weaknesses": [
+        "trainset 10^3–10^6、validation/test 10^4 和 checkpoint 规则不在表内；pair header 重复。"
+      ],
+      "reusable_pattern": "把时间窗与 optimizer 同屏，并列 dataset size、split 和 checkpoint pair。",
+      "evidence": {
+        "page": 16,
+        "label": "Table 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 6: Training hyperparameters for imitation learning experiment (following Chi et al. (2023)’s settings).",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无不确定性；imitation training 配置。",
+      "data_and_statistics": "Optimizer AdamW、learning rate 0.0001、weight decay 1e−6、LR scheduler Cosine scheduler、batch size 1024、episode steps 200。EMA、500 warm-up steps 和 decay 0.75 在正文而非表中。",
+      "evidence_relation": "Table 2 五任务 success → Table 6 DP training controls → Table 7 task-specific budgets → D.3 17M backbone implementation。",
+      "design_strengths": [
+        "明确 following Chi et al. settings，突出固定 outer framework。"
+      ],
+      "design_weaknesses": [
+        "EMA/warm-up、seed、rollout count 未进入表，无法仅凭表重建统计协议。"
+      ],
+      "reusable_pattern": "把固定 outer framework 的所有训练开关集中，并把外部 protocol 与本论文改动分列。",
+      "evidence": {
+        "page": 17,
+        "label": "Table 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7: Demo trajectories and training iterations for each task in imitation learning experiment.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无不确定性；任务预算是点值。",
+      "data_and_statistics": "PushCube/PickCube/StackCube/PegInsertionSide/PlugCharger 的 demos 为 100/100/100/500/500，training iterations 为 30k/30k/60k/100k/300k；Task name 加五个任务列。",
+      "evidence_relation": "Table 2 task success → Table 7 demo/iteration budget → Table 6 optimizer 与正文 200-step episode、100 rollout/5 seed。",
+      "design_strengths": [
+        "五任务横向一览，demo 与 iteration budget 直接对齐。"
+      ],
+      "design_weaknesses": [
+        "episode length、scene randomization、evaluation rollout/seed 不在表内，且 k 与绝对数混用。"
+      ],
+      "reusable_pattern": "任务作为列、预算作为行；增加 episode length、rollout 和传感器列以闭合比较。",
+      "evidence": {
+        "page": 17,
+        "label": "Table 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8: Training hyperparameters for 3D hand reconstruction experiment.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无不确定性；hand reconstruction training setup。",
+      "data_and_statistics": "Training iterations 1,000,000、Optimizer AdamW、Learning rate 1e−5、Batch size 64、Validate every 1,000 iterations、Weight decay 1e−4。",
+      "evidence_relation": "Table 3 FreiHAND metrics → C.4 十数据集/256×256/58 MANO 与 D.4 ViT+RodriNet → Table 8 budget。",
+      "design_strengths": [
+        "训练预算、validation interval 和 optimizer 集中且与其它超参表同样式。"
+      ],
+      "design_weaknesses": [
+        "7-day GPU cost、resolution、MANO output/augmentation 不在表内。"
+      ],
+      "reusable_pattern": "小表固定步数/validation/weight decay/batch，同时追加 resolution、label protocol 与 hardware。",
+      "evidence": {
+        "page": 18,
+        "label": "Table 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9: Approximate training time of different methods for fitting forward kinematics",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单张 Quadro RTX 6000、100,000 iterations 的 approximate wall-clock；没有重复或误差。",
+      "data_and_statistics": "Method + MLP/GCN/Transformer/BoT/Rodrigues (ours) 六列，Time 行为 17min、1h50、2h20、2h20、1h18；分钟/小时粒度混合。",
+      "evidence_relation": "D.1 FK parameter/architecture → Table 9 cost → Figure 3 convergence 与 Table 4 schedule。",
+      "design_strengths": [
+        "不同 backbone 成本集中一行，quality–time trade-off 可快速读出。"
+      ],
+      "design_weaknesses": [
+        "没有参数量、吞吐、显存、hardware utilization、seed 或重复；时间单位不统一。"
+      ],
+      "reusable_pattern": "同时报告 wall-clock、hardware、iterations、parameter count、吞吐和重复范围，并统一时间单位。",
+      "evidence": {
+        "page": 19,
+        "label": "Table 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 10: Approximate training time of different methods for motion prediction experiment",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单张 Quadro RTX 6000、100,000 iterations 的 approximate wall-clock；没有重复或误差。",
+      "data_and_statistics": "Method + MLP/GCN/Transformer/BoT/Rodrigues 六列，Time 行为 27min、1h12、1h20、1h20、2h22；Rodrigues motion runtime 明显更高。",
+      "evidence_relation": "Figure 5/Table 1 motion quality → Table 10 runtime → Appendix F CUDA acceleration（大配置 PyTorch >100h、CUDA ≈15h）。",
+      "design_strengths": [
+        "与 Table 9 同结构，motion quality 的时间代价未被隐藏。"
+      ],
+      "design_weaknesses": [
+        "单行不能解释完整 Rodrigues motion 较慢的原因；无吞吐/显存/variation。"
+      ],
+      "reusable_pattern": "成对报告相同 hardware/iteration 的 task runtime，并在旁边给参数、吞吐和加速状态。",
+      "evidence": {
+        "page": 20,
+        "label": "Table 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 21,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 11: Ablation studies for motion prediction in Cartesian space with trainset size = 10^5. We remove the Rodrigues Layer (R Layer), Joint Layer (J Layer), or Self-attention Layer (S Layer) respectively from the original Rodrigues Network, and evaluate the MSE on train/test sets.",
+        "word_count": 44,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Train/Test MSE 为 mean ±，但 repetition unit 未定义；无 seed、区间或显著性。",
+      "data_and_statistics": "四行组件组合：Default 3.04/1.93±0.34/2.56±0.39；remove S 1.44/1.94±0.26/2.33±0.26；remove J 3.01/2.33±0.56/2.80±0.62；remove R 1.69/5.57±0.55/6.19±0.57（MSE ×10^-6）。checkmark=保留，空白=移除。",
+      "evidence_relation": "Figure 2 三组件接口 → Table 11 one-at-a-time removal → E.1 对 R/J/S 作用解释 → Figure 6/Table 12 capacity/sensitivity。",
+      "design_strengths": [
+        "indicator matrix、Params 和 train/test MSE 同屏，结构干预清楚。",
+        "正文结论能逐行回指。"
+      ],
+      "design_weaknesses": [
+        "没有无组件/交互消融和重复定义；remove-S test 略低于 default 的保留理由需读正文；空白可能被误读为缺失。"
+      ],
+      "reusable_pattern": "用 component indicator + capacity + train/test metrics 构成最小机制消融，明确空白含义、重复单位和默认决策。",
+      "evidence": {
+        "page": 21,
+        "label": "Table 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 22,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 12: Hyperparameter sensitivity analysis for the Rodrigues Network on motion prediction in Cartesian space with trainset size = 10^5.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "configuration-level point estimates；没有 ±、重复、失败率或不确定性。",
+      "data_and_statistics": "Default C_J/C_L/B=4/8/12 → Params 3.04、Train 1.93、Test 2.56；C_J=2/8、C_L=4/16、B=6/24 的对应参数和 train/test MSE 分别为 2.43/4.26、2.18/1.32、3.00/1.96；1.19/8.73、3.64/1.51、4.35/2.18；1.55/6.03、2.24/3.47、2.76/4.15。",
+      "evidence_relation": "Figure 6 baseline scaling → Table 12 Rodrigues C_J/C_L/B sensitivity → E.3 对 channel/depth 的解释 → Table 11 component removal。",
+      "design_strengths": [
+        "三种超参轴、参数量和 train/test MSE 同表；组间横线保留变化语义。"
+      ],
+      "design_weaknesses": [
+        "空白 cell 没有显式写 unchanged；单层 header 无 variation group label；点估计不能支撑稳定性强度。"
+      ],
+      "reusable_pattern": "用 Default + 单因素 halving/doubling 行构建敏感性矩阵，并显式编码 unchanged、variation group、seed/uncertainty 和优化失败。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 12",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 classical→learnable operator，Figure 2 三层 block 接口，Figure 3–5 覆盖 FK expressivity、link error、Cartesian motion quality/scaling，Tables 1–3 给出 motion/imitation/hand headline，Tables 4–10 给出训练/任务预算/runtime，Figure 6 和 Tables 11–12 回应 capacity、组件必要性与敏感性，形成“结构 prior→方法接口→性能→边界→复现”链。",
+    "caption_system": "所有 caption 以 Figure/Table label 和粗体标题片段开头，随后给 setup、比较对象或编码；Figure 3/4 的 visual claim 较明确，Figure 5 依赖 subcaption。±、band、Average、sample denominator 和部分 metric abbreviation 的统计定义经常留在正文或附录。",
+    "table_header_system": "结果表采用单层 header，Error/MSE/F 指标方向与单位写入列名；超参与成本表复用三组 key-value 或 Method×backbone 横向结构。主表缺少统一 seed、n、parameter 和 cost 列，附录通过 C.1–D.4 补齐但依赖正文链接。",
+    "method_result_ablation_link": "Figure 2 的 Rodrigues/Joint/Self-attention 三组件在 Figure 3/5 的 backbone 中实例化；Table 1 是 Cartesian 主结果，Table 11 逐项删除组件，Table 12 改变 C_J/C_L/B，Figure 6 改变 baseline 参数规模；remove-S test 略低和 runtime 较高是重要边界。",
+    "main_appendix_link": "正文 §5.1–§5.3 指向 C.1/C.2/C.3/A/D.1–D.4；Tables 4–10 提供训练、任务预算、runtime 和 hand protocol，E.1–E.3 提供 Figure 6/Table 11/12 的稳健性，F p.23 提供 CUDA 成本边界。PDF 实际 appendix 为单宽栏。",
+    "typography_consistency": "caption/table 使用稳定的衬线与数学字体，图内统计标签在 DejaVu/Times/Computer Modern 间混合；字号整体可放大读取，但 Figure 4 colorbar、Figure 5 inset 和长表头较小。",
+    "color_consistency": "MLP/GCN/BoT/Transformer/Rodrigues 色在 Figure 5/6 与 Figure 3 右 panel 保持一致，Figure 4 用独立 sequential error map；文字、位置和线型提供部分冗余，但没有 hatching 或足够 marker 形状来保证灰度安全。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "使用“classical→learnable→applications”全宽概念桥和三层 block 接口先固定机制语言，再用 bar+convergence、trajectory+scaling 成对图承接结果。",
+      "跨结果图固定模型类别色，并让方法名、位置、legend 和实/虚线共同编码类别。",
+      "用 Table 11 的组件 indicator + 参数量 + train/test metrics 连接机制消融，用 Figure 6/Table 12 处理 capacity 与超参替代解释。",
+      "将训练超参、任务预算和 runtime 下沉到统一的附录表，为主结果提供复现和成本边界。"
+    ],
+    "highest_value_objects": [
+      "Figure 2",
+      "Figure 3",
+      "Table 1",
+      "Table 2",
+      "Table 11",
+      "Figure 6"
+    ],
+    "failure_patterns": [
+      "±、半透明 band 和 success Average 缺少统一 repetition unit、sample denominator 或 aggregation definition。",
+      "Figure 4 只有单例 qualitative evidence，Table 3 的 state-of-the-art 叙述没有覆盖 MobRecon 的最低 PA-MPJPE。",
+      "Figure 5 inset、Figure 4 colorbar、Table 3 引用嵌入和重复 key-value header 增加缩放阅读成本，颜色灰度冗余不足。",
+      "Tables 9–10 只给 approximate wall-clock，缺少 parameter/throughput/memory/repetition；Figure 6 reference line 也没有不确定性。",
+      "公开仓库有 Plotly robot/trajectory renderer，但没有 PDF 静态 Figure/Table source；Figure 1/2/3/6 和表格完整复现仍需从 PDF 重建。"
+    ],
+    "one_sentence_visual_strategy": "用 kinematics-aware operator 概念桥和三层 architecture 固定方法接口，再用跨任务主表、终点/收敛成对图、link error montage、容量/组件消融和附录成本表形成“机制—性能—边界—复现”闭环。"
+  }
+}

@@ -1,0 +1,1993 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-49937f5dcda4",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/apple/ml-pararnn",
+      "https://openreview.net/forum?id=mX8b64iUaa"
+    ],
+    "selected_repository": "https://github.com/apple/ml-pararnn",
+    "visual_source_files": [],
+    "search_note": "PDF p.1 explicitly links apple/ml-pararnn; OpenReview metadata and the title-matching README link the same repository to this paper. unicli search identified gh repo/search surfaces and agent-reach doctor reported the authenticated gh backend as available with a warning. gh repo view and the recursive main-tree inspection found README.md, Python package modules and CUDA kernels but no plot/figure/visual/table generator, notebook, TeX/TikZ/PGF/SVG, rendered asset, or experiment-data file. corpus/visual_sources/iclr-2026-49937f5dcda4/ is absent. The PDF remains the sole visual source; no weights or datasets were fetched."
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 2,
+    "appendix_figures": 10,
+    "appendix_tables": 4,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 5.5,
+        "median": 7.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.0,
+      "header_size_pt": 8.0,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "PDF charts use a restrained categorical palette: blue #0072B2 for ParaGRU/diagonal variants, green #3A8C52 for ParaLSTM/block-diagonal variants, yellow #E69F00 for Mamba, and purple #594C80 for Transformer. Opacity/line weight encodes implementation or sequence-length conditions; Appendix D schematics add blue/red/green/orange block fills.",
+    "vector_raster_mix": "pdfimages -list reports no embedded raster images; all inspected Figure/Table objects are vector paths and embedded text in the PDF. All object-bearing pages (1, 8–10, 15, 18–23, 27) were rendered at 200 dpi (1700×2200 PNG) and visually inspected. pdffonts confirms embedded Computer Modern, Nimbus Roman No9 L and NimbusMonL families.",
+    "style_consistency": "The paper uses two-column ICLR proceedings layout, booktabs-like horizontal rules for tables, serif page/caption typography and log-scaled timing/memory charts. Charts consistently use blue/green/yellow/purple roles and light gray plotting backgrounds; line weight often carries an implementation or chunk-size dimension. The main visual gap is that several color-heavy plots have no uncertainty encoding and captions defer setup details to nearby prose."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "bar"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 1: Our ParaRNN framework makes it possible to apply classical RNNs in parallel, dramatically speeding up their training, and allowing them to be used competitively for language modeling.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#0072B2",
+          "#3A8C52",
+          "#E69F00",
+          "#594C80",
+          "#99C7E0",
+          "#7DB38D"
+        ],
+        "semantic_mapping": "左图以蓝/绿区分 ParaGRU/ParaLSTM，浅色与深色区分 Sequential/ParaRNN；右图以橙、绿、蓝、紫区分 Mamba2、ParaLSTM、ParaGRU、Transformer。速度与排列位置补充颜色语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 8,
+        "legend_items": 8,
+        "annotations": 2,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "panel-specific: upper-left (timing), upper-right (PPL)",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左：序列长度 L（log）；右：模型规模（categorical）/横向 perplexity（linear）",
+        "y": "左：RNN cell application timings [ms]（log）；右：perplexity",
+        "color": "模型/细胞类型及 Sequential 对 ParaRNN",
+        "shape": "折线点；右图横向条形",
+        "line": "实线；速度提升文字箭头",
+        "facet": "timing 与 PPL 两个并列 panel",
+        "text": "Speedup >447×、>665× 以及各 PPL 数值"
+      },
+      "data_and_statistics": "左 panel 是 A100 上 ParaGRU/ParaLSTM 的 sequential 与 ParaRNN cell-application timing，L 为 2^2–2^9；右 panel 是 1B、2.9B、7B 四种模型的 PPL 横向条形比较。图面只有点估计和速度提升标注，没有误差条、区间或重复次数；测量协议在 §5.1 与 Appendix B 说明。",
+      "evidence_relation": "引言关于 RNN 顺序瓶颈的主张 → Figure 1 的 speed/PPL headline → Figure 2 的 kernel/runtime 机制 → Figure 3 的生成吞吐 → Table 1/2 与 Appendix Table 6 的 expressivity、7B 与全尺度结果。",
+      "design_strengths": [
+        "将效率和语言建模质量放在同一页，读者可先看成本再看任务结果。",
+        "log timing 轴和 >447×、>665× 直接标注使数量级差异可见。",
+        "右图用统一模型颜色跨三个规模复用比较语义。"
+      ],
+      "design_weaknesses": [
+        "左右 panel 的坐标类型不同，caption 没有说明各 panel 的 x/y 轴、模型规模范围或测量协议。",
+        "无不确定性、重复或分母，速度提升注释容易被读成普遍保证。",
+        "右图只展示 1B/2.9B/7B，图内小 legend 和小数值在单页缩放后阅读负担较高。"
+      ],
+      "reusable_pattern": "用一个双 panel 将“实现成本曲线”和“任务质量条形比较”并置；保留同一模型颜色，但在 caption 中明确 panel-specific scale、测量协议和不确定性边界。",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 2: Timing results for the parallel reduction operations Alg. 1b (left), and the full parallel RNN application Alg. 1a (right), applied to sequences of varying length. Colors refer to different variants of the solvers: for diagonal Jacobians (blue, used by ParaGRU) and 2x2 block-diagonal ones (green, used by ParaLSTM). Heavier lines refer to progressively more efficient implementations: in PyTorch, in CUDA, and (for the RNN forward pass) with the fully-fused CUDA kernel. For reference, equivalent timing results for Mamba are also included (yellow). Actual speedup measurements reported in the main text refer to L = 2^9 (highlighted).",
+        "word_count": 98,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#87B5CD",
+          "#0072B2",
+          "#7DB38D",
+          "#3A8C52",
+          "#E69F00"
+        ],
+        "semantic_mapping": "蓝色系表示 diagonal/ParaGRU，绿色系表示 2×2 block-diagonal/ParaLSTM，黄色表示 Mamba；线宽表示 PyTorch、CUDA、fused 实现层级。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 1,
+        "data_marks_estimate": 150
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sequence length L（log，左至 2^22，右至 2^17）",
+        "y": "timings [ms]（log）",
+        "color": "Jacobian/implementation family",
+        "shape": "小点标记",
+        "line": "线宽由 PyTorch→CUDA→fused 增大",
+        "facet": "left=parallel reduction；right=full RNN cell forward",
+        "text": "∼log L 指引与 L=2^9 speedup reference"
+      },
+      "data_and_statistics": "左 panel 比较 diagonal 与 2×2 block-diagonal Jacobian 的 PyTorch/CUDA reduction 及 Mamba scan；右 panel 比较 ParaGRU、ParaLSTM 的 CUDA/fused forward 与 Mamba。两轴为 log，L 跨不同范围；A100 CUDA Events 使用 20 次 warm-up、100 次随机输入测量并取最小 timing，图面不显示方差。",
+      "evidence_relation": "Algorithm 1b 的 parallel reduction 与 Algorithm 1a 的 Newton outer loop → Figure 2 的实现层级和序列长度 regime → §5.1 的 L=2^9 speedup → Appendix Figures 5–8 的 modality/chunk-size 展开。",
+      "design_strengths": [
+        "同一页将 solver kernel 和完整 RNN forward 对齐，方法接口到系统成本的映射清晰。",
+        "线宽、颜色、panel 位置共同编码实现层级，legend 对关键语义有解释。",
+        "log–log 视图使容量受限后的 regime 变化可见。"
+      ],
+      "design_weaknesses": [
+        "图内没有明确的重复/误差编码，最小 timing 对偶然最快运行较敏感。",
+        "图例在两 panel 分开，颜色与线宽组合较多，灰度输出难以保留全部身份。",
+        "caption 提到 highlighted L=2^9，但视觉高亮很弱，读者仍需回到正文查 speedup 定义。"
+      ],
+      "reusable_pattern": "用同一 x 轴 sweep 把“抽象求解器”和“完整前向”并排，并以颜色表示结构、线宽表示优化阶段；把选定 operating point 用清晰参考线或标记固定下来。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 2 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 3: Tokens throughput at generation for ParaGRU (blue), ParaLSTM (green), Mamba (yellow), and Transformers (purple).",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#0072B2",
+          "#3A8C52",
+          "#E69F00",
+          "#594C80"
+        ],
+        "semantic_mapping": "蓝、绿、黄、紫分别表示 ParaGRU、ParaLSTM、Mamba、Transformer；约 1/L 的灰色参考线补充 Transformer 随生成长度下降的语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left inside panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "number of new tokens generated L（log）",
+        "y": "throughput [Tokens/s]（log）",
+        "color": "architecture/model family",
+        "shape": "小点标记",
+        "line": "solid series；灰色 dotted ∼1/L reference",
+        "facet": "single panel",
+        "text": "legend 内约 38/37/28 tkn/s，∼1/L guide"
+      },
+      "data_and_statistics": "这是 1B inference setup 的生成吞吐曲线，x 为新生成 token 数，y 为 tokens/s；ParaGRU/ParaLSTM 约在 37–38 tokens/s、Mamba 约 28 tokens/s，Transformer 随 L 下降。正文与 Appendix B 说明 A100、Python timeit、5 次重复取最小 timing；没有误差条或跨 seed 聚合。",
+      "evidence_relation": "§5.1 从 Figure 2 的训练/forward runtime → Figure 3 的 autoregressive inference consequence → Appendix Table 3 的多规模 throughput → 结论中的“constant recurrent token cost”表述。",
+      "design_strengths": [
+        "小型单 panel 直接展示 recurrent constant-cost 与 Transformer 反向趋势。",
+        "log y 轴和 ∼1/L reference 使数量级与趋势同时可读。",
+        "legend 提供近似吞吐锚点，便于快速复核 headline。"
+      ],
+      "design_weaknesses": [
+        "caption 只给颜色映射，没有说明 1B、A100、重复次数、timing aggregation 或坐标轴单位。",
+        "四条曲线主要依靠颜色区分，灰度或色觉受限输出下可辨识性不足。",
+        "没有不确定性或点值表；legend 的近似数字不能替代可复现的 summary。"
+      ],
+      "reusable_pattern": "用 log–log generation-length sweep 配合一条复杂度参考线，展示 recurrent 与 attention 的成本形状；caption 需补齐模型规模、硬件和 timing 汇总规则。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 3 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 15,
+      "module": "appendix_A_newton_convergence",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 4: Newton’s method convergence behavior for ParaGRU (top) and ParaLSTM (bottom) cells with different input sequence lengths L, for freshly initialized RNN cells (left), and for the RNN cells in the last layer of our trained 400M models (right). Inputs are randomly selected from the evaluation datasets, and the residuals reported are the max on batches of size 8.",
+        "word_count": 60,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#0072B2",
+          "#99C7E0",
+          "#3A8C52",
+          "#7DB38D"
+        ],
+        "semantic_mapping": "蓝色表示 ParaGRU、绿色表示 ParaLSTM；同一色相的透明度/线宽表示 L=2^8、2^9、2^10、2^11；列位置表示 initialization/end of training。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 16,
+        "legend_items": 8,
+        "annotations": 6,
+        "data_marks_estimate": 176
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "right edge of each row",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Newton iterations N_its（linear，0–10）",
+        "y": "residual norm max_l ||h_l^k−f(h_{l−1}^k,x_l)||（log）",
+        "color": "cell type and sequence length L",
+        "shape": "small point marks",
+        "line": "solid lines with opacity/weight for L",
+        "facet": "2×2: initialization/end training × ParaGRU/ParaLSTM",
+        "text": "column headers At Initialization/At End of Training; row labels ParaGRU/ParaLSTM"
+      },
+      "data_and_statistics": "每条曲线是随机 evaluation inputs、batch size 8 上 residual 的最大值；四个 L（2^8–2^11）在 fresh initialization 与 trained 400M last-layer cell 两列、ParaGRU/ParaLSTM 两行中重复。图显示约 3–4 次迭代降至 machine-precision 量级，但没有置信带，也没有把不同 batch 或 seed 的分布画出。",
+      "evidence_relation": "Appendix A 对 Newton 稳定性的经验核查 → Figure 4 的 fresh/trained 与 L sweep → Appendix B 采用 N_its=3 的 timing setup → Figure 2/5/6 runtime 结果。",
+      "design_strengths": [
+        "四个维度用行列和线透明度压缩为统一 2×2 small-multiple，比较路径明确。",
+        "log residual 轴能显示快速下降和长序列影响。",
+        "caption 明确随机输入和 batch max，便于解释 summary 统计。"
+      ],
+      "design_weaknesses": [
+        "四条近同色曲线依赖透明度/线宽，浅色长序列在缩小或灰度输出中接近不可见。",
+        "“machine precision”没有数值基准或 convergence threshold，图面也没有不确定性。",
+        "caption 未说明具体 evaluation dataset、每个 L 的样本数或曲线是否跨 batch 聚合。"
+      ],
+      "reusable_pattern": "用“训练状态 × 模型变体”的 small multiples 加同色参数 sweep，观察算法稳定性；应同时给出阈值、样本分母和跨重复的变异。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Figure 4 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 18,
+      "module": "appendix_B_profiling_modalities",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: Timings of different application modalities for the ParaGRU (left) and ParaLSTM (right) RNN cells, applied to sequences of varying length. Heavier lines refer to progressively more efficient applications: sequential, using parallel reduction in PyTorch (Alg. 1a), using parallel reduction in CUDA and system assembly in PyTorch, and using a fully-fused CUDA kernel for the whole Newton routine. Equivalent timing results for Mamba are also included for reference (yellow). Same setup as for Fig. 2 (right).",
+        "word_count": 77,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#99C7E0",
+          "#57A2CC",
+          "#0072B2",
+          "#7DB38D",
+          "#3A8C52",
+          "#E69F00"
+        ],
+        "semantic_mapping": "蓝色系是 ParaGRU，绿色系是 ParaLSTM，黄色是 Mamba；同一 panel 中线宽从 sequential 到 fully-fused 增大，表示实现效率层级。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 160
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sequence length L（log）",
+        "y": "timings [ms]（log）",
+        "color": "cell family and modality",
+        "shape": "small point marks",
+        "line": "line weight: Seq→PyTorch→CUDA→Fused",
+        "facet": "ParaGRU left / ParaLSTM right",
+        "text": "legend directly names modality and Mamba"
+      },
+      "data_and_statistics": "比较 ParaGRU/ParaLSTM 的 sequential、PyTorch reduction、CUDA reduction+PyTorch assembly、fully-fused CUDA 与 Mamba forward timings；x 为 varying L，y 为 ms，沿用 Figure 2 right 的 A100、warm-up/100-run minimum timing protocol。无误差表达。",
+      "evidence_relation": "Figure 2 right 的完整 forward headline → Figure 5 细分 application modality → Figure 6 纳入 backward → Figure 7/8 chunk-size ablation → Table 3 scale throughput。",
+      "design_strengths": [
+        "以线宽编码优化层级，避免为每个 modality 再引入独立色相。",
+        "ParaGRU/ParaLSTM 对称双 panel，直接对应主文的两个 cell。",
+        "log axes 显示不同实现的容量拐点。"
+      ],
+      "design_weaknesses": [
+        "多条近色曲线和不同线宽在高 L 区域交叉，legend 需要来回查找。",
+        "caption 借用 Figure 2 setup，脱离正文仍不知道硬件和 timing aggregation。",
+        "无方差、warm-up 影响或编译开销分解，不能判断差异的稳定性。"
+      ],
+      "reusable_pattern": "固定 cell family 的双 panel modality ladder，以线宽表达从 baseline 到 fused 的优化层级，并在 caption 复述硬件和重复规则。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Figure 5 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 18,
+      "module": "appendix_B_profiling_modalities",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 6: Timings of different application modalities for a full forward and backward pass of the ParaGRU (left) and ParaLSTM (right) RNN cells, applied to sequences of varying length. Same setup as for Fig. 5.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#99C7E0",
+          "#57A2CC",
+          "#0072B2",
+          "#7DB38D",
+          "#3A8C52",
+          "#E69F00"
+        ],
+        "semantic_mapping": "颜色区分 ParaGRU/ParaLSTM/Mamba，线宽区分 Seq、PyTorch、CUDA、Fused；图中沿用 Figure 5 的实现语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 160
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sequence length L（log）",
+        "y": "full forward+backward timings [ms]（log）",
+        "color": "cell family and modality",
+        "shape": "small point marks",
+        "line": "line weight: sequential→PyTorch→CUDA→Fused",
+        "facet": "ParaGRU left / ParaLSTM right",
+        "text": "legend names modalities; no direct numeric labels"
+      },
+      "data_and_statistics": "完整 forward+backward pass 使用与 Figure 5 相同的 modality、L sweep 和 timing protocol；loss 为 Appendix B 文字中的 dummy loss L(h)=Σ_l h_l^2。图面是单次汇总曲线，无误差带或反向 pass 分解。",
+      "evidence_relation": "Figure 5 的 forward-only cost → Figure 6 将 backward 纳入训练相关成本 → Appendix B 文字解释 Mamba backward 与 nonlinear RNN reduction 差异 → Figure 2 与 Table 3。",
+      "design_strengths": [
+        "把训练相关的 forward+backward cost 与 forward-only Figure 5 配对，便于检查结论是否改变。",
+        "相同配色和线宽层级保持跨图一致。",
+        "右侧 y 轴共享 log 视觉，低成本差异仍可读。"
+      ],
+      "design_weaknesses": [
+        "caption 只说 same setup，没有重复 Figure 5 的 modality 定义和设备/重复信息。",
+        "线宽/颜色双重编码仍较密集，且没有 forward 与 backward 各自的成本拆解。",
+        "没有误差或跨输入统计，曲线中的局部抖动难以解释。"
+      ],
+      "reusable_pattern": "将 forward 与 backward 作为成对面板/成对图，用同一编码系统显示训练真实成本；补充分项计时以避免把总成本归因给单个 kernel。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Figure 6 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 19,
+      "module": "appendix_B_chunk_size_ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 7: Timings of the CUDA implementation of parallel reduction, for diagonal (left) and 2 × 2 block-diagonal (right) Jacobians, varying its chunk_size hyperparameter c. Timings for Mamba implementation of parallel_scan are also reported as reference.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#99C7E0",
+          "#57A2CC",
+          "#0072B2",
+          "#B0D0B8",
+          "#70A886",
+          "#3A8C52",
+          "#E69F00"
+        ],
+        "semantic_mapping": "左 panel 蓝色深浅表示 c=1/2/4，右 panel 绿色深浅表示 c=1/2/4，黄色为 Mamba scan；线宽与深浅共同区分 c。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 112
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sequence length L（log）",
+        "y": "CUDA parallel-reduction timings [ms]（log）",
+        "color": "chunk size c and Jacobian structure",
+        "shape": "small point marks",
+        "line": "solid line weight/depth for c",
+        "facet": "diagonal left / 2×2 block-diagonal right",
+        "text": "legend lists c=1/2/4 and Mamba scan"
+      },
+      "data_and_statistics": "这是仅 parallel-reduction CUDA kernel 的 chunk_size sweep；每个结构 panel 有 c=1、2、4 和 Mamba parallel_scan，L 为 2^2–2^22。正文说明 diagonal 在长序列 c=4 更有利、训练相关区间选 c=2；block-diagonal 在 2^10–2^14 选 c=2。没有误差表达。",
+      "evidence_relation": "Appendix B.1 的 compile-time chunk_size 选择 → Figure 7 reduction-only ablation → Figure 8 fully-fused ablation → Figure 2/5 的 implementation choice 与 Table 3 throughput。",
+      "design_strengths": [
+        "直接将可调 kernel 参数连接到序列长度，最优点和 regime 变化可视化。",
+        "左右 panel 以 Jacobian structure 分工，c 的语义在各 panel 内稳定。",
+        "Mamba reference 线提供共同速度标尺。"
+      ],
+      "design_weaknesses": [
+        "c 的颜色/线宽区分依赖读图，caption 没有声明哪一条是推荐默认值。",
+        "没有重复、误差或 compile-time cost，局部最优可能受 minimum timing 影响。",
+        "右 panel 交叉较多，短序列和长序列的偏好需要结合正文解释。"
+      ],
+      "reusable_pattern": "将 kernel 参数 sweep 放在固定结构的并列 panel 中，报告训练区间的选定值和非训练区间的 trade-off，而不是只展示单一最优线。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Figure 7 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 19,
+      "module": "appendix_B_chunk_size_ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 8: Timings of the implementation of the fully-fused kernel for parallel RNN application, for ParaGRU (left) and ParaLSTM (right), varying its chunk_size hyperparameter c. Timings for Mamba SSM application are also reported as reference.",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#99C7E0",
+          "#57A2CC",
+          "#0072B2",
+          "#B0D0B8",
+          "#70A886",
+          "#3A8C52",
+          "#E69F00"
+        ],
+        "semantic_mapping": "左 panel 蓝色深浅表示 ParaGRU 的 c=1/2/4，右 panel 绿色深浅表示 ParaLSTM 的 c=1/2/4，黄色为 Mamba reference。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 112
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sequence length L（log）",
+        "y": "fully-fused parallel-RNN timings [ms]（log）",
+        "color": "cell family and chunk size c",
+        "shape": "small point marks",
+        "line": "solid line weight/depth for c",
+        "facet": "ParaGRU left / ParaLSTM right",
+        "text": "legend lists c=1/2/4 and Mamba"
+      },
+      "data_and_statistics": "这是全 Newton routine fully-fused CUDA kernel 的 chunk_size sweep；ParaGRU 与 ParaLSTM 分别显示 c=1/2/4、Mamba reference，x/y 为 log L 与 ms。正文给出解释：ParaGRU 长序列 c=2、短序列 c=1 更有利；ParaLSTM 使用 c=1 整体最好。无误差表达。",
+      "evidence_relation": "Figure 7 的 reduction-only 参数选择 → Figure 8 验证全融合后参数偏好 → Figure 5/2 的 fused headline → Appendix Table 3 的尺度吞吐。",
+      "design_strengths": [
+        "将 reduction-only 与 full-routine ablation 分开，能识别融合后参数效应是否保留。",
+        "左右 panel 对应两种 cell，Mamba reference 保持比较基准。",
+        "同一 log 坐标和颜色层级使 c 的曲线差异容易横向扫描。"
+      ],
+      "design_weaknesses": [
+        "caption 不报告默认 c、具体设备、重复统计或优化编译成本。",
+        "ParaLSTM 曲线在中高 L 区域交叉，单凭图难以判断“overall best”的实际范围。",
+        "颜色/线宽在灰度下冗余有限，且无显式推荐区间阴影。"
+      ],
+      "reusable_pattern": "把参数敏感性作为另一个独立层级，分别给出局部 kernel 和最终 fused path 的曲线，并在正文明确 deployment/training operating region。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Figure 8 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 20,
+      "module": "appendix_B_memory_profiling",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9: Peak GPU memory usage upon parallel application of the ParaGRU and ParaLSTM cells, varying sequence length L (left) and hidden state dimension dh (right).",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#0072B2",
+          "#3A8C52"
+        ],
+        "semantic_mapping": "蓝色表示 ParaGRU，绿色表示 ParaLSTM；灰色虚线分别表示 ∼L 与 ∼d_h 的线性参考。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": 44
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左：sequence length L（log，fixed d_h=2^10）；右：hidden state dimension d_h（log，fixed L=2^10）",
+        "y": "Peak Memory Usage [MiB]（log）",
+        "color": "ParaGRU vs ParaLSTM",
+        "shape": "none",
+        "line": "solid model curves + dashed scaling guide",
+        "facet": "L sweep / d_h sweep",
+        "text": "panel titles Fixed d_h=2^10 / Fixed L=2^10 and ∼L/∼d_h labels"
+      },
+      "data_and_statistics": "记录 ParaGRU/ParaLSTM parallel application 的 peak GPU memory；左固定 d_h=2^10 改变 L，右固定 L=2^10 改变 d_h。两图以 log–log 直线与 ∼L、∼d_h guide 表达 O(Ld_h) 预测；没有误差、样本数或设备重复信息。",
+      "evidence_relation": "§3 对 structured Jacobian storage O(Ld_h) 的分析 → Figure 9 的 L/d_h scaling check → Table 4 的 per-sample training memory → 对可扩展性的成本边界。",
+      "design_strengths": [
+        "左右 panel 分别隔离两个理论成本变量，斜率参考线让结构性预测直观可检验。",
+        "两种 cell 使用同一坐标与 legend，ParaLSTM 的较高存储层级可见。",
+        "图面简洁，适合在附录承担成本边界而不打断主文结论。"
+      ],
+      "design_weaknesses": [
+        "两条曲线几乎平行但没有斜率/拟合值或实际数据表，读者无法量化“linear”。",
+        "颜色是主要身份编码，灰度下仅有位置差异。",
+        "caption 未说明 profiling device、batch/输入设置和 peak 定义。"
+      ],
+      "reusable_pattern": "用固定一个变量、对数 sweep 另一个变量的双 panel 加理论 scaling guide，配套报告斜率、测量协议和 peak 定义。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Figure 9 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 21,
+      "module": "appendix_C1_language_modeling",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 10: Schematics of RNN block.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#FFF0D5",
+          "#F3DCDC",
+          "#22A3B9",
+          "#62A87E",
+          "#B3B3B3"
+        ],
+        "semantic_mapping": "浅黄色表示 Linear/Scale，粉色表示 Convolution，蓝绿渐变表示 ParaRNN Cell，灰色表示 Gated RMS Norm；模块文字与箭头提供颜色以外的语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "block flow bottom→top",
+        "y": "none; residual branch loops around sequence mixer",
+        "color": "component role via fill color",
+        "shape": "rounded/rectangular modules",
+        "line": "solid arrows and residual loop",
+        "facet": "single architecture schematic",
+        "text": "Linear, Convolution, ParaRNN Cell, Gated RMS Norm, Scale labels"
+      },
+      "data_and_statistics": "这是 language-model block 的结构示意，不包含测量数据或聚合统计。主路径自下而上经过 Linear、Convolution、ParaRNN Cell、Gated RMS Norm、Linear；旁路通过可学习 Scale 形成 residual connection。图中文字说明 core cell 可为 ParaGRU/ParaLSTM，其他组件相同。",
+      "evidence_relation": "§5.2 将 attention 替换为 ParaRNN 的 architecture claim → Figure 10 的 block interface → Appendix Table 4 的 layers/heads/width 与训练超参数 → Table 2/6 的 language-model scores。",
+      "design_strengths": [
+        "把来自 Mamba 的 convolution/gated norm 与 Transformer-like residual 组织在同一 block 中。",
+        "箭头、模块名和旁路重复表达数据流，单栏仍可读。",
+        "填充色区分组件家族，但不依赖图例。"
+      ],
+      "design_weaknesses": [
+        "caption 只有标题，未说明输入输出方向、residual/Scale 语义或 ParaGRU/ParaLSTM 可替换位置。",
+        "颜色没有正式色值或灰度替代，蓝绿渐变在黑白打印中层级变弱。",
+        "示意图没有标出 multi-head、n_layers 等与 Table 4 的配置对应关系。"
+      ],
+      "reusable_pattern": "用标注清晰的竖向模块图展示新模块如何嵌入熟悉 backbone；caption 应绑定输入方向、旁路和可替换接口，避免概念图脱离正文。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Figure 10 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 23,
+      "module": "appendix_C1_language_modeling",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 11: Cross-entropy loss evolution for the 7B models considered, evaluated on the training (left, collected every 150 iterations), and validation (right, collected every 3.3k iterations) datasets.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#0072B2",
+          "#3A8C52",
+          "#E69F00",
+          "#594C80"
+        ],
+        "semantic_mapping": "蓝、绿、黄、紫分别表示 ParaGRU、ParaLSTM、Mamba、Transformer；两 panel 的数据集位置和 legend 共同编码训练/验证身份。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "iteration（linear）",
+        "y": "Cross Entropy（linear；两 panel 范围不同）",
+        "color": "architecture",
+        "shape": "small point marks",
+        "line": "solid loss trajectory",
+        "facet": "Training left / Validation right",
+        "text": "right legend annotates approximate final validation losses ∼2.16/2.15/2.09/2.19"
+      },
+      "data_and_statistics": "四种 7B 模型的 cross-entropy loss：training panel 每 150 iterations 采样，validation panel 每 3.3k iterations 采样；左图保留明显高频抖动与 spike，右图为较平滑验证曲线。没有 error band、seed aggregation 或平滑规则。",
+      "evidence_relation": "Appendix C.1 的 7B training setup → Figure 11 的优化稳定性/收敛诊断 → Table 4 的 architecture/training cost → Table 6 与 Figure 1/2 的质量和效率结果。",
+      "design_strengths": [
+        "将 noisy training dynamics 与 sparse validation trend 并排，避免只展示最终单点。",
+        "四种架构颜色跨 Table 2/6 复用，legend 还给出 validation 末端近似值。",
+        "采样频率写进 caption，读者能区分两 panel 的时间分辨率。"
+      ],
+      "design_weaknesses": [
+        "左 panel 的 raw spike 很密，曲线相互遮挡，难以比较局部训练阶段。",
+        "无不确定性、seed 数、平滑/异常值处理说明，稳定性结论只能是定性。",
+        "两 panel y 范围不同，caption 未提醒不能直接比较垂直高度。"
+      ],
+      "reusable_pattern": "将训练和验证曲线分为固定双 panel，保留采样频率和原始噪声；同时报告 seeds、平滑规则与最终数值表，避免把视觉平滑当作稳定性证据。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 11 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 27,
+      "module": "appendix_D2_solver_implementations",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "matrix",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 12: Schematics drafting the evolution of the target block bi-diagonal system (3) as it undergoes the first stage of our algorithm. Light-blue squares represent its main diagonal (i.e., identity matrices), while the dark-blue once represent the Jacobians at different l’s. Threads independently apply forward substitution to chunk size(= 3 in the figure) equations. At each step, this amounts to using equation l to reduce the following one l + 1 (i.e., applying lines 4 and 5 in Alg. 1b). Notice this makes all equations in a chunk depend on the value of the very first unknown, as exemplified by the progressive shift towards the left of the sub-diagonal block. At the end of this stage, we can effectively extract a simplified system involving only the last equation of each chunk, which is then passed onto the next stage.",
+        "word_count": 140,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#4782A6",
+          "#C43F4D",
+          "#E35E69",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "浅蓝方块是主对角 identity，深蓝方块是 Jacobian；红/粉色轮廓和箭头表示 thread-level reduction 的逐步消元，黑色虚线分隔层级。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 130
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "stage order left→right",
+        "y": "matrix diagonal/sub-diagonal position",
+        "color": "identity/Jacobian/reduced block roles",
+        "shape": "colored square blocks",
+        "line": "solid reduction arrows; dotted stage separators",
+        "facet": "three matrix states: target → Step 1 → Step 2",
+        "text": "Thread 1–4, Step 1/2, Thread-level reduction, To warp-level reduction"
+      },
+      "data_and_statistics": "这是 Eq. (3) block bi-diagonal system 的算法示意，非实验数据。示例 chunk size=3；每个 thread 对 chunk 内方程做 forward substitution，使后续方程依赖 chunk 首个 unknown，并抽取每个 chunk 的最后方程交给下一阶段。",
+      "evidence_relation": "Eq. (3) 目标系统与 Algorithm 1b lines 4–5 → Figure 12 的 thread-level reduction → Figure 13 的 warp/block-level reduction → Appendix D.2 的 hierarchical GPU solver 叙述。",
+      "design_strengths": [
+        "按 target→two reduction steps 展示矩阵如何简化，机制方向比一张静态矩阵更清楚。",
+        "箭头、阶段标签和 block 位移共同表达消元过程。",
+        "caption 说明 chunk size 与 Alg. 1b 行号，便于回到伪代码。"
+      ],
+      "design_weaknesses": [
+        "矩阵方块、红色 overlay 和 dotted separators 密集，单栏缩放后细节难以复核。",
+        "identity/Jacobian 主要依赖颜色，caption 才提供语义 key，灰度可读性有限。",
+        "这是算法机制图，没有与 Figure 2 的 timing 或复杂度量化对接。"
+      ],
+      "reusable_pattern": "用连续矩阵状态展示并行消元的局部到全局层级，配合明确的 block legend、线程粒度和下一阶段接口；最好附一份可放大的源图或定量复杂度标注。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Figure 12 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 27,
+      "module": "appendix_D2_solver_implementations",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "matrix",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 13: Schematics drafting the evolution of the simplified block bi-diagonal system stemming from thread-level reduction, as it undergoes the second stage of our algorithm. The threads within a same warp (8 in the figure, but 32 in practice) apply parallel reduction to further simplify the target system. At each step i, this amounts to using equation l to reduce the l + 2^i -th one. Notice this progressively shifts the sub-diagonal blocks by 2^0, 2^1, 2^2, . . . positions, until all equations depend only on the very first unknown in the warp. At the end of this stage, we can effectively extract a simplified system involving only the last equation of each warp, which is then passed onto the next stage. At the block level, the algorithm proceeds similarly: the last threads of each warp perform parallel reduction, operating on the simplified system.",
+        "word_count": 145,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#4782A6",
+          "#E35E69",
+          "#7EC19B",
+          "#E69F00"
+        ],
+        "semantic_mapping": "蓝/灰方块是简化系统，红色方块与箭头表示 warp 内 reduction，绿色表示 warp-level stage，橙色表示转入 block-level reduction；阶段标签和块位置提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 150
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "stage order left→right",
+        "y": "matrix block position/diagonal offset",
+        "color": "warp-level/block-level reduction role",
+        "shape": "colored square blocks",
+        "line": "solid arrows; dotted warp separators",
+        "facet": "four matrix states with Step 1/2/3",
+        "text": "Warp 1/2, Step 1–3, To block-level reduction"
+      },
+      "data_and_statistics": "这是 thread-level reduction 后的简化 block bi-diagonal system 的 warp/block 层级算法示意；图中 warp 规模为 8、实际为 32，按 l+2^i 连接逐步消元，最终抽取每个 warp 的最后方程再进入 block-level。无样本或统计量。",
+      "evidence_relation": "Figure 12 输出的 per-chunk system → Figure 13 的 warp-level parallel reduction 与 block-level hand-off → Appendix D.2 的 shared-memory/synchronization 说明 → Figure 2 的 kernel scaling。",
+      "design_strengths": [
+        "把 2^0、2^1、2^2 位移和多级 reduction 画成连续状态，机制层级易于跟踪。",
+        "阶段颜色与文字标签共同表达 warp→block hand-off。",
+        "caption 明确图示 warp size 与实践 warp size 的差别。"
+      ],
+      "design_weaknesses": [
+        "四个状态和大量 colored blocks 在页面下半部较拥挤，方块标签不可放大阅读。",
+        "颜色承担 warp/block 角色，灰度下需要依赖阶段位置和箭头。",
+        "caption 仍依赖 Eq. (3)/前图语境，不能独立说明每个矩阵块的数学含义。"
+      ],
+      "reusable_pattern": "将层级并行 reduction 画成 block-offset 的 step sequence，明确图示规模与实际硬件规模，并用同一箭头/颜色规范连接 Figure 12。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Figure 13 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "failure",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 1: Single-layer accuracy on synthetic tasks. ()† denotes results computed training only the RNN cell (see App. C.2 for details).",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Accuracy percentages are point estimates. Three seeds are run in Appendix C.2 but the best result is retained; no mean, spread, interval or failure count is shown.",
+      "data_and_statistics": "六个 single-layer model rows（LSTM、GRU、ParaLSTM、ParaGRU、Mamba2、Transformer）与九个 synthetic-task columns；task headers include n、κ、k、C、M、|V| conditions. Accuracy uses whole-percent values, so the displayed precision is 0 decimals.",
+      "evidence_relation": "§5.2 关于 nonlinear expressivity 与 diagonal-Jacobian limitation → Table 1 的 task-by-model comparison → Appendix C.2 task definitions/training details → A5 failure and full-Jacobian control interpretation.",
+      "design_strengths": [
+        "把 vanilla full-Jacobian control、Para variants、linear Mamba 与 Transformer 放在同一 decision surface。",
+        "多行表头保留每个 task 的关键参数，避免只有缩写。",
+        "分组横线突出“full Jacobian control vs constrained/linear alternatives”。"
+      ],
+      "design_weaknesses": [
+        "caption 没有逐项解释九个任务，脱离 Appendix C.2 很难判断 retrieval/state-tracking 含义。",
+        "没有 seed dispersion，且“best result”隐藏了跨 seed 的选择效应。",
+        "10 列紧凑排版导致 task header、† 和 A5 等小文字可读性弱。"
+      ],
+      "reusable_pattern": "用任务条件作为二级表头，把能力覆盖与失败案例并列；若报告多 seed，应增加 mean/spread 或明确 best-of-seeds 选择规则。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 1 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2: Perplexity, parameters count, and evaluation scores on lm-eval-harness (Gao et al., 2021) tasks, for 7B models. Accuracies in percentages. Shot counts are reported in brackets.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none",
+        "arrows"
+      ],
+      "uncertainty": "PPL and downstream task accuracies are point estimates for approximately 7B models; no seeds, uncertainty, calibration or failure counts are shown.",
+      "data_and_statistics": "Rows are Mamba2, ParaLSTM, ParaGRU, Transformer; columns are Model, #params, ↓PPL, Arc-C (25/3), HSwag (10/0), OBQA (10/0), WinoG (5/0), PiQA (0), MMLU (0). Metrics display two decimals; #params is a mixed M/B string.",
+      "evidence_relation": "Figure 1 PPL headline → Table 2 7B downstream decision → Appendix Table 6 all-scale expansion → conclusion that Mamba2 leads while Para cells remain competitive.",
+      "design_strengths": [
+        "A single wide table jointly shows quality (PPL/accuracy) and parameter scale.",
+        "Direction arrows and shot subheaders make task evaluation conditions compact but explicit.",
+        "The four rows support the ordering discussed immediately below the table."
+      ],
+      "design_weaknesses": [
+        "Task abbreviations are not expanded in the caption; the lm-eval harness context and exact dataset versions remain external.",
+        "No uncertainty or run aggregation makes close differences (for example ParaGRU vs ParaLSTM) hard to interpret.",
+        "Wide 13-column layout compresses headers and makes scan order costly."
+      ],
+      "reusable_pattern": "Use grouped task headers with direction arrows and shot subcolumns to place model quality and scale on one surface; state benchmark version and aggregation rule in the caption.",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Table 2 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 20,
+      "module": "appendix_B_throughput",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 3: Throughput results at regime (L = 2^11) for the model types and sizes considered.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Tokens/s point estimates at L=2^11; the Figure 3 inference protocol uses five repetitions and reports minimum timing, but no variance or seed aggregation is shown.",
+      "data_and_statistics": "Four model rows (ParaGRU, ParaLSTM, Mamba2, Transformer) and four scale columns (400M, 1B, 3B, 7B) plus Model. Values use two decimals. The 3B label is retained exactly as printed even though other appendix tables use 2.9B.",
+      "evidence_relation": "Figure 3 1B generation curve → Table 3 scale-specific throughput → Figure 9 memory and Table 4 architecture/cost context; it tests whether recurrent constant-token cost persists across size.",
+      "design_strengths": [
+        "Very compact scale sweep makes the recurrent-versus-Transformer gap immediately visible.",
+        "The fixed L condition is in the caption and the model rows match the main figures."
+      ],
+      "design_weaknesses": [
+        "“at regime” is vague and no hardware/time aggregation appears in the caption.",
+        "3B versus 2.9B naming differs across tables and is not explained.",
+        "No uncertainty or per-model parameter count prevents cost-normalized interpretation."
+      ],
+      "reusable_pattern": "Use a narrow scale-by-model matrix for throughput, but bind the sequence length, hardware, repetitions and naming convention directly to the caption.",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 3 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 22,
+      "module": "appendix_C1_language_modeling",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4: Architecture specifications and optimal hyperparameters for our experiments. We report structural parameters (number of layers, number of heads and model width) and training hyperparameters (learning rate and weight decay) that achieved lowest perplexity for each model type and scale. Time measurements show average single-step training cost on NVIDIA H100 GPUs, while Memory measurements show the per-sample peak memory usage during one optimization step.",
+        "word_count": 65,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Time is average single-step cost on NVIDIA H100; memory is per-sample peak during one optimization step. No SD/SE or run count is listed.",
+      "data_and_statistics": "Sixteen rows are four model types × four scales. Columns: Model type, #params, n_layers, n_heads, d_model, learning rate, weight decay, ↓Time [ms/step], ↓Memory [GiB/sample]. Precision is mixed: scientific notation for LR/WD, integer structural fields and one-decimal costs, so no single decimal precision applies.",
+      "evidence_relation": "Appendix C.1 training setup → Table 4 architecture/hyperparameter and cost contract → Figure 10 block structure → Figure 11 loss trajectories and Table 6 outcomes.",
+      "design_strengths": [
+        "One table binds architecture, optimization choices and operational costs, which is valuable for reproduction.",
+        "Four scale groups make depth/width changes and cost growth inspectable.",
+        "Explicit units and direction arrows help distinguish resource columns from model quality."
+      ],
+      "design_weaknesses": [
+        "Mixed units and precision make column scanning slow; no grouped header visually separates structure, training and cost.",
+        "Average/peak definitions omit timing repetitions and memory measurement protocol.",
+        "The 7B Mamba2 time outlier needs context that is only in prose, not a visual highlight."
+      ],
+      "reusable_pattern": "Group structural, training and cost columns into three visual blocks, retain scale row groups, and report aggregation/replicate rules beside average and peak quantities.",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 4 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 22,
+      "module": "appendix_C1_language_modeling",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 5: Scale-specific training configurations on nodes with 8 NVIDIA H100 GPUs each All models use 2048-token sequences and follow (∼ 1×) Chinchilla-optimal token budgets (Hoffmann et al., 2022) for batch-size selection. The z-loss regularization coefficient is taken from DCLM (Li et al., 2024).",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Configuration table rather than a stochastic estimate; no uncertainty applies. Counts, coefficient, iterations and token budgets are deterministic settings.",
+      "data_and_statistics": "Rows are 400M, 1B, 2.9B, 7B; columns are Model Scale, Nodes, Batch Size per GPU, Effective Batch Size, Z-Loss, Total Iterations, Warm-up Iterations, Training Tokens [B]. Precision is mixed across counts, scientific notation and one-decimal token budgets.",
+      "evidence_relation": "Table 4 architecture choices → Table 5 node/batch/token budget → Figure 11 training/validation sampling and loss → Table 6 all-scale evaluation.",
+      "design_strengths": [
+        "Caption gives the shared 2048-token and Chinchilla context so the compact row matrix is interpretable.",
+        "Effective batch size and warm-up are placed beside total iterations, supporting reproduction."
+      ],
+      "design_weaknesses": [
+        "Caption punctuation is cramped (“each All models”), and no visual grouping distinguishes hardware, optimization and token budget.",
+        "No wall-clock duration, throughput or failed-run information is included.",
+        "z-loss source is named but its role and units are not visible in the table."
+      ],
+      "reusable_pattern": "Use a small scale configuration matrix with explicit shared-condition caption and separate hardware, batch, schedule and token-budget column groups.",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 5 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 23,
+      "module": "appendix_C1_language_modeling",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Final perplexities, and evaluation scores on reference downstream tasks from lm-eval-harness (Gao et al., 2021), for all model types and scales considered.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none",
+        "arrows"
+      ],
+      "uncertainty": "Final PPL and downstream accuracies are point estimates; no seed, uncertainty, confidence interval, failure value or aggregate across runs is shown.",
+      "data_and_statistics": "Sixteen rows (four model types × four scales) and thirteen columns: Model, #params, ↓PPL, Arc-C (25/3), HSwag (10/0), OBQA (10/0), WinoG (5/0), PiQA (0), and MMLU (0). Two decimals are used for PPL and accuracy; parameter labels mix M/B.",
+      "evidence_relation": "Table 2 7B slice → Table 6 all-scale expansion → Figure 1 PPL bars and Figure 11 training curves → claim that RNN quality improves with scale while Mamba2 remains strongest PPL.",
+      "design_strengths": [
+        "Complete scale expansion preserves the same model/task order as Table 2, enabling direct lookup.",
+        "Scale row groups and shot subheaders provide a high-density but regular comparison surface.",
+        "The table supplies exact values that the small main Figure 1 bars cannot show."
+      ],
+      "design_weaknesses": [
+        "Thirteen columns and 16 rows are hard to scan at appendix size; no alternating group shading or bold best values is used.",
+        "The caption does not expand task abbreviations or state shot semantics beyond the headers.",
+        "Point estimates and best-run selection context are absent, so small cross-model differences are not calibrated."
+      ],
+      "reusable_pattern": "Keep a full-scale appendix table as the numeric source of truth while linking each scale group to a compact main-figure summary; add explicit aggregation and benchmark metadata.",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Table 6 object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 establishes the speed/PPL headline. Figure 2 decomposes the parallel solver and full forward pass, Figure 3 extends the runtime claim to generation, and Table 1/2 tests expressivity and 7B language-model quality. Appendix Figures 4–9 diagnose convergence, modality, chunk-size and memory costs; Figure 10 exposes the language-model block; Figure 11 checks training dynamics; Figures 12–13 visualize the solver hierarchy. Tables 3–6 supply scale throughput, configuration, budget and exact all-scale scores.",
+    "caption_system": "Captions consistently name the object and, for Figures 2 and 5–8, define color/line-weight encodings. Figure 1 and Figure 3 captions are short and headline-oriented; Figure 10 is title-only; Figures 12–13 carry long mechanism explanations. Setup and uncertainty are often in nearby prose or Appendix cross-references rather than repeated in the caption.",
+    "table_header_system": "Tables use multi-line serif headers, ↑/↓ direction arrows, parenthesized shot/task conditions and scale row groups. Tables 1/2/6 use dense task metric headers; Tables 4/5 separate architecture or training settings. Booktabs-style horizontal rules dominate, with Table 4 adding a partial vertical cost separator.",
+    "method_result_ablation_link": "Algorithm 1 and Eq. (3) define Newton plus hierarchical parallel reduction; Figures 2, 5–8 show implementation consequences; Table 1 exposes the diagonal-Jacobian expressivity limitation; Figure 9 checks predicted memory scaling. The link is strongest where a parameter or structure has a plotted sweep, and weakest for single point-estimate language-model tables.",
+    "main_appendix_link": "Main Figures 1–3 and Tables 1–2 provide the decision surface. Appendix Figures 4–9 and 11 plus Tables 3–6 expand the same claims with convergence, implementation modes, scale, memory, training configuration and all-scale score slices. Figure 10 and Figures 12–13 are method interfaces that make the implementation readable but are not quantitative evidence.",
+    "typography_consistency": "Embedded PDF objects use Nimbus Roman No9 L, Computer Modern math and NimbusMonL in the proceedings; chart and table labels remain visually aligned with the serif paper style. Estimated chart text is about 5.5–9 pt, with captions/body around 9–10 pt; small multi-column headers and legends are the main legibility pressure points.",
+    "color_consistency": "Blue/green/yellow/purple model roles persist from Figure 1 through Figures 3, 5–8, 11 and Tables 2/6 headers. Lighter shades and line width denote implementation or L conditions, while Appendix D introduces a separate block-reduction semantic palette. Color is partially redundant through position, labels and line weight, but Figures 3, 9 and 11 remain color-dependent in grayscale."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "将 efficiency curve 与 quality bar/table 并置，先给出数量级成本，再给出模型质量和规模条件。",
+      "用固定结构的双 panel sweep 对照 implementation modality、Jacobian type、cell family 或 memory variable，并让颜色/线宽各承担一个明确维度。",
+      "用完整 appendix tables 保留精确数值，以 main figure 提供趋势和 operating-point headline；caption 明确单位、条件和比较对象。",
+      "对算法机制采用 target→step-state 的矩阵序列图，把局部线程、warp 和 block 的 hand-off 连起来。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：最有效地把 speedup 与 7B/多尺度 PPL 放在同一视觉入口。",
+      "Figure 2：将 Algorithm 1a/1b 的 solver 层级映射到 sequence-length timing，是方法到系统证据的关键桥接。",
+      "Table 1：同时呈现 nonlinear expressivity、full-Jacobian control 和 A5 failure，保留了主张边界。",
+      "Figure 4 与 Figure 9：分别检验 N_its=3 的收敛经验和 O(Ld_h) memory 预测，但应配套更明确的不确定性/斜率信息。"
+    ],
+    "failure_patterns": [
+      "多条曲线依赖蓝/绿/黄/紫及浅色透明度，灰度和色觉受限时识别成本高。",
+      "Figure 1/3/10 等 caption 过短，硬件、模型规模、重复/聚合规则和 panel 语义需要回正文查找。",
+      "runtime、PPL、accuracy、memory 多为 point estimate，缺少 seed/repetition dispersion、error bar 或 failure accounting。",
+      "密集 multi-column tables 与 appendix mechanism diagrams 在页面缩放后难以逐项读取，且少数命名/单位需依赖正文解释。"
+    ],
+    "one_sentence_visual_strategy": "以统一的蓝绿黄紫模型语义和 log-scaled cost plots，从 Figure 1 的 speed/quality headline 经 Figure 2–3 的 runtime consequence、Table 1–2 的 expressivity/LM decision，再由附录的 convergence、kernel ablation、memory、training configuration 和 solver diagrams 闭合 ParaRNN 的“可并行、可训练、但受结构与 point-estimate 边界约束”视觉论证。"
+  }
+}

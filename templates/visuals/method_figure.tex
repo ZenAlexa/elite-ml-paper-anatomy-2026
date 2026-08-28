@@ -1,0 +1,26 @@
+\begin{figure*}[t]
+  \centering
+  \begin{tikzpicture}[
+    font=\fontsize{8}{9}\selectfont,
+    node distance=5mm and 7mm,
+    box/.style={draw=black!55, rounded corners=1.5pt, minimum height=7mm,
+                minimum width=22mm, align=center, line width=.6pt},
+    stage/.style={box, fill=blue!7},
+    evidence/.style={box, fill=orange!10},
+    flow/.style={-{Latex[length=2mm]}, line width=.8pt, draw=black!75}
+  ]
+    \node[box] (input) {Input\\$x$};
+    \node[stage, right=of input] (encode) {1. Encode\\$h=f_\theta(x)$};
+    \node[stage, right=of encode] (reason) {2. Mechanism\\$z=g_\phi(h)$};
+    \node[box, right=of reason] (output) {Output\\$\hat y$};
+    \node[evidence, below=of reason] (test) {Matched test\\prediction $\rightarrow$ result};
+    \draw[flow] (input) -- node[above, font=\fontsize{7}{8}\selectfont]{$x$} (encode);
+    \draw[flow] (encode) -- node[above, font=\fontsize{7}{8}\selectfont]{$h$} (reason);
+    \draw[flow] (reason) -- node[above, font=\fontsize{7}{8}\selectfont]{$z$} (output);
+    \draw[flow] (reason) -- (test);
+  \end{tikzpicture}
+  \caption{\textbf{Method overview and evidence interface.} The diagram names the
+  input, each reusable component, its mathematical object, the output, and the
+  experiment that tests the proposed mechanism.}
+  \label{fig:method}
+\end{figure*}

@@ -1,0 +1,2255 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-0111e4fa230c",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/waynchi/editbench"
+    ],
+    "selected_repository": "https://github.com/waynchi/editbench",
+    "visual_source_files": [],
+    "search_note": "PDF 正文/脚注给出 Github Repo https://github.com/waynchi/editbench；README 标题与论文标题完全匹配，并链接 arXiv 2511.04486、数据集和 leaderboard。reports/tables/visual_source_inventory.csv 的自动状态仍为 no_public_source_found，candidate_repositories=waynchi/editbench；visual_source_files_local.csv 无目标行，corpus/visual_sources/iclr-2026-0111e4fa230c/ 不存在。agent-reach doctor 报告 GitHub gh CLI 为 warn（检测到认证配置但 doctor 不执行 gh auth status）；unicli scholar code 按完整标题返回 waynchi/editbench，title_overlap/confidence 0.96。gh repo view、README、main recursive tree（HEAD 2ecd131，2025-11-18）确认仓库只提供评测/示例/提示模板；过滤树仅有 prompts/cursor_position.txt、highlight_edits_only.txt、no_highlight.txt、whole_file.txt、whole_file_r1.txt，没有 plot/figure/visual/table 脚本、notebook、LaTeX/TikZ/PGF、SVG 或渲染资产。因此仓库是论文/评测实现候选但没有本文 Figure 1–15 或 Table 1–8 的视觉源，状态为 repository_without_visual_source；未克隆权重、数据或完整仓库。"
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 3,
+    "appendix_figures": 10,
+    "appendix_tables": 5,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Nimbus Mono L",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 12.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Nimbus Mono L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 7.5,
+      "header_size_pt": 8.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "主文 Figure 4 使用深/浅蓝区分 closed/open，Figure 5 使用 teal/blue/gray/yellow 区分四类编辑；Figure 3 与 Figure 12 使用多色 library categorical palette。附录 Figure 6–10 统一使用浅蓝单系列分布图，Figure 11 使用黄色高亮，Figures 13–15 使用黑白 prompt cards；表格以黑白规则为主，Table 3 用绿/红/灰文字标记相对 baseline 的 delta。颜色语义主要在单图内定义，跨对象没有统一的 library 色表。",
+    "vector_raster_mix": "PDF 为 mixed vector-raster：pdfimages 显示 p.2 Figure 1、p.3 Figure 2、p.5 Figure 3 与 p.22 Figure 12 为嵌入 raster；Figure 4/5、Figure 6–10、Figure 11、Figures 13–15 及全部表格主要由 PDF 矢量文字/线条/框构成。",
+    "style_consistency": "正文、caption 和表格稳定使用 Nimbus Roman/Computer Modern math，代码/模型名使用 Nimbus Mono，附录分布图使用 DejaVu Sans。booktabs-like 横线、直接 y 标签和浅蓝单系列图保持一致；主要不一致来自 Figure 3/12 的密集 categorical colors、Table 3 的非灰度 delta 文字、堆叠条缺轴以及不同对象对单位/样本量/不确定性的说明程度。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 1: EDIT-Bench tests LLMs’ real-world editing capabilities. We propose EDIT-Bench, an evaluation on real user instructions and code snippets collected in-the-wild. It is the first benchmark for instructed code edits that requires models to ingest the user instruction, current code, highlighted code, and cursor position to solve problems.",
+        "word_count": 49,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 9.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#2F3242",
+          "#3182CE",
+          "#FFFFFF",
+          "#EAF7EE",
+          "#2FBF71",
+          "#F4C542",
+          "#F87171",
+          "#9E9E9E",
+          "#111827"
+        ],
+        "semantic_mapping": "Dark instruction/context card, blue language-model connector, green/yellow/red code/test status and black text/outline; labels and icons repeat the semantic roles.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 5
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "input and test-state roles",
+        "shape": "user, model, check/cross icons",
+        "line": "directed arrows between instruction, model and tests",
+        "facet": "three conceptual panels",
+        "text": "Instruction, Context, Language Model, Test Cases, Pass/Test/Task Success"
+      },
+      "data_and_statistics": "A qualitative benchmark pipeline: instruction and code context (including highlighted code and cursor) flow through a language model to test cases. The graphic is not a statistical display; check/cross marks show one illustrative test outcome.",
+      "evidence_relation": "Connects the introduction’s claim about real-world instructed editing to the method interface later shown in Figure 2 and to pass@1 evaluation in Figure 4.",
+      "design_strengths": [
+        "The three-stage reading order is immediate and the input components are named inside the graphic.",
+        "The positive/negative test symbols make the success criterion concrete."
+      ],
+      "design_weaknesses": [
+        "The raster illustration is decorative relative to the quantitative evidence and does not state sample size or aggregation.",
+        "Small embedded code/test text is difficult to read at normal page scale."
+      ],
+      "reusable_pattern": "Use a three-stage left-to-right pipeline that names every required input and ends in an explicit executable success check.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "screenshot"
+      ],
+      "purpose": [
+        "method_interface",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 2: We develop an open-source VSCode extension to collect real-world edits.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#252A3A",
+          "#FFFFFF",
+          "#3182CE",
+          "#66C2A5",
+          "#FDE725",
+          "#F8766D",
+          "#BDBDBD",
+          "#111111"
+        ],
+        "semantic_mapping": "VS Code-like dark instruction panel, blue UI outlines, green/red edit markers and yellow highlight; interface labels provide redundant text cues.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "UI state and edit additions/deletions",
+        "shape": "cursor, file and check icons",
+        "line": "none",
+        "facet": "before/after IDE views",
+        "text": "Highlight Code and Write Instruction; User Reviews Code Edit"
+      },
+      "data_and_statistics": "Two screenshot panels demonstrate selecting code and entering an instruction, then reviewing a proposed edit. No aggregate or uncertainty statistic is encoded.",
+      "evidence_relation": "Instantiates the data-collection mechanism described in Section 3.1; Figure 1 abstracts the same interface inputs, while Table 1 records the resulting benchmark context.",
+      "design_strengths": [
+        "Shows the actual interaction modality rather than only describing it.",
+        "Side-by-side panels establish a clear collection-to-review sequence."
+      ],
+      "design_weaknesses": [
+        "As a raster screenshot, UI text and code are small; the caption does not identify the panel actions or privacy controls.",
+        "It does not quantify how many users or edits the extension collected."
+      ],
+      "reusable_pattern": "Pair a selection/instruction view with a review/edit view when an interaction interface is itself part of the dataset definition.",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 3: Distribution of libraries in EDIT-Bench for Python problems. EDIT-Bench contains 74 unique imports compared to 25 (CanItEdit), 15 (Polyglot), and 16 (EditEval) from other benchmarks. See Appendix C for other languages and other benchmarks.",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 16,
+        "hex": [
+          "#8DD3C7",
+          "#FFFFB3",
+          "#BEBADA",
+          "#FB8072",
+          "#80B1D3",
+          "#FDB462",
+          "#B3DE69",
+          "#FCCDE5",
+          "#D9D9D9",
+          "#BC80BD",
+          "#CCEBC5",
+          "#FFED6F",
+          "#1F78B4",
+          "#33A02C",
+          "#E31A1C",
+          "#FF7F00"
+        ],
+        "semantic_mapping": "Each colored segment denotes a named Python import/library category; a long categorical palette is local to this distribution and has no ordinal meaning.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": null,
+        "legend_items": 30,
+        "annotations": 0,
+        "data_marks_estimate": 1
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "below strip in multiple columns",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "relative import frequency encoded by segment width (axis suppressed)",
+        "y": null,
+        "color": "library/import category",
+        "shape": null,
+        "line": "stack boundaries",
+        "facet": null,
+        "text": "legend labels including “44 more”"
+      },
+      "data_and_statistics": "One horizontal stacked strip summarizes the Python-import distribution; the caption states 74 unique EditBench imports versus 25 CanItEdit, 15 Polyglot and 16 EditEval imports. The strip has no numeric axis or denominator annotation.",
+      "evidence_relation": "Visualizes the benchmark-statistics claim of broader library diversity; Appendix Figure 12 supplies the corresponding comparison-benchmark distributions and Table 1 supplies context/language coverage.",
+      "design_strengths": [
+        "The strip and multi-column legend fit many categories into a compact footprint.",
+        "The “44 more” label prevents the legend from becoming completely unmanageable."
+      ],
+      "design_weaknesses": [
+        "Absent x ticks and counts make segment-width comparisons hard to audit.",
+        "Dozens of similarly saturated colors are not grayscale-safe and do not have redundant encodings."
+      ],
+      "reusable_pattern": "Use a compact stacked distribution only when the caption gives the total and the legend includes a controlled long-tail bucket.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 3",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 4: We evaluate 40 LLMs on EDIT-Bench. We report the pass@1 of each model; only 1 out of 40 models have a pass@1 greater than 60%. In general, closed-source models outperform open models.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#3182B5",
+          "#83CBE5"
+        ],
+        "semantic_mapping": "Dark blue bars are closed-source models and light blue bars are open models, as defined by the upper-right Access legend.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.6,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "40 model names sorted by pass@1",
+        "y": "Pass@1 percentage (0–70)",
+        "color": "closed versus open access",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "rotated model names and Access legend"
+      },
+      "data_and_statistics": "Forty model-level pass@1 bars are sorted descending; the visible y-axis runs from 0 to 70 and there are no error bars or intervals. The caption identifies one model above 60% and the closed/open ordering.",
+      "evidence_relation": "This is the headline quantitative result following the evaluation setup; Table 3 isolates context effects for seven representative models and Figure 5 decomposes category heterogeneity.",
+      "design_strengths": [
+        "Sorting creates an immediate best-to-worst reading and the two-color access key is simple.",
+        "The caption states the threshold count and broad access trend."
+      ],
+      "design_weaknesses": [
+        "Forty rotated labels are crowded and there are no bar-end values, making exact comparisons difficult.",
+        "Access is encoded only by hue/lightness and the caption does not name the top model or define pass@1."
+      ],
+      "reusable_pattern": "Sort a dense model comparison by the target metric and keep a compact, explicit access key, but add readable labels or a companion table for exact values.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 4",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: Comparing top-performing open-weight and closed models. To illustrate individual LLM differences, we compare 7 models and find pass@1 varies greatly depending on the problem category. Additionally, different models perform best at different categories.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#7FCDBB",
+          "#6BAED6",
+          "#BDBDBD",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Teal, blue, gray and yellow bars represent Feature addition, Feature mod, Fix error and Optimize, respectively, via a shared legend.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 7,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 28
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "shared legend centered below panels",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.6,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "four edit categories per model (category labels omitted from axes)",
+        "y": "Pass@1 percentage, shared 0.2–0.7 scale",
+        "color": "edit category",
+        "shape": null,
+        "line": null,
+        "facet": "seven model panels",
+        "text": "model titles and shared category legend"
+      },
+      "data_and_statistics": "Seven small multiples each contain four category bars, with a shared legend for feature addition, feature modification, fix error and optimize. No uncertainty is shown; the common vertical scale supports profile comparison.",
+      "evidence_relation": "Extends Figure 4’s aggregate ranking into category-specific behavior and directly supports the results claim that models excel at different problem categories; the category definitions originate in Table 2.",
+      "design_strengths": [
+        "Shared y-scale and legend make model profiles comparable in one glance.",
+        "Small multiples expose cross-category reversals that a single aggregate bar would hide."
+      ],
+      "design_weaknesses": [
+        "Category names are absent from each panel, so the reader must track the distant legend.",
+        "Tiny panel titles and bars limit exact value reading; the caption does not report category sample sizes."
+      ],
+      "reusable_pattern": "Use shared-scale small multiples for model-by-task profiles when aggregate ranking would conceal heterogeneous strengths.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 5",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 6: Distribution of file types over instructed edit users in EditBenchExt. The majority of users are working on Python code.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#82C6E2"
+        ],
+        "semantic_mapping": "A single light-blue series encodes file-type frequency; category names are directly labeled on the y-axis.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 29
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Count",
+        "y": "file type categories",
+        "color": "one frequency series",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "file-type labels"
+      },
+      "data_and_statistics": "Horizontal bars rank 29 visible file types by count, with Python dominant and a long tail of rare types. No uncertainty, percentage normalization or sample-size annotation is shown.",
+      "evidence_relation": "Provides the raw extension-data language/file context behind the main claim that Python and JavaScript dominate the collected problems; it complements Figure 7’s natural-language distribution.",
+      "design_strengths": [
+        "Horizontal orientation keeps long file-type labels readable and sorting emphasizes the dominant type.",
+        "Direct y labels avoid a separate legend."
+      ],
+      "design_weaknesses": [
+        "Rare categories collapse near zero and there are no values or percentages.",
+        "The caption does not define the population or explain whether counts are users, files or edits."
+      ],
+      "reusable_pattern": "Rank long-tail categorical frequencies horizontally and label categories directly when one dominant class is the finding.",
+      "evidence": {
+        "page": 16,
+        "label": "Figure 6",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 7: Distribution of natural languages in user instructions for instructed edits in EditBenchExt. The majority of users write instructions in English.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#82C6E2"
+        ],
+        "semantic_mapping": "A single light-blue series encodes natural-language frequency; language names are directly labeled.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "x",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Count",
+        "y": "natural-language categories",
+        "color": "one frequency series",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "language labels"
+      },
+      "data_and_statistics": "Horizontal bars show 20 natural-language categories in the extension data, with English overwhelmingly dominant. Counts are displayed on a linear x-axis without uncertainty or percentage labels.",
+      "evidence_relation": "Expands the main Table 1 language comparison into the raw collection distribution; the appendix makes the distinction between broad collection diversity and the curated five-language benchmark visible.",
+      "design_strengths": [
+        "The sorted horizontal layout makes the English dominance and long tail obvious.",
+        "Direct labels support languages with multiword names such as Chinese (Simplified)."
+      ],
+      "design_weaknesses": [
+        "Very small categories are visually indistinguishable and have no labels with exact counts.",
+        "The caption does not state the count denominator or reconcile raw languages with the benchmark’s translated set."
+      ],
+      "reusable_pattern": "Show raw language diversity as a sorted horizontal bar chart, then state clearly how it differs from the curated evaluation set.",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 7",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 8: Distribution of highlighted code (also referred to as code to edit) token lengths. Users do not always highlight code. However, we still know their cursor placement.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#82C6E2"
+        ],
+        "semantic_mapping": "Light-blue histogram bars encode frequency of highlighted/code-to-edit token lengths.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "highlighted/code-to-edit token length",
+        "y": "Frequency",
+        "color": "one histogram series",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "axis titles and ticks"
+      },
+      "data_and_statistics": "A frequency histogram is heavily concentrated near zero and has a long right tail to roughly 2.6k tokens. The caption explains that some users select no code while cursor placement remains known; no bin counts or uncertainty are shown.",
+      "evidence_relation": "Operationalizes the highlighted-code input from Figure 1 and the context ablation in Table 3; Figure 11 gives a qualitative instance of the highlighted region and Table 8 compares highlight lengths by difficulty.",
+      "design_strengths": [
+        "The zero/long-tail shape is visible with a linear scale and both-axis grid.",
+        "The caption names the semantic interpretation of the zero mass."
+      ],
+      "design_weaknesses": [
+        "Linear scaling compresses the tail and the histogram does not report bin width or sample size.",
+        "There is no separate encoding for no-highlight versus zero-length highlight."
+      ],
+      "reusable_pattern": "Pair a simple histogram with a caption that explicitly interprets the structural mass at zero when absence is meaningful.",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 8",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 9: Distribution of the number of characters in user instructions.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#82C6E2"
+        ],
+        "semantic_mapping": "Light-blue histogram bars encode frequency of instruction character length.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "user instruction character length",
+        "y": "Frequency",
+        "color": "one histogram series",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "axis titles and ticks"
+      },
+      "data_and_statistics": "The histogram shows a right-skewed instruction-length distribution, concentrated around short prompts with a tail extending to roughly 260 characters. It reports no summary statistic, bin definition or uncertainty.",
+      "evidence_relation": "Supplies the raw prompt-length evidence behind the claim that real user instructions are terse and messy; Table 8 later contrasts instruction length for easy and hard questions.",
+      "design_strengths": [
+        "The common chart grammar with Figure 8 makes prompt and code-context distributions easy to compare.",
+        "Both axes are labeled with the relevant unit (characters/frequency)."
+      ],
+      "design_weaknesses": [
+        "The title/caption does not identify the population or summarize the center/tail numerically.",
+        "Linear bins obscure detail in the dense short-prompt region."
+      ],
+      "reusable_pattern": "Keep the same histogram grammar for related length variables, while reporting binning and a compact summary in the surrounding text.",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 9",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 10: Distribution of context length (defined by the prefix and suffix token length) of code files.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#82C6E2"
+        ],
+        "semantic_mapping": "Light-blue histogram bars encode frequency of prefix-plus-suffix token length.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "prefix+suffix token length",
+        "y": "Frequency",
+        "color": "one histogram series",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "axis titles and ticks"
+      },
+      "data_and_statistics": "The context-length histogram is sharply concentrated at low token counts and has a long tail reaching about 2k tokens. The caption defines context length as prefix plus suffix tokens but gives no bin width, denominator or uncertainty.",
+      "evidence_relation": "Provides distributional context for the main benchmark’s long code contexts and for the context-length effect in Table 7; it also motivates the full-context example in Figure 11.",
+      "design_strengths": [
+        "The explicit x-axis definition makes the proxy for code context inspectable.",
+        "Shared styling with Figures 8 and 9 creates a coherent appendix distribution set."
+      ],
+      "design_weaknesses": [
+        "The long tail is compressed under a linear scale and no median/quantiles are annotated.",
+        "The caption does not distinguish complete files from truncated context windows."
+      ],
+      "reusable_pattern": "Define a derived context-length variable in the axis label and use a consistent distribution panel across collection diagnostics.",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 10",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 11: Example code file and highlighted section. The user instruction for this file: ”Can you edit this to work with streaming responses?”",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#000000",
+          "#FFFFFF",
+          "#FDE725",
+          "#7A7A7A",
+          "#E5E5E5"
+        ],
+        "semantic_mapping": "Black header/border, white code canvas, gray monospace code and yellow highlighted edit lines; the highlight uses both position and color.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.6,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "highlight versus unhighlighted code and header",
+        "shape": "cursor/indent arrows",
+        "line": null,
+        "facet": null,
+        "text": "original_code.py title, Python code and instruction caption"
+      },
+      "data_and_statistics": "A boxed CardioRAG Python file shows a long original context with a yellow highlighted block near the bottom; the caption records the real instruction about streaming responses. It is one qualitative example, not an aggregate statistic.",
+      "evidence_relation": "Makes the context-dependent editing interface from Figure 1 concrete and explains why highlighted code/cursor can disambiguate the instruction; Table 3 measures the corresponding context conditions.",
+      "design_strengths": [
+        "The full-file view preserves the contextual ambiguity that the benchmark claims to test.",
+        "Yellow highlighting gives a direct visual link between selected code and the task instruction."
+      ],
+      "design_weaknesses": [
+        "The code is too small to read line-by-line and the caption does not identify the cursor position or expected test behavior.",
+        "A single example cannot represent the distribution of edit contexts."
+      ],
+      "reusable_pattern": "Use one full-context code specimen with a restrained highlight to demonstrate an otherwise abstract editing input.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 11",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 12: Library distributions for comparison benchmarks: CanItEdit (25 unique imports), Polyglot (15 unique imports), and EditEval (16 unique imports).",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 14,
+        "hex": [
+          "#8DD3C7",
+          "#FFFFB3",
+          "#BEBADA",
+          "#FB8072",
+          "#80B1D3",
+          "#FDB462",
+          "#B3DE69",
+          "#FCCDE5",
+          "#D9D9D9",
+          "#BC80BD",
+          "#CCEBC5",
+          "#FFED6F",
+          "#1F78B4",
+          "#33A02C"
+        ],
+        "semantic_mapping": "Each panel uses local categorical colors for library/import identities; panel subtitles identify CanItEdit, Polyglot and EditEval.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 45,
+        "annotations": 3,
+        "data_marks_estimate": 3
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "below each strip in multiple columns",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "relative library frequency encoded by segment width (axis suppressed)",
+        "y": null,
+        "color": "library/import category",
+        "shape": null,
+        "line": "stack boundaries",
+        "facet": "three benchmark panels",
+        "text": "panel subtitles and import legends"
+      },
+      "data_and_statistics": "Three horizontal stacked distributions compare CanItEdit (25 unique imports), Polyglot (15) and EditEval (16). The panel bars have no numeric axes; counts and benchmark identities are supplied by the caption and panel labels.",
+      "evidence_relation": "Appendix C expands Figure 3’s library-diversity comparison to the three prior benchmarks, closing the main-to-appendix comparison loop.",
+      "design_strengths": [
+        "Identical panel geometry makes the number of distinct imports and dominant segments visually comparable.",
+        "Panel labels and separate legends keep benchmark identities clear."
+      ],
+      "design_weaknesses": [
+        "No common quantitative axis or denominator is shown, so segment widths are difficult to compare across panels.",
+        "Many thin categorical colors are not robust in grayscale and legends consume substantial space."
+      ],
+      "reusable_pattern": "Repeat a shared stacked-strip grammar for benchmark distributions only when panel counts and a caption provide the missing quantitative context.",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 12",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "other"
+      ],
+      "purpose": [
+        "method_interface",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 13: Whole prompt given to models",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 2,
+        "hex": [
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Black text/border on a white prompt card; placeholder tokens and instruction blocks are distinguished by text content rather than color.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": null,
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "original code, user instruction, highlighted section and output-format directives"
+      },
+      "data_and_statistics": "A boxed Whole/+Highlight prompt template includes original code, user instruction, highlighted code, and instructions to regenerate the complete file. It is a protocol artifact with no plotted data.",
+      "evidence_relation": "Defines the baseline prompt condition referenced by the evaluation setup and supplies the prompt-level meaning of the +Highlight column in Table 3; Figures 14 and 15 are controlled variants.",
+      "design_strengths": [
+        "The complete prompt text makes the evaluation interface reproducible.",
+        "A box visually separates protocol text from surrounding appendix prose."
+      ],
+      "design_weaknesses": [
+        "The placeholder syntax is visually dense and the caption does not enumerate which fields are substituted at runtime.",
+        "The figure uses substantial vertical space for a static text template."
+      ],
+      "reusable_pattern": "Render protocol templates as bordered cards with the input fields and output constraints preserved verbatim.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 13",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "other"
+      ],
+      "purpose": [
+        "method_interface",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 14: Cursor Position prompt given to models",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 2,
+        "hex": [
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Black text/border on white; the cursor-position field is identified by its explicit line/column placeholder.",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": null,
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "original code, line/column cursor position, instruction, highlighted section and output constraints"
+      },
+      "data_and_statistics": "A second boxed prompt repeats the Whole template and inserts the user cursor position as a line-number/column-number field. It is a text protocol artifact without statistical marks.",
+      "evidence_relation": "Defines the +Highlight,+Cursor condition used in Table 3 and clarifies why cursor position is a separate manipulation; Figure 13 is the nested baseline without this field.",
+      "design_strengths": [
+        "The only changed field is visible in context, supporting ablation interpretation.",
+        "The explicit line/column wording makes the cursor encoding operational."
+      ],
+      "design_weaknesses": [
+        "The caption does not state whether positions are zero- or one-indexed.",
+        "Long prompt lines and small body text reduce scanability."
+      ],
+      "reusable_pattern": "Show ablation prompt variants as near-identical cards so the manipulated field is easy to isolate.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 14",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "other"
+      ],
+      "purpose": [
+        "method_interface",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 15: No Highlight prompt given to models",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "grayscale",
+        "color_count": 2,
+        "hex": [
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Black text/border on white; absence of a highlight block is the defining condition.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 1,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": null,
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "original code, user instruction and output-format directives"
+      },
+      "data_and_statistics": "The No Highlight prompt card retains the original code and instruction but removes the highlighted-code field. It is a protocol artifact with no plotted data or uncertainty.",
+      "evidence_relation": "Documents the code-only condition used in the context ablation table and contrasts directly with Figures 13–14; the omission is the experimental manipulation.",
+      "design_strengths": [
+        "Minimal card makes the missing highlighted context apparent when compared with Figure 13.",
+        "Output constraints remain explicit for reproducibility."
+      ],
+      "design_weaknesses": [
+        "The caption does not explicitly say that cursor position is also absent, which may leave the Code Only mapping ambiguous.",
+        "Static prompt text is difficult to compare without side-by-side field highlighting."
+      ],
+      "reusable_pattern": "Document the control condition with the same template geometry and an explicit statement of every omitted context field.",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 15",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 5,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "main_comparison",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 1: Comparing EDIT-Bench to other edit-related benchmarks. We compare EDIT-Bench with similar benchmarks (CanItEdit (Cassano et al., 2023b), EditEval (Hu et al., 2023), Aider Polyglot) in terms of the problem source, user instruction (# NL refers to the number of natural languages), code context (# PL refers to the number of programming languages, HL refers to whether users can highlight a subset of code), and associated test cases. Standard deviation is indicated by ±. EDIT-Bench is the only benchmark built from in-the-wild problems and exhibits considerable variation in both instruction and code context length.",
+        "word_count": 95,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "uncertainty_definition",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Instruction and Code Context Length cells report mean ± SD; ± is defined in the caption. Problem/language counts and HL are point values.",
+      "data_and_statistics": "Four benchmark rows compare problem source, # Problems, source, # NL, instruction length, # PL, code-context length and highlight support. Values include 140 ± 105, 99.9 ± 49.3, 606 ± 885 and 238 ± 738 for instruction length, plus context-length means/SDs; EDIT-Bench is the only in-the-wild row.",
+      "evidence_relation": "Bridges construction choices to the headline ecological-validity claim, motivates Figure 3’s library analysis and Figure 4’s evaluation, and provides the compact comparison that Table 2 elaborates qualitatively.",
+      "design_strengths": [
+        "Grouped two-level headers organize heterogeneous benchmark dimensions.",
+        "The proposed row is bold and the ± convention is defined in place."
+      ],
+      "design_weaknesses": [
+        "The caption mentions associated test cases, but no test-case column appears in the rendered table.",
+        "Length units are not stated in the header, and mixed integer/one-decimal precision is not explained."
+      ],
+      "reusable_pattern": "Use grouped headers to place source, language, context and affordance dimensions in one benchmark-comparison surface.",
+      "evidence": {
+        "page": 5,
+        "label": "Table 1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 6,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 2: Comparing user instructions written in IDE to the instructions written by human annotators. We provide examples across different task categories, comparing with two edit-related datasets (CanItEdit (Cassano et al., 2023b) and EditEval (Hu et al., 2023)). We truncate some instructions for brevity and provide full examples in Appendix B. In general, we find that real-world prompts are much less specified and require models to leverage the provided context, compared to existing benchmark prompts.",
+        "word_count": 75,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "appendix_pointer",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty values; examples are qualitative prompt excerpts, with truncation explicitly noted in the caption.",
+      "data_and_statistics": "Four category groups—Feature Addition, Feature Modification, Resolve Errors and Optimize Code—each contain one EditBench, CanItEdit and EditEval instruction example. EditBench examples include terse, informal or raw-error text while comparison prompts are more templated.",
+      "evidence_relation": "Supports the benchmark-statistics claim that real prompts are less specified; Table 4/5 provide full and additional examples, while Figure 5 uses the same four category taxonomy for model heterogeneity.",
+      "design_strengths": [
+        "Parallel three-column layout makes wording differences immediately comparable.",
+        "Bold category separators provide a stable scan path across four task types."
+      ],
+      "design_weaknesses": [
+        "Long prose/code snippets wrap heavily and category cells have no explicit truncation marker beyond the caption.",
+        "The table does not state how examples were selected or whether categories are balanced."
+      ],
+      "reusable_pattern": "Align real-user and annotator prompt examples row-by-row under shared task-category headers.",
+      "evidence": {
+        "page": 6,
+        "label": "Table 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3: Additional context affects performance. Highlighted code is crucial to performance, improving task success rate across 5 out 7 models when included in the prompt. Surprisingly, adding cursor position leads to mixed results. Models chosen are the best model in the top 7 model families.",
+        "word_count": 46,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "text_color"
+      ],
+      "uncertainty": "Parenthetical green/red/gray values are deltas from Code Only; no error bars, SDs or confidence intervals are displayed.",
+      "data_and_statistics": "Seven model rows report Code Only, +Highlight, +Cursor and +Highlight +Cursor pass@1. Exact rows: claude-sonnet-4 62.41/64.81 (+2.40)/63.15 (+0.74)/64.26 (+1.85); deepseek-chat-v3.1 51.48/54.26 (+2.78)/53.15 (+1.67)/52.78 (+1.30); gemini-2.5-flash 52.59/52.96 (+0.37)/52.41 (−0.18)/56.30 (+3.71); kimi-k2-0905 54.63/56.48 (+1.85)/52.22 (−2.41)/58.15 (+3.52); glm-4.6 52.96/56.48 (+3.52)/52.22 (−0.74)/44.81 (−8.15); o3-mini 60.00/56.85 (−3.15)/59.26 (−0.74)/55.19 (−4.81); qwen3-coder 56.48/53.89 (−2.59)/56.48 (+0.00)/53.89 (−2.59).",
+      "evidence_relation": "Directly tests the Figure 1 context interface: highlight usually helps, cursor is mixed. The table is the mechanism/ablation bridge between evaluation setup and the category profiles in Figure 5.",
+      "design_strengths": [
+        "Grouped Pass@1 header and baseline-relative deltas make the manipulation explicit.",
+        "Color-coded signed deltas expose direction without adding columns."
+      ],
+      "design_weaknesses": [
+        "Text-color deltas are not redundant in grayscale and exact conditions are still small.",
+        "The caption’s “5 out 7” wording is imprecise, and there is no uncertainty or per-model sample-size information."
+      ],
+      "reusable_pattern": "Report ablation conditions in columns with baseline-relative signed deltas, while keeping the manipulated context fields in the headers.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 3",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 4: Full examples of user instructions across different task categories, comparing with two edit-related datasets (CanItEdit (Cassano et al., 2023b) and EditEval (Hu et al., 2023)).",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; full qualitative instruction examples are shown in monospace cells.",
+      "data_and_statistics": "Full examples are organized into Feature Addition, Feature Modification, Resolve Errors and Optimize Code, with one EditBench, CanItEdit and EditEval column per category.",
+      "evidence_relation": "Follows Table 2’s condensed examples and fulfills its Appendix B pointer; the full error traces and long prompts show the variation claimed in the benchmark-statistics section.",
+      "design_strengths": [
+        "Full-width columns preserve enough text to expose real prompt messiness and error traces.",
+        "Category row rules and bold group labels retain the comparison scaffold."
+      ],
+      "design_weaknesses": [
+        "Dense monospaced text is hard to read and cell heights vary substantially.",
+        "No metadata identifies example selection, language or truncation beyond the “full examples” label."
+      ],
+      "reusable_pattern": "Move evidence-heavy prompt examples to a full-width appendix table while retaining identical category and dataset columns.",
+      "evidence": {
+        "page": 19,
+        "label": "Table 4",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 5: Additional examples of user instructions across different task categories, comparing with two edit-related datasets (CanItEdit (Cassano et al., 2023b) and EditEval (Hu et al., 2023)).",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No uncertainty; additional qualitative examples are shown as monospaced text.",
+      "data_and_statistics": "A second four-category table uses the same EditBench/CanItEdit/EditEval columns and adds further terse edits, error messages and optimization-style instructions.",
+      "evidence_relation": "Extends Table 4 and the Table 2 appendix pointer, providing more qualitative support for diversity and underspecification before Figure 11’s single context-dependent code example.",
+      "design_strengths": [
+        "Stable structure across Tables 2, 4 and 5 supports cross-table comparison.",
+        "Examples include raw error traces and terse requests that are otherwise difficult to summarize."
+      ],
+      "design_weaknesses": [
+        "Repeated wide prose tables create high vertical and reading cost.",
+        "The distinction between “full” and “additional” examples is editorial rather than encoded in the rows."
+      ],
+      "reusable_pattern": "Reuse the same comparison-table grammar for a second sample rather than introducing a new visual taxonomy.",
+      "evidence": {
+        "page": 20,
+        "label": "Table 5",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 6: Each model in our experiments with their official names and provider links",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 10,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty; “Proprietary” is a Boolean access classification, while Model Size is textual/unknown for many providers.",
+      "data_and_statistics": "Lists all 40 evaluated models with official model name, model size, proprietary flag and provider URL. Horizontal separators group OpenAI, Anthropic, GLM, Gemma/Gemini, Grok, Kimi, Qwen, DeepSeek, Llama and Mistral families.",
+      "evidence_relation": "Completes the reproducibility path from the model-count claim and Figure 4 ranking to the provider-specific prompts in Figures 13–15; Table 3 selects seven family representatives.",
+      "design_strengths": [
+        "Provider links and access flags make the model inventory auditable.",
+        "Family separators permit quick scan of a long list without adding a redundant family column."
+      ],
+      "design_weaknesses": [
+        "Tiny text and long URLs are difficult to read; family grouping is implicit rather than named.",
+        "Size and proprietary fields mix Unknown, numeric strings and Boolean values without a legend or normalization."
+      ],
+      "reusable_pattern": "Use a compact, provider-linked model inventory in the appendix when the main comparison needs to stay visually focused.",
+      "evidence": {
+        "page": 23,
+        "label": "Table 6",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 7: Effect of context length on average pass@1.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Each Average Pass@1 cell is mean ± SD: Short 71.03 ± 7.60, Medium 62.09 ± 8.56, Long 59.94 ± 10.43.",
+      "data_and_statistics": "Three context bins (<1k, 1k–3k, >3k chars) are compared with their average pass@1 and SD; the mean decreases from Short to Long.",
+      "evidence_relation": "Adds the appendix robustness slice promised by the context-length discussion and complements Figure 10’s distribution and Table 3’s prompt-context ablation.",
+      "design_strengths": [
+        "Small two-column table gives the trend and uncertainty without distracting from the explanation.",
+        "Bin thresholds are explicit in the row labels."
+      ],
+      "design_weaknesses": [
+        "Only aggregate bins are shown; per-model heterogeneity and bin counts are absent.",
+        "The caption does not repeat that ± is SD or state the evaluated prompt condition."
+      ],
+      "reusable_pattern": "Summarize a monotone robustness slice with explicit bins and mean ± SD in a compact appendix table.",
+      "evidence": {
+        "page": 26,
+        "label": "Table 7",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 8: Comparing instruction and highlight length for easy versus hard questions.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Instruction Length and Highlight Length cells are mean ± SD: Easy 351.21 ± 1018.87 / 942.30 ± 1275.35; Hard 75.09 ± 107.20 / 881.45 ± 1275.23.",
+      "data_and_statistics": "Two rows compare easy versus hard questions over instruction and highlight character lengths. Hard questions have much shorter instructions but slightly shorter mean highlights; SDs are large in both groups.",
+      "evidence_relation": "Quantifies the surrounding appendix claim that hard problems have terse instructions and slightly longer highlighted code, linking Figure 9/10 distributions to the difficulty split used in evaluation.",
+      "design_strengths": [
+        "Column labels include units and the two-row contrast is immediately legible.",
+        "Mean ± SD values prevent the qualitative “nearly 5 times” claim from standing alone."
+      ],
+      "design_weaknesses": [
+        "Very large SDs relative to means are not discussed in the caption and no sample sizes are reported.",
+        "The table does not show medians or distributions, so skew is hidden."
+      ],
+      "reusable_pattern": "Pair a concise easy/hard contrast with explicit units and dispersion, then discuss skew and sample size in the surrounding text.",
+      "evidence": {
+        "page": 26,
+        "label": "Table 8",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先定义 instruction/current code/highlight/cursor → model → tests 的 headline interface，Figure 2 把采集界面具体化；Table 1、Figure 3、Table 2 建立数据来源、语言/context 多样性和 prompt messiness；Figure 4 给出 40 模型 headline ranking，Table 3 控制 highlight/cursor，Figure 5 展开四类 edit heterogeneity。Appendix Figures 6–10 提供原始分布，Tables 4–5 与 Figure 11 提供 qualitative context，Figure 12 完成 prior-benchmark library 对照，Table 6 和 Figures 13–15 固定模型/提示协议，Tables 7–8 收束 context/difficulty robustness。",
+    "caption_system": "主文 caption 多采用“粗体结论标题 + 设置/比较 + 主发现”，Figure 2 和附录对象更偏描述性；Appendix pointer 在 Figure 3、Table 2 等处把 condensed evidence 接到完整例子/分布/协议。标题通常可独立理解，但 F4/F5/F6–F10 没有系统补充样本量、bin 或 pass@1 定义。",
+    "table_header_system": "Table 1 用 Problem/Instruction/Code Context 两级 grouped header，Table 3 用 Pass@1 grouped header；Tables 2/4/5 使用三数据集平行列和四个 category row groups；Table 6 用 Model/Size/Proprietary/Provider，Tables 7/8 使用带单位的 compact headers。分组策略清晰，但 Table 1 的 length 单位、Table 6 的隐式 family 和部分缩写仍依赖正文。",
+    "method_result_ablation_link": "Figure 1/2 的 four-context editing interface 在 Figure 4 的 pass@1 ranking 中落地，Table 3 将 highlighted code/cursor 作为独立 prompt ablation，Figure 5 再把相同 benchmark 按四类任务展开；Figure 11 与 Figures 13–15 负责把操作字段和协议复原出来。",
+    "main_appendix_link": "正文明确调用 Appendix B/C/D/E：Table 2 → Tables 4/5，Figure 3 → Figure 12，Figure 4/5 → additional distributions/robustness，Figure 11 → context example，Tables 6–8 与 Figures 13–15 → model/prompt/length details。Appendix 覆盖完整清单，没有额外 supplementary 文件。",
+    "typography_consistency": "Nimbus Roman/Computer Modern math 贯穿正文与表格，Nimbus Mono 标识代码、模型和 prompt fields，DejaVu Sans 用于图内 chart labels；caption 字级和图内小标签有明显差异，但整体排版家族稳定。",
+    "color_consistency": "浅蓝是附录单系列分布的共同视觉锚点，主文 Figure 4/5 另有局部蓝/四分类语义；黄色只在 Figure 11 highlight 中承担选择语义，Table 3 的绿/红 delta 只在该表内有效。Figure 3/12 的 library colors 没有跨图对齐，也缺少灰度冗余。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 Figure 1 的三阶段 pipeline 把输入字段、模型接口和可执行 test success 放在同一阅读路径上。",
+      "用 Table 1/3 的 grouped headers 与 baseline-relative delta 把 benchmark dimensions 和 ablation conditions 压缩到可审计表面。",
+      "用 Figure 5 的 shared-scale small multiples 展示模型×任务类别交互，而不是只报告一个 aggregate score。",
+      "用统一浅蓝 histogram/bar grammar 组织附录分布，并以 caption 明确 derived variable 的单位与语义。",
+      "用 Figures 13–15 的同构 prompt cards 记录实验协议中被操纵的字段，支持复现和消融解释。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：最有效地把 real-world instructed edit 的输入边界和测试闭环可视化。",
+      "Table 1：在一张表内连接数据来源、语言/context coverage、highlight affordance 与 prior benchmarks。",
+      "Figure 4：清晰传达 40-model pass@1 排名和 closed/open gap，是 headline comparison。",
+      "Table 3：把 headline context claim 转成可比较的四条件 ablation，并给出 signed deltas。",
+      "Figure 5：揭示 aggregate ranking 之外的 category-specific model heterogeneity。"
+    ],
+    "failure_patterns": [
+      "Figure 4 的 40 个旋转模型名和 Figure 3/12 的密集多色 legend 牺牲精确读取，且没有足够的冗余编码。",
+      "Figure 3/12 的 stacked strips 没有共同数值轴，Table 1 的 length 单位与 test-case 维度也不完整。",
+      "Figures 6–10 与 Tables 7–8 多数不给样本量、bin 规则或完整不确定性定义，长尾/巨大 SD 的解释留给正文。",
+      "Tables 2/4/5、Figure 11 和 Figures 13–15 的长代码/提示文本字小且占用版面，caption 对选择字段和索引约定不足。"
+    ],
+    "one_sentence_visual_strategy": "以一个输入—模型—测试 pipeline 为主轴，用 grouped benchmark/ablation tables 和 shared-scale model/category plots 证明现实性、难度与 context dependence，再以附录分布、实例和同构 prompt cards 补齐数据与复现细节。"
+  }
+}

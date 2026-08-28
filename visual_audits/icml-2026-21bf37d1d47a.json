@@ -1,0 +1,2082 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-21bf37d1d47a",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/Naomi-Ding/BHPI"
+    ],
+    "selected_repository": "https://github.com/Naomi-Ding/BHPI",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "docs/workflow_v3.jpg",
+        "role": "rendered_asset",
+        "tool": "JPEG raster asset",
+        "evidence": "Public project page names this asset as the workflow; its 1200×502 content matches the PDF Figure 1 raster after PDF re-encoding/scaling."
+      },
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "docs/auc_violins.jpg",
+        "role": "rendered_asset",
+        "tool": "JPEG raster asset",
+        "evidence": "Public project page names this asset as per-disease ΔAUC violins; its 1200×483 content matches PDF Figure 2."
+      },
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "docs/pathways.jpg",
+        "role": "rendered_asset",
+        "tool": "JPEG raster asset",
+        "evidence": "Public project page names this asset as the discovered pathway network; its 1200×602 content matches the left global network of PDF Figure 4."
+      },
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "docs/index.html",
+        "role": "other",
+        "tool": "HTML/CSS",
+        "evidence": "Project page references workflow_v3.jpg, auc_violins.jpg and pathways.jpg but contains no PDF/table renderer."
+      },
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "simulate_design.m",
+        "role": "other",
+        "tool": "MATLAB",
+        "evidence": "Simulation design, data splits, AUC and structural evaluation code; no saveas/exportgraphics or figure/table layout generation."
+      },
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "BHPI.m",
+        "role": "other",
+        "tool": "MATLAB",
+        "evidence": "Core structured CAVI/BHPI inference implementation; no paper figure or table generator."
+      },
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "helper/simu_data_gen.m",
+        "role": "data_file",
+        "tool": "MATLAB",
+        "evidence": "Synthetic covariate/outcome data generation used to interpret simulation objects."
+      },
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "helper/simulate_mixed_hypergraph.m",
+        "role": "data_file",
+        "tool": "MATLAB",
+        "evidence": "Synthetic mixed hypergraph generation used by simulation recovery objects."
+      },
+      {
+        "repository_url": "https://github.com/Naomi-Ding/BHPI",
+        "path": "helper/simulate_mechanisms.m",
+        "role": "data_file",
+        "tool": "MATLAB",
+        "evidence": "Synthetic γ/μ mechanism generation used by effect-recovery objects."
+      }
+    ],
+    "search_note": "先核查 reports/tables/visual_source_inventory.csv（该自动行仍为 repository_without_visual_source）与 corpus/visual_sources/icml-2026-21bf37d1d47a/（不存在），再以 PDF p.5 的作者仓库链接为准核查 gh metadata、README、递归 tree 与 docs/index.html。仓库公开三张匹配 rendered assets，但没有论文 TeX、TikZ/PGF、plot/table generator 或可编辑 PDF source；MATLAB 文件只提供模拟、CAVI、PIP、AUC 和结构统计。因此整体为 partial_visual_source，未把局部 JPG 冒充全量 source。"
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 6,
+    "appendix_figures": 7,
+    "appendix_tables": 4,
+    "dominant_figure_typography": {
+      "family": [
+        "Arial-like sans-serif",
+        "DejaVu Sans",
+        "Nimbus Roman No9 L",
+        "Computer Modern Math"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 8.0,
+        "maximum": 18.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 9.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "方法对比使用 categorical blue/purple/orange/green/red，PIP/effect matrix 使用 sequential 色带，λ/E 曲线使用 sample-size 颜色，概念图使用 pastel semantic blocks；表格以黑白 booktabs 与粗体表达重点。",
+    "vector_raster_mix": "所有 Figure 的主要绘图区是 PDF 内嵌 RGB raster PNG XObject（复合图含多个组件）；caption、正文、公式、Algorithm 和 Table 为 PDF text/line objects。",
+    "style_consistency": "正文/附录延续双栏、booktabs、caption 下置与黑白表格风格；图内 sans-serif raster 字号和颜色角色按图族局部一致，但跨图颜色语义会切换。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "conceptual_diagram",
+        "architecture"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. Bayesian Hypergraph Pathway Inference Workflow. (a) Input data consist of patient covariates and multiple disease outcomes. (b) A latent disease hypergraph models higher-order structure via hyperedges, allowing diseases to participate in multiple pathways with uncertain existence and membership. (c) Risk factors act on hyperedges to induce structured effects across diseases, yielding disentangled attribution. Shaded regions denote posterior uncertainty. Bottom panels: Structured Variational Inference (left) preserves logical dependencies to learn the latent topology including hyperedge existence and membership (middle), while a repulsion prior (right) discourages redundant pathways to ensure a parsimonious and interpretable latent structure.",
+        "word_count": 96,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 12,
+        "hex": [
+          "#BFD7EA",
+          "#F6C7B6",
+          "#CDE8D2",
+          "#D8C8E8",
+          "#F4E1A1"
+        ],
+        "semantic_mapping": "模块位置和 pastel pathway 颜色区分数据、latent topology、effect propagation 与 posterior/update 约束；不确定性用阴影与椭圆冗余表示。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 30,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": null,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 0.8,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "从输入到拓扑再到效果传播的流程位置",
+        "y": null,
+        "color": "数据层、latent hypergraph、effect 与 uncertainty 的模块语义",
+        "shape": "患者、疾病、hyperedge、risk factor 和 effect 节点形状",
+        "line": "箭头与连线编码依赖和更新方向",
+        "facet": "上排三阶段与下排三个机制面板",
+        "text": "模块标题、变量符号与节点标签"
+      },
+      "data_and_statistics": "概念图，不承载样本、重复或数值估计；节点包含 x_i、y_{i,v}、H、z_e、m_{v,e}、γ_{j,e}、μ_{j,e} 和 β_{j,v}，阴影表达后验不确定性。",
+      "evidence_relation": "Introduction 的 latent risk-factor-modulated pathways → Section 3 的 hypergraph/effect equations → Figure 1 workflow → Figures 3–4 的 PIP topology 与 pathway cases。",
+      "design_strengths": [
+        "三段主链与下排 inference constraint/regularizer 分解在同一画布上闭合。",
+        "直接标签、箭头、位置和颜色形成颜色之外的冗余语法；公开 workflow asset 可复核主几何。"
+      ],
+      "design_weaknesses": [
+        "变量符号、分布小图和下排更新框在单栏缩放后偏小。",
+        "阴影没有数值区间定义，且未把 N/P/V/E 规模绑定到后续实验。"
+      ],
+      "reusable_pattern": "用“数据层→latent structure→effect propagation”主链，再用下排呈现 inference constraint 与 regularizer；可在节点旁绑定公式编号。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "source_exact"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "violin"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 2. Predictive stability via structured information sharing. Distribution of per-disease ∆AUC scores (relative to tuned Logistic Regression) stratified by disease prevalence. While baselines like LGBM and Classifier Chains exhibit high variance and instability for rare diseases, BHPI maintains robust performance by borrowing strength across shared latent pathways.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#377EB8",
+          "#984EA3",
+          "#FF7F00",
+          "#4DAF4A",
+          "#E41A1C"
+        ],
+        "semantic_mapping": "五种方法用蓝、紫、橙、绿、红区分；零线、分组位置与方法名称补充颜色编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 5,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "distribution",
+        "line_width_pt": 0.8,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "四个 prevalence group（1–2%、2–3%、3–5%、≥5%）",
+        "y": "相对 tuned Logistic 的 per-disease ΔAUC",
+        "color": "BHPI、LGBM、Binary Relevance、Classifier Chain、RAkELd",
+        "shape": "violin 形状编码分布",
+        "line": "零 ΔAUC dashed reference line 与 violin 内中心/分位线",
+        "facet": "四个 prevalence group",
+        "text": "组标题、共享方法 legend 与 ΔAUC 轴标签"
+      },
+      "data_and_statistics": "66 个疾病按 19/14/14/19 分组；每个组五个方法 violin，共 20 个 per-disease 分布。图显示疾病层级 ΔAUC，不是 100 次 split 的 run-level 区间。",
+      "evidence_relation": "Section 5.5 rare-disease stability → Figure 2 分布尾部 → Table 4 calibration、Table 5 prevalence tests、Table 6 PIP masking。",
+      "design_strengths": [
+        "完整分布和零线比单一均值更直接地呈现 rare-disease failure tail。",
+        "共享 y 轴、四组布局和公开 auc_violins asset 使跨 prevalence 比较可复核。"
+      ],
+      "design_weaknesses": [
+        "没有逐病种标签、run-level uncertainty、violin smoothing 或每组有效样本规则。",
+        "共享 legend 位于底部，裁剪局部组后方法颜色难以独立恢复。"
+      ],
+      "reusable_pattern": "按 prevalence 分组并保留相对基线的完整分布，以零线锚定方向；应附分组 n、平滑规则和关键病种列表。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "source_exact"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix",
+        "histogram"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3. Disentanglement and parsimony of risk-modulated pathways. (Left) PIPs for disease–pathway membership and risk-factor activation, revealing sparse, overlapping disease organization and pathway-specific modulation with quantified uncertainty. (Right) Summary of the thresholded structure (PIP(ze = 1) > 0.5), showing compact pathway sizes, limited pathway participation per disease and risk factor, and overall structural parsimony.",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#FFFFCC",
+          "#A1DAB4",
+          "#41B6C4",
+          "#225EA8",
+          "#F0F0F0"
+        ],
+        "semantic_mapping": "左侧 PIP sequential 色带编码 membership/activation 概率，右侧柱形位置编码 thresholded structure counts。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": null,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "heatmap 的 disease/feature 或 summary histogram 的结构变量",
+        "y": "hyperedge、disease 或 feature 类别；右侧为数量/结构统计",
+        "color": "PIP 及 thresholded count",
+        "shape": null,
+        "line": null,
+        "facet": "两个 PIP heatmap 与四个结构摘要 panel",
+        "text": "疾病、feature、hyperedge 标签和 panel 标题"
+      },
+      "data_and_statistics": "UKB 的 E=60 candidate edges，expected active edges 约 27.2，PIP>0.5 后为 28；右侧统计 diseases/hyperedge、hyperedges/disease、features/hyperedge、hyperedges/feature，标签密集且未给 binning。",
+      "evidence_relation": "Section 5.5 的 risk-factor-specific organization/parsimony → Figure 3 PIP 与结构分布 → Table 6 masking → Figure 4 global network。",
+      "design_strengths": [
+        "热图把 topology uncertainty 与 factor-specific modulation 并置，右侧摘要把局部概率压缩成整体稀疏性。",
+        "thresholded summary 与正文 27.2/28 active-edge 叙述直接相接。"
+      ],
+      "design_weaknesses": [
+        "disease/feature 标签密集且小，PIP 色带不是 uncertainty interval。",
+        "histogram binning、阈值敏感性和分母未在 caption 中定义。"
+      ],
+      "reusable_pattern": "以 PIP matrix 连接 thresholded structural summaries，随后配套 threshold sensitivity 和可复核统计表。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "network",
+        "conceptual_diagram",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 4. Global visualization of the learned risk-factor–to-disease pathway structure (hyperedges with PIP(ze = 1) > 0.5) (Left). Risk factors (top) connect to latent pathways (middle), which in turn connect to diseases (bottom). Edge widths correspond to PIPs, illustrating uncertainty, overlap, and modular risk propagation. Node annotations report the number of incident pathways. Pathway-level illustration (Right). Divergent risk pathways for smoking (top) and convergent disease pathways involving Dementia (bottom).",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#1F1F1F",
+          "#377EB8",
+          "#E41A1C",
+          "#4DAF4A",
+          "#984EA3"
+        ],
+        "semantic_mapping": "黑色风险因子/疾病节点、彩色 E1–E22 pathway 及案例上下文颜色共同编码三层网络与语义 pathway；位置、边宽、文字提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 100,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": null,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "risk factor→hyperedge→disease 三层的横向布局",
+        "y": "top/middle/bottom 节点层级与案例上下位置",
+        "color": "pathway 节点/边和 Smoking/Dementia context",
+        "shape": "风险因子、hyperedge、疾病、案例框节点形状",
+        "line": "network edge width 编码 PIP，箭头/弧线编码连接方向",
+        "facet": "左侧 global network 与右侧两个 case illustration",
+        "text": "E1–E22、风险因子、疾病、incident count 与案例标签"
+      },
+      "data_and_statistics": "左侧为 PIP(z_e=1)>0.5 后的 22 个 active hyperedges；边宽对应 PIP，节点注释为 incident pathway count。右侧以 Smoking divergent 与 Dementia convergent pathway 做 qualitative illustration，无 external ground truth 或 causal estimate。",
+      "evidence_relation": "Figure 3 thresholded PIP structure → Figure 4 global propagation/case study → Section 5.5 的 Smoking/Dementia 文献解释；支持 interpretability，不构成 causal identification。",
+      "design_strengths": [
+        "全局 dense network 与少量临床案例并置，分别承担 coverage 与 interpretability。",
+        "层级位置、边宽、颜色和直接标签形成多通道编码；公开 pathways asset 可复核左侧网络。"
+      ],
+      "design_weaknesses": [
+        "左侧边数和标签过密，单个 risk factor/pathway 的追踪成本高。",
+        "案例颜色语义与全局 pathway 色不完全同义，且 PIP threshold 不能替代 external validation。"
+      ],
+      "reusable_pattern": "将 dense global network 与高亮 domain case studies 并置；应补可搜索节点表或可导出的高亮子图。",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 14,
+      "module": "method",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 5. Plate diagram of the BHPI generative model. The generative DAG is: z_e → m_{v,e} ; H_{v,e} = z_e m_{v,e} ; {z_e , H} → γ_{j,e} → μ_{j,e} ; β_{j,v} = d_v^{-1} ∑_e H_{v,e} μ_{j,e} ; y_{i,v} ∼ Bernoulli(σ(α_v + x_i^T β_v)).",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#C8D7F0",
+          "#F7D6C1",
+          "#F4E5A5",
+          "#D9D9D9"
+        ],
+        "semantic_mapping": "四个浅色分区区分 hypergraph structure、predictor–hyperedge effects、coefficients 和 observed data；虚线 plate 与箭头提供颜色之外的结构编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 25,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": null,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "plate 内变量的生成顺序",
+        "y": "latent structure→effect→coefficient→observed 的层级",
+        "color": "四个 generative component 分区",
+        "shape": "plate、latent/derived/observed node 形状",
+        "line": "箭头编码 DAG 依赖，虚线框编码 plate scope",
+        "facet": "Hypergraph structure、Predictor–hyperedge effects、Coefficients、Observed 四区",
+        "text": "z_e、m、H、γ、μ、β、y 及 N/V/P/E 维度"
+      },
+      "data_and_statistics": "生成模型 plate diagram，不包含样本值；标注 V、P×E、P×V、N×V、N 等维度以及 z_e→m→H→γ/μ→β→y 的方程关系。",
+      "evidence_relation": "Section 3 latent hypergraph/observation model → Figure 5 generative DAG → Appendix A Eq. (3)–(15) 与 Algorithm 1 CAVI updates。",
+      "design_strengths": [
+        "把离散结构、连续 effect、coefficient 与 observed outcome 的层级放入单一 plate diagram。",
+        "维度标注为复杂度、实现和后续 recovery 图提供索引。"
+      ],
+      "design_weaknesses": [
+        "箭头交叉较多，H 的 derived status 和 γ/μ conditional relation 需结合 caption。",
+        "分区色彩在灰度下主要是弱装饰，依赖虚线边界和标题。"
+      ],
+      "reusable_pattern": "按 latent structure/effect/coefficient/observed 四层分区，在 caption 中写最短 DAG，并显式标出 conditional-zero constraint。",
+      "evidence": {
+        "page": 14,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 17,
+      "module": "appendix_B1",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "reproduction",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6. Recovery of latent disease hypergraph. Heatmaps show true (left) and inferred (right) disease hypergraph incidence matrices for a representative simulation replicate. BHPI accurately recovers overlapping hypergraph structure with limited redundancy.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#000000",
+          "#FFFFCC",
+          "#A1DAB4",
+          "#225EA8"
+        ],
+        "semantic_mapping": "左侧黑白 true incidence 与右侧 yellow→blue inferred PIP 区分 ground truth 和 posterior selection probability。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 2,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": null,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Hyperedges 1–5",
+        "y": "Disease index 0–29",
+        "color": "true binary membership 或 inferred PIP",
+        "shape": null,
+        "line": null,
+        "facet": "true incidence 与 inferred matrix 左右并置",
+        "text": "true/inferred 标题、疾病 index 与 PIP colorbar"
+      },
+      "data_and_statistics": "代表性 simulation replicate 的 V=30、E=5 的两张 30×5 incidence matrix；左侧是真值，右侧为 inferred posterior/PIP。没有跨 replicate uncertainty，aggregate H-AUC 在 Table 2。",
+      "evidence_relation": "Table 2 H-AUC/γ-AUC → Figure 6 representative H recovery → Figure 7 effect recovery 与 Table 7 repulsion extension。",
+      "design_strengths": [
+        "真值与 inferred matrix 同轴并置，overlap、block structure 和 limited noise 可快速扫描。",
+        "PIP colorbar 把 uncertain membership 与 binary truth 分开。"
+      ],
+      "design_weaknesses": [
+        "只展示一个 replicate，疾病编号不提供临床语义。",
+        "接近阈值的 PIP 与 run-to-run variation 未展示。"
+      ],
+      "reusable_pattern": "用 true/inferred heatmap pair 连接 aggregate recovery metric 与结构形状，并附 replicate gallery 或数值表。",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 18,
+      "module": "appendix_B1",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "bar",
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 7. Bar plots show true versus inferred effects of predictor 1 across hyperedges, measured by PIP of γ and magnitude µ.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#377EB8",
+          "#E41A1C",
+          "#FFFFCC",
+          "#41B6C4",
+          "#225EA8"
+        ],
+        "semantic_mapping": "蓝色 bar/heatmap 编码 inferred magnitude，红色或黑色 marker/line 表示 true γ/μ；两个 colorbar 区分 true/effect matrix。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": null,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "bar 的 hyperedge/predictor 类别与 heatmap 的 predictor",
+        "y": "γ PIP/μ magnitude 或 disease index",
+        "color": "inferred effect/PIP 与 true-vs-estimate matrix",
+        "shape": "triangle/marker 表示 true γ",
+        "line": "dashed true μ reference line",
+        "facet": "γ bar、μ bar、true effect heatmap、estimated effect heatmap",
+        "text": "predictor 1、hyperedge、disease index 和 colorbar"
+      },
+      "data_and_statistics": "simulation P=6、V=30、E=5；上/下 bar 聚焦 predictor 1 的 γ PIP 与 μ magnitude，右侧为 30×6 true/estimated effect heatmaps。无 error bars 或多 replicate 汇总。",
+      "evidence_relation": "Figure 6 H structure recovery → Figure 7 γ/μ mechanism recovery → Eq. (2) induced β 与 Table 2 coefficient correlation。",
+      "design_strengths": [
+        "局部 truth-vs-estimate bar 与全矩阵 heatmap 兼顾诊断入口和覆盖范围。",
+        "true marker/line 让比较不只依赖颜色。"
+      ],
+      "design_weaknesses": [
+        "bar 与 heatmap 的单位不同，阅读入口和对象边界不够明确。",
+        "大量 disease index 没有病名，且没有 uncertainty 或 replicate variation。"
+      ],
+      "reusable_pattern": "用局部 bar truth-vs-estimate 加全矩阵 heatmap 诊断结构模型，并在 panel 标题直接写对象和单位。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 19,
+      "module": "appendix_B3",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 8. Robustness of predictive performance to repulsion strength across model sizes. Each panel fixes the number of hyperedges E; predictive AUC remains stable across a wide range of λ and E, indicating robustness to both hyperparameters.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#377EB8",
+          "#FF7F00"
+        ],
+        "semantic_mapping": "蓝/橙分别编码 N=2000/5000；facet 标题编码 μ 与 E，线/marker 作为额外条件提示。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 9,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": null,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "repulsion strength λ（0、0.5、1、2、5）",
+        "y": "predictive AUC",
+        "color": "sample size N=2000/5000",
+        "shape": "圆 marker 表示 λ 观测点",
+        "line": "AUC 随 λ 的曲线",
+        "facet": "μ=1/1.5/2 行 × E=10/15/20 列",
+        "text": "panel 的 μ/E 标题、N legend 和 AUC/λ 轴标签"
+      },
+      "data_and_statistics": "9 个 μ×E panel，每 panel 有 N=2000/5000 两条曲线和 translucent bands；λ 网格为 0、0.5、1、2、5。band 的聚合与统计定义未在 caption 给出。",
+      "evidence_relation": "Section 5.4 λ/E sensitivity → Figure 8 predictive stability → Figure 9 structural metrics 与 Figure 10 capacity pruning。",
+      "design_strengths": [
+        "同构 3×3 facet 使 λ 与 E/μ 的交互可扫读，shared y/legend 保持比较一致。",
+        "band 让读者知道存在 variation，而不是只看点估计。"
+      ],
+      "design_weaknesses": [
+        "panel title、row/column labels在缩小后偏小，band 统计定义缺失。",
+        "窄 AUC 范围放大轻微差异，不能单凭图判断实质意义。"
+      ],
+      "reusable_pattern": "用参数 facet × tuning curve 展示 regularizer/capacity robustness，并配套列出 band 统计和完整 λ/E grid。",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 19,
+      "module": "appendix_B3",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 9. Structural stability, sharpness, and redundancy across repulsion strengths.",
+        "word_count": 10,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#377EB8",
+          "#E41A1C",
+          "#666666",
+          "#222222"
+        ],
+        "semantic_mapping": "红/蓝编码 N，线型/marker 和 panel 位置编码 metric；色彩由线型部分冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": null,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "repulsion strength λ",
+        "y": "各 panel structural metric",
+        "color": "N=2000/5000 和部分 metric series",
+        "shape": "marker 区分 Jaccard/Overlap 或 metric",
+        "line": "solid/dashed 区分 paired metric 或 aggregation",
+        "facet": "stability、PIP entropy、effective hyperedges、overlap 四 panel",
+        "text": "panel 标题、metric legend 与 λ/N 轴标签"
+      },
+      "data_and_statistics": "四个 panel 分别显示 H/PIP stability、PIP entropy、effective hyperedges per predictor、average hyperedge overlap per predictor；λ 为 0、0.5、1、2、5，无 error bars/bands。",
+      "evidence_relation": "Figure 8 predictive stability → Figure 9 structure-level mechanism → Table 3/7 repulsion metrics；支持 identifiability 解释而非独立 prediction claim。",
+      "design_strengths": [
+        "在同一 λ 轴下并列 stability、sharpness、effective count 和 redundancy，机制分解完整。",
+        "N=2000/5000 的颜色复用与线型冗余帮助追踪。"
+      ],
+      "design_weaknesses": [
+        "四 panel 的 y 指标单位不同；caption 没有逐项解释 panel、N 和 aggregation。",
+        "细线、重复 legend 和无 uncertainty 使缩小后比较成本高。"
+      ],
+      "reusable_pattern": "用多指标横向 panel 分解 regularizer 机制，并在 caption 中逐项列出 metric、condition 和 aggregation。",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 20,
+      "module": "appendix_B3",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 10. Robustness to over-specification of the maximum number of hyperedges E, measured by the posterior expected number of active hyperedges.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#377EB8",
+          "#FF7F00",
+          "#4DAF4A",
+          "#222222"
+        ],
+        "semantic_mapping": "颜色编码 assumed capacity E=10/15/20，黑色 dashed line 编码 true E=5；位置与 line style 提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "repulsion strength λ",
+        "y": "posterior expected number of active hyperedges",
+        "color": "assumed maximum E=10/15/20",
+        "shape": "圆 marker 表示 λ 观测点",
+        "line": "solid capacity curves 与 dashed true-E reference",
+        "facet": null,
+        "text": "E legend、True E 标注与轴标签"
+      },
+      "data_and_statistics": "E=10/15/20 三条曲线，true E=5 黑色虚线；λ 网格 0、0.5、1、2、5，posterior expected active count 大致 5–7。spread band 的定义未给出。",
+      "evidence_relation": "Section 5.4 E as capacity upper bound → Figure 10 active-edge count → Table 10 E-dependent runtime；连接 pruning 与计算扩展。",
+      "design_strengths": [
+        "assumed E 与 active-edge estimand 直接对照，true-E reference 使 self-regularization 易读。",
+        "单 panel 结构简洁，legend 语义明确。"
+      ],
+      "design_weaknesses": [
+        "单一 setting 的 capacity behavior 被扩展为一般 robustness，band 定义缺失。",
+        "曲线仍高于 true E，需结合正文区分“稳定”与精确恢复。"
+      ],
+      "reusable_pattern": "用 capacity curves 加 true-capacity reference 检验 over-specification，并同时报告 active-edge definition、uncertainty 和 runtime。",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 21,
+      "module": "appendix_C1",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 11. ROC curves of representative diseases for CAVI, logistic regression, and LGBM, with the prevalence indicated in brackets.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial-like sans-serif",
+          "DejaVu Sans",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F1F1F",
+          "#377EB8",
+          "#E41A1C",
+          "#4DAF4A",
+          "#984EA3",
+          "#FF7F00"
+        ],
+        "semantic_mapping": "黑色实线突出 BHPI/CAVI，其余五个 baseline 用 categorical 色彩和线型区分；ROC 轴与 panel title 提供位置冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 8,
+        "data_marks_estimate": 240
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "False Positive Rate",
+        "y": "True Positive Rate",
+        "color": "BHPI、Logistic、LGBM、Binary Relevance、Classifier Chain、RAkELd",
+        "shape": null,
+        "line": "solid/dashed ROC curves与不同 line style",
+        "facet": "2×4 disease ROC panels",
+        "text": "disease name、prevalence、AUC 和每 panel legend"
+      },
+      "data_and_statistics": "8 个代表病种（Hydronephrosis 1.6%、Gastric ulcer 1.8%、Cyst of kidney 1.5%、Vessels congenital anomalies 1.7%、Localized adiposity 2.7%、Bursitis 1.9%、Congestive heart failure 2.1%、Lung diseases 1.4%）；每 panel 实际含六种方法，无 split uncertainty。",
+      "evidence_relation": "Table 4/5 aggregate UKB performance → Figure 11 disease-level ROC sanity check → Appendix C qualitative pathway cases；补充而不替代 external cohort validation。",
+      "design_strengths": [
+        "8 个 prevalence-labeled panel 把 aggregate AUC 落到具体病种，统一 axes 便于局部比较。",
+        "BHPI/CAVI 黑实线和每图 AUC legend 让主要对照关系清楚。"
+      ],
+      "design_weaknesses": [
+        "每 panel 重复六条 legend，字号小且颜色灰度区分弱。",
+        "caption 只写 CAVI/logistic/LGBM，实际 legend 还有三种 baseline；病种选择与 split aggregation 未说明。"
+      ],
+      "reusable_pattern": "用 representative ROC grid 连接总体指标与病种层级，并在 caption/supplement 给出选择规则、样本量和不确定性。",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 1. Predictive performance on simulated data. Mean (standard deviation) AUC on held-out test sets (× 100). BHPI achieves competitive disease risk prediction while simultaneously inferring latent disease pathways.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Mean (standard deviation) on held-out test sets; the PDF context specifies 50 simulation replicates.",
+      "data_and_statistics": "AUC ×100: BHPI 75.00 (0.83)/74.63 (0.46); Optimal Logistic 73.86 (0.83)/74.15 (0.49); LGBM 68.50 (0.94)/69.68 (0.56); Binary Relevance 71.50 (0.94)/72.61 (0.64); Classifier Chain 71.25 (1.03)/72.63 (0.63); RAkELd 70.99 (0.95)/72.50 (0.60), for N=2000/N=5000.",
+      "evidence_relation": "Section 5.1 simulation design → predictive headline → Table 2 structure recovery、Table 3 repulsion ablation 与 Figure 6 qualitative recovery。",
+      "design_strengths": [
+        "紧凑表同时覆盖 sample-size scaling、baseline 和 mean(SD)。",
+        "BHPI 粗体行形成快速 headline，held-out wording 限定评估边界。"
+      ],
+      "design_weaknesses": [
+        "SD 的层级和 replicate aggregation 未写入 caption；AUC ×100 需额外留意。",
+        "没有 rare-disease 分层或运行成本。"
+      ],
+      "reusable_pattern": "正文用 compact mean(SD) comparison，附录展开结构和调参；表注补重复层级与单位。",
+      "evidence": {
+        "page": 6,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 2. Recovery of latent risk structure on simulated data (N = 2000). Metrics include agreement between true and inferred disease-level risk contributions β, AUC for recovering hypergraph structure H, and risk-factor-hyperedge associations γ (× 100).",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "未显示 SD、区间或检验；数值是 simulation recovery summaries。",
+      "data_and_statistics": "N=2000、×100：BHPI cor(β,β̂)=97.85、H-AUC=96.96、γ-AUC=97.85；Optimal Logistic cor=95.65，H-AUC 与 γ-AUC 为不适用的 “-”。",
+      "evidence_relation": "Latent hypergraph generation → H/γ recovery table → Appendix Figures 6–7；是真值可得 simulation evidence，不验证 UKB latent truth。",
+      "design_strengths": [
+        "coefficient、disease membership、risk-factor activation 三种 recovery 目标并置。",
+        "“-” 明确 Logistic 不定义 H/γ，避免伪比较。"
+      ],
+      "design_weaknesses": [
+        "pooled/replicate aggregation、矩阵规模和 uncertainty 未说明。",
+        "高分可能遮蔽 misspecification 或结构 deletion 未检验。"
+      ],
+      "reusable_pattern": "将 parameter、structure、selector recovery 分列，并在表注解释重复层级与不适用值。",
+      "evidence": {
+        "page": 6,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3. Role of the repulsion prior in hypergraph identifiability (N = 2000). Predictive performance remains stable, while repulsion reduces redundancy and improves stability of inferred hyperedges, as measured by Jaccard similarity (Jacc.), overlap coefficients (Ov.) across replicates, effective hyperedge (Eff.#/RF) per risk factor (RF), and hyperedge overlap per RF (Ov./RF).",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "跨 replicate 计算的结构指标；表内没有 SD、p-value 或区间。",
+      "data_and_statistics": "N=2000：λ=0 为 AUC 74.69、Jacc 0.542、Ov 0.800、Eff.#/RF 1.992、Ov./RF 0.097；λ>0 为 75.00、0.565、0.812、1.874、0.082。",
+      "evidence_relation": "Section 3.6 repulsion mechanism → prediction/identifiability toggle → Appendix Table 7 与 Figures 8–9。",
+      "design_strengths": [
+        "prediction stability 与 redundancy/stability 指标放在同一决策面。",
+        "λ>0 粗体使 component contrast 快速可读。"
+      ],
+      "design_weaknesses": [
+        "粗体规则未在 caption 明示，且不同 metric 的“好方向”不完全相同。",
+        "缺少 SD、p-value 和 initialization sensitivity。"
+      ],
+      "reusable_pattern": "用 component toggle 同时报 prediction 与 structure estimands，把完整 λ sweep 留到附录。",
+      "evidence": {
+        "page": 6,
+        "label": "Table 3",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4. Predictive calibration on UKB (66 diseases). BHPI ties for best Brier and achieves ECE < 0.01.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "UKB 66 diseases 的 aggregate calibration point estimates；未给 SD、区间或 split weighting。",
+      "data_and_statistics": "ECE/Brier：BHPI 0.005/0.041；Optimal Logistic 0.001/0.041；LGBM 0.021/0.043；Binary Relevance 0.031/0.045；Classifier Chain 0.044/0.052；RAkELd 0.006/0.042。",
+      "evidence_relation": "Figure 2 disease-level stability → calibration table → Table 5/6 rare-disease and structural comparison。",
+      "design_strengths": [
+        "单栏表快速展示 ECE/Brier，caption 给出 BHPI 的 calibration headline。",
+        "黑白粗体不依赖色彩。"
+      ],
+      "design_weaknesses": [
+        "caption 突出 BHPI，但 Logistic 的 ECE 更低且 Brier 为 tie。",
+        "per-disease weighting、aggregation 和 uncertainty 缺失。"
+      ],
+      "reusable_pattern": "主表保留少量 calibration metrics，附录解释分母、weighting 和 split variability。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 4",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "headline",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 5. Mean ∆AUC (×100) versus per-disease Logistic on UKB, with paired Wilcoxon p-values, stratified by disease prevalence. Only BHPI consistently outperforms Logistic. Bold indicates entries with p < 0.05.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "单元为 mean ΔAUC ×100，括号为 paired Wilcoxon p-value；未提供 effect uncertainty 或 multiple-comparison correction。",
+      "data_and_statistics": "三 prevalence groups（<2%、2–5%、≥5%）下 BHPI +1.2 (3E-5)、+0.2 (0.11)、+0.2 (0.02)；BFR K=20、BFR K=30、Clique-exp. 的各组值分别为 +0.1/-0.3/-0.2、-0.5/-0.8/-0.5、+0.1/-0.2/-0.3，括号为 p-value。",
+      "evidence_relation": "UKB rare-disease question → structured-baseline contrast → Figures 3–4 mechanism 与 Table 6 mask test；是主文最直接的 prevalence-specific quantitative object。",
+      "design_strengths": [
+        "prevalence 分层避免总体均值掩盖 long-tail behavior。",
+        "ΔAUC、paired p-value 和高亮规则在一张表内可扫描。"
+      ],
+      "design_weaknesses": [
+        "每组只有 aggregate，缺 group n、paired unit、correction 和 disease-level distribution。",
+        "baseline tuning 对称性及 p-value interpretation 需要正文。"
+      ],
+      "reusable_pattern": "用 prevalence-stratified effect + paired test 取代单一总体均值，并报告 group n、pairing 和 correction policy。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 5",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "ablation",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 6. PIP-stratified mean AUC (×100) on UKB (66 diseases) and simulation. High-PIP edges retain essentially all predictive signal; low-PIP edges are close to chance.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "mean AUC ×100；未给 SD/区间、mask sample count 或独立重训 variation。",
+      "data_and_statistics": "Full 68.9/69.7/71.6/75.7；High-PIP only 68.7/69.6/71.6/75.6；Random subset 60.2/61.3/62.7/65.7；Low-PIP only 58.6/55.0/57.4/51.2，前三列为 UKB prevalence groups，SIMU 为 simulation。",
+      "evidence_relation": "Figure 3 PIP structure → high/low/random mask → Figure 4 pathway interpretation；是 structure-to-signal mechanism test，不是独立训练的 causal ablation。",
+      "design_strengths": [
+        "四种 mask/configuration 直接对照 PIP ranking 与 predictive signal。",
+        "按 prevalence 展开，能观察 rare/common 差异。"
+      ],
+      "design_weaknesses": [
+        "masking 复用 full-model 学到的结构，存在 selection leakage 可能。",
+        "random subset size、threshold 和独立重训规则未在 caption 明示。"
+      ],
+      "reusable_pattern": "用 high/low/random mask 检验 learned uncertainty 与 signal 的关系，并预先固定 threshold、subset size 和 retraining。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 6",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 18,
+      "module": "appendix_B2",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "ablation",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 7. Role of the repulsion prior in hypergraph identifiability (N = 2000 and 5000). Predictive performance remains stable, while repulsion reduces redundancy and improves stability of inferred hyperedges, as measured by Jaccard similarity (Jacc.), overlap coefficients (Ov.) across replicates, effective hyperedge (Eff.#/RF) per risk factor (RF), and hyperedge overlap per RF (Ov./RF).",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "N=2000/5000 的 mean summaries；结构 overlap 跨 replicates 计算，但未显示 SD。",
+      "data_and_statistics": "N=2000 与 Table 3 相同；N=5000：λ=0 为 AUC 74.51、Jacc 0.581、Ov 0.836、Eff.#/RF 2.392、Ov./RF 0.116；λ>0 为 74.63、0.619、0.830、2.151、0.102。",
+      "evidence_relation": "Table 3 N=2000 ablation → Table 7 sample-size extension → Figures 8–10 continuous sensitivity。",
+      "design_strengths": [
+        "一个 grouped table 暴露 sample size 与 λ 的交互并保留完整 structure metrics。",
+        "N 分组比拆成多表更节省版面。"
+      ],
+      "design_weaknesses": [
+        "11 列字号偏小，且 AUC/overlap/effective count 的方向不同。",
+        "粗体规则和 run-level uncertainty 不充分。"
+      ],
+      "reusable_pattern": "用 grouped columns 扩展 component ablation 的规模维度，并按 metric direction 加表注。",
+      "evidence": {
+        "page": 18,
+        "label": "Table 7",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 20,
+      "module": "appendix_B4",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "robustness",
+        "reproduction",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 8. Structural-PIP calibration: CAVI vs full Gibbs MCMC sampler (mean ± s.d. across 50 replicates). ECE is the per-variable expected calibration error of the PIPs.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "MCMC/CAVI mean ± s.d. across 50 replicates；ECE 为 per-variable expected calibration error。",
+      "data_and_statistics": "MCMC：H overlap 0.885±0.068、ECE_H 0.081±0.019、ECE_z 0.058±0.053、ECE_γ 0.039±0.032、Pred AUC 0.747±0.009；CAVI：0.850±0.054、0.087±0.026、0.028±0.081、0.050±0.030、0.741±0.008。",
+      "evidence_relation": "Structured VI calibration claim → CAVI/full Gibbs check → Appendix B.5 initialization/label-symmetry limit；是经验比较而非 posterior guarantee。",
+      "design_strengths": [
+        "H overlap、三种 PIP ECE 和 predictive AUC 的 calibration 面板集中。",
+        "mean±s.d. 与 50 replicates 让 variation 可见。"
+      ],
+      "design_weaknesses": [
+        "没有 difference test、decision threshold、ECE binning 或 convergence evidence。",
+        "MCMC reference 的 compute budget 未写入表注。"
+      ],
+      "reusable_pattern": "近似 inference 论文同时给 structural calibration、predictive output 和 reference sampler，并公开 ECE 定义/预算。",
+      "evidence": {
+        "page": 20,
+        "label": "Table 8",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 20,
+      "module": "appendix_C",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9. UK Biobank dataset characteristics. The cohort exhibits high-dimensional predictors, substantial class imbalance, and a mix of common and rare disease outcomes.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Cohort descriptive statistics；不是跨 split uncertainty。",
+      "data_and_statistics": "Participants N=277,291；risk factors P=71；disease outcomes V=66；prevalence median=1.8%、range=1.0–21.8%；average diseases/patient=4.2；observation window=19 years。",
+      "evidence_relation": "Section 5.5 UKB setup → cohort scale/prevalence anchor → Figure 2、Tables 4–6、Figure 11 的 rare-disease evidence。",
+      "design_strengths": [
+        "两列压缩 N/P/V、prevalence、sparsity 和 observation window，提供所有结果的 denominator anchor。",
+        "italic group labels 给窄表加入层级。"
+      ],
+      "design_weaknesses": [
+        "没有 QC exclusion、outcome coding、missingness 或 split counts。",
+        "Data Sparsity 分组定义和组标签计数规则仍需正文。"
+      ],
+      "reusable_pattern": "按 cohort scale→prevalence→sparsity 分组，并补 exclusions、missingness 和 split unit。",
+      "evidence": {
+        "page": 20,
+        "label": "Table 9",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 22,
+      "module": "appendix_D",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 10. Wall-clock runtimes for simulated data and UK Biobank application (N ≈ 277, 291; V = 66). Synthetic tests were conducted on a single-core Intel Xeon 6342 (4 GB RAM); UK Biobank results utilized 4 cores and 60 GB RAM. BHPI maintains inference latency on par with Logistic Regression (< 0.1 ms) while providing structured latent discovery.",
+        "word_count": 58,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 7,
+      "header_levels": 3,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "单硬件 point measurements，无 SD、重复测量或跨硬件范围；BHPI slash-separated E values 是配置并列而非误差。",
+      "data_and_statistics": "Simulation runtime sec（N=2000/N=5000）：Logistic 0.12/0.23、LightGBM 3.56/6.14、Binary Relevance 0.30/0.61、Classifier Chains 0.33/0.68、RAkELd 0.59/1.35、BHPI E=10/15/20 为 1.6/2.7/3.2 与 4.1/6.4/9.3。UKB memory GB/training min/inference ms：Logistic 3.74/5.82/<0.1、LightGBM 3.18/17.41/0.48、Binary Relevance 1.45/12.24/0.29、Classifier Chains 1.36/8.23/0.56、RAkELd 1.39/3.06/1.56、BHPI E=60 27.8/73.7/<0.1。",
+      "evidence_relation": "Section 4.2 O(N·E·(P+V)) complexity → runtime/memory/latency table → Figure 10 active-edge pruning；结论限定于给定 hardware/configuration。",
+      "design_strengths": [
+        "grouped table 同时呈现 simulation scaling、UKB memory、training tax 和 inference latency。",
+        "硬件写入 caption，结构发现成本与 baseline 可直接并置。"
+      ],
+      "design_weaknesses": [
+        "不同 workload、E、硬件不可直接横比；BHPI slash cell 省略配置细节。",
+        "没有 measurement repetitions、parallel scaling 或 variability。"
+      ],
+      "reusable_pattern": "把 asymptotic claim、small simulation scaling 和 deployment latency 放在同一 grouped table，并按 workload/hardware 报告 variability。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 10",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 从 EHR 输入到 latent hypergraph、risk-factor effect 与 structured VI 建立接口；Tables 1–2 给 simulation prediction/structure headline，Table 3 做 repulsion toggle；Figure 2/Table 4–5 连接 UKB rare-disease stability、calibration 与 prevalence tests；Figures 3–4/Table 6 把 PIP、parsimony、masking 与 qualitative pathway 接上。Appendix Figures 5–11、Tables 7–10 展开 generative/effect recovery、λ/E robustness、calibration、dataset、runtime 与 ROC。",
+    "caption_system": "Figure 1–4、6、8、10 与 Tables 1、3、5–7、10 的 caption 含 setup/encoding 或 main finding；Figure 9 只有 title，Table 4/9 较短，Figure 11 caption 与实际六方法 legend 不完全一致。多数 caption 不定义 band、violin smoothing、PIP threshold selection 或 split aggregation。",
+    "table_header_system": "Tables 1–4 使用单层 compact header；Tables 5–6 使用 prevalence/configuration 条件列；Table 7 以 N 分组重复 metrics；Table 8 对照 structural ECE；Table 9 按 cohort statistic group；Table 10 以 dataset→metric→N 三层 grouped header 组织 runtime。",
+    "method_result_ablation_link": "Figure 1/5 与 Eq. (1)–(2) 的 latent mechanism → Tables 1–2/Figure 2 prediction and structure → Tables 3/7、Figures 8–10 repulsion/capacity sensitivity → Table 8 calibration → Table 10 compute boundary；Figures 6–7 和 Table 6 是 structure-to-signal intermediate checks。",
+    "main_appendix_link": "正文 Figures 1–4、Tables 1–6 保留主线并指向 Appendix B.1/B.3、C、D；Appendix Figures 5–7 给 generative/recovery detail，Figures 8–10 给 λ/E mechanism，Tables 7–10 和 Figure 11 给 ablation/calibration/dataset/runtime/disease-level detail。",
+    "typography_consistency": "caption/table 由 Nimbus Roman/Computer Modern PDF objects 稳定呈现；图内 quantitative graphics 多是 Arial/DejaVu Sans-like raster，Figure 1/4 conceptual labels 与 Figures 8–11 Matplotlib-like labels 在字号 token 上有轻微差异。",
+    "color_consistency": "Figure 2 的 method palette、Figure 8 的 N palette、Figure 9 的 metric/sample palette 与 Figure 3/6 PIP sequential palette 各自局部稳定；Figure 4/7 改用 pathway/effect context，故跨图必须结合 legend、位置和线型，不能假定同色同义。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 的三段 workflow 加下排 constraint/regularizer 分解，让生成结构与 inference mechanism 同时可见。",
+      "Figure 2 的 prevalence-stratified violin distribution 用零线和全分布展示 rare-disease failure tail，而非只报总体均值。",
+      "Figure 3/6 的 PIP 或 true-inferred heatmap 加结构摘要，把 posterior uncertainty 接到 topology shape 和 sparsity。",
+      "Table 3/7 与 Figures 8–10 的 component toggle、λ/E sweep、active-edge count 链区分 predictive robustness 与 identifiability mechanism。",
+      "Table 10 的 grouped runtime table 把 asymptotic complexity、simulation scaling、memory、training tax 和 inference latency 放入同一决策面。"
+    ],
+    "highest_value_objects": [
+      "Figure 2 是 rare-disease stability 的分布级 headline。",
+      "Figures 3–4 是 latent pathway/parsimony 到 qualitative interpretation 的核心桥梁。",
+      "Table 5 是 prevalence-specific structured advantage 的最强量化对象。",
+      "Table 8 与 Table 10 分别限定 posterior calibration 与 compute/scalability claim；Figure 11 将 aggregate UKB performance 落到代表性病种 ROC。"
+    ],
+    "failure_patterns": [
+      "公开仓库只有三张匹配 rendered assets，没有完整 plotting/table source；其余 Figure/Table 只能由 PDF 复核。",
+      "Figure 9、Figure 10、Table 6 和部分 Figure 11 caption 不能独立恢复全部条件；band、violin、split aggregation 与 selection rule 常缺失。",
+      "密集网络/热图缺少可交互节点索引，跨图颜色角色变化增加误读风险。",
+      "没有 structured VI、observation model 或 PIP threshold 的完整独立 component ablation，故机制解释仍受实验边界约束。"
+    ],
+    "one_sentence_visual_strategy": "论文以“workflow/plate → prediction and structure tables → rare-disease distributions and PIP/network mechanisms → repulsion/capacity/calibration/compute extensions”的双栏证据链，把 risk-factor-specific hypergraph interpretability 与预测、鲁棒性和实现边界串联起来，但完整数值与可编辑视觉源仍需依赖 PDF 和未公开的排版过程。"
+  }
+}

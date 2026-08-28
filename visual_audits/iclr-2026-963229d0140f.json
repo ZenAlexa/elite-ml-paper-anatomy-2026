@@ -1,0 +1,1789 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-963229d0140f",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "stepfun-ai/NextStep-1",
+      "black-forest-labs/flux",
+      "THUDM/CogView4"
+    ],
+    "selected_repository": "https://github.com/stepfun-ai/NextStep-1",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/stepfun-ai/NextStep-1",
+        "path": "assets/t2i_demo.gif",
+        "role": "rendered_asset",
+        "tool": "animated GIF",
+        "evidence": "README embeds this asset as the released text-to-image demo; it is a model-output animation and is not a one-to-one editable source for PDF Figure A1 or Figures 2/4."
+      },
+      {
+        "repository_url": "https://github.com/stepfun-ai/NextStep-1",
+        "path": "assets/edit_demo.gif",
+        "role": "rendered_asset",
+        "tool": "animated GIF",
+        "evidence": "README embeds this asset as the released image-editing demo; it supplies public output examples but no PDF figure layout, prompt mapping, or plotting parameters."
+      },
+      {
+        "repository_url": "https://github.com/stepfun-ai/NextStep-1",
+        "path": "assets/input_00016618.png",
+        "role": "rendered_asset",
+        "tool": "JPEG-encoded PNG asset",
+        "evidence": "README/inference assets provide an editing input example; it is not visibly identifiable as a panel in the PDF montage."
+      },
+      {
+        "repository_url": "https://github.com/stepfun-ai/NextStep-1",
+        "path": "assets/output_00016618.png",
+        "role": "rendered_asset",
+        "tool": "JPEG-encoded PNG asset",
+        "evidence": "README/inference assets provide the paired editing output; it is a released result asset, not an editable source for Table 3 or Figure A1."
+      },
+      {
+        "repository_url": "https://github.com/stepfun-ai/NextStep-1",
+        "path": "evals/gen_images/geneval.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Benchmark evaluation entry point in the author repository; it supports metric-generation context but contains no PDF chart/table renderer."
+      },
+      {
+        "repository_url": "https://github.com/stepfun-ai/NextStep-1",
+        "path": "evals/gen_images/oneig_bench.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "OneIG-Bench evaluation helper corresponding to Appendix Table A1; no figure styling or table-generation code is present."
+      },
+      {
+        "repository_url": "https://github.com/stepfun-ai/NextStep-1",
+        "path": "evals/gen_images/wise_gen.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "WISE evaluation helper corresponding to Appendix Table A2; it does not reproduce the PDF table layout or plotting style."
+      },
+      {
+        "repository_url": "https://github.com/stepfun-ai/NextStep-1",
+        "path": "configs/nextstep_qwen14b_256px.py",
+        "role": "other",
+        "tool": "Python/OmegaConf",
+        "evidence": "Training configuration supports resolution and recipe context for Table 1, but is not a visual generator and does not contain figure/table styling."
+      }
+    ],
+    "search_note": "PDF p.1 directly links stepfun-ai/NextStep-1; gh metadata and README title/description match the paper and identify the ICLR 2026 Oral release. The recursive main tree has only rendered demo assets plus evaluation/configuration code: no plot, figure, visual, table generator, notebook, LaTeX, TikZ, PGF, SVG, or style source. The local corpus/visual_sources/iclr-2026-963229d0140f/ directory is absent. The demo assets are public outputs without one-to-one PDF mapping, so PDF-rendered observations remain authoritative for Figures 1-4/A1-A5 and Tables 1-6/A1-A3."
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 6,
+    "appendix_figures": 5,
+    "appendix_tables": 3,
+    "dominant_figure_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "NimbusRomNo9L-Medi",
+        "Computer Modern math",
+        "raster sans-serif labels"
+      ],
+      "size_pt": {
+        "minimum": 5.5,
+        "median": 8.0,
+        "maximum": 14.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "NimbusRomNo9L-Regu",
+        "NimbusRomNo9L-Medi",
+        "NimbusRomNo9L-MediItal",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.0,
+      "header_size_pt": 8.5,
+      "header_weight": "medium",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "冷蓝架构框与 ours/highlight 行为主，紫橙绿蓝承担多模型曲线类别，Appendix 数据流程增加橙红标题、蓝数据库和绿色 check；照片 montage 使用自然色而非量化 palette。颜色语义清晰但跨对象没有公开 palette 常量，曲线和高亮行的灰度冗余不足。",
+    "vector_raster_mix": "正文、表线、箭头和部分文字是 PDF vector/text；生成照片、Figure 1 patch thumbnails、Figure 2/4/A1/A4/A5 图像、Figure A3 histograms 和 Figure A2 raster elements 是 raster/JPX，整体为 mixed rendering。公开仓库未提供对应绘图源。",
+    "style_consistency": "正文、caption、表格均保持 ICLR 单栏 Nimbus/Computer Modern 体系，表格横线和 ours 行高亮稳定；raster figure 内部引入 sans-serif/Calibri/Times，图内字号偏小，且颜色与形状冗余不一致。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Overview of NextStep-1 Framework. NextStep-1 employs a causal transformer to process tokenized text and image tokens. During training, Flow Matching Head predicts the continuous flow from a noise sample to the next target image patch, conditioned on the output hidden state. At inference, this allows for generating images by iteratively guiding noise to create the next patch.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Computer Modern math",
+          "raster sans-serif labels"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.5,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#AFC1E3",
+          "#183D78",
+          "#F2F2F2",
+          "#202020",
+          "#9EA8B5",
+          "#D6E4F7"
+        ],
+        "semantic_mapping": "blue transformer blocks, gray token surfaces, dark flow arrows, and image-patch thumbnails",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 24,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "left-to-right token and data-flow order",
+        "y": "stacked tokenizer/transformer/head levels",
+        "color": "transformer, token surface, and flow roles",
+        "shape": "rounded blocks, token boxes, arrows, patch thumbnails, and flow inset",
+        "line": "solid sequence arrows and dashed cross-reference arrows",
+        "facet": "main pipeline versus patch-wise flow-matching inset",
+        "text": "direct component, token, and loss labels"
+      },
+      "data_and_statistics": "Mechanism illustration only. It contains no sample, unit, aggregation, denominator, repeat, uncertainty, or failure count; dog/on/rock and patch thumbnails are explanatory examples.",
+      "evidence_relation": "Introduction unified multimodal next-token claim -> Figure 1 interface -> §2.1 Eq. (1)-(2) unified objective -> §2.2 tokenizer/causal transformer/157M patch-wise head -> Tables 2-3 main comparisons and Tables 4-5 head ablation.",
+      "design_strengths": [
+        "One page connects token serialization, modality-specific heads, and patch-wise flow matching.",
+        "The right inset turns the abstract loss into target/noise/velocity operations.",
+        "Arrow direction and direct labels reduce dependence on a separate legend."
+      ],
+      "design_weaknesses": [
+        "The main pipeline and inset are dense; token thumbnails and loss labels become small at print size.",
+        "Key dimensions such as 16 channels, 256 image tokens, and 157M parameters are absent from the visual.",
+        "The image patches are illustrative assets and cannot carry performance evidence."
+      ],
+      "reusable_pattern": "Use a unified sequence backbone plus one local operator inset to explain both system interface and the core training computation.",
+      "evidence": {
+        "page": 2,
+        "label": "p. 2 §2.1 / Figure 1 unified token sequence and patch-wise flow-matching inset",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "ablation",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2: Images generated under different flow-matching heads.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "raster sans-serif labels"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.0,
+          "maximum": 9.5
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#1E2D3D",
+          "#4C7AA6",
+          "#D89A58",
+          "#7DAF9E",
+          "#B9CBEA",
+          "#D8E1ED"
+        ],
+        "semantic_mapping": "natural image colors; column labels identify FM Head Small/Base/Large",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 9
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "head-size condition by column",
+        "y": "matched qualitative prompt/theme by row",
+        "color": "image appearance only, not a quantitative palette",
+        "shape": "raster generated images",
+        "line": null,
+        "facet": "none; one 3-by-3 matched grid",
+        "text": "direct column labels FM Head Small/Base/Large"
+      },
+      "data_and_statistics": "Nine qualitative outputs in three columns and three rows, apparently matched by themes (owl, castle, ballerina). No prompt text, sample denominator, seed, image size, selection rule, metric, or uncertainty is shown.",
+      "evidence_relation": "Table 4 Small/Base/Large configurations -> Figure 2 matched qualitative slice -> Table 5 GenEval/GenAI-Bench/DPG-Bench point values -> §5.1 head-size insensitivity claim.",
+      "design_strengths": [
+        "Matched rows make the three head conditions easy to compare visually.",
+        "Compact inset placement lets the qualitative check sit beside configuration and quantitative tables."
+      ],
+      "design_weaknesses": [
+        "Only three examples are shown and no prompt, seed, or selection protocol is supplied.",
+        "Photo variation is difficult to attribute to head size without quantitative or paired-output metadata."
+      ],
+      "reusable_pattern": "Use matched rows/columns for qualitative ablations, then bind every column to a quantitative table and disclose prompt and sampling controls.",
+      "evidence": {
+        "page": 7,
+        "label": "p. 7 §5.1 / Figure 2 3-by-3 flow-matching-head output grid",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "theory",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: Evolution of per-token mean and variance over sampling steps under two CFG settings. At CFG = 1.5, the mean and variance stay close to 0 and 1, respectively, indicating stability. At CFG = 3.0, they drift significantly, causing image quality degradation. With normalization, the distributions of output latents remain stable across all CFG settings.",
+        "word_count": 56,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Computer Modern math",
+          "raster chart labels"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#9B70C7",
+          "#F28E2B",
+          "#3A97E8",
+          "#32A67B",
+          "#D8D8D8",
+          "#202020"
+        ],
+        "semantic_mapping": "CFG settings and normalization conditions are encoded by purple/orange/blue/green curves and matching image borders",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 12,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top-right within each chart",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Sampling Steps, approximately 0-250",
+        "y": "per-token mean in left charts and variance in right charts",
+        "color": "CFG=1.5/3.0/7.0/15.0 and normalization condition",
+        "shape": "solid lines plus condition-labeled output thumbnails",
+        "line": "one solid line per CFG condition",
+        "facet": "two rows: w/o versus w/ channel-wise input latent normalization",
+        "text": "chart titles, local legends, global mean/std annotations, and CFG labels"
+      },
+      "data_and_statistics": "Per-token mean and variance trajectories summarized over sampling steps. The upper row has CFG 1.5/3.0 and the lower row has CFG 1.5/3.0/7.0/15.0; no sample count, aggregation definition, repeats, or uncertainty is displayed. Six output thumbnails are qualitative examples.",
+      "evidence_relation": "§5.2 Eq. (4) CFG interpolation -> Figure 3 mean/variance drift diagnosis -> Eq. (3) and Algorithm 1 token-wise normalization -> Figure 4 noise robustness and Figure A3 latent distributions.",
+      "design_strengths": [
+        "The before/after rows align the same diagnostics around the normalization intervention.",
+        "Charts and output thumbnails make a distributional mechanism legible without a second figure.",
+        "CFG labels and global summary annotations provide direct semantic anchors."
+      ],
+      "design_weaknesses": [
+        "Small axes, legends, and four-condition lower curves are difficult to read at reduced size.",
+        "No repeat or uncertainty information links the trajectories to a population-level claim.",
+        "The qualitative thumbnails are few examples and the two rows use different y ranges."
+      ],
+      "reusable_pattern": "For a mechanism intervention, align pre/post rows, share the x semantic, and place condition-matched qualitative outputs beside trajectories.",
+      "evidence": {
+        "page": 7,
+        "label": "p. 7 §5.2 / Figure 3 four trajectory panels and CFG output strips",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "theory",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 4: Impact of Noise Perturbation on Image Tokenizer Performance. The top panel displays quantitative metrics (rFID↓, PSNR↑, and SSIM↑) versus noise intensity. The bottom panel presents qualitative reconstruction examples at noise standard deviations of 0.2 and 0.5.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "Computer Modern math",
+          "raster chart labels"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#9B70C7",
+          "#F28E2B",
+          "#55B95A",
+          "#3A97E8",
+          "#202020",
+          "#E6E6E6"
+        ],
+        "semantic_mapping": "model identity is repeated in shared curve colors and matching reconstruction-image borders",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 8,
+        "data_marks_estimate": 22
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Noise Standard Deviation, approximately 0-1",
+        "y": "rFID, PSNR, or SSIM in the three top charts",
+        "color": "Flux.1-dev, Stable Diffusion XL, Stable Diffusion 3 Medium, and NextStep-1",
+        "shape": "circle-marked lines and two-row reconstruction thumbnails",
+        "line": "solid model curves",
+        "facet": "three metric panels above and model-by-noise image grid below",
+        "text": "metric titles, shared legend, model column names, and noise std row labels"
+      },
+      "data_and_statistics": "Three point curves compare rFID (down), PSNR (up), and SSIM (up) across noise intensity for four tokenizers; ten qualitative reconstructions show Original and four models at noise std 0.2 and 0.5. No sample denominator, repeated runs, or uncertainty is displayed.",
+      "evidence_relation": "Eq. (3) stochastic latent perturbation -> Figure 4 quantitative curves and reconstructions -> Table 6 reconstruction comparison and Figure A3 latent dispersion -> §5.2 noise-regularization interpretation.",
+      "design_strengths": [
+        "The same noise semantic runs through top curves and bottom image rows.",
+        "A shared legend and model-colored borders keep quantitative and qualitative panels aligned.",
+        "Metric direction arrows make rFID/PSNR/SSIM trends easier to read."
+      ],
+      "design_weaknesses": [
+        "Different metric scales and unlabelled point values make cross-panel magnitude comparison difficult.",
+        "No sample size or uncertainty is shown for the curves.",
+        "The large photo grid can dominate attention over the protocol needed to interpret noise intensity."
+      ],
+      "reusable_pattern": "Pair multi-metric robustness curves with fixed-condition image rows, reusing a shared model palette and explicit metric directions.",
+      "evidence": {
+        "page": 8,
+        "label": "p. 8 §5.2 / Figure 4 three metric plots and 2-by-5 reconstruction grid",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A1",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "headline",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure A1: Overview of NextStep-1 in high-fidelity image generation, diverse image editing, and complex free-form manipulation.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "raster sans-serif labels"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 12,
+        "hex": [
+          "#DCE5F3",
+          "#F3DDE2",
+          "#203040",
+          "#A8BDD9",
+          "#B8C7DE",
+          "#D27E8A",
+          "#E4B35A",
+          "#4D8FCE",
+          "#6FAE71",
+          "#D8D8D8",
+          "#FFFFFF",
+          "#000000"
+        ],
+        "semantic_mapping": "task bands and operation headers use pale blue/pink surfaces; generated images retain natural photo colors",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 25,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "image/example order within each task band",
+        "y": "rows within Image Generation, Image Editing, and Free-form Manipulation bands",
+        "color": "task-band surfaces and operation labels; image colors are not quantitative",
+        "shape": "raster output thumbnails and panel dividers",
+        "line": "thin separators only",
+        "facet": "three horizontal task bands with editing-operation subfacets",
+        "text": "rotated band labels and direct operation headers"
+      },
+      "data_and_statistics": "Dense qualitative showcase with several dozen generated images across three task families; no prompt text, sample denominator, seed, selection rule, model variant, metric, or uncertainty is shown.",
+      "evidence_relation": "Appendix A qualitative-results paragraph -> Figure A1 generation/editing/free-form montage -> Table 3 editing benchmarks and Tables A1-A2 extended T2I/WISE results.",
+      "design_strengths": [
+        "Three task bands make a broad capability claim scanable.",
+        "Editing operation headers keep the montage tied to concrete transformations."
+      ],
+      "design_weaknesses": [
+        "Small rotated labels and many thumbnails become difficult to read at print size.",
+        "No prompt, seed, coverage, or selection metadata allows the collage to estimate success or failure rates.",
+        "The photo area dominates the quantitative evidence elsewhere in the appendix."
+      ],
+      "reusable_pattern": "Organize a qualitative showcase by task band and operation, but pair it with a prompt-indexed sample table and failure coverage.",
+      "evidence": {
+        "page": 17,
+        "label": "p. 17 Appendix A / Figure A1 task-band qualitative montage",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A2",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "experimental_design",
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure A2: Data processing of character-centric data.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "raster sans-serif labels"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#B6C9E8",
+          "#F0F0F0",
+          "#D95F3F",
+          "#4AAEEA",
+          "#4CCB61",
+          "#F2B01E",
+          "#2E3440"
+        ],
+        "semantic_mapping": "blue workflow boxes, gray detail panels, orange-red section titles, blue/yellow stores, and green checks",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "left-to-right Step I-II-III flow in the detail panels",
+        "y": "top face-binding pipeline versus bottom frame/captioning pipeline",
+        "color": "stage surfaces, data stores, checks, and section titles",
+        "shape": "rounded process boxes, arrows, video-frame thumbnails, database icons, and checklist",
+        "line": "solid order arrows and dashed match/data-return arrows",
+        "facet": "global four-step column plus two detailed processing panels",
+        "text": "direct stage names, Step I-III labels, ArcFace/Step 1o, metadata fields, and checklist"
+      },
+      "data_and_statistics": "Process schematic for character-centric data; surrounding text names NextStep-Video-Interleave-5M, but the figure contains no retention rate, threshold, sample denominator, or uncertainty.",
+      "evidence_relation": "Appendix B.4 character-centric dataset -> Figure A2 collection/binding/frame/caption pipeline -> Table 1 interleaved-data recipe and multi-turn capability claim.",
+      "design_strengths": [
+        "Global four-step flow and two detailed panels provide two readable abstraction levels.",
+        "Step I-III labels and the consistency checklist make intermediate artifacts explicit."
+      ],
+      "design_weaknesses": [
+        "Small metadata and frame labels are hard to read, and the filtering threshold/retention rate is absent.",
+        "Database icons imply data movement without disclosing actual counts, licenses, or error handling."
+      ],
+      "reusable_pattern": "Use a global pipeline with two expanded subflows, while placing thresholds, output schema, and retention statistics beside the diagram.",
+      "evidence": {
+        "page": 20,
+        "label": "p. 20 Appendix B.4 / Figure A2 character-centric data pipeline",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A3",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "histogram",
+        "matrix"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure A3: Latent distributions in 16 channels for three VAE variants: Flux.1-dev, NextStep-1 w/o noise, and NextStep-1. Blue bars show empirical histograms; red lines indicate the standard normal distribution.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "raster chart labels",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#5A9FC7",
+          "#F04444",
+          "#D9D9D9",
+          "#202020"
+        ],
+        "semantic_mapping": "blue empirical histogram bars versus red standard-normal curve, with gray grid and black axes",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right within each small panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "distribution",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "latent value bins, approximately standardized range",
+        "y": "density per channel",
+        "color": "empirical bars and standard-normal reference curve",
+        "shape": "histogram bars and overlaid smooth curve",
+        "line": "one red reference curve per panel",
+        "facet": "three VAE rows/groups times 16 channels",
+        "text": "group titles, Dimension 0-15 titles, and repeated Empirical/Normal legends"
+      },
+      "data_and_statistics": "Forty-eight histograms summarize 16 channels for Flux.1-dev, NextStep-1 without noise, and NextStep-1. Each panel overlays an empirical distribution with a standard normal; n, binning, fit procedure, and uncertainty are not provided.",
+      "evidence_relation": "Appendix C normalization/noise -> Figure A3 latent-dispersion matrix -> Figure 3 mean/variance stability, Figure 4 decoder robustness, and Table 6 reconstruction comparison.",
+      "design_strengths": [
+        "Repeated axes, colors, and legends make the three VAE groups structurally comparable.",
+        "Caption explicitly defines bars versus normal curves."
+      ],
+      "design_weaknesses": [
+        "Forty-eight panels make individual titles, ticks, and legends tiny.",
+        "The figure does not state sample count, bin rule, common y scale, or a distribution-distance summary.",
+        "Bars and curves have weak grayscale redundancy."
+      ],
+      "reusable_pattern": "Use a consistent histogram matrix for distribution diagnostics, but supplement it with a compact distance summary and one shared legend.",
+      "evidence": {
+        "page": 21,
+        "label": "p. 21 Appendix C / Figure A3 16-channel histogram matrix",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A4",
+      "page": 22,
+      "module": "limitations",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure A4: Failure cases for high-dimensional continuous tokens.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "raster image labels"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#DCE5F3",
+          "#202020",
+          "#A4563A",
+          "#E0A63B",
+          "#4D86C4",
+          "#6E9F6A",
+          "#CA6A6A",
+          "#FFFFFF",
+          "#0F2437",
+          "#D7D7D7"
+        ],
+        "semantic_mapping": "row labels name failure modes; generated images retain natural colors without a quantitative palette",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "five examples per failure row",
+        "y": "four failure modes: Bottom noise, Bottom solid color, Noisy image, Grid",
+        "color": "image appearance only; no numeric color scale",
+        "shape": "raster failure examples and row labels",
+        "line": "white cell separators",
+        "facet": "four failure-mode rows",
+        "text": "rotated/direct failure-mode labels"
+      },
+      "data_and_statistics": "Twenty qualitative failure examples across four named artifact modes; no trigger distribution, incidence, denominator, prompt, severity scale, or uncertainty is shown.",
+      "evidence_relation": "Appendix D artifacts discussion -> Figure A4 failure-mode grid -> Figure A5 NextStep-1.1 comparison and the stated 16-channel/high-dimensional limitation.",
+      "design_strengths": [
+        "Row labels turn an otherwise unstructured image wall into four failure categories.",
+        "Uniform cells make local artifact patterns easy to scan."
+      ],
+      "design_weaknesses": [
+        "Examples cannot estimate how often or under what conditions each artifact occurs.",
+        "Different prompts and content make severity comparisons ambiguous."
+      ],
+      "reusable_pattern": "Present failures by mode in a regular grid, then add incidence and trigger metadata so qualitative evidence does not stand alone.",
+      "evidence": {
+        "page": 22,
+        "label": "p. 22 Appendix D / Figure A4 four-row failure-case grid",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A5",
+      "page": 22,
+      "module": "limitations",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure A5: Comparisons between NextStep-1 and NextStep-1.1.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "raster image labels"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#D6D6D6",
+          "#B9CBEA",
+          "#203040",
+          "#D9A060",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "gray versus pale-blue model headers distinguish versions; photos provide natural colors",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "three columns within each model version",
+        "y": "three qualitative rows",
+        "color": "version header surfaces; image content is not quantitative",
+        "shape": "matched-looking raster thumbnails and panel headers",
+        "line": "thin cell separators",
+        "facet": "NextStep-1 versus NextStep-1.1 side-by-side panels",
+        "text": "direct version labels in header bars"
+      },
+      "data_and_statistics": "Two 3-by-3 qualitative panels compare approximately 18 outputs; the figure provides no prompt pairing, seed, sample count, artifact rate, or uncertainty.",
+      "evidence_relation": "Appendix D adds data, approximately 500K iterations, and improved Flow-GRPO -> Figure A5 side-by-side outputs -> claim that most NextStep-1 artifacts are eliminated; multiple interventions change together.",
+      "design_strengths": [
+        "Side-by-side equal-sized grids make version differences visually immediate.",
+        "Simple header bars do not compete with the image content."
+      ],
+      "design_weaknesses": [
+        "Prompt pairing and selection are undocumented, so the visual is not a controlled comparison.",
+        "Additional data, training duration, and algorithm change confound attribution of any improvement."
+      ],
+      "reusable_pattern": "Use equal-size before/after grids only with explicit prompt pairing and a companion failure-rate table.",
+      "evidence": {
+        "page": 22,
+        "label": "p. 22 Appendix D / Figure A5 NextStep-1 versus NextStep-1.1 grids",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 4,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 1: Training recipe of NextStep-1.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty: this is a configuration table. K/B/T suffixes, CE:MSE, and ratio denominators are not fully defined in the caption.",
+      "data_and_statistics": "Training stages list learning rate, scheduler, weight decay, CE:MSE loss weight, steps, warm-up, sequence length, image area, image tokens, and training tokens; the lower group lists four data ratios.",
+      "evidence_relation": "§3 training recipes -> Table 1 curriculum/configuration dictionary -> Stage 1/2/Annealing/SFT/DPO explanations -> Tables 2-3 results and Table A3 cost boundary.",
+      "design_strengths": [
+        "Two-level phase header makes the curriculum scanable.",
+        "Hyperparameters and data mixture share one compact decision surface."
+      ],
+      "design_weaknesses": [
+        "Caption does not define abbreviations, suffixes, units, or frozen-tokenizer exceptions.",
+        "Many rows and long ranges reduce scan speed; there is no explicit train/freeze column."
+      ],
+      "reusable_pattern": "Use nested phase headers and separate hyperparameter/data-ratio row groups, while putting units and freeze state in the header or caption.",
+      "evidence": {
+        "page": 4,
+        "label": "p. 4 Table 1 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: Comparison of image-text alignment on GenEval (Ghosh et al., 2023), GenAI-Bench (Lin et al., 2024), and DPG-Bench (Hu et al., 2024). * result is with rewriting. † result is with Self-CoT.",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 30,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best",
+        "cell_color"
+      ],
+      "uncertainty": "No uncertainty, denominator, seed, or repeat information; point scores and `-` missing values only.",
+      "data_and_statistics": "Mixed proprietary, diffusion, and autoregressive model rows report GenEval, GenAI-Bench Basic/Advanced, and DPG-Bench; slash/asterisk/dagger protocols alter the input procedure.",
+      "evidence_relation": "Introduction AR quality claim -> §4.1 -> Table 2 main comparison -> Tables A1/A2 extended OneIG/WISE evidence -> Conclusion SOTA/competitive language.",
+      "design_strengths": [
+        "Model-family groups and arrows make comparison scope explicit.",
+        "Ours row color plus bold/underline marks help locate the intended reference."
+      ],
+      "design_weaknesses": [
+        "Raw, rewriting, and Self-CoT values are mixed in one table; cross-protocol values are not independent measurements.",
+        "No sample, uncertainty, cost, or failure column supports a universal ranking."
+      ],
+      "reusable_pattern": "Use model-family row groups and a highlighted reference row, but split protocol-changing results into separate columns with denominator and evaluation details.",
+      "evidence": {
+        "page": 6,
+        "label": "p. 6 Table 2 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3: Comparison of image editing performance on GEdit-Bench (Full Set) (Liu et al., 2025c) and ImgEdit-Bench (Ye et al., 2025). G_SC, G_PQ, and G_O refer to the metrics evaluated by GPT-4.1 (OpenAI, 2025a). Performance is evaluated based on the NextStep-1-Edit with 1:1 aspect ratio.",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "No score spread, sample denominator, human agreement, seed, or uncertainty; `-` denotes unreported cells.",
+      "data_and_statistics": "Proprietary and open-source rows report three GEdit-EN, three GEdit-CN, and one ImgEdit-Bench score; values are GPT-4.1 judge point estimates.",
+      "evidence_relation": "§3.3 image-to-image SFT -> §4.2 editing claim -> Table 3 -> Appendix Figure A1 editing montage. The caption names NextStep-1-Edit while the last row says NextStep-1.",
+      "design_strengths": [
+        "Nested EN/CN/ImgEdit headers preserve task-language structure.",
+        "Caption states judge and 1:1 aspect-ratio condition."
+      ],
+      "design_weaknesses": [
+        "Base versus editing-finetuned model naming is inconsistent between prose, caption, and row.",
+        "Heterogeneous judges/datasets are placed together without range, sample, or uncertainty context."
+      ],
+      "reusable_pattern": "Group language variants and judge metrics under a single task header, and state the evaluated model variant and paired sample count in the caption.",
+      "evidence": {
+        "page": 6,
+        "label": "p. 6 Table 3 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 4: Configurations for different flow-matching heads.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty: layer, hidden-size, and parameter-count metadata.",
+      "data_and_statistics": "Three head configurations report layers (6/12/24), hidden size (1024/1536/2048), and parameter counts (40M/157M/528M).",
+      "evidence_relation": "§5.1 head-size ablation -> Table 4 defines Small/Base/Large -> Table 5 benchmark results and Figure 2 qualitative outputs.",
+      "design_strengths": [
+        "Minimal columns and consistent alignment make the three variants easy to map to adjacent objects."
+      ],
+      "design_weaknesses": [
+        "No input dimension, train/freeze state, sampling steps, FLOPs, memory, or latency is included.",
+        "Caption does not explain which configuration is the baseline."
+      ],
+      "reusable_pattern": "Keep the compact capacity dictionary but add the training-control and cost assumptions needed to interpret “lightweight.”",
+      "evidence": {
+        "page": 7,
+        "label": "p. 7 Table 4 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 5: Quantitative results for different flow-matching head configurations. All variants are finetuned from the baseline with a newly initialized head.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No uncertainty: GenEval, GenAI-Bench, and DPG-Bench are single point estimates.",
+      "data_and_statistics": "Baseline plus Small/Base/Large head variants are compared on three benchmark scores; the caption says the new head is initialized and finetuned from baseline.",
+      "evidence_relation": "Table 4 capacities -> Table 5 head-only point estimates -> Figure 2 outputs -> §5.1 claim that the transformer carries core generative logic.",
+      "design_strengths": [
+        "Baseline and variants share columns, enabling direct within-ablation scanning.",
+        "Caption states the newly initialized-head control."
+      ],
+      "design_weaknesses": [
+        "The 10K-step head-only design is in正文 rather than the caption; no seed, error, full-model retrain, or cost column.",
+        "Different benchmark scales are not normalized or annotated."
+      ],
+      "reusable_pattern": "Make the frozen/trainable boundary and step count explicit, and pair capacity ablations with multi-seed uncertainty.",
+      "evidence": {
+        "page": 7,
+        "label": "p. 7 Table 5 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 9,
+      "module": "theory",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 6: Comparison of reconstruction performance on ImageNet-1K 256×256 (Deng et al., 2009).",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty, reconstruction sample count, protocol, or failure count; PSNR and SSIM are point estimates.",
+      "data_and_statistics": "Discrete and continuous tokenizer groups list latent shape, PSNR, and SSIM; Flux.1-dev is best on the table and NextStep-1 is highlighted as the proposed tokenizer.",
+      "evidence_relation": "Tokenizer representation and reconstruction-upper-bound claim -> Table 6 -> Figure 4 noise robustness and Figure A3 latent distribution -> §5.2 interpretation.",
+      "design_strengths": [
+        "Tokenizer-family groups keep discrete/continuous representation differences visible.",
+        "Latent shape and two reconstruction metrics share one compact table."
+      ],
+      "design_weaknesses": [
+        "Different tokenizer training/decoding protocols are not stated in the caption.",
+        "Highlights emphasize relative rank without sample size or uncertainty, so point gaps can be over-read."
+      ],
+      "reusable_pattern": "Keep family grouping and latent-shape metadata, but disclose a common reconstruction protocol and dispersion.",
+      "evidence": {
+        "page": 9,
+        "label": "p. 9 Table 6 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table A1",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table A1: Comparison on OneIG-Bench (Chang et al., 2025) in English prompts.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 27,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best",
+        "cell_color"
+      ],
+      "uncertainty": "No uncertainty, prompt count, scorer, seed, or failure column; all cells are benchmark point scores.",
+      "data_and_statistics": "Six OneIG-Bench dimensions (Alignment, Text, Reasoning, Style, Diversity, Overall) are given for 24 model rows under three family groups, including NextStep-1.",
+      "evidence_relation": "§4.1 “full results in section A” -> Table A1 extension -> Table 2 main comparison and Figure A1 qualitative showcase.",
+      "design_strengths": [
+        "Dimension columns expose which aspects drive Overall rather than collapsing to one score.",
+        "The same model-family grouping and ours-row highlight as Table 2 aid cross-reference."
+      ],
+      "design_weaknesses": [
+        "27 visible body rows and three-decimal values make the table dense.",
+        "Caption omits dimension definitions, sample count, evaluation procedure, and uncertainty despite prose using “significant advantage.”"
+      ],
+      "reusable_pattern": "Use an appendix full-result table with the same model grouping as the main result, but add dimension definitions and protocol metadata.",
+      "evidence": {
+        "page": 18,
+        "label": "p. 18 Table A1 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table A2",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Table A2: Comparison of world knowledge reasoning on WISE (Niu et al., 2025). † result is with Self-CoT.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 18,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best",
+        "cell_color"
+      ],
+      "uncertainty": "No uncertainty or sample denominator; slash cells combine raw and Self-CoT/rewrite point scores, and `-` denotes absent protocol.",
+      "data_and_statistics": "Six WISE domain scores, Overall, and Overall (Rewrite) are reported across proprietary, diffusion, and autoregressive groups; BAGEL and NextStep-1 contain raw/rewrite pairs.",
+      "evidence_relation": "Knowledge-aware generation claim -> Table A2 raw/rewrite WISE extension -> Table 2/A1 AR comparison -> conclusion semantic-alignment claim.",
+      "design_strengths": [
+        "Domain columns make the claimed world-knowledge coverage inspectable.",
+        "Raw/rewrite values and family rows preserve protocol and comparison context better than one aggregate."
+      ],
+      "design_weaknesses": [
+        "Slash values make two protocols look like one measurement and are incomplete across models.",
+        "Caption does not explain rewrite/Self-CoT transformation, pairing, or uncertainty."
+      ],
+      "reusable_pattern": "Give raw and rewrite/Self-CoT separate blocks or columns, with paired sample counts and protocol definitions.",
+      "evidence": {
+        "page": 18,
+        "label": "p. 18 Table A2 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table A3",
+      "page": 23,
+      "module": "limitations",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table A3: Inference latency breakdown at 983 TFLOP/s compute and 3.36 TB/s memory bandwidth.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L-Regu",
+          "NimbusRomNo9L-Medi",
+          "NimbusRomNo9L-MediItal",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.5,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No measurement uncertainty: the table is a theoretical batch-1 breakdown under stated H100 compute and bandwidth assumptions.",
+      "data_and_statistics": "Sequence lengths 256/1024/4096 report last-token latency for LLM Decoder, LM Head, and FM Head in ms, plus accumulated Total and w/o FM Head in s.",
+      "evidence_relation": "Appendix D sequential-decoding limitation -> Table A3 component/accumulated latency -> serial LLM/FM bottleneck explanation -> proposed distillation/speculative/multi-token acceleration.",
+      "design_strengths": [
+        "Nested headers separate last-token and accumulated units.",
+        "The `w/o FM Head` counterfactual exposes component contribution directly."
+      ],
+      "design_weaknesses": [
+        "Theoretical FLOP/bandwidth values are not wall-clock profiling and lack batch/parallelism/memory assumptions.",
+        "Batch size 1 and estimation status are in surrounding prose rather than the caption."
+      ],
+      "reusable_pattern": "Separate theoretical from measured cost and put hardware, batch, parallelism, and repeat assumptions in the table caption.",
+      "evidence": {
+        "page": 23,
+        "label": "p. 23 Table A3 table",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 defines the continuous-token causal interface; Table 1 fixes training recipe; Tables 2-3 report T2I/editing comparisons; Figure 2 and Tables 4-5 test flow-matching-head capacity; Figure 3, Figure 4, and Table 6 connect CFG/noise/latent dispersion to reconstruction. Appendix Figures A1-A5, Tables A1-A3 extend capabilities, data/tokenizer diagnostics, failures, fixes, and latency.",
+    "caption_system": "Captions use label plus noun-phrase title and optional setup sentence, usually without bold headline, sample/seed, or uncertainty template. Figure 3 is the only caption that states a principal stability/drift finding; most conclusions remain in surrounding prose.",
+    "table_header_system": "Main and appendix result tables use model-family row groups, metric-direction arrows, nested benchmark headers, and a light-blue ours row; bold/underline mark best/second-best values. Configuration tables use phase/tokenizer groups but do not consistently encode units, protocol, or cost.",
+    "method_result_ablation_link": "Figure 1 -> Tables 2-3 supplies interface-to-result linkage; Tables 4-5 plus Figure 2 supply head-size ablation; Figure 3 plus Algorithm 1 supply normalization mechanism; Figure 4, Figure A3, and Table 6 supply noise/dispersion/reconstruction diagnostics. Links are cited in prose, but controls, seeds, and uncertainty are generally absent.",
+    "main_appendix_link": "正文 directs readers to Appendix A for qualitative and benchmark extensions, B for data pipelines, C for tokenizer code, and D for artifacts/latency. The appendix adds useful qualitative and implementation context but does not add failure rates, measured profiling, full data provenance, or editable visual sources.",
+    "typography_consistency": "NimbusRomNo9L and Computer Modern dominate article text, captions, tables, and equations. Raster diagrams introduce sans-serif/Calibri/Times substyles and much smaller labels, making embedded figure text the main cross-object readability risk.",
+    "color_consistency": "Blue consistently signals architecture, ours rows, or newer-version headers; purple/orange/green/blue identify curves and corresponding photo borders. Figure A2 adds orange-red/green process semantics. No global palette or shape redundancy is documented, so Figure 3/4 curves and blue table rows are not fully grayscale-safe."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 main flow plus local loss inset for interface and operator explanation.",
+      "Figure 3/4 aligned mechanism curves with condition-matched qualitative strips.",
+      "Table 2/3 model-family groups, direction arrows, nested headers, and ours-row highlighting.",
+      "Figure A2 global pipeline plus detailed panels, and Figure A4 failure-mode rows."
+    ],
+    "highest_value_objects": [
+      "Figure 1",
+      "Table 2",
+      "Figure 3",
+      "Figure 4",
+      "Figure A4",
+      "Figure A5",
+      "Table A3"
+    ],
+    "failure_patterns": [
+      "Large qualitative montages lack prompt, seed, selection, and coverage metadata.",
+      "Curves and tables almost universally omit denominator, repeats, or uncertainty.",
+      "Raw/rewrite/Self-CoT protocols and base/edit variants are mixed in comparison surfaces.",
+      "Appendix shows failures and theoretical latency but no incidence rates, measured profiling, or editable figure/table source."
+    ],
+    "one_sentence_visual_strategy": "The paper builds a cold-blue causal-architecture spine and joins tokenizer mechanism curves, cross-model point tables, and dense qualitative outputs into an interface-to-quality-to-stability narrative, while relying heavily on color and selected examples and leaving statistical and reproducibility metadata thin."
+  }
+}

@@ -1,0 +1,2041 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-73ef6e227632",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/ferhaterata/learn",
+      "https://github.com/ferhaterata/learning-randomized-reductions",
+      "https://github.com/MachineLearning-Nerd/icml26-learning-randomized-reductions"
+    ],
+    "selected_repository": "https://github.com/ferhaterata/learning-randomized-reductions",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/ferhaterata/learning-randomized-reductions",
+        "path": "docs/overview.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "README 将其列为 Bitween algorithm overview；4678×3737 PNG 的输入/输出、Reduction steps 8–10、十步算法与公式布局和 PDF Figure 5 对齐，但它是渲染资产而非可编辑生成源。"
+      },
+      {
+        "repository_url": "https://github.com/ferhaterata/learning-randomized-reductions",
+        "path": "evaluation/create_table.py",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "Table.plot_heatmap 使用 imshow(aspect=\"auto\", cmap=\"Oranges\")、colorbar、benchmark ticks、labels 和 transparent PNG 导出；几何/数据角色对应 PDF Figures 3–4，但当前源码橙色 palette 与 PDF 渲染的蓝色 heatmap 不一致。"
+      },
+      {
+        "repository_url": "https://github.com/ferhaterata/learning-randomized-reductions",
+        "path": "evaluation/create_table.py",
+        "role": "table_generator",
+        "tool": "tabulate",
+        "evidence": "同一脚本的 Table.body/tabulate 路径聚合 run logs 并生成论文表格，提供 Table 1/Table 7 与 Tables 8–19 的生成逻辑；未找到 PDF/TeX 版式源。"
+      },
+      {
+        "repository_url": "https://github.com/ferhaterata/learning-randomized-reductions",
+        "path": "results/Bitween-Results(Sheet1-ICML).csv",
+        "role": "data_file",
+        "tool": "CSV",
+        "evidence": "README 将该 CSV 指为论文主 RSR-Bench 结果；80-function records 支撑 Table 1、Figure 2–4 及 Tables 8–15 的逐函数结果。"
+      },
+      {
+        "repository_url": "https://github.com/ferhaterata/learning-randomized-reductions",
+        "path": "results/Bitween-Results(Sheet1-ICML-Algebraic).csv",
+        "role": "data_file",
+        "tool": "CSV",
+        "evidence": "README 将该 CSV 指为 algebraic 结果；17 个 A01–A17 records 支撑 Table 7、Tables 16–19 和 Table 21 的结构域数据。"
+      },
+      {
+        "repository_url": "https://github.com/ferhaterata/learning-randomized-reductions",
+        "path": "README.md",
+        "role": "other",
+        "tool": "Markdown",
+        "evidence": "README 直接给出 Learning Randomized Reductions、作者/论文与 arXiv 关联，并映射 overview.png、evaluation/create_table.py 和 results CSV 的用途。"
+      }
+    ],
+    "search_note": "source inventory 自动候选为 no_public_source_found，候选 ferhaterata/learn 返回 404；以论文完整标题、作者 Ferhat Erata、arXiv 2412.18134 和 OpenReview 关联检索后确认官方仓库 ferhaterata/learning-randomized-reductions。仓库树和 README 显示 docs/overview.png、evaluation/create_table.py 与两份 canonical CSV；没有 paper TeX、TikZ/PGF、SVG、notebook 或 Figure 1/2/5 的 editable plot source。仓库与本地 corpus/visual_sources/icml-2026-73ef6e227632/ 均未提供完整视觉源；Figure 5 有 exact rendered PNG/layout reference，Figures 3–4 有对应 matplotlib 数据/几何 helper 但当前 cmap=\"Oranges\" 与 PDF 蓝色不一致，因此整体为 partial_visual_source。未克隆权重、数据集或 checkpoint。"
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 2,
+    "appendix_figures": 1,
+    "appendix_tables": 19,
+    "dominant_figure_typography": {
+      "family": [
+        "NimbusRomNo9L",
+        "DejaVu Sans",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 12.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "NimbusRomNo9L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 9.0,
+      "header_size_pt": 9.0,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figure 2–4 使用连续蓝色 heatmap（约 #08306B–#F7FBFF）并以 colorbar 编码强度；Figure 1/5 使用蓝/青流程色、灰色数据框和少量洋红强调。Table 1/7 用浅蓝 cell fill 标出 aggregate 决策值。GitHub create_table.py 当前 cmap=\"Oranges\"，因此源码 palette 与 PDF 蓝色渲染存在可见漂移。",
+    "vector_raster_mix": "Figure 1 与 Figure 5 在 PDF 中呈矢量/文字绘制；Figures 2–4 的 heatmap 为嵌入栅格（约 227–286 ppi），表格、caption、公式和线框为 PDF 文字/矢量对象。全部 78 页按 200 dpi 渲染复核。",
+    "style_consistency": "正文/表格主要使用 NimbusRomNo9L 与 Computer Modern math，diagram/heatmap 标签混用 DejaVu Sans；紧凑表格多为 full grid，长明细/目录表为 partial grid。蓝色 heatmap 语义跨 Figures 2–4 稳定，但 Figure 1/5 的流程图强调色和公开脚本的橙色设置构成局部不一致。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 3,
+      "module": "method_interface / motivating example",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "conceptual_diagram",
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. An approximate implementation of the sigmoid activation function used as oracle and a graph representing randomly selected points by B ITWEEN which are then used to discover an RSR.",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#1F4E79",
+          "#2F75B5",
+          "#70AD47",
+          "#7F8C3A",
+          "#C97C7C",
+          "#A66FB5",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "深蓝实线表示 sigmoid oracle；不同颜色和 marker 表示 Π(x)、Π(x+r)、Π(x−r)、Π(r) 等采样/实现值；左侧灰色代码框承载程序与公式语境。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 9,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top_center",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 4,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sample/input value (linear axis)",
+        "y": "function output (linear axis)",
+        "color": "oracle and four implementation/query series",
+        "shape": "triangle, circle, square and star distinguish sampled query forms",
+        "line": "solid sigmoid curve plus dotted guides from sampled inputs",
+        "facet": null,
+        "text": "code line numbers, formulas, and series legend"
+      },
+      "data_and_statistics": "概念性 sigmoid 示例而非统计汇总；左侧给出 Taylor 近似程序，右侧在 15 个独立随机且相关输入上展示 oracle 与 Π 的值。图中的 RSR 是方法接口示例，未给出误差区间或样本不确定性。",
+      "evidence_relation": "正文 Section 2 先以 sigmoid oracle/程序 Π 和 Equation (1) 引出随机自约简；Figure 1 把代码、查询点与学到的关系放到同一视觉接口，随后由 Algorithm 1 和实验 Figure 2/Table 1 检验规模化表现。",
+      "design_strengths": [
+        "把程序输入、随机查询和目标 RSR 置于同一页，降低抽象定义到实验的切换成本。",
+        "legend、marker 和公式共同解释不同查询项，主曲线与采样点的语义可追踪。"
+      ],
+      "design_weaknesses": [
+        "代码框、公式 inset、曲线和大量标注竞争有限版面，最小字号偏小。",
+        "caption 不定义 RSR，脱离正文时无法独立解释缩写和发现的具体关系。",
+        "多颜色 marker 主要依赖颜色/形状联合识别，灰度打印下系列区分会变弱。"
+      ],
+      "reusable_pattern": "用“可执行程序片段 + 随机查询图 + 结果公式”的复合图连接方法定义与实验证据；保留一个具体函数作为读者的 mental model。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 6,
+      "module": "experimental_design / category comparison",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "heatmap"
+      ],
+      "purpose": [
+        "main_comparison",
+        "experimental_design",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2. Performance heatmap of average verified RSRs across mathematical function categories. The dotted red line represents the boundary from symbolic to neural methods.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 8,
+        "hex": [
+          "#08306B",
+          "#2171B5",
+          "#4292C6",
+          "#6BAED6",
+          "#9ECAE1",
+          "#C6DBEF",
+          "#DEEBF7",
+          "#F7FBFF"
+        ],
+        "semantic_mapping": "蓝色深浅编码各类别×方法的 average verified RSR；右侧 colorbar 标注 Average RSRs；红色点线仅划分 symbolic 与 neural 方法边界。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 10,
+        "legend_items": 1,
+        "annotations": 80,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "10 method columns ordered from symbolic V-BITWEEN backends to neural methods",
+        "y": "8 mathematical function categories",
+        "color": "average verified RSR count/level",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "numeric heatmap cell values and category/method labels"
+      },
+      "data_and_statistics": "每个单元格聚合对应函数类别与方法的 average verified RSR；行是 Basic、Exponential、Logarithmic、Trigonometric、Hyperbolic、Inverse Trig、ML Functions、Special，列覆盖 4 个 symbolic backend 与 6 个 neural 条件。未显示误差或失败值，类别清单由 Tables 5–6 展开。",
+      "evidence_relation": "Figure 2 将 Section 4 的实验设计压缩为类别×方法比较，支撑“固定 query 的 V-BITWEEN 与 neural 方法边界”这一主叙事；Table 1 给出总体聚合，Tables 5–6 给出分组分母与函数清单，Tables 8–15 给出逐函数明细。",
+      "design_strengths": [
+        "统一色标让跨类别和方法的方向比较迅速。",
+        "直接单元格数值、类别行名和红色分界线共同表达“symbolic→neural”的实验结构。"
+      ],
+      "design_weaknesses": [
+        "密集标签和单列小尺寸限制了方法名、类别名与数值的远距离阅读。",
+        "没有不确定性、样本数量或失败分母，平均值的稳健性只能回看附录表。",
+        "蓝色强度在灰度输出中容易压缩，红色边界缺乏第二种视觉冗余。"
+      ],
+      "reusable_pattern": "以类别×方法矩阵展示跨任务聚合，并用一条结构边界把方法族切成可解释的比较面；把原始分母和逐任务值放到附录。",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "ablation / tool-use mechanism",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3. A-B ITWEEN’s intensive tool usage across all the benchmarks. Particularly useful proved the sequential_thinking_tool for guiding the exploration and helping the LLM agent.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "NimbusRomNo9L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 8,
+        "hex": [
+          "#08306B",
+          "#2171B5",
+          "#4292C6",
+          "#6BAED6",
+          "#9ECAE1",
+          "#C6DBEF",
+          "#DEEBF7",
+          "#F7FBFF"
+        ],
+        "semantic_mapping": "三个面板分别以蓝色深浅编码 Verification calls、Inference calls、Sequential thinking calls 的强度；每个面板有独立 colorbar。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 960
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "80 benchmark columns, labeled at selected benchmark indices",
+        "y": "A-BITWEEN model/tool conditions (three verification/inference rows and six sequential-thinking rows)",
+        "color": "call intensity per benchmark and tool type",
+        "shape": null,
+        "line": null,
+        "facet": "three tool-call panels: verification, inference, sequential thinking",
+        "text": "panel letters and axis labels; no cell values"
+      },
+      "data_and_statistics": "三张 80 benchmark 热图记录 A-BITWEEN 的 verification、inference 与 sequential thinking tool calls；每面板的颜色量级来自调用计数，未展示区间或误差。该图比较工具使用机制而非删除单个组件后的严格因果 ablation。",
+      "evidence_relation": "Figure 3 解释 Figure 2/Table 1 中 Agentic Bitween 的行为差异，把 A-BITWEEN 与 N-RESEARCH 的工具调用机制具体化；Figure 4 继续展示该机制的 runtime/token 成本，Tables 10–15 提供逐 benchmark 结果。",
+      "design_strengths": [
+        "三面板同一 benchmark 横轴，便于沿任务定位工具调用模式。",
+        "独立 colorbar 避免不同调用类型被错误地当作同量纲，但保持面板标题明确。"
+      ],
+      "design_weaknesses": [
+        "没有 direct cell values 或统一色标，精确跨面板强度比较困难。",
+        "80 列密度极高，行标签和刻度只能在较大页面或放大后读取。",
+        "称为 ablation 语境但实际是工具使用观察，不能单独识别某个工具的因果贡献。"
+      ],
+      "reusable_pattern": "对长任务序列使用并列矩阵：固定 x 为 benchmark、y 为系统条件、facet 为可观测工具类型，把行为机制与结果表绑定。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 9,
+      "module": "results / efficiency and cost",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4. (Left) Runtime performance across methods and benchmarks highlighting the speed of V-B ITWEEN-LR, V-B ITWEEN-MILP and the overhead of A-B ITWEEN variants. (Right) Token usage patterns correlate with the LLM’s ability to efficiently utilize them.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "NimbusRomNo9L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 8,
+        "hex": [
+          "#08306B",
+          "#2171B5",
+          "#4292C6",
+          "#6BAED6",
+          "#9ECAE1",
+          "#C6DBEF",
+          "#DEEBF7",
+          "#F7FBFF"
+        ],
+        "semantic_mapping": "左面板蓝色深浅编码 runtime，右面板编码 token usage；每个面板有 colorbar，方法行保持类别标签。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 1280
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "80 benchmark columns, labeled at selected benchmark indices",
+        "y": "method rows; runtime includes symbolic and neural variants, token panel focuses on LLM methods",
+        "color": "runtime seconds (left) or token count (right)",
+        "shape": null,
+        "line": null,
+        "facet": "two panels: runtime and token usage",
+        "text": "panel letters, method labels and sparse benchmark ticks; no cell values"
+      },
+      "data_and_statistics": "左侧为方法×benchmark runtime heatmap，右侧为 LLM 方法×benchmark token-usage heatmap；颜色表达成本量级，caption 指出 V-BITWEEN-LR/MILP 的速度与 A-BITWEEN 的 overhead。没有误差/重复运行分布，详细数值回到 Tables 8–15。",
+      "evidence_relation": "Figure 4 将 Figure 3 的工具调用机制连接到成本结论，补充 Table 1 的总体 average runtime；Tables 8–15 暴露逐函数的 time/tokens，正文据此讨论 Agentic Bitween 的效率权衡。",
+      "design_strengths": [
+        "同一 benchmark 横轴并列 runtime 与 token 成本，直接支持效能—成本叙事。",
+        "方法行排序和 panel 标题让 symbolic 与 neural 的对照路径清楚。"
+      ],
+      "design_weaknesses": [
+        "无数值标注与统一色标，跨面板和跨方法的精确成本读数需要查表。",
+        "80 列热图极密，极端值和中间值的差别会被色阶压缩。",
+        "caption 的“correlate”是描述性关联，图中没有显式相关估计或不确定性。"
+      ],
+      "reusable_pattern": "将性能和资源成本放在同一 benchmark 轴的双热图，作为结果主张的快速导航，精确值交给可复现明细表。",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 17,
+      "module": "appendix method / implementation pipeline",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 5. Overview of V-B ITWEEN.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#0089CF",
+          "#00A4EF",
+          "#0B75B1",
+          "#A90061",
+          "#F2F2F2"
+        ],
+        "semantic_mapping": "蓝/青色框和箭头编码 V-BITWEEN 数据流与步骤，灰色框承载输入/中间对象，洋红色强调公式/回归关系和验证节点。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "left-to-right pipeline progression from input program to discovered properties",
+        "y": "top-to-bottom substeps within input, reduction, regression and verification blocks",
+        "color": "blue/cyan process blocks, grey data boxes, magenta formula/verification emphasis",
+        "shape": "numbered rounded/rectangular boxes and arrows distinguish stages",
+        "line": "directed arrows encode data/control flow",
+        "facet": null,
+        "text": "Input/Output labels, reduction steps 8–10, ten numbered algorithm steps, equations"
+      },
+      "data_and_statistics": "非数据图；展示 V-BITWEEN 的输入程序、随机化 reduction、regression matrix、rational coefficients 与 property verification 的实现流程。数字 8–10 是步骤编号而非样本统计。",
+      "evidence_relation": "Figure 5 位于 Appendix F，与 Algorithm 2 和方法实现说明共同把正文抽象算法落到可复现 pipeline；它解释 Figure 1 的程序/查询接口以及 Tables 3–4 的 backend 配置，但不承担性能比较。",
+      "design_strengths": [
+        "把从程序到验证的长流程分成编号步骤、数据对象和方向箭头，复现入口明确。",
+        "颜色、框形和公式形成稳定的组件语言，适合读者回看方法章节。"
+      ],
+      "design_weaknesses": [
+        "一个页面承载十个步骤和多组公式，信息密度高，部分文字需要放大阅读。",
+        "caption 只有标题，脱离附录正文无法知道每个框和数字的语义。",
+        "洋红/青色强调依赖彩色输出，灰度打印时层级主要剩框线与文字。"
+      ],
+      "reusable_pattern": "架构图同时展示输入/输出、数据流、算法编号和验证门；用直达标签代替额外 legend，适合复杂方法的复现导览。",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results / aggregate comparison",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 1. Aggregate evaluation information about the different methods. The format of results is \"RSR/verified|unverified\", where the verified (unverified) properties passed (failed) automatic mathematical validation, and the RSR properties are a manually confirmed subset of the verified ones. The coverage information shows the (rounded) percentage of benchmarks for which the method returned at least one RSR. The format of time is \"min|average|max\" to show the (rounded) runtime range of each method. Highlighted are the methods with the most RSR count, most RSR coverage and least average runtime.",
+        "word_count": 87,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "无；仅报告聚合 count、coverage 和 min|average|max runtime。",
+      "data_and_statistics": "9 个 metric rows（每个方法族 results、rsr coverage、time）与 3 个方法族分组行；results 是 RSR/verified|unverified，coverage 是返回至少一个 RSR 的 benchmark 百分比，time 是秒的 min|average|max。",
+      "evidence_relation": "用一张 headline 表把方法性能、覆盖率和成本放到同一决策面；Table 1 的合计值由 Tables 8–15 和 Figure 2–4 的逐 benchmark 证据支撑。",
+      "design_strengths": [
+        "把 RSR 数、coverage 和 runtime 放在同一表，主结论路径短。",
+        "蓝色 cell fill 直接标出三个“most/least”决策位置，配合 caption 的方向定义。"
+      ],
+      "design_weaknesses": [
+        "方法族作为 body 分组行而非独立表头，初读时需要理解重复 metric 结构。",
+        "没有均值离散度或失败分布，聚合 headline 可能掩盖函数级异质性。"
+      ],
+      "reusable_pattern": "以统一结果/覆盖/成本三行模板组织多方法 aggregate，并用 cell color 标示预先关心的决策项。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results / novel-query mechanism",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 2. Novel query functions discovered by Agentic Bitween beyond traditional fixed query functions {x + r, x − r, x · r, x, r}. The query functions appear inside functional terms. For example, the functional term f (x + log(k)) has query function x + log(k). All properties have been symbolically verified. The right column lists RSRs A-B ITWEEN discovers via novel queries (e.g., log k, √(x² + y²)) or non-polynomial form (radicals, rational compositions, transcendental exponents).",
+        "word_count": 78,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；表中是已 symbolically verified 的性质清单，不是抽样估计。",
+      "data_and_statistics": "10 个函数行、3 列（Function、Fixed-query RSRs、Novel-query RSRs）；右列用公式/“no RSR found”表达新 query 或非多项式形式。",
+      "evidence_relation": "Table 2 是 Agentic Bitween 从固定 query 到 novel query 的直接机制证据；它把 Figure 1 的 query interface 与 Figure 3 的工具使用连接，并由 Tables 20/21 给出完整属性目录。",
+      "design_strengths": [
+        "固定 query 与 novel query 并列，机制差异无需跨表计算。",
+        "公式直接呈现发现内容，且 caption 说明所有性质已符号验证。"
+      ],
+      "design_weaknesses": [
+        "公式密度高且没有显式方法/函数类别分组，跨行比较发现类型需要读者自行归纳。",
+        "caption 未定义 RSR 缩写，脱离正文仍有语义缺口。"
+      ],
+      "reusable_pattern": "将基线 query 集与新增 query 结果并列，使用公式而非二次摘要保留 qualitative evidence。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 18,
+      "module": "appendix / experimental settings",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 3. Common experimental settings shared across all backends.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无；参数设置表。",
+      "data_and_statistics": "Parameter/Setting 两列，8 个实验设置行；覆盖 function set、degree bounds、error threshold 等跨 backend 共用条件。",
+      "evidence_relation": "为 Table 1、Figure 2–4 的公平比较提供共享实验边界，并与 Table 4 的 backend-specific 配置组成复现入口。",
+      "design_strengths": [
+        "两列结构简单，参数—设置映射清楚。",
+        "将共同预算和阈值集中到一处，减少结果表重复。"
+      ],
+      "design_weaknesses": [
+        "caption 不列出设置内容，脱离表头仍需读取每一行。",
+        "无单位/不确定性列，数值语义完全依赖 parameter 名。"
+      ],
+      "reusable_pattern": "用紧凑 parameter/setting 表先固定公共实验合同，再在下一表拆分 backend 差异。",
+      "evidence": {
+        "page": 18,
+        "label": "Table 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 18,
+      "module": "appendix / backend configuration",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4. Detailed hyperparameter configurations for all evaluated backends. Settings were chosen to ensure fair comparison with consistent computational budgets and no per-function tuning.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无；配置表。",
+      "data_and_statistics": "Backend/Configuration 两列，4 个 backend 行；配置单元格使用多行粗体字段标签，列出各 backend 的详细 hyperparameters。",
+      "evidence_relation": "把主文方法家族映射到实际 backend 配置，解释 Table 1 与 detailed Tables 8–19 的计算预算和无 per-function tuning 约束。",
+      "design_strengths": [
+        "多行配置仍保持 backend 对齐，适合复现实验。",
+        "caption 明确公平比较和一致预算的设计意图。"
+      ],
+      "design_weaknesses": [
+        "配置字段堆叠在单元格内，横向比较一个超参数需要跨行搜索。",
+        "没有直接链接代码默认值或运行环境，复现还需查 source repository。"
+      ],
+      "reusable_pattern": "将公共设置和 backend-specific settings 分表，避免一张宽表把可读性与复现细节混在一起。",
+      "evidence": {
+        "page": 18,
+        "label": "Table 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 22,
+      "module": "appendix / category definitions",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5. Function categories of Figure 2 (1-4)",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无；类别清单。",
+      "data_and_statistics": "4 个类别列（Basic、Exponential、Logarithmic、Trigonometric），最长 9 个函数项；部分网格用水平分隔和类别竖线维持列结构。",
+      "evidence_relation": "逐项定义 Figure 2 的前四行类别，为平均 verified RSR 的分组分母提供可复现清单。",
+      "design_strengths": [
+        "类别列并列且占用少量版面，适合查找函数归属。",
+        "部分网格比完整单元格边框更轻，减少附录视觉噪声。"
+      ],
+      "design_weaknesses": [
+        "长短不一的类别列造成空白不均，未显示每类样本数。",
+        "caption 不说明每列的函数数量，需数行或回看数据文件。"
+      ],
+      "reusable_pattern": "用多列清单把聚合热图的类别定义显式化，同时保持轻量部分网格。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 22,
+      "module": "appendix / category definitions",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6. Function categories of Figure 2 (5-8)",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无；类别清单。",
+      "data_and_statistics": "4 个类别列（Hyperbolic、Inverse Trig.、ML Functions、Special），最长 10 个函数项；部分网格维持列边界。",
+      "evidence_relation": "逐项定义 Figure 2 的后四行类别，与 Table 5 共同封闭类别分母，并支撑 Tables 8–15 的函数索引。",
+      "design_strengths": [
+        "与 Table 5 使用同一列式和规则，跨类别查找一致。",
+        "把特殊/机器学习函数显式列出，避免热图行名过度概括。"
+      ],
+      "design_weaknesses": [
+        "类别名称缩写（Inverse Trig.）和短列项需要依赖正文语境。",
+        "无样本数和失败值，不能仅凭清单判断类别难度。"
+      ],
+      "reusable_pattern": "将实验类别作为可审计字典，而不是把类别名留在图轴上。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 22,
+      "module": "appendix / algebraic aggregate comparison",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 7. Aggregate evaluation information about the different methods on algebraic structures. The format of results is \"RSR/verified|unverified\", where the verified (unverified) properties passed (failed) automatic mathematical validation, and the RSR properties are a manually confirmed subset of the verified ones. The coverage information shows the (rounded) percentage of benchmarks for which the method returned at least one RSR. The format of time is \"min|average|max\" to show the (rounded) runtime range of each method. Highlighted are the methods with the most RSR count, most RSR coverage and least average runtime.",
+        "word_count": 90,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "grid",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "无；仅报告聚合 count、coverage 和 min|average|max runtime。",
+      "data_and_statistics": "与 Table 1 同构的 5 列 aggregate 表，包含 3 个方法族分组行和 9 个 metric rows，针对 A01–A17 algebraic structures。",
+      "evidence_relation": "Table 7 将主文 aggregate 模板迁移到 algebraic extension；Tables 16–19 提供逐结构结果，Table 21 给出 Agentic Bitween 的完整属性。",
+      "design_strengths": [
+        "复用 Table 1 的指标结构，跨 benchmark 域比较直接。",
+        "cell color 保留 headline 决策编码，读者可快速定位方法差异。"
+      ],
+      "design_weaknesses": [
+        "附录表继续使用聚合结果，没有不确定性或结构类别分解。",
+        "表与 Table 1 相距较远，正文指针不足时容易错过 algebraic 对应关系。"
+      ],
+      "reusable_pattern": "固定 aggregate schema 后，用同一视觉模板扩展到新的 benchmark family。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 24,
+      "module": "appendix / RSR-Bench / V-BITWEEN backend detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 8. RSR-Bench: Detailed results for V-B ITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；结果是逐函数 count/validation status，time 为成本列，neural 表另列 tokens。",
+      "data_and_statistics": "明细表逐 benchmark/函数报告 RSR/verified|unverified、运行时间；V-BITWEEN 表按 PySR、GPLearn、MILP、LR 展开，neural 表按 N-RESEARCH 与 A-BITWEEN 的模型条件展开。RSR 是 verified 属性的人工确认子集，unverified 是自动验证失败项；时间单位为秒，neural 表另有 tokens。",
+      "evidence_relation": "这些附录明细将 Table 1/Table 7 和 Figures 2–4 的聚合/热图还原到单个 benchmark，支持复现、失败定位和成本解释；读者可沿方法族、模型和函数名追溯主文结论。",
+      "design_strengths": [
+        "表头把方法族、结果格式与成本列并置，逐函数比较路径稳定。",
+        "跨页重复 caption/header，长表仍能定位当前模型和指标。"
+      ],
+      "design_weaknesses": [
+        "40 行/页且无行级横线，密集数字扫描成本高。",
+        "RSR/verified|unverified 与 time/tokens 的单位依赖 caption，正文之外仍需反复回看定义。"
+      ],
+      "reusable_pattern": "多级表头 + 重复页眉 + 可复现的逐任务结果列，适合把聚合 headline 拆回审计级证据。",
+      "evidence": {
+        "page": 24,
+        "label": "Table 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 25,
+      "module": "appendix / RSR-Bench / V-BITWEEN backend detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 9. RSR-Bench: Detailed results for V-B ITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；结果是逐函数 count/validation status，time 为成本列，neural 表另列 tokens。",
+      "data_and_statistics": "明细表逐 benchmark/函数报告 RSR/verified|unverified、运行时间；V-BITWEEN 表按 PySR、GPLearn、MILP、LR 展开，neural 表按 N-RESEARCH 与 A-BITWEEN 的模型条件展开。RSR 是 verified 属性的人工确认子集，unverified 是自动验证失败项；时间单位为秒，neural 表另有 tokens。",
+      "evidence_relation": "这些附录明细将 Table 1/Table 7 和 Figures 2–4 的聚合/热图还原到单个 benchmark，支持复现、失败定位和成本解释；读者可沿方法族、模型和函数名追溯主文结论。",
+      "design_strengths": [
+        "表头把方法族、结果格式与成本列并置，逐函数比较路径稳定。",
+        "跨页重复 caption/header，长表仍能定位当前模型和指标。"
+      ],
+      "design_weaknesses": [
+        "40 行/页且无行级横线，密集数字扫描成本高。",
+        "RSR/verified|unverified 与 time/tokens 的单位依赖 caption，正文之外仍需反复回看定义。"
+      ],
+      "reusable_pattern": "多级表头 + 重复页眉 + 可复现的逐任务结果列，适合把聚合 headline 拆回审计级证据。",
+      "evidence": {
+        "page": 25,
+        "label": "Table 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 26,
+      "module": "appendix / RSR-Bench / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 10. RSR-Bench: Detailed results for N-RESEARCH and A-BITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；结果是逐函数 count/validation status，time 为成本列，neural 表另列 tokens。",
+      "data_and_statistics": "明细表逐 benchmark/函数报告 RSR/verified|unverified、运行时间；V-BITWEEN 表按 PySR、GPLearn、MILP、LR 展开，neural 表按 N-RESEARCH 与 A-BITWEEN 的模型条件展开。RSR 是 verified 属性的人工确认子集，unverified 是自动验证失败项；时间单位为秒，neural 表另有 tokens。",
+      "evidence_relation": "这些附录明细将 Table 1/Table 7 和 Figures 2–4 的聚合/热图还原到单个 benchmark，支持复现、失败定位和成本解释；读者可沿方法族、模型和函数名追溯主文结论。",
+      "design_strengths": [
+        "表头把方法族、结果格式与成本列并置，逐函数比较路径稳定。",
+        "跨页重复 caption/header，长表仍能定位当前模型和指标。"
+      ],
+      "design_weaknesses": [
+        "40 行/页且无行级横线，密集数字扫描成本高。",
+        "RSR/verified|unverified 与 time/tokens 的单位依赖 caption，正文之外仍需反复回看定义。"
+      ],
+      "reusable_pattern": "多级表头 + 重复页眉 + 可复现的逐任务结果列，适合把聚合 headline 拆回审计级证据。",
+      "evidence": {
+        "page": 26,
+        "label": "Table 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 27,
+      "module": "appendix / RSR-Bench / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 11. RSR-Bench: Detailed results for N-RESEARCH and A-BITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；结果是逐函数 count/validation status，time 为成本列，neural 表另列 tokens。",
+      "data_and_statistics": "明细表逐 benchmark/函数报告 RSR/verified|unverified、运行时间；V-BITWEEN 表按 PySR、GPLearn、MILP、LR 展开，neural 表按 N-RESEARCH 与 A-BITWEEN 的模型条件展开。RSR 是 verified 属性的人工确认子集，unverified 是自动验证失败项；时间单位为秒，neural 表另有 tokens。",
+      "evidence_relation": "这些附录明细将 Table 1/Table 7 和 Figures 2–4 的聚合/热图还原到单个 benchmark，支持复现、失败定位和成本解释；读者可沿方法族、模型和函数名追溯主文结论。",
+      "design_strengths": [
+        "表头把方法族、结果格式与成本列并置，逐函数比较路径稳定。",
+        "跨页重复 caption/header，长表仍能定位当前模型和指标。"
+      ],
+      "design_weaknesses": [
+        "40 行/页且无行级横线，密集数字扫描成本高。",
+        "RSR/verified|unverified 与 time/tokens 的单位依赖 caption，正文之外仍需反复回看定义。"
+      ],
+      "reusable_pattern": "多级表头 + 重复页眉 + 可复现的逐任务结果列，适合把聚合 headline 拆回审计级证据。",
+      "evidence": {
+        "page": 27,
+        "label": "Table 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 28,
+      "module": "appendix / RSR-Bench / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 12. RSR-Bench: Detailed results for N-RESEARCH and A-BITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；结果是逐函数 count/validation status，time 为成本列，neural 表另列 tokens。",
+      "data_and_statistics": "明细表逐 benchmark/函数报告 RSR/verified|unverified、运行时间；V-BITWEEN 表按 PySR、GPLearn、MILP、LR 展开，neural 表按 N-RESEARCH 与 A-BITWEEN 的模型条件展开。RSR 是 verified 属性的人工确认子集，unverified 是自动验证失败项；时间单位为秒，neural 表另有 tokens。",
+      "evidence_relation": "这些附录明细将 Table 1/Table 7 和 Figures 2–4 的聚合/热图还原到单个 benchmark，支持复现、失败定位和成本解释；读者可沿方法族、模型和函数名追溯主文结论。",
+      "design_strengths": [
+        "表头把方法族、结果格式与成本列并置，逐函数比较路径稳定。",
+        "跨页重复 caption/header，长表仍能定位当前模型和指标。"
+      ],
+      "design_weaknesses": [
+        "40 行/页且无行级横线，密集数字扫描成本高。",
+        "RSR/verified|unverified 与 time/tokens 的单位依赖 caption，正文之外仍需反复回看定义。"
+      ],
+      "reusable_pattern": "多级表头 + 重复页眉 + 可复现的逐任务结果列，适合把聚合 headline 拆回审计级证据。",
+      "evidence": {
+        "page": 28,
+        "label": "Table 12",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 29,
+      "module": "appendix / RSR-Bench / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 13. RSR-Bench: Detailed results for N-RESEARCH and A-BITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；结果是逐函数 count/validation status，time 为成本列，neural 表另列 tokens。",
+      "data_and_statistics": "明细表逐 benchmark/函数报告 RSR/verified|unverified、运行时间；V-BITWEEN 表按 PySR、GPLearn、MILP、LR 展开，neural 表按 N-RESEARCH 与 A-BITWEEN 的模型条件展开。RSR 是 verified 属性的人工确认子集，unverified 是自动验证失败项；时间单位为秒，neural 表另有 tokens。",
+      "evidence_relation": "这些附录明细将 Table 1/Table 7 和 Figures 2–4 的聚合/热图还原到单个 benchmark，支持复现、失败定位和成本解释；读者可沿方法族、模型和函数名追溯主文结论。",
+      "design_strengths": [
+        "表头把方法族、结果格式与成本列并置，逐函数比较路径稳定。",
+        "跨页重复 caption/header，长表仍能定位当前模型和指标。"
+      ],
+      "design_weaknesses": [
+        "40 行/页且无行级横线，密集数字扫描成本高。",
+        "RSR/verified|unverified 与 time/tokens 的单位依赖 caption，正文之外仍需反复回看定义。"
+      ],
+      "reusable_pattern": "多级表头 + 重复页眉 + 可复现的逐任务结果列，适合把聚合 headline 拆回审计级证据。",
+      "evidence": {
+        "page": 29,
+        "label": "Table 13",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 30,
+      "module": "appendix / RSR-Bench / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 14. RSR-Bench: Detailed results for N-RESEARCH and A-BITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；结果是逐函数 count/validation status，time 为成本列，neural 表另列 tokens。",
+      "data_and_statistics": "明细表逐 benchmark/函数报告 RSR/verified|unverified、运行时间；V-BITWEEN 表按 PySR、GPLearn、MILP、LR 展开，neural 表按 N-RESEARCH 与 A-BITWEEN 的模型条件展开。RSR 是 verified 属性的人工确认子集，unverified 是自动验证失败项；时间单位为秒，neural 表另有 tokens。",
+      "evidence_relation": "这些附录明细将 Table 1/Table 7 和 Figures 2–4 的聚合/热图还原到单个 benchmark，支持复现、失败定位和成本解释；读者可沿方法族、模型和函数名追溯主文结论。",
+      "design_strengths": [
+        "表头把方法族、结果格式与成本列并置，逐函数比较路径稳定。",
+        "跨页重复 caption/header，长表仍能定位当前模型和指标。"
+      ],
+      "design_weaknesses": [
+        "40 行/页且无行级横线，密集数字扫描成本高。",
+        "RSR/verified|unverified 与 time/tokens 的单位依赖 caption，正文之外仍需反复回看定义。"
+      ],
+      "reusable_pattern": "多级表头 + 重复页眉 + 可复现的逐任务结果列，适合把聚合 headline 拆回审计级证据。",
+      "evidence": {
+        "page": 30,
+        "label": "Table 14",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 15",
+      "page": 31,
+      "module": "appendix / RSR-Bench / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 15. RSR-Bench: Detailed results for N-RESEARCH and A-BITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；结果是逐函数 count/validation status，time 为成本列，neural 表另列 tokens。",
+      "data_and_statistics": "明细表逐 benchmark/函数报告 RSR/verified|unverified、运行时间；V-BITWEEN 表按 PySR、GPLearn、MILP、LR 展开，neural 表按 N-RESEARCH 与 A-BITWEEN 的模型条件展开。RSR 是 verified 属性的人工确认子集，unverified 是自动验证失败项；时间单位为秒，neural 表另有 tokens。",
+      "evidence_relation": "这些附录明细将 Table 1/Table 7 和 Figures 2–4 的聚合/热图还原到单个 benchmark，支持复现、失败定位和成本解释；读者可沿方法族、模型和函数名追溯主文结论。",
+      "design_strengths": [
+        "表头把方法族、结果格式与成本列并置，逐函数比较路径稳定。",
+        "跨页重复 caption/header，长表仍能定位当前模型和指标。"
+      ],
+      "design_weaknesses": [
+        "40 行/页且无行级横线，密集数字扫描成本高。",
+        "RSR/verified|unverified 与 time/tokens 的单位依赖 caption，正文之外仍需反复回看定义。"
+      ],
+      "reusable_pattern": "多级表头 + 重复页眉 + 可复现的逐任务结果列，适合把聚合 headline 拆回审计级证据。",
+      "evidence": {
+        "page": 31,
+        "label": "Table 15",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 16",
+      "page": 32,
+      "module": "appendix / Algebraic / V-BITWEEN backend detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 16. Algebraic: Detailed results for V-B ITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；A01–A17 的 RSR/verified|unverified 与 time（以及 neural 表的 tokens）逐结构列出。",
+      "data_and_statistics": "17 个 A01–A17 algebraic rows；V-BITWEEN 版本为 10 列（#、name、四个 backend 的 results/time），neural 版本为 8 列（#、name、两个模型组的 results/time/tokens）。",
+      "evidence_relation": "将 Table 7 的 algebraic aggregate 还原到 A01–A17，支持 Figure 2 类比叙事之外的结构性 robustness 检查；Table 21 展开 Agentic Bitween 发现的公式。",
+      "design_strengths": [
+        "沿用 RSR-Bench 明细表头，跨 domain 对比成本低。",
+        "A01–A17 结构名保留在 stub 列，便于与 Table 21 对照。"
+      ],
+      "design_weaknesses": [
+        "表头和结果格式仍高度密集，跨模型的精确比较需要横向追踪。",
+        "没有按代数结构类型的分组或失败原因列。"
+      ],
+      "reusable_pattern": "在不改变结果 schema 的前提下，把新 benchmark family 接入同一逐任务审计表。",
+      "evidence": {
+        "page": 32,
+        "label": "Table 16",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 17",
+      "page": 32,
+      "module": "appendix / Algebraic / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 17. Algebraic: Detailed results for N-RESEARCH and A-B ITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；A01–A17 的 RSR/verified|unverified 与 time（以及 neural 表的 tokens）逐结构列出。",
+      "data_and_statistics": "17 个 A01–A17 algebraic rows；V-BITWEEN 版本为 10 列（#、name、四个 backend 的 results/time），neural 版本为 8 列（#、name、两个模型组的 results/time/tokens）。",
+      "evidence_relation": "将 Table 7 的 algebraic aggregate 还原到 A01–A17，支持 Figure 2 类比叙事之外的结构性 robustness 检查；Table 21 展开 Agentic Bitween 发现的公式。",
+      "design_strengths": [
+        "沿用 RSR-Bench 明细表头，跨 domain 对比成本低。",
+        "A01–A17 结构名保留在 stub 列，便于与 Table 21 对照。"
+      ],
+      "design_weaknesses": [
+        "表头和结果格式仍高度密集，跨模型的精确比较需要横向追踪。",
+        "没有按代数结构类型的分组或失败原因列。"
+      ],
+      "reusable_pattern": "在不改变结果 schema 的前提下，把新 benchmark family 接入同一逐任务审计表。",
+      "evidence": {
+        "page": 32,
+        "label": "Table 17",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 18",
+      "page": 33,
+      "module": "appendix / Algebraic / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 18. Algebraic: Detailed results for N-RESEARCH and A-B ITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；A01–A17 的 RSR/verified|unverified 与 time（以及 neural 表的 tokens）逐结构列出。",
+      "data_and_statistics": "17 个 A01–A17 algebraic rows；V-BITWEEN 版本为 10 列（#、name、四个 backend 的 results/time），neural 版本为 8 列（#、name、两个模型组的 results/time/tokens）。",
+      "evidence_relation": "将 Table 7 的 algebraic aggregate 还原到 A01–A17，支持 Figure 2 类比叙事之外的结构性 robustness 检查；Table 21 展开 Agentic Bitween 发现的公式。",
+      "design_strengths": [
+        "沿用 RSR-Bench 明细表头，跨 domain 对比成本低。",
+        "A01–A17 结构名保留在 stub 列，便于与 Table 21 对照。"
+      ],
+      "design_weaknesses": [
+        "表头和结果格式仍高度密集，跨模型的精确比较需要横向追踪。",
+        "没有按代数结构类型的分组或失败原因列。"
+      ],
+      "reusable_pattern": "在不改变结果 schema 的前提下，把新 benchmark family 接入同一逐任务审计表。",
+      "evidence": {
+        "page": 33,
+        "label": "Table 18",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 19",
+      "page": 33,
+      "module": "appendix / Algebraic / neural model detail",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 19. Algebraic: Detailed results for N-RESEARCH and A-B ITWEEN. Results format shows RSR/verified|unverified where the verified, unverified properties passed or failed automatic mathematical confirmation, respectively, while the RSR properties are a manually confirmed subset of the verified ones.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；A01–A17 的 RSR/verified|unverified 与 time（以及 neural 表的 tokens）逐结构列出。",
+      "data_and_statistics": "17 个 A01–A17 algebraic rows；V-BITWEEN 版本为 10 列（#、name、四个 backend 的 results/time），neural 版本为 8 列（#、name、两个模型组的 results/time/tokens）。",
+      "evidence_relation": "将 Table 7 的 algebraic aggregate 还原到 A01–A17，支持 Figure 2 类比叙事之外的结构性 robustness 检查；Table 21 展开 Agentic Bitween 发现的公式。",
+      "design_strengths": [
+        "沿用 RSR-Bench 明细表头，跨 domain 对比成本低。",
+        "A01–A17 结构名保留在 stub 列，便于与 Table 21 对照。"
+      ],
+      "design_weaknesses": [
+        "表头和结果格式仍高度密集，跨模型的精确比较需要横向追踪。",
+        "没有按代数结构类型的分组或失败原因列。"
+      ],
+      "reusable_pattern": "在不改变结果 schema 的前提下，把新 benchmark family 接入同一逐任务审计表。",
+      "evidence": {
+        "page": 33,
+        "label": "Table 19",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 20",
+      "page": 34,
+      "module": "appendix / complete RSR property catalogue",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "reproduction",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 20. RSR Properties Discovered by Claude Opus 4.1 (Agentic Bitween) across RSR-Bench. Results show comprehensive mathematical relationships discovered through novel query functions.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 80,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 80,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；公式目录，不是带抽样不确定性的估计表。",
+      "data_and_statistics": "跨 p34–67 的 80 个 RSR-Bench function row groups；两列为 Function 与 Discovered RSR Properties，右列密集排列 verified mathematical relationships，页间重复表头。",
+      "evidence_relation": "将 Table 2 的 novel-query qualitative evidence 扩展为完整属性目录，并为逐 benchmark 明细 Tables 8–15 提供公式级追踪；公式内容是发现结果本身而非统计摘要。",
+      "design_strengths": [
+        "公式原样保留，读者可从函数名定位所有发现。",
+        "跨页重复 header/caption，长目录仍保持列语义。"
+      ],
+      "design_weaknesses": [
+        "单元格公式极密且 row group 跨页，阅读路径长。",
+        "没有按 query 类型、验证状态或难度的二级索引，查找和比较成本高。"
+      ],
+      "reusable_pattern": "用两列“对象—完整性质”目录保存 qualitative/discovery evidence，再由聚合表承载数量结论。",
+      "evidence": {
+        "page": 34,
+        "label": "Table 20",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 21",
+      "page": 68,
+      "module": "appendix / algebraic RSR property catalogue",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "qualitative_evidence",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 21. RSR Properties Discovered by Claude Opus 4.1 (Agentic Bitween) across the algebraic benchmarks (A01–A17). Notation: DP = Cl(2, 0) product determinant; DPM = matrix-product determinant; DT = Cl(2, 0) determinant; OP = octonion-product norm²; QN = quaternion norm²; QP = quaternion-product norm².",
+        "word_count": 44,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "NimbusRomNo9L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 17,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无；A01–A17 公式目录，caption 另给符号缩写。",
+      "data_and_statistics": "跨 p68–78 的 17 个 algebraic row groups；两列为 Function 与 Discovered RSR Properties，页间重复 header，caption 给出 DP/DPM/DT/OP/QN/QP notation。",
+      "evidence_relation": "把 Table 7 与 Tables 16–19 的 algebraic aggregate/明细连接到公式级发现，检验 Agentic Bitween 在代数结构上的 robustness 与可复现性。",
+      "design_strengths": [
+        "notation 集中写入 caption，减少公式列的重复解释。",
+        "每个 A01–A17 结构保留完整关系，适合逐项核对。"
+      ],
+      "design_weaknesses": [
+        "长公式和跨页 row group 造成很高的垂直扫描负担。",
+        "没有按结构类型或关系族分面，跨 A01–A17 的模式需要人工归纳。"
+      ],
+      "reusable_pattern": "对新 domain 复用两列公式目录和 caption notation，把 qualitative properties 与 aggregate count 分离。",
+      "evidence": {
+        "page": 68,
+        "label": "Table 21",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 以 sigmoid 程序和随机查询建立方法直觉，正文定义与 Algorithm 1/2 接着形式化；Figure 5 在附录给出 V-BITWEEN pipeline；Figure 2 与 Table 1 汇总跨类别/方法表现，Figure 3 展示工具机制，Table 2 展示 novel queries，Figure 4 展示 runtime/token 成本，Table 7 与 Tables 16–21 扩展到 algebraic structures 和完整公式目录。",
+    "caption_system": "Figure/Table N. 统一句首标签与 sentence-case 描述；Figure 2–4 caption 解释 panel/边界/成本编码，Table 1/7 与 Tables 8–19 反复定义 RSR/verified|unverified、coverage、time，Table 21 额外定义 notation。Figure 5 caption 只有标题，部分 caption 未定义 RSR，导致脱离正文的自包含性不均。",
+    "table_header_system": "Aggregate 表以 method-family 分组、results/coverage/time 三行组织；详细表以 stub（#、name）加两级 method/model header 和 results/time/tokens 子列组织；Table 20/21 复用 Function/Discovered RSR Properties 两列并跨页重复 header。分组与成本列方向清楚，但 row-level 横线很少、跨页公式目录检索成本高。",
+    "method_result_ablation_link": "V-BITWEEN backend（PySR/GPLearn/MILP/LR）是方法实现对照；N-RESEARCH 与 A-BITWEEN 的工具调用/LLM 条件是系统级机制对照。Figure 3 记录工具使用，Figure 4 记录其成本，Table 2 记录 novel query；这些是行为/条件比较而非严格删除组件的 causal ablation，表述应保持该边界。",
+    "main_appendix_link": "主文 Figure 2–4、Table 1–2 的聚合和机制结论由附录 Tables 3–19 的配置/逐 benchmark 数值、Table 20/21 的公式目录以及 Figure 5 的实现管线展开；Table 7 和 Tables 16–19/21 专门闭合 algebraic extension。",
+    "typography_consistency": "表格字体对象稳定为 NimbusRomNo9L/Computer Modern math，Figure 1/5 的程序和 diagram 标签引入 DejaVu Sans/monospace；热图栅格标签也使用 DejaVu Sans。字号在页宽复合图和长表中压缩到约 6–9 pt，风格连贯但放大阅读仍必要。",
+    "color_consistency": "Figures 2–4 共享蓝色连续量级语义，Table 1/7 以浅蓝高亮最佳 aggregate cell；Figure 1/5 用蓝/青流程和洋红强调验证/公式。heatmap 颜色对灰度不完全安全，Figure 1/5 的颜色具有形状、框线和箭头冗余；公开 plot script 的 Oranges 与 PDF 蓝色需视为 source mismatch。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用统一 benchmark 横轴的并列 heatmap，把类别/方法、工具机制和成本组织成可追踪的视觉序列。",
+      "aggregate 表用结果—coverage—time 决策模板，详细表用两级表头和重复页眉保存逐任务复现证据。",
+      "用程序片段/查询图/公式和 numbered pipeline 把抽象方法接口连接到验证与复现。"
+    ],
+    "highest_value_objects": [
+      "Figure 1",
+      "Figure 2",
+      "Table 1",
+      "Figure 3",
+      "Figure 4",
+      "Table 20"
+    ],
+    "failure_patterns": [
+      "热图缺少误差/分母/数值标注，蓝色连续色阶在灰度和跨面板比较中信息损失较大。",
+      "长明细表和公式目录依赖密集小字号、弱行线与跨页 row group，精确审计成本高。",
+      "Figure 3 的工具使用对照容易被误读为严格 component ablation；caption/源脚本也存在缩写自包含性和 palette 漂移。"
+    ],
+    "one_sentence_visual_strategy": "以一个具体 sigmoid 接口建立直觉，用蓝色 benchmark heatmap 和 aggregate/逐任务表闭合性能、机制与成本，再以附录 pipeline 和公式目录把 novel RSR 结果扩展到可复现的 algebraic evidence。"
+  }
+}

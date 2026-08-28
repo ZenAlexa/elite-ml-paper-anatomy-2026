@@ -1,0 +1,1358 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-dff0527cb8cf",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/griver/Q-RAG"
+    ],
+    "selected_repository": "https://github.com/griver/Q-RAG",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/griver/Q-RAG",
+        "path": "README.md",
+        "role": "other",
+        "tool": null,
+        "evidence": "gh API read on pqn-qa commit 42358d78ac491843763b90677f07237471c97086; README title exactly matches the PDF title and embeds the Q-RAG paper link plus the rendered Ruler/OpenQA/Babilong assets."
+      },
+      {
+        "repository_url": "https://github.com/griver/Q-RAG",
+        "path": "images/babilong_avg_ans_v2.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "gh tree blob e23a20bad534cca2c1e1075649175beecf053673; 1177x679 README asset whose two axes, series and points match PDF Figure 2(a), but it is pixels only."
+      },
+      {
+        "repository_url": "https://github.com/griver/Q-RAG",
+        "path": "images/babilong_qa3_ans.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "gh tree blob 9ee8587ed71f9e5e7055cb502530b3ed9e3c44b7; 1118x679 README asset whose axes, series and points match PDF Figure 2(b), but it is pixels only."
+      },
+      {
+        "repository_url": "https://github.com/griver/Q-RAG",
+        "path": "images/Babilong_graphics.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "gh tree blob 61a97139a68f5a65a680f8b1fcc11b5a7c95dec8; README-combined BabiLong graphic matches the Figure 2(a,b) content and is not an editable plot source."
+      },
+      {
+        "repository_url": "https://github.com/griver/Q-RAG",
+        "path": "images/Ruler.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "gh tree blob b6f8a247337821f30b5c17e62ebdc3b594c321c1; README rendered table matches the PDF Table 1 headers, values, row groups and bolding, but no generator is provided."
+      },
+      {
+        "repository_url": "https://github.com/griver/Q-RAG",
+        "path": "images/OpenQA.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "gh tree blob 7a933ff4f5cb6edd003d3ee95d33475a5acefccb; README rendered table matches the PDF Table 2 columns, values and best/second highlighting, but no generator is provided."
+      }
+    ],
+    "search_note": "reports/tables/visual_source_inventory.csv selects griver/Q-RAG from the PDF explicit code URL and exact README title; corpus/visual_sources/iclr-2026-dff0527cb8cf/ is absent. gh repo view/readme and the pqn-qa recursive tree verify the paper identity and show no plot/figure/visual/table scripts, .tex/.tikz/.pgf, notebook or style file. The five README-linked PNGs are verified rendered assets for Figure 2 and Tables 1–2 only; Figure 1, Figure 3–6 and Tables 3–8 remain PDF-only."
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 4,
+    "appendix_figures": 3,
+    "appendix_tables": 4,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 5.5,
+        "median": 7.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "medium"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "Nimbus Mono"
+      ],
+      "body_size_pt": 6.5,
+      "header_size_pt": 7.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figure 1 用 pastel semantic boxes，Figure 2–6 用 Matplotlib 风格 categorical blue/orange/green/red 等；表格黑白 booktabs，以 bold、underline、灰色 n/a 和 ✓/◦/× 表达状态。方法颜色没有跨 Figure 2 两面板和其他图统一。",
+    "vector_raster_mix": "Figure 1、Figure 6 与 Table 1–8 主要是 PDF 矢量对象；Figure 2–5 是嵌入 raster 图加矢量 caption/正文，整体为 vector+raster mixed。",
+    "style_consistency": "Nimbus Roman/Computer Modern 的正文、caption 和表格风格稳定，表格规则和 best/second 约定大体一致；图内 DejaVu Sans 栅格文字偏小，颜色映射、legend 组织和 uncertainty 表达跨图不统一。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline",
+        "architecture"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1: Q-RAG agent interacts with multi-step retrieval environment. The starting state s0 contains the initial query q. At the start of the episode, the agent embeds all chunks of the long context C. At each step t, the agent computes a vector embedding of the current state st , which includes q and all previously selected chunks. For every chunk ci ∈ At , the utility of retrieving it is evaluated by the Q-function Qθ (st , a = ci ). The policy πθ selects the next chunk from At with probability proportional to its Qθ (st , ci ) value.",
+        "word_count": 102,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#B7E095",
+          "#D5F0C7",
+          "#C5DFFF",
+          "#F4A5E3",
+          "#FFE3A1",
+          "#C9C9C9",
+          "#7BCB7B",
+          "#000000"
+        ],
+        "semantic_mapping": "浅绿色表示 state/action embedder 与 agent 容器，浅蓝表示 environment，粉色表示 query，黄色表示文本 chunk，灰色表示已选 chunk，绿色表示数据流/箭头，黑色表示文字与边框。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 15,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从左到右的检索时间/候选文档顺序",
+        "y": "上层 agent、文档层、下层 environment 的角色",
+        "color": "组件角色与 selected/unselected 状态",
+        "shape": "矩形组件、chunk 卡片和箭头形状",
+        "line": "state→action→Q/policy→environment→next-state 闭环",
+        "facet": "Q-RAG Agent、Long-Context Document、Environment 三层",
+        "text": "公式符号、组件标题、问题与答案文本"
+      },
+      "data_and_statistics": "无样本、单位、聚合或统计不确定性；这是 MDP state/action、Q-value、policy 和 reward/critic 的机制示意。",
+      "evidence_relation": "§3.1 的 ordered state、§3.2 Eq. (1)–(5)、§3.3 Eq. (6)–(7) 与 Algorithm 1 → Figure 1 方法接口 → Figure 2/Table 1–2 结果和 Figure 3/Table 3–4 消融；图本身不隔离 reward 或 relative-position 的因果效果。",
+      "design_strengths": [
+        "把 query、已选 chunk、候选 action、Q values、policy、environment feedback 压缩在一个闭环中。",
+        "箭头方向与 next timestep 标签使多步检索接口可追踪。",
+        "公式符号与组件标题可以直接回连方法正文。"
+      ],
+      "design_weaknesses": [
+        "候选数量、softmax 公式和 STOP action 未在图中显式展开。",
+        "pastel 色在灰度和普通缩放下区分变弱。",
+        "relative positional encoding 没有独立视觉标识。"
+      ],
+      "reusable_pattern": "用 state→candidate actions→value/policy→reward→next state 的闭环对齐方法符号与数据流，并让每个后续公式在图中有明确接口。",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 1 闭环组件、箭头、chunk 示例和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 2: Comparison of answer accuracy on the long-context benchmark BabiLong. Solid lines denote methods fine-tuned on BabiLong, while dashed lines denote zero-shot methods. a) Average performance across tasks Q1–QA5. b) Performance on the hardest task, QA3, which requires the longest reasoning chain and temporal awareness.",
+        "word_count": 46,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 10,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#9467BD",
+          "#8C564B",
+          "#E377C2",
+          "#7F7F7F",
+          "#BCBD22",
+          "#17BECF"
+        ],
+        "semantic_mapping": "方法由 categorical 颜色区分；实线/虚线表达 fine-tuned/zero-shot，panel 标题表达平均任务与 QA3。两个 panel 的方法—颜色映射并不完全稳定。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 10,
+        "legend_items": 10,
+        "annotations": 2,
+        "data_marks_estimate": 85
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom_below_each_panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "context length（1K、4K、32K、128K、1M、10M，对数式布局）",
+        "y": "answer accuracy（0–1）",
+        "color": "方法类别",
+        "shape": "圆点/方形点辅助区分曲线",
+        "line": "solid=fine-tuned、dashed=zero-shot",
+        "facet": "(a) Q1–QA5 平均与 (b) QA3",
+        "text": "面板标题与各自方法 legend"
+      },
+      "data_and_statistics": "每个 marker 是一个 context length 下的 answer-accuracy 点；无 error bar、band、seed 汇总或区间。Figure 2(a) 是 Q1–QA5 平均，(b) 是 QA3；正文说明多数 baseline 为原论文 reported numbers，Q-RAG 延伸到 10M。",
+      "evidence_relation": "摘要/§4.2 的 ultra-long scaling 主张 → Figure 2 总体与 hardest-case 曲线 → Table 1 的 RULER 1M 结果；QA3 的 Beam Retriever fine-tuning 失败在正文中说明，但未形成单独图内 failure 编码。",
+      "design_strengths": [
+        "相同的 context-length 轴让退化趋势成为直接比较。",
+        "总体平均与最难 QA3 并排，保留了 temporal/multi-step 难点。",
+        "caption 明确定义实线与虚线的训练状态。"
+      ],
+      "design_weaknesses": [
+        "多色 legend 密集，两个 panel 的颜色语义不完全一致。",
+        "没有样本分母、误差或 reported/reproduced 图内标记。",
+        "10M 曲线与异源 baseline 的可比性依赖正文来源说明。"
+      ],
+      "reusable_pattern": "用同一对数式 context-scaling 轴并置总体平均和最难子任务，并用线型编码训练状态；应同时加 provenance、分母和 uncertainty 注记。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 2 两面板、对数式 context axis、双 legend、曲线和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 3: Ablation for (a) policy entropy coefficient (α) in soft Q function and (b) for λ-return parameter. Inference runtime comparison (c), context length in tokens on the x-axes.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#000000",
+          "#D9D9D9"
+        ],
+        "semantic_mapping": "蓝/橙分别承载 QA2/QA3 或 Beam Retriever/Q-RAG 对照，绿色承载 GraphReader 系列，黑色承载 QwQ-32B，浅灰为网格。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 6,
+        "data_marks_estimate": 45
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "panel_specific_legends",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "(a) α、(b) λ、(c) context length/tokens",
+        "y": "(a,b) average return；(c) Time (sec)",
+        "color": "QA2/QA3 或 runtime 方法",
+        "shape": "圆点与 x marker",
+        "line": "实线曲线；GraphReader(retrieve) 使用虚线",
+        "facet": "(a) entropy coefficient、(b) λ-return、(c) inference runtime",
+        "text": "panel title、axis label 与 panel 内 legend"
+      },
+      "data_and_statistics": "(a)/(b) 是 α 和 λ 的 average-return 点轨迹，(c) 是 QwQ-32B 条件下多方法 runtime 随 token/context length 变化的曲线；(c) y 轴为对数尺度。没有 seed 聚合、误差、区间或统一端到端成本定义。",
+      "evidence_relation": "Eq. (2)–(5) 的 soft-Q、target 和 λ-return → Figure 3(a,b) 超参数敏感性；Appendix D 的 O(N) 复杂度与单 GPU 叙事 → Figure 3(c) runtime；Table 3 的去组件对照是其因果补充。",
+      "design_strengths": [
+        "将训练超参数和运行成本放在同一视觉对象中。",
+        "runtime panel 的 log y 轴容纳多个数量级。",
+        "panel 标题和 legend 使指标/方法边界可定位。"
+      ],
+      "design_weaknesses": [
+        "敏感性点没有重复或 uncertainty，完整 sampled values 也未列出。",
+        "retriever、reader、agent 的 runtime 边界不同，不能直接视为同一成本量。",
+        "caption 未解释 log y 轴或曲线缺失点。"
+      ],
+      "reusable_pattern": "把算法组件敏感性与成本轴并列，但显式写出单位、尺度和测量边界，避免把不同系统边界的 runtime 当作单一 headline。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 3 三面板、轴尺度、legend、marker/线型与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "efficiency_cost",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 4: Early stopping analysis on HotPotQA (top row) and BabiLong QA2 (bottom row). Panels (a,d) show the proportions of early and late errors as a function of the Q-value threshold Qthreshold . Panels (b,e) show the proportion of perfect stops. Panels (c,f) show the average number of selected chunks (episode length).",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 6.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#BFBFBF",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝色表示 early/perfect/mean，橙色表示 late，浅灰表示网格，黑色表示标签；panel row/legend 文本提供额外语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": 78
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "panel_specific_legends",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Q_threshold",
+        "y": "rate（a,b,d,e）或 average number of selected chunks（c,f）",
+        "color": "early/late 或单一 stopping outcome",
+        "shape": "圆点 marker",
+        "line": "实线轨迹",
+        "facet": "上排 HotPotQA、下排 BabiLong QA2；列为 errors/perfect/length",
+        "text": "panel title 与 Early/Late/Perfect/Mean Len legend"
+      },
+      "data_and_statistics": "每个点对应一个 Q_threshold；(a,d) 为 early/late error proportions，(b,e) 为 perfect-stop proportion，(c,f) 为平均 selected chunks。无样本分母、seed、error bar 或区间；未收集全部 ground-truth chunks 的 episode 在正文中说明被丢弃。",
+      "evidence_relation": "Appendix B 的 t_stop 与 t_earliest 定义 → Figure 4 错误类型、perfect stop 和长度 → Table 5/6 的同 threshold 数值 → Figure 5 ROC；高阈值 early-stop failure 与低阈值 late-stop cost 在同一轴上显现。",
+      "design_strengths": [
+        "2×3 版式将错误、理想事件和长度放在同一阈值轴。",
+        "上下排复用列语义，跨 HotPotQA/BabiLong QA2 容易扫读。",
+        "图形趋势与 Appendix B 的中等阈值结论相互核对。"
+      ],
+      "design_weaknesses": [
+        "重复 legend 占据图面，关键转折没有 annotation。",
+        "没有样本数、误差或 discarded episode 比例。",
+        "不同 y 量纲依靠 panel 轴标签区分，整体阅读负担较高。"
+      ],
+      "reusable_pattern": "动态停止图同时呈现错误分解、perfect event 比例和平均计算步数，固定 row-wise dataset 与 column-wise outcome，使效率—质量 trade-off 可见。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Figure 4 六面板、上下排数据集、阈值轴、legend 和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 5: ROC curves for the early-stopping rule. Panel (a) shows HotPotQA; panel (b) shows BabiLong QA2. The dashed line indicates random performance. Each point corresponds to a different Q-value threshold Qthreshold . The red star denotes the oracle stopping policy that always stops at tearliest , i.e. exactly when the last ground-truth chunk has been retrieved.",
+        "word_count": 57,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#FF7F0E",
+          "#000080",
+          "#FF0000",
+          "#BFBFBF",
+          "#000000"
+        ],
+        "semantic_mapping": "橙色为 stopping-rule ROC，深蓝虚线为 random-performance diagonal，红星为 oracle point，浅灰为网格，黑色为标签。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 1,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom_right_each_panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "False Positive Rate",
+        "y": "True Positive Rate",
+        "color": "ROC/oracle role",
+        "shape": "红色 star 表示 oracle point",
+        "line": "橙色实线 ROC、深蓝虚线随机性能",
+        "facet": "(a) HotPotQA、(b) BabiLong QA2",
+        "text": "legend 中的 AUC 与 oracle 说明"
+      },
+      "data_and_statistics": "曲线点来自 Tables 5–6 的 TPR/FPR threshold sweep；legend 报告 AUC=0.961（HotPotQA）和 0.970（BabiLong QA2）。没有 bootstrap、区间或样本分母，oracle 只作为知道 t_earliest 的不可部署上界。",
+      "evidence_relation": "Tables 5/6 的 threshold→TPR/FPR → Figure 5 ROC → Appendix B 的 early-stopping operating trade-off；红星把 oracle 参照与可部署 stopping rule 分开，但不构成额外实验。",
+      "design_strengths": [
+        "随机性能对角线与 oracle star 给出清楚的下界/上界参照。",
+        "两个数据集复用同一 FPR/TPR 语义，AUC 直接在 legend 中可见。",
+        "caption 定义了点对应 threshold 及 oracle 的语义。"
+      ],
+      "design_weaknesses": [
+        "threshold 顺序和推荐 operating point 没有在曲线上标注。",
+        "没有样本数、正类定义细节或不确定性。",
+        "不同任务的 discarded episode 规则留给正文，图本身不能判断 AUC 的分母。"
+      ],
+      "reusable_pattern": "从同一 threshold 表生成 ROC，保留随机线和 oracle 参照，并在图中标注 threshold/operating point，避免只呈现饱和 AUC。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 5 两个 ROC panel、随机虚线、oracle star、AUC legend 和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Learning curves for HotPotQA and BabiLong QA2 runs. Both graphs show the average episodic return with respect to training time.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#D9D9D9",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝色为 episodic-return 曲线，浅灰为网格，黑色为 panel/axis labels；panel 标题与单曲线提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 50
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Time (hours)",
+        "y": "Eval return",
+        "color": "单一蓝色 run",
+        "shape": "圆点采样 marker",
+        "line": "蓝色实线 trajectory",
+        "facet": "Babilong QA2 与 HotPotQA",
+        "text": "panel title 与轴标签"
+      },
+      "data_and_statistics": "两条单 run learning curve 展示 average episodic return 随训练小时的变化；没有 seed 平均、error band、baseline 或 wall-clock 分解。图中可见的 x 轴约至 4.5/6.2 小时，正文的约 12 小时是训练预算/上限叙述而非图内终点。",
+      "evidence_relation": "Appendix D 的 O(N) 复杂度、单 A100 和训练收敛叙述 → Figure 6 两个任务的 return trajectory；它补充效率机制，但不构成跨方法 training-cost 比较。",
+      "design_strengths": [
+        "两个任务复用 episodic-return y 语义，快速上升与 plateau 直观。",
+        "无重复 legend，panel title 足以区分数据集。",
+        "单 run 的高采样密度能显示训练中间动态。"
+      ],
+      "design_weaknesses": [
+        "没有多 seed、误差或 baseline，无法判断稳定性。",
+        "两个 panel x 范围不同，不能直接比较收敛小时数。",
+        "caption 没有说明评测频率、硬件或 12 小时边界。"
+      ],
+      "reusable_pattern": "并排展示训练动态时固定 return 语义，明确 run/seed、单位以及可见曲线终点与训练预算上限的差别。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Figure 6 两条 learning curve、时间轴、panel title 和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 1: Results on the RULER benchmark, evaluating long-context retrieval performance across various context lengths. S (Single-needle): Find one value for one key. MK (Multi-keys): Find one value for one key among many. MV (Multi-values): Find all values for one key. MQ (Multi-query): Answer multiple questions over the context. MH QA: open-domain multi-hop question answering. SH QA: single-hop question answering.",
+        "word_count": 60,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 18,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无 mean±SD/SE、区间、seed 或显著性；缺失项为 n/a，数值为各 context length/任务的点估计。",
+      "data_and_statistics": "4K、16K、32K、128K、1M 五个长度组下，列出 S、MK、MV、MQ、NIAH Avg. 与 SH/MH QA；长度组共 18 个方法行，数值主要为百分比/accuracy，最大显示精度为 1 位小数。",
+      "evidence_relation": "Figure 2 的 BabiLong context scaling → Table 1 的 RULER NIAH/QA 多长度结果 → Table 2 的 open-domain transfer；支持 4K 训练 embedder 泛化至 1M，但 baseline coverage 随长度不对称。",
+      "design_strengths": [
+        "两层任务表头明确区分 single/multi-key、multi-value、multi-query 与 QA。",
+        "长度 row group 让跨尺度退化可直接比较。",
+        "粗体最佳值和灰色 n/a 在黑白打印中仍可读。"
+      ],
+      "design_weaknesses": [
+        "13 列数值密集，caption 没有样本分母、seed 或来源类别的完整说明。",
+        "◦/✓ provenance glyph 需要回读 §4.1。",
+        "1M 仅保留 Q-RAG，长长度横向比较不完整。"
+      ],
+      "reusable_pattern": "多个子任务共享长度轴时用两层任务表头和长度 row groups，并在表注同时写明来源、分母和重复方式。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 1 多层表头、5 个长度组、数值高亮和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "dataset",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2: Comparison of methods on HotPotQA and MuSiQue benchmarks. Bold text and underline denote the best and second best scores respectively.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "没有区间、seed、显著性或误差列；Fact/Ans EM/F1 是聚合点估计，缺失指标用短横线。",
+      "data_and_statistics": "HotPotQA 与 MuSiQue (OOD) 各列 Fact F1/EM、Ans F1/EM，Avg 仅列 Ans F1/EM；Fine-tuned on HotPotQA 与 Zero-shot 两个 body groups 共 8 个方法行，数值统一两位小数。",
+      "evidence_relation": "§4.4 的 open-domain 主比较 → Table 2 fact retrieval/answer generation → Appendix C Plan Q-RAG 和 Appendix E Table 7 扩展；Beam Retriever 的 gold hop count 与 Q-RAG 的 step policy 不完全同质。",
+      "design_strengths": [
+        "训练 regime、数据集、fact retrieval 和 answer generation 在同一表内。",
+        "粗体/下划线直接呈现 best/second-best，Plan Q-RAG 与 vanilla Q-RAG 可并排比较。",
+        "Fact 与 Ans 指标分组保留了检索到回答的证据链。"
+      ],
+      "design_weaknesses": [
+        "reported/reproduced/ablation 混在一表且只用小 glyph 标记。",
+        "Beam Retriever 使用 oracle gold hop count，比较边界需回读正文。",
+        "没有样本数、误差或统一重跑标识，Avg 的聚合范围也较窄。"
+      ],
+      "reusable_pattern": "用 dataset group 列与 training-regime 行同时展示 retrieval/answer estimand，并把来源 glyph、平均范围和同质性边界写进表注。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 2 数据集/训练 regime 分组、best/second 高亮和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3: Ablation results on BabiLong QA3. The Table shows F1 score for supporting facts retrieval. All values are averaged over 3 runs with different seeds.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "minimal",
+      "highlighting": [],
+      "uncertainty": "数值写作 mean ± reported spread，明确平均 3 个不同 seed，但未说明 ± 是 SD、SE 还是其他统计量；去 target 行的 spread 约 ±26–28。",
+      "data_and_statistics": "BabiLong QA3 支持事实 retrieval F1，列为 1K/4K/32K/128K/1M，行是完整 Q-RAG、去 Soft-Q、去 Target、Multi-Step RAG w. SFT、Multi-Step RAG w.o. FT；SFT/no-FT 的 1M 缺失。",
+      "evidence_relation": "§3.2 的 soft value、target network 和 RL training → Table 3 同一 QA3/长度轴的逐组件删除 → Figure 3(a,b) α/λ sensitivity；它是方法机制最直接的隔离表。",
+      "design_strengths": [
+        "同一最难任务和长度轴逐行删除 RL、Soft-Q、target，因果阅读顺序清楚。",
+        "3-seed 聚合比其他主结果表更透明。",
+        "Method 与 context-length 列紧凑，适合正文窄栏。"
+      ],
+      "design_weaknesses": [
+        "表注没有定义 ± 的统计含义。",
+        "SFT/no-FT 缺失 1M，不能把所有行视为完整长度扫描。",
+        "没有高亮完整 Q-RAG 或把大 spread 视觉化。"
+      ],
+      "reusable_pattern": "固定一个最难任务和长度轴，逐行去除机制组件，并在 caption 同时定义 seed 数和 spread 统计语义。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 3 五行消融、长度列、mean±值和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Sensitivity to the number of retrieval steps. Dataset: HotPotQA (1000 samples). Embedder Alibaba-NLP/gte-multilingual-base was trained on HotPotQA+MuSiQue.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [],
+      "uncertainty": "1,000 个 HotPotQA samples 的聚合点估计；没有 seed、区间、误差或显著性。",
+      "data_and_statistics": "Retrievals=2–5 为行；Facts、Qwen3-4B、Qwen3-14B、Qwen3-32B 四个组各含 EM/F1，数值固定三位小数。Facts 为支持事实 retrieval，Qwen3 组为 answer generation。",
+      "evidence_relation": "§5.1 的 retrieval-budget 干预 → Table 4 同步列 Facts 与三种 answerer → Appendix G Fact-EM 集合包含定义和 Table 8 配置；2→3 steps 的答案改善与更多 steps 的噪声代价并存。",
+      "design_strengths": [
+        "retriever 正确性和三个 answerer 的响应共享 step 轴。",
+        "caption 给出数据集、样本分母、embedder 和训练数据。",
+        "EM/F1 并列呈现覆盖与噪声惩罚的张力。"
+      ],
+      "design_weaknesses": [
+        "只有一个数据集和一次聚合，没有 error/seed。",
+        "Facts 与答案列的 EM/F1 方向需要回读正文解释。",
+        "caption 没有列出不同 Qwen3 模型的解码边界。"
+      ],
+      "reusable_pattern": "预算型干预表同时列 retrieval-level 和 answer-level 指标，使用相同 step 轴，并把分母、训练数据和解码设置写入 caption/header。",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Table 4 retrieval-step 行、四组 EM/F1 表头与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "efficiency_cost",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 5: HotPotQA early stopping experiments",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 13,
+      "columns": 11,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [],
+      "uncertainty": "无区间、seed、显著性或误差；每行是 threshold 条件下的比例、平均 episode length、Fact/Ans EM/F1 点估计，未提供 episode 分母。",
+      "data_and_statistics": "Q-value threshold 从 -0.1 到 1.1 共 13 行；列为 stopped early/later、perfect stop、TPR/FPR、Episode len、Fact EM/F1、Ans EM/F1。正文说明 GTE、penalize_extra_steps=True、never_terminate=True。",
+      "evidence_relation": "Appendix B 的 t_stop/t_earliest 分类 → Table 5 数值化 HotPotQA stop/length/quality → Figure 4(a–c) 曲线和 Figure 5(a) TPR/FPR ROC；Qthreshold=0.2 的 Fact F1=0.917、perfect stop=0.892、length=2.13 是局部折中点。",
+      "design_strengths": [
+        "stop 类型、分类器指标、长度和答案质量在一个决策表内。",
+        "细 threshold 网格能复核 Figure 4/5 的趋势。",
+        "列同时连接 early-stopping 机制和 efficiency cost。"
+      ],
+      "design_weaknesses": [
+        "caption 极短，列语义、丢弃规则和 oracle 都依赖正文。",
+        "没有高亮推荐阈值或 best operating point。",
+        "高阈值性能塌缩没有视觉标记，分母缺失限制了比例解释。"
+      ],
+      "reusable_pattern": "将动态阈值、分类器质量、平均步数和任务质量放在同一表，并在表注定义 discarded cases、正类和推荐 operating point。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 5 threshold sweep、11 列指标和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "efficiency_cost",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 6: BabiLong QA2 early stopping experiments.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 13,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [],
+      "uncertainty": "无区间、seed、显著性或误差；每行是 BabiLong QA2 threshold 下的 stop 比例、episode length 和 Fact/Ans EM/F1 点估计，未报告分母。",
+      "data_and_statistics": "Q-value threshold 从 -0.10 到 1.10 共 13 行；列为 stopped early/later、perfect stop、Episode len、Fact EM/F1、Ans EM/F1，最大三位小数。",
+      "evidence_relation": "Appendix B 关于 [0.2,0.6] threshold 区间的高 perfect-stop/低 length → Table 6 → Figure 4(d–f) 和 Figure 5(b)；接近 1.0 时 early stop 增大且质量坍塌。",
+      "design_strengths": [
+        "与 Table 5 复用 threshold grid 和 stop/quality 列语义，便于跨任务比较。",
+        "质量与 episode length 同表呈现，直接暴露 trade-off。",
+        "数字精度一致，黑白表格可读。"
+      ],
+      "design_weaknesses": [
+        "没有 TPR/FPR，分类器视角只能回到 Figure 5。",
+        "caption 没有定义 perfect stop 或 step budget。",
+        "没有突出 [0.2,0.6] 推荐工作区间。"
+      ],
+      "reusable_pattern": "跨任务保持阈值表 schema 一致，并在 caption 写清列差异、停止定义和推荐 operating interval。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Table 6 threshold sweep、9 列指标和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 7: Comparison of methods on HotPotQA-distractors, MuSiQue (in-distribution), and MuSiQue (OOD). Bold text and underline denote the best and second best scores respectively.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 17,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "没有 seed、区间或显著性；Fact/Ans EM/F1 为聚合点估计，缺失值为方法未报告对应数据或指标。",
+      "data_and_statistics": "Methods 加四个 dataset groups：HotPotQA、MuSiQue (in-distribution)、MuSiQue (OOD)、Average，每组 Fact F1/EM、Ans F1/EM；共 7 个方法行，最大两位小数。",
+      "evidence_relation": "Table 2 的 HotPotQA/MuSiQue OOD 主比较 → Table 7 增加 HotPotQA-distractors 和 MuSiQue ID → Appendix E 的 robustness 叙事；平均列仍仅为 answer metrics，且比较来源混合。",
+      "design_strengths": [
+        "同一表同时显示 distractor、ID 和 OOD，能看出 in-domain/OOD 差异。",
+        "Fact/Ans 分组以及 best/second 高亮沿用 Table 2 视觉规则。",
+        "把 Plan Q-RAG、Q-RAG 和 Beam Retriever 的 reader 条件写进行名。"
+      ],
+      "design_weaknesses": [
+        "17 列导致文字极小，缺失行使比较面不对称。",
+        "caption 没有说明训练/reader 设置、样本分母和平均列范围。",
+        "best/second 高亮可能掩盖不同方法的 reported/reproduced 与 oracle hop-count 差异。"
+      ],
+      "reusable_pattern": "在附录用与主表相同的列 schema 添加 ID/distractor/OOD 切片，同时把训练、reader、分母和可比性边界写清。",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Table 7 多数据集分组、缺失项、best/second 高亮和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 8: Retrieval and generation configuration for each dataset. Chunk size is in tokens; T is the maximum number of retrieval steps.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "Nimbus Mono"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [],
+      "uncertainty": "不适用；这是检索/生成配置表，不是抽样估计。",
+      "data_and_statistics": "列为 Dataset、Setting、Chunk size、T、Backbone retriever、Answering LLM；5 行覆盖 HotPotQA 两种设置、MuSiQue、BabiLong、RULER，chunk size/T 为整数配置。",
+      "evidence_relation": "Table 1/2/4 与 Appendix B 的 retrieval budget、chunk segmentation、retriever/reader → Table 8 配置绑定；与 Appendix G 文字互补，但没有 seed、decoder 参数、split、硬件或训练时长列。",
+      "design_strengths": [
+        "跨数据集关键检索/生成边界压缩在单行配置中。",
+        "caption 明确定义 chunk size 单位和 T。",
+        "模型名/路径使用等宽字体时易于定位。"
+      ],
+      "design_weaknesses": [
+        "Setting 列含多个变体，单行看不出 fine-tuning 数据和评测 split。",
+        "缺少 seed、decoder、硬件、样本数和训练时长。",
+        "附录末尾留白较大，却没有用额外列补齐复现边界。"
+      ],
+      "reusable_pattern": "在结果表旁提供配置表，逐行绑定 dataset、chunk、steps、retriever、reader，并追加 seed/decoder/split 列避免复现信息只剩模型名。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Table 8 配置表、模型名、整数参数和 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 方法闭环 → Figure 2 BabiLong scaling 与 Table 1 RULER → Table 2 open-domain/OOD → Figure 3 α/λ/runtime 与 Table 3–4 消融/预算 → Appendix B Figure 4、Table 5、Figure 5、Table 6 的动态 stop → Appendix D Figure 6 训练曲线 → Appendix E/G Table 7–8 扩展结果与配置。",
+    "caption_system": "Caption 多为 regular Nimbus Roman 9–10 pt，通常按 title→setup→panel/encoding 排列；Figure 2/4/5 和 Table 1/2/4/7 对 encoding 或表注规则较完整，Table 5/6 和 Figure 6 依赖正文，缺少统一 uncertainty/seed/分母模板。",
+    "table_header_system": "结果表使用居中的 dataset/metric 多层表头与 booktabs 规则；主表以长度、数据集或 answerer 分组，附录 Table 5/6/8 简化为单层表头；best/second 用 bold/underline，缺失用 n/a/短横线。",
+    "method_result_ablation_link": "Figure 1 的 state/action/Q-policy 接口连到 Eq. (1)–(7) 和 Algorithm 1；Figure 2/Table 1/2 承载长上下文与 open-domain 结果；Figure 3/Table 3 隔离 soft-Q、target、RL 与 α/λ，Table 4 承载 retrieval budget；附录图表补齐 stopping、效率和额外切片。",
+    "main_appendix_link": "正文 §5.1 指向 Appendix B，因而 Figure 4/5、Table 5/6 扩展动态 stop；Appendix C 解释 Plan Q-RAG，Appendix D 给 Figure 6 和复杂度，Appendix E Table 7 扩展 QA，Appendix F/G 与 Table 8 固化训练/评测配置；Appendix A 为无视觉对象的理论证明。",
+    "typography_consistency": "PDF 正文/caption/table 共享 Nimbus Roman 与 Computer Modern；主表约 7 pt，附录密集表约 6.5–7 pt；图内 DejaVu Sans 约 5.5–8 pt，在 200 dpi 检查可读但单页缩放较小。",
+    "color_consistency": "所有 plot 使用 categorical color + gray grid，表格保持 grayscale；Figure 2 方法颜色在两个 panel 不完全一致，Figure 3–6 也未建立跨对象固定方法色。图大多没有 uncertainty 色带或冗余统计编码。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 用 state→action→value/policy→reward→next-state 闭环把方法接口与公式符号绑定。",
+      "Figure 2 用同一对数式 context-length 轴并置总体平均与 hardest task，并用实/虚线区分训练状态。",
+      "Table 3 固定最难任务和长度轴逐项删除机制，Table 4 同轴列 retrieval 与 answer 指标。",
+      "Figure 4/5 与 Table 5/6 将 threshold、错误类型、episode length、ROC 和任务质量连接成一条可复核链。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：方法闭环接口",
+      "Figure 2 + Table 1：context scaling headline",
+      "Table 3：三 seed 组件消融",
+      "Figure 4/5 + Tables 5/6：dynamic stopping trade-off"
+    ],
+    "failure_patterns": [
+      "Figure 2 多色双 legend 与异源 baseline 密集，缺少 uncertainty、分母和 provenance 的图内编码。",
+      "Table 2/7 的 best/second 高亮掩盖 reported/reproduced、oracle hop count 和缺失指标带来的同质性差异。",
+      "Figure 3/6 与 Appendix B 图表没有统一 seed/error 模板，Figure 6 的约 12 小时不是跨方法 wall-clock 测量。",
+      "Figure 1 说明 relative position 的接口，却没有该机制的独立删除/替代对照，temporal claim 主要是相关证据。"
+    ],
+    "one_sentence_visual_strategy": "以 Figure 1 的多步检索闭环为锚，用 context-scaling 主图和分层结果表承载性能，再用组件/预算/停止阈值的同轴消融与附录配置表闭合效果—机制—成本—复现链，并显式标注 baseline provenance、分母和不确定性。"
+  }
+}

@@ -1,0 +1,2512 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-9d74a65ca00d",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/JingzheShi/NLPCtlScalingAndBounds",
+      "https://github.com/karpathy/nanoGPT"
+    ],
+    "selected_repository": "https://github.com/JingzheShi/NLPCtlScalingAndBounds",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/JingzheShi/NLPCtlScalingAndBounds",
+        "path": "NaturalLanguage/Measuring/draw_CEvsPCA/draw_IntrinsicDim.py",
+        "role": "plot_script",
+        "tool": "matplotlib, NumPy, SciPy, scikit-learn, PyTorch",
+        "evidence": "GitHub tree and file contents: viridis threshold sweep, log-y eigenvalue plot, CE-vs-ID parts, titles/legends, and SVG/JPG export; directly relevant to Figures 16 and the intrinsic-dimension extension."
+      },
+      {
+        "repository_url": "https://github.com/JingzheShi/NLPCtlScalingAndBounds",
+        "path": "NaturalLanguage/Measuring/draw_CEvsPCA/draw_SumLogEigval.py",
+        "role": "plot_script",
+        "tool": "matplotlib, seaborn, pandas, NumPy, SciPy, scikit-learn, PyTorch",
+        "evidence": "GitHub tree and file contents: adjacent-eigenvalue increment plot, N-group CE-vs-sum-log-eigenvalue panels, viridis colors, YlGn correlation heatmap, gray cell lines, and SVG/JPG export; directly relevant to Figures 13–14."
+      },
+      {
+        "repository_url": "https://github.com/JingzheShi/NLPCtlScalingAndBounds",
+        "path": "SyntheticDataset/task_definition.json",
+        "role": "data_file",
+        "tool": null,
+        "evidence": "GitHub tree and file contents define the position-weighted sparse-parity task used by Figures 5–7, 11, 17–18; this is task configuration rather than a plotting program."
+      }
+    ],
+    "search_note": "PDF 首页脚注明确给出 https://github.com/JingzheShi/NLPCtlScalingAndBounds；README 标题与 OpenReview forum vnipyA8c9V、论文标题完全对应。reports/tables/visual_source_inventory.csv 的自动候选为该仓库（另列 karpathy/nanoGPT），本地 corpus/visual_sources/iclr-2026-9d74a65ca00d/ 为空。已用 gh API 检查 main 分支树：只有两个直接的 measurement plotting scripts 与 synthetic task config 可作为紧凑视觉/数据源；未发现 Figure 1/3/4/5/6/8/10–12/15/17/18 的逐图 generator 或已提交 rendered assets，故状态为 partial_visual_source，而非 exact_visual_source。PDF 内嵌图多为 raster/mixed，源码只用于可精确解释的 palette、axis、threshold 和 export 语法；其余属性均以 200 dpi rendered observation 标记。"
+  },
+  "paper_style": {
+    "main_figures": 7,
+    "main_tables": 0,
+    "appendix_figures": 12,
+    "appendix_tables": 2,
+    "dominant_figure_typography": {
+      "family": [
+        "Computer Modern Roman",
+        "DejaVu Sans",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 7.0,
+        "maximum": 11.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Computer Modern Roman",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 9.0,
+      "header_size_pt": 9.5,
+      "header_weight": "regular",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "主文/附录大量折线和 eigenvalue sweep 复用 viridis 的顺序色表示 context length、dataset size、N 或 threshold；概念图另用蓝/橙/绿/紫语义色，表格保持黑白。颜色语义在局部 legend/caption 中定义，不是全篇全局模型 palette。",
+    "vector_raster_mix": "LaTeX 正文、Figure 1/3/4/5/6/8/A.3-2、Table 1/2 和 Figure 12/15 多为 PDF vector/text；Figure 2/7/9/10/11/13/14/16 等含嵌入 raster 或 mixed objects。pdfimages 在 p.5、p.9、p.20、p.30、p.34 等页确认了 JPEG/bitmap 子对象。",
+    "style_consistency": "正文和表格的 Computer Modern/Nimbus serif 基础稳定；外部 matplotlib charts 使用小字号 DejaVu/无衬线、viridis 与较细线宽，导致图内文字层级、字号和渲染清晰度在 appendix 有明显异质性。caption 统一 Figure/Table 编号与 Left/Right/Upper-lower 叙述，但标题加粗和结果句式不完全一致。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 1: Left: Total loss is decomposed into Bayes Risk (decreasing with context length) and Approximation Loss (increasing with context length), so a critical point can emerge in some scenarios. Middle: Validation Loss Gap (Val Loss - min_D (Val Loss) vs. Context Length), measured on subsets of OpenWebText, where we subtract the minimum loss within each dataset-size curve (please refer to Figure 15 for the original figure). For each training dataset size, there exists an optimal context length that minimizes pretraining validation loss, and this optimum increases with dataset size. Right: Error rate of Qwen series models on the CWE task from RulerBench when a certain amount of context is masked. Critical points are visible. More results on other RulerBench subsets are shown in Figure 8.",
+        "word_count": 126,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#203864",
+          "#E67E22",
+          "#4F9D69",
+          "#440154",
+          "#31688E",
+          "#35B779",
+          "#FDE725",
+          "#482878",
+          "#2A788E",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "深蓝表示总损失/模型系列，橙色为 Approximation Loss，绿色为 Bayes Risk；中图和右图使用按数据规模/模型的顺序色，白色为画布。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 9,
+        "legend_items": 9,
+        "annotations": 5,
+        "data_marks_estimate": 100
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "中、右 panel 内部上方；左 panel 使用曲线直接标注",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "各量化 panel 的 Context Length 或 Visible Context Length Fraction；左 panel 为概念性横向 Context Length",
+        "y": "Loss、Val Loss Gap、Error Rate；左 panel 为概念性 Loss",
+        "color": "总损失/Bayes Risk/Approximation Loss，训练数据规模，Qwen3 模型规模",
+        "shape": "中、右 panel 的圆形数据点",
+        "line": "实线趋势曲线；左 panel 的临界点垂直虚线",
+        "facet": "Left 分解示意；Middle 训练验证损失 gap；Right CWE error rate",
+        "text": "曲线直接标签、panel 标题、数据规模/模型 legend 与临界点 l*"
+      },
+      "data_and_statistics": "复合证据：左图无数据单位；中图为 OpenWebText 子集，训练数据 200M–750M tokens 的 Val Loss−每条曲线最小值；右图为 Qwen3-4B/8B/14B 在 RulerBench CWE、MaxCtl=16k 的 error rate。各 panel 无误差条、置信区间或重复分母。",
+      "evidence_relation": "引言的“Bayes Risk 与 Approximation Loss 的权衡” → Figure 1 三 panel → §3 的 optimal context length → Figure 15 原始训练曲线、Figure 8 下游任务切片与 Figure 4 任务难度实验。",
+      "design_strengths": [
+        "全宽三联图把机制、训练证据和下游证据压缩到同一视觉入口。",
+        "左图用直接标签和临界点虚线让分解不依赖 legend；中、右图用小 multiples 保留对照。",
+        "Figure 1 中图明确指向 Figure 15，形成 gap 图与绝对损失图的可追踪关系。"
+      ],
+      "design_weaknesses": [
+        "不同 panel 的量纲和横轴含义不同，单一复合坐标语义需要读 caption 才能切换。",
+        "中、右 panel 的系列主要依赖颜色，灰度打印后难以区分数据规模/模型。",
+        "中图的最小值平移隐藏了绝对损失；caption 未给每个 optimum 的数值、误差或样本分母。"
+      ],
+      "reusable_pattern": "用全宽三联图先固定“分解—训练—下游”的论证接口，同时在每个 quantitative panel 保留原始对象的横轴、legend 和参考链接。",
+      "evidence": {
+        "page": 2,
+        "label": "p.2 Figure 1 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 5,
+      "module": "theory",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 2: Cross Entropy loss vs. Gaussian-KDE measured Intrinsic Entropy (in nats) for three Language Models on a subset of OpenWebText: Llama-3.1-8B (left, k = −0.0038, R = −0.9888), Qwen3-8B-Base (middle, k = −0.0026, R = −0.9960), and RecurrentGemma-9B (right, k = −0.0174, R = −0.9967, with 3 outlier points at high CE loss excluded from regression). The linear relationship between CE loss and Intrinsic Entropy holds across different model architectures.",
+        "word_count": 71,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#2F80D0",
+          "#59BFAE"
+        ],
+        "semantic_mapping": "蓝色圆点/实线是观测 CE 序列，青绿色虚线是各模型的线性回归；三个 panel 由模型名称区分。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 0,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个 panel 内上方的 regression legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Gaussian-KDE measured Intrinsic Entropy（nats）",
+        "y": "Cross Entropy loss",
+        "color": "观测数据与线性 regression",
+        "shape": "圆形点",
+        "line": "蓝色实线观测连线与青绿色虚线拟合",
+        "facet": "Llama-3.1-8B、Qwen3-8B-Base、RecurrentGemma-9B 三个模型 panel",
+        "text": "每 panel 的模型标签、回归 k/b/R legend"
+      },
+      "data_and_statistics": "三个模型各自约 10 个 context-length 点；Llama k=−0.0038、R=−0.9888，Qwen k=−0.0026、R=−0.9960，RecurrentGemma k=−0.0174、R=−0.9967。RecurrentGemma 的 3 个高 CE outlier 被 regression 排除；caption 未提供 seed、误差或样本分母。",
+      "evidence_relation": "§2.2.1 的 Bayes Risk–Intrinsic Entropy 假设 → Figure 2 跨架构检验 → RecurrentGemma 低 context failure 说明（Appendix G）→ Figure 9 的替代 entropy estimator。",
+      "design_strengths": [
+        "三 panel 对齐同一视觉语法，直接暴露不同模型的斜率和异常点。",
+        "实线观测/虚线拟合形成线型冗余，legend 写出回归摘要。",
+        "caption 直接说明 outlier 处理和跨架构主发现。"
+      ],
+      "design_weaknesses": [
+        "三个 panel 的坐标范围不同，横向比较斜率仍需读取刻度。",
+        "颜色只区分“数据/拟合”，没有误差带或回归不确定性。",
+        "异常点剔除规则只有“3 outlier points”这一层级，未在图内标记或给出敏感性对照。"
+      ],
+      "reusable_pattern": "以相同 axes、点—拟合线对和短回归摘要并排呈现 estimator 与架构稳健性；同时在 caption 中明确排除规则和数据分母。",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 2 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 6,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3: Our modified Position-Weighted Ruler-QA1 (Hsieh et al., 2024) dataset. Multiple paragraphs are concatenated together with context length close to MaxCtl, and a question queries the ‘golden paragraph’ (i.e. the doc paragraph with answer to that query). In the original Ruler-QA1 dataset each doc has equal probability of being queried (i.e. γ = 0); while in our experiments shown in Figure 4, we measure LLM performance on a set of tasks with different hyper-parameter γ, each with different probability of querying far-away contexts.",
+        "word_count": 84,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F4E79",
+          "#F5A900",
+          "#000000"
+        ],
+        "semantic_mapping": "深蓝为普通文档，橙色为 golden paragraph/查询和 distance bracket，黑色为公式与文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 Doc N 到 Doc i、Doc 2、Doc 1 再到 Query 的横向拼接顺序",
+        "y": null,
+        "color": "文档角色、golden paragraph 和 query/distance 关系",
+        "shape": "段落 token 框、括号、箭头与 probability formula",
+        "line": "MaxCtl 与 distance 的 bracket/arrow",
+        "facet": "单一横向 dataset construction schematic",
+        "text": "MaxCtl=8k tokens、Doc i、Doc 1/2/N、Query on Doc i 与 P(i) 公式"
+      },
+      "data_and_statistics": "方法接口图而非统计图；展示多个段落拼接到接近 MaxCtl，distance 从 golden Doc i 到 Doc 1，查询概率为 P(i)∝(1−distance/MaxCtl)^γ。无样本、聚合或不确定性。",
+      "evidence_relation": "§3.2 的 task-specific γ 与远近信息分布 → Figure 3 数据构造接口 → Figure 4 QA/entropy 曲线 → Figure 8/A.3-2 的任务与 MaxCtl 切片。",
+      "design_strengths": [
+        "位置、颜色、bracket 和公式共同说明“远近—查询概率”的生成机制。",
+        "全宽布局让 Doc N→Doc 1 的距离关系一眼可读。",
+        "caption 定义 original Ruler-QA1 的 γ=0 与本文的非均匀查询。"
+      ],
+      "design_weaknesses": [
+        "图面没有给每个文档的实际 token 数、归一化常数或 γ 网格。",
+        "彩色 bracket 和小字号标签在缩放/灰度下对比度下降。",
+        "从图中无法判断 query sampling 的重复次数或具体 question 分布。"
+      ],
+      "reusable_pattern": "先用带角色颜色和距离 bracket 的全宽构造图定义可变 task parameter，再将同一 parameter 交给结果图比较。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 3 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: Measured results on Position-Weighted Ruler-QA1 dataset. Left: QA accuracy vs. number of tokens input to the Language Model, for different tasks with different γ values. We observe that: (1) each curve shows a trend to increase and then decrease with context length; and (2) the critic point corresponds to a smaller optimal context length for tasks with larger γ (i.e. tasks requiring less long context abilities). Right: Intrinsic Entropy measured on samples truncated to certain context lengths. The Intrinsic Entropy shows increment of intrinsic information when increasing context length, and resembles acc-ctl curves for larger γ.",
+        "word_count": 98,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#FDE725",
+          "#48C774",
+          "#2A9D8F",
+          "#4575A6",
+          "#000000",
+          "#5B9BD5"
+        ],
+        "semantic_mapping": "左图颜色对应 γ=2.5、0.37、0.25、0.1、0.0 (Uniform)，右图单一蓝色柱表示 entropy 随 ctl。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 6,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 45
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左图右下角；右图无 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左：ctl/tokens（128–8192 的离散扫描）；右：ctl/tokens（64–8000 的离散扫描）",
+        "y": "左 QA accuracy（%）；右 Gaussian-KDE measured Intrinsic Entropy",
+        "color": "γ 任务难度/远 context 权重，右图单系列 entropy",
+        "shape": "左图圆形 marker；右图矩形 bar",
+        "line": "左图实线连接各 ctl",
+        "facet": "Left accuracy curves；Right entropy bars",
+        "text": "γ legend、axis labels、右图柱值位置"
+      },
+      "data_and_statistics": "左图为 Position-Weighted Ruler-QA1 的 5 个 γ 任务在多个 ctl 上的 QA accuracy；右图为截断样本的 Gaussian-KDE Intrinsic Entropy，随 ctl 递增。图中无误差、置信区间、重复数或 accuracy 分母。",
+      "evidence_relation": "Figure 3 的查询分布 → Figure 4 γ–ctl 机制结果 → §3 的 Bayes/Approximation balance → Figure 8 多任务复核与 Figure 2/9 的 entropy measurement。",
+      "design_strengths": [
+        "折线与柱图并排，把 task performance 与 measured information 分离但保持同一 ctl 轴概念。",
+        "γ 图例保留五档任务，曲线峰值位置传达 optimal context length。",
+        "右图单调 entropy bars 为左图非单调 accuracy 的机制参照。"
+      ],
+      "design_weaknesses": [
+        "左图色彩承担主要系列区分，黑色与深色蓝绿在小尺寸下相近。",
+        "caption 的“critic point”没有给出每个 γ 的精确 optimum；没有误差或重复设计。",
+        "左、右 panel 的 ctl 网格不同，直接逐点比较可能误读。"
+      ],
+      "reusable_pattern": "用“任务 accuracy 折线 + context information 柱图”成对呈现行为曲线与机制量，caption 同时说明峰值方向和 γ 解释。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 4 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "experimental_design",
+        "method_interface",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: Left: An example of the ‘two needles in a haystack’ task, similar to those in (Levy et al., 2024). The text part is the input to the Language Model, with key information and question visualized in blue; the figure part shows perplexity of the answer token ⟨8⟩ of LLaMa-3.1-8B (horizontal) vs. number of masked leftmost tokens (vertical). Although seeing both pieces of information are necessary to answer the question, perplexity rises dramatically only when the first piece of information is masked. Right: An example of our synthetic data. Each sub-task corresponds to 2 context bits of fixed position. At each time, exactly one sub-task is activate, and the ground truth output is calculated by taking XOR over the 2 context bits of the activate task. As shown in the example, the answer for Subtask 1,2,3 is 0 ⊕ 0 = 0, 0 ⊕ 1 = 1 and 1 ⊕ 1 = 0 respectively, but since the thrid bit is 1 for control bits, only Subtask 3 is activated and the final answer is 0. However, for a model of context length 7, it cannot see the 9th bit required by subtask 3, making it unable to predict the answer correctly.",
+        "word_count": 202,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#009FE3",
+          "#7A3FA2",
+          "#00A651",
+          "#F23434",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝色标出 key information/question 与 visible context，紫/绿/红 bracket 标出 subtask，黑色为 bit、轴和主体文本。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 14,
+        "data_marks_estimate": 50
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左图 answer-token perplexity；右图为 bit 序列位置",
+        "y": "左图 masked-leftmost-token 数量；右图无量化 y",
+        "color": "key info/question、visible context、Subtask 1/2/3 与 active task",
+        "shape": "文本块、箭头、bit token、括号与下划线",
+        "line": "左图 perplexity trace；右图 colored brackets",
+        "facet": "Left two-needle intuition；Right sparse parity example",
+        "text": "Mobile Suit Zeta Gundam 示例、⟨8⟩、0/1/? bits、l=7、XOR 结果"
+      },
+      "data_and_statistics": "左 panel 是单个 LLaMa-3.1-8B 两针任务示例：横向 answer-token perplexity 对纵向 masked-leftmost tokens；右 panel 为两个 context bits/subtask、一个 active subtask 的 XOR 合成例。两者都是示例性读数，无误差、样本量或总体聚合。",
+      "evidence_relation": "长 context/两针动机 → Figure 5 将“相关信息被遮蔽”与 sparse parity 对齐 → Figure 6 Transformer 接口 → Figure 7/11 synthetic validation。",
+      "design_strengths": [
+        "把自然语言 needle intuition 与可控 synthetic bit task 放在同一复合图内。",
+        "颜色、箭头、bracket、直接文字与公式对关键 bit/active task 提供冗余编码。",
+        "caption 明确说明模型为何在 context length 7 看不到第 9 bit。"
+      ],
+      "design_weaknesses": [
+        "左 panel 的原始文本截图和 perplexity trace 依赖较小字号，脱离 caption 难复现。",
+        "两 panel 量纲完全不同，阅读方向需依赖 Left/Right caption。",
+        "示例不能代替 task-level accuracy 或跨样本统计；caption 未提供 sampling 规则。"
+      ],
+      "reusable_pattern": "先用一幅双 panel 例图把真实任务 failure mode 映射到可控 XOR 数据，再把同一 bit-level interface 连接到模型架构和定量验证。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 5 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 9,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 6: Transformer and Rope-based model for the synthetic task. Here, we use one task token to encode the task information.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#20B7F5",
+          "#7A2E83",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色为 context tokens，紫色为 task token、context feature 和 entropy/ID measurement，黑色为 Transformer/MLP/箭头。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 context/task tokens 到预测的流水线顺序",
+        "y": "token 输入→decoder layers→middle feature→MLP→0/1 prediction 的层级",
+        "color": "context/task/measurement role",
+        "shape": "token capsules、Transformer layer rectangles、feature block 与 MLP diamond",
+        "line": "黑色有向箭头与 RoPE Embedding callout",
+        "facet": "单一纵向 architecture schematic",
+        "text": "0/1 prediction、Causal Transformer Decoder Layer、RoPE Embedding、Intrinsic Dimension & Intrinsic Entropy estimation"
+      },
+      "data_and_statistics": "合成模型接口图：60 个 context tokens 与 1 个 task token 进入因果 Transformer，middle feature 被用于 ID/entropy estimation，再由 MLP 预测 0/1。caption 未给 embedding/FFN 维度；正文给出 3 layers、embedding 208、FFN 832、RoPE base 4000。",
+      "evidence_relation": "Figure 5 的 synthetic bit/task 输入 → Figure 6 context feature 抽取接口 → Figure 7 eigenvalue/CE 验证、Table 1 Bayes calibration 与 Figure 17/18 专用 MLP 分析。",
+      "design_strengths": [
+        "上下游输入、测量 feature 与预测头的箭头方向清晰。",
+        "颜色、模块形状和直接标签共同区分 task/context/measurement。",
+        "把 Intrinsic Space 的可测 representation 置于 prediction pipeline 中，便于连接理论。"
+      ],
+      "design_weaknesses": [
+        "仅画出部分 decoder layers，省略 attention/FFN 内部和 mask 细节。",
+        "caption 只说明 task token，不说明训练 mask 比例、ctl 范围或 measurement sample。",
+        "紫色 feature block 的语义需要结合正文和 Figure 7 才能确认。"
+      ],
+      "reusable_pattern": "用一条自下而上的最小 architecture pipeline 暴露“输入—中间表征—预测/测量”双用途接口，再由实验图承载数值。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 6 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "heatmap"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 7: Eigen value and CE results measured on trained model for Synthetic Dataset in this section. Left: Eigen Value vs. Index of Eigen Value; Right: Correlation between Cross Entropy Loss and Measured Entropy. We see good linear relationship between CE Losses and Measured Intrinsic Entropy from Lower figures.",
+        "word_count": 49,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 12,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#3E4989",
+          "#31688E",
+          "#26828E",
+          "#35B779",
+          "#6DCD59",
+          "#B4DE2C",
+          "#FDE725",
+          "#F7F7F7"
+        ],
+        "semantic_mapping": "左图 viridis 顺序色按 ctl=17–50 排列；右图 viridis heatmap/colorbar 表示 CE–entropy correlation（约 0.95–1.00）。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 10,
+        "legend_items": 10,
+        "annotations": 0,
+        "data_marks_estimate": 250
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左图右上；右图右侧 colorbar",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左图 Eigenvalue index；右图 Theo/Exp CE 与 N=60–200 的离散行列",
+        "y": "左图 Eigenvalue/Max Eigenvalue（log）；右图 correlation color scale",
+        "color": "context length 曲线与 correlation 强度",
+        "shape": null,
+        "line": "左图连续 eigenvalue curves",
+        "facet": "Left eigen spectrum；Right CE/entropy correlation matrix",
+        "text": "17ctl…50ctl、Exp CE/Theo CE、N labels、0.95–1.00 colorbar"
+      },
+      "data_and_statistics": "合成 Transformer middle-feature 的 eigenvalue/max 曲线覆盖 ctl=17、20、23、25、28、30、35、40、50；heatmap 比较 Exp CE、Theo CE 与 N=60…200 的 measured entropy correlation。无不确定性或 seed 变化。",
+      "evidence_relation": "§4.1 Point 1/2 → Figure 6 feature interface → Figure 7 的 spectral decay 与 CE–entropy correlation → Appendix Table 1 的 Bayes calibration、Figure 9/14 的 estimator/subspace 扩展。",
+      "design_strengths": [
+        "左谱线和右 heatmap 同时覆盖“信息随 context 增长”和“entropy 与 CE 对应”两个 Point。",
+        "heatmap colorbar 用连续色阶把高相关区域整体结构呈现出来。",
+        "caption 明确 Left/Right 读法并把主结论写出。"
+      ],
+      "design_weaknesses": [
+        "左图约十条曲线主要靠颜色和 legend 区分，灰度下不可稳健辨认。",
+        "heatmap 没有格内数值标注，读者只能判断色阶而不能逐格读 correlation。",
+        "caption 没有说明 N=70 起的线性区间、样本量或相关性计算细节。"
+      ],
+      "reusable_pattern": "将 spectrum（机制形状）与 correlation heatmap（跨测量一致性）配对，形成“结构证据 + 关系证据”的复合验证图。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 7 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 17,
+      "module": "results",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 8: Acc vs. Visible Context Length of Qwen-3 series models (non-thinking chat models) on 4 representative subsets of the RULER dataset: qa_1 (document qa, upper-left), fwe (frequent word extraction, upper-right), cwe (common words extraction, lower-left), and vt (variable tracking, lower-right), for a fixed max context length and a varying visible fraction of the input context. Most models show an optimal context length for qa_1, fwe and cwe subtask, while the vt subtask shows increased performance with respect to context length. Moreover, larger model tends to perform better and have a larger optimal context length, represented by the performance comparison between Qwen3-4B and Qwen3-8B on cwe subtask (lower-left).",
+        "word_count": 108,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#FDE725",
+          "#35B779",
+          "#31688E",
+          "#482878"
+        ],
+        "semantic_mapping": "Qwen3-32B/14B/8B/4B 以黄、绿、蓝、紫编码；每 panel legend 显示实际模型。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 12,
+        "annotations": 0,
+        "data_marks_estimate": 72
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个 panel 左上角；无共享 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Visible Fraction（0.1、0.2、0.4、0.6、0.8、1.0）",
+        "y": "Performance/accuracy（%）",
+        "color": "Qwen3 model scale",
+        "shape": "圆形 marker",
+        "line": "实线连接 visible-fraction 点",
+        "facet": "qa_1 upper-left、fwe upper-right、cwe lower-left、vt lower-right",
+        "text": "每 panel task/MaxCtl 标题、model legend、task abbreviation expansion in caption"
+      },
+      "data_and_statistics": "四个 RULER 子任务 panel；qa_1/fwe/vt 的 MaxCtl=8192，cwe 的 MaxCtl=16384；每 panel 3 个 Qwen3 模型（cwe 为 4B/8B/14B）。Visible fraction 变化，accuracy 以百分比绘制；无误差、重复数或分母。",
+      "evidence_relation": "§3.2 downstream optimal-context claim → Figure 8 多 task/model robustness → Figure A.3-2 的 cwe 8k/16k MaxCtl sensitivity → Figure 1 右 panel headline。",
+      "design_strengths": [
+        "2×2 small-multiple 保持 axes/visible fraction 统一，任务差异可横向扫描。",
+        "legend、panel 标题和 caption 同时给出模型/任务映射。",
+        "vt 的单调趋势与其余任务的峰值形状在同一页形成对照。"
+      ],
+      "design_weaknesses": [
+        "颜色是模型区分的主通道，不同 panel 的 legend 顺序不完全一致；灰度下难读。",
+        "caption 未报告每个 task 的样本分母、置信区间或 exact optimum。",
+        "performance 的纵轴范围随 panel 改变，跨任务绝对高度比较需谨慎。"
+      ],
+      "reusable_pattern": "以固定 MaxCtl、visible-fraction 横轴的 2×2 small multiples 统一展示 task heterogeneity，并为不同模型规模保留同一 line/marker 语法。",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Figure 8 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A.3-2",
+      "page": 18,
+      "module": "results",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure A.3-2. Acc vs. Visible Context Length of Qwen-3 4B, on cwe (common words extraction) subtask, with different Max context length (left: MaxCtl = 8k, right: MaxCtl = 16k). As shown, though optimal context length is hard to observe for the task requiring 8k as max context length, it is easy to observe for that requiring 16k as max context length.",
+        "word_count": 61,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#5E1B7E"
+        ],
+        "semantic_mapping": "单一紫色曲线表示 Qwen3-4B cwe；左右 panel 位置和标题编码 MaxCtl 条件。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Visible Fraction（0.1–1.0）",
+        "y": "Accuracy（%）",
+        "color": "Qwen3-4B 单一 series",
+        "shape": "圆形 marker",
+        "line": "紫色实线",
+        "facet": "Left MaxCtl=8k；Right MaxCtl=16k",
+        "text": "panel title 与 MaxCtl 条件"
+      },
+      "data_and_statistics": "Qwen3-4B cwe 在 MaxCtl=8k/16k 下各 6 个 visible-fraction 点；8k panel 的峰值不明显，16k panel 在约 0.4 后下降。无误差或样本分母。",
+      "evidence_relation": "Figure 8 的 cwe model/task comparison → A.3-2 MaxCtl sensitivity → 论文关于更长 task/更大 Approximation Loss 的解释。",
+      "design_strengths": [
+        "同一模型、同一 task、不同 MaxCtl 的并排对照隔离了最大上下文条件。",
+        "单系列避免复杂 legend，峰值形状直接可见。",
+        "caption 写出 8k 难观察、16k 易观察的主发现。"
+      ],
+      "design_weaknesses": [
+        "8k/16k 的 y 轴范围不同，视觉峰值高度不能直接比较。",
+        "没有误差、重复或精确 optimum；8k 的“hard to observe”仍是定性判断。",
+        "label 使用“Max context length”但没有给实际 token sampling 细节。"
+      ],
+      "reusable_pattern": "用同 task/model 的双 MaxCtl panel 做最小敏感性对照，避免把模型规模或 task 差异误当成 context ceiling 效应。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Figure A.3-2 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 9: Gaussian-KDE measured Entropy (10000 samples, auto bandwidth = 0.997756) vs. PCA-measured Entropy (left), Measrued ID (middle) and Cross Entropy Loss (right).",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#35B779",
+          "#FDE725",
+          "#2F5DCE"
+        ],
+        "semantic_mapping": "左/中 panel 的不同 N/threshold 用紫—黄序列，右 panel 为蓝色 CE–KDE entropy 对照；legend 在各 panel。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 4,
+        "legend_items": 9,
+        "annotations": 0,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左下/中上/右上等各 panel 内；无共享 legend",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左：sum(log(relative eigen value))；中：Measured ID；右：Gaussian-KDE measured Entropy",
+        "y": "Gaussian-KDE measured Entropy（左/中）；Cross Entropy Loss（右）",
+        "color": "PCA N 或 ID threshold；右图 CE/entropy 数据",
+        "shape": "圆形 scatter points",
+        "line": "各 panel 线性拟合实线",
+        "facet": "PCA entropy 对照、ID 对照、CE 对照三 panel",
+        "text": "N=1500/2000/3000/4000，threshold=0.002/0.001/0.0005/0.0002 与 R 标签"
+      },
+      "data_and_statistics": "10000 samples，Gaussian-KDE auto bandwidth=0.997756；左图以 N=1500、2000、3000、4000 的 PCA sum-log-eigenvalue 对 entropy，中央以四个 threshold 的 measured ID 对 entropy，右图以 entropy 对 CE。无误差或 estimator sensitivity band。",
+      "evidence_relation": "Figure 2 Gaussian-KDE CE 关系 → Appendix C estimator replacement → Figure 9 与 PCA/ID/CE 三路对照 → Figure 14 多 subspace correlation。",
+      "design_strengths": [
+        "三 panel 将同一 KDE entropy 作为枢纽，清晰拆出 PCA、ID、CE 三种关系。",
+        "点与拟合线叠加，既保留离散测量又暴露线性方向。",
+        "caption 给出 sample 数与 bandwidth，复现接口比主文图更具体。"
+      ],
+      "design_weaknesses": [
+        "图内 legend 和坐标字号很小，N/threshold 标签需要放大读取。",
+        "系列颜色相近且没有 shape/linetype 冗余；灰度不可可靠区分。",
+        "caption 没有报告拟合斜率、R 值或 bandwidth sensitivity，主发现主要由正文补充。"
+      ],
+      "reusable_pattern": "以一个共同 estimator 轴向连接“PCA—ID—CE”，将 estimator replacement 做成三 panel 结构而非散落的单图。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Figure 9 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 10: Cross Entropy Loss vs. Context Length, with log scale. We see that y = C_0 + C/x^γ fits this curve well.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#F9C20B",
+          "#9BCB45"
+        ],
+        "semantic_mapping": "黄色/橙色表示 8B，绿色表示 70B；圆点为数据、实线为幂函数 fit。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 28
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上角",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Context Length（log scale）",
+        "y": "Cross Entropy Loss",
+        "color": "8B/70B corpus series",
+        "shape": "圆形 points",
+        "line": "数据点连接/幂函数拟合实线",
+        "facet": "单一 unseen dirty-word corpus panel",
+        "text": "8B/70B data 与 fit 的 C₀、C、γ、R² legend"
+      },
+      "data_and_statistics": "unseen dirty-word corpus 上 LLaMA 8B/70B 的 CE–context curves；x 为对数 context length，y 为 CE；fit 为 y=C₀+C/x^γ，legend 还显示 8B/70B 的拟合参数与 R²。无误差带或跨 corpus uncertainty。",
+      "evidence_relation": "Appendix D/Equation 3 的 Bayes-risk power-law → Figure 10 未见 corpus robustness → Figure 12 OpenWebText fit 的主数据集对照。",
+      "design_strengths": [
+        "log x 轴和两条平滑 fit 直接对应幂函数形式。",
+        "8B/70B 同图展示了 corpus 上模型规模差异，legend 保存拟合参数。",
+        "caption 明确曲线形状与拟合形式。"
+      ],
+      "design_weaknesses": [
+        "caption 没有说明 dirty-word corpus 的来源、大小和 sampling。",
+        "两条线颜色区分，缺少线型/marker 冗余以承载模型身份。",
+        "R² 和拟合参数只在图内小 legend 中出现，缩放后不易读。"
+      ],
+      "reusable_pattern": "在 log-context 轴上叠加数据点与理论幂函数线，把“函数形状是否跨 corpus”压缩为一幅鲁棒性图。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Figure 10 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 11: Validation set Cross Entropy Loss of the output token (resembling the ‘answer’ token of two-needle-in-haystack tasks) vs. context length, for MLPs trained with different training dataset sizes.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 7,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#3E4989",
+          "#31688E",
+          "#26828E",
+          "#35B779",
+          "#808080"
+        ],
+        "semantic_mapping": "viridis 顺序色表示训练 dataset size=90k、100k、150k、200k、400k、2M；灰色虚线为 y=−log(1/2) 参照。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 7,
+        "annotations": 0,
+        "data_marks_estimate": 42
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左下角；含灰色水平 reference line",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Context Length（约 30–100，log-like tick spacing）",
+        "y": "Minimum Validation Loss",
+        "color": "训练 dataset size",
+        "shape": "圆形 marker",
+        "line": "各 dataset-size 的实线折线与灰色水平 reference",
+        "facet": "单一 synthetic MLP panel",
+        "text": "dataset size legend 与 −log(1/2) reference"
+      },
+      "data_and_statistics": "synthetic two-needle proxy 的 MLP；每条彩色曲线表示一个 training dataset size，y 是对每个 context length 取到的 best/min validation CE，灰色水平线约为 −log(1/2)。无 seed 方差或误差带。",
+      "evidence_relation": "Figure 5 synthetic task → Appendix F training-data-size sensitivity → Figure 1/Figure 15 的 natural-language optimum-right-shift 证据。",
+      "design_strengths": [
+        "将 dataset size 作为颜色 sweep，峰值/谷值位置可直接比较。",
+        "水平理论参照线帮助解释输出 bit 的随机基线。",
+        "caption 说明 output token 与 two-needle analogy，和正文 metric 对接。"
+      ],
+      "design_weaknesses": [
+        "log-like context ticks 与未明确刻度变换提高读取成本。",
+        "legend 系列多且颜色相近；没有 direct labels 或线型冗余。",
+        "best validation over training iterations 的选择规则只在正文，caption 没有不确定性。"
+      ],
+      "reusable_pattern": "对每个训练规模固定“best validation loss”聚合，再用同一 context 轴比较最优点位置；图注应同时声明聚合和参考基线。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 11 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 12: Bayes Risk vs. Context Length: Bayes Risk is approximated by Cross Entropy loss measured with LLaMa-3.1 series on OpenWebText, for different context length.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#F9C20B",
+          "#9BCB45"
+        ],
+        "semantic_mapping": "黄色为 8B，绿色为 70B；圆点为 OpenWebText 数据，实线为拟合。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上角",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Context Length（log scale）",
+        "y": "Cross Entropy Loss",
+        "color": "LLaMA 8B/70B",
+        "shape": "圆形 data marker",
+        "line": "幂函数 fit 实线",
+        "facet": "单一 OpenWebText panel",
+        "text": "8B/70B data 与 fit 参数、R² legend；caption 粗体标题 Bayes Risk vs. Context Length"
+      },
+      "data_and_statistics": "OpenWebText 上 LLaMA-3.1 8B/70B 的 CE 作为 Bayes-risk proxy，x 为 log context length；8B/70B fit 在图内给出 C₀、C、γ、R² 及 ± 参数。无重复/置信区间以外的 uncertainty 展示。",
+      "evidence_relation": "Equation 3 的 H(P,P_l)≈C₀+C/l^γ → Figure 12 主 OpenWebText Bayes proxy → Figure 10 另一 corpus robustness、Figure 15/1 training curves。",
+      "design_strengths": [
+        "粗体 caption title 直接标示 Bayes-risk 角色，图内 fit legend 提供可复现参数。",
+        "log x 与幂函数线形状匹配理论表达。",
+        "8B/70B 叠加让模型规模影响不必另起一张图。"
+      ],
+      "design_weaknesses": [
+        "caption 的“different context length”没有给 context 网格或样本数。",
+        "颜色仍是模型的主要身份编码；legend 很密。",
+        "Bayes Risk 由 well-trained model CE 近似的识别依赖正文，图中没有独立 Bayes oracle。"
+      ],
+      "reusable_pattern": "把理论的幂函数 proxy 画成 log-context scatter+fit，并在 caption/legend 中明确 proxy、模型规模和拟合参数。",
+      "evidence": {
+        "page": 29,
+        "label": "p.29 Figure 12 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 13: Left: Relative Eigen Value Measured for the last token, for LLaMa-3.1-8B on a subset of OpenWebText. Right: relative increment of relative eigenvalues (for different context lengths measured). We can see that the relative eigenvalues approximately increase at a same scale.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 10,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#3E4989",
+          "#31688E",
+          "#26828E",
+          "#35B779",
+          "#6DCD59",
+          "#B4DE2C",
+          "#FDE725"
+        ],
+        "semantic_mapping": "viridis 顺序色从 8ctl/12ctl…512ctl 编码 context length；右 panel 的相邻 ctl ratio 复用同序列。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 10,
+        "legend_items": 19,
+        "annotations": 0,
+        "data_marks_estimate": 8000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "左/右 panel 内部右下或中下",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Eigenvalue index（约 0–4200）",
+        "y": "Left relative eigenvalue/max（log）；Right relative increment（log）",
+        "color": "context length 或相邻 context-length ratio",
+        "shape": null,
+        "line": "连续谱线/相对增量曲线",
+        "facet": "Left eigenvalue spectrum；Right relative increment between ctl pairs",
+        "text": "8ctl…512ctl 与 12ctl/8ctl…512ctl/256ctl legend"
+      },
+      "data_and_statistics": "LLaMA-3.1-8B OpenWebText 子集 last-token features；左图 10 个 context length 的 relative eigenvalue，右图 9 个相邻 context ratio 的 relative increment。两图均为 log y、无误差带。",
+      "evidence_relation": "Figure 9 的 PCA/entropy estimator → Figure 13 spectral ratio 形状 → Figure 16 threshold-based ID 与 Appendix K.4 exponential-decay explanation → Figure 18 common threshold。",
+      "design_strengths": [
+        "同页把绝对谱形状与跨 context 增量比值配对，直接服务于 K.4 假设。",
+        "viridis 顺序色让 context length 的顺序可追踪。",
+        "caption 明确“same scale”这一机制结论。"
+      ],
+      "design_weaknesses": [
+        "约 19 条曲线、长 x 轴和 log y 造成高读取负担。",
+        "颜色缺少 marker/linetype 冗余，灰度不可稳健解码。",
+        "右图 ratio 的分子/分母只在 legend 中出现，caption 未解释如何计算。"
+      ],
+      "reusable_pattern": "用同一顺序调色板配对 eigen spectrum 与相邻-context ratio；若复用，应额外用 line style 或 direct label 承担灰度可读性。",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Figure 13 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "line",
+        "heatmap"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 14: Upper-left, Upper-right,PBottom-left: Cross Entropy Loss vs. measured Intrinsic Entropy with N first Eigen Values: Σ_{i≤N} log rel_eig_val; Bottom-right: correlation between minus CE loss and Σ_{i≤N} log rel_eig_val. All experiments are for LLaMa-3.1-8B on a subset of OpenWebText. From the first three figure, we see CE loss is linear with the Entropy of certain subspaces. From the bottom-right figure, we see that Entropy measured in different subspaces are highly correlated (corr > 0.97), which are also highly correlated with the CE loss for Next Token Prediction.",
+        "word_count": 87,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 16,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#3E4989",
+          "#31688E",
+          "#26828E",
+          "#35B779",
+          "#6DCD59",
+          "#B4DE2C",
+          "#FDE725",
+          "#1B7837",
+          "#D9F0A3",
+          "#FFFFBF",
+          "#006837",
+          "#FFFFFF",
+          "#808080",
+          "#2F80CE"
+        ],
+        "semantic_mapping": "前三 panel 的颜色编码 N；右下 YlGn heatmap 编码 correlation（0.98–1.00），黑/灰线勾勒单元格。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": 14,
+        "legend_items": 16,
+        "annotations": 0,
+        "data_marks_estimate": 500
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "前三 panel 各自 legend；右下 vertical colorbar",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "前三 panel sum(log(relative eigen value)) for first N dimensions；右下为 CE/N categorical labels",
+        "y": "前三 panel Cross Entropy Loss；右下为 correlation color scale",
+        "color": "N（3–2000 的多组）与 correlation strength",
+        "shape": "圆形 scatter points",
+        "line": "前三 panel 线性 fit 实线；右下 cell boundaries",
+        "facet": "part 1/2/3 三个 CE–entropy panel + bottom-right correlation heatmap",
+        "text": "N legend、R²、N/category tick labels、colorbar"
+      },
+      "data_and_statistics": "LLaMA-3.1-8B OpenWebText 子集；part 1 N=3/4/5/6，part 2 N=10/15/25/35/45，part 3 N=50/80/100/120/150；heatmap 包含 Exp/Theo CE 与更大 N（至 2000）。前三 panel 为 CE–sum-log-eigenvalue 关系，右下为相关矩阵，caption 报告 corr>0.97；无误差。",
+      "evidence_relation": "Appendix H 的 eigenvalue entropy → Figure 14 estimator/subspace sweep → Figure 7 synthetic heatmap、Figure 9 KDE/PCA 对照与 Figure 16 ID threshold sweep。",
+      "design_strengths": [
+        "把 subspace-size sweep 和全相关矩阵置于同一复合对象，直接回应“选哪一部分 intrinsic space”的问题。",
+        "三个 panel 分段控制 N 范围，避免一张 axes 过度压缩。",
+        "caption 把前三图的线性关系与右下 corr>0.97 分开说明。"
+      ],
+      "design_weaknesses": [
+        "4 panel 视觉密度高，heatmap tick labels 和 legend 在 PDF 版面很小。",
+        "N 既是颜色又是 legend/categorical 位置，灰度下难读。",
+        "相关矩阵无格内数值与不确定性，corr 阈值只能由色阶近似读取。"
+      ],
+      "reusable_pattern": "把连续 subspace sweep 分成可读的 N ranges，再用 correlation heatmap 汇总稳健性；用 shared semantic legend/直接标签可进一步降低颜色依赖。",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Figure 14 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 15: Openwebtext subset, Validation Loss vs. Context Length, for different dataset sizes. Different curves represent different amount of training data used. A more readable figure can be found in Figure 1, where the minimum validation loss reachable for each training dataset size is subtracted.",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#3E4989",
+          "#31688E",
+          "#26828E",
+          "#35B779"
+        ],
+        "semantic_mapping": "viridis 顺序色按训练 data size=200M、250M、300M、350M、500M、750M tokens 排列。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 0,
+        "data_marks_estimate": 42
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "右上角",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Context Length（约 512–11000，linear）",
+        "y": "absolute Val Loss/CE",
+        "color": "training dataset size",
+        "shape": "圆形 marker",
+        "line": "六条实线折线",
+        "facet": "单一 OpenWebText subset panel",
+        "text": "dataset-size legend、Val Loss/Context Length labels、Figure 1 pointer"
+      },
+      "data_and_statistics": "OpenWebText subset absolute validation loss；六条曲线对应 200M、250M、300M、350M、500M、750M tokens，context length 约 512–11000。曲线以绝对 Val Loss 表示，未提供误差/seed/每点分母。",
+      "evidence_relation": "§3.1 的 training optimal-context claim → Figure 15 raw absolute curves → Figure 1 middle subtracts each curve minimum → Figure 11 synthetic dataset-size analogue。",
+      "design_strengths": [
+        "保留绝对损失，给 Figure 1 的 normalized gap 提供事实来源。",
+        "所有训练规模共享同一 axes，谷值右移趋势容易追踪。",
+        "caption 明确 Figure 1 是 subtract-min 的可读版本，建立对象间调用。"
+      ],
+      "design_weaknesses": [
+        "六条颜色曲线只用颜色区分，灰度下和低分辨率下难读。",
+        "caption 没有列出每条曲线的 exact optimum、训练迭代、seed 或 uncertainty。",
+        "不同 dataset-size 曲线上下平移，读者需要区分“绝对水平”和“谷值位置”。"
+      ],
+      "reusable_pattern": "同时保存绝对图与 subtract-min 派生图：前者用于数值审计，后者用于跨训练规模比较，并在 caption 互相指向。",
+      "evidence": {
+        "page": 31,
+        "label": "p.31 Figure 15 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 34,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 16: Left figures: Relative Eigen Value for LLaMa-3.1-8B on a subset of OpenWebText, presented in different x-axis scales, with different context length visible to Language Model. Gray lines represent different thresholds we take to measure the intrinsic dimension of the current model. Right figures: Cross Entropy Loss vs. Measured Intrinsic Dimension. Each line represents a certain threshold used to measure ID in the intrinsic space of the used LLM. Different Measurements would give ID values that are linear w.r.t. each other, and they are all linear w.r.t. CE loss.",
+        "word_count": 90,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 20,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#3E4989",
+          "#31688E",
+          "#26828E",
+          "#35B779",
+          "#6DCD59",
+          "#B4DE2C",
+          "#FDE725",
+          "#B4DE2C",
+          "#FDE725",
+          "#7A0177",
+          "#2C7FB8",
+          "#41AB5D",
+          "#FEE391",
+          "#A1D76A",
+          "#5E3C99",
+          "#3288BD",
+          "#66C2A5",
+          "#FEE08B"
+        ],
+        "semantic_mapping": "viridis/顺序色按 threshold sweep 编码；灰色水平线用于 relative-eigenvalue threshold，右侧每条 CE–ID line 对应一个 threshold。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 20,
+        "legend_items": 20,
+        "annotations": 20,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "每个右 panel 上方/左 panel 右侧",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 20,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左上 eigenvalue index（log x）；左下 index（linear x）；右四 panel measured ID（linear x）",
+        "y": "左两 panel relative eigenvalue/max（log y）；右四 panel CE loss（linear y）",
+        "color": "PCA threshold 0.002–0.25 与 context-length curves",
+        "shape": "圆形 scatter points in CE–ID panels",
+        "line": "左谱线实线、右 CE–ID dashed fit/series；gray threshold lines",
+        "facet": "2 left spectrum panels + 4 right CE–ID parts",
+        "text": "threshold legend、R²、part labels、x/y scale titles"
+      },
+      "data_and_statistics": "LLaMA-3.1-8B OpenWebText subset；左侧展示不同 context length 的 relative eigenvalue，并用约 20 条 gray threshold lines；右侧四个 parts 将 threshold=0.002–0.25 的 measured ID 与 CE 对照。图注说明不同 x-axis scales 与跨 threshold 的线性关系；无误差。",
+      "evidence_relation": "Appendix K.2 threshold-based ID method → Figure 16 threshold robustness → Figure 13 spectral decay/Equation 34 与 Figure 18 synthetic common y* → CE–ID theoretical bridge。",
+      "design_strengths": [
+        "六 panel 把“threshold 如何切 ID”与“ID 是否仍对 CE 线性”放在同一对象。",
+        "左上/左下不同 x scale 展示谱线在宽范围内的结构。",
+        "右侧按 threshold 分组的 dashed lines 直接暴露测量变换后的共同方向。"
+      ],
+      "design_weaknesses": [
+        "六 panel 轴变换和 threshold 数量造成非常高的信息密度。",
+        "threshold 主要依赖颜色和细灰线，灰度/小尺寸不可稳健解码。",
+        "R²/threshold legend 字号小，caption 没有列出每个 part 的确切 grid 与 uncertainty。"
+      ],
+      "reusable_pattern": "将超参数 sweep 拆成“原始谱—阈值 ID 回归”双层 panel；同一 threshold 颜色必须跨 panel 复用，并应附 direct labels 或线型冗余。",
+      "evidence": {
+        "page": 34,
+        "label": "p.34 Figure 16 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 34,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 17: Model trained on the proposed synthetic dataset; ⊕ represents feature concatenation. Only the first l bits are used as input to context MLP when the context length is set to l. We conduct PCA on Context Feature to analyze the intrinsic dimension of input context bits for various context lengths.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#4A90E2",
+          "#808080",
+          "#000000",
+          "#7A2E83"
+        ],
+        "semantic_mapping": "蓝色为 context bits/Context Feature，灰色为 control bits，黑色为 concat/MLP/箭头，紫色为 prediction label。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 7,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "control/context 输入到 concat、context MLP、pred MLP 的流水线",
+        "y": "context feature 中间层与 pred logit 的层级",
+        "color": "control/context/prediction role",
+        "shape": "bit columns、MLP blocks、concat circle and arrows",
+        "line": "black directed arrows",
+        "facet": "单一 specialized synthetic architecture schematic",
+        "text": "pred logit、MLP、Context Feature for PCA analysis、⊕ 与 bit strings"
+      },
+      "data_and_statistics": "专用 synthetic MLP architecture：只有前 l bits 输入 context MLP，control bits 与 context feature 在 concat 节点合并，PCA 作用于 Context Feature。无样本、统计量或不确定性。",
+      "evidence_relation": "Figure 6 的 general Transformer middle representation → Figure 17 specialized MLP 的可测 Context Feature → Figure 18 synthetic ID threshold → Figure 16 LLM threshold evidence。",
+      "design_strengths": [
+        "明确把 PCA 观测点（Context Feature）标在 architecture 中，而非只在文字里描述。",
+        "⊕、箭头、颜色与 feature block 形成冗余接口提示。",
+        "单一窄图适合在 appendix 作为 measurement protocol。"
+      ],
+      "design_weaknesses": [
+        "control/context bit 具体维度、MLP 层数与训练条件没有在图面给出。",
+        "图中 vertical bit strings 和小标签在 PDF 缩放后较难辨。",
+        "没有把 l、ID(l) 与后续 Figure 18 的 threshold 直接数值绑定。"
+      ],
+      "reusable_pattern": "在模型图中显式标出“供 PCA 的中间 feature”，把 measurement boundary 作为 architecture 一等元素，并在后续图中复用名称。",
+      "evidence": {
+        "page": 34,
+        "label": "p.34 Figure 17 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 35,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 18: Relative eigen value vs. index, for models trained on different context length. Vertical lines: x_l = ID(l) and x'\\_l = ID(l + 1). For example, a context length 27 has 16 subtasks visible, corresponding to 16 bits in Intrinsic Space. Assuming 1 dimension in Intrinsic Space represents 1 bit, the leftmost purple rectangle drawn means a range of y_threshold that would provide an accurate estimation of ID(27) = 16 for context length 27. There exists y* that would provide an estimation of ID for all context lengths, as shown in the figure.",
+        "word_count": 94,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 7,
+        "hex": [
+          "#440154",
+          "#482878",
+          "#31688E",
+          "#26828E",
+          "#35B779",
+          "#6DCD59",
+          "#FDE725"
+        ],
+        "semantic_mapping": "viridis 顺序色对应训练 context length=27、32、36、43、63、94；半透明彩色 rectangles 表示 ID(l) 与 ID(l+1) 间 threshold 范围。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 14,
+        "data_marks_estimate": 150
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右上角",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 13,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Index of Eigenvalue",
+        "y": "Relative Eigenvalue / Max Eigenvalue（log）",
+        "color": "training context length 与 threshold interval",
+        "shape": "曲线与半透明 rectangle",
+        "line": "实线 eigenvalue curves、彩色/灰色竖向虚线和 y* 水平虚线",
+        "facet": "单一 synthetic MLP spectral panel",
+        "text": "ctl legend、x_l/x'_l、ID(l)、ID(l+1)、y* 与 eigenvalue inequality"
+      },
+      "data_and_statistics": "6 条不同 training context length（27、32、36、43、63、94）的相对 eigenvalue 曲线；竖线成对表示 ID(l)/ID(l+1)，约 12 条竖向 reference lines，另有共同 y* 水平线与半透明 threshold rectangles。无误差统计，这是 ID 读数构造示意/实验图。",
+      "evidence_relation": "Figure 17 的 specialized Context Feature → Figure 18 共同 y* threshold → Figure 16 LLM threshold sweep 与 Appendix K.4 的 exponential-decay/CE–ID bridge。",
+      "design_strengths": [
+        "将 threshold 选择的几何意义（两条 ID 竖线之间的可行区间）直接画出。",
+        "共同 y* 水平线跨 context length 形成强烈的全局证据。",
+        "caption 给出 ctl=27、16 subtasks、ID=16 的具体解释，脱离正文仍可读。"
+      ],
+      "design_weaknesses": [
+        "多条竖线、阴影区和曲线重叠，图内 annotation 负荷高。",
+        "阴影区边界与曲线颜色相近，灰度下难辨。",
+        "“1 intrinsic dimension=1 bit”是解释性假设，caption 没有提供 threshold sensitivity 数值。"
+      ],
+      "reusable_pattern": "用谱线上的成对 ID 切点和共同水平 threshold 把“超参数存在性”几何化；保留 shaded feasible interval 作为可复用的 measurement audit pattern。",
+      "evidence": {
+        "page": 35,
+        "label": "p.35 Figure 18 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Comparison between trained model and Bayes Model (minimum CE Loss) for Synthetic Data",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无误差条；每个 context length 只有一个 trained-model CE 与一个 calculated minimum CE。",
+      "data_and_statistics": "Synthetic model validation：context length 17,20,23,25,28,30,35,40,50；Model CE Loss 分别为 0.4648, 0.3988, 0.3438, 0.3119, 0.2687, 0.2429, 0.1867, 0.1390, 0.0613；calculated minimum 为 0.4643, 0.3988, 0.3437, 0.3116, 0.2686, 0.2429, 0.1864, 0.1387, 0.0612，均为 4 位小数。",
+      "evidence_relation": "§4.3 需要证明 trained model 近似 Bayes Model → Table 1 校准 → Figure 7 的 synthetic entropy/CE 解释与 Appendix C.4 的使用边界。",
+      "design_strengths": [
+        "三列直接呈现 context、trained CE、Bayes minimum，差值容易人工核对。",
+        "统一 4 位小数，booktabs 横线维持简洁的 appendix 视觉层级。",
+        "9 个 ctl 覆盖了 Figure 7 的 synthetic measurement 区间。"
+      ],
+      "design_weaknesses": [
+        "没有 delta 列、seed/重复或误差，读者需自行计算“around 0.001”。",
+        "表头较长的 calculated 列压缩可读宽度。",
+        "只校准 synthetic model，不能直接外推到 natural-language figures。"
+      ],
+      "reusable_pattern": "把“模型是否近似 Bayes”作为一张窄表的逐点对照，固定 context-length grid、统一精度并显式追加 delta/uncertainty。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Table 1 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: In this Section (Appendix D) we formulate results from previous sections with Theorems derived with defined assumptions and properties of intrinsic space in this section. Ntp refers to Next-token-prediction, Ctl refers to Context Length. We derive data scaling for approximation loss with weaker assumptions compared to (Bahri et al., 2024), please refer to Theorem 1, 2 in Appendix D.2 for more details.",
+        "word_count": 64,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "理论陈述映射，不含数值 uncertainty；每行把已有 theorem/assumption 与 derived result 对齐。",
+      "data_and_statistics": "四行三列：第一列 theorem/source（Bahri et al. Theorem 2；Theorem 1/2 in Appendix D.2；Theorem 3 in D.3；Theorem 4 in D.4），第二列 Key Properties Assumed，第三列 Derived Results。无小数列、成本列或失败值。",
+      "evidence_relation": "Section 2 的 decomposition/assumptions → Table 2 theorem-to-property-to-result map → Appendix D.2–D.4 proofs → Figures 1–2/7/14/16 的 empirical links。",
+      "design_strengths": [
+        "把外部 theorem 与本文较弱 finite-negative-moment、predictive-consistency、entropy assumptions 放在同一决策面。",
+        "三列关系结构比连续 prose 更便于查找“假设→结果”。",
+        "caption 解释 Ntp/Ctl 缩写并指出 D.2 细节。"
+      ],
+      "design_weaknesses": [
+        "第一列 theorem reference 较长，换行与 citation box 干扰表头扫描。",
+        "没有单独列出条件强弱、适用 domain 或 proof status；derived result 仍需读正文。",
+        "部分规则/竖线与 booktabs 极简风格混用，表格层级不如纯无竖线设计稳定。"
+      ],
+      "reusable_pattern": "用 theorem/source、assumptions、derived results 三列固定理论追踪接口；将缩写和附录指针放进 caption 而非额外脚注。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Table 2 table and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "视觉叙事从 Figure 1 的 Bayes Risk/Approximation Loss decomposition 与 critical point 开始，经 Figure 2 的 CE–Gaussian-KDE entropy 跨架构关系，Figure 3–4 的 task-position construction/accuracy–entropy response，再由 Figure 5–7 把 two-needle intuition、synthetic architecture 与 eigenvalue/CE validation 串起。附录 Figure 8/A.3-2 扩展 task/model/MaxCtl，Figure 9–16 扩展 estimator、corpus、raw loss、eigen-spectrum 与 threshold，Figure 17–18 收束到 synthetic MLP 的 ID measurement；Table 1/2 分别校准 Bayes model 和理论假设映射。",
+    "caption_system": "caption 统一使用 “Figure n:” 或 “Figure A.3-2.”，复合图以 Left/Middle/Right 或 Upper-left/Bottom-right 解释阅读方向。Figure 1/2/4/5/7/8/13–16/18 的 caption 写出主发现，但 Figure 3/6/9/11/15/17 更偏 setup/指针；部分 captions 用 bold lead（Figure 12、Table 2）或 bold panel labels，粗体规则不完全一致。",
+    "table_header_system": "Table 1 使用 context length—model CE—calculated minimum 的单层指标表头；Table 2 使用 theorem/source—Key Properties Assumed—Derived Results 的单层关系表头。两表均用黑白 serif、booktabs 风格和最少高亮，没有共同的 performance/cost/failure header system。",
+    "method_result_ablation_link": "Figure 3 定义 position-weighted query distribution，Figure 4 测量 γ 与 ctl 的行为；Figure 5/6 定义 synthetic bit/task 与 Transformer representation，Figure 7/11/17/18 分别给 spectral validation、dataset-size response 和 ID protocol。Figure 9、14、16 是 estimator/subspace/threshold robustness，Table 1 是 synthetic Bayes calibration；没有单独的 standard ablation table。",
+    "main_appendix_link": "Figure 1 middle explicitly points to raw Figure 15，Figure 1 right points to Figure 8；Figure 2 points conceptually to Appendix G，Figure 3/4 extend through Figure 8/A.3-2，Figure 7 depends on Table 1 and is elaborated by Figures 9/14/16。Appendix D Table 2 and proofs formalize main assumptions; Appendix K Figures 16–18 bridge intrinsic entropy and intrinsic dimension.",
+    "typography_consistency": "PDF body/table uses Computer Modern/Nimbus Roman around 9–11 pt；embedded charts use DejaVu Sans/other sans around 5–9 pt，math labels混用 Computer Modern math。概念图与 chart caption 的字号/字重并不完全一致，appendix raster figures 的小字号是主要可读性瓶颈。",
+    "color_consistency": "viridis 顺序色是最稳定的 quantitative encoding，重复用于 context length、dataset size、eigenvalue N 和 threshold；但相同颜色在不同 figure 的语义会切换。蓝/橙/绿/紫概念图承担 role labels，模型/任务没有跨图固定 palette。绝大多数 quantitative series 没有 marker/linetype 冗余，因此 grayscale safety 偏弱。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1/15 的绝对曲线与 subtract-min gap 成对设计：一个保留事实尺度，一个突出 optimum 位置。",
+      "Figure 5/6/17 的“任务示例→模型中间表征→可测 feature”接口，把概念任务和 measurement boundary 连成可复现路径。",
+      "Figure 7/9/14/16 的 line/scatter/heatmap 复合结构，同时展示 estimator 关系、subspace/threshold sweep 和整体 correlation。",
+      "使用 viridis 顺序色表达有序 context/threshold sweep，并在 caption 中明确每个局部 legend 的语义。"
+    ],
+    "highest_value_objects": [
+      "Figure 1（p.2）：最强的机制—训练—下游 headline 汇总。",
+      "Figure 4（p.6）：最直接把 γ、accuracy 峰值与 Intrinsic Entropy 增量放在同一页。",
+      "Figure 7（p.9）：synthetic data 上 eigenvalue 结构与 CE–entropy 关系的核心验证。",
+      "Figure 14（p.30）和 Figure 16（p.34）：附录中最有信息量的 estimator/subspace/threshold robustness。",
+      "Table 1（p.21）：对 trained model≈Bayes Model 的最小逐点 calibration。"
+    ],
+    "failure_patterns": [
+      "大量 quantitative curves 仅靠颜色与小 legend，灰度和小尺寸下无法可靠区分 series。",
+      "复合图在同一页混用不同 x/y 变换、量纲和 panel 网格，caption 需要承担过多导航。",
+      "多数图表没有 seed、误差、样本分母或精确 optimum；caption 常写主发现却不提供不确定性界限。",
+      "源码仓库只公开部分 measurement plotting scripts，没有与每个 PDF object 一一对应的 generator/asset manifest；无法把所有视觉参数标成 source_exact。"
+    ],
+    "one_sentence_visual_strategy": "以 Bayes/Approximation 分解为入口，用多 panel quantitative curves 把 context-length optimum 与 Intrinsic Entropy/Dimension 机制逐层连接，再以 appendix 的 estimator、corpus、threshold 和 theorem maps 扩展稳健性，但整体仍高度依赖 viridis 颜色和小字号 legend。"
+  }
+}

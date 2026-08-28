@@ -1,0 +1,2303 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-be5b1d259689",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/YennNing/MC-Search"
+    ],
+    "selected_repository": "https://github.com/YennNing/MC-Search",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/YennNing/MC-Search",
+        "path": "README.md",
+        "role": "other",
+        "tool": "Markdown",
+        "evidence": "README 标题、论文/OpenReview/project/dataset 链接与论文直接对应；说明 benchmark、iterative multimodal retrieval 和 subqa_chain，但不是图表生成器。"
+      },
+      {
+        "repository_url": "https://github.com/YennNing/MC-Search",
+        "path": "assets/teaser_fig_mc_search.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "2,790×1,576 的公开 teaser 与 PDF Figure 2 的 benchmark construction/HAVE 和 agentic RAG 双模块构图匹配；为 rendered asset，不是可编辑源。"
+      },
+      {
+        "repository_url": "https://github.com/YennNing/MC-Search",
+        "path": "assets/datacard.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "1,930×614 的 dataset-card 视觉资产与 MC-SEARCH 数据集主题相关，但不等于 PDF Table 1/7，不能作为精确表格源。"
+      },
+      {
+        "repository_url": "https://github.com/YennNing/MC-Search",
+        "path": "assets/MC-Search_Logo.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "750×683 项目机器人 Logo，仅支持 Figure 1/9/10 的 branding 语境，不是论文对象生成源。"
+      },
+      {
+        "repository_url": "https://github.com/YennNing/MC-Search",
+        "path": "src/agent_launch.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "仓库的 agent launch wiring；支持运行语义，未发现 Figure/Table 生成逻辑。"
+      },
+      {
+        "repository_url": "https://github.com/YennNing/MC-Search",
+        "path": "src/eval_launch.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "仓库的 evaluation launch wiring；支持评估流程，未发现 chart/table generator。"
+      },
+      {
+        "repository_url": "https://github.com/YennNing/MC-Search",
+        "path": "src/gemini/mc_search_agent.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Gemini MC-Search agent implementation；可佐证 agentic retrieval 语义，但不包含论文图表排版。"
+      },
+      {
+        "repository_url": "https://github.com/YennNing/MC-Search",
+        "path": "src/gemini/mc_search_evaluate.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Gemini evaluation implementation；可佐证 LLJ/evaluation workflow，未发现 plot/table export。"
+      }
+    ],
+    "search_note": "自动 source inventory 行仍为 no_public_source_found，且 corpus/visual_sources/iclr-2026-be5b1d259689/ 不存在。按 PDF 首页项目链接、OpenReview forum JEGDp1E4OH、完整标题/方法名和 gh repo view 核查后选定 YennNing/MC-Search（main，MIT；README 标题为 ICLR 2026 Oral）。递归 tree 共 38 条且未截断；只有 teaser_fig_mc_search.png 与 PDF Figure 2 的构图和文字直接匹配，其他 assets 是 logo/dataset card，Python 文件是检索/evaluation 实现。没有 plot/figure/table 脚本、TeX/TikZ/PGF/notebook 或可重建的实验图表数据，因此只将 Figure 2 的 teaser 记为 rendered asset，所有其余视觉属性以 PDF 为事实源。"
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 4,
+    "appendix_figures": 5,
+    "appendix_tables": 10,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman",
+        "DejaVu Sans",
+        "Computer Modern Math",
+        "monospace"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 7.5,
+        "maximum": 12.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 8.8,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "方法/qualitative 图使用蓝、橙、青绿、粉红和红色状态块；结果线图使用六色模型 categorical palette；错误/消融 bar 使用暖色与浅蓝并配 hatch；表格以黑白、粗体、下划线和局部红/蓝文字强调。颜色、位置、标签、箭头和 hatch 部分冗余，但主结果图不完全灰度安全。",
+    "vector_raster_mix": "PDF 文本、表格规则和部分标注为可检索对象；Figure 1/2/9/10 与部分图内插图含 embedded raster/image XObject，复杂流程和 qualitative panels 多为 raster-like composite。公开仓库只有 Figure 2 的 raster teaser，没有可编辑 chart/table source。",
+    "style_consistency": "caption 均以 Figure/Table n: 起始；表格共享 booktabs 横线、分组表头和约两位小数；方法图共享圆角框/箭头，结果图共享模型颜色和 legend 语法。流程/UI 图与数值曲线形成互补子系统，局部一致性强于全局字体/调色板统一。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "introduction",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "screenshot",
+        "pipeline",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Example query requiring multimodal agentic search with a long reasoning chain.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold",
+          "semibold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#FF00B8",
+          "#69B7FF",
+          "#F4B1B1",
+          "#67B84B",
+          "#FF8D45",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "粉红/蓝色卡片表示 thought、sub-question 与 retrieved content，绿色表示 final answer，橙色和黑色用于 action、图标和文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "自上而下的 query→sub-question→search→evidence→answer 阶段顺序",
+        "y": "thought/action/retrieval 卡片的纵向层级",
+        "color": "中间状态、retrieval content 与 final answer 的角色",
+        "shape": "rounded UI cards、robot/magnifier icons 与 arrows",
+        "line": "solid process connectors",
+        "facet": "single vertical agent trace",
+        "text": "question、<Thought>、<Sub-Question>、retrieved content、final answer 标签"
+      },
+      "data_and_statistics": "单个示例 trace；展示问题分解、跨模态检索和最终回答，不是样本聚合或性能统计，没有分母、重复或不确定性。",
+      "evidence_relation": "引言关于固定 retrieve-then-generate 无法覆盖跨模态多步问题的 gap → Figure 1 作为具体 agent trace → Figure 2 的 benchmark/pipeline 总览 → Table 3 的链级评测和 Figure 3–5 的机制/失败分析。",
+      "design_strengths": [
+        "纵向 trace 将 thought、sub-question、action、evidence 和 answer 串成一条可读路径。",
+        "颜色、直接标签和图标共同区分中间状态与输出。",
+        "示例语义与后续 HPS/RD chain-alignment 指标直接相连。"
+      ],
+      "design_weaknesses": [
+        "inset 内文字和卡片密度高，放大前难以读取全部检索内容。",
+        "颜色承担较多阶段语义，灰度复制时需要依赖文字和位置。",
+        "caption 极短，没有说明案例的代表性或检索来源。"
+      ],
+      "reusable_pattern": "用固定颜色和卡片模板展示“多模态问题→分解→action/retrieval→evidence→答案”，并在定量版本中补充样本、指标和不确定性边界。",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "method_interface",
+        "experimental_design",
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 2: Overview of MC-SEARCH benchmark and evaluation. Left: Benchmark covering five reasoning topologies, filtered via the hop-wise attribution and verification of evidence (HAVE) process. Right: Multimodal agentic RAG pipeline, where an MLLM iteratively generates sub-queries and actions, retrieves multimodal evidence, reasons over the retrieved information, and integrates it to produce the final answer. Our framework further aligns predicted reasoning chains with golden trajectories to assess chain-level retrieval and planning.",
+        "word_count": 70,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold",
+          "semibold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#2F6EA5",
+          "#6FA8DC",
+          "#F28E2B",
+          "#F4B183",
+          "#72B7B2",
+          "#C6DBEF",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝/橙/青绿/灰色块分别区分 benchmark construction、HAVE、retrieval、reasoning 与 chain matching 阶段；黑色用于标题、箭头和边界。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 45,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 benchmark construction 到 agentic pipeline/output 的阶段顺序",
+        "y": "左侧五种 topology/HAVE 分支与右侧迭代 thought-action-retrieval 层级",
+        "color": "构造、过滤、检索、推理和 chain matching 角色",
+        "shape": "rounded boxes、nested modules、numbered arrows",
+        "line": "solid/dashed process connectors with steps 1–7",
+        "facet": "left construction module and right runtime/evaluation module",
+        "text": "topology names、HAVE、MLLM、sub-query、retrieval、golden/predicted chain labels"
+      },
+      "data_and_statistics": "方法结构图；框、编号箭头和 HAVE 过滤表示流程接口，不给出样本误差或统计分母。",
+      "evidence_relation": "引言的五类 topology 与 process-level evaluation 预告 → §2 benchmark construction/HAVE → Figure 2 双模块接口 → Table 2/7 统计、Table 3 主比较和 SEARCH-ALIGN 结果。",
+      "design_strengths": [
+        "左右模块把数据构造/验证与在线 agentic RAG/chain alignment 分开。",
+        "箭头编号、嵌套框和直接标签让 benchmark 与评测流程闭合。",
+        "作者仓库 teaser 提供与 PDF 视觉匹配的 rendered asset。"
+      ],
+      "design_weaknesses": [
+        "框、箭头和小字密集，逐步阅读需要放大。",
+        "未把过滤阶段的数量损失或失败率量化。",
+        "caption 没有给 topology 分布，读者仍需 Table 2/7。"
+      ],
+      "reusable_pattern": "用左右双模块画布固定“数据构造/HAVE 验证”和“在线 agentic RAG/chain alignment”，在边界添加步骤编号，并在定量版本中添加样本数与过滤率。",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 2 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "other"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3: Model F1 across samples with different chain lengths, showing a consistent drop in performance as the chain length increases.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#E45756",
+          "#F58518",
+          "#54A24B",
+          "#4C78A8",
+          "#B279A2",
+          "#F2CF5B"
+        ],
+        "semantic_mapping": "六种模型用颜色区分；径向位置表示 1–5 hop chain length，半径表示 F1。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 5,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "径向类别轴 1–5 hops",
+        "y": "径向 F1 值（约 0–0.4）",
+        "color": "model identity",
+        "shape": "circle markers at hop categories",
+        "line": "one solid polygonal line per model",
+        "facet": "single radar panel",
+        "text": "hop labels、F1 radial ticks 与 model legend"
+      },
+      "data_and_statistics": "六个模型在 1–5 hop 样本上的 F1 point estimates；曲线显示 4–5 hop 的共同下降，没有误差带、重复数或失败值。",
+      "evidence_relation": "RQ2 chain-length robustness → Figure 3 的跨 hop F1 下降 → Table 3 topology/model 主结果 → Figure 4 的 ΔStep 机制。",
+      "design_strengths": [
+        "在一个共享径向坐标中同时显示模型差异和链长趋势。",
+        "caption 直接陈述随 chain length 增长而下降的主发现。",
+        "模型共用颜色和 legend，方便与 Figure 4 对读。"
+      ],
+      "design_weaknesses": [
+        "radar 面积/角度不利于精确比较。",
+        "六条线和小 legend 在单栏缩放后拥挤。",
+        "颜色不是灰度安全的主要模型识别通道，caption 未给数值范围或样本量。"
+      ],
+      "reusable_pattern": "用 radial trend 图表达多个模型随离散链长的一致变化；若需要精确排序，改用共享 y 轴 line chart。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 3 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: Model ΔF1 vs. ΔStep (difference in length between generated and golden reasoning chains), where larger positive Δsteps indicate more over-retrieval.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#E45756",
+          "#F58518",
+          "#54A24B",
+          "#4C78A8",
+          "#B279A2",
+          "#F2CF5B"
+        ],
+        "semantic_mapping": "颜色区分六个模型，y 轴 ΔF1 表示答案质量变化，浅色 band 表示跨样本变化范围。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 8,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper area",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "ΔStep=generated chain length−golden chain length",
+        "y": "ΔF1",
+        "color": "model identity",
+        "shape": "circle markers",
+        "line": "solid model curves plus dashed zero/reference guides",
+        "facet": "single panel split into under-/over-retrieval regions",
+        "text": "Under-Retrieval、Over-Retrieval、zero guides and model legend"
+      },
+      "data_and_statistics": "六个模型的 ΔF1 point estimates与跨样本 band；ΔStep<0 表示 under-retrieval，正值表示 over-retrieval。严重负差值通常更差，轻度正差值对部分模型有益，过大正差值变差；band 的具体统计定义、样本量和分母未显示。",
+      "evidence_relation": "RQ3 over-/under-retrieval → Figure 4 的过程长度偏差与质量变化 → Table 4 modality coverage、Figure 5 error taxonomy → SEARCH-ALIGN 和附录 Figure 8。",
+      "design_strengths": [
+        "零线和区域文字把 under/over 语义固定在横轴上。",
+        "多个模型共享坐标，band 保留样本异质性。",
+        "caption 定义 ΔStep 方向，避免把正差值误读为性能增益。"
+      ],
+      "design_weaknesses": [
+        "六条线、band、legend 和两条参考线在窄面板中重叠。",
+        "caption 没有定义 band 或 ΔF1 聚合。",
+        "模型识别主要依赖颜色，灰度复制成本高。"
+      ],
+      "reusable_pattern": "用“预测过程长度−参考过程长度”的横轴和零线分区，把 under/over-retrieval 机制与性能变化绑定，并在 caption 补充 band 的统计定义。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 4 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: Eight-way error taxonomy proportions (higher is worse), annotated by Gemini-2.5-Pro.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#F4A261",
+          "#FFD166",
+          "#A9D6E5",
+          "#74A9CF",
+          "#4C78A8"
+        ],
+        "semantic_mapping": "横向 bar 长度表示错误比例；暖色/浅蓝和 hatch 区分类别，末端数字直接给出百分比。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 8
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "x",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": true,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Error Proportion (%)，0–100",
+        "y": "八个 error category 的 categorical 顺序",
+        "color": "类别的暖色/浅蓝填充",
+        "shape": "horizontal bars",
+        "line": "bar boundaries/grid",
+        "facet": "single inset panel",
+        "text": "category names and direct percentage labels"
+      },
+      "data_and_statistics": "Gemini-2.5-Pro 标注的错误比例 point estimates：Retrieval-Failure 84.70%、Hallucinated-Entity/Attribute 75.75%、Step-Omission 74.34%、Modality-Mismatch 33.46%、Spurious-Steps 24.38%、Order/Dependency-Error 19.44%、Multi-Hop-Integration-Fail 12.07%、Evidence-Misinterpretation 8.35%；没有误差或可见分母。",
+      "evidence_relation": "RQ5 failure taxonomy → Figure 5 的高频 retrieval/实体/step 错误 → Table 4 modality coverage、Figure 4 偏差机制 → Figure 7 的 SEARCH-ALIGN 错误下降。",
+      "design_strengths": [
+        "横向排序、数字直标和 higher-is-worse 方向易于扫描。",
+        "inset 紧邻正文，能直接承接失败分析。",
+        "hatch 与标签为颜色提供部分冗余。"
+      ],
+      "design_weaknesses": [
+        "长类别名和小 inset 字号造成拥挤。",
+        "没有分母、类别互斥性或不确定性说明。",
+        "浅色类别和 hatch 在灰度/小尺寸下区分度下降。"
+      ],
+      "reusable_pattern": "用排序 horizontal taxonomy bar 连接主结果与失败机制，保留百分比直标，并在 caption 补充分母和类别定义。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 5 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "scatter"
+      ],
+      "purpose": [
+        "robustness",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 6: Hexbin plots of Gemini-2.5-Pro vs. GPT-5 scores across four LLJ dimensions.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 7,
+        "hex": [
+          "#2F80ED",
+          "#5AAE61",
+          "#7B3294",
+          "#1B9E77",
+          "#FDC086",
+          "#E6AB02",
+          "#000000"
+        ],
+        "semantic_mapping": "hexbin 密度以连续颜色表示，四个 panel 标题编码 Accuracy、Alignment、Coherence、Entities，对角虚线表示 evaluator equality。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Gemini-2.5-Pro score（0–5）",
+        "y": "GPT-5 score（0–5）",
+        "color": "hexbin sample density",
+        "shape": "hexagonal bins/points",
+        "line": "dotted y=x equality line",
+        "facet": "four LLJ dimensions in one row",
+        "text": "Accuracy、Alignment、Coherence、Entities panel labels"
+      },
+      "data_and_statistics": "五个子集上两个 evaluator 的 LLJ score agreement 关系；hexbin 颜色表示密度，x/y 为 0–5 score。没有独立误差编码，Table 9 汇总 Pearson、Spearman、Mean Bias 和 LoA。",
+      "evidence_relation": "Appendix G.1 evaluator consistency → Figure 6 四维 score agreement → Table 9 统计汇总 → Table 10 human–LLJ agreement 与 Table 11 reference-chain comparison。",
+      "design_strengths": [
+        "四个 panel 共用对角线和分数尺度，便于横向比较。",
+        "hexbin 减少点重叠，panel 标题保持维度语义。",
+        "与 Table 9 的 correlation/bias/LoA 形成图表互补。"
+      ],
+      "design_weaknesses": [
+        "caption 没有说明 hex 密度、样本量和对角线含义。",
+        "小 panel 刻度和色阶在打印/灰度中可读性有限。",
+        "连续色阶缺少可见 colorbar，精确密度不可复核。"
+      ],
+      "reusable_pattern": "使用同尺度四联 hexbin 展示 evaluator agreement，旁接 correlation+bias+LoA 表；caption 应明确密度和样本数。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 6 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 25,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 7: Error proportions before and after SEARCH-ALIGN across four process-level categories.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#F4A261",
+          "#A9D6E5"
+        ],
+        "semantic_mapping": "橙色为 InternVL-3.5-8B，浅蓝为 +SEARCH-ALIGN；hatch、legend 和直接数值标签提供状态冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 8
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "x",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": true,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Error Proportion (%)，0–100",
+        "y": "四个 process-level error category",
+        "color": "before/after SEARCH-ALIGN",
+        "shape": "paired horizontal bars",
+        "line": "bar boundaries/grid",
+        "facet": "single panel",
+        "text": "legend and direct value labels"
+      },
+      "data_and_statistics": "四类错误的 point estimates：Step-Omission 86.15%→73.66%，Modality-Mismatch 65.75%→34.72%，Order/Dependency-Error 31.06%→28.18%，Retrieval-Failure 80.28%→76.76%；没有误差、样本分母或显著性标记。",
+      "evidence_relation": "SEARCH-ALIGN process-supervised fine-tuning → Figure 7 错误前后对照 → Table 12 训练配置、Table 14 Retrieval@k 结果 → Figure 5 未对齐模型 failure baseline。",
+      "design_strengths": [
+        "成对 bar 直接显示四类错误的方向和幅度。",
+        "legend、hatch、数字标签不依赖单一颜色通道。",
+        "和 Figure 5 的错误 taxonomy 共享类别语义。"
+      ],
+      "design_weaknesses": [
+        "没有变化量标签、区间或显著性。",
+        "caption 未说明是否同一评测样本/分母。",
+        "类别长、hatch 多，窄版式中读取成本较高。"
+      ],
+      "reusable_pattern": "用同一横轴的 before/after paired bars 展示 process error reduction，并在 caption 明确分母、模型和评估条件。",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Figure 7 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "robustness",
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 8: ΔF1 across ΔStep values for Gemini-2.5-Flash under top-k retrieval (k = 1, 3, 5).",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "DejaVu Sans",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#F28E2B",
+          "#8DC6E8",
+          "#F6E99D"
+        ],
+        "semantic_mapping": "三种颜色/series 表示 Retrieval@1/@3/@5；线上的浅色 band 表示跨样本变化。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 6,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "ΔStep，约 −4 到 +5",
+        "y": "ΔF1，约 0–0.5",
+        "color": "retrieval top-k",
+        "shape": "circle markers",
+        "line": "solid curves and dashed zero guides",
+        "facet": "single top-k comparison panel",
+        "text": "Under-Retrieval/Over-Retrieval arrows and legend"
+      },
+      "data_and_statistics": "Gemini-2.5-Flash 在 top-k retrieval 下的 ΔF1/ΔStep point estimates与 band；k∈{1,3,5}。没有逐点样本数，也未定义 band 的计算方式。",
+      "evidence_relation": "Appendix K.1 retrieval-k robustness → Figure 8 top-k 曲线 → Table 13 soft-HPS threshold 与 Table 14 Qwen Retrieval@k；它是 Figure 4 ΔStep 机制的附录扩展。",
+      "design_strengths": [
+        "沿用 Figure 4 的 ΔStep 坐标，top-k 作为唯一新增 series。",
+        "零线和区域箭头保留 under/over-retrieval 语义。",
+        "band 把跨样本变化保留在图中。"
+      ],
+      "design_weaknesses": [
+        "三条 band 与零线重叠，精确差异难读。",
+        "caption 未定义 band、ΔF1 聚合和 top-k 返回语义。",
+        "浅黄色 series 的灰度可读性弱。"
+      ],
+      "reusable_pattern": "把 retrieval budget 作为固定过程偏差坐标上的额外 series，分离“多取证据”与“过度检索”的影响。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Figure 8 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "screenshot",
+        "qualitative_grid",
+        "pipeline"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 9: Success case. The reasoning chain produced by the agent aligned with the golden reasoning chain and the final answer includes all key knowledge entities.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold",
+          "semibold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#F6A6A6",
+          "#BCD6F5",
+          "#FF00B8",
+          "#67B84B",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "粉色 thought/sub-question、蓝色 retrieval、绿色 success/check、黑色文字和图像共同编码 trace 状态。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 25,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左/右栏对照：prediction vs golden chain",
+        "y": "从共享图像到逐 hop thought/retrieval/final answer",
+        "color": "thought、retrieval、final success 状态",
+        "shape": "image header、rounded cards、magnifier/check icons",
+        "line": "vertical step connectors",
+        "facet": "two matched columns",
+        "text": "Agentic Reasoning Prediction、Golden Reasoning Chain、step labels and final answer"
+      },
+      "data_and_statistics": "一个 success qualitative case：Annunciation 图像相关链包含 Philadelphia Museum of Art、April 5 1899、$1,750 和 Tanner 首件被美国博物馆购藏等 key entities；没有样本比例或数值不确定性。",
+      "evidence_relation": "Table 3 的 chain alignment 指标 → Figure 9 将高 alignment 具体化为 prediction/golden 逐 hop 对照 → Figure 10 的失败对照 → 附录 qualitative reproduction。",
+      "design_strengths": [
+        "左右同构栏让 prediction 与 golden chain 可以逐步对读。",
+        "共享图像、thought、retrieval ribbon 和 final check 同时呈现跨模态链。",
+        "与 Figure 10 保持相同模板，便于成功/失败比较。"
+      ],
+      "design_weaknesses": [
+        "卡片文字在全宽缩放后偏小。",
+        "caption 未给案例链长、选择规则或 HPS/RD 数值。",
+        "颜色和 UI 图标承担较多细节，灰度下层级减弱。"
+      ],
+      "reusable_pattern": "对 qualitative chain 固定左右栏、共享输入图和逐步卡片，成功与失败只改变 evidence/终态；caption 同时给案例边界与 quantitative metric。",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 9 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "screenshot",
+        "qualitative_grid",
+        "pipeline"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "failure",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 10: Failure case. While the agent successfully retrieves the first and the last hop information, it fails to retrieve the second and third hop information. Thus, the final answer does not include all key knowledge entities.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Arial-like sans-serif",
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "monospace"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold",
+          "semibold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#F6A6A6",
+          "#BCD6F5",
+          "#FF00B8",
+          "#67B84B",
+          "#FF5B5B",
+          "#000000"
+        ],
+        "semantic_mapping": "粉色 thought、蓝色 retrieval、红色 FAIL/X 与黑色文字编码缺失 hop 和答案失败。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 25,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左/右栏对照：prediction vs golden chain",
+        "y": "逐 hop retrieval 与 final answer 的垂直顺序",
+        "color": "retrieval、missing-hop 和 failure 状态",
+        "shape": "rounded cards、FAIL boxes、magnifier/X icons",
+        "line": "vertical step connectors",
+        "facet": "two matched columns",
+        "text": "predicted/golden headers、SamTrans、San Carlos、FAIL、final X"
+      },
+      "data_and_statistics": "一个 failure qualitative case：agent 取得第一和最后 hop，但遗漏第二、第三 hop；图面出现 SamTrans、总部 San Carlos, California，以及缺失 establishment year/mainline service，最终答案未覆盖全部 key entities。没有比例或误差。",
+      "evidence_relation": "Figure 9 success 对照 → Figure 10 将 Figure 5 的 retrieval-failure/step-omission 具象化 → Table 4 modality coverage、Figure 7 error reduction。",
+      "design_strengths": [
+        "与 Figure 9 严格同构，缺失 evidence 和终态 X 成为主要差异。",
+        "caption 明确写出缺失 hop 和最终答案后果。",
+        "失败 trace 让平均 HPS/RD 指标有可检查的具体语境。"
+      ],
+      "design_weaknesses": [
+        "长卡片文本和 UI 细节需要放大。",
+        "没有该案例的 HPS/RD、错误分母或选择规则。",
+        "红色状态与多层 card 在灰度下依赖文字和位置。"
+      ],
+      "reusable_pattern": "使用与 success case 同构的 failure grid，只改变缺失 evidence 和终态标识，连接 failure taxonomy 与逐 hop trace。",
+      "evidence": {
+        "page": 29,
+        "label": "p.29 Figure 10 and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "headline"
+      ],
+      "caption": {
+        "text": "Table 1: Left: Comparison of existing multimodal retrieval-augmented QA datasets. Right: Distribution of the five reasoning topologies in MC-SEARCH, with outer rings illustrating hop diversity (2–5 hops).",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "text_color"
+      ],
+      "uncertainty": "无误差/重复；左侧是 benchmark 属性比较，右侧是 topology/hop composition，不是连续估计。",
+      "data_and_statistics": "左侧比较 modality、typical hops、long-chain≥4、stepwise annotation 和 topology；右侧为五类 topology 及 2–5 hop 外环分布。",
+      "evidence_relation": "引言的 prior benchmark gap → 左侧近邻对照与右侧 MC-SEARCH composition → Figure 2 五类 topology/HAVE → Table 2/7 精确统计。",
+      "design_strengths": [
+        "把 prior-work comparison 与本数据集 composition 放在同一 caption/object。",
+        "Left/Right 责任明确，outer rings 暴露 hop 层级。",
+        "紧邻引言 gap，具有 headline 解释价值。"
+      ],
+      "design_weaknesses": [
+        "左表与右 sunburst 的量纲和精确可读性不完全同质。",
+        "长列头和小字号增加阅读成本。",
+        "caption 未列具体 counts，也未说明 topology 颜色跨图的一致性。"
+      ],
+      "reusable_pattern": "以 benchmark matrix + topology composition 的复合对象把设计差异和数据分布并置，精确 counts 由 companion statistics table 承担。",
+      "evidence": {
+        "page": 2,
+        "label": "p.2 Table 1 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 2: Benchmark statistics.",
+        "word_count": 4,
+        "moves": [
+          "title",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无 error bar、重复或区间；count 与 average 共存，平均 hop 为 3.79。",
+      "data_and_statistics": "Parallel Image-Text Fork 680、Image-Initiated Chain 1306、Text Chain 945、Text-Initiated Chain 169、Multi-Images 233、Total Samples 3333、KB Images 389,750、KB Documents 784,473、Avg. Hops 3.79。",
+      "evidence_relation": "§2.1 topology 与 Figure 2 左侧构造 → 正文规模摘要 → Appendix Table 7 完整 dataset breakdown。",
+      "design_strengths": [
+        "窄的 2 列结构适合正文快速扫读。",
+        "topology counts、总数、知识库规模和深度按构造流程排序。",
+        "总数/资源统计成为后续结果的尺度锚点。"
+      ],
+      "design_weaknesses": [
+        "caption 没有单位、字段定义或五类 topology 列表。",
+        "inset 字号小，过滤前后 retention 未显示。",
+        "count 与 average 的 precision 语义需依赖 row label。"
+      ],
+      "reusable_pattern": "正文用 2 列摘要表固定 topology counts + resources + average depth，附录用长表展开长度、实体和 modality。",
+      "evidence": {
+        "page": 4,
+        "label": "p.4 Table 2 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 3: Evaluation of MLLMs on the MC-SEARCH benchmark under the agentic MM-RAG pipeline, reported across five reasoning graphs. Best backbone results are shown in bold, second-best are underlined, and improvements from SEARCH-ALIGN on open-source models are highlighted in bold red.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 40,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "text_color",
+        "best_second_best"
+      ],
+      "uncertainty": "各单元为 point estimate；没有 SD/SE/CI、重复数或失败计数。↑/↓在表头声明指标方向。",
+      "data_and_statistics": "五种 reasoning graph × model/variant，列出 F1、ΔF1、LJ、HPS、RD、Golden F1；Gemini-2.5-Pro Image-Initiated 示例为 47.61/42.76/3.18/25.90/1.05/69.83。SEARCH-ALIGN 对 InternVL 平均约 +2.8 F1、+12.0 HPS、RD−0.6，对 Qwen 约 +13.7 F1、+16.0 HPS、RD−3.1。",
+      "evidence_relation": "摘要/引言关于六模型与 process metrics → Table 3 主结果 → Figure 3 chain-length、Figure 4 ΔStep、Table 4 modality coverage → Appendix Table 5/6 fixed-step controls。",
+      "design_strengths": [
+        "topology group、model variant 与 answer/process metrics 同时固定。",
+        "bold/underline/red gain 形成清晰决策高亮。",
+        "F1 与链级指标共置，避免只看最终答案。"
+      ],
+      "design_weaknesses": [
+        "40 行与多层表头在缩放后密集。",
+        "多种高亮叠加增加视觉负担。",
+        "没有不确定性和分母，LJ/HPS/RD 定义留给正文。"
+      ],
+      "reusable_pattern": "用 topology × model × answer/process metrics 的宽表把结果与规划质量绑定，稳定使用指标箭头和 best/second/gain 高亮。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 3 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Stepwise retrieval modality coverage (Cov.). Red = high coverage; Blue = low coverage.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "text_color"
+      ],
+      "uncertainty": "Covered/Gold 与 Cov (%) 为 point estimates；无置信区间、重复 dispersion 或可见分母。",
+      "data_and_statistics": "Query w/Image 与 w/o Image × image/text modality × Gemini-2.5-Pro/InternVL-3.5-8B。overall image/text coverage 分别为 Gemini 64.27/80.48、InternVL 33.69/85.96；分组数值见 PDF p.9。",
+      "evidence_relation": "RQ4 modality coverage → Table 4 query condition/modality 分解 → Figure 4 retrieval deviation、Figure 5 modality/failure、Figure 7 SEARCH-ALIGN。",
+      "design_strengths": [
+        "Covered/Gold 与百分比同列，兼顾分子和 rate。",
+        "三种 query condition 保留 image availability 的异质性。",
+        "红/蓝直接标高低，适合快速扫描。"
+      ],
+      "design_weaknesses": [
+        "多层表头和长 model 名在缩放后小。",
+        "red/blue 语义依赖颜色，caption 未给分母。",
+        "高文本 coverage 不等于正确 evidence，需要 Figure 5 辅助。"
+      ],
+      "reusable_pattern": "用 query condition × retrieved modality × covered/gold + Cov. 的分组表呈现多模态检索覆盖，辅以排序或符号增强灰度可读性。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 4 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5: Evaluation of various models on the MC-Search benchmark under single-step RAG.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 30,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "point estimates，无 SD/SE/CI、重复数或失败值。",
+      "data_and_statistics": "固定 single-step RAG 下五种 graph group × 约 6 model rows，指标结构复用 Table 3：F1、ΔF1、LJ、HPS、RD、Golden F1。",
+      "evidence_relation": "Table 3 agentic pipeline → Table 5 单步控制 → Table 6 两跳控制 → Figure 3/4 adaptive planning 机制。",
+      "design_strengths": [
+        "复用 Table 3 列结构，隔离固定单步检索效应。",
+        "topology group 保留任务结构异质性。",
+        "best/second 高亮与主表一致。"
+      ],
+      "design_weaknesses": [
+        "caption 未定义 single-step 顺序或与主表差异。",
+        "30 行较密，缺少不确定性。",
+        "读者仍需回正文解释 LJ/HPS/RD。"
+      ],
+      "reusable_pattern": "将 fixed-budget baseline 放在与主表相同的 topology × model × metric schema 中，降低跨表转换成本。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 5 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Evaluation of various models on the MC-Search benchmark under traditional MM-RAG.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 24,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "point estimates，无误差/重复/分母。",
+      "data_and_statistics": "traditional two-hop multimodal RAG 下四个 graph group × 约 6 model rows，列出 F1、ΔF1、LJ、HPS、RD、Golden F1。",
+      "evidence_relation": "Table 5 单步 baseline → Table 6 两跳固定 baseline → Table 3 adaptive agentic pipeline；Figure 4/8 展开动态 ΔStep 与 top-k。",
+      "design_strengths": [
+        "同构列使 fixed 1-hop、2-hop 与 adaptive 结果可直接对读。",
+        "topology group 保留 fork/chain 难度。",
+        "booktabs 和高亮语法与正文表一致。"
+      ],
+      "design_weaknesses": [
+        "caption 未说明两跳如何处理不同 topology，也未解释缺失 Text-Only group。",
+        "24 行窄列阅读密集。",
+        "没有不确定性或失败计数。"
+      ],
+      "reusable_pattern": "用同一宽表 schema 发布不同检索控制条件，保持指标和 topology 顺序稳定。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Table 6 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "reproduction",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 7: Statistics of MC-Search benchmark.",
+        "word_count": 6,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 18,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无 error/CI；count、平均值和 modality percentage 混排。",
+      "data_and_statistics": "五类样本 680/1,306/945/169/233，Total 3,333；KB images 389,750、documents 784,473；平均 question/answer/entities 33.23/47.40/8.03；各 topology 平均 hops 4.01/3.82/3.65/3.17/3.97；text/image retrieval hops 10,063 (79.72%)/2,550 (20.20%)。",
+      "evidence_relation": "Table 2 正文摘要 → Table 7 完整 dataset manifest → Figure 2 构造、Table 4 modality coverage、Figure 9/10 案例链。",
+      "design_strengths": [
+        "一次性给出规模、长度、实体、深度和模态 composition。",
+        "2 列 key/value 结构适合附录查阅。",
+        "补足正文摘要，支持复现尺度判断。"
+      ],
+      "design_weaknesses": [
+        "逻辑分块依赖顺序和横线。",
+        "caption 未定义 hop 分母。",
+        "count/average/percentage 需要 row label 才能解读。"
+      ],
+      "reusable_pattern": "附录用 key/value breakdown 记录数据规模、长度、实体和 modality，正文只保留影响判断的摘要项。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 7 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8: Average Gemini-2.5-Pro evaluation scores.",
+        "word_count": 6,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "minimal",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "报告 dimension mean；没有评分者分布、variance 或区间。",
+      "data_and_statistics": "Factual correctness 4.93、Step necessity 4.70、Clarity 4.88、Multimodal alignment 4.95、Overall mean 4.87。",
+      "evidence_relation": "Appendix F data quality validation → Table 8 质量评分 → Table 9/10 evaluator consistency/human agreement。",
+      "design_strengths": [
+        "dimension + overall 的短表易于检查。",
+        "5 分制两位小数一致。",
+        "为后续 evaluator robustness 提供质量锚点。"
+      ],
+      "design_weaknesses": [
+        "caption 未说明评分尺度、样本/子集数量和聚合方式。",
+        "均值差异小，缺少 variance 不能判断稳定性。",
+        "overall 行的高亮依赖位置而非明确标记。"
+      ],
+      "reusable_pattern": "质量评估使用 dimension + mean + overall 的最小表，另配 agreement table 说明评分可靠性。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 8 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "reproduction",
+        "other"
+      ],
+      "caption": {
+        "text": "Table 9: Cross-model LLJ consistency scores, with mean (variance) reported. High correlations and small mean biases indicate strong agreement across evaluator families.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "uncertainty_definition",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 4,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Pearson/Spearman、Mean Bias、LoA；括号为 variance，LoA 为 agreement statistic，不是 conventional confidence interval。",
+      "data_and_statistics": "Gemini/GPT-5 .9330(.00076), .8720(.00120), +.0288(.00051), .8438(.07937)；Gemini/Qwen .9147(.00116), .8145(.00360), −.0083(.00082), .9295(.08834)；GPT-5/Qwen .9147(.00131), .8259(.00374), −.0371(.00212), .9341(.09565)。",
+      "evidence_relation": "Figure 6 panel agreement → Table 9 correlation/bias/LoA summary → Table 10 human–LLJ → Table 11 reference-chain sensitivity。",
+      "design_strengths": [
+        "相关、偏差和 LoA 同表，caption 直接给出 strong agreement。",
+        "mean (variance) 语义被明确写出。",
+        "与 Figure 6 共享 evaluator-pair 视角。"
+      ],
+      "design_weaknesses": [
+        "五列和括号层级在缩放后较小。",
+        "caption 未给样本数与 LoA 构造。",
+        "汇总值隐藏子集异质性。"
+      ],
+      "reusable_pattern": "评估器稳健性用 correlation + mean bias + LoA 表配对 agreement plot，避免只报告单一 correlation。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Table 9 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 10: Human–LLJ agreement scores.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 4,
+      "rules": "minimal",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Pearson/Spearman、Mean Bias、LoA point estimates；无区间。",
+      "data_and_statistics": "Accuracy .9632/.9556/+0.0800/.6606；Entity Coverage .9375/.8691/+0.1200/.9309；Coherence .6061/.8200/−.0200/.6778；Alignment .9275/.7925/+ .2750/.9982；Stacked Score .9323/.8675/+ .1138/.8562。",
+      "evidence_relation": "Table 9 cross-model agreement → Table 10 human annotation 对照 → Table 11 ground-truth generator comparison。",
+      "design_strengths": [
+        "维度拆分显示 Coherence/Alignment 与 accuracy 类指标的差异。",
+        "列结构与 Table 9 对齐，便于审计。",
+        "LoA 与 bias 不被单一 correlation 掩盖。"
+      ],
+      "design_weaknesses": [
+        "caption 没有定义 human score、聚合、LoA 或样本数。",
+        "Coherence 的相对低 Pearson 没有配套可视化。",
+        "数值 precision 高但缺少 dispersion context。"
+      ],
+      "reusable_pattern": "让 human/automatic agreement 复用 cross-model 表头，逐维报告 correlation、bias 和 LoA。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Table 10 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "reproduction",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 11: Performance of Gemini-2.5-Pro and GPT-4o-mini when evaluated against ground-truth reasoning chains generated by GPT-5 (GPT columns) or by the original Gemini-based construction (Gemini columns).",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "F1/LLJ 为 point estimates，无 error columns、重复或分母。",
+      "data_and_statistics": "五类 graph × Gemini-2.5-Pro/GPT-4o-mini，F1 Score 与 LLJ Score 各按 GPT/Gemini reference 分列；例如 Text Chain Gemini 32.52/34.42、LLJ 3.44/3.46，GPT-4o-mini 26.05/26.98、3.01/3.05。",
+      "evidence_relation": "Table 3 主模型/chain score → Table 11 替换 chain generator/reference → Figure 6/Table 9 evaluator agreement。",
+      "design_strengths": [
+        "两种 reference generator 并列，能分离模型性能和 golden-chain 来源。",
+        "topology/model group 与主表顺序一致。",
+        "caption 明确 GPT/Gemini 列的来源。"
+      ],
+      "design_weaknesses": [
+        "嵌套表头容易混淆 reference 方向。",
+        "caption 没定义 F1/LLJ 方向和样本量。",
+        "无 uncertainty。"
+      ],
+      "reusable_pattern": "reference sensitivity 使用同一 model × 两个 chain generator 的宽表，保持指标和 topology 顺序稳定。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Table 11 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "ablation",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 12: Fine-tuning hyper-parameters for Search-Align alignment on InternVL3.5-8B and Qwen/Qwen2.5-VL-7B-Instruct. Both models are trained on 4×A100 GPUs.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "配置清单，不是估计值；无 seed、样本量、effective batch 或评估不确定性。",
+      "data_and_statistics": "两模型均 AdamW、warm-up ratio .1、cosine scheduler、batch 1/device、gradient accumulation 8、4×A100；InternVL lr 1e−5/1 epoch，Qwen lr 1e−4/2 epochs。",
+      "evidence_relation": "SEARCH-ALIGN 方法 → Table 12 训练边界 → Figure 7 error reduction、Table 3/14 gains。",
+      "design_strengths": [
+        "两个 open-source backbone 的关键配置并列。",
+        "硬件条件在 caption 直接声明。",
+        "key/value 结构适合复现查阅。"
+      ],
+      "design_weaknesses": [
+        "没有随机种子、数据量、effective batch 和推理设置。",
+        "文本/数值混排，precision 依赖 row label。",
+        "caption 未说明训练/评估数据版本。"
+      ],
+      "reusable_pattern": "按 hyper-parameter × model columns 记录训练边界，补充 seeds、数据版本和 effective batch rows 可增强复现。",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Table 12 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 13: Soft HPS scores for Gemini-2.5-Pro and Gemini-Flash under different similarity thresholds τ.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "soft-HPS point estimates；无 variance、区间或样本量。",
+      "data_and_statistics": "五 graph rows × Gemini-2.5-Pro/Gemini-Flash 四个 τ 列。Text Chain Pro 21.59/35.59/38.05/41.26、Flash 13.33/26.86/28.78/30.97；Image-Initiated Pro 25.90/38.74/40.48/42.87、Flash 25.03/43.19/45.04/47.42；其余 topology 同 schema。",
+      "evidence_relation": "Table 3 HPS/RD → Table 13 threshold sensitivity → Figure 8 top-k ΔF1、Table 14 Qwen retrieval budget。",
+      "design_strengths": [
+        "两个 evaluator/model 家族与四个 τ 以平行列组呈现。",
+        "topology 顺序与主表一致。",
+        "两位小数支持 threshold 横向比较。"
+      ],
+      "design_weaknesses": [
+        "9 列嵌套表头在缩放后密集。",
+        "caption 没说明 soft-HPS 算法或 τ 增减语义。",
+        "无 variance/样本量。"
+      ],
+      "reusable_pattern": "用 graph rows × evaluator columns × threshold subcolumns 固定 metric sensitivity，避免 threshold 表拆散。",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Table 13 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 14: Performance of Qwen2.5-VL-7B and +SEARCH-ALIGN under Retrieval@1, @3, and @5. We report F1, ΔF1, Hit per Step (HPS), and Rollout Deviation (RD). Best values per topology and metric are highlighted in bold font.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 14,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "F1/ΔF1/HPS/RD point estimates，无 error columns、seed dispersion 或失败值。",
+      "data_and_statistics": "4 graph groups × Qwen/+SEARCH-ALIGN rows × Retrieval@1/@3/@5 四指标。Image-Initiated Qwen @1 26.30/8.65/16.51/4.04，@3 29.21/11.56/16.17/3.79，@5 29.35/11.70/16.95/3.79；+ALIGN @1 45.70/28.05/33.59/.70，@3 47.19/29.54/39.45/.75，@5 47.29/29.64/41.79/.79。",
+      "evidence_relation": "Figure 8 Gemini top-k → Table 14 Qwen top-k × SEARCH-ALIGN → Table 3 agentic gains与 Figure 7 error reduction。",
+      "design_strengths": [
+        "同一行横向展示 retrieval budget 对 answer/process metrics 的影响。",
+        "Qwen 与 +ALIGN 直接配对，caption 定义 HPS/RD。",
+        "best-per-topology/metric 粗体与主表高亮一致。"
+      ],
+      "design_weaknesses": [
+        "14 列重复指标在页面缩放后非常密集。",
+        "只给 point estimates，没有 seeds/variance。",
+        "粗体数量多时层级减弱。"
+      ],
+      "reusable_pattern": "对 retrieval budget ablation 使用 topology × model variant rows × k-grouped metrics，使方法增益和取证预算交互可审计。",
+      "evidence": {
+        "page": 27,
+        "label": "p.27 Table 14 and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先给出需要多步跨模态搜索的具体 trace；Table 1/Figure 2 定义 prior gap、topology、HAVE 与 agentic pipeline；Table 2/7 固定数据规模；Table 3 作为主比较同时报告 answer 与 chain metrics；Figure 3–5 拆解长链退化、retrieval deviation 和 failure taxonomy；附录 Table 5–14/Figure 6–10 提供 fixed-step controls、evaluator agreement、SEARCH-ALIGN、top-k sensitivity 与成功/失败案例。",
+    "caption_system": "所有 caption 统一对象标签开头；方法对象通常是 title+setup，Figure 3、Table 9、Figure 9/10 写出主发现；Table 5/6/10 等 caption 过短，需正文恢复设置。Table 3/4/14 明确部分高亮/缩写，其他对象仍依赖图内小标签。",
+    "table_header_system": "结果表固定 topology/graph row groups、model/variant rows 与 F1/ΔF1/LJ/HPS/RD/Golden F1 指标；Table 4 使用 query condition×modality×covered/gold/Cov.；Table 13/14 使用 evaluator/threshold 或 Retrieval@k 二层 column groups。booktabs 横线、无完整竖线、箭头方向和 bold/underline 组成稳定表头语法。",
+    "method_result_ablation_link": "Figure 2 的 benchmark/pipeline 是方法接口，Table 3 是 agentic MM-RAG 主结果；Figure 3–5 将性能差异拆成 chain length、retrieval deviation 和错误类型；Table 5/6 固定检索 baseline，Figure 7/Table 12/14 将 SEARCH-ALIGN 的训练、错误下降和 retrieval-k 结果接回主表。",
+    "main_appendix_link": "Table 2 与 Table 7 对齐 dataset counts；Table 3 与 Table 5/6、11、14 对齐 baseline/reference/top-k；Figure 4 与 Figure 8 对齐 ΔStep 机制；Figure 5 与 Figure 7、Figure 9/10 对齐 failure taxonomy 和 qualitative evidence。附录负责统计、评估器、训练配置和案例复现，没有新增冲突标签。",
+    "typography_consistency": "正文/附录表格的 Nimbus Roman/Computer Modern 与横线规则稳定；流程/qualitative 图共享卡片和图标语法；数值图字体与表格大体一致但图内字号更小，Figure 2/9/10 的 UI sans-serif/monospace 是局部例外。",
+    "color_consistency": "模型曲线在 Figure 3/4/8 中使用相近的六色/三色 categorical 语法，流程和 qualitative 图复用蓝/粉/绿/红状态角色，Table 4/5/7 使用文字高亮或 hatch。颜色有效分组但不是全面灰度安全通道，标签、位置、箭头和 hatch 承担必要冗余。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 2 的左右双模块 canvas 将数据构造/HAVE 验证与在线 agentic RAG/chain alignment 固定为同一接口。",
+      "Table 3 的 topology×model×answer/process metric 宽表把答案质量和规划质量放在同一决策面。",
+      "Figure 4/8 的 ΔStep 零线分区把 under-retrieval、适度 over-retrieval 和过度检索连接到 ΔF1。",
+      "Figure 9/10 同构 success/failure trace grid 将 HPS/RD 或错误 taxonomy 映射到逐 hop evidence。",
+      "Table 2/7 的正文摘要表 + 附录 key/value breakdown 分离快速阅读与复现级数据清单。"
+    ],
+    "highest_value_objects": [
+      "Figure 2：完整方法接口，并有作者仓库 teaser rendered asset。",
+      "Table 3：五类 topology 下同时覆盖 answer 与 chain metrics 的主结果。",
+      "Figure 4：将检索过程偏差绑定到质量变化。",
+      "Figure 5：失败优先级诊断。",
+      "Figure 9/10：成功/失败 qualitative 对照。"
+    ],
+    "failure_patterns": [
+      "复合图和宽表承载过多文字/列，Figure 2、Table 3/14、Figure 9/10 缩放后需要回看正文。",
+      "颜色同时编码模型、状态、modality 和错误类别，灰度与色觉可访问性有限。",
+      "多数对象只给 point estimate；band、variance、LoA 定义和样本量并不总在 caption 出现。",
+      "公开仓库没有 Figure 1/3–10 或表格的可编辑生成源，partial_visual_source 是复现边界。"
+    ],
+    "one_sentence_visual_strategy": "论文以“具体 multimodal agent trace→benchmark/pipeline 双模块→topology 分组主表→chain-length/retrieval/failure 机制→evaluator、训练与 qualitative 复现附录”的视觉链条，把最终答案质量与逐步检索规划质量置于同一证据系统。"
+  }
+}

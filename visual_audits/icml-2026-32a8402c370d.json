@@ -1,0 +1,1542 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-32a8402c370d",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda"
+    ],
+    "selected_repository": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "assets/brps_x_ternary.gif",
+        "role": "rendered_asset",
+        "tool": "GIF/PIL",
+        "evidence": "`gh api` fetched the 1025×318, 80-frame GIF from the paper-linked repository; its ternary three-method layout and strategy colors match Figure 3's visual vocabulary, but it is not a pixel-identical PDF export."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "notebooks/brps_ternary.ipynb",
+        "role": "plot_script",
+        "tool": "Jupyter, Matplotlib, python-ternary",
+        "evidence": "Verified notebook source contains the Figure 3/7 ternary layout, `#1f77b4/#ff7f0e/#2ca02c`, `boundary(linewidth=2.0)`, gray `.1` grid, `.2` ticks, trajectory linewidth 2.0, markersize 3, title fontsize 16 and the fixed initial/equilibrium strategies."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/scripts/dump_brps_trajectory.py",
+        "role": "other",
+        "tool": "Python, NumPy, Pandas",
+        "evidence": "Verified tree/source shows the trajectory CSV/data dump consumed by the BRPS ternary visualization; it is a data-generation helper rather than the PDF renderer."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/scripts/run_brps_comparison.sh",
+        "role": "other",
+        "tool": "Bash, uv",
+        "evidence": "Verified run script configures 100 trials and 100000 iterations for BRPS comparisons, providing the experiment entry point behind the normal-form comparison data; no plotting code is included."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/scripts/run_m_ne_comparison.sh",
+        "role": "other",
+        "tool": "Bash, uv",
+        "evidence": "Verified run script configures the M-Ne normal-form comparison; it supplies data-generation settings for Figure 6 but does not render the PDF figure."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/scripts/run_mu_sensitivity_asym_pgda.sh",
+        "role": "other",
+        "tool": "Bash, uv",
+        "evidence": "Verified script runs AsymP-GDA sensitivity over the μ values used by Figure 8; it is an experiment launcher, not a figure generator."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/scripts/run_brps_vs_mu_asym_pgda.sh",
+        "role": "other",
+        "tool": "Bash, uv",
+        "evidence": "Verified BRPS asymmetric μ sweep launcher corresponding to the proximity/sensitivity family used by Figure 1."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/scripts/run_brps_vs_mu_sym_pgda.sh",
+        "role": "other",
+        "tool": "Bash, uv",
+        "evidence": "Verified BRPS symmetric μ sweep launcher corresponding to the paired comparison in Figure 1."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/scripts/run_bmp_vs_mu_asym_pgda.sh",
+        "role": "other",
+        "tool": "Bash, uv",
+        "evidence": "Verified BMP asymmetric μ sweep launcher corresponding to Figure 5's matrix-specific proximity diagnostic."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/scripts/run_bmp_vs_mu_sym_pgda.sh",
+        "role": "other",
+        "tool": "Bash, uv",
+        "evidence": "Verified BMP symmetric μ sweep launcher corresponding to Figure 5's paired comparison."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "nfg/runner/runner.py",
+        "role": "other",
+        "tool": "Python, Pandas",
+        "evidence": "Verified runner records `nash_conv_last_iterate`, `nash_conv_time_average`, regrets and logs for plotted experiments; it contains no final plotting or table-rendering routine."
+      },
+      {
+        "repository_url": "https://github.com/CyberAgentAILab/asymmetrically-perturbed-gda",
+        "path": "efg/algorithm/asymp_dgda.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Verified extensive-form AsymP-DGDA implementation in the repository tree; it supports the Figure 4/9 experiment method but is not a visual source file."
+      }
+    ],
+    "search_note": "自动 inventory row 为 no_public_source_found，且 local corpus/visual_sources 目录不存在。PDF 首页脚注明确链接 CyberAgentAILab/asymmetrically-perturbed-gda；`gh repo view` 的仓库描述与论文标题精确匹配，README 链接 arXiv 2506.05747。递归 tree 验证了 ternary notebook、GIF、BRPS/M-Ne/BMP 运行脚本、NashConv runner 和 extensive-form 实现。Notebook/GIF/运行入口能支持 Figure 3/7 的样式与部分实验数据，但仓库没有论文 TeX、完整 Figure 1–9 plotting source 或 Table 1–4 generator，因此状态为 partial_visual_source；所有自动候选均以论文明确链接和仓库元数据复核。"
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 0,
+    "appendix_figures": 5,
+    "appendix_tables": 4,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "DejaVu Sans Oblique",
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 7.0,
+        "median": 12.0,
+        "maximum": 26.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Nimbus Roman No9 L Italic",
+        "Computer Modern Roman",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 10.0,
+      "header_size_pt": 10.0,
+      "header_weight": "medium",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "定量图采用 Matplotlib 风格的蓝、橙、绿、红及少量紫/棕方法色；Figure 1/5 用蓝曲线配红色 regime annotation，Figure 3/7 的 initial strategies 使用固定蓝橙绿，Table 1–4 保持黑白 payoff/configuration 语法。颜色主要依赖 legend 或 panel title，整体为 categorical/mixed 而非连续数值热度。",
+    "vector_raster_mix": "Figure 2 的图面含嵌入 image XObject 并与矢量文字/线条混排；Figure 1、3、4、5、6、7、8、9 的曲线、文字、标记和表格规则主要是 PDF vector。caption、正文和四张表均为矢量对象。",
+    "style_consistency": "正文和 caption 稳定使用 Nimbus Roman No9 L 与 Computer Modern math；定量图多用 DejaVu Sans/Oblique，Figure 2 的 CambriaMath、Figure 1/5 的 TimesNewRomanPSMT 和 Notebook 的 Matplotlib 参数形成局部子系统。panel、legend、booktabs/minimal table 规则一致，但六方法图和 ternary 图的颜色冗余不足。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 3,
+      "module": "theory_mechanism",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. The proximity of x^μ to x* under the symmetric perturbation and the asymmetric perturbation with varying μ. The game matrix A is given by [[0, 1, −3], [−1, 0, 1], [3, −1, 0]]. The proximity to the minimax strategy is measured by the value of max_{y∈Y} (x^μ)^⊤Ay − v*.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique",
+          "TimesNewRomanPSMT",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 13.0,
+          "maximum": 26.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#2F7DB7",
+          "#FF0000",
+          "#F4CACA",
+          "#808080"
+        ],
+        "semantic_mapping": "蓝色 proximity curve 表示偏离大小，红色标记、虚线和浅红区域表示 asymmetric equilibrium-invariance annotation，灰色为网格；panel 标题提供颜色之外的 symmetric/asymmetric 区分。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 200
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "扰动强度 μ。",
+        "y": "max_{y∈Y}(x^μ)^⊤Ay−v*，即 player x 的 NashConv/proximity。",
+        "color": "对称与非对称的 proximity 曲线以及 asymmetric regime 的红色标注。",
+        "shape": "曲线端点和红色 reference point。",
+        "line": "实线曲线与右 panel 的 reference 虚线。",
+        "facet": "左右 panel 分别为 Symmetric Perturbation 和 Asymmetric Perturbation。",
+        "text": "图内直接标出 Equilibrium Invariance Regime，并给出矩阵与 estimand。"
+      },
+      "data_and_statistics": "BRPS 矩阵上的固定实例曲线，比较对称和非对称 perturbation 随 μ 变化的 minimax proximity。图中没有随机重复、seed、均值、区间或失败值，红色 regime 是理论/视觉标注而非估计区间。",
+      "evidence_relation": "引言关于固定 symmetric perturbation 造成 O(μ) equilibrium deviation 的问题 → §3 asymmetric formulation → Figure 1 的 paired diagnostic → Theorem 3.1 与 Corollary 3.2 的 invariance threshold；Appendix A.2 的 Figure 5 用 BMP 重复该角色。",
+      "design_strengths": [
+        "左右 panel 共享 y 语义，直接把 symmetric deviation 与 asymmetric invariance 放在同一坐标框架。",
+        "caption 给出 payoff matrix 和 proximity estimand，图内 annotation 将理论 regime 接到观测。"
+      ],
+      "design_weaknesses": [
+        "固定单实例只有一条曲线，缺少重复和 uncertainty。",
+        "threshold 数值未直接标出，红蓝颜色在灰度下需要 panel 标题和文字补充。"
+      ],
+      "reusable_pattern": "以同一坐标的 paired panels 对照一项干预的两个版本，并叠加 theoretical regime reference；caption 同时写明实例、estimand 和比较关系。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 1",
+        "bbox": [
+          72,
+          58,
+          540,
+          236
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 4,
+      "module": "theory_mechanism",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "other"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 2. The landscape of the objective function for player x in asymmetrically perturbed games. The functions g(x) and g_asym^μ(x) are defined as g(x) := max_{y∈Y} x^⊤Ay and g_asym^μ(x) := g(x) + μ/2 ||x||², respectively.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Cambria Math",
+          "Computer Modern Roman",
+          "Computer Modern Italic",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 14.0,
+          "maximum": 19.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#000000",
+          "#C00000",
+          "#7F7F7F",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "黑色曲线和轴承载原始 g(x)，红色公式/点强调 asymmetric objective 与 minimizer，灰色箭头表示几何关系；公式位置补充颜色语义。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "无数值 x 轴；横向位置只表示示意中的策略变量。",
+        "y": "无数值 y 轴；竖向位置表示函数值形状。",
+        "color": "红色与黑色区分加正则项的表达和原函数。",
+        "shape": "最优点、曲线拐点和箭头端点。",
+        "line": "曲线、辅助虚线/箭头和局部 slope 示意。",
+        "facet": "原函数、asymmetric objective 与局部最优点的横向概念分区。",
+        "text": "g(x)、g_asym^μ(x)、max_y 和 μ/2||x||² 直接写入图内。"
+      },
+      "data_and_statistics": "定性函数 landscape；没有实验样本、单位、聚合或不确定性。曲线形状表达 piecewise-linear convex envelope 加 quadratic 后的强凸几何，不能读作拟合数据。",
+      "evidence_relation": "§3.1 中保留 player x 的线性原目标、只增加强凸项的解释 → Figure 2 的 kink/landscape mechanism → Corollary 3.2 的 equilibrium coincidence；Figure 1 给出固定矩阵的数值切片。",
+      "design_strengths": [
+        "把原函数、非对称扰动后的函数和保持的最优点放进同一几何解释。",
+        "公式定义与曲线形状互相校验，适合作为 theorem 到实验的桥接。"
+      ],
+      "design_weaknesses": [
+        "无坐标刻度和参数尺度，无法从图面恢复 threshold 或函数量级。",
+        "黑红语义依赖颜色和公式位置，作者仓库也没有该概念图的可编辑源。"
+      ],
+      "reusable_pattern": "用“原函数、干预后函数、保持的最优点”三件套呈现局部机制，并在 caption 直接定义每条函数。",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 2",
+        "bbox": [
+          72,
+          52,
+          540,
+          240
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "normal_form_dynamics",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "other"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3. Trajectories of strategies for player x using AsymP-GDA, SymP-GDA, and GDA. The learning rate is set to η = 0.002 for all methods, and the perturbation strength is set to μ = 1.5 for AsymP-GDA and SymP-GDA. The game matrix A is set to A = [[0, 1, −3], [−1, 0, 1], [3, −1, 0]], and the strategy spaces are set to X = Y = Δ^3. The red point represents the minimax strategy of the original game. The trajectories originate from different initial strategies, demonstrating the learning dynamics under each method.",
+        "word_count": 94,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 8.0,
+          "median": 14.0,
+          "maximum": 16.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#FF0000",
+          "#808080"
+        ],
+        "semantic_mapping": "蓝、橙、绿区分三种 initial strategy，红点表示原始 minimax，灰色网格与黑色 simplex 边界提供几何参照；panel title 说明 algorithm。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 9,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "ternary simplex 的第一、第二坐标方向。",
+        "y": "ternary simplex 的第三分量由边界约束体现。",
+        "color": "三种起始策略及 red equilibrium point。",
+        "shape": "起始点、终点/均衡点和 ternary corner。",
+        "line": "每种初始策略的 solid trajectory，方向由路径顺序体现。",
+        "facet": "三个并列 algorithm panels：GDA、SymP-GDA、AsymP-GDA。",
+        "text": "x1、x2、x3 corner labels、algorithm title、η、μ、矩阵和 red point 由 caption/图面说明。"
+      },
+      "data_and_statistics": "BRPS 上 η=.002、AsymP/SymP μ=1.5 的 deterministic strategy trajectories；每个 algorithm 有三种 initial strategy。没有 seed 汇总、误差或分布编码，三条路径是定性 last-iterate evidence。",
+      "evidence_relation": "§4.1 的 AsymP-GDA linear last-iterate claim → Figure 3 的 simplex dynamics → Appendix A.3 Figure 6 的 100-seed NashConv → §5 Figure 4 的 extensive-form extension。Table 2 给出 BRPS matrix。",
+      "design_strengths": [
+        "固定矩阵、η、μ、strategy space 和 red equilibrium，让三种算法共享几何坐标。",
+        "ternary 位置直接表达 simplex 约束；Notebook 精确给出颜色、grid、linewidth 和布局。"
+      ],
+      "design_weaknesses": [
+        "没有 initial-strategy legend，颜色对应关系需要正文或 Notebook。",
+        "轨迹相交时依赖颜色，灰度和色觉差异会降低区分度；单实例路径不表示统计稳健性。"
+      ],
+      "reusable_pattern": "在共享 simplex geometry 的横向 algorithm panels 中固定初始策略与 equilibrium marker，并复用同一颜色 vocabulary；正式复用时增加起点 legend 或 marker shape。",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 3",
+        "bbox": [
+          72,
+          52,
+          540,
+          280
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "extensive_form_results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4. Performance in extensive-form games. The y-axis reports the NashConv of the strategy pair (x^t, y^t) in the original game; for AsymP-DGDA, (x^t, y^t) is obtained by combining two separate runs for players x and y. The x-axis reports the total number of strategy updates; for AsymP-DGDA, this is the sum across the two runs.",
+        "word_count": 56,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique",
+          "Computer Modern Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 10.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#8C564B",
+          "#9467BD"
+        ],
+        "semantic_mapping": "六种颜色分别表示 DGDA/DMWU/DOMWU/DOGDA 系列算法；顶部 shared legend 是主要类别 key，panel title 表示 game。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 5,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top centered shared legend",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Number of strategy updates，总更新成本。",
+        "y": "log10(NashConv)，线性显示的 transformed metric。",
+        "color": "六种 extensive-form solver methods。",
+        "shape": "无 marker；panel 和 legend 共同区分方法。",
+        "line": "六条 solid curves，下降方向表达 NashConv 改善。",
+        "facet": "Kuhn、Leduc、Liar's Dice (4 sides)、Goofspiel (4/5 cards) 五个 game panels。",
+        "text": "panel titles、shared legend、NashConv 和 total strategy updates 文字标签。"
+      },
+      "data_and_statistics": "五个 extensive-form game 的 strategy-pair NashConv 随 total strategy updates 的曲线。AsymP-DGDA 的 x/y strategy pair 由两个 player-specific runs 合成，x 轴为两次 run 的更新数之和；没有 seed、error band、失败值或终止规则。",
+      "evidence_relation": "§5 的 dilated-regularizer AsymP-DGDA → Figure 4 的 multi-game main comparison；Table 4 给出每个 game/algorithm 的 η、μ，Figure 9 增加 CFR family baseline。",
+      "design_strengths": [
+        "五个 game 共享坐标和顶部 legend，跨任务扫描成本低。",
+        "caption 显式说明 two runs 的合成和总更新数，避免把 iteration 数误当作公平成本。"
+      ],
+      "design_weaknesses": [
+        "六条曲线和小 panel 标题造成较高密度，极低 NashConv 区域依赖小刻度。",
+        "没有不确定性、重复数或失败标记，图外需补充每个 game 的停止和初始化设置。"
+      ],
+      "reusable_pattern": "在多任务曲线中复用 panel 顺序、共享坐标和真实 strategy-update 横轴；caption 写明双 run、倍频和成本换算规则。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 4",
+        "bbox": [
+          72,
+          52,
+          540,
+          430
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 12,
+      "module": "appendix_bmp_diagnostic",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5. The proximity of x^μ to x* under the symmetric perturbation and the asymmetric perturbation with varying μ. The game matrix A is given by [[1/3, −2/3], [−2/3, 1]].",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique",
+          "TimesNewRomanPSMT",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 13.0,
+          "maximum": 26.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#2F7DB7",
+          "#FF0000",
+          "#F4CACA",
+          "#808080"
+        ],
+        "semantic_mapping": "沿用 Figure 1 的蓝 proximity curve、红色 asymmetric regime annotation/point、浅红区域和灰网格；panel title 区分 perturbation type。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 200
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "扰动强度 μ，右图范围扩展到约 10。",
+        "y": "BMP 实例上的 minimax proximity。",
+        "color": "symmetric/asymmetric proximity curves 与 invariance annotation。",
+        "shape": "曲线端点和红色 regime point。",
+        "line": "实线曲线与 reference 虚线。",
+        "facet": "symmetric 与 asymmetric 两个 panel。",
+        "text": "matrix A、panel title 和 equilibrium-invariance annotation。"
+      },
+      "data_and_statistics": "BMP payoff matrix 上的固定实例 proximity diagnostic；没有随机重复、误差、seed 或聚合统计。它是 Figure 1 的追加矩阵切片，而不是独立总体估计。",
+      "evidence_relation": "Appendix A.2 的 BMP matrix 与 counterexample/proximity 讨论 → Figure 5；Table 1 定义 payoff，Figure 1 提供 BRPS 对照。",
+      "design_strengths": [
+        "保持 Figure 1 geometry、axis 和颜色，矩阵替换后可直接判断机制是否依赖 BRPS。",
+        "附录位置使 matrix Table 1 与 diagnostic 图相邻。"
+      ],
+      "design_weaknesses": [
+        "caption 没有重述 Figure 1 的 proximity estimand，也没有说明更宽的 μ 范围。",
+        "仍是单实例无 uncertainty，regime 边界只能依赖 annotation。"
+      ],
+      "reusable_pattern": "附录复用主图 geometry，只替换 game matrix 检验实例稳健性；caption 应同步写出 estimand 和新增范围。",
+      "evidence": {
+        "page": 12,
+        "label": "Figure 5",
+        "bbox": [
+          72,
+          42,
+          540,
+          265
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 13,
+      "module": "appendix_normal_form_comparison",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 6. Performance of AsymP-GDA, SymP-GDA, GDA, and OGDA in normal-form games. The shaded area represents the standard errors.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique",
+          "Computer Modern Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 11.0,
+          "maximum": 17.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "蓝、橙、绿、红分别对应 GDA、OGDA、SymP-GDA、AsymP-GDA，灰色/半透明同色区域承载 standard-error band，panel title 区分 BRPS/M-Ne。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 2000
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Iterations，log scale。",
+        "y": "log10(NashConv)，linear display。",
+        "color": "四个 normal-form methods。",
+        "shape": "无 marker，曲线和 band 由 legend 区分。",
+        "line": "四条 solid mean curves，阴影带跟随曲线。",
+        "facet": "BRPS 与 M-Ne 两个 panel。",
+        "text": "各 panel lower-left legend、NashConv 轴标题和 shaded area。"
+      },
+      "data_and_statistics": "BRPS 与 M-Ne 上四个 normal-form algorithms 的 NashConv convergence；附录正文给出 100 random seeds，阴影表示 standard error。图面没有逐 seed 失败值或终止截断。",
+      "evidence_relation": "Theorem 4.1 的 linear last-iterate rate → Figure 6 的 100-seed empirical check；Table 2/3 给出矩阵，Figure 7/8 展开 μ 与 strategy-space 影响。",
+      "design_strengths": [
+        "log iteration axis 覆盖多个数量级，两个 game 使用同一 panel grammar。",
+        "standard-error band 让附录 convergence evidence 比单条实例轨迹更可审计。"
+      ],
+      "design_weaknesses": [
+        "每 panel 内的 legend 占据数据空间，曲线接近时有遮挡风险。",
+        "caption 未写 100 seeds、η、aggregation 或 game matrix；band 灰度区分度有限。"
+      ],
+      "reusable_pattern": "用同构 game panels、log iteration 轴和 band 表达跨数量级 convergence；caption 同时写 seed 数与 band 统计定义。",
+      "evidence": {
+        "page": 13,
+        "label": "Figure 6",
+        "bbox": [
+          72,
+          44,
+          540,
+          360
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 13,
+      "module": "appendix_mu_trajectory_grid",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "other"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 7. Trajectories for SymP-GDA (top row) and AsymP-GDA (bottom row) under different perturbation strengths μ ∈ {0.5, 1.0, 2.0, 4.0} in BRPS. The learning rate is set to η = 0.002 for both methods.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 11.0,
+          "maximum": 17.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#FF0000",
+          "#808080"
+        ],
+        "semantic_mapping": "Notebook 的蓝/橙/绿编码三种初始策略，红点编码 original minimax，灰网格和黑色边界编码 simplex geometry；row/column title 提供 algorithm/μ 冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 24,
+        "legend_items": 0,
+        "annotations": 32,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "ternary strategy coordinates，无单独数值横轴。",
+        "y": "ternary strategy coordinates，无单独数值纵轴。",
+        "color": "三种 initial strategies 与 red equilibrium。",
+        "shape": "initial markers 和 equilibrium marker。",
+        "line": "三条每 panel 的 solid trajectories。",
+        "facet": "2×4 grid：top=SymP-GDA，bottom=AsymP-GDA；columns=μ。",
+        "text": "panel titles 写 μ，corner labels 写 x1/x2/x3，caption 写 row 和 η。"
+      },
+      "data_and_statistics": "BRPS、η=.002、三种 fixed initial strategies 下的 μ sweep；八个 panel 是 deterministic qualitative trajectories，没有 uncertainty 或 seed aggregation。",
+      "evidence_relation": "Appendix A.3 的 trajectory diagnostic → Figure 7；Figure 3 提供 μ=1.5 的三算法 overview，Figure 8 给出同一 μ 轴的 NashConv quantitative sensitivity。",
+      "design_strengths": [
+        "2×4 row/column 语法同时编码 algorithm 与 μ，固定 simplex 和 equilibrium 便于横向比较。",
+        "Notebook 精确提供 figsize、grid/tick、颜色、标题字号和线宽，参数可复用。"
+      ],
+      "design_weaknesses": [
+        "八 panel 没有 initial-strategy legend，颜色依赖较强。",
+        "信息密度高且无 uncertainty，路径不能直接代表跨实例性能；小刻度缩放后难读。"
+      ],
+      "reusable_pattern": "用 2×K grid 扫描机制参数，固定坐标、初始点和 equilibrium marker，保持 row=method、column=parameter 的空间语法；增加 marker shape/legend 提升灰度可读性。",
+      "evidence": {
+        "page": 13,
+        "label": "Figure 7",
+        "bbox": [
+          72,
+          390,
+          540,
+          690
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 14,
+      "module": "appendix_mu_sensitivity",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 8. Sensitivity to the perturbation strength for AsymP-GDA with η = 0.01 in BRPS and M-Ne.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 12.0,
+          "maximum": 18.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#9467BD"
+        ],
+        "semantic_mapping": "五种颜色/legend 项表示 μ∈{.01,.1,1,2,4}；panel title 表示 BRPS/M-Ne，网格为灰色。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 4,
+        "data_marks_estimate": 2000
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Iterations，log scale。",
+        "y": "log10 NashConv，linear display。",
+        "color": "扰动强度 μ。",
+        "shape": "无 marker，legend 和曲线颜色区分 μ。",
+        "line": "五条 solid μ curves。",
+        "facet": "BRPS 与 M-Ne 两个 game panels。",
+        "text": "legend 列出 μ，caption 写 η=.01 和两类 game。"
+      },
+      "data_and_statistics": "AsymP-GDA 在 BRPS/M-Ne 上不同 μ 的 NashConv path；μ 值由图例可读，图中没有 error band、seed count、失败截断或 threshold reference。",
+      "evidence_relation": "Appendix A.3 将 Figure 7 的 strategy-space sensitivity 与 Figure 8 的 convergence sensitivity 配对；Table 2/3 定义两类矩阵，Figure 6 提供多算法 baseline。",
+      "design_strengths": [
+        "固定 algorithm 后直接展开 μ 轴，两类 game 共享 log-iteration grammar。",
+        "图例把参数值与曲线一一对应，适合检查速度/偏差折衷。"
+      ],
+      "design_weaknesses": [
+        "五条颜色曲线没有 marker/linetype redundancy，灰度辨识依赖图例和排序。",
+        "caption 未列 μ 集合、y 的完整定义、seed 或理论 threshold。"
+      ],
+      "reusable_pattern": "把机制参数放进同构 panel 的 legend，跨 game 复用坐标；若存在理论上界，应叠加 threshold reference 并在 caption 解释。",
+      "evidence": {
+        "page": 14,
+        "label": "Figure 8",
+        "bbox": [
+          72,
+          52,
+          540,
+          335
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 15,
+      "module": "appendix_extensive_form_cfr",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9. Performance in extensive-form games. AsymP-DGDA performs two strategy updates per iteration for each player. For a fair comparison across methods with different per-iteration computational costs, we report the total number of strategy updates on the x-axis rather than iterations.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Oblique",
+          "Computer Modern Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 11.0,
+          "maximum": 17.0
+        },
+        "weight": [
+          "regular",
+          "medium"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728",
+          "#8C564B",
+          "#E377C2"
+        ],
+        "semantic_mapping": "六色 shared legend 区分 AsymP-DGDA、SymP-DGDA、CFR、CFR+、DCFR、LCFR；panel title 编码 game，颜色之外没有 marker/linetype redundancy。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 5,
+        "data_marks_estimate": 3000
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top centered shared legend",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Number of strategy updates，总更新成本。",
+        "y": "log10 NashConv，linear display。",
+        "color": "六种 extensive-form solvers。",
+        "shape": "无 marker；legend 区分方法。",
+        "line": "六条 solid curves，下降方向表示 NashConv 改善。",
+        "facet": "五个 extensive-form game panels，与 Figure 4 顺序相同。",
+        "text": "caption 解释每 player 每 iteration 两次更新和 total-update x 轴。"
+      },
+      "data_and_statistics": "五个 extensive-form game 上 DGDA 与 CFR family 的 NashConv 对比；x 轴将不同 per-iteration computational costs 统一为 total strategy updates。没有误差、seed、失败值或终止规则。",
+      "evidence_relation": "Appendix A.5 扩展 §5 Figure 4 的 baseline family；Table 4 给出 DGDA 的 η/μ，Figure 4 给出另一组 six-method curves。",
+      "design_strengths": [
+        "复用 Figure 4 的 game 顺序和 total-update 语义，方法族替换后仍能直接对齐。",
+        "caption 明确 AsymP-DGDA 的双更新成本，比较单位可复核。"
+      ],
+      "design_weaknesses": [
+        "五 panel 六曲线密集，shared legend 与曲线距离大。",
+        "没有 uncertainty、run count 或失败标记，log10 y 的实际尺度需回到正文。"
+      ],
+      "reusable_pattern": "跨 solver family 统一真实更新次数，复用 task facet 顺序，并在 caption 解释任何多更新或多 run 的成本换算。",
+      "evidence": {
+        "page": 15,
+        "label": "Figure 9",
+        "bbox": [
+          72,
+          45,
+          540,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 12,
+      "module": "appendix_bmp_setup",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "experimental_design",
+        "theory_mechanism",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 1. Game matrix in BMP",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Roman No9 L Italic",
+          "Computer Modern Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "None; payoff entries are deterministic matrix values.",
+      "data_and_statistics": "2×2 BMP payoff matrix: rows x1/x2 and columns y1/y2; entries are 1/3, −2/3, −2/3, 1. There is no aggregation, rank, cost or missing value.",
+      "evidence_relation": "Appendix A.2 Table 1 defines the A matrix used by Figure 5 and the BMP counterexample/proximity discussion.",
+      "design_strengths": [
+        "Compact row/column strategy labels make every payoff entry directly checkable.",
+        "Minimal rules leave the matrix legible as a setup object."
+      ],
+      "design_weaknesses": [
+        "Caption does not say which player minimizes/maximizes or point to Figure 5.",
+        "Fractional precision is not explained in caption and the table has no game-value annotation."
+      ],
+      "reusable_pattern": "Place the small payoff matrix beside its diagnostic plot and retain x_i/y_j labels; add the player direction and linked figure in the caption.",
+      "evidence": {
+        "page": 12,
+        "label": "Table 1",
+        "bbox": [
+          230,
+          515,
+          370,
+          610
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 13,
+      "module": "appendix_brps_setup",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "experimental_design",
+        "theory_mechanism",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 2. Game matrix in BRPS",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Roman No9 L Italic",
+          "Computer Modern Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "None; payoff entries are deterministic integer matrix values.",
+      "data_and_statistics": "3×3 BRPS payoff matrix: rows x1–x3 and columns y1–y3, with integer entries [[0,1,−3],[−1,0,1],[3,−1,0]]. No aggregation, uncertainty or missing value is displayed.",
+      "evidence_relation": "Appendix A.3 Table 2 is the matrix fact source for Figure 1, Figure 3, Figure 6 and Figure 7 BRPS experiments.",
+      "design_strengths": [
+        "The integer matrix is compact and easy to cross-check against the curves.",
+        "The same x_i/y_j convention as the other game matrices stabilizes scanning."
+      ],
+      "design_weaknesses": [
+        "Caption does not expand BRPS or list the figures that consume the matrix.",
+        "No strategy-space or game-value note is placed with the table."
+      ],
+      "reusable_pattern": "Use a compact x_i×y_j matrix as the reproducibility anchor for every BRPS trajectory or convergence plot, with an explicit consumer link.",
+      "evidence": {
+        "page": 13,
+        "label": "Table 2",
+        "bbox": [
+          220,
+          66,
+          380,
+          165
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 13,
+      "module": "appendix_m_ne_setup",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "experimental_design",
+        "theory_mechanism",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 3. Game matrix in M-Ne",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Roman No9 L Italic",
+          "Computer Modern Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "None; payoff entries are deterministic integer matrix values.",
+      "data_and_statistics": "5×5 M-Ne payoff matrix with rows x1–x5 and columns y1–y5; entries are integer values including 2 and −1 in the lower-right block. No aggregation, uncertainty or missing value is displayed.",
+      "evidence_relation": "Appendix A.3 Table 3 defines the M-Ne matrix used by Figure 6 and the normal-form comparison text.",
+      "design_strengths": [
+        "A single matrix records the exact game behind the second convergence panel.",
+        "Integer precision is consistent across all cells."
+      ],
+      "design_weaknesses": [
+        "Caption does not explain M-Ne or identify Figure 6 as the consumer.",
+        "The 5×5 inset is small, so row/column labels need magnification for reliable reading."
+      ],
+      "reusable_pattern": "Keep alternative-game matrices adjacent to their curve panels and use the same x_i/y_j header grammar across instances.",
+      "evidence": {
+        "page": 13,
+        "label": "Table 3",
+        "bbox": [
+          210,
+          250,
+          390,
+          365
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 15,
+      "module": "appendix_extensive_form_hyperparameters",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 4. Hyperparameters",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Nimbus Roman No9 L Italic",
+          "Computer Modern Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "medium",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 30,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 5,
+      "decimal_precision": 4,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "None; η and μ are selected hyperparameters, not estimates. A dash marks μ as not applicable for the unperturbed baseline algorithms.",
+      "data_and_statistics": "Thirty data rows form five game groups with columns Game, Algorithm, η and μ. DMWU/DGDA/DOMWU/DOGDA use a dash for μ; SymP-DGDA and AsymP-DGDA have game-specific μ. η/μ values retain up to four decimal places.",
+      "evidence_relation": "Table 4 is the configuration interface for Figure 4 and Figure 9 extensive-form runs; it explains curve settings but is not a performance estimate.",
+      "design_strengths": [
+        "Game groups and local horizontal rules make 30 rows scannable.",
+        "η and μ are placed beside Algorithm, which supports direct reproduction of each plotted method."
+      ],
+      "design_weaknesses": [
+        "Caption does not define the dash, selection protocol, tuning budget, seeds or stopping rule.",
+        "Mixed η/μ precision is necessary but not summarized in a footnote, and no uncertainty or cost column is present."
+      ],
+      "reusable_pattern": "Use a Game×Algorithm×hyperparameter table as the direct reproduction interface, then add a compact footnote for dash semantics, selection protocol and seed/count.",
+      "evidence": {
+        "page": 15,
+        "label": "Table 4",
+        "bbox": [
+          165,
+          95,
+          447,
+          455
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先呈现 symmetric deviation 与 asymmetric invariance，Figure 2 给出 objective-landscape/kink 机制，Figure 3 将机制落到 simplex last-iterate trajectories，Figure 4 展示 extensive-form 的 total-update NashConv。附录 Figure 5 换 BMP 实例，Figure 6 加 100-seed standard-error bands，Figure 7/8 拆 μ 的定性和定量 sensitivity，Figure 9 加 CFR family；Tables 1–4 固定矩阵与配置。",
+    "caption_system": "所有 caption 以 italic Figure/Table n. 开始，主要是描述性标题。Figure 1/5 定义 proximity，Figure 4/9 定义 total strategy updates，Figure 6 定义 standard-error band，Figure 3/7/8 提供 η/μ/game setup。caption 很少直接写 main finding，没有粗体结论标题，复杂语义依赖图内 label 和正文。",
+    "table_header_system": "Table 1–3 统一用 x_i 行、y_j 列表示 payoff matrix；Table 4 用 Game、Algorithm、η、μ 的一层表头和五个 game row groups。矩阵表与曲线 panel 的 game 名称可以对齐，但 BRPS/M-Ne/BMP 缩写、dash 语义和玩家方向没有统一脚注。",
+    "method_result_ablation_link": "Figure 1/2 承担 theory-mechanism，Figure 3/6 承担 normal-form dynamics/convergence，Figure 4/9 承担 extensive-form comparison，Figure 5/7/8 承担实例与 μ diagnostics，Table 4 承担 reproduction interface。论文没有 component-removal ablation 图；μ sweep 是机制参数扫描，不应标作模块消融。",
+    "main_appendix_link": "正文 Figure 1→Appendix Figure 5，Figure 3→Appendix Figure 6/7/8，Figure 4→Appendix Table 4/Figure 9；Appendix Tables 1–3 是正文/附录曲线引用的矩阵事实源。Algorithm 1 和 Appendix E–K 的证明给出理论边界，但没有额外 Figure/Table。",
+    "typography_consistency": "body/caption 的 Nimbus Roman No9 L、数学 Computer Modern 和表格字号保持稳定；图内定量 axes 多为 DejaVu Sans，Figure 2 的 CambriaMath 与 Figure 1/5 的 TimesNewRomanPSMT 是可见例外。caption 统一 italic，图内 typography 的局部混合使整体一致性弱于表格规则一致性。",
+    "color_consistency": "Figure 3/6/7/8 复用蓝、橙、绿、红的方法/策略色，Figure 1/5 复用蓝曲线与红 regime 语法；Figure 4/9 使用六方法 categorical legend，Table 1–4 黑白。颜色语法跨对象可追踪，但多数方法没有 marker/linetype 冗余，灰度和色觉差异下需要 panel/legend 文字辅助。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用共享坐标的 paired panels 对照 symmetric/asymmetric intervention，并把 theoretical regime 作为 reference annotation。",
+      "以“原函数、干预后函数、保持的最优点”概念图解释定理，再用 ternary trajectory grid 把 simplex 约束落到可见动态。",
+      "对多任务曲线复用 panel 顺序、共享坐标和真实 strategy-update 横轴，caption 明确双 run 的成本换算和 uncertainty 定义。",
+      "用 x_i×y_j payoff matrix 与 Game×Algorithm×η×μ 配置表作为曲线结果的可复现接口。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：理论现象的 paired headline diagnostic。",
+      "Figure 2：asymmetric objective 的几何机制接口。",
+      "Figure 3：last-iterate strategy dynamics 的直观桥接。",
+      "Figure 4：五个 extensive-form game 的主比较。",
+      "Figure 6、Figure 8、Figure 9 与 Table 4：分别补足 seed uncertainty、μ sensitivity、CFR baseline 和逐 game 配置。"
+    ],
+    "failure_patterns": [
+      "Figure 1/5 的单实例 proximity curves 没有重复或 uncertainty，阈值只以 annotation 呈现。",
+      "Figure 4/9 的 extensive-form curves 没有 seed、误差、失败值或终止规则，六色 legend 也没有 marker/linetype 冗余。",
+      "Figure 3/7 的 ternary initial strategies 没有独立 legend，颜色依赖较强，高密度 grid 缩放后小刻度难读。",
+      "Figure 2 没有坐标尺度，Figure 8 没有理论 threshold reference line，定性机制和定量边界需要跨页拼接。",
+      "Table 4 暴露 game/algorithm-specific η、μ，却没有选择协议、预算或 seed；作者仓库没有最终 TeX/plot/table source。"
+    ],
+    "one_sentence_visual_strategy": "用 paired proximity curves 和 objective-landscape schematic 先展示 asymmetric perturbation 的 invariance 机制，再用固定 simplex trajectories 与 cost-normalized multi-game NashConv 承接理论到实践，最后以附录的矩阵、μ 扫描、CFR 对照和 hyperparameter table 补齐可复现边界。"
+  }
+}

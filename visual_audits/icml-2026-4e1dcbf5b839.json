@@ -1,0 +1,2387 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-4e1dcbf5b839",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/XuHuangbiao/LIMSSR"
+    ],
+    "selected_repository": "https://github.com/XuHuangbiao/LIMSSR",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/XuHuangbiao/LIMSSR",
+        "path": "Framework.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "Public 6131 × 2372 RGB PNG matches the PDF Figure 2 architecture, but is a rendered asset without a generator."
+      },
+      {
+        "repository_url": "https://github.com/XuHuangbiao/LIMSSR",
+        "path": "README.md",
+        "role": "other",
+        "tool": "Markdown",
+        "evidence": "README repeats the exact paper title and embeds Framework.png; it contains no plotting or table-generation instructions."
+      },
+      {
+        "repository_url": "https://github.com/XuHuangbiao/LIMSSR",
+        "path": "models/llm_aqa_model.py",
+        "role": "other",
+        "tool": "PyTorch/Transformers/PEFT",
+        "evidence": "Implementation names support LLM, LoRA, special-token, projection and MDA concepts in Figure 2; it is not a visual generator."
+      },
+      {
+        "repository_url": "https://github.com/XuHuangbiao/LIMSSR",
+        "path": "main_llm.py",
+        "role": "other",
+        "tool": "PyTorch",
+        "evidence": "Training/evaluation entry covers modality combinations and metrics as context; it does not generate the paper figures or tables."
+      }
+    ],
+    "search_note": "The inventory row and local visual-source directory were checked first; the row listed XuHuangbiao/LIMSSR as repository_without_visual_source and the local directory was empty. The PDF homepage directly links the public repository, whose exact title/README match the paper. gh tree inspection found Framework.png and implementation files but no plot*, figure*, visual*, table*, notebook, TeX/TikZ/PGF/SVG or figure-specific generator. Framework.png matches Figure 2 only, so the status is partial_visual_source; source inventory was not modified."
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 3,
+    "appendix_figures": 8,
+    "appendix_tables": 10,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Times New Roman",
+        "Computer Modern math",
+        "Calibri",
+        "Comic Sans MS"
+      ],
+      "size_pt": {
+        "minimum": 5.5,
+        "median": 7.5,
+        "maximum": 11
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Times New Roman",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 6.5,
+      "header_size_pt": 7.0,
+      "header_weight": "bold",
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "palette_strategy": "Architecture diagrams use pastel semantic blocks; attention uses fixed Fusion 1–4 colors and modality span bands; embeddings use fixed Visual/Audio/Flow categorical colors; performance tables use black/white rules with red/green T-Miss, blue/gray ΔSOTA and bold/underline best markers.",
+    "vector_raster_mix": "PDF text, captions, axes and table rules are vector; imported Framework.png and statistical plot bodies are raster or mixed with PDF vector overlays. No plot/table generator source was found in the public repository.",
+    "style_consistency": "The modality and attention families are internally consistent, and all result tables reuse Average/full and ρ/MSE conventions. Figure 1/2 assets and appendix plots use different font/colour lineages, and page-width objects are dense at final scale."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "Introduction / problem positioning",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 1. (a) Reconstruction-based and (b) Distillation/Prior-based incomplete multimodal learning methods typically rely on the unrealistic “full-modal training” assumption to generate missing data or distill priors. In contrast, (c) our LIMSSR leverages the context-aware reasoning capabilities of LLMs to infer latent semantics from available modalities under the more challenging Training-Time Incomplete Observations, eliminating the dependency on complete training data or reconstruction supervision.",
+        "word_count": 62,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7.5,
+          "maximum": 10.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#5BC0EB",
+          "#9BCB8A",
+          "#F4B183",
+          "#F6D55C",
+          "#D9534F",
+          "#FFFFFF",
+          "#000000"
+        ],
+        "semantic_mapping": "RGB/Flow/Audio and prompt/model stages; dashed boundaries identify missing modalities or panel boundaries.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 15,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "input to processing to score flow",
+        "y": "three method paradigms stacked vertically",
+        "color": "modality and method-family blocks",
+        "shape": "rectangular module boxes and dashed missing boxes",
+        "line": "directed solid arrows and dashed boundaries",
+        "facet": "(a) Reconstruction-based, (b) Distillation/Prior-based, (c) LIMSSR",
+        "text": "direct module labels and panel letters"
+      },
+      "data_and_statistics": "Conceptual comparison only; no samples, denominators, repetitions, effect estimates, or uncertainty.",
+      "evidence_relation": "Introduction full-modal-training assumption → Figure 1 contrast → Figure 2 method interface → Tables 1–3 results and ablations.",
+      "design_strengths": [
+        "Three method paradigms share one visual coordinate system.",
+        "Direct modality labels and arrows make the problem-to-method transition quick to scan."
+      ],
+      "design_weaknesses": [
+        "Small module labels become difficult at single-column scale.",
+        "Color and dashed-line semantics are not fully robust to grayscale; training/freeze boundaries are not explicit."
+      ],
+      "reusable_pattern": "Use a three-panel prior-versus-new-method architecture comparison, with direct modality labels and explicit missingness marks.",
+      "evidence": {
+        "page": 1,
+        "label": "Figure 1. (a) Reconstruction-based",
+        "bbox": [
+          310,
+          120,
+          585,
+          405
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "Method / overall LIMSSR framework",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 2. The overall framework of LIMSSR. Given incomplete data, LIMSSR first performs Prompt-Guided Context-Aware Modality Imputation, transforming available modalities into token sequences while using placeholders for missing ones. Guided by structured prompts, an LLM infers latent semantics for missing parts and consolidates multimodal information into fusion tokens. Finally, Mask-Aware Dual-Path Aggregation decodes these representations via uncertainty-calibrated reasoning and cross-modal pattern recovery paths, dynamically weighting them based on missingness states to generate robust scores.",
+        "word_count": 74,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#FADBD8",
+          "#D9EAD3",
+          "#FFF2CC",
+          "#D9EAF7",
+          "#F4CCCC",
+          "#F6D55C",
+          "#FFFFFF",
+          "#000000"
+        ],
+        "semantic_mapping": "Pastel blocks separate modality extraction, prompts/tokens, LLM reasoning, missing masks, aggregation and losses; red dashed key explains symbols.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": null,
+        "legend_items": 6,
+        "annotations": 30,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "red dashed key at upper right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "left-to-right input, imputation, fusion, aggregation and score flow",
+        "y": "parallel modality branches and two MDA paths",
+        "color": "modality, prompt, missingness, trainable/frozen and loss roles",
+        "shape": "module rectangles, special-token blocks and freeze/trainable icons",
+        "line": "directed arrows and path connectors",
+        "facet": "left PCMI, centre LLM fusion, right MDA and score heads",
+        "text": "module names, missing mask, token names and legend key"
+      },
+      "data_and_statistics": "Architecture/interface diagram; it specifies available versus missing modalities, tokenization, LoRA LLM, fusion tokens, dual paths and losses, not measured data.",
+      "evidence_relation": "Figure 1 positioning → Figure 2 executable module interface → Table 3 and Tables 4–8 component ablations → Tables 1–2 and Figures 3/9–11 mechanism/results.",
+      "design_strengths": [
+        "Complete end-to-end flow includes missingness, trainability and dual-path semantics.",
+        "The matching public Framework.png asset makes the central method diagram directly reproducible as a rendered artifact."
+      ],
+      "design_weaknesses": [
+        "Many arrows and labels create high cognitive density.",
+        "Several path roles are named but their exact computation order still depends on the method text."
+      ],
+      "reusable_pattern": "A page-width pipeline should show input masks, prompt/token boundaries, trainable/frozen modules, and downstream path-specific heads in one directional frame.",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2. The overall framework of LIMSSR",
+        "bbox": [
+          50,
+          55,
+          560,
+          330
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 8,
+      "module": "Main ablation / fusion-token attention",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 3. Visualization of fusion token attention weights across different modality combinations on the FS1000 (PCS).",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#E15759",
+          "#59A14F",
+          "#4E79A7",
+          "#F28E2B",
+          "#F8E6E6",
+          "#E8F0E2",
+          "#E5EEF8",
+          "#F9EEDB",
+          "#EFE5F5"
+        ],
+        "semantic_mapping": "Four colors identify Fusion 1–4; pastel span bands identify Prompt/Video/Audio/Flow/Fusion token regions.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 35,
+        "data_marks_estimate": 140
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "repeated inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Token Position",
+        "y": "Attention Weight",
+        "color": "Fusion 1–4 attention series and token-span backgrounds",
+        "shape": null,
+        "line": "four solid fusion-token profiles",
+        "facet": "seven availability/missingness conditions (a–g)",
+        "text": "panel conditions and token-span labels"
+      },
+      "data_and_statistics": "FS1000 PCS fusion-token attention profiles for seven modality availability states; no sample denominator, seed, error, interval or statistical test is shown.",
+      "evidence_relation": "Figure 2 fusion-token interface → main Figure 3 attention inspection → Figures 9–11 dataset extensions and Table 6 dual-path ablation.",
+      "design_strengths": [
+        "Fixed panel order and token-span bands connect attention peaks to modality context.",
+        "Shared axes make relative weight redistribution easy to compare."
+      ],
+      "design_weaknesses": [
+        "Seven panels and repeated legends are crowded in a single column.",
+        "Short caption omits the V/F/A panel conditions, aggregation, and uncertainty boundary."
+      ],
+      "reusable_pattern": "Use small multiples over a shared token-position axis with persistent modality-span bands; put the full condition map in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 3. Visualization of fusion token attention weights",
+        "bbox": [
+          350,
+          55,
+          575,
+          300
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 16,
+      "module": "Appendix D / prediction fidelity",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4. Comparative scatter plots illustrating the prediction fidelity of our approach against state-of-the-art baselines, MCMoE (Xu et al., 2026) (incomplete multimodal AQA) and MoMKE (Xu et al., 2024d) (incomplete multimodal emotion recognition), across all modality combinations on the FS1000 (TES) benchmark. Each point maps the ground-truth score (x-axis) to the predicted score (y-axis), with color intensity denoting the magnitude of the prediction error.",
+        "word_count": 64,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#440154",
+          "#21918C",
+          "#FDE725",
+          "#D62728"
+        ],
+        "semantic_mapping": "Viridis-like intensity encodes prediction error; red dashed fit and black diagonal are reference/fit lines.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 21,
+        "series": 3,
+        "legend_items": 4,
+        "annotations": 21,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "local colorbar and panel labels",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "ground-truth score",
+        "y": "predicted score",
+        "color": "point-level prediction error magnitude",
+        "shape": "same scatter point for all methods",
+        "line": "black identity line and red dashed regression fit",
+        "facet": "seven modality conditions × MoMKE/MCMoE/LIMSSR",
+        "text": "method names, condition labels and axes"
+      },
+      "data_and_statistics": "FS1000 TES ground-truth versus predicted scores for MoMKE, MCMoE and LIMSSR across seven modality combinations. Color shows point error; no n, fitted-line specification, repetition or uncertainty is provided.",
+      "evidence_relation": "Table 1 FS1000 TES comparison → Figure 4 point-level fidelity → Figure 5 latent similarity and Figures 6/9 mechanism evidence.",
+      "design_strengths": [
+        "Uniform x/y geometry makes 21 method-condition comparisons visually direct.",
+        "Identity line plus error color shows calibration structure beyond a single aggregate metric."
+      ],
+      "design_weaknesses": [
+        "Twenty-one panels are dense and condition labels are small.",
+        "Error intensity is not grayscale-safe; caption does not define regression fitting or per-panel sample counts."
+      ],
+      "reusable_pattern": "Use a common ground-truth/prediction grid with identity reference and fixed error color scale, while reporting n per panel.",
+      "evidence": {
+        "page": 16,
+        "label": "Figure 4. Comparative scatter plots",
+        "bbox": [
+          55,
+          260,
+          570,
+          665
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 17,
+      "module": "Appendix D / latent-to-target similarity",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "bar",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5. Visualization of the similarity between the semantic representations inferred by LIMSSR and the ground-truth modality representations on the FS1000 test set (TES). (a-c) Display the cosine similarity between the latent semantics inferred by the LLM and the ground-truth representations of all three modalities when the missing modality is Flow, Audio, and Visual, respectively. Each column represents a sample instance, and each row corresponds to a modality. The similarities within each column are normalized to sum to 1. The red dashed box indicates the target missing modality. (d) A bar chart comparison of the similarity between the inferred representation and the target missing modality versus other modalities across the three missingness scenarios. The results indicate that the inferred representations exhibit consistently higher similarity to the target missing modalities, demonstrating that LIMSSR effectively leverages available context to infer useful latent semantics for compensating information loss.",
+        "word_count": 145,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#F7FBFF",
+          "#6BAED6",
+          "#08306B",
+          "#D62728",
+          "#4E79A7",
+          "#E69F00",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Blue sequential heatmaps encode cosine similarity; red dashed box identifies target row; blue/orange bars compare target missing versus other modalities.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": 2229
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bar legend and heatmap colorbars",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "sample index for heatmaps and missingness scenario for bars",
+        "y": "ground-truth modality for heatmaps and average similarity score for bars",
+        "color": "cosine similarity and target-row outline",
+        "shape": "heatmap cell and grouped bar",
+        "line": "red dashed target box",
+        "facet": "three missing-modality heatmaps plus summary bar panel",
+        "text": "row labels, colorbar ticks and target/other legend"
+      },
+      "data_and_statistics": "FS1000 TES latent-to-ground-truth cosine similarity: three heatmaps cover missing Flow, Audio and Visual with roughly 247 samples per scenario, and panel (d) aggregates target versus other modality similarity (approximately .389/.306, .394/.303 and .400/.300). Columns are normalized to sum to 1; no uncertainty or n beyond the visible sample index is shown.",
+      "evidence_relation": "Figure 2 PCMI latent imputation → Figure 5 target-modality similarity → Figure 4 prediction fidelity, Figures 6–8 cluster alignment and Table 1 results.",
+      "design_strengths": [
+        "Sample-level heatmaps and scenario-level bars provide both local and aggregate views.",
+        "Normalization and target red boxes make the intended missing-modality comparison explicit."
+      ],
+      "design_weaknesses": [
+        "Hundreds of sample columns are not individually readable at page scale.",
+        "Summary bars have no uncertainty or sample counts, and the caption can encourage stronger claims than the point estimates support."
+      ],
+      "reusable_pattern": "Pair a normalized sample-by-modality heatmap with a compact target-versus-other summary, and state normalization and denominator explicitly.",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 5. Visualization of the similarity",
+        "bbox": [
+          55,
+          50,
+          570,
+          430
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 18,
+      "module": "Appendix D / FS1000 representation alignment",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 6. t-SNE visualization of multimodal representations on FS1000 test set (PCS). (a) depicts the raw features without LLM processing, while (b-h) show the representations after LLM-driven inference under various incomplete modality combinations. The average distances between modality clusters are annotated. After reasoning, the inferred representations for missing modalities align closely with the available ones, effectively bridging the cross-modal semantic gap.",
+        "word_count": 61,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#56B4E9",
+          "#F5A65B",
+          "#A8C98F",
+          "#FFF2CC"
+        ],
+        "semantic_mapping": "Visual, Audio and Flow points use categorical colors; yellow annotation boxes report Avg Dist.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 8,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "each panel upper/right area",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "t-SNE Dimension 1",
+        "y": "t-SNE Dimension 2",
+        "color": "Visual/Audio/Flow modality identity",
+        "shape": "scatter points",
+        "line": null,
+        "facet": "raw panel plus seven incomplete modality combinations",
+        "text": "panel condition, modality legend and Avg Dist"
+      },
+      "data_and_statistics": "FS1000 PCS test-set t-SNE representations before LLM processing and after seven incomplete-modality inference conditions. Avg Dist is annotated, but t-SNE parameters, distance definition, n, repeated embeddings and uncertainty are not shown.",
+      "evidence_relation": "Figure 2 latent inference → Figure 6 FS1000 cluster alignment → Figures 7–8 cross-dataset robustness and Tables 1/11 detailed results.",
+      "design_strengths": [
+        "Raw baseline and seven inferred states share a stable panel grammar.",
+        "Consistent modality colors and Avg Dist annotations connect qualitative clusters to a summary measure."
+      ],
+      "design_weaknesses": [
+        "t-SNE coordinates are not physically comparable across independently embedded panels.",
+        "Point overlap and missing n/seed information limit quantitative interpretation."
+      ],
+      "reusable_pattern": "Use a raw-before panel followed by fixed mask panels, but document embedding seed, distance definition, common scale and sample count.",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 6. t-SNE visualization of multimodal representations",
+        "bbox": [
+          45,
+          45,
+          570,
+          330
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 19,
+      "module": "Appendix D / Fis-V representation alignment",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 7. t-SNE visualization of multimodal representations on Fis-V test set (TES). (a) depicts the raw features without LLM processing, while (b-h) show the representations after LLM-driven inference under various incomplete modality combinations. The average distances between modality clusters are annotated. After reasoning, the inferred representations for missing modalities align closely with the available ones, effectively bridging the cross-modal semantic gap.",
+        "word_count": 61,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#56B4E9",
+          "#F5A65B",
+          "#A8C98F",
+          "#FFF2CC"
+        ],
+        "semantic_mapping": "Same Visual/Audio/Flow categorical palette as Figures 6 and 8; yellow Avg Dist annotations.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 8,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "each panel upper/right area",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "t-SNE Dimension 1",
+        "y": "t-SNE Dimension 2",
+        "color": "Visual/Audio/Flow modality identity",
+        "shape": "scatter points",
+        "line": null,
+        "facet": "raw panel plus seven incomplete modality combinations",
+        "text": "panel condition, modality legend and Avg Dist"
+      },
+      "data_and_statistics": "Fis-V TES test-set t-SNE representations; raw features are compared with seven LLM-inference conditions and Avg Dist annotations. No uncertainty, embedding seed, distance denominator or n is visible.",
+      "evidence_relation": "Figure 6 FS1000 qualitative pattern → Figure 7 Fis-V replication → Table 12 and Figure 10 Fis-V results/attention.",
+      "design_strengths": [
+        "Exact structural match with Figure 6 reduces cross-dataset reading cost.",
+        "Shared palette and panel order let readers inspect robustness without relearning encodings."
+      ],
+      "design_weaknesses": [
+        "Repeated qualitative panels consume space without adding a quantitative uncertainty layer.",
+        "Caption does not state whether all panels use comparable embedding protocol or scale."
+      ],
+      "reusable_pattern": "Reuse the FS1000 t-SNE grammar for a second dataset, with a shared embedding protocol and explicit reproducibility parameters.",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 7. t-SNE visualization of multimodal representations",
+        "bbox": [
+          45,
+          45,
+          570,
+          315
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 21,
+      "module": "Appendix D / RG representation alignment",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 8. t-SNE visualization of multimodal representations on RG test set (Ribbon). (a) depicts the raw features without LLM processing, while (b-h) show the representations after LLM-driven inference under various incomplete modality combinations. The average distances between modality clusters are annotated. After reasoning, the inferred representations for missing modalities align closely with the available ones, effectively bridging the cross-modal semantic gap.",
+        "word_count": 61,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#56B4E9",
+          "#F5A65B",
+          "#A8C98F",
+          "#FFF2CC"
+        ],
+        "semantic_mapping": "Same Visual/Audio/Flow point colors and Avg Dist annotation boxes as Figures 6–7.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 8,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "each panel upper/right area",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "t-SNE Dimension 1",
+        "y": "t-SNE Dimension 2",
+        "color": "Visual/Audio/Flow modality identity",
+        "shape": "scatter points",
+        "line": null,
+        "facet": "raw panel plus seven incomplete modality combinations",
+        "text": "panel condition, modality legend and Avg Dist"
+      },
+      "data_and_statistics": "RG Ribbon test-set t-SNE representations; raw and seven LLM-inference conditions show modality clusters and Avg Dist. No n, repeated embeddings, distance definition or uncertainty is encoded.",
+      "evidence_relation": "Figures 6–7 qualitative family → Figure 8 RG robustness → Table 13 detailed results and Figure 11 attention.",
+      "design_strengths": [
+        "Three-dataset family keeps the same colors, panel order and annotation grammar.",
+        "Raw baseline remains visible, making the before/after claim inspectable."
+      ],
+      "design_weaknesses": [
+        "A single t-SNE projection does not establish a metric-space claim.",
+        "Caption does not identify which mask drives the largest change or provide reproducibility settings."
+      ],
+      "reusable_pattern": "Keep a fixed raw-plus-mask grid for each dataset and accompany it with embedding and distance computation details.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 8. t-SNE visualization of multimodal representations",
+        "bbox": [
+          45,
+          45,
+          570,
+          300
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 21,
+      "module": "Appendix D / FS1000 attention expansion",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9. Visualization of fusion token attention weights across different modality combinations on the FS1000 (PCS).",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#E15759",
+          "#59A14F",
+          "#4E79A7",
+          "#F28E2B",
+          "#F8E6E6",
+          "#E8F0E2",
+          "#E5EEF8",
+          "#F9EEDB",
+          "#EFE5F5"
+        ],
+        "semantic_mapping": "Fusion 1–4 colors and modality-span background bands match Figure 3.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 35,
+        "data_marks_estimate": 140
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "repeated inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Token Position",
+        "y": "Attention Weight",
+        "color": "Fusion 1–4 and token-span backgrounds",
+        "shape": null,
+        "line": "four solid fusion-token profiles",
+        "facet": "seven FS1000 availability/missingness states",
+        "text": "condition labels and Prompt/Video/Audio/Flow/Fusion spans"
+      },
+      "data_and_statistics": "FS1000 PCS fusion-token attention weights for the same seven modality states as Figure 3; no seed, sample aggregation, error or interval is shown.",
+      "evidence_relation": "Figure 3 main attention view → Figure 9 page-width FS1000 expansion → Figures 10–11 cross-dataset attention and Table 6 path ablation.",
+      "design_strengths": [
+        "Larger page-width rendering makes token-span boundaries easier to inspect.",
+        "Fixed seven-state order supports direct panel-by-panel comparison with Figure 3."
+      ],
+      "design_weaknesses": [
+        "It substantially duplicates Figure 3 without a caption cross-reference.",
+        "Repeated legends and missing uncertainty make fine differences easy to overinterpret."
+      ],
+      "reusable_pattern": "Place a small main attention representative in the paper and move a clearly cross-referenced full-size version to the appendix.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 9. Visualization of fusion token attention weights",
+        "bbox": [
+          45,
+          320,
+          570,
+          725
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 22,
+      "module": "Appendix D / Fis-V attention",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 10. Visualization of fusion token attention weights across different modality combinations on the Fis-V (TES).",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#E15759",
+          "#59A14F",
+          "#4E79A7",
+          "#F28E2B",
+          "#F8E6E6",
+          "#E8F0E2",
+          "#E5EEF8",
+          "#F9EEDB",
+          "#EFE5F5"
+        ],
+        "semantic_mapping": "Fusion 1–4 and token-span colors are reused across the attention family.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 35,
+        "data_marks_estimate": 140
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "repeated inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Token Position",
+        "y": "Attention Weight",
+        "color": "Fusion 1–4 and token-span backgrounds",
+        "shape": null,
+        "line": "four solid fusion-token profiles",
+        "facet": "seven Fis-V availability/missingness states",
+        "text": "condition labels and modality-span labels"
+      },
+      "data_and_statistics": "Fis-V TES fusion-token attention weights over seven modality combinations; no uncertainty, seed aggregation, sample denominator or exact cross-panel summary is shown.",
+      "evidence_relation": "Figure 9 FS1000 attention → Figure 10 Fis-V replication → Table 12 and Figure 7 Fis-V mechanism/robustness.",
+      "design_strengths": [
+        "Identical axes, palette and panel order make the dataset slice easy to compare.",
+        "Page-width layout gives more room than the main Figure 3."
+      ],
+      "design_weaknesses": [
+        "Caption is too short to recover panel conditions or relation to Figure 3/9.",
+        "No uncertainty or aggregate attention statistic limits the strength of the mechanism claim."
+      ],
+      "reusable_pattern": "Reuse one attention grammar across datasets and put the mask map, normalization and cross-reference in the caption.",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 10. Visualization of fusion token attention weights",
+        "bbox": [
+          45,
+          45,
+          570,
+          330
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 22,
+      "module": "Appendix D / RG attention",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 11. Visualization of fusion token attention weights across different modality combinations on the RG (Ribbon).",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#E15759",
+          "#59A14F",
+          "#4E79A7",
+          "#F28E2B",
+          "#F8E6E6",
+          "#E8F0E2",
+          "#E5EEF8",
+          "#F9EEDB",
+          "#EFE5F5"
+        ],
+        "semantic_mapping": "Same four fusion-token colors and five token-span bands as Figures 3, 9 and 10.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 35,
+        "data_marks_estimate": 140
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "repeated inside each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Token Position",
+        "y": "Attention Weight",
+        "color": "Fusion 1–4 and token-span backgrounds",
+        "shape": null,
+        "line": "four solid fusion-token profiles",
+        "facet": "seven RG availability/missingness states",
+        "text": "condition labels and modality-span labels"
+      },
+      "data_and_statistics": "RG Ribbon fusion-token attention weights over seven modality combinations; no uncertainty, seed, sample denominator or aggregation details are visible.",
+      "evidence_relation": "Figures 3/9/10 attention family → Figure 11 RG robustness → Table 13 detailed results and Figure 8 RG representation alignment.",
+      "design_strengths": [
+        "The final dataset slice preserves the same attention grammar and panel order.",
+        "Page-width output makes the token-span relation available for appendix inspection."
+      ],
+      "design_weaknesses": [
+        "The repeated plot family is high-density and caption-poor.",
+        "Single attention profiles without variation bands should remain qualitative evidence only."
+      ],
+      "reusable_pattern": "Keep the same panel grammar for a third dataset, but expose uncertainty or a summary statistic if cross-dataset comparison is a claim.",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 11. Visualization of fusion token attention weights",
+        "bbox": [
+          45,
+          365,
+          570,
+          725
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 6,
+      "module": "Main results / incomplete-modality comparison",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1. Comparisons of performance on three benchmarks with incomplete modalities. v, f , and a refer to the RGB, flow, and audio modalities. “Average” denotes the average result of all six incomplete multimodal combinations. The bold / underline indicate the best / second-best results. ♡, ♣, and ♠ mean the evaluated method sources for incomplete/complete multimodal AQA, incomplete multimodal action recognition, and incomplete multimodal emotion recognition. T-Miss: Training-time missing modality. ∆SOT A means the performance increase or decrease of our LIMSSR compared to the best competing methods.",
+        "word_count": 88,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 30,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "text_color",
+        "arrows",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only. T-Miss icons are training-condition markers, not error bars.",
+      "data_and_statistics": "Each cell reports Spearman ρ and MSE as a point estimate; ρ is shown to three decimals and MSE to two decimals. No repeated-run uncertainty or failure count is encoded. Three dataset groups (FS1000, Fis-V, RG) each contain six incomplete masks, Average and full {v,f,a}; ΔSOTA is relative to the best competing method.",
+      "evidence_relation": "Figure 1 problem setting → Table 1 incomplete-modality headline → Tables 11–13 type-level expansion and Figures 4–8 mechanism.",
+      "design_strengths": [
+        "One decision surface covers three datasets, six missing states, Average and full modality.",
+        "T-Miss and ΔSOTA make training condition and change from the competitor visible."
+      ],
+      "design_weaknesses": [
+        "ρ/MSE pairs and many method rows are cramped in the page-width table.",
+        "Color, underlining and icons are weak in grayscale; no per-mask n is supplied."
+      ],
+      "reusable_pattern": "Use fixed modality-mask columns with Average/full terminal columns and explicit delta rows.",
+      "evidence": {
+        "page": 6,
+        "label": "Table 1. Comparisons of performance on three benchmarks with incomplete modalities",
+        "bbox": [
+          45,
+          50,
+          570,
+          315
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "Main results / complete-modality comparison",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2. Comparisons of performance on three benchmarks with complete modalities. The bold / underline indicate the best / second-best results. † means the dataset does not include this category. ♢ and ♡ mean unimodal and multimodal AQA methods. T-Miss: Training-time missing modality. ∆SOT A means the performance increase or decrease of our LIMSSR compared to the best competing methods.",
+        "word_count": 60,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 27,
+      "columns": 12,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "text_color",
+        "arrows",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only. Dagger and missing cells encode category applicability, not failures.",
+      "data_and_statistics": "Complete-modality performance over TES, PCS, SS, TR, PE, CO and IN columns, plus Average and full {v,f,a}; ρ has three decimals and MSE two.",
+      "evidence_relation": "Table 1 incomplete comparison → Table 2 complete benchmark/category comparison → Table 3 ablation, Table 10 cost and Tables 11–13 detail.",
+      "design_strengths": [
+        "Assessment categories and full-modality reference are presented together.",
+        "Dagger marks preserve structural inapplicability rather than turning it into a zero."
+      ],
+      "design_weaknesses": [
+        "Twelve columns and repeated ρ/MSE pairs reduce scanability.",
+        "Caption does not fully define each assessment abbreviation or Average aggregation."
+      ],
+      "reusable_pattern": "Keep a stable category header across datasets and use explicit dagger semantics for unavailable categories.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 2. Comparisons of performance on three benchmarks with complete modalities",
+        "bbox": [
+          45,
+          55,
+          570,
+          315
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "Main ablation / component study",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 3. Ablation results on the FS1000 and Fis-V. The top half adds our components in order, and the bottom half individually removes one. Results are shown by ρ(↑) / MSE(↓).",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 9,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only.",
+      "data_and_statistics": "FS1000 and Fis-V Average/full scores are shown as ρ/MSE pairs. The upper group adds Baseline, LLM, PCMI, LMRF and MDA; the lower group removes LMRF, PCMI, Lcon and Lreg.",
+      "evidence_relation": "Figure 2 module map → Table 3 component on/off evidence → Tables 4–8 fine-grained ablations and Figure 3 attention.",
+      "design_strengths": [
+        "Additive and removal groups distinguish component contribution from dependency.",
+        "Average/full columns match the main-result aggregation vocabulary."
+      ],
+      "design_weaknesses": [
+        "Long setting labels and metric pairs are tight in one column.",
+        "No seed variation is provided for the component differences."
+      ],
+      "reusable_pattern": "Use paired add/remove groups with common benchmark aggregation columns and metric directions in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 3. Ablation results on the FS1000 and Fis-V",
+        "bbox": [
+          45,
+          55,
+          340,
+          280
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 14,
+      "module": "Appendix C / LLM backbone ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4. Ablation study on different LLM backbones on the FS1000 and Fis-V datasets.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 5,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only.",
+      "data_and_statistics": "Five backbone rows (Qwen2.5-0.5B, MiniCPM-1B, Llama3.2-1B, Gemma3-1B, Qwen3-0.6B) compare FS1000 and Fis-V Average/full; ρ three decimals, MSE two.",
+      "evidence_relation": "Figure 2 LLM backbone boundary → Table 4 backbone robustness → Table 3 and Tables 5–8 configuration ablations.",
+      "design_strengths": [
+        "Small fixed row count isolates backbone choice.",
+        "Same Average/full headers enable direct comparison with Table 3."
+      ],
+      "design_weaknesses": [
+        "Caption omits training/freeze and seed details.",
+        "Without variance, close backbone differences are not stability evidence."
+      ],
+      "reusable_pattern": "Use a short per-backbone slice with unchanged benchmark headers and per-column best marks.",
+      "evidence": {
+        "page": 14,
+        "label": "Table 4. Ablation study on different LLM backbones",
+        "bbox": [
+          80,
+          55,
+          530,
+          215
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 14,
+      "module": "Appendix C / fusion-token count ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 5. Ablation study on the number of fusion tokens K in LIMSSR on the FS1000 and Fis-V datasets.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 5,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only.",
+      "data_and_statistics": "Rows K=2–6 quantify fusion-token count over FS1000/Fis-V Average/full; ρ three decimals and MSE two.",
+      "evidence_relation": "Figure 2 fusion-token block → Table 5 K sensitivity → Figure 3/9–11 attention profiles.",
+      "design_strengths": [
+        "Single-variable K sweep is easy to scan and uses the established aggregation scheme.",
+        "Bold best values make the default capacity visible."
+      ],
+      "design_weaknesses": [
+        "No parameter-count or runtime cost is paired with K.",
+        "Caption does not state the selected/default K or seed protocol."
+      ],
+      "reusable_pattern": "Present discrete token-count rows against fixed benchmark headers and mark the selected setting explicitly.",
+      "evidence": {
+        "page": 14,
+        "label": "Table 5. Ablation study on the number of fusion tokens K",
+        "bbox": [
+          110,
+          235,
+          500,
+          385
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 14,
+      "module": "Appendix C / MDA dual-path ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Table 6. Ablation analysis of the Dual-Path modules within the MDA mechanism on the FS1000 and Fis-V datasets.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only.",
+      "data_and_statistics": "Simple Fusion (w/o MDA), Path1 Only, Path2 Only and Full MDA are compared on FS1000/Fis-V Average/full; ρ three decimals and MSE two.",
+      "evidence_relation": "Figure 2 dual-path MDA → Table 6 path ablation → Figure 3/9–11 attention and Table 3 component result.",
+      "design_strengths": [
+        "The four rows map directly to the dual-path architecture.",
+        "Full versus each path isolates whether the combined mechanism adds value."
+      ],
+      "design_weaknesses": [
+        "Path1/Path2 semantics are not defined in the caption itself.",
+        "No repeated-run variation accompanies the path comparison."
+      ],
+      "reusable_pattern": "Use w/o, path-only and full rows, but define path roles adjacent to the header or caption.",
+      "evidence": {
+        "page": 14,
+        "label": "Table 6. Ablation analysis of the Dual-Path modules",
+        "bbox": [
+          80,
+          400,
+          530,
+          580
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 15,
+      "module": "Appendix C / LoRA hyperparameter ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 7. Ablation study on LoRA hyperparameters (Rank r and Alpha α) on the FS1000 and Fis-V datasets.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 7,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only.",
+      "data_and_statistics": "Seven Rank r/Alpha α combinations compare FS1000/Fis-V Average/full; ρ three decimals and MSE two.",
+      "evidence_relation": "Figure 2 LoRA trainable boundary → Table 7 LoRA setting → Table 10 cost/performance context.",
+      "design_strengths": [
+        "Two LoRA parameters are visible in one compact grid.",
+        "Average/full columns preserve the result schema used in every ablation."
+      ],
+      "design_weaknesses": [
+        "No trainable parameter count or seed variation is reported.",
+        "The scaling meaning of Alpha depends on method text."
+      ],
+      "reusable_pattern": "Use a compact hyperparameter grid with fixed result columns and bold the selected operating point.",
+      "evidence": {
+        "page": 15,
+        "label": "Table 7. Ablation study on LoRA hyperparameters",
+        "bbox": [
+          75,
+          55,
+          535,
+          250
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 15,
+      "module": "Appendix C / prompt design ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 8. Ablation study on prompt designs. “w/o Condition”: Removing the explicit textual description of modality availability in PCMI; “w/o Task Inst.”: Removing the core task instructions in PCMI that guide the LLM to infer missing data; “w/o Fusion Guide”: Removing the instruction in LMRF that prompts the LLM to integrate features into the special tokens; “w/o Special Tokens”: Removing all special boundary and fusion tokens, feeding only raw features and text, then pooling the last hidden state; and “w/o All Prompts”: Removing all textual instructions and special tokens, reducing the LLM to a standard feature encoder.",
+        "word_count": 97,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only.",
+      "data_and_statistics": "Prompt variants remove condition text, task instruction, fusion guide, special tokens or all prompts; FS1000/Fis-V Average/full report ρ to three decimals and MSE to two.",
+      "evidence_relation": "Figure 2 PCMI/LMRF/prompt blocks → Table 8 explicit prompt deletion evidence → Table 3 PCMI/LMRF and Figure 5 latent similarity.",
+      "design_strengths": [
+        "Long caption defines every deletion and fallback pooling behavior.",
+        "Prompt semantics are tied to concrete modules rather than unexplained abbreviations."
+      ],
+      "design_weaknesses": [
+        "Long settings/caption make the page text dense.",
+        "Token count, compute cost and seed variability are absent."
+      ],
+      "reusable_pattern": "Pair concise row labels with a complete caption that states exactly which instruction or token is removed and what replaces it.",
+      "evidence": {
+        "page": 15,
+        "label": "Table 8. Ablation study on prompt designs",
+        "bbox": [
+          45,
+          285,
+          550,
+          470
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 15,
+      "module": "Appendix C / six-seed error-bar analysis",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9. Error bars analysis on three datasets. Results are shown by the average metrics ± standard deviations of six random seeds.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 2,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Mean ± standard deviation over six random seeds; this is the only explicit uncertainty table, with no conventional confidence interval.",
+      "data_and_statistics": "FS1000, Fis-V and RG Average/full rows report Average Sp Corr and Average MSE. Means use ρ three decimals and MSE two; ± values are seed SDs.",
+      "evidence_relation": "Tables 1–3 point estimates → Table 9 seed stability → Tables 11–13 type-level results.",
+      "design_strengths": [
+        "Explicit six-seed SD gives the main point estimates a reproducibility boundary.",
+        "All three datasets and Average/full conditions share one compact header."
+      ],
+      "design_weaknesses": [
+        "The caption calls it “Error bars” although the table uses ± text.",
+        "Individual seed values, failed runs and aggregation order are not shown."
+      ],
+      "reusable_pattern": "Add a clearly named seed-variation table after the headline results and distinguish SD from confidence intervals.",
+      "evidence": {
+        "page": 15,
+        "label": "Table 9. Error bars analysis on three datasets",
+        "bbox": [
+          45,
+          500,
+          570,
+          625
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 16,
+      "module": "Appendix C / computational cost",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 10. Compare the computational costs with the state-of-the-art methods on the FS1000. T-Miss: Training-time missing modality.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 9,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "text_color",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; parameters/FLOPs and point-estimate performance only.",
+      "data_and_statistics": "Methods, T-Miss, #Params, #FLOPs, Average and full {v,f,a}; performance remains ρ/MSE (ρ three decimals, MSE two), while cost columns use model-size units.",
+      "evidence_relation": "Figure 2 LLM/LoRA/MDA complexity → Table 10 performance-cost surface → Table 9 stability and Tables 1/11–13 results.",
+      "design_strengths": [
+        "Params, FLOPs, training condition and performance share one decision surface.",
+        "T-Miss visual semantics match the main result tables."
+      ],
+      "design_weaknesses": [
+        "No hardware, batch size, sequence length, runtime protocol or measurement repeats.",
+        "Cost proxy and result pair create a dense six-column layout."
+      ],
+      "reusable_pattern": "Combine cost and outcome columns only when the hardware/measurement boundary is stated alongside the table.",
+      "evidence": {
+        "page": 16,
+        "label": "Table 10. Compare the computational costs",
+        "bbox": [
+          45,
+          55,
+          570,
+          245
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 23,
+      "module": "Appendix F / FS1000 type-level detailed results",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 11. Comparisons of performance on the FS1000 under incomplete multimodal scenarios. v, f , and a refer to the RGB, flow, and audio modalities. “Average” denotes the average result of all six incomplete multimodal combinations. The bold / underline indicate the best / second-best results. ♡, ♣, and ♠ mean the evaluated method sources for incomplete/complete multimodal AQA, incomplete multimodal action recognition, and incomplete multimodal emotion recognition. T-Miss: Training-time missing modality. ∆SOT A means the performance increase or decrease of our LIMSSR compared to the best competing methods.",
+        "word_count": 89,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 70,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 7,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "text_color",
+        "arrows",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only. T-Miss and ΔSOTA are comparison markers.",
+      "data_and_statistics": "FS1000 is split into TES, PCS, SS, TR, PE, CO and IN. Each type has method rows across six masks, Average and full; ρ three decimals and MSE two.",
+      "evidence_relation": "Table 1 FS1000 aggregate → Table 11 type-level reproduction → Figure 4 TES, Figure 6/9 PCS and Table 9 stability.",
+      "design_strengths": [
+        "Restores the type-level detail hidden by main-table Average.",
+        "Fixed columns and symbols permit cell-by-cell reconciliation with Table 1."
+      ],
+      "design_weaknesses": [
+        "Approximately 70 rows are extremely compressed on one page.",
+        "Caption does not list the seven type groups or per-type n/uncertainty."
+      ],
+      "reusable_pattern": "Expand aggregate result tables by type while retaining exactly the same modality columns, precision and comparison markers.",
+      "evidence": {
+        "page": 23,
+        "label": "Table 11. Comparisons of performance on the FS1000",
+        "bbox": [
+          45,
+          55,
+          570,
+          725
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 24,
+      "module": "Appendix F / Fis-V type-level detailed results",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 12. Comparisons of performance on the Fis-V under incomplete multimodal scenarios. v, f , and a refer to the RGB, flow, and audio modalities. “Average” denotes the average result of all six incomplete multimodal combinations. The bold / underline indicate the best / second-best results. ♡, ♣, and ♠ mean the evaluated method sources for incomplete/complete multimodal AQA, incomplete multimodal action recognition, and incomplete multimodal emotion recognition. T-Miss: Training-time missing modality. ∆SOT A means the performance increase or decrease of our LIMSSR compared to the best competing methods.",
+        "word_count": 89,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 20,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "text_color",
+        "arrows",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only; dagger/missing entries indicate inapplicable categories.",
+      "data_and_statistics": "Fis-V is split into TES and PCS groups, each with method rows across six masks, Average and full; ρ three decimals and MSE two.",
+      "evidence_relation": "Table 1/2 Fis-V aggregate → Table 12 type-level check → Figure 5/7/10 Fis-V qualitative mechanism.",
+      "design_strengths": [
+        "Inapplicable category marks prevent false zero interpretation.",
+        "The same wide schema as Tables 1, 11 and 13 enables direct audit."
+      ],
+      "design_weaknesses": [
+        "Long table and tiny type labels reduce scanability.",
+        "No per-type n or uncertainty is included in the caption or cells."
+      ],
+      "reusable_pattern": "Use a common type-level table template and repeat the modality header for each dataset-specific block.",
+      "evidence": {
+        "page": 24,
+        "label": "Table 12. Comparisons of performance on the Fis-V",
+        "bbox": [
+          45,
+          55,
+          570,
+          330
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 24,
+      "module": "Appendix F / RG type-level detailed results",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 13. Comparisons of performance on the RG under incomplete multimodal scenarios. v, f , and a refer to the RGB, flow, and audio modalities. “Average” denotes the average result of all six incomplete multimodal combinations. The bold / underline indicate the best / second-best results. ♡, ♣, and ♠ mean the evaluated method sources for incomplete/complete multimodal AQA, incomplete multimodal action recognition, and incomplete multimodal emotion recognition. T-Miss: Training-time missing modality. ∆SOT A means the performance increase or decrease of our LIMSSR compared to the best competing methods.",
+        "word_count": 89,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 40,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "text_color",
+        "arrows",
+        "best_second_best"
+      ],
+      "uncertainty": "No uncertainty; point estimates only. T-Miss and ΔSOTA remain comparison markers.",
+      "data_and_statistics": "RG is split into Ball, Clubs, Hoop and Ribbon groups, each with method rows across six masks, Average and full; ρ three decimals and MSE two.",
+      "evidence_relation": "Table 1/2 RG aggregate → Table 13 type-level reproduction → Figure 8/11 RG qualitative mechanism.",
+      "design_strengths": [
+        "Four RG types are fully exposed while retaining the main-table comparison grammar.",
+        "Average/full columns make aggregate-to-detail reconciliation possible."
+      ],
+      "design_weaknesses": [
+        "Approximately 40 rows × 11 columns are hard to read at page scale.",
+        "Caption omits the type list, sample counts and uncertainty."
+      ],
+      "reusable_pattern": "Use a type × method × missing-mask long table for appendix closure, with repeated headers across page breaks.",
+      "evidence": {
+        "page": 24,
+        "label": "Table 13. Comparisons of performance on the RG",
+        "bbox": [
+          45,
+          360,
+          570,
+          730
+        ],
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 positions training-time incomplete observations; Figure 2 defines PCMI, LLM fusion and MDA; Tables 1–2 establish headline results; Table 3 and Tables 4–8 isolate components; Table 10 adds cost; Figures 3–8 and 9–11 provide attention, fidelity, similarity and embedding mechanisms; Tables 11–13 restore type-level detail.",
+    "caption_system": "Figure 2, Figure 4–6 and Table 1/2/8/9 captions carry substantial setup and encoding definitions. Figure 3 and Figures 9–11 have short captions that rely on panel labels and正文 context; Tables 4–7/10 and 11–13 omit some units, type maps or aggregation details.",
+    "table_header_system": "Main and expanded result tables reuse Methods × T-Miss × six modality masks × Average × full; ablation tables reuse FS1000/Fis-V Average/full. ρ/MSE pair precision is stable, while assessment abbreviations, cost units and type names are distributed between headers and body text.",
+    "method_result_ablation_link": "Figure 2 module names map to Table 3 add/remove rows, Table 5 fusion-token K, Table 6 dual paths, Table 7 LoRA and Table 8 prompt deletions; Figure 3/9–11 attention and Figure 5 similarity provide qualitative mechanism checks.",
+    "main_appendix_link": "Table 1/2 aggregates are expanded by Tables 11–13; Figure 3 FS1000 attention is expanded by Figures 9–11; Figures 6–8 replicate the representation-alignment grammar over three datasets. Figure 5 remains a detailed FS1000 similarity case rather than a full three-dataset heatmap family.",
+    "typography_consistency": "Serif Nimbus Roman/Times and Computer Modern math dominate PDF prose and tables; sans-serif Calibri-like type dominates plot and architecture labels. The family is consistent within object classes but imported and generated visual assets do not share one exact font source.",
+    "color_consistency": "Visual/Audio/Flow point colors, Fusion 1–4 attention colors, red/green T-Miss and blue/gray ΔSOTA are reused across object families. Architecture pastels are local semantic roles. Color carries meaningful identity and is only partially redundant in grayscale."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Page-width architecture showing input masks, prompts/tokens, LLM, dual paths and score/loss in one directional interface.",
+      "Fixed modality-mask result schema with Average/full terminal columns, T-Miss markers and ΔSOTA comparison.",
+      "Raw-plus-mask qualitative grids for t-SNE and attention, reused across datasets with stable panel order and palette.",
+      "Add/remove and path-only/full ablation rows aligned to the method diagram.",
+      "Sample-level heatmap paired with scenario-level summary bars for latent-imputation mechanism evidence."
+    ],
+    "highest_value_objects": [
+      "Figure 2",
+      "Table 1",
+      "Table 3",
+      "Table 10",
+      "Figure 5",
+      "Tables 11–13"
+    ],
+    "failure_patterns": [
+      "Page-width tables and 5–8-panel plots are too dense for comfortable final-scale reading.",
+      "Figure 3 and Figures 9–11 substantially duplicate attention views without explicit cross-reference or complete condition captions.",
+      "Figures 4–8 lack sample denominators, seed/repetition details or uncertainty displays for aggregate/qualitative claims.",
+      "Table 10 lacks hardware and measurement protocol, so params/FLOPs do not establish wall-clock cost.",
+      "Colour and red/green markers are important semantics but are not fully grayscale-safe."
+    ],
+    "one_sentence_visual_strategy": "The paper uses a high-density strategy in which a page-width architecture defines incomplete-modality reasoning, wide tables close the multi-dataset result surface, and appendix grids, attention plots, embeddings and type-level tables provide mechanism and robustness checks; stronger caption self-containment, grayscale redundancy and uncertainty/denominator reporting would make the evidence easier to audit."
+  }
+}

@@ -1,0 +1,1246 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-159ec0c7baad",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/Echo-hyt/Ecovla"
+    ],
+    "selected_repository": "https://github.com/Echo-hyt/Ecovla",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/Echo-hyt/Ecovla",
+        "path": "README.md",
+        "role": "other",
+        "tool": "gh api",
+        "evidence": "README directly names the exact EcoVLA paper title and calls the repository the official implementation, but says the code is still being organized; the recursive main tree contains only README.md, with no plot, figure, table, LaTeX, notebook, SVG, or data source."
+      }
+    ],
+    "search_note": "先核对 reports/tables/visual_source_inventory.csv（目标行是 no_public_source_found）与缺失的 corpus/visual_sources/icml-2026-159ec0c7baad/。PDF 首页、脚注、正文、参考文献和附录没有 code/project URL。随后用 gh 只读检索完整标题、EcoVLA、EcoVLA VLA pruning；严格完整标题无结果，方法名命中 Echo-hyt/Ecovla。gh repo view 确认公开、main、未归档且 README 的标题逐字匹配；gh api recursive tree 只有 README.md，主分支 commit 为 ad59e60f34e19b8fd14c9dea6b0ae1d386b5ae18。未把自动候选或 PDF 内嵌 JPEG 当作作者绘图源。"
+  },
+  "paper_style": {
+    "main_figures": 6,
+    "main_tables": 5,
+    "appendix_figures": 1,
+    "appendix_tables": 0,
+    "dominant_figure_typography": {
+      "family": [
+        "Times New Roman",
+        "Nimbus Roman No9 L",
+        "Computer Modern"
+      ],
+      "size_pt": {
+        "minimum": 6.5,
+        "median": 8.5,
+        "maximum": 11.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Times New Roman",
+        "Computer Modern"
+      ],
+      "body_size_pt": 7.8,
+      "header_size_pt": 8.5,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figure 1 使用两条顺序热图 ramp；Figure 2 使用流程阶段/计算状态色；Figure 4 使用淡色 stacked latency segments；Figure 5 以蓝/橙和 marker/line style 区分 success/speedup；Figure 6 以橙/紫和柱+线+直接标签区分 α/p；表格为黑白 booktabs。颜色主要在对象内有语义，缺少跨 Figure 的全局 token。",
+    "vector_raster_mix": "PDF 页面文字、表格和部分箭头为矢量；pdfimages -list 显示 Figure 1 的两个 heatmap JPEG、Figure 2 的多个图像片段、Figure 3 的三张照片、Figure 4 的延迟图 JPEG、Figure 5-6 的图表 JPEG、Figure 7 的硬件照片/产品图。故 Figure 1/3/4/5/6/7 为 raster 或 mixed，Figure 2 为 mixed；没有可验证的公开绘图/表格源。",
+    "style_consistency": "caption 均置于对象下方且对象标签斜体，Table 1-3 共享 grouped success/cost header，Table 4-5 使用极简单级表头。正文/表格共享 Times/Nimbus Roman 与 Computer Modern，但栅格图内字体、配色和尺度未完全统一；Figure 2 高密度标签及 Figure 4-6 小字号是主要可读性瓶颈。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "introduction / abstract-side",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "heatmap"
+      ],
+      "purpose": [
+        "headline",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. During VLA execution, channel importance scores vary dynamically as the environment evolves, causing the optimal sparsity pattern to shift accordingly.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 8.0,
+          "median": 9.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#D8D7E9",
+          "#8E83BE",
+          "#3F087D",
+          "#FFF1D7",
+          "#FCD27E",
+          "#D88420"
+        ],
+        "semantic_mapping": "上方 Attention Head 与下方 MLP Channel 分别使用淡紫-深紫和淡黄-橙色顺序 ramp；深色只表示图示 importance 强弱，图中没有数值色标。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 448
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "time",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "未标定的矩阵列/时间片",
+        "y": "Inference Time 的自下而上方向",
+        "color": "上：attention-head importance；下：MLP-channel importance",
+        "shape": null,
+        "line": null,
+        "facet": "上/下两个重要性矩阵",
+        "text": "Inference Time、Attention Head Importance Score、MLP Channel Importance Score"
+      },
+      "data_and_statistics": "定性热图说明环境变化导致通道/头重要性随时间变化；没有可读的数值、聚合、样本分母、重复或不确定性。",
+      "evidence_relation": "p.1 Abstract 与 §1 的 dynamic sparsity shifts -> Figure 1 动机观察 -> p.3-5 EAP 的 quantile trigger/temporal fusion -> Figure 6 的 α/p sweep；不是性能统计。",
+      "design_strengths": [
+        "上下矩阵同宽并共享时间方向，能把 attention head 与 MLP channel 的变化放入同一接口。",
+        "图紧邻摘要与引言，主张和后续 EAP 方法之间的视觉距离短。"
+      ],
+      "design_weaknesses": [
+        "无颜色条、数值轴、模型/时间步和数据来源，不能从颜色恢复实际 importance。",
+        "两套顺序色没有纹理或直接数值冗余，灰度与投影下类别区分减弱。",
+        "caption 没有定义热图是否来自真实轨迹、通道/头数量或聚合方式。"
+      ],
+      "reusable_pattern": "用同宽双热图和同向时间标记结构变化；复用时补统一色标、来源、横纵刻度和灰度冗余。",
+      "evidence": {
+        "page": 1,
+        "label": "Figure 1",
+        "bbox": [
+          330,
+          205,
+          532,
+          330
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "methodology",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2. Overall pipeline of EcoVLA. (a) Environment-aware Adaptive Pruning (EAP): EAP is a lightweight, environment-aware method that identifies sparsity variations by perceiving real-time dynamics. Considering the temporal consistency of VLA execution in physical environments, EAP integrates instantaneous features with historical features to jointly compute the sparsity pattern. (b) Interleaved Inference Orchestration (I²O): I²O interleaves sparsity pattern computation into the inherent FLOPs bubbles within the VLA inference using a non-blocking parallel paradigm.",
+        "word_count": 72,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.5,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#FFF1C5",
+          "#F3D06A",
+          "#DCE8F2",
+          "#9CB4D3",
+          "#72B947",
+          "#E89050",
+          "#F18A86",
+          "#8A4D2D",
+          "#8A8987",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "黄色/橙色编码 FLOPs/temporal pruning，蓝色编码 backbone/shared memory，绿色编码稀疏节点，红色编码 action head；箭头、位置与文字提供部分冗余。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 8,
+        "annotations": 30,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom, one shared legend",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": true,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 observation/instruction 到 sparse LLM/action 的流程顺序；下图为 inference timeline",
+        "y": "上图算法链与下图 Inference/Shared Memory/Pruning 三条带",
+        "color": "FLOPs 强度、模块类别、dense/sparse 状态",
+        "shape": "圆角框、稀疏节点、图片块",
+        "line": "solid/dashed arrows and stream separators",
+        "facet": "(a) EAP；(b) I2O",
+        "text": "模块、特征公式、stream 名称、legend 与操作标签"
+      },
+      "data_and_statistics": "概念性方法接口；上半部展示视觉观察、历史/瞬时特征融合和 sparse LLM，下半部展示 I2O 的两条计算流。没有实验数值、样本分母、测量重复或不确定性；延迟关系只在 p.5 Eq. (13) 给出。",
+      "evidence_relation": "p.2 §1 的两个挑战 -> p.3-5 §4.1 EAP/§4.2 I2O -> Figure 2 方法锚点 -> Figure 4 breakdown 与 Table 5 overhead -> Tables 1-3 speedup。",
+      "design_strengths": [
+        "把环境感知的状态更新和硬件共享内存流分成上下同宽面板，因果方向清楚。",
+        "底部共享图例同时解释计算强度、推理状态、传输和 load weight，方法接口较完整。"
+      ],
+      "design_weaknesses": [
+        "上下部分别使用时序流和资源流，信息密度高，5-8 pt 细节在双栏投影中偏小。",
+        "箭头没有真实时间比例、触发频率或阻塞边界，容易被误读为定量调度保证。",
+        "大量颜色和小图标依赖图内说明，caption 对图例和视觉状态仍不够自洽。"
+      ],
+      "reusable_pattern": "把算法触发/状态融合与硬件流/共享内存放在上下同构面板，用同一图例连接；可复用版本应加时间比例和阻塞条件。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2",
+        "bbox": [
+          68,
+          55,
+          545,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "results / real-robot",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3. Robot Manipulation on Kinova Gen3 Platform.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 8.0,
+          "median": 9.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "not_applicable",
+        "color_count": 0,
+        "hex": [],
+        "semantic_mapping": "自然 RGB 任务照片；颜色不编码数据类别。灰度仍可识别场景和机械臂，但红/黄物体颜色不应被解释为变量。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "not_applicable"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从三个任务实例的左到右阅读顺序",
+        "y": null,
+        "color": "自然摄影内容，无数据色彩语义",
+        "shape": "三张等宽照片",
+        "line": null,
+        "facet": "apple / pill bottle / banana 三个任务",
+        "text": "照片下方三组任务标签"
+      },
+      "data_and_statistics": "三张 Kinova Gen3 操作代表性照片；没有轨迹、success overlay、时间点、样本统计或不确定性。Table 4 的 /20 成功计数和 Appendix B 才给出评测分母与失败位置。",
+      "evidence_relation": "§5.1 真实机器人设置 -> Table 4 的三任务计数/latency -> Figure 3 任务照片 -> Appendix B p.12 的随机位置与 workspace 边界失败分析。",
+      "design_strengths": [
+        "三 panel 等宽排列，任务标签与 Table 4 的 Task1-3 顺序可直接对应。",
+        "用真实环境照片补足模拟器表格的部署语境。"
+      ],
+      "design_weaknesses": [
+        "照片没有时间、成功状态或轨迹，不能独立证明 success rate。",
+        "caption 只写平台，不说明每张照片是代表性帧、任务条件或拍摄时点。",
+        "自然颜色没有灰度/数据编码冗余，照片与定量表的证据边界需要文字补足。"
+      ],
+      "reusable_pattern": "用固定宽度三 panel 对齐任务标签，并在正式版本给每个 panel 加任务编号和 raw-count 引用。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3",
+        "bbox": [
+          75,
+          505,
+          405,
+          600
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results / more results / ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4. Acceleration breakdown for dense and sparse inference.",
+        "word_count": 9,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 8,
+        "hex": [
+          "#B9ADD1",
+          "#F3E0A8",
+          "#C0EFDB",
+          "#9BC4FA",
+          "#CDC3E5",
+          "#FBF7B2",
+          "#B7EBD8",
+          "#BFDAF7"
+        ],
+        "semantic_mapping": "Dense 与 Sparse 两根 stacked bar 的每个颜色段表示一个累积优化项；legend 分成 Dense/Sparse 两个语义框，灰度安全性有限。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 8,
+        "annotations": 10,
+        "data_marks_estimate": 8
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper-left and upper-right, two semantic boxes",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Dense Inference 与 Sparse Inference 两个类别",
+        "y": "Time (ms)",
+        "color": "各优化项和最终 latency 的 stacked segment",
+        "shape": null,
+        "line": null,
+        "facet": null,
+        "text": "段内数值、Original Latency 总值、Dense/Sparse legend"
+      },
+      "data_and_statistics": "Dense 累积段为 Final Latency 148.06、Batched Metric Computation 21.14、Allocation-Free Caching 10.00、Parallel Paradigm 36.04，总 Original Latency 215.24；Sparse 为 Final Latency 108.24、Kernel Fusion 1.76、Memory coalescing 13.49、Sparse Linear Transformation Kernel 32.63，总 156.12。所有值为点测量，无重复/SD/SE/区间。",
+      "evidence_relation": "§4.2 I2O/FLOPs bubbles 与 §4.3 Triton kernel -> Figure 4 的优化分层 -> Table 5 的端到端 overhead -> Table 1 的 speedup。",
+      "design_strengths": [
+        "段内数值可加总，直接暴露每个优化增量和总延迟。",
+        "Dense/Sparse 分开的 legend 减少同一色块在两根柱中的歧义。"
+      ],
+      "design_weaknesses": [
+        "两个 legend 的同名 Final Latency 色值并非完全一致，跨柱比较需要回看 legend。",
+        "很薄的增量段标签拥挤，caption 没有定义总值与基准测量协议。",
+        "没有重复测量或硬件时钟状态，不能判断小增量的稳定性。"
+      ],
+      "reusable_pattern": "用 cumulative stacked bar 展示优化链并在段内保留增量数值；复用时统一颜色 token、基准和测量协议。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 4",
+        "bbox": [
+          300,
+          430,
+          535,
+          600
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "results / more results / trade-off",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5. Trade-off between Success Rate and Latency.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#5B9BD5",
+          "#ED7D31",
+          "#F0F0FC"
+        ],
+        "semantic_mapping": "蓝色圆点实线编码 Success Rate，橙色方点虚线编码 Speedup；淡紫背景和白色网格为版式，不是数据类别。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 1,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right inside panel",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Pruning Ratio (%)，0-90 每 10 个百分点",
+        "y": "左轴 Success Rate (%)；右轴 Speedup (X)",
+        "color": "success 与 speedup 两条序列",
+        "shape": "circle success / square speedup",
+        "line": "solid success / dashed speedup",
+        "facet": null,
+        "text": "轴标题、legend、40% 处 Efficiency Plateau"
+      },
+      "data_and_statistics": "同一 pruning-ratio sweep 的 success rate 与 speedup 点估计；40% 竖线标记效率平台。success 在 40% 以下保持高位，之后迅速下降，speedup 持续上升；没有 episode 数、seed、重复或不确定性。",
+      "evidence_relation": "Table 1 的多 ratio 结果 -> Figure 5 连续 trade-off sweep -> p.8 §5.3 的约 40% 操作点 -> Appendix A.3 的实际 p/α。",
+      "design_strengths": [
+        "双轴让性能与效率拐点在一个 ratio sweep 中直接对照。",
+        "颜色、marker 和线型同时区分两条序列，灰度下仍较可读。"
+      ],
+      "design_weaknesses": [
+        "双 y 轴和截断/不同范围会影响斜率直觉，caption 没有定义 baseline。",
+        "40% reference line 与“Efficiency Plateau”是图内语义，caption 没有复述。",
+        "所有点是点估计，缺少成功试验分母和 latency 测量变异。"
+      ],
+      "reusable_pattern": "将性能和速度置于同一 pruning-ratio sweep，并显式说明双轴、参考基线、停止阈值和不确定性。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 5",
+        "bbox": [
+          65,
+          65,
+          300,
+          175
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 8,
+      "module": "results / more results / hyperparameters",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6. Impact on Hyperparameters α and p.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#FFCA92",
+          "#E8A14A",
+          "#C4B9E1",
+          "#76689E"
+        ],
+        "semantic_mapping": "上 panel 橙色为 α temporal inertia，下 panel 紫色为 p sensitivity；柱、line、marker 和数据标签提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 23,
+        "data_marks_estimate": 23
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "上：α 的离散 0.0-1.0；下：p 的离散取值",
+        "y": "Success Rate (%)，约 70-90",
+        "color": "α panel 橙色；p panel 紫色",
+        "shape": "每个条件一个 bar 与 circle marker",
+        "line": "同色 solid line 连接离散条件",
+        "facet": "(a) Temporal Inertia Parameter；(b) Sensitivity Parameter",
+        "text": "所有 success rate 数值与 panel 标题"
+      },
+      "data_and_statistics": "π0.5 上的 success-rate 离散 sweep。α=0.0...1.0 的可见值为 79.8、81.2、80.2、82.4、83.4、83.6、80.8、87.0、82.6、80.0、80.6；p=5、10、20、30、40、50、60、70、75、80、85、90 的可见值为 78.8、78.4、78.4、75.6、80.4、77.4、80.0、80.0、82.0、87.0、81.2、82.8。Appendix C 指出 α 对应 LIBERO-Long；无 trial 数、seed 或误差。",
+      "evidence_relation": "§4.1.1-4.1.2 quantile trigger/temporal fusion -> Figure 6 α/p sweep -> Appendix A.3 实际参数 -> Appendix C 对峰值和噪声/历史滞后的解释。",
+      "design_strengths": [
+        "离散条件、柱高、折线、marker 和直接数值标签同时显示水平与趋势。",
+        "上下 panel 共用 success-rate 语义，便于快速比较候选参数。"
+      ],
+      "design_weaknesses": [
+        "y 轴显示范围约 70-90，会放大峰值的视觉差异。",
+        "caption 没有说明模型、任务、p/α 定义、分母或不确定性，需依赖 Appendix C。",
+        "橙/紫只在本图内有语义，和 Figure 5 的蓝/橙没有全局 token。"
+      ],
+      "reusable_pattern": "用离散超参 sweep + 直接数值标签暴露可选操作点；复用时显式声明截断轴、任务、分母和不确定性。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 6",
+        "bbox": [
+          325,
+          65,
+          535,
+          220
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 12,
+      "module": "appendix A.4 / real-robot setup",
+      "placement": "appendix",
+      "width": "inset",
+      "types": [
+        "image_montage",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 7. Kinova Gen3 Robot Setup.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "not_applicable",
+        "color_count": 0,
+        "hex": [],
+        "semantic_mapping": "自然 RGB 硬件照片和产品 cutout；红/橙框只定位设备，不是数据编码。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "not_applicable"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.3,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "主照片到右侧设备 inset 的空间对应",
+        "y": null,
+        "color": "自然摄影；红/橙定位框",
+        "shape": "主照片、两个设备 cutout、矩形 callout",
+        "line": "彩色连接线/定位框",
+        "facet": "Kinova Gen3 主图；Kinova Gen3 与 Intel RealSense D435i inset",
+        "text": "设备名称"
+      },
+      "data_and_statistics": "硬件设置文档图，不提供 success、latency、样本、重复或不确定性。Appendix A.4 说明一台 Kinova Gen3 与两台 D435i 的 third-person/wrist 角色；Appendix B 给出 20 个随机位置，Table 4 给出真实任务结果。",
+      "evidence_relation": "Appendix A.4 硬件说明 -> Figure 7 设备空间对应 -> Table 4/Figure 3 真实机器人证据 -> Appendix B 边界失败分析。",
+      "design_strengths": [
+        "主照片和右侧设备 cutout 通过连接框建立明确的部署接口。",
+        "居中 inset 不打断附录的实验设置文字。"
+      ],
+      "design_weaknesses": [
+        "没有视野、坐标系、时间同步或控制频率，无法从图复现传感器几何。",
+        "产品 cutout 与主照片尺度不一致，caption 只写 setup。",
+        "自然照片无数据色彩语义，需依赖附录文字理解相机职责。"
+      ],
+      "reusable_pattern": "用主场景 + 设备 inset + 连接框记录硬件边界；复用时增加相机视野/坐标与 caption 角色说明。",
+      "evidence": {
+        "page": 12,
+        "label": "Figure 7",
+        "bbox": [
+          205,
+          65,
+          530,
+          275
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results / main results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1. Performance of EcoVLA on OpenVLA-OFT in LIBERO at 25% and 40% pruning ratio.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern"
+        ],
+        "body_size_pt": 7.8,
+        "header_size_pt": 8.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "success rate/FLOPs/latency/speedup 是点估计；没有 seed、episode 数、SD/SE、区间或失败计数。",
+      "data_and_statistics": "11 行跨 OpenVLA-OFT 的 Vanilla/FastV/VLA-Cache、Wanda、Ours 与两种 pruning ratio 组合；Success Rate 按 LIBERO 四 suite 和 Average，FLOPs cell 附相对 dense 百分比，Latency 为 ms，Speedup 为倍数。",
+      "evidence_relation": "p.6 §5.1 的双 simulator/三模型设置 -> Table 1 的 OpenVLA-OFT 主比较 -> Figure 4 优化 breakdown、Figure 5 ratio trade-off；表格承担 headline speedup/accuracy 决策面。",
+      "design_strengths": [
+        "将 success、FLOPs、latency、speedup 放在同一行合同中。",
+        "未剪枝、单独 pruning 和 FastV/VLA-Cache 组合以及两个 ratio 的 row group 直接检验正交组合。"
+      ],
+      "design_weaknesses": [
+        "页宽表约 7.5-8.5 pt，长表头和多行方法增加横向扫描负担。",
+        "括号内 FLOPs 百分比的基准没有独立表下注释。",
+        "缺少重复和分母，不能判断小幅 success-rate 差异的稳定性。"
+      ],
+      "reusable_pattern": "用 baseline-own pruning-orthogonal combination 的分组表头呈现性能和成本；正式版本补充基准、重复与失败定义。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 1",
+        "bbox": [
+          78,
+          70,
+          535,
+          355
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results / main results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2. Performance of EcoVLA on π0.5 in LIBERO at 25% and 37.5% pruning ratio.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern"
+        ],
+        "body_size_pt": 7.8,
+        "header_size_pt": 8.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Success/FLOPs/latency/speedup 均为点估计；无 seed、episode 数、SD/SE、区间或失败计数。",
+      "data_and_statistics": "Vanilla 0% 与 Ours 25.0%/37.5% 三行；LIBERO-Spatial/Object/Goal/Long、Average、FLOPs、Latency、Speedup。25% Ours 为 96.7 Average/1.64 T/62.66 ms/1.31x，37.5% Ours 为 95.0/1.47 T/55.98 ms/1.46x。",
+      "evidence_relation": "p.8 §5.2 的 Results on π0.5 -> Table 2 跨模型泛化 -> Figure 5 的 ratio trade-off；LIBERO-Object 37.5% 的 0.2% 改善被正文解释为 regularization。",
+      "design_strengths": [
+        "复用 Table 1 的 suite/metric 合同并保留一条 dense baseline。",
+        "多个 pruning level 在极少行内暴露效率-性能变化。"
+      ],
+      "design_weaknesses": [
+        "表头列很多且字号小，37.5% 行与基线差异不易追踪。",
+        "caption 不说明方法行的成功率聚合与硬件/重复条件。",
+        "没有误差或 trial 分母，regularization 解释无法由表单独验证。"
+      ],
+      "reusable_pattern": "保留 dense baseline 和多个 model-specific pruning level；把比例、基线与不确定性写入 caption 或脚注。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 2",
+        "bbox": [
+          76,
+          238,
+          535,
+          315
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results / main results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3. Performance of EcoVLA on CogACT in SIMPLER at 25% and 40% pruning ratio.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Success/FLOPs/latency/speedup 是点估计；没有 episode 数、seed、重复或不确定性。",
+      "data_and_statistics": "Visual Matching 与 Variant Aggregation 各含 Vanilla/ours 25%/ours 40% 三行；每组按 Pick Coke、Move Near、Open/Close、Open Top、Average，随后 FLOPs、Latency、Speedup。Visual Matching 40% ours 为 73.6 Average/1.25 T/66.43 ms/1.57x；Variant Aggregation 40% ours 为 60.6/1.28 T/66.25 ms/1.60x。",
+      "evidence_relation": "p.8 Results on CogACT -> Table 3 跨架构/跨 SIMPLER 场景 -> Figure 5 的 ratio 解释与 Table 1-2 的跨模型主张。",
+      "design_strengths": [
+        "两种 SIMPLER 模式使用相同指标列，可直接比较 25% 与 40%。",
+        "row group 把环境子集与方法条件同时保留。"
+      ],
+      "design_weaknesses": [
+        "11 列短表头拥挤，Vanilla/ours 大小写不一致。",
+        "caption 没有说明任务 episode 数和成功率聚合。",
+        "缺少统计变异，无法评估 0.3%/0.6% 等正文差异。"
+      ],
+      "reusable_pattern": "对多环境套件复用同一指标列，并将环境子集作为 row group；为跨组比较补充分母和误差。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 3",
+        "bbox": [
+          75,
+          320,
+          535,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 7,
+      "module": "results / real-robot",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4. Performance of EcoVLA on π0.5 on a real-world robot.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern"
+        ],
+        "body_size_pt": 9.5,
+        "header_size_pt": 10.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [],
+      "uncertainty": "前三列为 20 次试验中的成功计数，Latency 为点估计；无置信区间、失败原因或延迟分布。",
+      "data_and_statistics": "baseline: Task1 12/20、Task2 18/20、Task3 16/20、86.08 ms；Ours: 12/20、16/20、15/20、68.40 ms。Task 名称只在紧邻 Figure 3 标签中展开。",
+      "evidence_relation": "§5.1 Kinova Gen3 设置 -> Table 4 的三任务 raw counts/latency -> Figure 3 任务照片 -> Appendix B p.12 的随机位置和边界失败分析。",
+      "design_strengths": [
+        "保留成功分子与 /20 分母，真实部署结果可核对。",
+        "把 latency 与多任务成功计数放在同一个方法行。"
+      ],
+      "design_weaknesses": [
+        "Task1-3 没有在表头展开，caption 不能独立恢复任务语义。",
+        "没有说明 success/failure 判定、每次 latency 采样或随机化协议。",
+        "baseline/Ours 差异需要结合 Figure 3 和 Appendix B 才能解释。"
+      ],
+      "reusable_pattern": "保留 `/20` raw count 并把任务名直接放进表头或脚注，同时注明随机位置和 failure criterion。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 4",
+        "bbox": [
+          75,
+          432,
+          405,
+          505
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 8,
+      "module": "results / more results / overhead",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 5. Overhead of Pruning Stream.",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Times New Roman",
+          "Computer Modern"
+        ],
+        "body_size_pt": 9.5,
+        "header_size_pt": 10.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [],
+      "uncertainty": "Normal VLA Inference 与 I2O 都是单点 latency；不提供 context length、model、重复、硬件状态或误差。",
+      "data_and_statistics": "Execution Method 两行：Normal VLA Inference 143.56 ms，I2O 148.06 ms，差值 4.50 ms。",
+      "evidence_relation": "p.8 §5.3 Overhead of Pruning Stream -> Table 5 量化 δ -> Figure 2 的 non-blocking stream 与 Figure 4 dense final latency；也限定 Table 1 speedup 的测量边界。",
+      "design_strengths": [
+        "极简两行对照，差值容易复核。",
+        "单位写在列头，表格可脱离长主表快速引用。"
+      ],
+      "design_weaknesses": [
+        "没有 model/context/hardware 条件，4.5 ms 的适用范围不闭合。",
+        "未给重复或变异，不能区分测量噪声和真实开销。"
+      ],
+      "reusable_pattern": "为系统开销保留两行同单位对照，但在表注中补 benchmark、context、设备和重复协议。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 5",
+        "bbox": [
+          90,
+          188,
+          300,
+          245
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 将环境演化转成 attention/MLP importance shift；Figure 2 给出 EAP 时间融合与 I2O 资源流；Tables 1-3 逐模型/benchmark 兑现 success-FLOPs-latency-speedup；Table 4/Figure 3 转到 Kinova Gen3；Figure 4 分解优化项，Figure 5 找到约 40% ratio trade-off，Table 5 给出 stream overhead，Figure 6 选择 α/p，Figure 7 补硬件边界。",
+    "caption_system": "所有 caption 采用 Figure/Table n. + 描述性标题；Figure 2 具备最长的 setup/encoding key，Figure 1 写出方向性主发现，其余 Figure 主要是短标题。Tables 1-4 的 caption 给模型/benchmark/剪枝比例，Table 5 只给 overhead 标题；大多数 caption 未写 seed、episode、误差或 measurement protocol。",
+    "table_header_system": "Table 1-3 采用 grouped Success Rate header 和方向箭头，列出 suite/task Average 后接 FLOPs、Latency、Speedup；Table 4-5 为单级简表。单位和方向总体清楚，但 Table 4 的 Task1-3 未展开，FLOPs 括号百分比的基准依赖正文或读者推断。",
+    "method_result_ablation_link": "Figure 2 的 EAP/I2O 接口对应 Figure 4 的 kernel/bubble breakdown 与 Table 5 的 δ；Figure 1 的动态重要性对应 Figure 6 的 temporal inertia/sensitivity；Tables 1-3 提供主比较，Figure 5 检查 ratio trade-off，Table 4/Figure 3/7 构成真实机器人证据。",
+    "main_appendix_link": "正文 p.6-8 将真实机器人设置、实现参数和超参分析连接到 Appendix A-C；Figure 7 在 A.4 闭合硬件，Appendix B 解释 Table 4 的边界失败，Appendix C 解释 Figure 6 的 α/p 峰值。附录没有额外 Table，但补足相机角色、20 个随机位置和训练细节。",
+    "typography_consistency": "正文、caption 和表格共享 Times/Nimbus Roman/Computer Modern；图内栅格资产的粗体 serif 字形和字号与表格不完全一致，Figure 2/5/6 的细节在双栏显示时最容易丢失。",
+    "color_consistency": "每个对象内部颜色语义明确，但缺少全局颜色 token：Figure 5 蓝/橙表示 success/speedup，Figure 6 橙/紫表示 α/p，Figure 2 的橙/绿/蓝表示流程/资源状态。Figure 5 的 marker/line style 和 Figure 6 的柱/线/数值标签提供局部冗余，Figure 1 与照片没有统一灰度策略。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 Figure 1 双热图建立动态稀疏动机，再用 Figure 2 上下分栏分别表示算法状态流和硬件资源流。",
+      "用 Tables 1-3 的 grouped header 将 success、FLOPs、latency、speedup 置于同一决策面，并按模型/环境 row group 展开外推边界。",
+      "用 Figure 4 cumulative stacked bar 拆分优化来源、Figure 5 双轴 sweep 显示 ratio 操作点、Table 5 量化并行 stream 的残余开销。",
+      "用 Figure 6 离散超参 sweep 和 Figure 7 设备 inset 将参数机制与真实部署接口接上。"
+    ],
+    "highest_value_objects": [
+      "Table 1：主性能/成本决策面最完整。",
+      "Figure 2：EAP/I2O 方法与硬件接口最集中。",
+      "Figure 4：优化增量可加总且与 Table 5 相互校验。",
+      "Figure 5：40% trade-off 的直接可视证据。",
+      "Table 4 与 Figure 7：真实机器人结果和复现边界。"
+    ],
+    "failure_patterns": [
+      "Figure 1 没有色标/数值尺度；Figure 2 没有真实时间比例和阻塞边界。",
+      "Figure 4-6 的 caption 过短；Tables 1-5 和 Figure 5-6 没有 error/seed/episode 分母。",
+      "Figure 5 双 y 轴与 Figure 6 截断 y 轴会影响差异直觉。",
+      "Table 4 的 Task1-3 依赖 Figure 3 才能解码；官方 GitHub 仓库当前没有可复用绘图/表格源。"
+    ],
+    "one_sentence_visual_strategy": "论文用“动态热图建立稀疏动机、双层流程图解释 EAP/I2O、统一性能-成本主表和逐层效率/超参补图推进到真实机器人”的视觉层级承载 EcoVLA 主张，但量化不确定性、轴/图注自洽性和公开视觉源缺口限制了可审计复现。"
+  }
+}

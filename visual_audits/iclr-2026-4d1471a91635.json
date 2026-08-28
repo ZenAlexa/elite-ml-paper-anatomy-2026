@@ -1,0 +1,2890 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-4d1471a91635",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/World-In-World/world-in-world",
+      "https://github.com/Lightricks/LTX-Video-Trainer",
+      "https://github.com/modelscope/DiffSynth-Studio",
+      "https://github.com/nvidia-cosmos/cosmos-predict2",
+      "https://github.com/pixeli99/SVD_Xtend"
+    ],
+    "selected_repository": "https://github.com/World-In-World/world-in-world",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "assets/overview.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "README embeds this 2508×1434 asset; visual comparison with PDF p.1 Figure 1 shows the same overview composite, but it is a rendered asset without editable plot/layout source."
+      },
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "downstream/utils/habitat_visualize.py",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "display_map uses imshow and circular point overlays for top-down maps; it is related to Figure 12 but does not assemble the paper figure or expose its exact data/parameters."
+      },
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "downstream/visualize.py",
+        "role": "other",
+        "tool": "PIL/OpenCV",
+        "evidence": "Generic red bounding-box, path, frame and mask annotation helpers; relevant to qualitative overlays but not an exact Figure 13–17 assembly."
+      },
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "downstream/world-in-world-manip/wiw_manip/planner/utils/visualize.py",
+        "role": "other",
+        "tool": "PIL/OpenCV",
+        "evidence": "Manipulation overlay helpers for frames/boxes; relevant to Figure 11/18 annotations but not the paper layout or source data."
+      },
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "downstream/world-in-world-manip/wiw_manip/evaluator/config/visual_icl_examples/eb_navigation/ebnav_visual_icl.py",
+        "role": "other",
+        "tool": "Python/PIL",
+        "evidence": "Constructs text+image visual-ICL examples for navigation; it is not a Figure 9/10 generator."
+      },
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "subtrees/open-eqa/data/metrics/gpt_answer-metrics.json",
+        "role": "data_file",
+        "tool": null,
+        "evidence": "A-EQA metric configuration from the acquired local inventory; it supports metric context but contains no figure/table rendering."
+      },
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "subtrees/open-eqa/data/results/AEQA_blind/open-eqa-41-Qwen--Qwen2.5-VL-72B-Instruct-AWQ-1234.json",
+        "role": "data_file",
+        "tool": null,
+        "evidence": "A-EQA result record from the acquired local inventory; no plotting or paper-figure assembly."
+      },
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "subtrees/open-eqa/data/results/AEQA_blind/open-eqa-184-Qwen--Qwen2.5-VL-72B-Instruct-AWQ-1234.json",
+        "role": "data_file",
+        "tool": null,
+        "evidence": "A-EQA result record from the acquired local inventory; no plotting or paper-figure assembly."
+      },
+      {
+        "repository_url": "https://github.com/World-In-World/world-in-world",
+        "path": "FTsvd/diffusers-private/diffusers/dependency_versions_table.py",
+        "role": "other",
+        "tool": null,
+        "evidence": "Dependency metadata in the acquired local inventory; no visual or tabular source."
+      }
+    ],
+    "search_note": "PDF 首页/project URL、OpenReview 和 README/BibTeX 标题均与 World-In-World 精确匹配；使用 agent-reach doctor --json 检查 GitHub 路由、unicli search 发现 gh repo/tree/search-code surface，并用已认证 gh 只读查看 README 和递归 tree。reports/tables/visual_source_inventory.csv 的自动 status=exact_visual_source 被人工修正为 partial_visual_source：assets/overview.png 是与 PDF p.1 Figure 1 相同的已渲染 overview asset；其余仓库脚本仅提供 top-down map、PIL/OpenCV overlay 或视觉 ICL helper，未找到覆盖 Figure 2–18、Table 1–11 的 editable plot/table/LaTeX source。visual_source_files_local.csv 的 5 个本地文件已核查，且没有克隆模型权重、数据集或 checkpoint。"
+  },
+  "paper_style": {
+    "main_figures": 7,
+    "main_tables": 6,
+    "appendix_figures": 11,
+    "appendix_tables": 5,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Arial",
+        "Calibri",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 5,
+        "median": 8,
+        "maximum": 12
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 6.8,
+      "header_size_pt": 6.8,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "图表以局部 categorical palette（pink/blue/green 或 green/blue/orange）区分模型组；diagram 用 purple/teal/red arrow 与浅色模块；表格用浅蓝/浅绿/浅粉/浅黄 group fill。自然图像色不承担跨对象固定语义，marker、直接标签、箭头和 row-group 是必要冗余。",
+    "vector_raster_mix": "caption、表格、坐标、线框和大部分 chart glyph 为 PDF 矢量；照片、视频帧、地图和若干 composite asset 为栅格，Figure 1/3/4/8/9/10/11 等为 mixed。",
+    "style_consistency": "booktabs 横线、grouped headers、箭头方向和直接标签在全篇稳定；图内字体和局部颜色随 chart/diagram/photo 来源变化，窄栏小字、长 URL 与彩色 qualitative grid 是主要一致性/可读性成本。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "abstract",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "headline",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: We introduce the first open benchmark to evaluate world models by closed-loop task success, analyze the link between task success and visual quality, and investigate scaling laws.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Calibri",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#5F4C71",
+          "#C6D9F1",
+          "#CDC2D9",
+          "#556683",
+          "#493E60",
+          "#8291A8",
+          "#9CB2CF",
+          "#74667C"
+        ],
+        "semantic_mapping": "蓝紫渐变和 pastel task cards 区分平台/任务/证据卡；自然图像另提供非语义颜色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 25,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "平台/任务卡与证据卡的局部色彩",
+        "shape": null,
+        "line": null,
+        "facet": "overview、任务卡和 leaderboard/scaling/correlation mini-panels",
+        "text": "任务名、模型名、方向箭头和微型图标签"
+      },
+      "data_and_statistics": "复合 overview 没有完整数值轴、样本数、重复或不确定性；顶部展示平台和四类任务，底部展示 leaderboard、data scaling、inference-time scaling 与 correlation 方向。",
+      "evidence_relation": "abstract benchmark claim → Figure 1 overview → Figure 2 quality/utility separation、Figure 3 planning interface、Figure 4 task suite → Tables 1–6 与 Figures 5–7；附录 Figures 8–18 进一步展开机制、配置和失败边界。",
+      "design_strengths": [
+        "把 benchmark、任务覆盖和三条实证主线放在单一入口。",
+        "上层机制卡与下层证据卡形成由概览到结果的阅读路径。"
+      ],
+      "design_weaknesses": [
+        "mini-panel 和 prompt 文字在页面缩放下偏小，且没有完整单位/分母。",
+        "不同 card 的局部颜色不是全局方法语义，首屏不能单独验证趋势。"
+      ],
+      "reusable_pattern": "用“平台/任务 → leaderboard → scaling/correlation”三段式 page-width overview；复用时为每个 mini-panel 补单位、分母和对照。",
+      "evidence": {
+        "page": 1,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 2: Task success rate vs. generation quality from VBench. †: post-trained with extra data. We defend that world models live and die by their closed-loop success, not flawless generated visuals.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#EA6B81",
+          "#6D92B4",
+          "#409074"
+        ],
+        "semantic_mapping": "pink/red=zero-shot、blue=post-trained、green=Others；圆/方 marker 作为类别冗余编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 15,
+        "data_marks_estimate": 15
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top-left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "generation quality（Aesthetic+Image Quality）",
+        "y": "AR task success rate (%)",
+        "color": "zero-shot/post-trained/Others",
+        "shape": "circle/square category marker",
+        "line": null,
+        "facet": null,
+        "text": "model name direct labels"
+      },
+      "data_and_statistics": "约 15 个模型点，每点配对 VBench-derived generation quality 与 AR SR；未给样本量、seed、聚合或误差，因此只支持比较关联，不支持因果解释。",
+      "evidence_relation": "引言“高视觉质量不等于高 task success” → Figure 2 → Tables 1–3 任务结果、Figure 5 quality/controllability 对照；是从平台 framing 到定量 utility 的第一处分叉证据。",
+      "design_strengths": [
+        "统一坐标把静态质量与闭环效用放到同一 decision surface。",
+        "direct labels 与 shape/color redundancy 使模型类别不完全依赖 legend。"
+      ],
+      "design_weaknesses": [
+        "inset 中模型标签拥挤；无重复/不确定性显示。",
+        "quality 合成规则和 Others 成员未在 caption 中完全展开，彩色类别灰度下区分弱。"
+      ],
+      "reusable_pattern": "对“静态质量—闭环效用”主张使用双指标 scatter，并以 direct labels + shape/color redundancy 保持可追踪；同时报告质量合成和评测分母。",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 3: Closed-loop online planning in World-In-World: At time step t, the agent receives the world state, represented by observation o_t, and invokes a proposal policy π_proposal (❶) to produce a total of M candidate action plans. The unified action API (❷) transforms each plan into the control inputs required by the world model. The world model (❸) then predicts the corresponding future states as observations O_hat_t. The revision policy π_revision (❹) evaluates all rollouts and commits to the best, yielding decision D*_t. This decision is applied in the environment, closing the interaction loop.",
+        "word_count": 92,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Calibri",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#6E4D8A",
+          "#4A9C97",
+          "#D9D9D9",
+          "#222222"
+        ],
+        "semantic_mapping": "紫色表示 imagined rollouts，teal 表示 real interactions，灰色框为 planning interface；线型和文字提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 20,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "top-left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "候选计划与阶段顺序（空间/时间）",
+        "y": "future observations / selected decision 的流转",
+        "color": "imagined vs. real interaction",
+        "shape": null,
+        "line": "solid/dashed interaction arrows",
+        "facet": "real loop 与四阶段 planning box",
+        "text": "❶–❹、proposal/API/WM/revision labels"
+      },
+      "data_and_statistics": "无数值数据；图定义 proposal→unified action API→world model→revision→execution 的 interface，候选 rollout 作为后续决策证据。M、L、reward function 和 action API 参数不在图内。",
+      "evidence_relation": "Section 2.1 的统一策略 → Figure 3 四阶段 interface → Figure 4 四任务与 Tables 1–7 结果；附录 Figures 8–11 是该 interface 的任务化实例。",
+      "design_strengths": [
+        "真实交互环和 imagined planning box 同屏，四阶段编号与 caption 一一对应。",
+        "线型、颜色、箭头方向和文字共同表达 real/imagined 两条路径。"
+      ],
+      "design_weaknesses": [
+        "规划框内候选、future state 和 selected decision 在缩小后容易混淆。",
+        "M、L、revision scoring 和具体 action schema 仍需正文/附录。"
+      ],
+      "reusable_pattern": "用 real loop + imagined planning box + numbered stages 展示闭环 agent interface；复用时将 candidate count、action schema 和 selection rule 作为相邻注释。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 5,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 4: Top-left: Active Recognition (AR), the agent needs to identify a designated target under occlusions or extreme viewpoints while minimizing navigation cost. Top-right: Image-Goal Navigation (ImageNav), the agent reaches the viewpoint matching a goal image, emphasizing success rate and path efficiency. Bottom-left: Active Embodied Question Answering (A-EQA), the agent answers an open-ended question after active exploration. Bottom-right: Robotic Manipulation, the agent needs to control a robotic arm to complete tasks such as grasping and placement to specified targets.",
+        "word_count": 77,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Calibri",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#C6D9F1",
+          "#D9C8E9",
+          "#F3D3DF",
+          "#F7E5B5",
+          "#4F86C6",
+          "#7950A2"
+        ],
+        "semantic_mapping": "四个任务面板用浅色标题条和场景/箭头区分；自然场景色不承担固定量化语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "任务面板标题条与目标/箭头色",
+        "shape": null,
+        "line": null,
+        "facet": "四任务 2×2 facet",
+        "text": "任务名、指令气泡、step/view 标签"
+      },
+      "data_and_statistics": "仅展示 AR、ImageNav、A-EQA、Robotic Manipulation 的任务 setup 与代表性视图；无 episode 数、分母、成功定义或路径长度数值。",
+      "evidence_relation": "Figure 3 统一 planner → Figure 4 任务覆盖 → Tables 1–3 主比较；附录 Figures 8–11 放大 AR/A-EQA/manipulation 的机制和输入。",
+      "design_strengths": [
+        "2×2 同构 task cards 使感知、导航、问答和操作的边界可快速扫描。",
+        "标题、指令、场景和箭头多重编码任务目标。"
+      ],
+      "design_weaknesses": [
+        "地图、照片、操作截图尺度不统一；缩略视图和箭头偏小。",
+        "任务成功判据没有映射到图内标记，灰度下浅色面板差异减弱。"
+      ],
+      "reusable_pattern": "用同构 2×2 task cards 建立 benchmark scope；每格保持“目标—观测—动作—成功”层级并与指标定义对齐。",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: (a) SR vs. generation quality in AR; generation quality is scored as the average of an aesthetic predictor (Akio Kodaira, 2024) and an image-quality predictor (Ke et al., 2021), both trained to match human preferences. (b) SR vs. controllability in AR; controllability is quantified as 1 − LPIPS between ground-truth and predicted observations.",
+        "word_count": 53,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#EA6B81",
+          "#6D92B4",
+          "#409074"
+        ],
+        "semantic_mapping": "pink/blue/green 区分三类 model group；circle/square 和 direct model labels 提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 30,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top-left in each panel",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "generation quality（a）或 1−LPIPS controllability（b）",
+        "y": "AR SR",
+        "color": "model group",
+        "shape": "circle/square",
+        "line": null,
+        "facet": "(a)/(b) panels",
+        "text": "model direct labels"
+      },
+      "data_and_statistics": "两个 panel 各约 15 个 AR model points；(a) x 为 aesthetic/image-quality predictors 的平均，(b) x 为 1−LPIPS。未给 predictor/LPIPS 聚合、seed、重复或误差，支持关联对照而非因果结论。",
+      "evidence_relation": "Figure 2 quality–success separation → Figure 5 paired quality/control ablation → Figures 6–7 scaling；(b) 是“控制比画质更关键”主张的局部机制证据。",
+      "design_strengths": [
+        "同一 SR 结果投影到 quality 与 controllability 两个解释变量，panel 对照清楚。",
+        "caption 对两个派生量给出操作定义。"
+      ],
+      "design_weaknesses": [
+        "两个 panel 重复 legend/direct labels，图面较拥挤；无 uncertainty 或 regression summary。",
+        "LPIPS proxy 的可比性和因果边界需正文解释。"
+      ],
+      "reusable_pattern": "用 paired scatter 比较 competing explanatory variables；固定点集并明确 proxy、聚合和不可推断的因果边界。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 6: SR vs. seen examples during post-training. SR increases consistently with more downstream data, revealing a clear data-scaling trend for adaptation.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#5A9F5A",
+          "#5D86B3",
+          "#D9903D"
+        ],
+        "semantic_mapping": "绿/蓝/橙区分 Wan2.1†、SVD†、Wan2.2†；marker 和数值标签冗余表达 model。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom-right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 3,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "post-training seen examples（400、4K、40K、80K，数量级排列）",
+        "y": "AR SR",
+        "color": "model",
+        "shape": "circle/square/star",
+        "line": "同一 model 随数据规模的序列",
+        "facet": null,
+        "text": "point SR labels"
+      },
+      "data_and_statistics": "三条曲线是 one-epoch post-training data-size sweep 的 AR SR；x 刻度为数量级，未给 seed、误差、wall-clock 或数据采样差异。",
+      "evidence_relation": "Figure 3 planner → Figure 6 post-training data scaling → Table 1/2 post-trained gains；与 Figure 7 inference-time scaling 形成两条资源—效用路径。",
+      "design_strengths": [
+        "少量点呈现 400→80K 方向，直接标签便于读端点。",
+        "颜色、marker 和数值标签共同支持三模型追踪。"
+      ],
+      "design_weaknesses": [
+        "x 轴 spacing/标签在 single-column 下不够清晰；没有 seed、有效数据差异或训练成本。",
+        "caption 未说明三个模型和 one epoch。"
+      ],
+      "reusable_pattern": "用离散数量级 x、多 series 和直接端点标注展示 adaptation scaling；补数据采样、epoch、seed 和训练成本。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 7: SR vs. average number of world-model inferences per episode. Increasing the inference-time computation allocated to each decision step leads to higher SR.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern math",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#5A9F5A",
+          "#5D86B3"
+        ],
+        "semantic_mapping": "绿色/蓝色区分 Wan2.1† 与 SVD†；marker 和 direct SR labels 提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 10,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom-right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "average WM inference count per episode",
+        "y": "AR SR",
+        "color": "model",
+        "shape": "circle/square",
+        "line": "同一 model 的 inference-budget sequence",
+        "facet": null,
+        "text": "point SR labels"
+      },
+      "data_and_statistics": "每点配对 AR episode 平均 inference count 与 SR；无 episode 数、规划难度分布、停止条件、seed 或 uncertainty。支持 computation/SR 关联，不把 inference count 视为唯一原因。",
+      "evidence_relation": "Figure 3 candidate rollout interface → Figure 7 inference budget sweep → Table 1 AR/ImageNav outcomes；与 Figure 6 training-data scaling 对称。",
+      "design_strengths": [
+        "少量点直接展示 computation budget 与 SR 的方向。",
+        "与 Figure 6 同样的 line grammar 区分 training-time 和 inference-time scaling。"
+      ],
+      "design_weaknesses": [
+        "没有 latency/cost、fixed-policy 对照或 episode distribution；x 轴与 legend 在窄栏中偏小。"
+      ],
+      "reusable_pattern": "用预算 x、任务 SR y 和直接点标签展示 inference-time trade-off；同步报告 latency、episode 分布和固定策略条件。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8: In AR, the world model supports both queries (perception and planning). In this example, the agent must identify a wooden door that is initially visible only from an extreme viewpoint. For each candidate action sequence, the world model predicts future observations; these forecasts augment the agent’s perception and inform the choice of the next action.",
+        "word_count": 55,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#7B4FA0",
+          "#E58A3A",
+          "#D22F27",
+          "#4F86C6"
+        ],
+        "semantic_mapping": "紫/橙箭头分解 planning/perception query，红框标记 target，其他颜色来自自然场景。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "candidate action/prediction sequence",
+        "y": "planning/perception predicted views",
+        "color": "query role/target boxes",
+        "shape": null,
+        "line": "purple/orange arrows",
+        "facet": "planning vs. perception rows",
+        "text": "action labels、Perception Enhancement、red target boxes"
+      },
+      "data_and_statistics": "单个 AR door case，没有 episode 数、candidate count、success rate、reward 或筛选规则；作为机制/qualitative evidence 说明 predicted views 可同时服务 perception 和 planning。",
+      "evidence_relation": "Figure 3 WM/revision interface → Figure 8 AR dual-query mechanism → Table 1/7 AR results；与 Figure 9 A-EQA candidate-plan diagram 对照。",
+      "design_strengths": [
+        "上下两条通路把预测视图的两种证据角色分开。",
+        "箭头和红框使极端视角、遮挡和目标识别机制可见。"
+      ],
+      "design_weaknesses": [
+        "candidate plan 的 score/选择结果没有量化高亮；彩色箭头和小字在缩放后难核验。",
+        "单案例不能支持总体效果或典型性。"
+      ],
+      "reusable_pattern": "将“预测作为规划证据”和“预测作为感知补充”拆为上下两条视觉通路；标出真实/预测帧、candidate 数和 selected plan。",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 9: Overview of our embodied closed-loop evaluation for A-EQA. For each question, the high-level planner proposes multiple candidate action plans and queries the world model to generate the corresponding future observations. The agent then evaluates each plan together with its predicted observations and selects the plan that maximizes the expected reward before executing it in the environment.",
+        "word_count": 56,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Calibri",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#4F86C6",
+          "#7950A2",
+          "#D6E5F5",
+          "#E8DDF2"
+        ],
+        "semantic_mapping": "蓝/紫箭头区分 predicted/candidate 与 executed/real branches，场景颜色不承担量化语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 15,
+        "data_marks_estimate": 15
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "top-right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "candidate plan branches / execution sequence",
+        "y": "predicted observations / selected real execution",
+        "color": "candidate vs. executed branch",
+        "shape": null,
+        "line": "blue/purple arrows",
+        "facet": "candidate plans and selected execution",
+        "text": "question、plan labels、arrow key"
+      },
+      "data_and_statistics": "单个 A-EQA closed-loop example，没有 candidate 数、plan length、reward 分布或成功统计；作用是展示 query→predict→evaluate→execute sequence。",
+      "evidence_relation": "Figure 3 revision stage → Figure 9 A-EQA specialization → Table 2/7 A-EQA metrics；与 Figure 8 AR dual-query 和 Figure 10 SoM input 相连。",
+      "design_strengths": [
+        "candidate generation、predicted observation、scoring 和 execution 排成可追踪闭环。",
+        "真实/想象箭头 key 补充空间分支语义。"
+      ],
+      "design_weaknesses": [
+        "plan 数量、长度和 reward 没有尺度；箭头交叉增加局部阅读负担。",
+        "单案例的成功路径可能被误读为总体模式。"
+      ],
+      "reusable_pattern": "用中央状态场景 + candidate plan branches + selected execution branch 表示闭环评估；标出 candidate count、score 和真实/预测边界。",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot",
+        "conceptual_diagram",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 10: Illustration of the Set-of-Marks (SoM) representation that encodes candidate navigable directions. The high-level planner chooses among these discrete landmarks when constructing candidate action plans.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#D22F27",
+          "#F5B51B",
+          "#4F86C6",
+          "#222222"
+        ],
+        "semantic_mapping": "红/黄/蓝框和 index text 标出 object/landmark identity，场景颜色为自然色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "方向视角（Front/Left/Right/Back）",
+        "y": "无数值 y；view content",
+        "color": "object/landmark boxes",
+        "shape": null,
+        "line": null,
+        "facet": "四方向 facet",
+        "text": "Curr. View、index、landmark labels"
+      },
+      "data_and_statistics": "四个方向视图和 object/landmark indices 的 qualitative interface；无 navigability precision/recall、candidate 数或成功统计。",
+      "evidence_relation": "Figure 4 A-EQA scope → Figure 10 SoM input → Figure 9 candidate plans → Table 2 A-EQA results；提供 high-level planner action vocabulary 的视觉锚点。",
+      "design_strengths": [
+        "四方向 grid 将 discrete landmark 与 planner input 对齐。",
+        "直接 index 避免额外 legend。"
+      ],
+      "design_weaknesses": [
+        "框和编号缩放后偏小；“可导航”没有 detector error/漏检案例。",
+        "caption 未定义框生成器、坐标系和 view/action 映射。"
+      ],
+      "reusable_pattern": "用固定方向 grid 展示视觉检测到离散 action landmark 的接口；补 object detector、坐标系、候选筛选和 failure cases。",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 11: Illustration of the auxiliary information provided to the VLM policy. The objects are marked with indices, and their positions are given to the VLM to facilitate decision-making.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Calibri",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 8,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#C6D9F1",
+          "#D22F27",
+          "#F5B51B",
+          "#4CAF50",
+          "#7950A2",
+          "#222222"
+        ],
+        "semantic_mapping": "浅蓝输入卡与红/黄/绿/紫 object indices 对齐；自然场景色为背景。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 5
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "结构化 object list 与 scene overlay",
+        "y": "无数值 y；VLM input→decision",
+        "color": "object index/color",
+        "shape": null,
+        "line": "input-to-scene connector",
+        "facet": "structured list vs. robot scene",
+        "text": "object IDs、positions、pose labels"
+      },
+      "data_and_statistics": "展示 VLM 的 object index/pose auxiliary information，不给 detection accuracy、pose error 或 manipulation success；说明 Table 3/7 的 VLM policy input boundary。",
+      "evidence_relation": "Figure 4 manipulation scope → Figure 11 VLM input contract → Table 3/7 manipulation results → Figure 18 qualitative failure。",
+      "design_strengths": [
+        "文本辅助信息和实际 scene overlay 一一对齐，输入 contract 可复核。",
+        "比抽象框图更接近复现者实际需要的 VLM input。"
+      ],
+      "design_weaknesses": [
+        "位置数值和图像框对应关系较小；来源是 ground truth、detector 还是人工标注未定义。",
+        "没有 auxiliary-information failure example。"
+      ],
+      "reusable_pattern": "并列展示 structured auxiliary input 与 scene overlay；补来源、坐标单位、误差和输入时序。",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "map"
+      ],
+      "purpose": [
+        "dataset",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 12: Top-down visualization of sampled waypoints in a scene. Red (left) and yellow (right) dots are the final waypoints after radius-based pruning. The proposed strategy places waypoints throughout peripheral regions while avoiding redundant interior points, yielding diverse and spatially balanced trajectories.",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 2,
+        "hex": [
+          "#E53935",
+          "#F5B51B"
+        ],
+        "semantic_mapping": "红/黄点表示 pruning 后的 waypoint groups；floorplan/scene 为栅格背景。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "floorplan x position（无坐标尺度）",
+        "y": "floorplan y position（无坐标尺度）",
+        "color": "final waypoint group",
+        "shape": "waypoint circle/agent icon",
+        "line": null,
+        "facet": "左右两个 scene/strategy panels",
+        "text": "waypoint_idx、step labels"
+      },
+      "data_and_statistics": "两个 top-down map/floorplan scene 的 sampled waypoint distribution；无 waypoint 总数、radius、scene split 或 coverage statistic，不能替代 dataset coverage estimate。",
+      "evidence_relation": "Algorithm 1/Appendix D.1 sampling → Figure 12 spatial diagnostic → Table 11 dataset statistics → Table 8 post-training data config。",
+      "design_strengths": [
+        "floorplan 与点的空间关系直观，补足 Algorithm 1 抽象步骤。",
+        "caption 明确定义红/黄点和 radius pruning。"
+      ],
+      "design_weaknesses": [
+        "无比例尺、坐标、半径或 coverage 数值；红/黄在灰度下区分弱。",
+        "左右 panel 的场景/策略对应关系未说明。"
+      ],
+      "reusable_pattern": "用 top-down map + final point overlay 检查采样空间偏差；同步给出半径、总量、scene split 和 coverage metric。",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 12",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 13: Examples of good and bad predictions. The action sequence contains only Forward actions. Models that violate this requirement yield observations that can mislead the planner.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#6E4D8A",
+          "#D22F27",
+          "#222222"
+        ],
+        "semantic_mapping": "Good/Bad facet 由位置编码；紫色 action 标签和红色局部标记提示控制/异常，图片自然色不构成固定 palette。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "frame/case position",
+        "y": "无数值 y；predicted observation tiles",
+        "color": "Good/Bad and red failure marks",
+        "shape": null,
+        "line": "Forward action arrow",
+        "facet": "Good vs. Bad rows and frame sequence",
+        "text": "action labels、red anomaly labels"
+      },
+      "data_and_statistics": "约 6 个 Good frame 和 2×6 个 Bad frame，顶部标出 Forward-only action。 这是 qualitative rollout/grid，未给模型、episode/clip 数、抽样规则、frame interval、失败率或 uncertainty；不可从 tile 比例推断总体可靠性。",
+      "evidence_relation": "Figure 3 action API → Figures 13–18 prediction-control failure family → Figure 5(b) controllability 与 Tables 1/3/7 aggregate outcomes；附录图只提供 qualitative boundary。",
+      "design_strengths": [
+        "固定 action/Good-Bad layout 将预测控制是否遵循命令转成逐帧可见证据。",
+        "保持与相邻 qualitative grid 同构，便于横向查看 failure family。"
+      ],
+      "design_weaknesses": [
+        "tile 和局部文字在页面缩放下偏小，样本选择标准未给出。",
+        "caption 没有 model、scene、frame interval 或筛选规则，无法把个例外推为总体比例。"
+      ],
+      "reusable_pattern": "定性 failure grid 采用固定 action constraint、同尺度 Good/Bad rows 和显式 failure mark；应附 model、scene、frame interval、筛选规则、缺失分母和 failure taxonomy。",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 13",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 14: Examples of good and bad predictions. The action sequence contains only Forward actions. Models that violate this requirement yield observations that can mislead the planner.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#6E4D8A",
+          "#D22F27",
+          "#222222"
+        ],
+        "semantic_mapping": "Good/Bad facet 由位置编码；紫色 action 标签和红色局部标记提示控制/异常，图片自然色不构成固定 palette。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "frame/case position",
+        "y": "无数值 y；predicted observation tiles",
+        "color": "Good/Bad and red failure marks",
+        "shape": null,
+        "line": "Forward action arrow",
+        "facet": "Good vs. Bad rows and frame sequence",
+        "text": "action labels、red anomaly labels"
+      },
+      "data_and_statistics": "与 Figure 13 同构的第二组室内门/走廊 Forward-only rollout，约 18 个 frame cells。 这是 qualitative rollout/grid，未给模型、episode/clip 数、抽样规则、frame interval、失败率或 uncertainty；不可从 tile 比例推断总体可靠性。",
+      "evidence_relation": "Figure 3 action API → Figures 13–18 prediction-control failure family → Figure 5(b) controllability 与 Tables 1/3/7 aggregate outcomes；附录图只提供 qualitative boundary。",
+      "design_strengths": [
+        "固定 action/Good-Bad layout 将预测控制是否遵循命令转成逐帧可见证据。",
+        "保持与相邻 qualitative grid 同构，便于横向查看 failure family。"
+      ],
+      "design_weaknesses": [
+        "tile 和局部文字在页面缩放下偏小，样本选择标准未给出。",
+        "caption 没有 model、scene、frame interval 或筛选规则，无法把个例外推为总体比例。"
+      ],
+      "reusable_pattern": "定性 failure grid 采用固定 action constraint、同尺度 Good/Bad rows 和显式 failure mark；应附 model、scene、frame interval、筛选规则、缺失分母和 failure taxonomy。",
+      "evidence": {
+        "page": 30,
+        "label": "Figure 14",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 15: Additional examples of good and bad predictions.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#6E4D8A",
+          "#D22F27",
+          "#222222"
+        ],
+        "semantic_mapping": "Good/Bad facet 由位置编码；紫色 action 标签和红色局部标记提示控制/异常，图片自然色不构成固定 palette。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "frame/case position",
+        "y": "无数值 y；predicted observation tiles",
+        "color": "Good/Bad and red failure marks",
+        "shape": null,
+        "line": null,
+        "facet": "Good vs. Bad rows and frame sequence",
+        "text": "action labels、red anomaly labels"
+      },
+      "data_and_statistics": "Good 2×5 与 Bad 2×5，共约 20 个 tiles。 这是 qualitative rollout/grid，未给模型、episode/clip 数、抽样规则、frame interval、失败率或 uncertainty；不可从 tile 比例推断总体可靠性。",
+      "evidence_relation": "Figure 3 action API → Figures 13–18 prediction-control failure family → Figure 5(b) controllability 与 Tables 1/3/7 aggregate outcomes；附录图只提供 qualitative boundary。",
+      "design_strengths": [
+        "固定 action/Good-Bad layout 将预测控制是否遵循命令转成逐帧可见证据。",
+        "保持与相邻 qualitative grid 同构，便于横向查看 failure family。"
+      ],
+      "design_weaknesses": [
+        "tile 和局部文字在页面缩放下偏小，样本选择标准未给出。",
+        "caption 没有 model、scene、frame interval 或筛选规则，无法把个例外推为总体比例。"
+      ],
+      "reusable_pattern": "定性 failure grid 采用固定 action constraint、同尺度 Good/Bad rows 和显式 failure mark；应附 model、scene、frame interval、筛选规则、缺失分母和 failure taxonomy。",
+      "evidence": {
+        "page": 31,
+        "label": "Figure 15",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 16: Additional examples of good and bad predictions.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#6E4D8A",
+          "#D22F27",
+          "#222222"
+        ],
+        "semantic_mapping": "Good/Bad facet 由位置编码；紫色 action 标签和红色局部标记提示控制/异常，图片自然色不构成固定 palette。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "frame/case position",
+        "y": "无数值 y；predicted observation tiles",
+        "color": "Good/Bad and red failure marks",
+        "shape": null,
+        "line": null,
+        "facet": "Good vs. Bad rows and frame sequence",
+        "text": "action labels、red anomaly labels"
+      },
+      "data_and_statistics": "与 Figure 15 同构的另一组 Good 2×5 + Bad 2×5，共约 20 个 tiles。 这是 qualitative rollout/grid，未给模型、episode/clip 数、抽样规则、frame interval、失败率或 uncertainty；不可从 tile 比例推断总体可靠性。",
+      "evidence_relation": "Figure 3 action API → Figures 13–18 prediction-control failure family → Figure 5(b) controllability 与 Tables 1/3/7 aggregate outcomes；附录图只提供 qualitative boundary。",
+      "design_strengths": [
+        "固定 action/Good-Bad layout 将预测控制是否遵循命令转成逐帧可见证据。",
+        "保持与相邻 qualitative grid 同构，便于横向查看 failure family。"
+      ],
+      "design_weaknesses": [
+        "tile 和局部文字在页面缩放下偏小，样本选择标准未给出。",
+        "caption 没有 model、scene、frame interval 或筛选规则，无法把个例外推为总体比例。"
+      ],
+      "reusable_pattern": "定性 failure grid 采用固定 action constraint、同尺度 Good/Bad rows 和显式 failure mark；应附 model、scene、frame interval、筛选规则、缺失分母和 failure taxonomy。",
+      "evidence": {
+        "page": 31,
+        "label": "Figure 16",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 32,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 17: Additional examples of good and bad predictions.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#6E4D8A",
+          "#D22F27",
+          "#222222"
+        ],
+        "semantic_mapping": "Good/Bad facet 由位置编码；紫色 action 标签和红色局部标记提示控制/异常，图片自然色不构成固定 palette。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "frame/case position",
+        "y": "无数值 y；predicted observation tiles",
+        "color": "Good/Bad and red failure marks",
+        "shape": null,
+        "line": null,
+        "facet": "Good vs. Bad rows and frame sequence",
+        "text": "red X/missing labels"
+      },
+      "data_and_statistics": "Good 2×5 + Bad 2×5 grid，Bad row 中含实际 frame 与红色 X/缺失占位。 这是 qualitative rollout/grid，未给模型、episode/clip 数、抽样规则、frame interval、失败率或 uncertainty；不可从 tile 比例推断总体可靠性。",
+      "evidence_relation": "Figure 3 action API → Figures 13–18 prediction-control failure family → Figure 5(b) controllability 与 Tables 1/3/7 aggregate outcomes；附录图只提供 qualitative boundary。",
+      "design_strengths": [
+        "Good/Bad grid 中显式的红色 X/缺失占位记录了“无预测”这一额外 failure mode。",
+        "保持与相邻 qualitative grid 同构，便于横向查看 failure family。"
+      ],
+      "design_weaknesses": [
+        "caption 未定义红 X、缺失与 bad prediction 的关系，也没有缺失计数或分母。",
+        "caption 没有 model、scene、frame interval 或筛选规则，无法把个例外推为总体比例。"
+      ],
+      "reusable_pattern": "定性 failure grid 采用固定 action constraint、同尺度 Good/Bad rows 和显式 failure mark；应附 model、scene、frame interval、筛选规则、缺失分母和 failure taxonomy。",
+      "evidence": {
+        "page": 32,
+        "label": "Figure 17",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 33,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 18: Additional examples of good and bad predictions.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 1,
+        "hex": [
+          "#D22F27"
+        ],
+        "semantic_mapping": "Good/Bad facet 由位置编码；紫色 action 标签和红色局部标记提示控制/异常，图片自然色不构成固定 palette。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "frame/case position",
+        "y": "无数值 y；predicted observation tiles",
+        "color": "Good/Bad and red failure marks",
+        "shape": null,
+        "line": null,
+        "facet": "Good vs. Bad rows and frame sequence",
+        "text": "action labels、red anomaly labels"
+      },
+      "data_and_statistics": "manipulation robot/table scene，Good/Bad 各约 2×4，共 16 个 tiles。 这是 qualitative rollout/grid，未给模型、episode/clip 数、抽样规则、frame interval、失败率或 uncertainty；不可从 tile 比例推断总体可靠性。",
+      "evidence_relation": "Figure 3 action API → Figures 13–18 prediction-control failure family → Figure 5(b) controllability 与 Tables 1/3/7 aggregate outcomes；附录图只提供 qualitative boundary。",
+      "design_strengths": [
+        "固定 action/Good-Bad layout 将预测控制是否遵循命令转成逐帧可见证据。",
+        "保持与相邻 qualitative grid 同构，便于横向查看 failure family。"
+      ],
+      "design_weaknesses": [
+        "tile 和局部文字在页面缩放下偏小，样本选择标准未给出。",
+        "caption 未说明 manipulation、action/pose 和 failure condition，contact-rich 细节在小 tile 中难核验。"
+      ],
+      "reusable_pattern": "定性 failure grid 采用固定 action constraint、同尺度 Good/Bad rows 和显式 failure mark；应附 model、scene、frame interval、筛选规则、缺失分母和 failure taxonomy。",
+      "evidence": {
+        "page": 33,
+        "label": "Figure 18",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Active Recognition (AR) and Image-Goal Navigation (ImageNav) performance across various models and base policies. Higher success rate (SR%), success weighted by path length (SPL%), and lower mean trajectory length (Mean Traj.) are better. “†” denotes our post-trained video generators. “A14B” denotes a mixture-of-experts configuration of Wan2.2 with an effective model size of 14B during inference.",
+        "word_count": 55,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 22,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "所有单元均为 point estimates；没有 error/interval、重复次数或 failure count。SR/SPL 为百分比，Mean Traj. 是平均轨迹长度。",
+      "evidence_relation": "跨模型、control type、input type 和参数量的 AR/ImageNav 结果；Figure 4 task definition → Table 1 benchmark headline → Figures 6–7 scaling 与 Tables 4–6 ablations。",
+      "design_strengths": [
+        "模型属性、控制接口、输入模态和两个导航任务在一个 grouped header 下对齐。",
+        "方向箭头与 best/second-best 高亮便于扫读。"
+      ],
+      "design_weaknesses": [
+        "22 行×10 列造成窄字和长表扫描成本。",
+        "Mean Traj. 单位、episode 分母与不确定性未在表内给出，row-group 需结合方法名理解。"
+      ],
+      "reusable_pattern": "把 model metadata 与多任务效用放在同一跨列表头下；复用时补评测分母、硬件、单位和 uncertainty protocol.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: Active Embodied Question Answering (A-EQA) performance.",
+        "word_count": 6,
+        "moves": [
+          "title",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "Answer Score、Mean Traj. 和 SPL 是 point estimates；以 1 位小数为主，无 error/interval、重复或 failure 列。",
+      "evidence_relation": "Figure 3/4 的 online planning 与 A-EQA setup → Table 2 → Appendix Figure 9、Table 7 的机制和 policy control；正文关于 Wan2.2† A14B 的 48.4/31.9 claim 回指本表。",
+      "design_strengths": [
+        "三项指标集中且方向语义与 Table 1 一致。",
+        "与 Table 3 同页并列，便于跨任务浏览。"
+      ],
+      "design_weaknesses": [
+        "caption 没有解释 Answer Score 标度、方向、停止条件和分母。",
+        "17 行 single-column 表较密，后训练标志和 row-group 需要正文补足。"
+      ],
+      "reusable_pattern": "对同时需要 answer 与 navigation cost 的任务并列 score、trajectory 和 SPL；caption 应给 score range、停止条件和分母。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3: Robotic manipulation performance across various models and base policies.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 4,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "SR 与 Mean Traj. 为 point estimates（SR 多 1 位、Mean Traj. 多 2 位小数）；没有 uncertainty、error 或 failure count。",
+      "evidence_relation": "跨 VLM、video generator 与 3D-DP 的 manipulation success/trajectory 结果；Figure 4 task scope → Table 3 → Appendix Figure 11 VLM input 与 Figure 18 dynamics failure。",
+      "design_strengths": [
+        "四列布局紧凑，和 AR/ImageNav/A-EQA 主结果同页。",
+        "不使用不透明高亮，数值差异直接可读。"
+      ],
+      "design_weaknesses": [
+        "不同控制接口混在同一表，需结合 Table 1/9 判断可比性。",
+        "caption 未定义 SR 分母、Mean Traj. 单位、action horizon 或 failure taxonomy。"
+      ],
+      "reusable_pattern": "跨任务主结果中保留独立 manipulation 表；同时给出 action horizon、成功标准和 failure taxonomy。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Post-training with different input contexts: front view vs. panorama.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "同一模型条件下 AR/ImageNav SR 和 Mean Traj. 的 point estimates；SR/Mean Traj. 混合 1–2 位小数，无 uncertainty。",
+      "evidence_relation": "front-view/panorama context paired ablation；正文 global-vs-local context 段落 → Table 4 → Appendix input configuration 与主表。",
+      "design_strengths": [
+        "Front View/Panorama 顶层分组和 AR/ImageNav row groups 直接表达条件。",
+        "成对列使输入 context 与效用对照清晰。"
+      ],
+      "design_weaknesses": [
+        "没有写 panorama 投影、裁剪、分辨率转换和 evaluation matching 细节。",
+        "caption 未定义指标方向、场景数或视角转换代价。"
+      ],
+      "reusable_pattern": "用 paired columns 与 task row groups 展示 input-context ablation；固定模型、分辨率、视角转换和评测分母。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 5: Effect of world-model augmentation and revision policy on ImageNav. SR and SPL are higher-is-better; mean trajectory length is lower-is-better.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "VLM proposal 与 VLM/LPIPS revision 组合下的 ImageNav SR、Mean Traj.、SPL point estimates；无 error/interval 或重复信息。",
+      "evidence_relation": "Figure 3 proposal/WM/revision interface → Table 5 component ablation → Figure 7 inference scaling、Figures 8–10 的 predicted-view mechanism。",
+      "design_strengths": [
+        "把 π_proposal、WM type、π_revision 拆成列，反事实边界直接可见。",
+        "5 行足以比较 no-WM 与不同 revision 组合。"
+      ],
+      "design_weaknesses": [
+        "数学列名脱离 Figure 3 不自解释；没有 candidate count、runtime、score distribution 或 cost。",
+        "没有高亮预期最优组合。"
+      ],
+      "reusable_pattern": "把 pipeline components 作为列，保留完整组合和 no-WM baseline；caption 应写固定任务、候选数、score function 与成本。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 6: Cross-domain post-training: WMs post-trained on HSSD or HM3D and evaluated on HM3D/MP3D (val) for AR and ImageNav.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "HSSD/HM3D post-training 与 HM3D/MP3D validation 的 AR/ImageNav point estimates；数值约 2 位小数，没有 scene-level uncertainty、error 或 failure count。",
+      "evidence_relation": "主结果 → Table 6 cross-domain stress test → Appendix Tables 8–9 配置与 Table 11 数据集；用于 synthetic-to-real/domain-shift robustness。",
+      "design_strengths": [
+        "训练域、WM augmentation 和两个任务指标同表，domain boundary 显式。",
+        "数值精度较一致，便于小表比较。"
+      ],
+      "design_weaknesses": [
+        "没有 scene-level variation、域大小、配对关系或 failure breakdown。",
+        "caption 没有给出 evaluation split 与域映射的完整协议。"
+      ],
+      "reusable_pattern": "用训练域/评测域双列做 domain-transfer ablation；补 domain size、场景配对和不确定性。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 7: Task performance for InternVL3 variants with and without a world model. Higher SR%, SPL%, and Ans. Score are better; lower Mean Traj. is better.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "InternVL3 base policy 与 +Image Gen. 的三任务 point estimates；2 位小数、无 paired uncertainty、error 或 episode count。",
+      "evidence_relation": "Tables 1–3 主结果 → Table 7 controlled policy check → Figure 3 unified interface、Figure 11 manipulation input；检验收益是否依赖特定 policy。",
+      "design_strengths": [
+        "跨 AR/ImageNav/A-EQA 的 grouped columns 直接检验 policy control。",
+        "caption 给出各指标方向，阅读不需回正文。"
+      ],
+      "design_weaknesses": [
+        "只有两行，不能排除模型/输入以外解释；10 列在页面缩放下紧凑。",
+        "没有 checkpoint、matched episode、成本或不确定性。"
+      ],
+      "reusable_pattern": "用跨任务 grouped columns 做 base-policy control；固定 policy checkpoint、WM、context 和 matched protocol。",
+      "evidence": {
+        "page": 25,
+        "label": "Table 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "reproduction",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Table 8: Post-trained (action-conditioned) world models used in our experiments, with repositories and training configurations.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "World-model configuration inventory，不是性能估计；Frames、Train Res. 和 Notes 为文本/计数，无 uncertainty 或 best highlight。",
+      "evidence_relation": "Figure 4 task domains → Table 8 post-training configuration → Table 9 model inventory、Table 10 resources、Table 11 dataset statistics → 主表。",
+      "design_strengths": [
+        "repository、domain、frame horizon、resolution 和 notes 同屏，便于复现。",
+        "两类 domain row-group band 提供结构和颜色冗余。"
+      ],
+      "design_weaknesses": [
+        "长 URL 在缩小后难读；没有 batch、epoch、action vocabulary、hardware 或 commit revision。",
+        "caption 未解释 N、domain 和 repository 的版本/验证状态。"
+      ],
+      "reusable_pattern": "为 action-conditioned models 同时记录 domain、frame horizon、resolution 和 repo；复用时加入 commit/version、训练预算和数据来源。",
+      "evidence": {
+        "page": 26,
+        "label": "Table 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9: All the world models and their details in World-In-World. “†” denotes post-trained (action-conditioned) variants.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 17,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "cell_color"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "zero-shot 与 post-trained WM 的 type/control/input/#Param. inventory；参数量含 B/A14B/dash，非性能均值，没有 uncertainty。",
+      "evidence_relation": "Tables 1–3 方法行 → Table 9 canonical inventory → Table 8 training config/Table 10 resources；为异构 WM 的 taxonomy 和 reproduction index。",
+      "design_strengths": [
+        "zero-shot/post-trained row groups 清楚；control/input/#Param. 使可比条件显式。"
+      ],
+      "design_weaknesses": [
+        "17 行引用和窄列密集；A14B effective inference size 与普通参数量口径不完全一致。",
+        "没有 checkpoint、推理分辨率和 runtime metadata。"
+      ],
+      "reusable_pattern": "用统一 taxonomy 记录所有 benchmark models，并独立标示 post-training；补 version、license、resolution 和 evaluation adapter。",
+      "evidence": {
+        "page": 27,
+        "label": "Table 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 10: Post-training resources for ∼40k domain clips per model. The procedure is lightweight and substantially cheaper than full retraining.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "四个模型的 peak GPU Memory 和 H100 GPU-hours point values；没有重复、误差、CPU RAM、inference latency 或 full-retraining baseline。",
+      "evidence_relation": "Table 8 configuration → Table 10 post-training cost → 主文 data scaling/utility；为性能—资源权衡提供附录 evidence。",
+      "design_strengths": [
+        "模型规模、峰值显存和 GPU-hours 同表，资源入口清楚。",
+        "单位写在表头，四行小表易于扫描。"
+      ],
+      "design_weaknesses": [
+        "peak、batch、resolution、LoRA、并行度和计时边界未定义；“cheaper”缺少 comparable full-retraining baseline。"
+      ],
+      "reusable_pattern": "用 model size + peak memory + normalized GPU-hours 形成成本面；明确硬件、训练步数、并行度、adapter 和数据生成边界。",
+      "evidence": {
+        "page": 27,
+        "label": "Table 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 11: Statistics of the post-training panoramic dataset.",
+        "word_count": 6,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 6.8,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未见 error bar、区间或重复协议；表内数值按 point estimates/配置记录读取。",
+      "data_and_statistics": "scenes、panorama RGB frames、action trajectories、depth、camera poses、low-level actions 的规模/模态记录；值类型混合，没有 uncertainty。",
+      "evidence_relation": "Algorithm 1 三阶段 construction → Table 11 dataset contract → Figure 12 waypoint pruning → Tables 8–10 training config/cost；Algorithm 1 本身不是 JSON Figure/Table 对象。",
+      "design_strengths": [
+        "两列极简，统计项与 value 直接对齐；RGB/depth/pose/action modalities 显式列出。"
+      ],
+      "design_weaknesses": [
+        "单位、每 scene/trajectory 分母和 checkmark 语义不完整；没有 split、去重、时间跨度或分布摘要。"
+      ],
+      "reusable_pattern": "用“统计项—值”表建立 dataset size/modality contract；补单位、split、去重和采样规则。",
+      "evidence": {
+        "page": 28,
+        "label": "Table 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figures 1–2 将评价单位从静态 generation quality 推到 closed-loop utility；Figure 3 定义 proposal/API/WM/revision interface，Figure 4 定义四任务 scope；Tables 1–3 给出主比较，Figures 5–7 与 Tables 4–6 处理 quality/control、training/inference scaling、context、revision 和 domain transfer；附录 Figures 8–11 解释机制/输入，Tables 7–11 固化 policy、配置、成本、数据集，Figures 12–18 展示采样与 prediction failure。",
+    "caption_system": "主文 Figure 1–7 caption 多包含 setup；Figure 2/5 定义派生指标，Figure 6/7 直接陈述 scaling trend；Table 1/5–7 说明方向或缩写。附录 Figures 15–18 重复使用 7 词 Additional examples caption，缺少 model/scene/action provenance；配置表 caption 也偏短。",
+    "table_header_system": "主结果使用 Model Details + task group 的二级表头和指标方向箭头；ablation 表将 context/domain/component 作为列；附录 inventory/cost 表使用单层表头或 colored row groups。group fill 有助于扫描，但不是跨图的全局方法颜色。",
+    "method_result_ablation_link": "Figure 3 的四阶段 interface 在 Tables 1–3 中成为统一 WM comparison，在 Table 5 中拆为 WM/revision components，在 Figure 5 中分离 quality/control，在 Figures 6–7 中展开 training/inference budget，在 Table 6 中进行 domain stress test；Figures 8–11 提供机制案例，Figures 13–18 给出 failure boundary。",
+    "main_appendix_link": "正文 Figures 1–7、Tables 1–6 提供最小论证面；附录 Figures 8–18、Tables 7–11 提供 policy control、机制/输入、配置、资源、dataset construction 和错误样本。正文段落回指附录章节，但 Figures 15–18 的短 caption 使其脱离正文后不够自包含。",
+    "typography_consistency": "正文 Times/Nimbus Roman 与 Computer Modern math 稳定，chart 图内 DejaVu Sans、diagram 的 Arial/Calibri 和 raster label 混用；表格字号与横线风格一致，但窄栏和复合图小字增加复核成本。",
+    "color_consistency": "每幅 chart 内 categorical colors、diagram 内 arrow colors 和 table group fills 清晰，但模型颜色没有跨全部对象固定语义；marker、direct labels、箭头形状和文字提供部分冗余，灰度安全性总体有限。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 的“平台/任务—leaderboard—scaling/correlation”page-width overview；复用时为每个 mini-panel 保留单位、分母和对照入口。",
+      "Figure 3 的 real loop + imagined planning box + numbered stages，把异构 world models 统一到可执行 interface。",
+      "Tables 1–3 的 grouped headers，以及 Tables 4–6 的 paired context/component/domain ablations。",
+      "Figures 8–11 的 candidate/prediction/real branches 与 Figures 13–18 的 fixed-action Good/Bad grids，分别展示 mechanism 和 failure boundary。",
+      "Tables 8–11 显式记录 repository、frame horizon、resolution、资源和 dataset modality，补足性能表的复现条件。"
+    ],
+    "highest_value_objects": [
+      "Figure 3：统一闭环接口。",
+      "Table 1：跨模型/任务的 AR/ImageNav 主比较。",
+      "Figure 5(b)：controllability 与 SR 的局部机制证据。",
+      "Figures 6–7：training-data 与 inference-time 两类 scaling。",
+      "Table 5 与 Figures 8–9：WM/revision component ablation 和 predicted-view mechanism。"
+    ],
+    "failure_patterns": [
+      "Figures 15–18 的 Additional examples caption 没有 model/scene/action/frame provenance，定性样本不可追踪。",
+      "多张 chart 没有重复/不确定性协议，彩色 categorical encoding 也未跨图固定模型语义。",
+      "窄栏小字体、长 URL、密集标签和箭头交叉提高视觉核验成本。",
+      "Table 10 的 cheaper claim 与 Figures 13–18 的 Good/Bad 证据都缺少可量化分母或筛选规则。"
+    ],
+    "one_sentence_visual_strategy": "以统一 closed-loop interface 为主轴，把静态视觉质量与 embodied utility 分离，再用跨任务主表、paired scaling/ablation 图、配置/成本附录和固定动作的 Good/Bad 诊断网格组成从 benchmark framing 到机制与失败边界的证据链。"
+  }
+}

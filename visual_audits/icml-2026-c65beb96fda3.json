@@ -1,0 +1,3110 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-c65beb96fda3",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "tunglm2203/votp",
+      "jhejna/inverse-preference-learning",
+      "alinlab/SURF",
+      "chwoong/LiRE",
+      "jhejna/cpl",
+      "oh-lab/APPO",
+      "snu-mllab/DPPO",
+      "Zzl35/flow-to-better"
+    ],
+    "selected_repository": "tunglm2203/votp",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/tunglm2203/votp",
+        "path": "README.md",
+        "role": "other",
+        "tool": null,
+        "evidence": "README title, author list, official-implementation statement, arXiv/project links, and embedded overview asset directly identify the repository with this paper."
+      },
+      {
+        "repository_url": "https://github.com/tunglm2203/votp",
+        "path": "assets/votp-overview.png",
+        "role": "rendered_asset",
+        "tool": "PNG rendered asset",
+        "evidence": "Downloaded from the author-linked repository; visually matches the Figure 1(a) pipeline subcomposition, but does not contain the PDF's Figure 1(b) matrix/transport-plan computation."
+      },
+      {
+        "repository_url": "https://github.com/tunglm2203/votp",
+        "path": "research/utils/plotter.py",
+        "role": "plot_script",
+        "tool": "matplotlib/seaborn",
+        "evidence": "Public helper sets paper context/serif style, creates multi-panel plots, uses seaborn lineplot with SD error bands, supports color maps, labels, grids, and optional inset images; no paper-specific config/data is included."
+      },
+      {
+        "repository_url": "https://github.com/tunglm2203/votp",
+        "path": "external_packages/Metaworld/scripts/plot_rewards_returns.ipynb",
+        "role": "plot_script",
+        "tool": "matplotlib/seaborn",
+        "evidence": "Public notebook plots generic MetaWorld reward/return curves with 95% CI and saves JPG; it is an adapted utility, not a Figure 2–19 reproduction script."
+      },
+      {
+        "repository_url": "https://github.com/tunglm2203/votp",
+        "path": "external_packages/Metaworld/scripts/plot_rewards_returns_noise_3D.ipynb",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "Public notebook plots generic reward/return noise surfaces; no paper figure configuration or result data."
+      },
+      {
+        "repository_url": "https://github.com/tunglm2203/votp",
+        "path": "external_packages/Metaworld/metaworld/envs/mujoco/sawyer_xyz/visual/__init__.py",
+        "role": "other",
+        "tool": "MuJoCo",
+        "evidence": "Acquired file is 0 bytes; it contains no plotting or table-generation source."
+      }
+    ],
+    "search_note": "PDF 首页/摘要明确链接 GitHub tunglm2203/votp；gh repo metadata、README 标题/作者/官方实现声明、project page 与 arXiv 入口一致。GitHub tree 已完整读取；可复用源为 assets/votp-overview.png、research/utils/plotter.py 和两个通用 MetaWorld notebooks，另取得一个 0-byte visual __init__.py。overview PNG 仅匹配 PDF Figure 1(a) pipeline 子图，缺少 Figure 1(b) 的 preference matrix/transport plan；plotter.py 与 notebooks 没有本文 Figure 2–19 的专属配置、结果数据或 table generator。因此自动 inventory 的 exact_visual_source 经直接 PDF/资产对照改判为 partial_visual_source；其余图表以 PDF 视觉观察为准。"
+  },
+  "paper_style": {
+    "main_figures": 7,
+    "main_tables": 3,
+    "appendix_figures": 12,
+    "appendix_tables": 10,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "DejaVu Sans"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 7.0,
+        "maximum": 9.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "pdf_object",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 6.5,
+      "header_size_pt": 6.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "medium"
+    },
+    "palette_strategy": "定量图以橙/绿/紫/蓝/红的 categorical methods palette 为主，IQL 常用黑色 reference/dashed line；照片、环境、流程和矩阵使用混合 pastel/自然色；表格保持黑白 minimal/booktabs 并以 bold 标识近最佳值。",
+    "vector_raster_mix": "曲线、柱、矩阵、表格与文字主要为 PDF vector；视频帧、环境/机器人照片、rollout 和 distraction montage 为 raster；Figure 1、7、14、18、19 等是 mixed。",
+    "style_consistency": "双栏 letter 版式、对象下方的 Figure/Table caption、minimal 横线和方法色在正文与附录稳定；但流程/照片/定量图的字体与 pastel 色子系统并非完全统一，宽表和高密度 matrix 的小字号是主要一致性成本。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "conceptual_diagram",
+        "matrix",
+        "heatmap"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. Overview of our framework. (a) VOTP embeds visual segments into a latent space using an off-the-shelf video foundation model and uses the optimal transport plan to propagate preferences with relative alignment strengths. Green dots indicate preferred segments over orange ones. (b) Example computation in VOTP with four labeled segments (σ_i) and two unlabeled segments (σ̄_i′). Preference relations among labeled segments are represented by the preference matrix R. Each entry of the optimal transport plan μ* specifies the probability that a labeled segment matches an unlabeled segment, and the unnormalized preference score is computed using Eq. (5).",
+        "word_count": 96,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Cambria Math",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 9.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 10,
+        "hex": [
+          "#6FC36B",
+          "#E98A54",
+          "#A7A7A7",
+          "#5B8FB9",
+          "#B06EB4",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "绿/橙表示偏好，灰表示未标注，蓝/紫表示模块和 OT 计算，黑/白用于文字与画布。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 4,
+        "annotations": 9,
+        "data_marks_estimate": 35
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "top right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "处理阶段与匹配方向",
+        "y": "无定量轴；latent/inferred 两个状态",
+        "color": "绿=preferred、橙=non-preferred，灰=unlabeled，蓝/紫=模块与矩阵",
+        "shape": "圆点/视频帧框/圆角模块",
+        "line": "实线 GT preference 与虚线 pseudo preference 箭头",
+        "facet": "(a) pipeline；(b) computation",
+        "text": "N、R、μ*、Eq. (5) score 与图例"
+      },
+      "data_and_statistics": "图面把 segment 的视频帧、latent-space 圆点、R 与 μ* 的数值格子和 score=0.18 同时编码；没有重复实验或误差统计。",
+      "evidence_relation": "引言的少量 feedback 与 latent-space propagation 主张 → §4.1–4.2 的 representation、R、OT coupling 与 Eq. (5) → Figure 1 方法接口 → Figure 18 的完整伪标注实例 → Table 13 的 pseudo-label accuracy。",
+      "design_strengths": [
+        "把数据输入、表示、OT 对齐和最终偏好放在同一阅读方向，方法接口清晰。",
+        "矩阵/transport plan 与视频帧之间有显式对应，且图例解释了实线/虚线。"
+      ],
+      "design_weaknesses": [
+        "副图信息密度高，矩阵和 score 在单栏缩放后接近可读性下限。",
+        "颜色承担偏好与数据状态，灰度下需依赖文字、位置和箭头；caption 未给归一化公式或阈值。"
+      ],
+      "reusable_pattern": "将“输入视频段→表征→耦合→伪标签”的 pipeline 与一个最小数值 worked example 并置，可复用于需要解释算法如何落到数据的论文。",
+      "evidence": {
+        "page": 4,
+        "label": "p.4 Figure 1 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 6,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2. The effectiveness of using OT to infer pseudo-labels. Results are averaged over five runs with standard deviation (shaded area).",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#F08A63",
+          "#6FC36B",
+          "#9C79B8",
+          "#5B8FF9"
+        ],
+        "semantic_mapping": "橙=SIM-individual，绿=SIM-mean，紫=SIM-weighted，蓝=VOTP；阴影为各线的标准差。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 240
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Training Steps (×10^6)",
+        "y": "Score 或 Success Rate (%)",
+        "color": "SIM-individual / SIM-mean / SIM-weighted / VOTP",
+        "shape": "无",
+        "line": "四条方法线",
+        "facet": "task panels",
+        "text": "共享方法图例"
+      },
+      "data_and_statistics": "x 为训练步数，y 为归一化 D4RL score 或 MetaWorld success rate；方法由颜色区分，均值由线、五次运行的标准差由阴影区分。",
+      "evidence_relation": "§5.3 的 OT pseudo-labeling 组件问题 → Figure 2 的 SIM-individual/mean/weighted 与 VOTP 反事实 → Table 1 的最终 benchmark → Figure 18 的 coupling 可视化。",
+      "design_strengths": [
+        "四任务同一坐标语法，OT 替代方案可快速横向比较。",
+        "caption 明确五次运行和阴影含义，曲线与机制问题直接相连。"
+      ],
+      "design_weaknesses": [
+        "共享图例在缩放后较小，曲线末端没有直接标签。",
+        "D4RL 与 MetaWorld 的 x 范围不同；caption 未说明各 panel 的 y 指标名称和 seed 级聚合细节。"
+      ],
+      "reusable_pattern": "固定任务 panel 和共享方法色，用均值线+SD band 将组件消融压缩成可扫描的四格结果图。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 2 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 6,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3. Ablation with various trajectory encoders in D4RL and MetaWorld. For hopper and walker2d, we use medium-replay datasets. Results are averaged over five runs.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#4079AE",
+          "#EE802E",
+          "#32A035",
+          "#D22B31",
+          "#8360A7"
+        ],
+        "semantic_mapping": "蓝/橙/绿/红/紫分别表示 R3M、CLIP、S3D、VideoCLIP、InternVideo。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 0.7,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "task category",
+        "y": "Performance",
+        "color": "trajectory encoder",
+        "shape": "柱高/柱顶 error bar",
+        "line": "无",
+        "facet": "四个 task groups",
+        "text": "encoder legend"
+      },
+      "data_and_statistics": "x 为四个任务类别，y 为最终 performance；五种 encoder 用柱色，误差线来自五次运行。",
+      "evidence_relation": "§4.1 对 video foundation model 表示能力的选择 → Figure 3 的 IFM/ViFM encoder 替换 → 选定 S3D 后用于 Figure 2、Figure 4–7 与 Table 1。",
+      "design_strengths": [
+        "把 image/video encoder 作为单一干预轴，任务间差异易见。",
+        "误差线和五次运行定义比只给点估计更完整。"
+      ],
+      "design_weaknesses": [
+        "四组五色柱在窄 panel 中较密；缺少具体 y 轴单位和各 encoder 参数规模。",
+        "颜色是主要方法通道，灰度阅读区分度有限。"
+      ],
+      "reusable_pattern": "用任务分组柱状图呈现 representation choice 的反事实，并保持一个共享 encoder legend。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 3 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 4. Average performance of each method as the number of preference feedbackts varies.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#222222",
+          "#EE8B55",
+          "#61B87A",
+          "#5B8FF9",
+          "#999999"
+        ],
+        "semantic_mapping": "黑虚线为 IQL；橙/绿/蓝等表示 P-IQL、SURF、VOTP；淡色带表示运行间波动。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "number of preference feedbacks",
+        "y": "Score 或 Success Rate",
+        "color": "method",
+        "shape": "无",
+        "line": "IQL 虚线基准；其余实线",
+        "facet": "four task panels",
+        "text": "共享方法图例"
+      },
+      "data_and_statistics": "横轴是离散 label budget，纵轴是最终性能；IQL 的 task-reward 水平作为 reference line，其余方法的反馈效率由曲线达到该水平的 budget 体现。",
+      "evidence_relation": "摘要/§5.1 的 feedback-efficient 主张 → Figure 4 的 label-budget response → Figure 5 的 τP quality–quantity trade-off → Table 11 的 pseudo-label 计算成本。",
+      "design_strengths": [
+        "把预算响应放在同一四 panel 画布，直接支持‘少量 feedback’叙事。",
+        "IQL reference line 使达到 task-reward 水平的 label 数可视化。"
+      ],
+      "design_weaknesses": [
+        "caption 有 ‘feedbackts’ 拼写错误，未解释虚线、阴影及各任务 y 指标。",
+        "离散 label count 的不等间距/对数感较强，读者需从刻度判断实际位置。"
+      ],
+      "reusable_pattern": "用参考水平线+多方法 budget 曲线同时呈现效果和反馈成本，适合反馈效率问题。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Figure 4 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5. Performance of VOTP under different values of the preference threshold τP.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 2,
+        "hex": [
+          "#5B8FF9",
+          "#BFD7FF"
+        ],
+        "semantic_mapping": "蓝线为 VOTP，浅蓝 band 为运行间标准差。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "preference threshold τP",
+        "y": "Score 或 Success Rate",
+        "color": "蓝色=VOTP",
+        "shape": "无",
+        "line": "单条 VOTP 曲线",
+        "facet": "four task panels",
+        "text": null
+      },
+      "data_and_statistics": "τP 是 x 轴干预，性能是 y 轴；线表示五次运行平均，band 表示标准差，反映伪标签质量与数量的折衷。",
+      "evidence_relation": "§4.2 Eq. (7) threshold filtering → Figure 5 超参数敏感性 → Figure 2 的伪标签质量 → Table 13 的标签 accuracy。",
+      "design_strengths": [
+        "一条线、同构 panel 使阈值趋势和回落快速可见。",
+        "颜色和 band 很克制，不会掩盖干预轴。"
+      ],
+      "design_weaknesses": [
+        "caption 没有给出各任务实际 τP grid、seed 数或 band 定义。",
+        "x 为离散阈值但未明确标为 categorical，图外无法判断最优值的具体数值。"
+      ],
+      "reusable_pattern": "以同一 y 指标和固定 panel 结构扫描单个质量阈值，并用 band 保留重复运行信息。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Figure 5 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6. The Pearson correlation (r) between learned rewards and GT rewards for P-IQL and VOTP in door-open.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#1F77B4"
+        ],
+        "semantic_mapping": "蓝色点表示 segment 的 learned-vs-GT reward pairing；panel 标题区分 P-IQL 与 VOTP。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 400
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "GT Reward",
+        "y": "Estimated Reward",
+        "color": "蓝色 segment 点",
+        "shape": "圆点",
+        "line": "无",
+        "facet": "P-IQL/VOTP panels",
+        "text": "r 数值注释"
+      },
+      "data_and_statistics": "每点是一个 door-open trajectory segment 的 learned reward/GT reward 配对；r=0.57 与 r=0.93 是 Pearson correlation point estimates，没有误差椭圆或置信区间。",
+      "evidence_relation": "§5.3 的 reward-model alignment 诊断 → Figure 6 的 P-IQL/VOTP 相关性 → Figure 17 扩展到八个任务 → Table 13 的 pseudo-label accuracy。",
+      "design_strengths": [
+        "坐标变量和相关系数位置直接可读，P-IQL/VOTP 对照紧凑。",
+        "点云比单一平均分更接近 reward-shaping 机制证据。"
+      ],
+      "design_weaknesses": [
+        "相关性不能独立证明 reward alignment 导致 policy 提升；没有样本量或分层信息。",
+        "单一蓝色点云缺乏冗余编码，密集区域在缩放后会重叠。"
+      ],
+      "reusable_pattern": "用同坐标轴 paired scatter 将 reward quality 诊断与主方法对照相邻呈现，再在附录扩展任务覆盖。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Figure 6 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "line"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 7. Lift Banana: Examples of successful and failed trajectories at each time step (left) with the corresponding reward outputs over timesteps from VOTP and P-IQL (right). Additional results and detailed experimental setup are provided in the Appendix.",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#E98A54",
+          "#5B8FF9",
+          "#D8A27A",
+          "#8FB5F1",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "左侧自然图像展示成功/失败，右侧橙=P-IQL、蓝=VOTP，实线/虚线分别编码成功/失败；浅色带为波动。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper left of line panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "time step",
+        "y": "learned reward",
+        "color": "P-IQL/VOTP × success/failure",
+        "shape": "frame snapshots",
+        "line": "成功实线、失败虚线",
+        "facet": "qualitative frames + reward chart",
+        "text": "四条轨迹图例"
+      },
+      "data_and_statistics": "左侧是单个 Lift Banana 案例的定性成功/失败帧，右侧是 timestep→learned reward 的四条均值轨迹与 band；不是跨 seed benchmark 汇总。",
+      "evidence_relation": "§5.5 的真实机器人可用性 → Figure 7 以成功/失败 reward 反事实解释 P-IQL 的 failure mode → Table 3 的 10-episode success rate → Figure 14 的 Drawer Open 对应扩展。",
+      "design_strengths": [
+        "把行为证据和 reward 曲线放在同一画布，机制与 failure surface 对齐。",
+        "线型与颜色双重区分 success/failure 和 method，图例有明确作用。"
+      ],
+      "design_weaknesses": [
+        "左图帧数少且只有一个案例，不能代表真实机器人总体成功率。",
+        "caption 未定义 band 的统计量，也未给失败判定阈值。"
+      ],
+      "reusable_pattern": "用同步时间快照+reward trace 对照成功与失败轨迹，适合展示 learned reward 如何误判行为。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 7 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 8. Overview of environments used in our experiments: Gym Locomotion (a–b) and MetaWorld Manipulation (c–f).",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "Arial"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#6F8F6A",
+          "#B28765",
+          "#7387A9",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "环境图像的自然色彩承载场景，黑色标签区分任务；没有人为数值色标。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": 6
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "自然环境图像与任务标签",
+        "shape": "environment thumbnails",
+        "line": null,
+        "facet": "六个环境 tile",
+        "text": "环境名称"
+      },
+      "data_and_statistics": "六个 benchmark/environment 视觉样例；没有 performance、样本数、误差或分母。",
+      "evidence_relation": "Appendix A.1 的任务定义 → Figure 8 固定六个实验环境 → Table 1/2/9–13 与 Figure 2–6 的任务轴 → Figure 19 的 MetaWorld distraction 变体。",
+      "design_strengths": [
+        "用同一缩略图尺寸给出实验空间的最小可视上下文。",
+        "Gym 与 MetaWorld 分组在 caption 中明确，任务标签直接可读。"
+      ],
+      "design_weaknesses": [
+        "缩略图本身没有动作/成功判定或摄像机条件，caption 只说明大类。",
+        "自然图像颜色不构成可比较的数据编码，灰度下场景辨识可能下降。"
+      ],
+      "reusable_pattern": "将所有环境以等尺寸 montage 列出，并在 caption 中说明任务族范围，作为后续定量图的任务索引。",
+      "evidence": {
+        "page": 14,
+        "label": "p.14 Figure 8 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "screenshot",
+        "image_montage"
+      ],
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 9. Setup in real robot.",
+        "word_count": 4,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Arial",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#C64D43",
+          "#6BA36E",
+          "#426F9C",
+          "#B98B48",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "照片自然色彩为主，红/绿/蓝标签箭头指向机器人组件与对象。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": 1
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "自然场景与对象标签",
+        "shape": "robot/camera/object regions",
+        "line": null,
+        "facet": "single setup image",
+        "text": "Sawyer、Drawer、Banana、camera labels"
+      },
+      "data_and_statistics": "真实机器人实验 setup 的定性照片；正文/Appendix A.4 另给 7-DoF、480×480、10 Hz 和 521-dimensional policy input 等设置，图自身不含统计量。",
+      "evidence_relation": "Appendix A.4 的真实机器人 setup → Figure 9 作为 Table 3 success-rate 的物理环境证据 → Figure 7/14–16 的 rollout 与 reward 案例。",
+      "design_strengths": [
+        "对象、相机和机械臂的空间关系在一张照片中可核对。",
+        "setup 图与文字参数互补，有利于复现设备边界。"
+      ],
+      "design_weaknesses": [
+        "caption 过短，未说明视角、相机分辨率或标注颜色。",
+        "照片没有尺寸标尺、坐标系或遮挡/视场说明。"
+      ],
+      "reusable_pattern": "用一张直接标注的 setup photo 固定 embodiment、传感器和任务对象，再把控制/数据参数放在附录表格。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Figure 9 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 10. Learning curves of IQL, IPL, P-IQL, SURF, and VOTP on D4RL (Table 1). Results are means of 5 runs with standard deviation (shaded area). We smooth the learning curves using a moving average with a window size of 3.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#222222",
+          "#E98A54",
+          "#6FC36B",
+          "#D94F4F",
+          "#5B8FF9"
+        ],
+        "semantic_mapping": "黑=IQL，橙=IPL，绿=P-IQL，红=SURF，蓝=VOTP；带状区域为五次运行标准差。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 360
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Training Steps (×10^6)",
+        "y": "Score/normalized performance",
+        "color": "method",
+        "shape": "无",
+        "line": "五条方法曲线",
+        "facet": "four D4RL task panels",
+        "text": "共享方法图例"
+      },
+      "data_and_statistics": "训练步数到最终 checkpoint 的 D4RL 曲线；每条线是 5 runs 的均值，SD band；曲线按 window size=3 moving average 平滑。",
+      "evidence_relation": "Table 1 主 D4RL 终点结果 → Figure 10 提供完整训练动力学 → Appendix B 的 aggregate Fig. 12 → Table 10 的 GT/incorrect reward sanity check。",
+      "design_strengths": [
+        "把主表的终点比较扩展成全过程，方法颜色和 Table 1 可对齐。",
+        "caption 同时给重复、band 和平滑窗口，复现线索较充分。"
+      ],
+      "design_weaknesses": [
+        "四 panel 与五条线密度较高，末端缺直接标签。",
+        "moving average 会遮蔽短期波动，caption 没有说明 y 轴在不同任务是否完全同尺度。"
+      ],
+      "reusable_pattern": "主表只报终点时，附录用同色的多 panel learning curves 补回训练稳定性和收敛路径。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Figure 10 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 11. Learning curves of IQL, IPL, P-IQL, SURF, and VOTP on MetaWorld (Table 1). Results are means of 5 runs with standard deviation (shaded area). We smooth the learning curves using a moving average with a window size of 3.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#222222",
+          "#E98A54",
+          "#6FC36B",
+          "#D94F4F",
+          "#5B8FF9"
+        ],
+        "semantic_mapping": "黑=IQL，橙=IPL，绿=P-IQL，红=SURF，蓝=VOTP；带状区域为五次运行标准差。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 360
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Training Steps (×10^6)",
+        "y": "Success Rate (%)",
+        "color": "method",
+        "shape": "无",
+        "line": "五条方法曲线",
+        "facet": "four MetaWorld task panels",
+        "text": "共享方法图例"
+      },
+      "data_and_statistics": "MetaWorld success-rate 训练曲线，均值来自 5 runs，SD 以带状区域编码并使用 window=3 平滑。",
+      "evidence_relation": "Table 1 的 MetaWorld 终点结果 → Figure 11 的训练轨迹 → Fig. 12/13 aggregate metrics → Table 12 scripted/human teacher slice。",
+      "design_strengths": [
+        "与 Figure 10 共用颜色、布局和统计语法，跨 domain 可比。",
+        "完整曲线揭示 VOTP 与 baselines 的收敛/波动，而不仅是终点。"
+      ],
+      "design_weaknesses": [
+        "不同 task 成功率曲线混在一页，图例与小刻度较细。",
+        "caption 未给每个 panel 的具体 episode/evaluation frequency。"
+      ],
+      "reusable_pattern": "将 domain 变化放在 panel 轴、将方法保持在颜色轴，形成可复用的跨 benchmark learning-curve 页面。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Figure 11 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "other"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 12. Aggregate metrics on D4RL locomotion tasks with 95% confidence intervals (CIs) across five runs. Higher mean, median and IQM scores and lower optimality gap are better. The CIs are estimated using the percentile bootstrap with stratified sampling.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#222222",
+          "#E98A54",
+          "#6FC36B",
+          "#D94F4F",
+          "#5B8FF9"
+        ],
+        "semantic_mapping": "五种方法以颜色/直接标签区分；区间表示按 stratified percentile bootstrap 得到的 95% CI。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 16,
+        "series": 5,
+        "legend_items": 0,
+        "annotations": 16,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "x",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "aggregate score",
+        "y": "metric row / method",
+        "color": "method colors",
+        "shape": "horizontal interval mark",
+        "line": "区间端点/线段",
+        "facet": "task × metric matrix",
+        "text": "Median/IQM/Mean/Optimality Gap labels"
+      },
+      "data_and_statistics": "跨五 runs 的 Median、IQM、Mean、Optimality Gap aggregate metrics；前三个指标越高越好，Optimality Gap 越低越好，误差编码为 95% percentile-bootstrap CI。",
+      "evidence_relation": "Figure 10 的完整曲线 → Figure 12 的 D4RL aggregate summary → Table 1 的最终均值与 Table 10 的 reward sanity check。",
+      "design_strengths": [
+        "把四个 metric 方向固定成同构 matrix，能同时看中心趋势和 aggregate robustness。",
+        "caption 明确指标方向、运行数和 bootstrap 方法。"
+      ],
+      "design_weaknesses": [
+        "16 个 mini-panel 和多方法区间信息密集，字体/区间重叠会增加扫描成本。",
+        "没有独立 legend，直接标签在缩小后容易拥挤；CI 只覆盖五 runs 聚合而非任务实例不确定性。"
+      ],
+      "reusable_pattern": "将多个 aggregate metric 排成 task×metric 矩阵，并用统一区间语法将主结果的终点表扩展为分布稳健性摘要。",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Figure 12 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "other"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 13. Aggregate metrics on MetaWorld manipulation tasks with 95% confidence intervals (CIs) across five runs. Higher mean, median and IQM scores and lower optimality gap are better. The CIs are estimated using the percentile bootstrap with stratified sampling.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#222222",
+          "#E98A54",
+          "#6FC36B",
+          "#D94F4F",
+          "#5B8FF9"
+        ],
+        "semantic_mapping": "五种方法以颜色/直接标签区分；区间表示按 stratified percentile bootstrap 得到的 95% CI。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 16,
+        "series": 5,
+        "legend_items": 0,
+        "annotations": 16,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "x",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "aggregate score",
+        "y": "metric row / method",
+        "color": "method colors",
+        "shape": "horizontal interval mark",
+        "line": "区间端点/线段",
+        "facet": "task × metric matrix",
+        "text": "Median/IQM/Mean/Optimality Gap labels"
+      },
+      "data_and_statistics": "MetaWorld 四任务的 Median/IQM/Mean/Optimality Gap aggregate metrics；指标方向、五 runs 与 bootstrap CI 同 Figure 12。",
+      "evidence_relation": "Figure 11 的 MetaWorld curves → Figure 13 的 aggregate comparison → Table 1 MetaWorld average → Table 12 teacher-source robustness。",
+      "design_strengths": [
+        "与 Figure 12 视觉同构，domain 变化只在 task rows，跨域比较成本低。",
+        "把 optimality gap 的反向方向直接写进 caption，避免只看柱/点高低。"
+      ],
+      "design_weaknesses": [
+        "高密度 16 panel 仍然需要附录放大查看；没有显式方法 legend。",
+        "bootstrap CI 的 stratification 单位和 aggregate 计算细节不在图中。"
+      ],
+      "reusable_pattern": "保持 metric skeleton 不变，仅替换 domain/task rows，以最小改动生成跨域 aggregate evidence。",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Figure 13 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "line"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 14. Drawer Open: Examples of successful and failed trajectories at each time step (top) with the corresponding reward outputs over timesteps from VOTP and P-IQL (bottom).",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#E98A54",
+          "#5B8FF9",
+          "#D8A27A",
+          "#8FB5F1",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "橙=P-IQL，蓝=VOTP；实线/虚线表示 success/failure；左侧自然图像保留真实场景色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 45
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper left of line panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "timestep",
+        "y": "learned reward",
+        "color": "P-IQL/VOTP × success/failure",
+        "shape": "trajectory frames",
+        "line": "solid=success, dashed=failure",
+        "facet": "frames + reward panel",
+        "text": "时间标签与方法图例"
+      },
+      "data_and_statistics": "单个 Drawer Open 成功/失败 rollout 的帧序列与对应 learned reward traces；band 表示运行/案例波动，图不是任务级 success-rate 汇总。",
+      "evidence_relation": "Figure 7 的 Lift Banana 机制案例 → Figure 14 扩展到 Drawer Open → Figure 15/16 的三方法 rollout snapshots → Table 3 的真实任务 success rate。",
+      "design_strengths": [
+        "时间标签把视觉行为和 reward 曲线对齐，成功/失败反事实清楚。",
+        "方法和结局由颜色+线型冗余编码，读者可在图例缺失时仍追踪。"
+      ],
+      "design_weaknesses": [
+        "帧网格占据大量空间但不提供动作/距离数值；band 统计定义不在 caption。",
+        "成功/失败案例数量有限，不能替代 10-episode rate。"
+      ],
+      "reusable_pattern": "把视频帧时间线与 reward trace 做上下/左右对齐，展示 reward model 在 failure trajectory 上的行为差异。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Figure 14 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "failure",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 15. Snapshot of rollouts on Lift Banana task from BC, P-IQL and VOTP. The BC agent fails to descend to the banana and cannot grasp it. The P-IQL agent grasps the banana but does not lift and just release it. VOTP agent successfully reaches the banana, grasps it, and lifts it to a specified height.",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Arial"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#B94E3B",
+          "#4D79A7",
+          "#6AA56A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "方法由行标签编码，图像自然色展示机器人/香蕉状态；无定量色标。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 21,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 21
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "rollout time",
+        "y": "visual state",
+        "color": "自然场景色；方法由行位置编码",
+        "shape": "robot/object pose in frame",
+        "line": null,
+        "facet": "method rows × time snapshots",
+        "text": "BC/P-IQL/VOTP labels"
+      },
+      "data_and_statistics": "三种 policy 的单个 Lift Banana rollout 快照；caption 明确 BC/P-IQL failure 与 VOTP success，但无 episode 分母或统计聚合。",
+      "evidence_relation": "Table 3 的 real-robot success-rate → Figure 15 用同一任务给出行为级 qualitative comparison → Figure 7 reward-case 与 Figure 16 Drawer Open 对照。",
+      "design_strengths": [
+        "方法×时间网格可直接检查‘到达—抓取—抬升’动作链。",
+        "caption 直述每一行的关键 failure/success，证据关系明确。"
+      ],
+      "design_weaknesses": [
+        "单个 rollout 不能估计策略成功率或稳定性；时间戳不含动作/空间尺度。",
+        "自然场景颜色复杂，方法比较完全依赖行标签而非视觉冗余。"
+      ],
+      "reusable_pattern": "固定时间快照列、方法行，把抽象 success rate 展开为可观察的动作序列，并在 caption 说明失败机制。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Figure 15 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "failure",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 16. Snapshot of rollouts on Drawer Open task from BC, P-IQL and VOTP. In both BC and P-IQL, the agent barely reaches the handle after wandering and fails to pull the drawer open. VOTP agent, however, reaches the handle directly and pull it open successfully.",
+        "word_count": 44,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Arial"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#B94E3B",
+          "#4D79A7",
+          "#6AA56A",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "方法由行标签编码，图像自然色展示机器人/抽屉状态；无定量色标。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 21,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 21
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "rollout time",
+        "y": "visual state",
+        "color": "自然场景色；方法由行位置编码",
+        "shape": "robot/handle pose in frame",
+        "line": null,
+        "facet": "method rows × time snapshots",
+        "text": "BC/P-IQL/VOTP labels"
+      },
+      "data_and_statistics": "三方法单个 Drawer Open rollout 的行为快照；caption 直接描述 wandering/handle failure 与 VOTP success，无统计重复。",
+      "evidence_relation": "Table 3 Drawer Open success rate → Figure 16 行为级 failure/success 机制 → Figure 14 reward traces；与 Figure 15 构成两个真实机器人任务的 qualitative pair。",
+      "design_strengths": [
+        "与 Figure 15 同构，方法间动作差异在时间上可追踪。",
+        "caption 明确失败不是‘没到达’，而是绕行后无法拉开抽屉。"
+      ],
+      "design_weaknesses": [
+        "没有多 episode 代表性或成功概率，且时间快照的控制步数未解释。",
+        "自然图像和同色物体可能遮蔽 handle 位置，缩小后辨识成本高。"
+      ],
+      "reusable_pattern": "以同一 snapshot grid 模板覆盖不同 manipulation task，保持方法行和时间列一致。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Figure 16 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 17. Correlation between learned rewards and ground-truth rewards for P-IQL and VOTP. Pearson correlation coefficients (r) are shown for each dataset.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 1,
+        "hex": [
+          "#1F77B4"
+        ],
+        "semantic_mapping": "蓝色点表示 learned/GT reward pair；panel 标题和 r 文本区分任务与 P-IQL/VOTP。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 16,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 16,
+        "data_marks_estimate": 3200
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "GT Reward",
+        "y": "Estimated Reward",
+        "color": "蓝色 segment 点",
+        "shape": "圆点",
+        "line": "无",
+        "facet": "dataset × method panels",
+        "text": "panel title 与 r 注释"
+      },
+      "data_and_statistics": "八个任务上 P-IQL/VOTP learned reward 与 GT reward 的 segment-level scatter；每 panel 给 Pearson r point estimate，没有 CI/ellipse或分层统计。",
+      "evidence_relation": "Figure 6 的 door-open 两 panel → Figure 17 跨 D4RL/MetaWorld 的 reward-alignment 扩展 → Table 13 pseudo-label accuracy → Table 1 policy outcomes。",
+      "design_strengths": [
+        "统一坐标和 panel pairing 让跨任务 reward alignment 扫描高效。",
+        "r 直接放在每 panel，图外 caption 简短但图面信息完整。"
+      ],
+      "design_weaknesses": [
+        "16 panel 的点密度高，低相关任务的 cloud 仍难从小图判断。",
+        "相关性依然是机制 proxy，不包含 causal intervention、样本数或置信度。"
+      ],
+      "reusable_pattern": "将一个主文诊断扩展成 task×method paired scatter matrix，以保持跨任务可比的 reward-quality evidence。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Figure 17 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "matrix",
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 18. Additional visualizations of the pseudo-labeling process from VOTP on the drawer-open task. We use 4 labeled pairs. All cost matrix and transport plan entries are rounded to two decimals. For clarity, each segment (originally 64 frames) is uniformly downsampled to 4 frames for visualization.",
+        "word_count": 44,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#F4D8E5",
+          "#D8F0D8",
+          "#D7E6F5",
+          "#A7A7A7",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "粉/绿用于 preference pair 状态，蓝色/浅色用于 cost matrix 与 transport plan cell；黑色标签承载结构。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 130
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "pair/matrix position",
+        "y": "matrix cell or preference score",
+        "color": "淡粉/绿/蓝表示 pair/cost/transport roles",
+        "shape": "video frame tiles and matrix cells",
+        "line": null,
+        "facet": "labeled/unlabeled/cost/plan columns",
+        "text": "R、S、Cost Matrix、Transport Plan labels"
+      },
+      "data_and_statistics": "drawer-open 的 worked example：4 labeled pairs 组成 8×8 R；4 个 unlabeled pair 的 score 为 -0.5284、-0.5107、0.5827、0.4864；cost/transport matrix 条目四舍五入到两位，帧从 64 均匀下采样到 4。",
+      "evidence_relation": "Figure 1(b) 的最小 OT computation → Figure 18 的完整 pseudo-labeling visualization → Eq. (4)–(7) 与 Algorithm 1 → Table 13 的 accuracy。",
+      "design_strengths": [
+        "把抽象 R、cost、μ 与可观察 segment 帧逐一对应，机制透明度最高。",
+        "caption 说明 4 pairs、矩阵精度与 frame downsampling，避免把展示细节误当原始数据。"
+      ],
+      "design_weaknesses": [
+        "矩阵与视频 tiles 极密，小字号和颜色 cell 在普通缩放下难读。",
+        "图展示一个 drawer-open example，不报告总体 accuracy、阈值通过率或跨样本稳定性。"
+      ],
+      "reusable_pattern": "用‘labeled evidence→R→cost/transport→unlabeled score’的 worked example 解释算法，并明确展示下采样与四舍五入边界。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 18 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 19",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "robustness",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 19. Examples of scenarios with different types of visual distractions. For lighting changes, we consider two distractors: (1) variations in the direction and position of the light source, and (2) variations in ambient and diffuse lighting. For texture changes, we randomize the textures of the table and floor (20 possible combinations). For video background distractions, we use both the easy and hard videos from Yuan et al. (2023). Example segment clips are available at this link. Note that the distractor variation within each segment is fixed, but may vary across segments.",
+        "word_count": 90,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Arial",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#C7A86B",
+          "#7D9DB9",
+          "#A88162",
+          "#709A70",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "四类视觉干扰由行标签/场景内容编码，图像自然色不代表连续数值；Labeled/Unlabeled 由列标签区分。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 17,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 17
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "distraction family / clip position",
+        "y": "visual segment frames",
+        "color": "自然场景色与行标签",
+        "shape": "video-frame tile",
+        "line": null,
+        "facet": "four distraction rows × labeled/unlabeled columns",
+        "text": "lighting/texture/background labels"
+      },
+      "data_and_statistics": "MetaWorld visual distractor 的定性样例：光源方向/位置、ambient/diffuse、table/floor texture、easy/hard video background；texture 组合数为 20，segment 内 distractor 固定、跨 segment 可变。",
+      "evidence_relation": "§5.4 Table 2 的 nuisance robustness → Figure 19 展示干扰构造与 Labeled/Unlabeled 对照 → Appendix C.5 pseudo-label accuracy 与 Table 2 的性能维持。",
+      "design_strengths": [
+        "四种 nuisance family 以同一行结构并置，视觉干扰的覆盖面明确。",
+        "caption 详细定义变化范围、20 texture combinations 与 segment 内固定规则。"
+      ],
+      "design_weaknesses": [
+        "大量自然图像 tile 无坐标或强度标尺，无法从图直接比较干扰大小。",
+        "caption 的外部 example clips link 依赖链接上下文，图本身不提供生成参数。"
+      ],
+      "reusable_pattern": "以行=干扰类型、列=segment/label source 的 montage 展示 robustness 条件，同时在 caption 说明随机化边界。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 19 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1. Average performance of methods on D4RL locomotion and MetaWorld. For D4RL tasks, “hop” denotes hopper, while “m”, “r”, and “e” denote medium, replay, and expert, respectively. We run five seeds and report the final performance at the end of training like Kostrikov et al. (2022). Bold values indicate results within 5% of the best-performing method (excluding IQL+GT and Oracle).",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 10,
+      "columns": 12,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "每个任务值为 5 seeds 的 mean ± standard deviation；loco/mw average 行为跨任务平均点估计，没有 ±。",
+      "data_and_statistics": "D4RL normalized score 与 MetaWorld success rate 的最终 checkpoint 平均；表头同时固定 dataset、GT/Oracle 上界、PbRL baselines 与 VOTP，粗体为排除 IQL+GT/Oracle 后距最佳 5% 内。",
+      "evidence_relation": "§5.2 的有限反馈 benchmark 主张 → Table 1 headline comparison → Figure 10/11 完整曲线 → Figure 2–5 组件/预算消融 → Table 10 GT reward sanity check。",
+      "design_strengths": [
+        "一个表同时覆盖两个 domain、上界和 9 个 PbRL baseline，扫描效率高。",
+        "row group、avg 行和粗体规则使跨任务/方法的决策面清楚。"
+      ],
+      "design_weaknesses": [
+        "12 列在 inset 尺寸下字体小，mean±SD 与 avg point estimates 混排。",
+        "5% bold rule 不是不确定性；caption 未给每个任务 evaluation episode denominator。"
+      ],
+      "reusable_pattern": "固定 dataset→method 的宽表，使用 domain 分组、平均行和一致的 mean±SD 记法承载主比较。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Table 1 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2. Performance of VOTP under various types of visual distractions. Mean and standard deviation are computed over 5 random seeds.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 3,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "5 个随机 seeds 的 mean ± standard deviation；Average 为跨两个 MetaWorld task 的点估计。",
+      "data_and_statistics": "两个 MetaWorld 任务在同 domain、光源、texture、easy/hard video nuisance 下的 success-rate performance；视觉干扰条件是列轴，未提供每个 distractor 的样本分母。",
+      "evidence_relation": "§5.4 的 visual nuisance robustness → Table 2 定量切片 → Figure 19 构造样例 → Table 13 pseudo-label accuracy 的任务异质性。",
+      "design_strengths": [
+        "条件轴清晰，能直接比较 nuisance family 对 VOTP 的影响。",
+        "caption 明确 5-seed mean/SD，平均行提供快速汇总。"
+      ],
+      "design_weaknesses": [
+        "只有 VOTP，缺少同条件 baseline，因此不能单独归因于相对鲁棒性。",
+        "列标题缩写较多，caption 未解释 Same Domain 或视频难度的构造。"
+      ],
+      "reusable_pattern": "将 robustness 条件置于列轴、任务置于行轴，保留相同 success-rate 统计语法。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 2 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3. Success rates over 10 episodes on real-world tasks.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "每个单元是 10 episodes 的 success-rate 百分比点估计；未报告 SD、区间或 episode-level failure counts。",
+      "data_and_statistics": "真实 Sawyer 任务的 BC/P-IQL/VOTP success rate，分母明确为 10 episodes；数值为 Lift Banana 20/50/80 与 Drawer Open 40/50/70 百分比。",
+      "evidence_relation": "§5.5 real-robot utility → Table 3 任务级结果 → Figure 7/14–16 行为与 reward 机制案例 → Figure 9 setup。",
+      "design_strengths": [
+        "表很小且直接给出任务/方法交叉比较，适合与 qualitative figures 并读。",
+        "10-episode denominator 写在 caption，避免把点估计误当大规模 benchmark。"
+      ],
+      "design_weaknesses": [
+        "分母很小且没有不确定性，跨方法差异的精度有限。",
+        "没有成功标准或每个 episode 的失败类型，需回到 Appendix A.4。"
+      ],
+      "reusable_pattern": "对真实机器人结果使用窄表给出明确分母，再以相邻视频帧图补充行为解释。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 3 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4. Hyperparameters of IQL.",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 9,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "超参数取值表，不是重复实验统计；无 mean/SD、区间或失败值。",
+      "data_and_statistics": "IQL 的 optimizer、学习率、batch/network、β/τ 与 D4RL/MetaWorld 训练步数；类别型与数值型值混排。",
+      "evidence_relation": "Appendix A.3 实现细节 → Table 4 固定 policy learner → Table 1 结果与 Figure 10/11 曲线的复现边界。",
+      "design_strengths": [
+        "按 domain 并列值，读者可逐项复制 IQL 设置。",
+        "表头简短、无多余竖线，适合和 Tables 5–6 组成参数组。"
+      ],
+      "design_weaknesses": [
+        "caption 未给训练硬件、seed 或参数含义；β/τ 的指标语义需回到方法。",
+        "所有值是配置而非证据，无法从表判断敏感性。"
+      ],
+      "reusable_pattern": "将相同超参数字段按 D4RL/MetaWorld 两列对齐，并把复现所需设置放在独立 appendix table。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Table 4 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5. Hyperparameters of the reward model.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 11,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "配置表；无重复运行统计、误差或区间。",
+      "data_and_statistics": "reward model 的优化器、MLP、activation、segment/subsample length、训练步数和 score function，在 D4RL/MetaWorld 间并列。",
+      "evidence_relation": "§4.3 Bradley–Terry reward bridge → Table 5 复现参数 → Figure 6/17 reward alignment 与 Table 13 pseudo-label accuracy。",
+      "design_strengths": [
+        "把 reward learning 的结构和输入 segment 长度集中呈现。",
+        "与 Table 4 同列结构，易于核对不同 domain 配置。"
+      ],
+      "design_weaknesses": [
+        "caption 不说明 score function 的具体公式或 normalization；数值/类别混排。",
+        "不提供 reward model seed、早停或训练稳定性。"
+      ],
+      "reusable_pattern": "将 reward-model architecture、segment geometry 和 optimizer 合并在一张 domain 对照表中。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Table 5 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 6. Hyperparameters of VOTP",
+        "word_count": 3,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 5,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "配置值没有不确定性；10/50k pairs、M=2、Euclidean 与 domain-specific τP 是点值或集合。",
+      "data_and_statistics": "VOTP 的 label budget、unlabeled pool、Algorithm 1 的 M、cost metric 与 threshold；D4RL/MetaWorld 两列直接对应 Figure 4/5 的实验边界。",
+      "evidence_relation": "Eq. (4)–(7) 与 Algorithm 1 → Table 6 复现参数 → Figure 4 feedback budget、Figure 5 τP ablation、Table 11 cost。",
+      "design_strengths": [
+        "把方法关键旋钮和 label budget 显式化，复现价值高。",
+        "D4RL/MetaWorld 的 threshold set 放在同一行，连接 Figure 5。"
+      ],
+      "design_weaknesses": [
+        "caption 未给 threshold 选择原则或每个 task 的具体映射。",
+        "表只有配置，没有 pseudo-label pass rate 或算力代价。"
+      ],
+      "reusable_pattern": "用短表固定算法输入规模、cost choice 和 threshold，并将任务域差异放在列而非脚注。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Table 6 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7. Hyperparameters of real robot experiments.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 13,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "真实机器人配置点值；无多 seed 统计或 success-rate uncertainty。",
+      "data_and_statistics": "Sawyer 实验的 IQL、reward model、VOTP 参数，含 Lift/Drawer label and unlabeled pair counts；表中 β/τ 合并为一行。",
+      "evidence_relation": "Appendix A.4 real-robot setup → Table 7 复现参数 → Table 3 success rates 与 Figures 7/9/14–16。",
+      "design_strengths": [
+        "以三组模块分隔 policy/reward/VOTP，参数归属明确。",
+        "Value 列短且适合窄栏，包含真实任务 pair budget。"
+      ],
+      "design_weaknesses": [
+        "不同模块的 ‘Batch size’ 重复出现，未在表头写模块外的 metric。",
+        "caption 没有将 5/10 labels 与具体 Lift/Drawer 行内对应关系完全展开。"
+      ],
+      "reusable_pattern": "以模块 row group 组织真实机器人超参数，保持单值列简单并避免横向宽表。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Table 7 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8. Source code links and hyperparameter/variant search settings for all baselines.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 7,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "text_color"
+      ],
+      "uncertainty": "baseline tuning 配置和链接，不包含方法重复统计或 performance uncertainty。",
+      "data_and_statistics": "表把每个 baseline 的公开 URL、默认/搜索变体和关键 λ/threshold/budget 参数放在同一行；FTB 标为 Default。",
+      "evidence_relation": "§5.2 baseline selection → Table 8 复现实验来源与 tuning boundary → Table 1 主比较；与本论文 VOTP source repository 形成 provenance 对照。",
+      "design_strengths": [
+        "URL 与 tuning range 同行，复现者可以直接追溯实现和干预范围。",
+        "四列语义稳定，不把 baseline 数值和超参混在一起。"
+      ],
+      "design_weaknesses": [
+        "URL 较长，窄页面会压缩文本；某些 tuning 参数的语义未在表头解释。",
+        "表只列作者选择的范围，不展示各候选的运行失败或计算成本。"
+      ],
+      "reusable_pattern": "以 algorithm→source URL→tuning scope 三列建立 baseline provenance table，把公平比较条件外显。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Table 8 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 9. Performance of VOTP with different cost functions.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 7,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "任务行是 5 runs mean ± standard deviation，Average 为跨任务点估计。",
+      "data_and_statistics": "VOTP 在 Euclidean 与 cosine distance cost 下的 D4RL/MetaWorld performance；平均值 71.3 vs 70.7，任务级波动用 ±SD。",
+      "evidence_relation": "Eq. (4) 的 d 选择 → Table 9 cost-metric ablation → Table 1 主配置使用 Euclidean；Figure 12/13 aggregate metrics 提供更广汇总。",
+      "design_strengths": [
+        "直接对应方法中可选的 cost function，反事实轴单一。",
+        "保留任务级 mean±SD，避免平均差异掩盖 heterogeneity。"
+      ],
+      "design_weaknesses": [
+        "只有 VOTP，没有计算时间或 pseudo-label accuracy 的联合视图。",
+        "caption 未明确 5-run 定义，平均行与任务行精度略不同。"
+      ],
+      "reusable_pattern": "将可替换 cost function 放在列轴、任务放在行轴，复用主 benchmark 的任务命名。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Table 9 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 10. Performance of IQL (Kostrikov et al., 2022) on each dataset under GT and incorrect rewards. Mean and standard deviation are computed over 5 random seeds.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 8,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "5 random seeds 的 mean ± standard deviation；各 reward condition 以同一任务/评估方式比较。",
+      "data_and_statistics": "IQL 在 BC、ground-truth、Zero、Random、Negative reward 下的 normalized score/success rate；Zero/Random/Negative 是 incorrect-reward sanity conditions。",
+      "evidence_relation": "§4.3 reward relabeling → Table 10 验证 reward correctness 对 offline RL 的影响 → Table 1 VOTP performance 与 Figure 6/17 learned-reward alignment。",
+      "design_strengths": [
+        "把 GT、错误 reward 和 BC 放到一个决策面，支持 reward 是关键中介。",
+        "5-seed mean/SD 与任务级行对齐，阅读路径简洁。"
+      ],
+      "design_weaknesses": [
+        "caption 未说明不同 domain 的 y metric，表头没有 domain group。",
+        "错误 reward 的生成定义需回到正文，数值本身不能解释失败机制。"
+      ],
+      "reusable_pattern": "用 reward condition 列替代多张 sanity-check 表，显式把 reward quality 与 RL outcome 连接。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Table 10 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 11. Computational cost of VOTP for generating pseudo-preference labels for 10k unlabeled pairs under different dataset sizes.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 3,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Sequential/parallel wall-clock minutes 的点估计；‘-’表示该 parallel condition 未给数值，不是零。",
+      "data_and_statistics": "10k unlabeled pairs 下，label count 增加时 sequential 与 100-pair-concurrent parallel pseudo-label generation time；parallel 仅在 100/200/500 给出 1/1.7/6.6 min。",
+      "evidence_relation": "§4.3 Sinkhorn efficiency claim → Table 11 label-count cost curve → Figure 4 feedback budget → Appendix C.3 的 RTX 4090/24-core hardware context。",
+      "design_strengths": [
+        "横轴直接是 label budget，sequential/parallel 行使成本折衷可扫描。",
+        "缺失值使用 ‘-’ 而非虚构 zero，表头和单位明确。"
+      ],
+      "design_weaknesses": [
+        "没有 feature-extraction/policy-training 成本列，无法完整评估 end-to-end budget。",
+        "并行定义和硬件需要读正文，caption 未列 concurrent batch size。"
+      ],
+      "reusable_pattern": "用 label budget 列轴、执行模式行轴报告 wall-clock cost，并保留未测条件为短横线。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Table 11 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 12. Performance of VOTP with preference feedbacks from human teachers. Mean and standard deviation are computed over 5 random seeds.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 8,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "5 random seeds 的 mean ± standard deviation；Average 为跨任务 point estimate。",
+      "data_and_statistics": "同一 VOTP 在 scripted teacher 与 human teacher preference labels 下的 task performance；human teacher 含四位非机器人参与者，walker2d 条件下降明显。",
+      "evidence_relation": "Appendix C.4 的 human preference extension → Table 12 teacher-source robustness → Table 1 scripted/GT main comparison → Figure 11 MetaWorld curves。",
+      "design_strengths": [
+        "两类 label source 并列，直接暴露 human/scripted transfer。",
+        "任务级 mean±SD 让 walker2d 的下降可定位，而非只报总平均。"
+      ],
+      "design_weaknesses": [
+        "参与者数量和 label collection protocol 不在表中；平均行掩盖任务异质性。",
+        "Human Teacher 列不能区分 label noise 与 task difficulty。"
+      ],
+      "reusable_pattern": "将 supervision source 作为列干预，保持任务行和主 benchmark metric 结构一致。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 12 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 13. Accuracy of generated pseudo-labels: We calculate accuracy by comparing against ground-truth scripted preference labels (excluding equally preferred pairs). Overall, VOTP generates high-quality pseudo-labels with only a handful of labeled preference queries.",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "medium"
+      },
+      "rows": 7,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "伪标签 accuracy 点估计，排除 equally preferred pairs；未报告样本量、区间或 confusion breakdown。",
+      "data_and_statistics": "pseudo-preference labels 与 ground-truth scripted labels 的 task-level accuracy；多数任务 >90%，sweep-into 为 67.0%，直接显示机制异质性。",
+      "evidence_relation": "Figure 18 的 worked pseudo-labeling → Table 13 accuracy validation → Figure 2 OT ablation 与 Table 1 policy performance；作为 reward alignment 的中介证据。",
+      "design_strengths": [
+        "caption 给出 accuracy 分母边界（排除 ties）并直述主发现。",
+        "Domain row group 与任务行让低 sweep-into 点容易定位。"
+      ],
+      "design_weaknesses": [
+        "accuracy 没有 label count、类别分布或不确定性，无法衡量 tie/错误类型。",
+        "‘high-quality’ 总结被 sweep-into 的 67% 限定，需要结合任务异质性解读。"
+      ],
+      "reusable_pattern": "在伪标签机制主张旁放 task-level accuracy 表，显式排除 ties 并保留低点而不只报平均。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 13 rendered object and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 固定 segment→ViFM→OT→pseudo-preference 接口；Table 1 给出 D4RL/MetaWorld benchmark；Figures 2–6 依次消融 OT、encoder、feedback budget、threshold 与 reward alignment；Tables 2–3 延伸到 visual nuisance 与真实机器人。Appendix Figures 8–19 和 Tables 4–13 补充环境/设备、完整曲线、aggregate metrics、rollout failure、cost、teacher、accuracy 与 worked pseudo-labeling evidence。",
+    "caption_system": "caption 统一以 Figure/Table n. 起始；主文多给 setup/comparison，附录曲线给 repeats/SD，Fig. 15/16 与 Table 13 直述 main finding。Fig. 4 的 feedbackts 拼写错误、Fig. 5 与 Tables 4–6 的短 caption，以及部分 panel-specific y metric/分母/threshold grid 缺失，是主要 caption gaps。",
+    "table_header_system": "主结果是 Dataset×method 宽表；robustness、cost 和 teacher 把干预条件放列、任务放行；超参数按 domain/module 分组；Table 13 用 Domain→Task→Accuracy 层级。minimal/booktabs 横线与粗体最佳值跨表保持稳定。",
+    "method_result_ablation_link": "Figure 1/18 将 Eq. (4)–(7) 和 Algorithm 1 的 OT coupling/score 映射到 segment；Figure 2/3/5 对应 OT、encoder、threshold 反事实；Figure 4 与 Table 11 共同表达 feedback/cost；Figure 6/17 与 Table 13 诊断 reward/pseudo-label；Table 1–3 承载最终性能与现实任务结果。",
+    "main_appendix_link": "正文 Figure 1–7、Table 1–3 提供接口、主比较、组件/预算机制、nuisance 与 robot outcome；附录 Figure 8–19、Table 4–13 给出环境/设备、训练动态、aggregate CI、行为 failure、cost、human teacher、accuracy 和 visual-distraction 构造，完整化正文但不替代主 benchmark。",
+    "typography_consistency": "正文/caption/table 主要使用 Nimbus Roman No9 L 与 Computer Modern math；导入图还出现 Times New Roman、Cambria Math、DejaVu Sans/Arial。图内约 5–14 pt、表格约 6.5 pt，regular/bold 与 roman/italic 混用；通用 plotter 只精确确认 serif paper context，不能确认每幅图的 rcParams。",
+    "color_consistency": "方法曲线在 Figures 2–5、10–13、17 中大体沿用黑/橙/绿/红/蓝，成功/失败再用实线/虚线冗余；流程、照片和矩阵使用各自 pastel/自然色。表格黑白并用 bold；定量曲线的灰度安全性仍有限。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 method interface→benchmark table→组件/预算消融→机制 scatter/qualitative trace→附录 validity/cost 的层级视觉叙事。",
+      "固定 task panels 和 method palette，并把干预条件放到表格列轴以降低扫描成本。",
+      "用同步时间快照+learned-reward trace 对照 success/failure，再用 worked OT matrix example 连接数学与真实视频段。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：pipeline 与最小 OT worked example 的方法接口。",
+      "Table 1：D4RL/MetaWorld 的 headline 主比较。",
+      "Figure 4：feedback budget/效率响应。",
+      "Figure 7：真实机器人 reward failure 机制案例。",
+      "Figure 18：完整 pseudo-labeling 的 R、cost、transport plan 与 score。",
+      "Table 13：task-level pseudo-label accuracy 中介证据。"
+    ],
+    "failure_patterns": [
+      "双栏宽表、4×4 aggregate matrix 和多方法曲线在缩放后小字/高密度。",
+      "caption 常省略 panel-specific y metric、threshold grid、分母和 band 统计定义；Fig. 4 另有 feedbackts 拼写错误。",
+      "颜色承担过多方法/状态语义，灰度安全有限；qualitative 单案例不能代表总体 success rate。",
+      "Table 11/13 等成本或准确率表仍未报告失败类型、样本量或不确定性。"
+    ],
+    "one_sentence_visual_strategy": "论文以 OT pipeline 将少量视觉偏好连接到跨域 benchmark，再用统一方法色、反馈预算曲线、reward/rollout 机制图和附录 cost/accuracy/robustness 切片逐层限定 offline reward 可靠性的证据边界。"
+  }
+}

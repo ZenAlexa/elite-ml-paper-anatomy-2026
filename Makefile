@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints sample validate aggregate cohort lexical index blueprint checkpoint checkpoint-figures next next-icml
+.PHONY: catalog hydrate resolve resolve-preprints acquire acquire-preprints measure measure-preprints sample validate aggregate cohort lexical index blueprint checkpoint checkpoint-figures next next-icml visual-sources visual-metrics visual-validate visual-analysis visual-index visual-templates
 
 catalog:
 	$(PYTHON) scripts/build_catalog.py
@@ -31,6 +31,32 @@ sample:
 
 validate:
 	uv run --with jsonschema $(PYTHON) scripts/validate.py
+
+visual-sources:
+	$(PYTHON) scripts/discover_visual_sources.py
+	$(PYTHON) scripts/acquire_visual_sources.py
+	$(PYTHON) scripts/extract_source_visual_styles.py
+
+visual-metrics:
+	uv run --with pdfplumber --with pillow $(PYTHON) scripts/extract_visual_style_metrics.py
+	$(PYTHON) scripts/analyze_visual_auto_metrics.py
+	uv run --with pdfplumber $(PYTHON) scripts/measure_iclr_layout.py
+
+visual-validate:
+	uv run --with jsonschema $(PYTHON) scripts/validate_visual_audits.py --require-complete
+
+visual-analysis:
+	uv run --with jsonschema $(PYTHON) scripts/analyze_visual_audits.py
+	$(PYTHON) scripts/analyze_visual_sources.py
+	uv run --with jsonschema $(PYTHON) scripts/build_visual_audit_index.py
+	uv run --with matplotlib $(PYTHON) scripts/render_visual_audit_figures.py
+	$(PYTHON) scripts/build_visual_design_report.py
+
+visual-index:
+	uv run --with jsonschema $(PYTHON) scripts/build_visual_audit_index.py
+
+visual-templates:
+	uv run --with matplotlib $(PYTHON) templates/visuals/generate_examples.py
 
 aggregate:
 	$(PYTHON) scripts/aggregate.py

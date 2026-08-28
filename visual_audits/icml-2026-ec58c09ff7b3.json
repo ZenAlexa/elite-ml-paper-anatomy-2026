@@ -1,0 +1,1229 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-ec58c09ff7b3",
+  "source_acquisition": {
+    "status": "repository_without_visual_source",
+    "repository_candidates": [
+      "https://github.com/karpathy/nanoGPT",
+      "https://github.com/UKPLab/icml2026-svrg-and-beyond",
+      "https://github.com/MachineLearning-Nerd/icml26-svrg-posterior-correction"
+    ],
+    "selected_repository": "https://github.com/UKPLab/icml2026-svrg-and-beyond",
+    "visual_source_files": [],
+    "search_note": "先核对 reports/tables/visual_source_inventory.csv：目标自动状态为 no_public_source_found、候选为 karpathy/nanoGPT；corpus/visual_sources/icml-2026-ec58c09ff7b3/ 为空。PDF p2 只写 Code is available publicly on GitHub，Appendix F.2 p23 明确链接 karpathy/nanoGPT，但语境是沿用 GPT-2 配置而非本文图表源。gh 只读严格标题检索命中 MachineLearning-Nerd/icml26-svrg-posterior-correction；其 README 明确是独立 reproduction audit，树中 SVG 是审计报告图而非论文对象。gh repo view 与 README/作者/arXiv 语义核对 UKPLab/icml2026-svrg-and-beyond 为最可信作者实现仓库；默认分支 main 在提交 ae0fc095c89540917b0df1f70b47602b24f7ea25 的递归树含 common/ivon_pocomo.py、image_classification/train.py、gpt2/train.py 等实现和日志入口，但没有 plot*、figure*、visual*、table*、paper .tex、.tikz、.pgf、.svg 或 style 源。该仓库存在但未公开本文 Figure 1–9/Table 1 的绘图、表格或 LaTeX 源，因此不填 sourceFile，也不把通用 nanoGPT 或审计 SVG 记为本文视觉源。"
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 0,
+    "appendix_figures": 4,
+    "appendix_tables": 1,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Math",
+        "Computer Modern Symbol"
+      ],
+      "size_pt": {
+        "minimum": 6.7,
+        "median": 8.7,
+        "maximum": 10.7
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 8.7,
+      "header_size_pt": 8.7,
+      "header_weight": "regular",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "白底和 Nimbus Roman/Computer Modern 矢量图形构成共同底层；灰/黑承担 baseline，蓝常承担 IVON/VSGD，红 #DC143C 承担 PoCo/校正，浅灰 #D3D3D3 承担事件/辅助。Figure 2–6 用灰条或竖线表达 refresh/correction；Figure 8 的深红/粉红与 caption 的 purple/pink 产生局部漂移。",
+    "vector_raster_mix": "PDF 全文及 9 个 Figure、Table 1 均未发现栅格 image XObject（pdfimages -list 为 0）；页面对象由矢量文字、路径、规则、填充和开放圆 marker 混合构成。200 dpi 页面渲染用于视觉检查。",
+    "style_consistency": "正文/附录均采用 Nimbus Roman 与 Computer Modern 数学字体、白底和细水平/坐标规则。Figure 2/3 三 panel 刻度最小，Figure 1 伪代码数学密度最高；Table 1 与 caption 字体一致，但附录图的灰阶/彩色系列和 legend 位置按功能变化。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "method / Sections 2–3",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "other",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. Pseudo-code for SVRG (left) and our Bayesian generalization (right). The latter replaces all instances of parameter θ and loss-gradients ∇ℓ_i in SVRG by the natural parameter λ of the posterior q(θ) and natural gradient ∇̃ of the expected loss L_i = E_q[ℓ_i], respectively. Two other differences in the right pseudo-code are shown in red. Our main result is to show that if we set q = N(m, I), an isotropic Gaussian, then SVRG can be derived as a special case of PoCo where θ is replaced by m; see Thm. 2 and Alg. 3.",
+        "word_count": 96,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 9.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#000000",
+          "#FF0000",
+          "#808080",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "黑色表示共同伪代码和规则，红色表示 PoCo 新增/改变的两处更新，灰色为辅助规则，白色为页面背景；位置、变量符号与颜色共同编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "红色突出右侧 PoCo 相对 SVRG 的变化；黑色保留共同结构。",
+        "shape": "左右并置的两个伪代码框，无数据 marker。",
+        "line": "代码行和公式使用实线/规则分隔；无数据曲线。",
+        "facet": "左侧 SVRG，右侧 Posterior Correction；逐行对齐。",
+        "text": "算法标题、行号、θ/λ、gradient/natural-gradient 直接标注。"
+      },
+      "data_and_statistics": "方法伪代码，不承载样本、聚合、不确定性或统计量。左侧是 outer full-gradient 与 inner corrected-gradient 双循环；右侧把参数 θ/梯度替换为 posterior natural parameter λ/natural gradient，并以红色显示额外更新项。",
+      "evidence_relation": "p2 的 Figure 1 将引言的 SVRG–Bayes 连接转成逐行接口；caption 调用 Thm. 2 和 Alg. 3，p4–p6 的 Eq. 16–20、Theorem 1–3 随后形式化 isotropic/full/diagonal Gaussian 特例。该对象承担方法接口与理论机制。",
+      "design_strengths": [
+        "左右代码块行号对齐，变量替换可逐行阅读。",
+        "红色只标新增项，避免用大面积颜色承载结构。",
+        "caption 同时说明编码、方法差异和 special-case 结论。"
+      ],
+      "design_weaknesses": [
+        "下标、自然参数和梯度记号密集，Algorithm 2 的红色变化需要回看公式。",
+        "没有独立图例解释红色或 natural-gradient 记号。",
+        "caption 依赖 §2 定义，脱离正文后不完全自足。"
+      ],
+      "reusable_pattern": "对理论算法并置同构伪代码，只高亮新增状态/更新项，再用 caption 指向 theorem/algorithm；保留行号和变量位置可把抽象等价关系变成可扫描的接口差异。",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1 caption 与 Algorithm 1/2 并置块",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 2,
+      "module": "results / Section 4.1 Logistic Regression",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2. We propose IVON-PoCo to accelerate IVON in a similar way as SVRG accelerates SGD. These results are for logistic regression on three datasets (MNIST, Covertype, and CIFAR-10). We show accuracy vs. the number of gradient evaluations per data example. The horizontal dashed-gray line is the performance obtained by a full-batch L-BFGS run. Gray vertical bars indicate the computation of full-batch gradients in SVRG and IVON-PoCo. After such computations, we often observe a jump in the performance.",
+        "word_count": 78,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 8.0,
+          "maximum": 9.5
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#808080",
+          "#000000",
+          "#4682B4",
+          "#DC143C",
+          "#D3D3D3",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "灰/黑/蓝/红分别承担 SGD、SVRG、IVON、IVON-PoCo；灰色半透明竖条表示 full-batch refresh，白色是开放圆端点填充。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 3,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "below all three panels",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "#grad / N（每个数据样本的梯度评估数）",
+        "y": "Test Accuracy",
+        "color": "SGD=灰、SVRG=黑、IVON=蓝、IVON-PoCo=红；灰条为 outer refresh。",
+        "shape": "开放圆端点；无系列形状差异。",
+        "line": "方法为实线，L-BFGS 为灰/黑水平虚线。",
+        "facet": "MNIST、Covertype、CIFAR-10 三个横向 panel。",
+        "text": "轴标题、刻度、底部共享图例；无曲线 direct label。"
+      },
+      "data_and_statistics": "三个 logistic-regression 数据集上的 test accuracy 随梯度评估/数据样本推进；灰条表示 SVRG 与 IVON-PoCo 的 full-batch gradient refresh，水平虚线是 full-batch L-BFGS 性能。未报告 seed 数、重复聚合、error bar、band、区间或失败值。",
+      "evidence_relation": "p1–p2 引言预告 SVRG 加速 SGD、PoCo 产生 IVON-PoCo；p2 Figure 2 是 §4.1 的首个主比较，把 Figure 1 接口落到三数据集。Figure 3 随后用 VSGD/VSGD-PoCo 做 first-order 对照，p5 Theorem 2 提供分析等价关系。",
+      "design_strengths": [
+        "同一资源归一化 x 轴覆盖三个任务。",
+        "灰条把性能跳变与 outer refresh 时点关联。",
+        "L-BFGS 虚线提供清晰目标参考，共享图例减少重复。"
+      ],
+      "design_weaknesses": [
+        "各 panel y 范围不同，跨数据集的垂直距离不能直接比较。",
+        "折线噪声与浅灰事件条叠加后局部拥挤。",
+        "没有重复级不确定性，颜色在灰度打印下容易混淆。"
+      ],
+      "reusable_pattern": "用资源归一化 x 轴串联多个任务，同时保留事件条和性能参考线；在 caption 中定义事件编码，连接机制与曲线结果。",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 2 三 panel 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "results / Section 4.1 Logistic Regression",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 3. The results shown here are in the same settings as Fig. 2 but use first-order methods. We find that SGD and VSGD perform similarly, even though VSGD is a noisy optimization algorithm. Just as SVRG improves SGD, VSGD-PoCo improves over VSGD using gradient corrections that are indicated with the grey bars. Again, performance tends to jump up after a new mega-batch is calculated.",
+        "word_count": 65,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 8.0,
+          "maximum": 9.5
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#808080",
+          "#000000",
+          "#4682B4",
+          "#DC143C",
+          "#D3D3D3",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "灰/黑/蓝/红分别承担 SGD、SVRG、VSGD、VSGD-PoCo；灰条表示 mega-batch refresh，白色为开放圆端点填充。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 3,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "below all three panels",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "#grad / N",
+        "y": "Test Accuracy",
+        "color": "SGD=灰、SVRG=黑、VSGD=蓝、VSGD-PoCo=红；灰条为 refresh。",
+        "shape": "开放圆端点；无系列形状差异。",
+        "line": "实线方法曲线；灰/黑水平虚线为参考。",
+        "facet": "MNIST、Covertype、CIFAR-10 三个 panel。",
+        "text": "轴标题、刻度和三 panel 下方共享图例。"
+      },
+      "data_and_statistics": "与 Figure 2 同设置的三个 logistic-regression 任务；比较 SGD、SVRG、VSGD、VSGD-PoCo 的 test accuracy，x 为每数据样本的梯度评估数，灰条为新 mega-batch 计算。没有重复数或误差编码。",
+      "evidence_relation": "p5 Theorem 1–2 与 Algorithm 3 将 isotropic-Gaussian PoCo 对齐到 VSGD/SVRG；p7 Figure 3 是 Figure 2 的 first-order 对照，经验展示 VSGD-PoCo 对 VSGD 的 correction 改善。它连接 theory special case 与实验机制。",
+      "design_strengths": [
+        "与 Figure 2 同构，读者可把变化归因于方法系列而非版式。",
+        "caption 定义灰条与 mega-batch 事件。",
+        "四方法共享一套轴和图例。"
+      ],
+      "design_weaknesses": [
+        "“same settings as Fig. 2”使 caption 不能完全独立阅读。",
+        "噪声曲线与事件条局部重叠。",
+        "没有 seed/uncertainty，机制改善无法与单次轨迹波动区分。"
+      ],
+      "reusable_pattern": "复用主结果的 panel、轴和事件编码，仅替换机制相关系列，形成 theory-to-empirics 对照；caption 同时写复用关系与新增结论。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3 三 panel 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results / Section 4.2 Language Model Pretraining",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 4. (a) Comparison of our new IVON-PoCoMo (red) with IVON and AdamW when pretraining GPT2-125M from scratch on ca. 50B tokens from OpenWebText. Until 50K steps IVON-PoCo takes the same steps as IVON. Then, correction is started leading to a decrease in loss that also leads to better validation perplexities at the end (17.4, 18.0, 18.4 for IVON-PoCo, IVON, AdamW). (b) When comparing the number of gradient evaluations, IVON-PoCoMo does not converge as fast as IVON, here on the same GPT2-125M pretraining as in Sec. 4.2. Note that the plot only shows validation perplexity calculated every 1,000 steps due to resource limitations. Therefore, the times taken for megabatch calculation, where validation perplexity remains constant, are not shown here.",
+        "word_count": 119,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 8.7,
+          "maximum": 10.7
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#808080",
+          "#4682B4",
+          "#DC143C",
+          "#000000",
+          "#D3D3D3"
+        ],
+        "semantic_mapping": "AdamW=灰，IVON=蓝，IVON-PoCoMo=红，IVON 3x-bsz=黑；浅灰为阶段/事件辅助线。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 7,
+        "annotations": 2,
+        "data_marks_estimate": 260
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper right within each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.25,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左：Steps；右：# Gradient Computations",
+        "y": "Validation PPL",
+        "color": "AdamW=灰、IVON=蓝、IVON-PoCoMo=红；右侧另有 IVON 3x-bsz=黑。",
+        "shape": "开放圆端点；无系列 shape 冗余。",
+        "line": "实线轨迹；校正开始/计算阶段用竖向虚线。",
+        "facet": "(a) GPT-2 (125M) pretraining；(b) Pretraining with gradient-computation denominator。",
+        "text": "Correction starts 箭头和图例；各 panel 独立图例。"
+      },
+      "data_and_statistics": "GPT-2 125M 从 OpenWebText 约 50B tokens 从头预训练；左 panel 按 optimizer steps，右 panel 按 gradient evaluations，y 为 validation PPL。caption 给出末端 17.4/18.0/18.4 的对应顺序；PPL 每 1,000 steps 计算，mega-batch 常数段省略。无重复/seed/error bars。",
+      "evidence_relation": "Figure 4 是 §4.2 的大模型主结果，把 Figure 2 的质量曲线外推到 GPT-2，并在 gradient-computation 轴保留速度反证。p9 明确指出质量改善没有转化为 tangible runtime speed-up；Appendix F.2 p23 提供训练规模、batch、硬件和 warmup。",
+      "design_strengths": [
+        "双资源分母直接揭示 quality 与 compute 的张力。",
+        "Correction-start 箭头把干预时点与曲线跃迁对应。",
+        "caption 给出端点 PPL，并加入 IVON 3x-bsz 控制。"
+      ],
+      "design_weaknesses": [
+        "两 panel 方法集合不同，跨 panel 追踪系列需回看图例。",
+        "每 1,000 steps 采样并省略 mega-batch 常数区间，时间轴不完整。",
+        "无重复级不确定性，颜色缺乏形状冗余。"
+      ],
+      "reusable_pattern": "昂贵训练同时展示优化步数与梯度评估数，把校正起点标在轨迹上，并在 caption 明确采样频率和省略区间；负面的 compute-axis 结果与质量结果并置。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 4 两 panel 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "results / Section 4.3 Image Classification with ResNets",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 5. Performance on ImageNet for ResNet-50. When comparing by the number of optimization steps (left) IVON-PoCo gives clear improvements but not in terms of data examples seen (right).",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 8.7,
+          "maximum": 10.7
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#696969",
+          "#A9A9A9",
+          "#4682B4",
+          "#DC143C",
+          "#FF0000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "SGD=深灰，AdamW=浅灰，IVON=蓝，IVON-PoCo=红；淡红竖线标记 correction start，白色为开放圆端点填充。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 1,
+        "data_marks_estimate": 200
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower center of right panel",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左：Optimizer Steps ×10^5；右：Data Examples Seen ×10^8",
+        "y": "Test Accuracy (%)",
+        "color": "SGD/AdamW/IVON/IVON-PoCo 以灰/灰/蓝/红区分。",
+        "shape": "开放圆端点；无形状冗余。",
+        "line": "实线方法曲线；左侧 correction-start 为红色竖虚线。",
+        "facet": "同一 ResNet-50/ImageNet 任务的 step-axis 与 data-example-axis 两 panel。",
+        "text": "左图的 Correction starts 箭头；右图内共享方法图例。"
+      },
+      "data_and_statistics": "ResNet-50/ImageNet test accuracy；左轴按 optimizer steps，右轴按 data examples seen。四方法轨迹为点/线，未报告重复数、seed、误差带、区间或失败值；caption 明确 step-axis 的改善在 data-example 口径下不成立。",
+      "evidence_relation": "§4.3 将 scalable deep-learning claim 放入两种资源分母；Figure 5 左侧给正向 step-axis 结果，右侧保留 data-example counter-evidence。p9 文字指出按 data examples 或梯度评估难以击败 baseline；Appendix F.1 p22–23 给出 epoch、batch、GPU 和 α 设置。",
+      "design_strengths": [
+        "同一任务、方法和 y 变量的两个 x 轴并置，避免只报告 steps。",
+        "caption 同时写正负结论。",
+        "校正时点在左图可定位。"
+      ],
+      "design_weaknesses": [
+        "右 panel 图例位于绘图区下部，可能压住低值轨迹。",
+        "方法 identity 仍主要依赖颜色，缺少不确定性。",
+        "Correction-start 只在左图标注，右图需要自行对应。"
+      ],
+      "reusable_pattern": "当算法增加额外批次或梯度时，用相同曲线成对展示 optimizer-step 与 data/compute denominator，并在 caption 写清收益边界。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 5 两 panel 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 20,
+      "module": "appendix results / Appendix E.1 ResNet-20 on CIFAR-10",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6. Comparison to α-SVRG on CIFAR-10 for ResNet-20. IVON-PoCo and α-SVRG with SGD give improvements, also when counting the number of data examples seen (right). At the end of training, IVON-PoCo performs better than other methods.",
+        "word_count": 37,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 8.7,
+          "maximum": 10.7
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 7,
+        "hex": [
+          "#696969",
+          "#808080",
+          "#A9A9A9",
+          "#D3D3D3",
+          "#4682B4",
+          "#DC143C",
+          "#FF0000"
+        ],
+        "semantic_mapping": "灰阶区分 SGD/AdamW 及其 α-SVRG 变体，蓝为 IVON，红为 IVON-PoCo，淡红竖线为 correction start；base 与 α-SVRG 同时用线宽区分。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 1,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower-middle of right panel",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左：Optimizer Steps ×10^5；右：Data Examples Seen ×10^6",
+        "y": "Test Accuracy (%)",
+        "color": "SGD/α-SVRG SGD、AdamW/α-SVRG AdamW 用灰阶；IVON=蓝，IVON-PoCo=红。",
+        "shape": "开放圆端点；base/α-SVRG 另以线宽区分。",
+        "line": "实线曲线；correction-start 为红色竖虚线。",
+        "facet": "同一 ResNet-20/CIFAR-10 任务的两种资源分母。",
+        "text": "右 panel 六项图例；左图校正起点。"
+      },
+      "data_and_statistics": "ResNet-20/CIFAR-10 test accuracy；比较 SGD、α-SVRG SGD、AdamW、α-SVRG AdamW、IVON、IVON-PoCo，分别按 optimizer steps 和 data examples seen 表达计算进度。无 error bars、seed 或重复聚合。",
+      "evidence_relation": "Appendix E.1 扩展 Figure 5 的资源分母分析，并把 α-SVRG 加入同任务 baseline；p7 Eq. 22 说明 α 权重，Figure 6 经验连接该机制与 CIFAR-10 accuracy。它承担 extended comparison/robustness。",
+      "design_strengths": [
+        "将 α-SVRG 竞争方法纳入同一双分母框架。",
+        "caption 明确右 panel 仍保留改善。",
+        "六方法图例完整。"
+      ],
+      "design_weaknesses": [
+        "六条曲线和多种灰阶在窄 panel 中拥挤，灰度下配对难分。",
+        "左 x 轴从约 0.5×10^5 起，早期轨迹被截去。",
+        "没有不确定性、重复数或计算成本列。"
+      ],
+      "reusable_pattern": "将新增 baseline family 与主方法放进同一双分母图，用线宽/灰阶表示 base-versus-schedule；caption 同时报告质量和资源口径。",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 6 两 panel 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 21,
+      "module": "appendix ablation / Appendix E.4 Ablations",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7. (left) Tuning α has a large effect on performance on wikitext103 with a 33M Transformer trained from scratch. (right) In the same setting, increasing the number of refreshes can help but at some point becomes slow, with better performance at the same time budget obtained by fewer refreshes.",
+        "word_count": 50,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 8.7,
+          "maximum": 10.7
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#DC143C",
+          "#696969",
+          "#D3D3D3"
+        ],
+        "semantic_mapping": "IVON-PoCo=红，α-SVRG=灰，浅灰竖虚线为辅助位置/事件标记。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": 15
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper center of left panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左：α（linear）；右：Inner Steps / Mega-batch size（视觉为 log-like 非均匀 tick）",
+        "y": "左：Val PPL；右：Val PPL @ 30min",
+        "color": "左：IVON-PoCo=红、α-SVRG=灰；右：单一 IVON-PoCo 红线。",
+        "shape": "开放圆 sweep 点。",
+        "line": "实线连接 sweep 点；浅灰竖虚线为辅助标记。",
+        "facet": "(left) α sweep；(right) refresh-to-mega-batch trade-off。",
+        "text": "左 panel 两项图例；右 panel 单一系列无独立图例。"
+      },
+      "data_and_statistics": "wikitext103 上 33M Transformer 从头训练；左 panel 扫描 α 比较 IVON-PoCo 与 α-SVRG 的 validation PPL，右 panel 在固定 30 分钟预算下扫描 inner-steps/mega-batch-size 比值。没有 seed、重复聚合或误差编码；右 x 轴的 log-like 语义未在 caption 明示。",
+      "evidence_relation": "Appendix E.4 将 Eq. 22 的 α 权重和 Section 3.4 的 mega-batch overhead 落到性能/时间折衷；p22 正文回调 Fig. 7(center)。该图承担超参数敏感性和效率边界，而非独立理论证明。",
+      "design_strengths": [
+        "左右分别回答 correction weight 与 refresh frequency 的问题。",
+        "开放圆 marker 暴露离散 sweep 点。",
+        "caption 写出慢刷新与固定时间预算的关系。"
+      ],
+      "design_weaknesses": [
+        "右 x 轴 log-like 间距未声明。",
+        "左侧图例不解释右侧单系列；灰色辅助线与 α-SVRG 共享灰阶。",
+        "无不确定性和稳定性证据。"
+      ],
+      "reusable_pattern": "将超参数扫描与预算扫描并排，左侧展示机制曲线、右侧展示固定预算的 operational trade-off；对非线性/对数 x 轴显式标注变换。",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 7 两 panel 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 21,
+      "module": "appendix results / Appendix E.2 Continual Pretraining",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 8. (Left) (b) Improvements in final results also hold when starting correction earlier or later in training (shown with purple and pink respectively). (Right) IVON-PoCoMo helps stabilize continual pretraining with IVON at higher learning rates but incurs additional computation.",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 8.7,
+          "maximum": 10.7
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#808080",
+          "#696969",
+          "#A9A9A9",
+          "#4682B4",
+          "#DC143C",
+          "#991B1B",
+          "#FCA5A5",
+          "#D3D3D3"
+        ],
+        "semantic_mapping": "灰阶承担 AdamW/α-SVRG/辅助，蓝为 IVON，红/深红/粉红表示 PoCo、PoCoMo 和不同 correction-start 轨迹，浅灰为事件线；caption 称 purple/pink，但 PDF 中主要可见的是深红/粉红。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 4,
+        "data_marks_estimate": 260
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper right of panel (b)",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 3,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "左：Steps；右：Time (minutes)",
+        "y": "Validation PPL",
+        "color": "右：AdamW/α-SVRG/IVON/IVON-PoCo/IVON-PoCoMo 用灰阶、蓝、粉/红；左：不同 correction-start 轨迹用红/粉/蓝。",
+        "shape": "开放圆端点；干预时点用箭头/竖线。",
+        "line": "实线轨迹；correction start 用竖向虚线。",
+        "facet": "(a) Different correction starts；(b) Continual Pretraining。",
+        "text": "左侧 “Correction starts” 箭头；右 panel 五项图例。"
+      },
+      "data_and_statistics": "左 panel 是 GPT-2 预训练在不同 correction start 下的 validation PPL；右 panel 是 Fineweb-edu continual pretraining 的 validation PPL versus wall-clock minutes，比较 AdamW、α-SVRG、IVON、IVON-PoCo、IVON-PoCoMo。caption/正文说明更高学习率下的稳定性与额外计算；没有 error bars、重复数或区间。",
+      "evidence_relation": "Appendix E.2 将 Figure 4 扩展到 intervention timing 和 continual pretraining；正文 p21 给出 α=0.7、40 inner steps、1,000 warmup，Appendix F.3 提供硬件/数据设置。该图承担 robustness 与 wall-clock efficiency。",
+      "design_strengths": [
+        "左 panel 用多个 intervention timing 检验结果是否依赖单一开始点。",
+        "右 panel 用分钟展示稳定性与额外计算。",
+        "同页连接 timing robustness 与 continual setting。"
+      ],
+      "design_weaknesses": [
+        "caption 的 “(Left) (b)” 与图内 “(a)” 不一致。",
+        "左 panel 没有完整系列图例，颜色语义依赖 caption 和位置。",
+        "右图曲线靠近且没有不确定性；两个 panel 的任务/量纲差异大。"
+      ],
+      "reusable_pattern": "一侧做 intervention timing sweep，另一侧做 wall-clock trajectory，并用竖线/箭头定位干预；caption 与图面逐一核对子图标签、颜色和图例。",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 8 两 panel、图内 (a)/(b) 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 22,
+      "module": "appendix ablation / Appendix E.4 Ablations",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 9. We test different schedules for α that are shown in (a). We find in (b) that increasing α performs better than decreasing it but starting correction only later works well, too. All strategies are better than keeping α = 1.0.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math",
+          "Computer Modern Symbol"
+        ],
+        "size_pt": {
+          "minimum": 6.7,
+          "median": 8.7,
+          "maximum": 10.7
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#808080",
+          "#000000",
+          "#4682B4",
+          "#DC143C",
+          "#D3D3D3"
+        ],
+        "semantic_mapping": "恒定 1.0=灰，Warmup→0.5=黑，0.8→0.2=蓝，0.2→0.8=红；浅灰/淡红竖虚线为 warmup/辅助事件。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 1,
+        "data_marks_estimate": 220
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper right of panel (b)",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Steps（0–20,000）",
+        "y": "左：α；右：Validation PPL",
+        "color": "四种 schedule 用灰/黑/蓝/红；右图共享同一颜色语义。",
+        "shape": "无稳定系列 marker；事件线为竖线。",
+        "line": "schedule/result 实线；warmup event 为竖虚线。",
+        "facet": "(a) Different schedules for α；(b) Results with schedules。",
+        "text": "右 panel 共享四项图例；左图直接画出 schedule。"
+      },
+      "data_and_statistics": "wikitext103 上 33M GPT-2-based model 的 α schedule ablation；左 panel 画出恒定、warmup、递减、递增 schedule，右 panel 画对应 validation PPL over steps。没有重复数、误差、区间或失败值。",
+      "evidence_relation": "p7 Eq. 22/§3.3 解释 α 对 outer correction 的权重，Appendix E.4 用 Figure 9 检验 schedule；p22 文字报告 increasing α 最优、warmup 次之、decreasing 优于 constant 1.0。它形成参数机制到结果的消融闭环。",
+      "design_strengths": [
+        "左侧直接画 schedule，右侧用同一四项图例展示 consequence。",
+        "两 panel 共用 Steps 轴，干预时点可对应。",
+        "caption 写出 baseline 和主排序。"
+      ],
+      "design_weaknesses": [
+        "颜色是 schedule identity 的主要通道，灰度下不稳。",
+        "右 y 范围较宽，末端差异在视觉上被压缩。",
+        "没有 seed-level uncertainty，warmup event 需结合正文解释。"
+      ],
+      "reusable_pattern": "对 schedule ablation 成对展示策略本身与指标轨迹，共享 x 轴和图例；caption 明确 baseline、方向和排序。",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 9 两 panel 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 22,
+      "module": "appendix results / Appendix E.3 Finetuning",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 1. IVON-PoCo provides modest improvements when finetuning ViT-B/32, Qwen2.5-0.5-it and Llama3.1-8B. All methods use the same number of steps. R.-45 stands for RESISC45.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.7,
+        "header_size_pt": 8.7,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 8,
+      "header_levels": 3,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "未报告重复数、seed、mean±SD/SE、区间或其他误差；表内仅有最终点估计。",
+      "data_and_statistics": "ViT-B/32 的 Cars、DTD、GTSRB、RESISC45 Acc.；Qwen2.5-0.5B-Instruct 的 XSUM R-1/R-L；Llama-3.1-8B 的 GSM8k Acc.。IVON 行为 79.5/72.9/99.9/95.2/48.7/23.6/30.4，+ PoCo 行为 80.0/73.4/99.9/96.1/49.6/23.8/30.6；相同步数，一位小数。",
+      "evidence_relation": "Appendix E.3 的 Table 1 直接支持 finetuning modest-improvement claim；p21 预告 Table 1，p22 表后指向 F.4，F.4 p24 说明 encoder/full-model/LoRA、数据集和超参数。表下方正文另说 +PoCo 因额外 gradient calculations 运行时间更长，成本未进入表格。",
+      "design_strengths": [
+        "模型组→任务→指标三层表头在有限宽度内清楚表达层级。",
+        "方法列、粗体和浅灰行底让改善方向易扫读。",
+        "统一一位小数，并在 caption 声明相同步数。"
+      ],
+      "design_weaknesses": [
+        "caption 中 `Qwen2.5-0.5-it` 与正文模型名存在排版不一致。",
+        "Acc. 单位/方向和运行成本未写入表头或表格。",
+        "无重复级不确定性，跨任务指标不能直接横向比较。"
+      ],
+      "reusable_pattern": "多架构 finetuning 结果使用模型组→任务→指标多层表头，保留方法列和统一精度；若方法增加计算，应在同一表或相邻表给出 cost/steps denominator。",
+      "evidence": {
+        "page": 22,
+        "label": "Table 1 caption 与表格主体",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先逐行对齐 SVRG 与 PoCo；Figure 2/3 在三个凸 logistic-regression 任务上展示 correction/mega-batch refresh 后的性能跳变；Figure 4/5 推到 GPT-2 与 ImageNet，并用 gradient/data-example 分母暴露效率边界；附录 Figure 6–9 和 Table 1 补充 α-SVRG、refresh/schedule、continual、timing 与 finetuning。主线是方法接口 → special-case/机制曲线 → 资源分母结果 → 参数/时间鲁棒性 → 扩展任务。",
+    "caption_system": "caption 统一以斜体 Figure/Table n. 开头，随后用 roman 说明 setup、编码、比较与主发现。Figure 3 依赖 Figure 2，Figure 4 明示采样限制，Figure 8 的 (Left) (b) 与图内 (a) 不一致；Figure 1/2/4/5/6/7/9 大体可独立解释，caption 自足性并不完全一致。",
+    "table_header_system": "Table 1 采用模型组 → 任务 → 指标三层表头、booktabs-like 水平规则和无竖线结构；一位小数与粗体/灰底突出 + PoCo。Accuracy 单位、cost denominator 与重复统计未进入表头，需由相邻正文补足。",
+    "method_result_ablation_link": "Figure 1 的 θ/λ 伪代码差异由 Theorem 1–3、Algorithm 3–4 形式化；Figure 2/3 观察 refresh 跳变；Figure 4–6 检验 IVON-PoCo(Mo) 与 α-SVRG 扩展；Figure 7/9 消融 α/refresh/schedule，Figure 8 检验 correction start 和 continual setting。直接删除 Hessian correction 或 posterior component 的因果消融没有出现。",
+    "main_appendix_link": "正文 Figure 1–5 保留算法桥梁、convex、GPT-2 和 ImageNet 主结果；附录 Figure 6–9/Table 1 承担 α-SVRG、refresh/schedule、continual、finetuning、硬件和时间语境。正文 p7/p9 回调 Sec. E/F；公开仓库有实现但没有对应绘图源，无法重建完全相同矢量输出。",
+    "typography_consistency": "图内与 caption 共享 Nimbus Roman/Computer Modern 体系，字号约 6.7–10.7 pt，均为矢量对象；Figure 1 的伪代码数学密度最高，Figure 2/3 三 panel 的刻度最小，Figure 4–9 的轴标题/legend 略大。Table 1 与 caption 家族一致。",
+    "color_consistency": "红 #DC143C 始终强调 PoCo/校正，蓝 #4682B4 常表示 IVON/VSGD，灰/黑表示 baseline/reference，浅灰 #D3D3D3 表示事件/辅助。Figure 2–6 的语义最稳定；Figure 8 增加深红/粉红且 caption 写 purple/pink，形成局部颜色合同漂移。颜色缺少全面的形状/线型冗余，灰度与色觉异常下可读性受限。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 的同构伪代码：逐行固定基线接口，只突出新增状态/更新项，再由 caption 指向 theorem/algorithm。",
+      "Figure 2/3 的事件条 + 性能曲线：将 outer refresh 作为独立事件，并在 caption 定义其与性能跃迁的关系。",
+      "Figure 4–6 的双资源分母：同一任务同时用 optimizer steps、gradient evaluations 或 data examples seen，显式暴露额外计算后的收益边界。",
+      "Figure 9 的 schedule→result 成对 panel：左图展示策略、右图展示 consequence，共享 x 轴和图例。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：方法接口和理论桥梁。",
+      "Figure 2：主比较与 refresh 机制最清晰。",
+      "Figure 4：质量收益和 gradient-computation 反证并置。",
+      "Figure 5：step-axis 与 data-example-axis 的边界。",
+      "Figure 9：α schedule 的可解释消融。"
+    ],
+    "failure_patterns": [
+      "全部 Figure/Table 都缺少重复级不确定性。",
+      "颜色承担过多系列 identity，形状冗余不足。",
+      "Figure 3/8 caption 有跨图依赖或子图误标。",
+      "Figure 4 省略 mega-batch 期间的常数验证段。",
+      "Figure 7 右 panel 的 log-like x 轴未明确声明。",
+      "Table 1 缺少 accuracy 单位和成本列，Qwen 模型字符串存在排版不一致。"
+    ],
+    "one_sentence_visual_strategy": "论文用矢量化同构算法、事件标记曲线和双资源分母把 posterior correction 从理论接口推进到质量/效率边界，再以附录 schedule、timing、continual 和 finetuning 对照补齐适用范围，但点估计和颜色主导的呈现仍限制可复核性。"
+  }
+}

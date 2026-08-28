@@ -1,0 +1,1122 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-72f24b2e940f",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/SPOC-group/QuadraticNetPowerlaw"
+    ],
+    "selected_repository": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+        "path": "visualisation.ipynb",
+        "role": "plot_script",
+        "tool": "Matplotlib 3.9.4 + pandas + NumPy + SciPy",
+        "evidence": "gh 只读读取的 notebook 含 rates/spectra 绘图单元；设置 text.usetex=True、Computer Modern Roman、全局 font.size=12，Figure 3 使用 2 × 3 GridSpec、dots/solid/black guides，Figure 2 使用 200-bin histograms 与 blue/purple/orange 语义。"
+      },
+      {
+        "repository_url": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+        "path": "fig/rates.pdf",
+        "role": "rendered_asset",
+        "tool": "Matplotlib PDF backend 3.9.4",
+        "evidence": "公开编译资产与论文 Figure 3 的 2 × 3 risk layout、对数轴和 d-series 对齐；论文内部 Form 名称为 ./img/rates.pdf。"
+      },
+      {
+        "repository_url": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+        "path": "fig/spectra.pdf",
+        "role": "rendered_asset",
+        "tool": "Matplotlib PDF backend 3.9.4",
+        "evidence": "公开编译资产与论文 Figure 2 的 2 × 3 spectrum layout 对齐；公开资产右下标题为 VI，而论文 PDF 为 VIa，故仅作为部分视觉源。论文内部 Form 名称为 ./img/spectra.pdf。"
+      },
+      {
+        "repository_url": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+        "path": "data/matrix/simulations/*.csv",
+        "role": "data_file",
+        "tool": "pandas read_csv",
+        "evidence": "visualisation.ipynb 的 rates/spectra 单元读取 matrix simulation CSV，生成 quadratic network 的 dots/histograms。"
+      },
+      {
+        "repository_url": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+        "path": "data/matrix/theory/*.csv",
+        "role": "data_file",
+        "tool": "pandas read_csv",
+        "evidence": "visualisation.ipynb 的 rates/spectra 单元读取 matrix theory CSV，生成 state-evolution curves、bulk/spike prediction 和对应参数选择。"
+      },
+      {
+        "repository_url": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+        "path": "data/lasso/simulations/*.csv",
+        "role": "data_file",
+        "tool": "pandas read_csv",
+        "evidence": "visualisation.ipynb 的 rates 单元读取 lasso simulation CSV，生成 Figure 3 diagonal-network dots。"
+      },
+      {
+        "repository_url": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+        "path": "data/lasso/theory/*.csv",
+        "role": "data_file",
+        "tool": "pandas read_csv",
+        "evidence": "visualisation.ipynb 的 rates 单元读取 lasso theory CSV，生成 Figure 3 diagonal-network theory curves。"
+      },
+      {
+        "repository_url": "https://github.com/SPOC-group/QuadraticNetPowerlaw",
+        "path": "data/matrix/spectra/*.txt",
+        "role": "data_file",
+        "tool": "pandas read_csv + NumPy histogram",
+        "evidence": "visualisation.ipynb 的 spectra 单元读取 eigenvalues_d_* 文件、按 200 bins 生成 Figure 2 的 simulation histograms。"
+      }
+    ],
+    "search_note": "PDF 页 42 明确链接 github.com/SPOC-group/QuadraticNetPowerlaw；gh api 读取仓库元数据与递归树，完整标题严格搜索也只返回该仓库。README 标题与论文严格匹配。公开仓库提供 visualisation.ipynb、fig/rates.pdf、fig/spectra.pdf 及其数据，因此覆盖 Figure 2/3；没有论文 .tex、TikZ/PGF 或 Figure 1/4/5/6/7/8 的公开 plotting source。PDF 内部还出现 ./img/spectrum_lasso_lowreg_v2.pdf、./img/spectrum_lasso_largereg_v2.pdf、./img/lasso_Rvslambda_v2.pdf、./img/lasso_reg_comparisons_v2.pdf 等 Form 名称，但它们不是公开仓库路径，不记录为 sourceFile。源状态为 partial_visual_source。"
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 0,
+    "appendix_figures": 5,
+    "appendix_tables": 0,
+    "dominant_figure_typography": {
+      "family": [
+        "Computer Modern Roman",
+        "Computer Modern Math",
+        "Nimbus Roman"
+      ],
+      "size_pt": {
+        "minimum": 3.0,
+        "median": 8.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [],
+      "body_size_pt": null,
+      "header_size_pt": null,
+      "header_weight": "regular",
+      "provenance": "rendered_estimate",
+      "confidence": "low"
+    },
+    "palette_strategy": "理论相图用淡黄色/蓝/绿/紫/橙/青绿 categorical fills，红色专用于 discontinuous boundary；spectrum panels 用蓝 simulation、紫 bulk、橙红 spikes；risk panels 用 plasma 顺序色区分 d 或 sweep 条件。黑色轴、文字和 rate guides 稳定跨图。",
+    "vector_raster_mix": "Figure 1–4、6–8 为 PDF vector paths/Form XObjects；Figure 5 是唯一栅格对象，为页 18 的 RGB 1166×566、236 ppi image 加灰度 mask。",
+    "style_consistency": "LaTeX Computer Modern/Nimbus Roman 字体、黑色轴/文字、无网格和约 1–1.5 pt 线条贯穿对象；Figure 1/4、Figure 2/6/7、Figure 3/5/8 分别复用 phase、spectrum、risk 视觉合同。F6–F8 的 panel/刻度文字很小，Figure 5 的栅格化是主要渲染差异。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 6,
+      "module": "Results 2.1–2.3 / theory phase diagram",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "theory_mechanism",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Excess risk rates of Result 1 as a function of n and λ(n, d), with a sketch of the corresponding spectral properties of the learned weights (Result 2). Red lines represent discontinuous phase boundaries.",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "Nimbus Roman"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#ffec97",
+          "#b1d3e1",
+          "#d2eba9",
+          "#c6cfe5",
+          "#fec6b0",
+          "#a8ead2",
+          "#ff0000",
+          "#b2b2b2",
+          "#000000"
+        ],
+        "semantic_mapping": "淡色填充编码 Ia–VIb phase；红色标 discontinuous boundary；灰色为 learned-spectrum inset；黑色为边界、轴和文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 8,
+        "legend_items": 6,
+        "annotations": 14,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "图右侧的 risk-rate legend",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "effective samples n_eff；标注 Θ(d^-1)、Θ(1)、n_eff^cross、Θ(d)、Θ(d^{2γ})，为示意 regime 轴",
+        "y": "regularization λ；标注 1/d 与 phase boundaries，为示意尺度",
+        "color": "phase fill；红/黑边界；灰色 spectral sketches",
+        "shape": null,
+        "line": "黑色连续边界、红色 discontinuous boundary、点线分隔 IV/V",
+        "facet": "单一相图内的 Ia、Ib、II、III、IV、V、VIa、VIb phase",
+        "text": "phase 名称、阈值、risk-rate legend、spectral inset"
+      },
+      "data_and_statistics": "理论示意图，不是样本统计。横向变量为 diagonal case 的 n 或 quadratic case 的 n/d；相区公式表达 Result 1 的渐近 excess-risk order，inset 表示 zero/bulk/spike/outlier 结构。没有原始观测、重复、分母、误差或失败值。",
+      "evidence_relation": "引言 scaling-law 问题 → diagonal/quadratic ERM 到 sparse vector/low-rank matrix estimation 的接口 → Result 1 risk rates 与 Result 2 spectra → Figure 1 作为全篇 phase/headline map → Figures 2–3 的谱与 finite-size 检查 → Appendix B Figure 4 的 noiseless extension；不是组件删除消融。",
+      "design_strengths": [
+        "在窄幅单图中把 n_eff、λ、risk order 与 learned-spectrum state 对齐。",
+        "红/黑边界区分 discontinuous 与连续转变，phase label 与小谱 inset 形成直接语义锚点。",
+        "与 Figure 2 的 bulk/spike 术语和 Result 3 的 risk decomposition 形成方法—机制接口。"
+      ],
+      "design_weaknesses": [
+        "legend 只列部分 phase 的 risk order，Ia/Ib 语义需要正文补足；淡色区灰度区分度有限。",
+        "示意边界和阈值间距不是数值比例，不能从视觉几何估计 crossing。",
+        "spectral sketches 没有定量坐标、样本分母或不确定性，不能单独承担实证结论。"
+      ],
+      "reusable_pattern": "将渐近 phase/rate map 与各 regime 的 spectral inset 配对，用 direct labels、风险公式和不同边界线型同时编码机制；若转为实证图，应补完整 legend、坐标比例和灰度冗余。",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 1；正文页上半部横向相图",
+        "bbox": [
+          117,
+          85,
+          506,
+          253
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "Results 2.2–2.3 / quadratic learned spectra",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "histogram",
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2: Comparison between spectra from simulations and theory across different training phases. Blue: eigenvalue histograms after training. Purple/orange: theoretical predictions for bulk and spikes, respectively (16) (for clarity, spike histograms are shown separately). Notice that our theory also predicts a spike at zero, which we do not plot for visual clarity. All panels use d = 800 except III, for which we have d = 400. Bottom row: λ = 1/d with n = 100, 1.94 × 10^4, 1.28 × 10^6. Top row: λ = √d with n = 800, 6.4 × 10^6, 2 × 10^7. We discuss the phenomenology in Section 2.3.",
+        "word_count": 104,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.3,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#8ecdf1",
+          "#94346e",
+          "#e17c05",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝色为 simulation eigenvalue histogram；紫色为理论 bulk；橙色为理论 spikes；黑色为轴/文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 6,
+        "data_marks_estimate": 1200
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左上 panel 内的共享 legend",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Eigenvalue，linear，约 0–6/7",
+        "y": "Eigenvalue density，log，约 10^-2–10^1",
+        "color": "simulation=蓝；theory bulk=紫；theory spikes=橙",
+        "shape": "histogram bars 与 line/step 的形状区分",
+        "line": "bulk 为实线，spikes 为 step/直方图，histogram 为填充柱",
+        "facet": "2 × 3：上排 Ib/II/III，下排 Ia/IV/VIa",
+        "text": "panel phase 标题、共享 legend、x/y labels 与对数刻度"
+      },
+      "data_and_statistics": "每个 panel 展示训练后约 d 个 learned-weight eigenvalues 的密度 histogram，并叠加式 (16) 的 bulk 与 spike 理论；所有 panel d=800，III 为 d=400；底排 λ=1/d、n=100/1.94×10^4/1.28×10^6，上排 λ=√d、n=800/6.4×10^6/2×10^7。zero Dirac spike 按 caption 为清晰度省略；没有误差、重复 seed、区间、失败值或 bin/重复汇总说明。",
+      "evidence_relation": "Result 2 的 soft-thresholded/noisy learned spectrum → Figure 1 的 phase labels → Figure 2 的 simulation/bulk/spike overlay → Section 2.3 Result 3 的 universal error decomposition；承担 mechanism、main comparison、qualitative evidence，不是消融。",
+      "design_strengths": [
+        "共享坐标与固定 panel 顺序使不同 phase 的 bulk/spike 演化可横向读。",
+        "simulation、bulk、spikes 同时使用颜色和 histogram/line/step 形状区分。",
+        "caption 交代 zero spike 的显示取舍及每个 n、d、λ 条件。"
+      ],
+      "design_weaknesses": [
+        "6 个 panel 的刻度和 legend 偏小，右侧 panel 依赖共享 legend 回看。",
+        "蓝/紫/橙仍主要承担来源语义，灰度或重叠时辨认成本上升。",
+        "公开 fig/spectra.pdf 右下标题为 VI，论文 PDF 为 VIa；无 uncertainty display 或重复波动。"
+      ],
+      "reusable_pattern": "用统一坐标的多 panel histogram + theoretical decomposition 对齐 regime；将来源/理论分量分别用填充、step、line 和颜色编码，并在 caption 给出每 panel 的 n、d、λ。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2；正文页 2 × 3 spectrum panels",
+        "bbox": [
+          118,
+          85,
+          500,
+          258
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 10,
+      "module": "Experimental design / Results 1 finite-size check",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "experimental_design",
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 3: Excess risk in simulations (dots, d = 100, 200, 400, 800) versus non-asymptotic state evolution (solid lines) as a function of n_eff (n_eff = n for the diagonal case, n_eff = n/d for the quadratic case) with λ = 1/d, 1, √d and ∆ = 0.5. The risk is rescaled such that it starts at 1. We find excellent agreement, despite state evolution being rigorous only in the asymptotic limit n_eff/d = Θ(1) with d ≫ 1. Black lines indicate the decay rates of the excess risk predicted by Result 1, again showing good agreement. The networks are trained in PyTorch using LBFGS as detailed in Appendix F.",
+        "word_count": 110,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.3,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#0d0887",
+          "#6a00a8",
+          "#b12a90",
+          "#e16462",
+          "#000000"
+        ],
+        "semantic_mapping": "四个 plasma 色依次表示 d=100/200/400/800；黑色表示 Result 1 rate guide 与轴/文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 13,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "右上 panel 的 lower-left interior（共享 d legend）",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 13,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "n_eff，diagonal case 为 n，quadratic case 为 n/d，log",
+        "y": "normalized excess risk，log；起点重标化为 1",
+        "color": "plasma 色按 d=100、200、400、800",
+        "shape": "simulation 用 '.' marker；理论和 rate guide 无 marker",
+        "line": "同色 solid line=state evolution；black solid segments=Result 1 decay guides",
+        "facet": "2 × 3：上排 quadratic、下排 diagonal；列为 λ=1/d、1、√d",
+        "text": "row labels、column λ titles、legend、斜率指数"
+      },
+      "data_and_statistics": "∆=0.5；d=100/200/400/800 的 simulation dots 与 non-asymptotic state-evolution solid curves比较，风险按 caption 归一化到起点 1。公开 notebook 从 matrix/lasso simulation/theory CSV 读取数据，并设置所有 axes 为 log x/y、xlim 1 到 9×10^4；simulation 使用 marker='.'、markersize=6、linestyle=''，理论线默认约 1.5 pt。图中无 error bar、band、seed 分布、区间或失败标记；Appendix F 才说明 finite-matrix Monte Carlo 与 LBFGS。",
+      "evidence_relation": "state-evolution equations → Result 1 的 risk-rate prediction → Figure 3 finite-size simulation vs non-asymptotic SE → caption 明示 asymptotic rigor 边界 → Appendix F numerical details；是主比较/实验设计/复现证据，不是组件消融。",
+      "design_strengths": [
+        "dots、同色 solid 和黑色 guide 分别对应 simulation、theory 与 predicted exponent，三层语法明确。",
+        "行列布局将 network type 与 regularization 正交化，log axes 覆盖多个数量级。",
+        "caption 同时给 n_eff 定义、∆、d、重标化和理论适用边界。"
+      ],
+      "design_weaknesses": [
+        "四个 d 系列主要依赖颜色，灰度和色觉异常下缺少 marker/线型冗余。",
+        "没有 uncertainty display，无法从图上判断有限样本 dots 的重复波动；legend 只出现在一个 panel。",
+        "视觉 agreement 不能替代非渐近证明，黑色参考线与彩色曲线在小字号下会重叠。"
+      ],
+      "reusable_pattern": "以统一 log-log 多 panel 叠加有限尺寸 marks、理论 solid 和机制 rate guides；行/列固定为模型与控制量，并在 caption 给出归一化、重复单位和理论边界。",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 3；正文页 2 × 3 risk panels",
+        "bbox": [
+          122,
+          74,
+          500,
+          259
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 18,
+      "module": "Appendix B / Result 4 noiseless phase diagram",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: Excess risk rates of result 4 for the noiseless task (∆ = 0), the corresponding spectral properties of neural networks.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "Nimbus Roman"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#ffec97",
+          "#b1d3e1",
+          "#d2eba9",
+          "#c6cfe5",
+          "#ff0000",
+          "#b2b2b2",
+          "#000000"
+        ],
+        "semantic_mapping": "淡色填充编码 Ia/Ib、II、III、IV；红色为 noiseless 图中的 discontinuous boundary；灰色为 spectrum inset；黑色为边界/轴/文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 5,
+        "legend_items": 4,
+        "annotations": 8,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "图右侧的四项 risk-rate legend",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "effective samples n_eff（diagonal=n，quadratic=n/d），标 Θ(1)、Θ(d)，为示意 regime 轴",
+        "y": "regularization λ 与 noiseless phase boundary，为示意尺度",
+        "color": "phase fill、red discontinuity、gray spectrum sketch",
+        "shape": null,
+        "line": "黑色连续边界；红色 discontinuous boundary",
+        "facet": "单一相图内的 Ia、Ib、II、III、IV",
+        "text": "phase labels、rate legend、λ=n_eff^{...}/√d 边界标注"
+      },
+      "data_and_statistics": "∆=0 的理论 Result 4 risk rates 与 learned-spectrum sketches；不是实证数据。没有样本点、重复、分母、误差、区间或失败值；相区风险阶由 legend/正文 Appendix B 定义。",
+      "evidence_relation": "Figure 1 noisy Result 1 map → Appendix B 的 ∆=0 Result 4 推导 → Figure 4 简化 phase/rate/spectrum map → Figure 5 noiseless finite-size check；承担 theory mechanism/robustness，不是组件删除消融。",
+      "design_strengths": [
+        "沿用 Figure 1 的 phase-map palette 与边界语言，便于直接观察去噪后的 regime 变化。",
+        "把 risk order 与 spectral sketch 并置，保持 Result 4 与 Result 2/3 的接口。"
+      ],
+      "design_weaknesses": [
+        "caption 很短，未解释 phase legend、边界类型、横轴示意比例或各色 risk order。",
+        "概念边界无数值坐标，且无 uncertainty/实证点，不能单独检验 Result 4 的数值准确度。",
+        "caption 将 Result 4 写成小写 result 4，编辑一致性较弱。"
+      ],
+      "reusable_pattern": "对控制条件（noiseless）复制主理论相图，保持颜色/边界合同以突出变化；caption 应列出 phase legend 并显式指出相对 Figure 1 的差异。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 4；附录 B 页上半部横向相图",
+        "bbox": [
+          117,
+          85,
+          507,
+          252
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 18,
+      "module": "Appendix B / Result 4 finite-size check",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 5: Excess risk in simulations versus non-asymptotic state evolution (solid lines) as a function of n_eff. The setting is the same as Figure 3 except that ∆ = 0. Black lines indicate the decay rates of the excess risk predicted by Result 4, again showing good agreement.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#0d0887",
+          "#6a00a8",
+          "#b12a90",
+          "#e16462",
+          "#000000"
+        ],
+        "semantic_mapping": "四个 plasma 色区分 d=100/200/400/800；黑色为 Result 4 decay guides、轴和文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 13,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "上排右侧 panel 的 lower-left interior（共享 d legend）",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 13,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "n_eff，log；对角为 n，quadratic 为 n/d（继承 Figure 3）",
+        "y": "normalized excess risk，log，延伸至约 10^-8",
+        "color": "plasma 色按 d=100/200/400/800",
+        "shape": "simulation dots 与 theory solid 的 marker/line 形状区分",
+        "line": "同色 solid=state evolution；black solid segments=Result 4 decay guides",
+        "facet": "2 × 3：上排 quadratic、下排 diagonal；列 λ=1/d、1、√d",
+        "text": "row/column labels、legend、decay-rate exponent"
+      },
+      "data_and_statistics": "∆=0；其余 layout/参数承接 Figure 3，比较四个 d 的 simulation dots 与 non-asymptotic state evolution，并叠加 Result 4 decay guides。没有 error bar、band、seed 分布、区间、失败标记或独立重复定义；caption 通过“same as Figure 3”引用条件。",
+      "evidence_relation": "Appendix B Result 4 → Figure 4 noiseless phase map → Figure 5 finite-size simulation/SE comparison → 正文“Result 4 are confirmed”与 Appendix F numerical details；是 robustness/main comparison/reproduction，不是组件消融。",
+      "design_strengths": [
+        "与 Figure 3 同构，直接隔离 ∆=0 对 rate 的影响并保留 dots/solid/black guide 合同。",
+        "log axes 呈现 noiseless 低风险尾部，多 panel 让 quadratic/diagonal 与 λ 条件可对照。"
+      ],
+      "design_weaknesses": [
+        "唯一 RGB 栅格对象，放大时像素化；无 uncertainty display，颜色仍是 d 的主身份编码。",
+        "caption 依赖 Figure 3，不能完全自包含；图内设置需回看主图。",
+        "低风险曲线与参考线密集，灰度/小尺寸下识别困难。"
+      ],
+      "reusable_pattern": "将控制条件作为与主实验同构的 paired panel 以提高归因性；发布时保持矢量输出，并在 caption 重述关键设置而不只交叉引用。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 5；附录 B 页中部 2 × 3 risk panels；RGB object 62 0",
+        "bbox": [
+          127.8,
+          313.3,
+          484.2,
+          486.3
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 28,
+      "module": "Appendix C.2.1 / LASSO spectra phases IV–VIb",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "histogram",
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 6: Comparison between spectra from simulations and theory across different training phases. Blue: LASSO estimator’s components (in absolute value) histograms after training. Red: theoretical prediction eq. (51). All panels use d = 5000 and λ = d^−1/2. The sample size is n = 200 for Phase IV, n = 4000 for Phase V, n = 6000 for Phase VIa and n = 4 · 10^4 for Phase IVb. We discuss the phenomenology in Section 2.3.",
+        "word_count": 76,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "Nimbus Roman"
+        ],
+        "size_pt": {
+          "minimum": 3.3,
+          "median": 5.3,
+          "maximum": 6.7
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#8ecdf1",
+          "#e17c05",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝色为 absolute LASSO-component simulation histogram；橙红色为式 (51) theory；黑色为轴/文字。histogram 与 line 提供形状冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左上 panel（Phase IV）内的共享 legend",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "|θ̂_i|，linear；不同 phase 的 visible x-window 约 0–60",
+        "y": "component density，log",
+        "color": "blue simulation；orange/red theory",
+        "shape": "histogram fill 与 theory step/line",
+        "line": "theory 为 step/line，simulation 无线 marker",
+        "facet": "2 × 2：IV、V、VIa、VIb",
+        "text": "panel phase title、共享 legend、对数刻度"
+      },
+      "data_and_statistics": "所有 panel d=5000、λ=d^-1/2；n 分别为 200（IV）、4000（V）、6000（VIa）、4×10^4（VIb）。每 panel 是 absolute LASSO components 的 density histogram 与式 (51) theoretical prediction；无 bin 数、seed/重复、error、区间或失败值。caption 末尾把 VIb 条件写为 Phase IVb。",
+      "evidence_relation": "Result 2 learned spectrum/LASSO reduction → Section 2.3 phase/risk interpretation → Figure 6 在高维 d=5000 下检查 IV/V/VIa/VIb 的 spectrum overlay → Appendix C.2.1；是 reproduction/qualitative mechanism evidence，不是 ablation。",
+      "design_strengths": [
+        "2 × 2 将相邻 phase 并置，共用坐标/legend，便于观察 bulk/spike 形态随 n 的变化。",
+        "absolute-value 处理、simulation histogram 和 theory line 的语义在 caption 中明确。"
+      ],
+      "design_weaknesses": [
+        "panel label、刻度和指数极小，颜色与图形差异在缩放/灰度下仍不稳健。",
+        "caption 的 Phase IVb 与 panel/正文 VIb 冲突，直接破坏 phase-to-condition 映射。",
+        "没有 uncertainty，也没有与仓库公开路径对应的 plotting source。"
+      ],
+      "reusable_pattern": "将理论 phase 固定为 small multiples，并用同轴 histogram + prediction line 验证结构；caption 同时给 d、n、λ 和校验过的 phase label。",
+      "evidence": {
+        "page": 28,
+        "label": "Figure 6；附录 C.2.1 页上方 2 × 2 spectrum panels",
+        "bbox": [
+          130,
+          293,
+          495,
+          466
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 28,
+      "module": "Appendix C.2.1 / LASSO spectra phases Ib–III",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "histogram",
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 7: Comparison between spectra from simulations and theory across different training phases. Blue: LASSO estimator’s components (in absolute value) histograms after training. Red: theoretical prediction eq. (51). All panels use d = 5000; Phase Ib: n = 200, λ = 2n/√d; Phase II: n = 4000, λ = 10; for Phase III: n = 4 · 10^4, λ = 3. We discuss the phenomenology in Section 2.3.",
+        "word_count": 68,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "Nimbus Roman"
+        ],
+        "size_pt": {
+          "minimum": 3.3,
+          "median": 5.3,
+          "maximum": 6.7
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#8ecdf1",
+          "#e17c05",
+          "#000000"
+        ],
+        "semantic_mapping": "蓝色为 absolute LASSO-component simulation histogram；橙红色为式 (51) theory；黑色为轴/文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左侧 Ib panel 右上/上方的共享 legend",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "|θ̂_i|，linear；Ib/II/III 的窗口约 0–2、0–50、0–60",
+        "y": "component density，log，约 10^-3–10^1",
+        "color": "blue simulation；orange/red theory",
+        "shape": "histogram fill 与 theory step/line",
+        "line": "theory 为 step/line，simulation 为 filled histogram",
+        "facet": "1 × 3：Ib、II、III",
+        "text": "panel phase title、共享 legend、对数刻度"
+      },
+      "data_and_statistics": "所有 panel d=5000；Ib 为 n=200、λ=2n/√d；II 为 n=4000、λ=10；III 为 n=4×10^4、λ=3。展示 absolute LASSO components 与式 (51) theory overlay；没有 bin/seed/重复、误差、区间、失败值或 raw counts。",
+      "evidence_relation": "Result 2/3 spectral phase theory → Appendix C.2.1 numerical setup → Figure 7 检查 Ib/II/III → 与 Figure 6 合并支撑 phase phenomenology；不是组件删除消融。",
+      "design_strengths": [
+        "补齐 Figure 6 未覆盖的 Ib/II/III，使多个 phase 使用同一 simulation/theory 视觉合同。",
+        "caption 明确写出 d、n、λ，histogram 与 theory line 易于识别。"
+      ],
+      "design_weaknesses": [
+        "三 panel 压缩使字体、指数和 legend 很小，且 x-window 不同但未在图中强调。",
+        "caption 的 Phase III 条件有句点分隔排版错误；theory 颜色在 caption 中称 Red，而渲染偏橙。",
+        "无 uncertainty 和公开 plotting source，有限 single-panel density 不能衡量重复波动。"
+      ],
+      "reusable_pattern": "用 small multiples 固定理论阶段并复用颜色/几何语法；在 panel header/caption 明示每 panel 的 x-window、聚合单位与不确定性。",
+      "evidence": {
+        "page": 28,
+        "label": "Figure 7；附录 C.2.1 页下方 1 × 3 spectrum panels",
+        "bbox": [
+          110,
+          560,
+          502,
+          672
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 29,
+      "module": "Appendix C.2.1 / LASSO risk crossovers and λopt",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line",
+        "scatter"
+      ],
+      "purpose": [
+        "main_comparison",
+        "theory_mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 8: (Left) Excess risk of the LASSO estimator, as a function of the regularization strength λ, with d = 200, ∆ = 0.5, γ = 0.75. Dots represent numerical experiments, while lines the solution R_n,d of state evolution equations 48. The curves correspond to the crossovers between rates observed in Fig. 1. (Right) Excess risk of the LASSO estimator, as a function of the sample size n, with d = 100, ∆ = 0.5, γ = 1. The regularization λ_opt has been chosen as the minimizer of the theoretical excess risk R_n,d and its value is in accordance with Corollary 1. Dots represent numerical experiments, while lines the solution of state evolution equations 48.",
+        "word_count": 115,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math",
+          "Nimbus Roman"
+        ],
+        "size_pt": {
+          "minimum": 2.7,
+          "median": 5.3,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#0d0887",
+          "#6a00a8",
+          "#b12a90",
+          "#e16462",
+          "#fca636",
+          "#000000"
+        ],
+        "semantic_mapping": "左 panel 五种 n、右 panel 五种 λ/λopt 条件由 plasma/categorical 色区分；黑色为 rate guides、轴和文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "左、右 panel 各自的上方/内部 legend",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 3,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左：regularization strength λ，log；右：sample size n，log",
+        "y": "excess risk，log",
+        "color": "左：n=35/200/300/500/3000；右：λ=d^-1/2/2、d^-1/2、(n/d)^1/2、1、λopt",
+        "shape": "dots 为 numerical experiments；line 无 marker",
+        "line": "solid line=state-evolution solution；左 panel black guides 标 λ^-2/3、λ^(2−1/γ)、λ^2 等 rate",
+        "facet": "左/右两个 risk sweep panel",
+        "text": "panel conditions、legend、rate exponent labels、λopt label"
+      },
+      "data_and_statistics": "左 panel d=200、∆=0.5、γ=0.75，比较五个 n（正文段落为 35、200、300、500、3000）随 λ 的 risk crossover；右 panel d=100、∆=0.5、γ=1，比较五种 regularization 随 n 的 risk，λopt 为理论 R_{n,d} minimizer。dots 与 state-evolution lines 无重复/误差/区间/失败值；左 legend 实际显示 n=300 的重复项，和正文 n=3000 冲突。",
+      "evidence_relation": "Figure 1 的 phase boundary/rate → Appendix C.2.1 LASSO numerical crossovers → Figure 8 左 panel 的 λ sweep 与右 panel 的 λopt/n sweep → Corollary 1；承担 main comparison、theory mechanism、reproduction，不是组件消融。",
+      "design_strengths": [
+        "左 panel 给出固定 n 调 λ 的 crossover，右 panel 给出随 n 使用 λopt 的决策视角，形成配对叙事。",
+        "log axes、dots/solid 对照和黑色 rate guides 将 phase map 与可观测风险连接。",
+        "caption 对两个 panel 的 d、∆、γ、状态演化和 λopt 选择均有说明。"
+      ],
+      "design_weaknesses": [
+        "字体、指数和 legend 过小；左 legend 的 n=300 重复/疑似漏 0 会改变条件解释。",
+        "五色系列主要依赖颜色，虽然 dots/solid 提供了来源冗余，但不同 n/λ 条件没有线型或 direct label。",
+        "无 uncertainty display，无法评价 numerical dots 的波动或 λopt 的有限样本误差。"
+      ],
+      "reusable_pattern": "将参数 sweep 与理论最优策略的 sample sweep 成对展示，用同一 state-evolution/marker 合同把 phase map 推到 tuning consequence；图内应直接标出正确样本量并加入冗余编码。",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 8；附录 C.2.1 页上方双 panel risk sweep",
+        "bbox": [
+          120,
+          230,
+          508,
+          348
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 给 noisy task 的 n_eff–λ phase/risk/spectrum 总图；Figure 2 将 phase 转成 quadratic eigenvalue bulk/spike overlay；Figure 3 用 finite-d simulation 检查 non-asymptotic state evolution；Appendix Figure 4/5 延伸至 noiseless Result 4；Figures 6/7 将 spectrum overlay 迁移到 LASSO phases；Figure 8 把 phase crossover、interpolation peak 与 λopt 变成 risk sweeps。整体链条是 theory map → mechanism → finite-size agreement → noiseless control → LASSO extension → tuning consequence。",
+    "caption_system": "Figure 1–8 均用 Figure N: 标题式 caption；Figure 2/3/6/7/8 说明颜色/线型或实验条件，Figure 3/5/8 写出 agreement 或 λopt 结论。Figure 5 用 same as Figure 3 降低自包含性；Figure 6 把 VIb 写成 IVb；Figure 7 有句点排版错误；Figure 8 左 legend 的 n=300 与正文 n=3000 冲突。没有对象显示 error bar/band，因此 caption 也没有不确定性定义。",
+    "table_header_system": "PDF 正文和附录没有 Table/Tab. caption、表格线框、表头层级或表格图像；无表头、精度或 best/second-best 系统可审计。",
+    "method_result_ablation_link": "核心方法将浅层 diagonal/quadratic ERM 映射为 sparse vector/LASSO 与 low-rank matrix estimation，再用 state evolution 给 risk/spectrum。Figure 1–3 对应 Result 1–3，Figure 4–5 对应 noiseless Result 4，Figure 6–8 为附录 numerical support；没有组件删除、baseline 替换或独立 ablation，∆=0 是 control regime 而非组件消融。",
+    "main_appendix_link": "正文 Figure 1–3 位于 Results 2.1–2.3 与 experimental design；Appendix B 放 Figure 4/5；Appendix C.2.1 放 Figure 6–8；Appendix F 给 Figure 3/5 的 finite-size state-evolution、Monte Carlo、LBFGS 和计算细节。",
+    "typography_consistency": "所有对象使用嵌入 LaTeX 数学/衬线字形；公开 notebook 对 Figures 2/3 明确设置 Computer Modern Roman + usetex。2 × 3、2 × 2、1 × 3 和双 panel 中图内文字约 3–10 pt，保持字体合同但在附录图中压缩明显；Figure 5 的 raster 与相邻 vector 图语义一致而放大品质不同。",
+    "color_consistency": "phase diagrams 采用 pastel fills + red discontinuity；spectrum overlays 采用 blue simulation / purple bulk / orange-red spikes；risk overlays 采用 plasma series。histogram-vs-line、dots-vs-solid、phase direct labels 提供部分冗余，但多系列 risk curves 仍主要依赖颜色，灰度安全性有限。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "phase map + spectral inset：将 phase、risk order、边界类型和 learned spectrum 压缩到同一理论图。",
+      "shared-axis empirical/theory overlay：在固定 panel 网格叠加 simulation marks、theory lines 与 rate guides，连接机制预测和 finite-size 数值。",
+      "paired risk sweeps：将 λ crossover 与 n–λopt sweep 并置，把 phase map 推到 tuning consequence。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：统一 n_eff、λ、risk order 和 learned-spectrum state 的 headline mechanism map。",
+      "Figure 2：将 Result 2 的 bulk/spike/zero-atom 结构转为可检查的 histogram overlay。",
+      "Figure 3：最清楚的 finite-size simulation、state evolution 和 Result 1 rate guide 主比较。",
+      "Figure 8：把 phase crossing 与 λopt 的理论实用含义直接转成风险选择图。"
+    ],
+    "failure_patterns": [
+      "Figure 6–8 的 panel label、刻度、指数和 legend 过小；Figure 3/5/8 多系列仍主要依赖颜色。",
+      "Figure 5 是唯一栅格图且引用 Figure 3；所有风险/谱 overlay 都没有 uncertainty、seed 波动或失败值展示。",
+      "Figure 6 的 IVb/VIb、Figure 7 的句点排版、Figure 8 的 n=300/n=3000 以及公开 spectra 资产的 VI/论文 VIa 存在文字不一致。",
+      "Figure 1/4 的概念边界没有数值比例，Figure 2/6/7 的 histogram 未充分说明 bin/归一化细节，不能单独承担精确定量估计。"
+    ],
+    "one_sentence_visual_strategy": "用统一 phase map、谱分解和 log-risk overlay 把 scaling-law 理论从机制地图推到 finite-size simulation、noiseless control 和 λopt 选择，但需修正文案冲突、减轻颜色依赖并补足不确定性语义。"
+  }
+}

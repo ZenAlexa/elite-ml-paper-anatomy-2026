@@ -1,0 +1,67 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-92c2d1498431",
+  "source_acquisition": {
+    "status": "no_public_source_found",
+    "repository_candidates": [],
+    "selected_repository": null,
+    "visual_source_files": [],
+    "search_note": "PDF 首页、页脚、正文和元数据外链仅指向论文记录（arXiv 2602.12209v1 与 DOI），未提供 code/project/supplementary URL。只读 gh search repos 对完整标题返回空结果；gh api /search/repositories 严格标题匹配 total_count=0；gh api /search/code 对完整标题和 arXiv ID 的命中均为论文索引、会议网页、阅读仓库或本审计仓库元数据，没有作者维护的 plotting、table 或 LaTeX 源。"
+  },
+  "paper_style": {
+    "main_figures": 0,
+    "main_tables": 0,
+    "appendix_figures": 0,
+    "appendix_tables": 0,
+    "dominant_figure_typography": {
+      "family": [],
+      "size_pt": {
+        "minimum": null,
+        "median": null,
+        "maximum": null
+      },
+      "weight": [],
+      "style": [],
+      "provenance": "pdf_object",
+      "confidence": "low"
+    },
+    "dominant_table_typography": {
+      "family": [],
+      "body_size_pt": null,
+      "header_size_pt": null,
+      "header_weight": "regular",
+      "provenance": "pdf_object",
+      "confidence": "low"
+    },
+    "palette_strategy": "PDF 没有 Figure/Table 调色板。渲染页以黑色排版正文和数学公式，蓝色用于引用/内部链接，灰色用于首页 arXiv 竖排标签；这些颜色不编码数据系列、类别、不确定性或结果。",
+    "vector_raster_mix": "pdfimages -list 未报告嵌入栅格图像；页面内容为文字、数学字形和矢量规则。由于 PDF 不含 Figure/Table，不存在对象级 vector/raster mix。",
+    "style_consistency": "letter 双栏页面、运行页眉、章节层级、定理/引理块、公式编号、脚注规则和底部页码在主文、References 与 Appendix A 间保持一致。Figure/Table 专用字体、caption、表头、配色和几何无法比较，因为两类对象均缺失。"
+  },
+  "figures": [],
+  "tables": [],
+  "cross_object_system": {
+    "visual_narrative": "论文采用 theorem/proof 叙事而没有 Figure/Table：p. 1–2 从 user-level DP 内存问题和 contribution capping 直觉起步，p. 3–5 定义流模型、occurrency 与主定理，p. 6–8 展开 hard instance、AvoidHeavyHitters、rounding 和协议归约，p. 11–13 完成 concentration、encoding 及 Quantile/MaxSelect extension 证明。",
+    "caption_system": "PDF p. 1–13 未出现 Figure/Fig. 或 Table/Tab. caption；没有标题、实验设置、编码键、主发现、不确定性定义或附录指针可审计。",
+    "table_header_system": "PDF 不含表格或表头，因此不存在行列层级、row group、指标方向/单位、小数精度、best/second-best、高亮、成本或失败值系统。",
+    "method_result_ablation_link": "没有把方法、理论结果或消融外化为视觉对象。§2.3 的四步 hard-instance 构造、§3 的 communication game 与 rounding 通过正文和公式连接到 Theorem 2.1–2.3；论文不含 empirical result、baseline、cost 或 component-removal ablation。",
+    "main_appendix_link": "正文 p. 6 的 §3 说明缺失证明移至 appendix；p. 8 的交叉引用调用 A.1/A.2，p. 11–13 的 A.1–A.4 补全相关证明和 extension gadgets。该调用链由文字、公式和内部链接完成，没有 main/appendix visual slice 或配对图表。",
+    "typography_consistency": "全篇可观察到 Nimbus Roman/Computer Modern 风格的双栏正文与数学字体、分级粗体标题和稳定页眉页脚；没有 Figure/Table 对象，无法比较图内字体、图例字号或表头字号。",
+    "color_consistency": "黑色正文与数学、蓝色引用/内部链接和首页灰色 arXiv 标签在页面间保持导航层级；不存在承担系列、类别、误差或高亮语义的图表颜色。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "对定理/证明驱动的 lower-bound 论文，使用稳定双栏层级、运行页眉和数学字体，将问题定义、构造、归约、证明和结论组织成连续文本证据链。",
+      "用编号步骤、定理/引理块、公式编号和附录交叉引用拆解通信游戏与 rounding 依赖，避免把公式排版误计为 Figure/Table。",
+      "明确区分证明构造中的随机性与 empirical visualization；在无数据评估时不虚构图表、误差或实验对照。"
+    ],
+    "highest_value_objects": [
+      "PDF 实际包含 0 Figure、0 Table，因此不存在可排序的视觉对象；最有信息价值的证据是 p. 5 Theorem 2.1、p. 7 Lemma 3.1/Corollary 3.3、p. 8 §3.3 和 p. 11–13 A.1–A.4 的证明链，但它们不属于本审计对象。"
+    ],
+    "failure_patterns": [
+      "缺少视觉摘要或主结果表，CountDistinct、Quantile 和 MaxSelect 的下界关系需要沿定理和证明交叉引用重建。",
+      "没有 caption、表头、数据单位、重复数、不确定性或成本/失败列；读者无法用常见 empirical ML 图表界面快速获取比较结果。",
+      "严格匹配 gh 检索只得到论文索引/元数据命中，缺少作者 plotting、table 或 LaTeX source；PDF 本身也不含可复原的图表对象。"
+    ],
+    "one_sentence_visual_strategy": "论文以全篇双栏的文字与数学证明链作为唯一视觉组织方式，从 capping 直觉推进到 hard instance、通信归约、主定理和附录证明，未设置 Figure/Table 层。"
+  }
+}

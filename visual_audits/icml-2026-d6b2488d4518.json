@@ -1,0 +1,2550 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-d6b2488d4518",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/aiha-lab/ReQAT",
+      "https://github.com/NVIDIA/Model-Optimizer",
+      "https://openreview.net/forum?id=aKY52fnzgc",
+      "https://arxiv.org/abs/2606.15682"
+    ],
+    "selected_repository": "https://github.com/aiha-lab/ReQAT",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/aiha-lab/ReQAT",
+        "path": "README.md",
+        "role": "other",
+        "tool": null,
+        "evidence": "README title and scope match ReQAT; it documents the released implementation and deployment/training entry points but does not generate the paper figures."
+      },
+      {
+        "repository_url": "https://github.com/aiha-lab/ReQAT",
+        "path": "methods/daroc/auto_scale.py",
+        "role": "other",
+        "tool": null,
+        "evidence": "Implements paired pre-RoPE scale search used by Q-FIT; no plotting calls or figure-export code."
+      },
+      {
+        "repository_url": "https://github.com/aiha-lab/ReQAT",
+        "path": "methods/daroc/pre_quant.py",
+        "role": "other",
+        "tool": null,
+        "evidence": "Provides calibration/pre-quantization path related to the method; no paper-figure generator."
+      },
+      {
+        "repository_url": "https://github.com/aiha-lab/ReQAT",
+        "path": "training/reqat/custom_trainer.py",
+        "role": "other",
+        "tool": null,
+        "evidence": "Contains the ReQAT/SEM training-loss implementation; it supports method interpretation but has no chart export."
+      },
+      {
+        "repository_url": "https://github.com/aiha-lab/ReQAT",
+        "path": "deploy/trtllm/bench_throughput.py",
+        "role": "other",
+        "tool": null,
+        "evidence": "Benchmarks throughput used for the efficiency claim; the checked file is a benchmark runner, not an exact Figure 6 renderer."
+      },
+      {
+        "repository_url": "https://github.com/aiha-lab/ReQAT",
+        "path": "training/reqat/trackio.ipynb",
+        "role": "plot_script",
+        "tool": "matplotlib.pyplot / trackio",
+        "evidence": "The notebook plots generic train/loss, grad_norm, epoch, mean_token_accuracy and num_tokens monitoring; it is the only plotting-oriented artifact found and is not bound to Figures 1–11."
+      }
+    ],
+    "search_note": "PDF 首页明确链接作者仓库 aiha-lab/ReQAT；inventory 的自动候选 NVIDIA/Model-Optimizer 与本文有关联但不是作者论文仓库。已核查作者仓库默认分支 main、commit 55038ae6ac807a33f9192a25a03f54a03789d21e 的 README 与递归 tree，并读取 Q-FIT、SEM、throughput 和 trackio 文件。仓库包含核心实现与一个通用 matplotlib 监控 notebook，却没有 Figure 1–11 或 Table 1–17 的精确 plot/table generator、TeX/TikZ 或导出数据；因此记录为 partial_visual_source。inventory 仍写 no_public_source_found，本轮仅在审计结果中反映作者链接，不改 inventory。"
+  },
+  "paper_style": {
+    "main_figures": 7,
+    "main_tables": 7,
+    "appendix_figures": 4,
+    "appendix_tables": 10,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "NimbusMonL-Regu"
+      ],
+      "size_pt": {
+        "minimum": 4.0,
+        "median": 6.5,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "NimbusMonL-Regu"
+      ],
+      "body_size_pt": 6.8,
+      "header_size_pt": 7.6,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "定量图以灰、蓝、红、绿、紫等离散颜色区分 BF16、PTQ、QAT 与 ReQAT 阶段；机制图用低/高熵和路径色，Q-FIT 热图用蓝–红发散色，表格主要依赖黑白、粗体和星号。颜色、直接标签、行组和线型提供部分冗余，但大量渲染估计色值没有公开源文件支持。",
+    "vector_raster_mix": "论文外壳文字和表格为 PDF 字体对象；Figure 1–11 为嵌入图形/栅格与矢量文字的混合视觉对象，Figure 8–9 尤其偏 raster/text trace；未发现可复用的精确导出源。",
+    "style_consistency": "双栏 Letter 页面、caption 置于对象下方、Nimbus Roman/Computer Modern 数学字体和 booktabs 风格横线保持一致；复合图内部的字号、色彩和轴语法随对象职责变化，附录小图和宽表的密度明显更高。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar",
+        "line",
+        "scatter",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 1. (a) NVFP4 W4A4KV4 PTQ accuracy drop across DeepSeek-R1-Distilled models. Accuracy of (b) MXFP4 W4A16 and (c) NVFP4 W4A4KV4 on R1-Qwen-14B, comparing Full-FT and QAT. (d) Accuracy–throughput across deployment recipes.",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#7F7F7F",
+          "#4F81BD",
+          "#C0504D",
+          "#9BBB59",
+          "#8064A2",
+          "#F79646"
+        ],
+        "semantic_mapping": "Gray denotes BF16/reference, blue-red-green-purple-orange distinguish PTQ, FT+PTQ, QAT and ReQAT stage variants; direct values, stars and row groups repeat the mapping.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 7,
+        "legend_items": 7,
+        "annotations": 16,
+        "data_marks_estimate": 55
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "panel-local upper area and top of panel (b)",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "panel (a): distilled model categories; panel (b): total fine-tuning token budget; panel (c): recipe/bit-precision categories; panel (d): throughput speedup",
+        "y": "accuracy drop or AIME accuracy (%) in (a-c); accuracy (%) in (d)",
+        "color": "method and deployment recipe",
+        "shape": "bars in (a,c), point/line series in (b), scatter points in (d)",
+        "line": "budget-dependent accuracy trajectories in (b); no connecting trend in (d)",
+        "facet": "four panels labelled (a)-(d) with distinct comparison grammars",
+        "text": "model names, method names, stars, direct speedup/accuracy/storage callouts and panel labels"
+      },
+      "data_and_statistics": "Panel (a) groups GSM8K, MATH-500 and AIME-120 accuracy drops after NVFP4 PTQ for Llama-8B, Qwen-14B, Qwen-32B and Llama-70B. Panel (b) plots AIME accuracy over 0–1.1B tokens for BF16, PTQ, Full-FT, Full-FT+PTQ, QAT, QAD and ReQAT. Panel (c) compares W4A4KV4 recovery variants. Panel (d) places accuracy against throughput speedup and annotates 3.1×, +9.1% and −65% storage; all are point estimates with no uncertainty or replicate summary.",
+      "evidence_relation": "Introduction identifies FP4 reasoning degradation → Figure 1 links the degradation, training-budget recovery and deployment trade-off → Tables 1–3 provide the exact budget/method values, while Figure 6 expands the throughput/memory claim.",
+      "design_strengths": [
+        "Four panels move from failure magnitude to training recovery and deployment cost in one page-width object.",
+        "Panel (b) makes budget saturation and ReQAT’s trajectory visible; direct annotations in (d) make the headline trade-off scannable.",
+        "Repeated method names and bit-precision labels let the panels be read independently."
+      ],
+      "design_weaknesses": [
+        "The four panels use unrelated scales and grammars, so cross-panel magnitude comparisons require the caption and surrounding prose.",
+        "No error bars or seed aggregation appear even though Appendix D.1 states eight random seeds; the accuracy–throughput panel has no uncertainty or Pareto-front explanation.",
+        "Small method labels and the multiple W4A4KV4 abbreviations are difficult at two-column reduction; direct storage/speedup callouts lack a denominator in the figure."
+      ],
+      "reusable_pattern": "Use a four-panel evidence ladder—degradation, budget curve, recipe comparison, efficiency scatter—with repeated method colors and direct headline labels, while stating the evaluation unit and uncertainty once in the caption.",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "other",
+        "bar",
+        "line",
+        "conceptual_diagram",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "experimental_design",
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2. (a) Visualization of low- and high-entropy tokens. (b) Changes in token probability distributions under FP4 quantization. (c-d) Illustration of entropy-aware mixed-precision decoding. (e) Sensitivity of AIME accuracy to logit noise injected at low- vs. high-entropy token positions across LRMs. (f) Tail-mass ratio and top-1 mismatch rate across token-entropy bins.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 4.2,
+          "median": 6.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#9E480E",
+          "#2F5597",
+          "#70AD47",
+          "#A5A5A5",
+          "#FFC000"
+        ],
+        "semantic_mapping": "Brown/blue/green/gray/yellow separate low-high entropy examples, model/policy conditions and tail/mismatch curves; panel labels and direct text provide redundancy.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 10,
+        "legend_items": 6,
+        "annotations": 30,
+        "data_marks_estimate": 80
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "panel-local; compact legends in (e-f)",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "(a) token examples; (b) probability alternatives; (c-d) routing policy/response count; (e) noise scale σ; (f) entropy bins",
+        "y": "(b) token probability; (c-d) correct-response count; (e) AIME accuracy; (f) tail-mass and top-1 mismatch ratios",
+        "color": "entropy level, routing source and metric series",
+        "shape": "word-cloud text, bars, routing arrows, four line-chart facets and dual-axis curves",
+        "line": "noise sensitivity curves in (e); tail/mismatch trends in (f)",
+        "facet": "six panels with qualitative, procedural and quantitative subviews",
+        "text": "low/high entropy, H_t, τ=0.6, model names, correct counts and direct bar labels"
+      },
+      "data_and_statistics": "The object combines token word clouds, two probability-distribution bar comparisons, entropy-aware routing diagrams, correct-response counts, four σ-sensitivity line charts for R1-Qwen-7B/14B and Qwen3-4B/8B, and a 20-bin tail-mass/top-1 mismatch plot. It uses no error bars or bands; panel (f) uses two metrics on a dual-axis presentation and the qualitative panels omit numerical axes.",
+      "evidence_relation": "Low-entropy token failures are the proposed mechanism → Figure 2 diagnoses probability flattening, routing sensitivity and tail redistribution → Figure 7 measures gradient allocation and Figure 9 supplies trace-level examples; Table 15 tests decoding as a competing explanation.",
+      "design_strengths": [
+        "The six-panel sequence connects an intuitive token example to distributional, routing and sensitivity evidence.",
+        "Entropy threshold and token-bin vocabulary recur in Figures 4, 8 and 9, giving the mechanism a stable visual grammar.",
+        "Direct counts and model names reduce ambiguity in the routing and cross-model panels."
+      ],
+      "design_weaknesses": [
+        "Qualitative word clouds and routing diagrams sit beside quantitative plots with different scales and reading directions.",
+        "Panel (f) uses dual axes and a dense 20-bin x-axis; uncertainty, bin sample counts and the exact noise injection protocol are absent from the object.",
+        "The caption names “low- vs. high-entropy” but does not define the entropy estimator, probability aggregation or denominator for correct-response bars."
+      ],
+      "reusable_pattern": "Build a mechanism figure as a progression from intuitive tokens to probability perturbation, intervention policy and cross-model sensitivity; pair every qualitative panel with a quantified denominator and axis definition.",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 2: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3. ReQAT overview. ReQAT performs BF16 FT, calibrates RoPE quantization parameters (s, m) to minimize attention logit error Δz, and applies Q-FIT initialization followed by trace-aligned QAT with SEM loss on a TAQ subset to obtain an FP4 ReQAT model.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#F2F2F2",
+          "#D9EAF7",
+          "#F6E7CB",
+          "#DDEBF7",
+          "#E2F0D9",
+          "#1F77B4"
+        ],
+        "semantic_mapping": "Neutral and pastel blocks distinguish BF16 FT, Q-FIT calibration, TAQ/SEM and the FP4 output; arrows and component labels carry the process semantics.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 26,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "left-to-right training/deployment stages",
+        "y": "lower calibration target and data-subset relation",
+        "color": "stage blocks and output emphasis",
+        "shape": "rounded process blocks, arrows, formula cards and small probability bars",
+        "line": "directed arrows from BF16 model to FP4 ReQAT model",
+        "facet": null,
+        "text": "BF16 FT, Q-FIT, Δz, TAQ subset, SEM, FP4 and output 3.05×/+9.11% callouts"
+      },
+      "data_and_statistics": "Pipeline schematic: BF16 FT precedes Q-FIT calibration of paired RoPE scale/shift parameters, then trace-aligned QAT with SEM on a TAQ subset, producing an FP4 ReQAT model. The diagram also includes the attention-logit-error target Δz and output callouts 3.05× token/s and +9.11% AIME accuracy, without axes or uncertainty.",
+      "evidence_relation": "Method introduces Q-FIT, TAQ and SEM as coupled stages → Figure 3 is the method interface → Figure 5 visualizes Q-FIT calibration, Figure 7 tests TAQ’s gradient mechanism and Tables 4–5 isolate the stages.",
+      "design_strengths": [
+        "The left-to-right pipeline exposes stage order, data-subset nesting and the calibration objective in one view.",
+        "Arrows, block colors and formula text redundantly encode the interface, making the method easy to locate while reading the equations.",
+        "The figure links the method to deployment-level output callouts rather than leaving efficiency disconnected."
+      ],
+      "design_weaknesses": [
+        "The output callouts lack an explicit configuration/denominator inside the schematic; DGX Spark uses W4A4KV8 while B200 uses native W4A4KV4, which is explained later.",
+        "Many formulas and small labels are compressed into one composite, with no visual distinction between training evidence and illustrative design.",
+        "The caption claims the full pipeline but does not define the SEM weighting or trace-alignment relation."
+      ],
+      "reusable_pattern": "Use a single pipeline with explicit stage boundaries, data subset notation and one objective card; attach deployment numbers to a separately identified benchmark condition.",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 3: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 4. (a) Average entropy change across baseline entropy bins. (b) Normalized entropy across entropy bins.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#9E480E",
+          "#2F5597",
+          "#70AD47",
+          "#A5A5A5",
+          "#FFC000"
+        ],
+        "semantic_mapping": "Brown/blue/green/gray/yellow separate low-high entropy examples, model/policy conditions and tail/mismatch curves; panel labels and direct text provide redundancy.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 4,
+        "annotations": 10,
+        "data_marks_estimate": 28
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "panel-local upper area",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "four baseline entropy percentile bins: 0–25%, 25–50%, 50–75%, 75–100%",
+        "y": "panel (a) average entropy change on a log y-axis; panel (b) normalized entropy on a linear 0–1 scale",
+        "color": "FT, QAT and same/different-trace FT+QAT conditions",
+        "shape": "grouped bars in both panels",
+        "line": null,
+        "facet": "average change and normalized entropy panels",
+        "text": "entropy percentile bins, token budgets and local legends"
+      },
+      "data_and_statistics": "Panel (a) compares average entropy change across four baseline-entropy bins for FT(280M), QAT(280M) and FT(280M)+QAT at 35/70/140/280M; panel (a) uses a logarithmic y-axis. Panel (b) compares normalized entropy for QAT, different-trace FT+QAT and same-trace FT+QAT on a linear scale. No uncertainty is displayed and the aggregation unit is not printed.",
+      "evidence_relation": "The paper argues that aligned QAT focuses on low-entropy anchors → Figure 4 shows entropy redistribution and normalization by baseline bins → Figure 7 follows with gradient contribution ratios and Table 4 isolates trace alignment.",
+      "design_strengths": [
+        "The two panels share the entropy-bin vocabulary and make the mechanism’s direction visible at a glance.",
+        "Grouped bars support within-bin condition comparisons and local legends keep the single-column object readable.",
+        "The log scale in (a) reveals small changes that would be visually compressed on a linear scale."
+      ],
+      "design_weaknesses": [
+        "The y-scale changes between panels and the caption does not flag the log/linear distinction or define normalization.",
+        "There are no error bars despite multiple token budgets and seeds; the difference between same- and different-trace conditions is visually subtle at paper size.",
+        "The caption contains no sample count, entropy estimator or precise aggregation definition."
+      ],
+      "reusable_pattern": "Use matched entropy bins across two panels to separate absolute change from normalized change, with an explicit scale note and a common replicate/aggregation definition.",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 4: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 6,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar",
+        "heatmap",
+        "other"
+      ],
+      "purpose": [
+        "method_interface",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 5. Visualization of Pre-/Post-RoPE key cache and calibration results via Q-FIT. More results are in Fig. 10 in Appendix.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.8,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 7,
+        "hex": [
+          "#313695",
+          "#4575B4",
+          "#74ADD1",
+          "#ABD9E9",
+          "#FEE090",
+          "#FDAE61",
+          "#D73027"
+        ],
+        "semantic_mapping": "Blue-to-red heatmap encodes calibration error, with red annotations identifying avoid-scaling/shift regions; alpha axes and colorbars provide the quantitative key.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 5,
+        "series": 3,
+        "legend_items": 4,
+        "annotations": 18,
+        "data_marks_estimate": 95
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "panel-local",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "panel (a) W4A4/W4A4KV4 recipe categories; panels (b-e) token/channel or α_s/α_m calibration coordinates",
+        "y": "panel (a) AIME accuracy; panels (b-e) key magnitude or calibration error",
+        "color": "Q-FIT/TAQ/SEM conditions and diverging calibration-error heatmaps",
+        "shape": "grouped bars, 3-D surfaces and 2-D heatmaps",
+        "line": null,
+        "facet": "accuracy plus pre-RoPE/post-RoPE layer examples",
+        "text": "TAQ, Q-FIT, SEM, layer IDs, α_s, α_m, “Avoid scaling/shift” and colorbar labels"
+      },
+      "data_and_statistics": "Panel (a) compares TAQ, TAQ+Q-FIT and TAQ+Q-FIT+SEM for W4A4 and W4A4KV4. Panels (b-e) show Layer 13 pre-RoPE key magnitude, its α_s/α_m error surface, Layer 1 post-RoPE key magnitude and its corresponding heatmap; the heatmaps identify red avoid-scaling/shift regions. The accuracy bars and calibration surfaces are point/illustrative views with no uncertainty.",
+      "evidence_relation": "Q-FIT is introduced as RoPE-consistent calibration → Figure 5 connects the calibration geometry to AIME recovery → Algorithm 1 specifies the grid search, Figure 10 extends the layer-wise view and Table 5 ablates scale/shift/E1M2 choices.",
+      "design_strengths": [
+        "The accuracy panel gives the method a performance anchor while the surface/heatmap pair explains where calibration parameters act.",
+        "Layer labels and α_s/α_m axes make the Q-FIT transformation interface more concrete than a pipeline alone.",
+        "The diverging error maps use a colorbar and explicit avoid annotations, supporting local interpretation."
+      ],
+      "design_weaknesses": [
+        "3-D perspective surfaces and dense heatmaps make absolute comparisons difficult; z units and the exact error objective are not visible in the caption.",
+        "Five different panel grammars and multiple layer contexts increase cognitive load, with tiny axes and annotations at page reduction.",
+        "No seed dispersion or calibration-sample variability is shown; the caption only points to Appendix Fig. 10 rather than defining the full setup."
+      ],
+      "reusable_pattern": "Pair one outcome panel with a before/after calibration geometry and aligned heatmap, keeping identical units and an explicit objective/colorbar across all layers.",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 5: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6. End-to-end throughput speedup for (a) DGX Spark and (b) B200. (c) BF16 vs. NVFP4 inference memory breakdown.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 4.3,
+          "median": 6.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#7F7F7F",
+          "#2F75B5",
+          "#70AD47",
+          "#B24D3C"
+        ],
+        "semantic_mapping": "Gray BF16, blue NVFP4, green NVFP4-ReQAT and red reference/limit accents distinguish deployment recipes and memory constraints; direct speedup labels repeat them.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 17,
+        "data_marks_estimate": 38
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top/right of panels",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "output token length: 1,024–8,192 on DGX Spark; 2,048–16,384 on B200",
+        "y": "TPS speedup relative to BF16 in (a-b); required memory (GB) in (c)",
+        "color": "BF16, NVFP4 and NVFP4-ReQAT paths; memory component fills/lines",
+        "shape": "grouped bars for speedup, stacked/line memory breakdown",
+        "line": "memory growth and dashed total-memory traces in (c)",
+        "facet": "DGX Spark, B200 and memory panels",
+        "text": "1.00× baselines, direct speedup labels, BF16/NVFP4 memory components and B200 GPU-memory reference"
+      },
+      "data_and_statistics": "DGX Spark reaches 3.93× NVFP4 and 3.90× ReQAT speedup; B200 reaches 3.13× and 3.05× at the plotted maxima. Panel (c) breaks required memory into BF16/NVFP4 weight and KV components with dashed totals and a B200 GPU-memory line. Values are single benchmark traces with no run-to-run uncertainty; DGX Spark’s FP4 path uses W4A4KV8 while B200 uses W4A4KV4 per Appendix D.3.",
+      "evidence_relation": "Results claim that FP4 reduces serving cost without losing ReQAT accuracy → Figure 6 is the efficiency/capacity evidence → Table 1/3 establish accuracy, and Appendix D.3 specifies hardware, software, request count and memory-saturated batching.",
+      "design_strengths": [
+        "The first two panels normalize to a 1.00× BF16 baseline, making speedups directly legible.",
+        "Panel (c) links throughput gains to weight/KV memory components and marks the capacity boundary.",
+        "Hardware names, output lengths and direct labels expose the deployment dimensions rather than presenting one aggregate number."
+      ],
+      "design_weaknesses": [
+        "The two hardware panels have different token-length ranges and quantization paths; the FP8 KV exception is deferred to the appendix and can be missed.",
+        "No confidence/replicate variation or batch-size trace is shown, so capacity-driven speedups can look more universal than the protocol supports.",
+        "The single-column width forces small legends and dense memory labels; the dashed total and GPU line need a more explicit legend key."
+      ],
+      "reusable_pattern": "Show normalized speedup beside a component-level memory budget and mark the hardware/path exception in the same visual object or caption.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 6: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 7. Gradient contribution ratio of low-entropy tokens during QAT. TAQ increases gradient allocation toward vulnerable low-entropy tokens, while misaligned traces dilute this effect.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#7F7F7F",
+          "#C0504D",
+          "#70AD47"
+        ],
+        "semantic_mapping": "Gray FT, red different-trace QAT and green same-trace QAT encode gradient-allocation conditions; line identity is repeated in the legend.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 4,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "training step",
+        "y": "gradient contribution ratio C_low",
+        "color": "FT, different-trace FT+QAT and same-trace FT+QAT",
+        "shape": "three line series",
+        "line": "solid colored traces over a faint gray variable background",
+        "facet": null,
+        "text": "C_low label, training step, legend and low-entropy token description"
+      },
+      "data_and_statistics": "The single line chart tracks C_low over training steps 0–160 for FT(35M), different-trace FT(35M)+QAT(35M) and same-trace FT(35M)+QAT(35M). The same-trace curve is visibly higher toward the end; no error bars, bands, seed aggregation or denominator annotation accompanies the ratio.",
+      "evidence_relation": "TAQ is hypothesized to reallocate learning signal to low-entropy anchors → Figure 7 is the direct mechanism test → Figure 4 shows entropy changes and Table 4 gives the controlled trace-alignment ablation.",
+      "design_strengths": [
+        "One focused metric and three conditions keep the mechanistic comparison readable.",
+        "The legend maps the conditions directly and the x-axis shows training progression, supporting the causal sequence described in the text.",
+        "The caption states the directional finding, so the figure has a clear role in the evidence chain."
+      ],
+      "design_weaknesses": [
+        "The gray background variability visually resembles an uncertainty band without a definition; the colored traces still have no replicate uncertainty.",
+        "The y-axis range is narrow and the chart does not define whether C_low is per batch, seed-averaged or token-weighted.",
+        "Line overlap near the beginning makes the condition difference depend on the endpoint trend."
+      ],
+      "reusable_pattern": "Use a narrow mechanism plot with a predeclared ratio, aligned training coordinate and explicit replicate envelope; reserve background traces for a defined uncertainty encoding.",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 7: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "other"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "failure",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 8. Example of entropy-aware mixed-precision decoding. We route low-entropy tokens to the full-precision model and high-entropy tokens to the quantized model, using an entropy threshold τ (e.g., τ = 0.6).",
+        "word_count": 31,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 4.3,
+          "median": 6.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#2F5597",
+          "#70AD47",
+          "#C0504D",
+          "#7F7F7F",
+          "#F2F2F2"
+        ],
+        "semantic_mapping": "Blue/green/red/gray and neutral cells separate BF16/quantized routes, high/low entropy interventions and correct/incorrect answers; seed rows and boxed answers add non-color redundancy.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 1,
+        "series": null,
+        "legend_items": 2,
+        "annotations": 28,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "eight seed rows and two entropy-routing conditions",
+        "y": "token-routing stage / generated answer content",
+        "color": "BF16 versus quantized model and low/high-entropy route",
+        "shape": "prompt card plus qualitative routing/output cells",
+        "line": null,
+        "facet": "seed-by-routing qualitative grid",
+        "text": "Gold Answer 242, H_t≥τ/H_t<τ, τ=0.6, seed IDs, answer values and correct markers"
+      },
+      "data_and_statistics": "A page-width qualitative grid presents one AIME prompt with gold answer 242, eight seed rows and route combinations for BF16/quantized models under H_t≥τ and H_t<τ. The body text reports BF16 correct on 6/8 trials and quantized correct on 1/8; the grid itself records outputs and correct-answer markers without an uncertainty statistic.",
+      "evidence_relation": "Figure 2 introduces entropy-aware mixed precision → Figure 8 supplies the appendix seed-level case behind the routing claim → Figure 9 provides a different qualitative intervention, while Tables 2/6/15 carry aggregate accuracy and decoding controls.",
+      "design_strengths": [
+        "Seed rows and explicit gold-answer cells make the qualitative case auditable at the trial level.",
+        "Routing columns keep model precision and entropy condition visible beside each output rather than hiding them in prose.",
+        "The object separates a concrete prompt from the general aggregate benchmark tables."
+      ],
+      "design_weaknesses": [
+        "A single prompt and eight seeds are illustrative evidence, not a prevalence estimate; sample-selection rationale is absent.",
+        "Long prompt/output text and multiple route columns create high density, with answer correctness relying partly on color/markers.",
+        "Caption does not state the dataset split, sampling temperature or whether each seed uses identical generation parameters."
+      ],
+      "reusable_pattern": "Present a selected qualitative case as a seed-by-intervention grid, but always pair it with a predeclared selection rule and an aggregate table.",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Figure 8: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "other"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "failure",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 9. Qualitative examples of entropy-selective logit-noise perturbation. Injecting noise into low-entropy token predictions often introduces minor symbolic errors that cascade into incorrect final answers, whereas perturbations applied only to high-entropy token predictions typically preserve the final answer despite altering the surface form of the reasoning trace.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "NimbusMonL-Regu",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "monospace"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#2F5597",
+          "#70AD47",
+          "#C0504D",
+          "#7F7F7F",
+          "#F2F2F2"
+        ],
+        "semantic_mapping": "Blue/green/red/gray and neutral cells separate BF16/quantized routes, high/low entropy interventions and correct/incorrect answers; seed rows and boxed answers add non-color redundancy.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "green correct-answer box versus red incorrect-answer box; row headers identify intervention",
+        "shape": "three stacked text-trace raster panels",
+        "line": null,
+        "facet": "baseline, high-entropy noise and low-entropy noise rows",
+        "text": "reasoning trace, boxed answers 104/70, check/cross markers and intervention labels"
+      },
+      "data_and_statistics": "Three stacked qualitative traces compare a baseline, high-entropy noise and low-entropy noise condition. Baseline and high-entropy noise end with boxed answer 104 and a check; low-entropy noise ends with boxed answer 70 and a cross. The example has no sample denominator, score distribution or uncertainty encoding.",
+      "evidence_relation": "Figure 2’s noise-sensitivity panel predicts that low-entropy perturbations matter → Figure 9 illustrates the symbolic-error cascade at trace level → Table 15 controls for sampling versus greedy decoding and Figure 7 tests the training-side mechanism.",
+      "design_strengths": [
+        "Identical trace layout makes the intervention contrast immediately comparable.",
+        "The final answer boxes and check/cross markers give redundant semantic cues beyond prose color.",
+        "The example concretizes why a small local symbolic error can affect the final reasoning result."
+      ],
+      "design_weaknesses": [
+        "Long monospaced traces are difficult to scan and reproduce at page width; the selected prompt and generation settings are not stated in the caption.",
+        "Anecdotal traces cannot establish frequency or effect size, yet the caption uses “often” and “typically.”",
+        "The color-coded final answer is not accompanied by an aggregate count or link to the quantitative noise curves."
+      ],
+      "reusable_pattern": "Use aligned trace rows for a local causal illustration, and connect each trace to a quantitative perturbation summary and explicit selection protocol.",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Figure 9: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "line",
+        "other"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 10. (a) Layer-wise calibration behavior with Q-FIT. We visualize key-cache statistics before and after RoPE across multiple layers, together with the corresponding calibration error heatmaps. (b) Training loss comparison under different QAT settings. Using an E1M2 KV cache consistently results in lower training loss compared to TAQ, which adopts E2M1 by default. Incorporating Q-FIT further reduces the training loss relative to TAQ-only variants, indicating more stable and effective quantized training (Model: R1-Qwen-14B).",
+        "word_count": 73,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 3.8,
+          "median": 5.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 7,
+        "hex": [
+          "#313695",
+          "#4575B4",
+          "#74ADD1",
+          "#ABD9E9",
+          "#FEE090",
+          "#FDAE61",
+          "#D73027"
+        ],
+        "semantic_mapping": "Blue-to-red heatmap encodes calibration error, with red annotations identifying avoid-scaling/shift regions; alpha axes and colorbars provide the quantitative key.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 13,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 34,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top of loss panel and local heatmap keys",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "panel (a): channel/layer coordinates and α_s/α_m calibration grid; panel (b): training steps",
+        "y": "panel (a): key-cache magnitude/error; panel (b): training loss",
+        "color": "pre/post-RoPE views and diverging error heatmaps; QAT configuration lines",
+        "shape": "mini heatmaps/surfaces plus four loss lines",
+        "line": "loss trajectories in (b)",
+        "facet": "four layers × pre/post-RoPE/error mini-panels plus loss comparison",
+        "text": "Layer 0/4/30/47, α_s, α_m, colorbars, E1M2/E2M1, Q-FIT and model label"
+      },
+      "data_and_statistics": "Panel (a) shows key-cache statistics before/after RoPE and calibration-error heatmaps across Layers 0, 4, 30 and 47. Panel (b) compares training loss for W4A4KV16 TAQ, W4A4KV4 TAQ, TAQ+E1M2 KV and TAQ+Q-FIT; the caption states E1M2 and Q-FIT lower the loss relative to TAQ-only variants. No uncertainty bands or seed-level traces are shown.",
+      "evidence_relation": "Appendix expands the single-layer geometry in Figure 5 → Figure 10 checks Q-FIT across layers and its training-loss consequence → Table 5 gives the compact Q-FIT ablation and Table 8 fixes quantization metadata.",
+      "design_strengths": [
+        "The repeated layer triplets make the calibration behavior inspectable beyond one cherry-picked layer.",
+        "Heatmaps, colorbars and loss curves connect local calibration error to optimization behavior.",
+        "The caption states the directional training-loss finding and identifies the model."
+      ],
+      "design_weaknesses": [
+        "Thirteen mini-panels create severe label and colorbar density; cross-layer color scales are not explicitly stated as shared.",
+        "Training loss has no uncertainty or run aggregation, and the y-range is narrow enough that small differences can appear decisive.",
+        "The caption assumes the reader knows E1M2/E2M1 and the W4A4KV16 shorthand; the object does not expose calibration data size."
+      ],
+      "reusable_pattern": "Repeat a fixed layer-wise calibration triplet and append one shared-scale loss panel; state whether color limits and training traces are comparable across layers.",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Figure 10: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "other",
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 11. Effect of block rotation and Q-FIT in MXFP4 W4A4. (a) Activation magnitude before and after block rotation, showing a small number of extreme outlier channels. After block-wise Hadamard rotation, outliers are redistributed across channels. (b) Training loss comparison under different QAT settings. Applying block rotation with Q-FIT achieves a training loss comparable to leaving the MLP down-projection layer unquantized, and consistently improves over TAQ with fully quantized down-projection (Model: R1-Qwen-14B).",
+        "word_count": 72,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "size_pt": {
+          "minimum": 4.0,
+          "median": 5.7,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 7,
+        "hex": [
+          "#313695",
+          "#4575B4",
+          "#74ADD1",
+          "#ABD9E9",
+          "#FEE090",
+          "#FDAE61",
+          "#D73027"
+        ],
+        "semantic_mapping": "Blue-to-red heatmap encodes calibration error, with red annotations identifying avoid-scaling/shift regions; alpha axes and colorbars provide the quantitative key.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 12,
+        "data_marks_estimate": 65
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "top of loss panel and panel-local surfaces",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "panel (a): token/hidden dimensions; panel (b): training steps",
+        "y": "panel (a): activation magnitude; panel (b): training loss",
+        "color": "before/after rotation surfaces and three QAT settings",
+        "shape": "two 3-D surfaces and a multi-series line chart",
+        "line": "training-loss trajectories in (b)",
+        "facet": "block-rotation comparison plus loss ablation",
+        "text": "Before/After Block Rotation, outlier channels, BF16 down-projection, Q-FIT and model label"
+      },
+      "data_and_statistics": "Panel (a) contrasts activation magnitude before and after block-wise Hadamard rotation, highlighting redistributed outlier channels. Panel (b) compares training loss for MXFP4 W4A4 TAQ, TAQ with BF16 down-projection and TAQ with Q-FIT; the caption states that block rotation plus Q-FIT approaches the unquantized down-projection loss and improves over fully quantized TAQ. No uncertainty is shown.",
+      "evidence_relation": "Appendix tests rotation as an alternative stabilization mechanism → Figure 11 complements Figure 10’s Q-FIT layer view → Table 17 directly compares Q-FIT and Block Hadamard across training budgets.",
+      "design_strengths": [
+        "The before/after surfaces and loss curves align a transformation-level explanation with an optimization outcome.",
+        "The caption states the comparison target and identifies the model, making the ablation’s intended direction clear.",
+        "Panel (b) provides a common training-step axis for the three settings."
+      ],
+      "design_weaknesses": [
+        "3-D perspective and outlier scale can obscure channel-wise magnitude differences; no exact z units or shared color scale are supplied.",
+        "The qualitative outlier narrative and quantitative loss plot use different visual tasks in a dense composite.",
+        "No replicate envelope or numerical endpoint is printed, so “comparable” and “consistently improves” are visually underdefined."
+      ],
+      "reusable_pattern": "Use a matched before/after transformation view plus a common-axis loss ablation, with shared scales and an explicit endpoint/replicate summary.",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Figure 11: complete object, caption, local labels, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1. AIME accuracy comparison of quantization methods on R1-Qwen-14B. ★ marks the best accuracy per bit-precision.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 6.6,
+        "header_size_pt": 7.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 20,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "All cells are point accuracies; no SD/SE/CI or seed dispersion is printed. The star marks the best cell within each bit-precision group, while Appendix D.1 states that results are averaged over eight random seeds.",
+      "data_and_statistics": "Rows group BF16, MXFP4 W4A16, MXFP4 W4A4 and NVFP4 W4A4KV4; columns are method plus 140M/210M/280M/350M total fine-tuning tokens. ReQAT_T, ReQAT_TQ and ReQAT_TQS provide staged TAQ/Q-FIT/SEM comparisons; the main headline is 68.02 for MXFP4 W4A16 and 65.94 for MXFP4 W4A4 at 350M.",
+      "evidence_relation": "Figure 1 introduces budget/recovery trajectories → Table 1 is the central budget-by-precision result surface → Table 2 transfers to R1-Llama-8B and Table 3 broadens the baseline set; Table 5 isolates Q-FIT components.",
+      "design_strengths": [
+        "The four bit-precision groups keep accuracy and token budget in one decision surface.",
+        "Stars and bold values make within-group best results easy to locate.",
+        "The staged method names expose cumulative additions of TAQ, Q-FIT and SEM."
+      ],
+      "design_weaknesses": [
+        "Twenty body rows and narrow single-column typography make method suffixes and budgets hard to scan.",
+        "The caption does not define T/TQ/TQS or repeat the eight-seed averaging rule; the main text supplies those definitions.",
+        "Point estimates and best-cell selection omit dispersion, so small differences across neighboring budgets lack visible evidential weight."
+      ],
+      "reusable_pattern": "Use grouped rows for precision and a fixed token-budget header for cumulative method ablations; define suffixes and replicate aggregation in the caption.",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 1: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2. Results on R1-Llama-8B under NVFP4 W4A4KV4 (Total fine-tuning budget: 350M tokens) across various benchmarks.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 6.6,
+        "header_size_pt": 7.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "All GSM8K, MATH-500 and AIME-120 entries are point accuracies; no uncertainty or per-task sample count is reported, although Appendix D.1 states eight random seeds.",
+      "data_and_statistics": "The first two rows are BF16 baseline/FT; five NVFP4 W4A4KV4 rows compare Direct PTQ, FT+PTQ and ReQAT_T/ReQAT_TQ/ReQAT_TQS across three benchmark columns. AIME improves from 23.13 Direct PTQ to 41.85 ReQAT_TQS, while GSM8K/MATH-500 remain high.",
+      "evidence_relation": "Table 1 establishes the R1-Qwen-14B budget trend → Table 2 tests model transfer under a fixed 350M budget → Figure 6 and Table 7 test deployment/code-generation generalization.",
+      "design_strengths": [
+        "The compact three-task header makes cross-benchmark transfer immediately visible.",
+        "The fixed total budget is stated in the caption, preventing a direct budget confound within this table.",
+        "Rows preserve the stagewise ReQAT decomposition used in Table 1."
+      ],
+      "design_weaknesses": [
+        "The caption does not state dataset sizes or seed aggregation, so cross-task differences cannot be weighted.",
+        "Precision and method grouping is indicated through sparse cells, which can be missed at reduced scale.",
+        "No delta column or highlighted best cells makes the magnitude of recovery require manual subtraction."
+      ],
+      "reusable_pattern": "Use a fixed-budget cross-task table with a shared method vocabulary and add explicit task denominators or uncertainty when comparing transfer claims.",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 2: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3. Comparison with existing PTQ methods on AIME benchmark across different quantization settings (R1-Qwen-14B).",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 6.6,
+        "header_size_pt": 7.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "AIME accuracies are point estimates with no variance display; rows combine full-precision, W4A16 and W4A4KV4 settings, so precision and method effects are identifiable only through the Bit-Precision/FT columns.",
+      "data_and_statistics": "Six columns encode bit precision, whether FT is used, method, format, group and AIME accuracy. The 16 body rows include BF16 baseline/FT, AWQ/QAD/QAT/ReQAT under W4A16, and QuaRot/FlatQuant/QAT/ReQAT under W4A4KV4; checkmarks in FT and sparse precision cells form row groups.",
+      "evidence_relation": "Table 1 supplies budget curves → Table 3 anchors ReQAT against PTQ/QAT baselines at matched settings → Table 4–5 explain why the method components recover accuracy.",
+      "design_strengths": [
+        "Format and group-size columns make the hardware-relevant comparison more specific than method names alone.",
+        "Sparse checkmarks efficiently identify fine-tuned rows and bold highlights the strongest result.",
+        "The three row groups allow the reader to separate BF16 reference, W4A16 and end-to-end FP4."
+      ],
+      "design_weaknesses": [
+        "The table is dense for a single column and the checkmark/sparse-cell convention is not defined in the caption.",
+        "Rows mix PTQ and FT variants with different transformation formats; no cost or runtime column accompanies the accuracy decision.",
+        "No uncertainty or matched-seed information appears, while the prose uses strong across-setting comparisons."
+      ],
+      "reusable_pattern": "Use a compact baseline matrix with explicit precision, format and group-size columns, but pair it with a separate cost/uncertainty view.",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 3: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 4. Effect of two-stage QAT and trace alignment under different token budgets (MXFP4 W4A16 R1-Qwen-14B).",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 6.6,
+        "header_size_pt": 7.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Three rows report point AIME accuracies for four token budgets; no uncertainty or replicate values are shown.",
+      "data_and_statistics": "Columns are Method, Trace Aligned, and 140M/210M/280M/350M. QAT and FT+QAT without aligned traces are followed by FT+QAT with alignment; the final row reaches 67.29 at 350M and is bolded.",
+      "evidence_relation": "The TAQ mechanism claim in Figure 7 → Table 4 isolates trace alignment while holding MXFP4 W4A16 and R1-Qwen-14B fixed → Table 5 then isolates Q-FIT design choices.",
+      "design_strengths": [
+        "One binary trace-alignment column makes the controlled factor explicit.",
+        "The common budget columns align directly with Table 1 and expose the late-budget gain.",
+        "Minimal booktabs rules preserve readability in a narrow column."
+      ],
+      "design_weaknesses": [
+        "Only three rows and point estimates cannot show variation or interaction with trace composition.",
+        "The caption does not define how “Trace Aligned” is operationalized or how the two-stage budget is split.",
+        "The table has no delta column, so the “about 5%” conclusion is not directly displayed."
+      ],
+      "reusable_pattern": "Use a one-factor ablation with a boolean treatment column and shared budgets; print the treatment delta and replicate summary when the claim is quantitative.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 4: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 5. Ablation of Q-FIT designs (W4A4KV4 R1-Qwen-14B).",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 6.6,
+        "header_size_pt": 7.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 4,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "Final loss is reported to four decimals and AIME accuracy to two decimals; all values are point estimates without SD/SE/CI.",
+      "data_and_statistics": "Six columns encode method, E1M2 KV, pre-RoPE scale, post-RoPE shift, final loss and AIME accuracy. Five rows cover ReQAT_T and ReQAT_TQ variants with checkmark/dash combinations; the full Q-FIT row is bold in accuracy and has the lowest loss (0.7633).",
+      "evidence_relation": "Figure 5 visualizes calibration geometry → Table 5 tests E1M2, pre-RoPE scale and post-RoPE shift combinations → Figure 10 and Table 17 provide layer-wise and rotation comparisons.",
+      "design_strengths": [
+        "The binary component columns make Q-FIT’s joint design legible without repeating long method names.",
+        "Reporting loss beside AIME keeps optimization and task evidence on one ablation surface.",
+        "Mixed precision in the loss column is appropriate for distinguishing close optimization values."
+      ],
+      "design_weaknesses": [
+        "Checkmark/dash semantics and row grouping are compact but not defined in the caption.",
+        "The final-loss comparison may be a training diagnostic rather than an independently validated endpoint; no training-step or seed context is included.",
+        "No uncertainty and no explicit direction arrows accompany the four-decimal loss values."
+      ],
+      "reusable_pattern": "Put component toggles beside both training and task outcomes, and state whether each outcome is seed-averaged and evaluated at a common checkpoint.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 5: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 6. Accuracy across response-length ranges (AIME-120, W4A4KV4 R1-Qwen-14B). Each cell reports acc/#samples.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 6.6,
+        "header_size_pt": 7.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Each cell explicitly reports accuracy/sample count as acc/#samples; the denominator varies by response-length bin and is useful context, but no seed or sampling uncertainty is shown.",
+      "data_and_statistics": "Rows compare BF16 baseline, BF16 FT, PTQ, FT+PTQ, QAT and ReQAT; columns split 0–8K, 8–16K, 16–24K and 24–32K responses. Values are percentages with one decimal and sample counts after a slash; ReQAT reaches 19.3/249 in the longest bin.",
+      "evidence_relation": "Figure 6 addresses serving length/capacity → Table 6 tests reasoning accuracy as response length grows → Figure 9 illustrates a local cascade and Table 15 controls decoding strategy.",
+      "design_strengths": [
+        "The acc/#samples notation makes the changing denominator visible instead of hiding long-response scarcity.",
+        "Length bins form a direct stress axis for the quantization-failure claim.",
+        "Rows include both full-precision and quantized baselines, anchoring the degradation."
+      ],
+      "design_weaknesses": [
+        "The caption does not define whether bins overlap, how responses are sampled or how accuracy is aggregated across seeds.",
+        "Long-bin cells have small counts relative to short bins, yet the table gives no interval or stability cue.",
+        "The one-decimal accuracy format can imply more precision than the long-bin denominators support."
+      ],
+      "reusable_pattern": "Report outcome and denominator together for stratified stress tests, with a minimum-count or replicate cue when tail bins are sparse.",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 6: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 7. LiveCodeBench accuracy on R1-Qwen-14B.",
+        "word_count": 6,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 6.6,
+        "header_size_pt": 7.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "LiveCodeBench values are point accuracies with no task-level variance, confidence interval or per-problem count.",
+      "data_and_statistics": "Columns compare MXFP4 W4A16 and NVFP4 W4A4KV4 for six methods: BF16 baseline/FT, PTQ, QAT, ReQAT_TQ and ReQAT_TQS. ReQAT_TQS reaches 54.52 and 53.59, while BF16 FT is 53.68 in both columns.",
+      "evidence_relation": "Table 2 tests model/benchmark transfer → Table 7 tests code-generation generalization of a math-trained method → Figure 6 establishes the serving cost and Table 3 establishes matched accuracy baselines.",
+      "design_strengths": [
+        "Two deployment columns keep the code-generation transfer check compact.",
+        "Including BF16 and PTQ references prevents the ReQAT result from being read without a quantization baseline.",
+        "The stagewise TQ/TQS rows preserve the mechanism decomposition."
+      ],
+      "design_weaknesses": [
+        "The caption gives no dataset version, task count or evaluation protocol, and T/TQ/TQS are not defined locally.",
+        "A single aggregate hides problem-type heterogeneity and uncertainty.",
+        "No best-cell emphasis or delta column makes the comparison less immediate than Table 1."
+      ],
+      "reusable_pattern": "Use paired deployment columns for out-of-domain transfer, while specifying benchmark version, denominator and stage abbreviations in the caption.",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 7: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 8. Quantization configurations of MXFP4 and NVFP4.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "This is configuration metadata rather than a performance estimate; uncertainty is not applicable.",
+      "data_and_statistics": "Two rows identify MXFP4 and NVFP4; five columns specify element data type, block scale data type, global scale data type and block size alongside the format name.",
+      "evidence_relation": "The main method/results use MXFP4 and NVFP4 shorthand → Table 8 fixes the element and scale metadata needed to interpret Tables 1/3 and Figures 5–6 → Appendix D.3 adds hardware-path details.",
+      "design_strengths": [
+        "The small metadata table gives an exact reproduction anchor for the two FP4 formats.",
+        "Separate element/block/global scale columns avoid overloading one “format” label.",
+        "The table uses concise headers and a clean minimal rule system."
+      ],
+      "design_weaknesses": [
+        "The caption does not identify which rows apply to weights, activations or KV cache in each deployment recipe.",
+        "Block size and scale data types are not accompanied by a notation glossary or implementation reference.",
+        "Configuration metadata is detached from the main result tables, requiring cross-page lookup."
+      ],
+      "reusable_pattern": "Keep quantization metadata in a compact appendix table and cross-reference it at the first result where each format is used.",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Table 8: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 9. Accuracy drop Δ (AIME-120) under NVFP4 W4A4KV4 on R1-Llama-8B, measured relative to the corresponding full-precision FT baseline.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Entries are point accuracy drops Δ in percentage points; no uncertainty or individual-seed drops are shown.",
+      "data_and_statistics": "The first header cell names FT/QAT epochs k and columns 1–5; two rows compare FT(k-ep)→PTQ with FT4-ep→QAT(k-ep). Drops are relative to the corresponding full-precision FT baseline, with the largest displayed values around 15.42 and 13.65.",
+      "evidence_relation": "Table 6 shows length-stratified failure → Table 9 tests whether extra epochs repair the drop → Table 13 compares multi-epoch TAQ with ReQAT, closing the “more training alone” alternative.",
+      "design_strengths": [
+        "The delta-only format focuses attention on degradation rather than duplicating absolute scores.",
+        "Five epoch columns make the non-monotonic trend easy to scan.",
+        "The caption states the reference baseline and deployment setting."
+      ],
+      "design_weaknesses": [
+        "The row label `FT4-ep` and arrow notation require surrounding prose to decode.",
+        "No absolute accuracy or replicate spread accompanies the drops, so practical significance is hard to assess.",
+        "The caption does not define whether k epochs reuse the same 70M-token subset or alter data exposure; that detail is elsewhere."
+      ],
+      "reusable_pattern": "Use a delta table for a controlled stress axis only when the reference baseline and absolute companion result are explicitly linked.",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Table 9: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 10. Year-wise AIME accuracy on R1-Qwen-14B under NVFP4 W4A4KV4. For fine-tuned methods, we report the best accuracy across training budgets.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Year-wise values are point accuracies; no year-level uncertainty is shown. Fine-tuned rows report the best budget, creating a selection effect that the caption does disclose.",
+      "data_and_statistics": "Columns are method, AIME 2022/2023/2024/2025 and Avg. Nine rows include several BF16 reference variants, BF16 FT, PTQ, FT+PTQ, QAT and ReQAT; ReQAT has 67.92/65.42/71.25/59.17 and average 65.94.",
+      "evidence_relation": "Main results aggregate AIME-120 → Table 10 decomposes the aggregate by year and compares the reproduced AIME-2024 baseline to official/reported references → Table 1 retains the budget sweep.",
+      "design_strengths": [
+        "The year-wise split exposes whether the aggregate gain is concentrated in one test year.",
+        "The Avg. column preserves direct linkage to headline AIME-120 values.",
+        "Official/reported baseline rows provide a provenance check for the reproduced evaluation."
+      ],
+      "design_weaknesses": [
+        "“Best accuracy across training budgets” selects a maximum and can make fine-tuned rows optimistic relative to fixed-budget rows.",
+        "Several baseline provenance labels are long and crowd the single-column table.",
+        "No budget or seed dispersion is shown for the selected values, limiting comparability across methods."
+      ],
+      "reusable_pattern": "Decompose an aggregate benchmark by year and retain provenance rows, while reporting the budget-selection rule and selection uncertainty beside the table.",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 10: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 11. Key hyperparameters for training in our experiments.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Hyperparameter metadata has no statistical uncertainty; the table is a deterministic configuration record.",
+      "data_and_statistics": "Two columns list 15 Category/Setting pairs, including 25K max sequence length, RoPE θ=1,000,000, OpenThoughts3 Math subset, NLL, AdamW, 1×10−5 learning rate, cosine scheduler, warmup, batch/accumulation and BF16 precision.",
+      "evidence_relation": "Appendix D.2 describes training and calibration data → Table 11 makes the training configuration reproducible → Tables 1–7 and Figures 4/7/10/11 are the result consumers.",
+      "design_strengths": [
+        "A compact key-value layout records the training defaults without introducing an extra panel.",
+        "It includes data, optimization, batching, checkpointing and precision rather than only the learning rate.",
+        "The two-column structure is easy to cite from code or experiment logs."
+      ],
+      "design_weaknesses": [
+        "The table does not distinguish R1-Qwen-14B from R1-Llama-8B settings where they differ, and calibration settings are not included.",
+        "Long dataset and objective strings are dense at appendix size.",
+        "No version/commit field ties the settings to the released implementation."
+      ],
+      "reusable_pattern": "Use a key-value hyperparameter table as the reproducibility anchor, with explicit model-specific exceptions and source version.",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Table 11: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 12. AIME-90 (2022-2024) accuracy comparison between SEM binary mask and SEM soft weighting under MXFP4 W4A4 TAQ with Q-FIT. Bold denotes the better result at each fine-tuning token budget (Model: R1-Qwen-14B).",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "AIME-90 values are point accuracies with no variance; bold marks the better weighting scheme at each budget.",
+      "data_and_statistics": "Columns are Total Fine-Tuning Tokens, Binary Mask and Soft Weighting; rows are 140M and 210M. Soft weighting is higher in both rows (61.81 vs 60.14; 65.14 vs 63.19).",
+      "evidence_relation": "SEM is introduced in the method and Figure 3 → Table 12 tests hard versus soft low-entropy weighting → Table 16 scans λ, while Table 1 reports the complete method.",
+      "design_strengths": [
+        "The two-column treatment makes the design choice and direction obvious.",
+        "Bold-by-budget gives an immediate within-row winner.",
+        "The caption fixes model, quantization and Q-FIT context."
+      ],
+      "design_weaknesses": [
+        "Only two budgets and no uncertainty make the robustness of the weighting choice hard to judge.",
+        "AIME-90 differs from the main AIME-120 aggregate, requiring cross-reference.",
+        "The caption does not define the exact mask/soft-weight formula or entropy threshold."
+      ],
+      "reusable_pattern": "Present alternative regularization encodings in a compact paired table, with the metric/split and formula definition close to the object.",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Table 12: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 13. Multi-epoch TAQ vs. ReQAT on AIME (R1-Llama-8B).",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "AIME accuracies are point estimates without uncertainty; the bold ReQAT 41.85 is the best displayed value.",
+      "data_and_statistics": "Two data rows (`TAQ Tokens` and `AIME Acc.`) use a two-level header: five multi-epoch TAQ budgets from 70M to 350M and one ReQAT 70M column. The table reports TAQ 38.34–39.48 then 37.71 at 350M versus ReQAT 41.85.",
+      "evidence_relation": "Table 9 tests extra FT/QAT epochs → Table 13 compares multi-epoch TAQ with one-epoch ReQAT → Figure 7 and Table 4 explain why aligned, targeted learning differs from simply increasing exposure.",
+      "design_strengths": [
+        "The spanning header makes the multi-epoch versus ReQAT contrast explicit.",
+        "A one-table, two-row layout keeps the counterfactual concise.",
+        "Bold on the ReQAT endpoint highlights the intended conclusion without color dependence."
+      ],
+      "design_weaknesses": [
+        "The method and token axes are transposed relative to most result tables, increasing lookup cost.",
+        "No run variation or absolute training data reuse detail appears in the object.",
+        "The caption does not say that 350M corresponds to five epochs over the fixed 70M subset; the paragraph below supplies it."
+      ],
+      "reusable_pattern": "Use a spanning header to contrast increasing exposure with a targeted method, but state data reuse and seed aggregation in the caption.",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 13: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 14. Results of ReQAT on MMLU benchmark (model: R1-Qwen-14B).",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "AIME-120 and MMLU values are point accuracies with no uncertainty or task-count metadata.",
+      "data_and_statistics": "Four columns list Bit-Precision, Method, AIME-120 and MMLU. Six body rows group BF16 baseline/FT, W4A16 MXFP4 PTQ/ReQAT and W4A4KV4 NVFP4 PTQ/ReQAT; precision is sparse across grouped rows.",
+      "evidence_relation": "Main AIME tables show the reasoning gain → Table 14 tests non-reasoning MMLU as a boundary condition → Table 10 supplies year-wise AIME and Table 3 supplies method baselines.",
+      "design_strengths": [
+        "Side-by-side AIME/MMLU makes task-dependent sensitivity visible.",
+        "Sparse precision groups keep the table compact and preserve the main comparison.",
+        "The same absolute AIME values link back to Table 1/3 for consistency checking."
+      ],
+      "design_weaknesses": [
+        "MMLU aggregation, subject mix and sample count are omitted, so “non-reasoning” remains broad.",
+        "No delta columns or uncertainty make small MMLU differences difficult to interpret.",
+        "The sparse group labels require careful reading at single-column width."
+      ],
+      "reusable_pattern": "Use a paired reasoning/non-reasoning outcome table to mark the boundary of a method’s benefit, with task composition and uncertainty stated nearby.",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 14: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 15",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "failure",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 15. Accuracy (AIME-120) under NVFP4 W4A4KV4 on R1-Llama-8B, measured relative to the corresponding full-precision FT baseline. T denotes temperature.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Rows report point accuracies and derived Δ values; no seed dispersion is shown. Δ is explicitly the difference FT−FT+PTQ within each decoding setting.",
+      "data_and_statistics": "An eight-column, two-level header separates Sampling (T=0.6, top-p=0.95) and Greedy (T=0, top-k=1), each with FT, FT+PTQ and Δ over FT epochs 1–5. Sampling drops are 11.05–15.42; greedy drops are 7.50–15.00.",
+      "evidence_relation": "Figure 2 diagnoses token-level noise → Table 15 controls decoding strategy as an alternative source of failure → Figure 9 illustrates the local trace effect, and Table 9 tests epoch scaling.",
+      "design_strengths": [
+        "The two-level header makes sampling parameters and method rows explicit.",
+        "Derived delta rows expose the quantization penalty without forcing mental subtraction.",
+        "Five epoch columns reveal that lower greedy drops coexist with lower absolute accuracy."
+      ],
+      "design_weaknesses": [
+        "The page-width table is dense and requires horizontal scanning across eight columns.",
+        "The caption defines T but not the generation seed/count, so accuracy and delta stability are unclear.",
+        "Comparing sampling and greedy changes both stochasticity and absolute baseline, so the causal interpretation needs the surrounding paragraph."
+      ],
+      "reusable_pattern": "Use paired decoding blocks with explicit parameter headers and within-block deltas, while retaining the absolute baseline needed to interpret mitigation versus performance loss.",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 15: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 16",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 16. Ablation results of λ in SEM (R1-Llama-8B).",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "GSM8K, MATH-500, AIME-120 and Avg. are point accuracies; bold marks the best average (74.11) with no uncertainty.",
+      "data_and_statistics": "Six columns encode Q-FIT, λ_SEM, three benchmark accuracies and Avg.; five rows compare no Q-FIT/no SEM, Q-FIT without SEM and λ=.03/.1/.5. The moderate λ=.1 row is bold in Avg.",
+      "evidence_relation": "SEM is part of the ReQAT pipeline → Table 16 tests regularization-strength sensitivity with Q-FIT held on → Table 12 tests weighting shape and Table 5 tests Q-FIT components.",
+      "design_strengths": [
+        "The λ column gives a direct hyperparameter sensitivity axis.",
+        "Multiple benchmarks and an Avg. show whether the selected λ is broadly useful.",
+        "A checkmark/dash column makes the Q-FIT conditioning explicit."
+      ],
+      "design_weaknesses": [
+        "No uncertainty or tuning protocol clarifies whether .1 is reliably best or simply selected by the same evaluation set.",
+        "The caption omits the total token budget and entropy threshold.",
+        "Bold average can obscure that AIME is nearly tied with λ=.5 (41.85 vs 41.88)."
+      ],
+      "reusable_pattern": "Report a small regularization sweep with task-wise outcomes and a prespecified selection rule, avoiding a single bold average as the only stability cue.",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 16: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 17",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 17. Q-FIT vs. RHT on top of TAQ (R1-Qwen-14B).",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "NimbusMonL-Regu"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 6,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "AIME accuracies across four token budgets are point estimates with no uncertainty; bold marks selected Q-FIT wins at 210M and 280M.",
+      "data_and_statistics": "Two-level headers span Transformation Method and Total Fine-tuning Tokens; three body rows compare no transformation, Block Hadamard and Q-FIT under NVFP4 W4A4KV4. Q-FIT reaches 59.79/63.44/65.94/65.21.",
+      "evidence_relation": "Figure 11 visualizes block-rotation outlier redistribution → Table 17 gives the direct Q-FIT versus RHT/Block Hadamard result → Table 5 closes the component ablation and Table 13 tests training-budget alternatives.",
+      "design_strengths": [
+        "The fixed precision label and transformation rows make the alternative explicit.",
+        "Four common budget columns support a direct comparison with Table 1.",
+        "Bold values and horizontal grouping emphasize where Q-FIT wins."
+      ],
+      "design_weaknesses": [
+        "The caption says RHT while the body says Block Hadamard, leaving the naming relation implicit.",
+        "No uncertainty or calibration-cost column accompanies the accuracy comparison.",
+        "The 140M cell is not the best for Q-FIT, so selective bolding needs an explicit best-cell rule."
+      ],
+      "reusable_pattern": "Compare transformations under a fixed quantization setting and common budgets, defining aliases and displaying any calibration/runtime cost beside accuracy.",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 17: headers, body, rules, highlighting, caption, and placement inspected from the 200 dpi render",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "视觉叙事从 Figure 1 的 FP4 degradation/budget/recovery/throughput headline，经 Figure 2 的低熵 token 机制诊断，进入 Figure 3–5 的 TAQ、SEM、Q-FIT 方法接口，再由 Figure 6–7 连接部署成本与梯度机制；附录 Figure 8–11 和 Tables 8–17 扩展路由案例、trace 噪声、layer calibration、rotation、配置、年度切片、超参与消融边界。",
+    "caption_system": "Figure caption 统一采用对象标题加 panel 说明；机制和附录 caption 会写出方向性结论，主结果 caption 多为设置/比较标签。caption 很少定义误差、重复、分母和缩写，T/TQ/TQS 等语义主要留给正文。",
+    "table_header_system": "表头主要用 Bit-Precision/Method、token budget、benchmark 和 deployment format 组合；booktabs/minimal 横线与稀疏 row group 保持外壳一致。多级表头见 Tables 1、13、15、17，且多数表只给点估计，不带 uncertainty 列。",
+    "method_result_ablation_link": "Figure 3 建立 BF16 FT→Q-FIT→TAQ+SEM 的流程，Figure 4/5 与 Tables 4/5/12/16/17 分别将 entropy、trace alignment、Q-FIT、SEM 和 rotation 变成可检验消融；Tables 1–3、6–7 把组件组合映射到准确率/泛化。",
+    "main_appendix_link": "正文 Figure 5 指向 Appendix Figure 10，正文 Figure 2 的 routing/noise 诊断由 Figures 8–9 具象化；正文 Tables 1–7 的配置、年度分解、epoch、解码策略、MMLU 和 λ/rotation 消融由 Tables 8–17 补齐。",
+    "typography_consistency": "正文 caption 与表格的 PDF 字体对象稳定为 Nimbus Roman No9 L 配合 Computer Modern 数学；图内标签多为 4–9 pt 的渲染估计，Figure 9 的 trace 使用等宽字。附录复合图的内部字号变小，但未出现跨对象字体家族断裂。",
+    "color_consistency": "灰色常承担 BF16/reference，蓝/绿/红/紫承担量化或 ReQAT stage，低/高熵和 Q-FIT heatmap 有局部语义；表格主要用黑白粗体/星号。直接标签、panel、row group 和 checkmark 提供冗余，但图内红色警示与多色小图在灰度和缩印下辨识度下降。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 把 degradation、training-budget recovery 和 accuracy–throughput trade-off 排成一个证据阶梯，适合把机制论文的 headline 与部署代价放在同一阅读路径。",
+      "Figure 2 将直觉 token 示例、分布扰动、routing policy、noise sensitivity 和 tail/mismatch 组合成从现象到机制的诊断链。",
+      "Figure 3 的阶段化 pipeline 与 Tables 4–5 的二值组件消融形成方法接口—结果对照，读者可以追踪 TAQ、Q-FIT、SEM 的增量。",
+      "Table 6 的 acc/#samples 和 Table 10 的 year-wise breakdown 展示了把分母/切片显式放进结果对象的可复用做法。",
+      "Appendix Figure 10/11 与 Tables 8、11、15–17 将 layer、quantization metadata、hyperparameters、decoding 和 alternative transformation 作为复现边界补齐。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：最直接的 degradation→recovery→efficiency headline，但应补配置与不确定性定义。",
+      "Figure 2：把低熵失败机制连接到可观测分布与干预，承担全篇机制入口。",
+      "Figure 3：最清晰的方法接口图，能将 BF16 FT、Q-FIT、TAQ、SEM 的顺序与数据关系集中表达。",
+      "Table 1：跨 precision/budget 的核心 AIME 决策面，支撑 ReQAT 的 headline recovery。",
+      "Figure 7 + Table 4：将 trace alignment 的方向性梯度机制与受控准确率消融相互绑定。"
+    ],
+    "failure_patterns": [
+      "几乎所有性能图表都只有点估计；八随机种子、best-across-budget 选择和长响应尾部的稳定性没有在对象内显式编码。",
+      "复合图将定性示意、3-D surface、heatmap、bar/line 混在同一对象，带来小字号、轴语法变化和阅读方向负担。",
+      "缩写、checkmark/dash、row group 与 hardware path 经常依赖正文或附录才能解码；Figure 6 的 DGX Spark FP8 KV 例外尤其容易被忽略。",
+      "定性 Figure 8–9 能解释局部机制，却没有样本选择规则或 prevalence，无法单独承担 aggregate accuracy claim。",
+      "表格普遍缺少成本、失败率或不确定性列；Table 10 的跨 budget 取 best 和 Table 15 的 decoding confound 需要正文边界才能正确解释。"
+    ],
+    "one_sentence_visual_strategy": "论文用低熵 token 这一稳定视觉词汇把 FP4 失败诊断、TAQ/SEM/Q-FIT 方法接口、准确率恢复、部署成本和附录消融串成一条证据链，结构复用清楚，统计不确定性、分母与源码绑定仍是主要缺口。"
+  }
+}

@@ -1,0 +1,1633 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-1c5182bdf0c8",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/cvenhoff/thinking-llms-interp"
+    ],
+    "selected_repository": "https://github.com/cvenhoff/thinking-llms-interp",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/cvenhoff/thinking-llms-interp",
+        "path": "train-saes/visualize_clusters_beautified.py",
+        "role": "plot_script",
+        "tool": "matplotlib/seaborn",
+        "evidence": "Source-exact Figure 2 grid: 2×5/2×4 panel layout, custom blue–off-white–coral map, top/bottom outlines, dead-latent hatching, shared colorbar/legend, DejaVu Sans, and 300 dpi export."
+      },
+      {
+        "repository_url": "https://github.com/cvenhoff/thinking-llms-interp",
+        "path": "figures/render_loss_curves_qa_instr_h512.py",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "Source-exact Figure 3 grammar: 1×3 shared-y panels, Reds/Blues/Greens family colormaps, ORZ/R1/QwQ dashed/solid/dotted lines, o/s/D markers, 1.5 pt lines, validation stars, and combined export."
+      },
+      {
+        "repository_url": "https://github.com/cvenhoff/thinking-llms-interp",
+        "path": "figures/plot_ablation_bars.py",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "Source-exact Figure 4 style: 6.8×5.0 inch canvas, #4C78A8/#C0392B model colors, full-pipeline hatch, y=0 line, grid, direct values, and legend placement."
+      },
+      {
+        "repository_url": "https://github.com/cvenhoff/thinking-llms-interp",
+        "path": "figures/make_hybrid_example_figure_orz32b.py",
+        "role": "plot_script",
+        "tool": "matplotlib/PIL",
+        "evidence": "Source-exact Figure 5 construction: 8.5 inch canvas, DejaVu Sans, 7.2 pt response text, pastel category palette, question/outcome cards, three-column legend, 180 dpi PNG and raster PDF."
+      },
+      {
+        "repository_url": "https://github.com/cvenhoff/thinking-llms-interp",
+        "path": "figures/orz32b_example371_token_info.json",
+        "role": "data_file",
+        "tool": "JSON",
+        "evidence": "Token-level category and coefficient data used by the public Figure 5 generator; directly supports the highlighted response trace."
+      },
+      {
+        "repository_url": "https://github.com/cvenhoff/thinking-llms-interp",
+        "path": "figures/render_result_tables.py",
+        "role": "table_generator",
+        "tool": "matplotlib",
+        "evidence": "Public generator covers training-mix, main-results, and gap-recovered outputs, but its current fields/layout do not exactly reproduce PDF Tables 1–2; recorded as partial support."
+      },
+      {
+        "repository_url": "https://github.com/cvenhoff/thinking-llms-interp",
+        "path": "train-saes/appendix_tables.py",
+        "role": "table_generator",
+        "tool": "LaTeX longtable",
+        "evidence": "Public appendix generator selects the nine configurations but emits an older two-column Category/Representative Example longtable; current PDF taxonomy tables have three columns including Description, so support is partial."
+      }
+    ],
+    "search_note": "The PDF p.2 footnote explicitly links the author repository. `gh repo view cvenhoff/thinking-llms-interp` confirms the matching title, arXiv link, and README claim that figures/tables are reproducible; its tree exposes Figure 2–5 plotting scripts, token data, and table generators. The automated source-inventory row says no_public_source_found, and corpus/visual_sources/icml-2026-1c5182bdf0c8 is absent. The public scripts/assets are exact or near-exact for Figures 2–5, while Figure 1 has no diagram source and the current table generators/appendix generator do not reproduce the final PDF layouts. Therefore the source status is partial_visual_source rather than exact_visual_source."
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 2,
+    "appendix_figures": 1,
+    "appendix_tables": 12,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Computer Modern"
+      ],
+      "size_pt": {
+        "minimum": 6,
+        "median": 9,
+        "maximum": 17
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 8.5,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "The paper uses a warm/cool/green family palette for ORZ, R1, and QwQ; a blue–coral diverging map for within-panel taxonomy scores; blue/red model contrast in the ablation; and local pastel category highlights in the qualitative trace. Legends, marker/line styles, outlines, hatching, and direct labels supply partial redundancy, but several color channels remain essential.",
+    "vector_raster_mix": "The 45-page PDF is mixed-media: body text and most main charts/tables are vector text and paths, while Figure 5 is a rasterized qualitative response (the PDF also contains an embedded raster object on its page). Public Figure 5 output is explicitly a 180 dpi raster PDF/PNG.",
+    "style_consistency": "Serif Nimbus Roman body/captions and Computer Modern mathematics are stable across the manuscript; DejaVu Sans is used consistently in plot/diagram text. Main charts share restrained grids and compact legends. Appendix longtables retain the same type and rule grammar but become dense across continuation pages."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1. Constructive Model Diffing for Thinking LLMs. We decompose the difference between base and thinking models into two interpretable components. (A) The base model generates tokens, providing the underlying reasoning capabilities. (B) A reasoning heuristic, extracted from the thinking model via SAE activations, determines when to deploy each reasoning mechanism. (C) Category vectors, optimized in the base model, induce the corresponding reasoning behavior when triggered. If this explicit construction recovers the thinking model’s performance, it provides evidence that the diff is well-characterized by our decomposition: the thinking model learned sophisticated heuristics over pre-existing base model mechanisms.",
+        "word_count": 97,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 10,
+          "maximum": 17
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 11,
+        "hex": [
+          "#D9D9D9",
+          "#BCA9E8",
+          "#F0E2A5",
+          "#86D89B",
+          "#EEA0A8",
+          "#B4D8F0",
+          "#B4E8C8",
+          "#FCDEA4",
+          "#CEB4E8",
+          "#FAC8CC",
+          "#F8ECA4"
+        ],
+        "semantic_mapping": "Token boxes and arrows distinguish the base trace, thinking trace, classifier categories, and induced answer outcomes; pastel fills are semantic category cues.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": null,
+        "legend_items": 6,
+        "annotations": 20,
+        "data_marks_estimate": 50
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right and lower classifier area",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Process order from input tokens through generation, classification, steering, and answer.",
+        "y": "Parallel lanes for base-model generation, thinking-model classifier, category vectors, and outcomes.",
+        "color": "Pastel token/category fills and red/green outcome cues identify reasoning mechanisms and correctness.",
+        "shape": "Rounded boxes, token rectangles, arrows, and small outcome cards encode components and flow.",
+        "line": "Solid and dashed connectors show the proposed construction and its comparison with the thinking trace.",
+        "facet": "Single full-width workflow with A/B/C stages.",
+        "text": "Stage labels, token strings, category names, and answer outcomes carry the semantic key."
+      },
+      "data_and_statistics": "Conceptual interface rather than an aggregate measurement. It depicts illustrative token traces and classifier proportions (including the illustrative 0%, 5%, 85%, 0%, 10%, 0% classifier proportions in the diagram); these percentages are not accompanied by a sample size or uncertainty and should be read as explanatory values.",
+      "evidence_relation": "The introduction’s what/when decomposition is made concrete here: the thinking model supplies a heuristic for when to act, while the base model supplies category-vector mechanisms for what to do. Figure 3 and Table 1 test the reconstruction, Figure 2 and Appendix G define the taxonomy, Figure 4 isolates components, and Figure 5 supplies a token-level case.",
+      "design_strengths": [
+        "Full-width placement establishes the decomposition before the quantitative results.",
+        "A/B/C labels, arrows, token examples, and category labels provide redundant reading cues.",
+        "The diagram presents the intervention interface and the comparison target in one view."
+      ],
+      "design_weaknesses": [
+        "The illustrative classifier percentages are visually concrete without an explicit “illustrative” qualifier.",
+        "Several token and category labels are small, and the semantic mapping depends heavily on pastel color.",
+        "No uncertainty, sample count, or empirical calibration is encoded in the schematic."
+      ],
+      "reusable_pattern": "Use a full-width what/when schematic with explicit component letters, token-level examples, and a final outcome card before introducing quantitative panels.",
+      "evidence": {
+        "page": 2,
+        "label": "PDF p.2, Figure 1 caption and full-width A/B/C workflow",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 4,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "experimental_design",
+        "mechanism",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 2. Grid search over SAE taxonomies. Combined score (average of completeness, independence, and consistency) across layers (x-axis) and cluster sizes (y-axis, 5–50), for DeepSeek-R1 SFT-distilled variants and QwQ-32B (top) and Open-Reasoner-Zero models (bottom). The three best configurations per model are outlined in green, the three worst in red. While scores rise with cluster size, an “elbow” at 10–20 categories indicates reasoning mechanisms are already well represented at that scale in aggregate; individual models’ elbows can sit lower, so the per-model taxonomies we ultimately select (Appendix G) use dictionary sizes in the 5–15 range. The colorbar’s “F1 · completeness · orthogonality” label denotes this same combined score, where “F1” and “orthogonality” are the consistency and independence metrics defined in Section 2.3; the three components are averaged, not multiplied.",
+        "word_count": 130,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "diverging",
+        "color_count": 9,
+        "hex": [
+          "#B5342B",
+          "#F7F7F4",
+          "#284C86",
+          "#2C6FB5",
+          "#2E8B57",
+          "#C0392B",
+          "#1E8449",
+          "#F2B705",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Diverging blue–off-white–coral fill encodes the within-model combined taxonomy score; blue, green, and coral accents identify R1, QwQ, and ORZ families; green/red outlines mark best/worst configurations and hatching marks dead cells.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": null,
+        "legend_items": 5,
+        "annotations": 54,
+        "data_marks_estimate": 540
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom colorbar and lower legend",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": true,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "SAE layer index, categorical positions across each heatmap.",
+        "y": "Cluster/dictionary size from 5 to 50, categorical rows.",
+        "color": "Combined normalized score, the average of completeness, independence, and consistency.",
+        "shape": "Rounded green/red outlines select the three best and three worst cells; hatched cells indicate dead latents.",
+        "line": "Cell borders and colored outlines separate grid cells and selected extremes.",
+        "facet": "Nine model panels, with five SFT/mixed variants on top and four ORZ variants on bottom.",
+        "text": "Panel titles, selected-cell score annotations, shared colorbar, and family/outline legend."
+      },
+      "data_and_statistics": "Each panel evaluates six distributed SAE layers (with panel-specific valid columns) over cluster sizes 5–50 in increments of 5. The color is a within-panel min–max normalized average of completeness, independence, and consistency; only selected best/worst cells receive numeric labels. No error bars or intervals are shown, and the normalization prevents direct color comparisons across model panels.",
+      "evidence_relation": "The need to choose an interpretable taxonomy in the method leads to this layer × cluster search. Its elbow and selected configurations feed the Appendix G taxonomy tables and the category-vector training in Figure 3; the resulting hybrid comparisons appear in Table 1 and the component controls in Figure 4.",
+      "design_strengths": [
+        "A common matrix grammar exposes both layer and cluster-size trade-offs for all nine model pairs.",
+        "A shared diverging colorbar, explicit best/worst outlines, and dead-cell hatching provide multiple cues.",
+        "The caption states the score construction and points to the selected Appendix G taxonomies."
+      ],
+      "design_weaknesses": [
+        "Within-model normalization limits cross-panel comparison of absolute scores.",
+        "Nine dense heatmaps and small categorical labels make individual cells difficult to inspect at page scale.",
+        "The three aggregate components have no uncertainty or separate component panels, so trade-offs remain hidden."
+      ],
+      "reusable_pattern": "For a multi-model design search, use small multiples with a shared score scale, explicit extreme-cell outlines, dead-state hatching, and a caption that states normalization and selection consequences.",
+      "evidence": {
+        "page": 4,
+        "label": "PDF p.4, Figure 2 nine-panel heatmap and caption",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3. Category vector training: holdout loss vs. epoch. RL-trained ORZ models (warm colours) converge to lower cross-entropy than SFT-distilled R1 models (cool colours) across all three held-out sets, indicating that ORZ-derived category vectors find more causally effective directions in the base model. The mixed-training QwQ model falls in between. Stars mark the best epoch per model on the validation split.",
+        "word_count": 61,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 10
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#F26B5E",
+          "#D94B45",
+          "#B2182B",
+          "#7FB8D8",
+          "#4C9CC9",
+          "#2F75B5",
+          "#86C98D",
+          "#3FAE72",
+          "#2E8B57"
+        ],
+        "semantic_mapping": "Warm Reds shades identify RL-trained ORZ pairs, cool Blues shades identify SFT-distilled R1 pairs, and Greens shades identify QwQ; marker and line style redundantly identify model family.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 9,
+        "legend_items": 9,
+        "annotations": 9,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower center, shared across panels",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Training epoch, 0–10 on a common linear scale.",
+        "y": "Holdout cross-entropy on a common linear scale.",
+        "color": "Within-family shade distinguishes the nine model pairs; family hue distinguishes ORZ, R1, and QwQ.",
+        "shape": "Circle, square, and diamond markers identify ORZ, R1, and QwQ families.",
+        "line": "Dashed ORZ, solid R1, and dotted QwQ lines encode family independently of color.",
+        "facet": "Three horizontally aligned held-out sets: Validation, MATH-500, and GSM8K.",
+        "text": "Panel titles, shared axes, nine-item legend, and validation-best stars."
+      },
+      "data_and_statistics": "Nine pair-specific category-vector training runs are shown over epochs on validation, MATH-500, and GSM8K holdouts. Curves are based on the selected vector sets from three independent sets per pair; the plotted quantity is cross-entropy, with no error bands or intervals. Stars mark the epoch minimizing validation loss; exact endpoints are not tabulated in the caption.",
+      "evidence_relation": "After Figure 2 selects SAE taxonomies, this panel tests whether the induced category vectors fit the base-model directions. Its ORZ-versus-R1 loss separation provides a training-level mechanism for the recovery pattern in Table 1, while Figure 4 checks component necessity and Figure 5 illustrates a selected intervention.",
+      "design_strengths": [
+        "Shared y-scale and three aligned held-out panels make family-level convergence patterns easy to compare.",
+        "Color, marker, and line-style channels preserve model-family identity under crowded curves.",
+        "Validation-best stars expose the selection rule used before hybrid evaluation."
+      ],
+      "design_weaknesses": [
+        "Nine curves per panel and a lower-center legend create substantial decoding load.",
+        "No uncertainty display separates run variability from small curve differences.",
+        "Exact best epochs and endpoint values require reading the plot or source data rather than the caption."
+      ],
+      "reusable_pattern": "For many training curves, combine shared axes with family-specific hue, marker, and line-style channels, then mark the model-selection point on the validation panel.",
+      "evidence": {
+        "page": 6,
+        "label": "PDF p.6, Figure 3 three-panel training-loss plot and caption",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 4. Negative-control ablations. We run hybrid evaluation on MATH500 and GSM8K for Open-Reasoner-Zero-1.5B and -32B while ablating various hybrid-model components. “Full pipeline” bars are the baseline gap-recovery results; every other bar removes a single component. All ablations sharply reduce recovery, confirming that each component contributes.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 10,
+          "maximum": 17
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#4C78A8",
+          "#C0392B",
+          "#F2F2F2"
+        ],
+        "semantic_mapping": "Blue bars identify ORZ-1.5B, red bars identify ORZ-32B, and the light background span separates the full-pipeline reference from ablations.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 10,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": true,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Five hybrid-model variants: full pipeline, random category, random vectors, MLP magnitude only, and random positions.",
+        "y": "Gap recovered percentage with a visible zero baseline and negative bars.",
+        "color": "Model pair identity, blue for ORZ-1.5B and red for ORZ-32B.",
+        "shape": "Grouped bars; diagonal hatch marks the full-pipeline reference bars.",
+        "line": "Horizontal zero reference line defines positive versus negative recovery.",
+        "facet": "Single panel containing two grouped model series.",
+        "text": "Direct numeric labels, bold category names, title, and two-item legend."
+      },
+      "data_and_statistics": "Bars show the average gap recovery over MATH500 and GSM8K for two ORZ pairs. Full pipeline is 77% for both; random category is 20%/28%, random vectors −28%/−13%, MLP magnitude only −8%/−1%, and random positions −8%/28% for ORZ-1.5B/ORZ-32B respectively. No spread or interval is displayed.",
+      "evidence_relation": "The recovery claim from Table 1 is decomposed here into category selection, category-vector direction, MLP magnitude, and intervention position. The strongly negative controls support the method mechanism, while the positive large-model random-position result bounds the interpretation and motivates attention to benchmark averaging.",
+      "design_strengths": [
+        "A zero reference line and direct value labels make negative controls immediately legible.",
+        "Hatching distinguishes the full pipeline from removed-component bars without adding another model color.",
+        "The caption names the compared model pairs, benchmark aggregate, and interpretation of each bar."
+      ],
+      "design_weaknesses": [
+        "Only two model pairs and a two-benchmark average are shown, so heterogeneity is compressed.",
+        "Color remains necessary for the two model identities, reducing grayscale accessibility.",
+        "The random-position result for ORZ-32B remains positive and needs body-text context to avoid an overgeneralized ablation conclusion."
+      ],
+      "reusable_pattern": "Pair a compact grouped-bar ablation with a zero line, direct labels, one reference hatch, and explicitly negative controls so both direction and magnitude remain visible.",
+      "evidence": {
+        "page": 8,
+        "label": "PDF p.8, Figure 4 grouped negative-control bars and caption",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "screenshot"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 5. Hybrid model in action. Example of a hybrid model (Qwen2.5-32B as base model with category vectors trained on Open-Reasoner-Zero-32B) solving a MATH500 problem. Each token in the model’s response is highlighted according to the SAE category that triggered steering at that position. The model is steered at ~12% of token positions, spanning six distinct reasoning categories (Performing Calculations and Problem Decomposition most prominent). After an initial estimate it self-verifies (“this seems to be an underestimation. Let’s manually verify . . . and see if we can find a better solution”), then searches over candidate values and arrives at the correct answer 17, while the unsteered base model fails.",
+        "word_count": 108,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "size_pt": {
+          "minimum": 6.8,
+          "median": 7.2,
+          "maximum": 9.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 9,
+        "hex": [
+          "#B4D8F0",
+          "#B4E8C8",
+          "#FCDEA4",
+          "#CEB4E8",
+          "#FAC8CC",
+          "#F8ECA4",
+          "#D8C4EC",
+          "#C0392B",
+          "#1B7E34"
+        ],
+        "semantic_mapping": "Seven pastel fills identify SAE reasoning categories in token spans; red and green accents identify incorrect and correct outcomes, with category names repeated in a legend.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 12,
+        "data_marks_estimate": 250
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom, three columns",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.6,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Sequential token order within the response text.",
+        "y": "Line and paragraph sequence in the qualitative response trace.",
+        "color": "Pastel token highlights encode the SAE category that triggered steering.",
+        "shape": "Question/outcome cards and rounded token highlights separate prompt, trace, and verdict.",
+        "line": "Card borders, left accent bars, and text-line breaks structure the narrative.",
+        "facet": "One response trace with a question card, category legend, and base/hybrid outcome comparison.",
+        "text": "Prompt, model metadata, token-level response, category legend, and correct/incorrect outcome labels."
+      },
+      "data_and_statistics": "One representative MATH500 problem is shown for Qwen2.5-32B with ORZ-32B-trained vectors. The trace reports steering at approximately 12% of token positions, six active reasoning categories, and answer 17 versus a failed unsteered base. It is a qualitative case study with no aggregate uncertainty or denominator counts beyond the stated fraction.",
+      "evidence_relation": "Table 2’s sparse-steering result is instantiated as a token-level trace: the hybrid waits for category-triggered interventions, self-verifies, and reaches the correct answer. Appendix D supplies the case context; Figure 4 tests intervention components and Table 5/Appendix F quantify usage across problems.",
+      "design_strengths": [
+        "The question, response, legend, and outcome are self-contained on one page-width object.",
+        "Token-level highlights preserve the causal narrative from trigger to self-verification to answer.",
+        "The base-versus-hybrid verdict makes the qualitative evidence role explicit."
+      ],
+      "design_weaknesses": [
+        "A single selected example cannot establish representative behavior or average efficacy.",
+        "Very small response text and pastel colors make zoom and grayscale reading important.",
+        "The rasterized response does not expose full token IDs, exact trigger coefficients, or a token-count denominator."
+      ],
+      "reusable_pattern": "Use a page-width qualitative trace with a prompt card, inline semantic highlights, a compact legend, and an explicit outcome comparison to connect aggregate sparsity to mechanism.",
+      "evidence": {
+        "page": 18,
+        "label": "PDF p.18, Figure 5 qualitative hybrid trace and caption",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 1. Constructive model diffing results on GSM8K, MATH500, and a held-out Hendrycks-MATH subset. We compare each base, thinking, and hybrid model triplet. Base and hybrid models decode greedily; thinking models sample 3 rollouts at temperature 0.6. All use a 2048-token budget. Accuracy is graded by Claude Sonnet 4.6 (Anthropic, 2025), which agrees closely with human grading (κ = 0.88; Appendix C); we run 3 judge repetitions per rollout and report mean ± std over all rollout-judge pairs. The Hendrycks-MATH set is a 1,000-question subset of Hendrycks et al. (2021), disjoint from both the training mix and MATH500. Rec.% is the fraction of the base-to-thinking gap that the hybrid recovers",
+        "word_count": 111,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition",
+          "abbreviation_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 14,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "arrows",
+        "italic"
+      ],
+      "uncertainty": "Accuracy is mean ± std over all rollout–judge pairs: three thinking rollouts, three judge repetitions per rollout, and corresponding base/hybrid grading. No interval estimate is shown.",
+      "data_and_statistics": "Nine base/thinking pairs are grouped into SFT-distilled, RL-trained ORZ, and mixed QwQ families. For each of GSM8K, MATH500, and a 1,000-question held-out Hendrycks-MATH subset, the 14 columns show Base, Hybrid, Think accuracy and Rec.% (fraction of the base-to-thinking gap recovered). Base/hybrid decode greedily; thinking uses three temperature-0.6 rollouts with a 2048-token budget. Values are percentages with one decimal place and mean ± std where applicable.",
+      "evidence_relation": "This is the headline reconstruction test: Figure 1’s what/when decomposition predicts hybrid recovery, Figure 3 supplies the vector-training mechanism, Table 2 and Table 5 quantify intervention sparsity, and Figure 4 tests component necessity. The caption points to Appendix C for judge agreement and the held-out data boundary.",
+      "design_strengths": [
+        "Absolute Base/Hybrid/Think values and relative Rec.% occupy one decision surface for three benchmarks.",
+        "Three family row groups and multi-level benchmark headers expose model and task structure.",
+        "Caption defines decoding, judge repetitions, gap recovery, and the held-out split boundary."
+      ],
+      "design_weaknesses": [
+        "Fourteen columns force small type and long horizontal scanning, especially in the appendix-style model names.",
+        "Family grouping and model size are confounded with training regime, limiting causal reading of one row.",
+        "The caption does not display benchmark-wise sample sizes for GSM8K/MATH500 or a separate failure column."
+      ],
+      "reusable_pattern": "Combine absolute performance triplets with a relative gap-recovery column under multi-level benchmark headers, and define rollout/judge aggregation directly in the caption.",
+      "evidence": {
+        "page": 7,
+        "label": "PDF p.7, full-width Table 1 with three benchmark column groups",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2. Steered token fraction. Average fraction of tokens receiving steering per problem.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "italic"
+      ],
+      "uncertainty": "None; point percentages averaged per problem are shown without spread or interval.",
+      "data_and_statistics": "Nine base/thinking pairs are grouped into SFT-distilled, RL-trained ORZ, and mixed QwQ families. The three benchmark columns report the average percentage of generated tokens receiving a steering intervention per problem for GSM8K, MATH500, and the held-out Hendrycks split. There is no uncertainty column or token-count denominator.",
+      "evidence_relation": "The table quantifies the sparse-intervention premise behind the hybrid mechanism and supplies the aggregate context for Figure 5’s approximately 12% token-level trace. It complements Table 1 recovery, while Table 5 adds per-problem spread and MLP α.",
+      "design_strengths": [
+        "Compact single-column layout keeps the sparsity claim adjacent to the headline result.",
+        "The caption states the denominator concept—tokens receiving steering per problem—in one sentence.",
+        "Family row groups allow sparse fractions to be compared with Table 1’s recovery families."
+      ],
+      "design_weaknesses": [
+        "Point averages hide wide per-problem variation later shown in Table 5.",
+        "The shortened Hendrycks header is less explicit than Table 1’s held-out Hendrycks-MATH description.",
+        "No sample count or total generated-token denominator accompanies the percentages."
+      ],
+      "reusable_pattern": "Place a narrow intervention-cost table next to the main comparison, with a plain denominator caption and the same family grouping used by the headline table.",
+      "evidence": {
+        "page": 7,
+        "label": "PDF p.7, lower-left single-column Table 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 13,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 3. SAE feature stability across random seeds for the ORZ-7B SAE (layer 16, dictionary size 15). Features are matched one-to-one via the Hungarian algorithm on cosine similarity; a pair counts as matched when cosine > 0.7 (Paulo & Belrose, 2026).",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "No interval estimate; pairwise matched-feature percentages and mean cosine values are descriptive stability diagnostics over ten seed pairs plus an Overall row.",
+      "data_and_statistics": "For an ORZ-7B SAE at layer 16 with dictionary size 15, ten seed pairs are matched one-to-one with the Hungarian algorithm. Matched percentages use a cosine-similarity threshold above 0.7; the table also reports mean cosine (three decimal places in the PDF). The Overall row summarizes 93.3% matching and mean cosine 0.886.",
+      "evidence_relation": "This robustness diagnostic validates the SAE configuration selected for the taxonomy search in Figure 2 and the Appendix G inventories. It supports the reproducibility interpretation of Table 1 by checking that semantic features are stable across five random seeds.",
+      "design_strengths": [
+        "The algorithm, matching threshold, layer, dictionary size, and seed scope are all stated in the caption.",
+        "Pairwise rows expose variability rather than reporting only an aggregate stability number.",
+        "An Overall row provides a compact summary for cross-object interpretation."
+      ],
+      "design_weaknesses": [
+        "The mixed percentage/cosine precision is not signaled in the table header.",
+        "A single ORZ-7B configuration does not establish stability for all nine model pairs.",
+        "No confidence interval or feature-level examples connect matching to category semantics."
+      ],
+      "reusable_pattern": "Report pairwise seed diagnostics beside an aggregate row, with the matching algorithm and threshold embedded in the caption.",
+      "evidence": {
+        "page": 13,
+        "label": "PDF p.13, Table 3 in Appendix A.1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4. Top-3 activated reasoning mechanisms per model pair. For each pair we list the three SAE categories most frequently triggered during steering, with their share (%) of total steered positions.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 18,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 0,
+      "rules": "partial_grid",
+      "highlighting": [
+        "italic"
+      ],
+      "uncertainty": "None; percentages in parentheses are descriptive shares of steered positions for each pair and benchmark.",
+      "data_and_statistics": "Eighteen benchmark rows cover nine model pairs × GSM8K/MATH500. Each row lists three SAE categories with integer percentage shares among steered positions; family separators group SFT-distilled, RL-trained ORZ, and mixed QwQ pairs. Hendrycks-MATH is not included in this top-three table.",
+      "evidence_relation": "The table maps the intervention events counted in Table 2 and Table 5 to semantic taxonomy labels from Appendix G. It explains which mechanisms populate the aggregate recovery in Table 1 and contextualizes the categories highlighted in Figure 5.",
+      "design_strengths": [
+        "Top-three truncation keeps a nine-pair mechanism inventory readable while preserving percentages.",
+        "Benchmark rows under each pair make mechanism shifts across GSM8K and MATH500 visible.",
+        "The caption defines the percentage denominator directly."
+      ],
+      "design_weaknesses": [
+        "Only two benchmarks are shown, leaving the held-out Hendrycks behavior unrepresented.",
+        "Long category names wrap across rows and make pair boundaries hard to scan.",
+        "No uncertainty or full category distribution indicates whether the top-three ordering is stable."
+      ],
+      "reusable_pattern": "Use a pair-by-benchmark long table with top-k semantic labels and parenthesized shares to connect aggregate intervention cost to mechanism content.",
+      "evidence": {
+        "page": 21,
+        "label": "PDF p.21, Table 4 full 18-row table in Appendix F",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5. Category vector usage statistics. Fraction of generated tokens receiving a steering intervention and the MLP-predicted coefficient α, reported as mean ± std across problems.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "italic"
+      ],
+      "uncertainty": "Mean ± std across problems for both steered-token fraction and MLP-predicted α; percentages use one decimal place and α values use two decimal places in the PDF.",
+      "data_and_statistics": "Nine model pairs are grouped into three families and compared on GSM8K, MATH500, and Hendrycks-MATH. Each benchmark has Steered (%) and MLP α subcolumns; values are per-problem means ± standard deviations. The table exposes both intervention frequency and coefficient magnitude, with mixed numerical precision across the two measures.",
+      "evidence_relation": "Table 5 refines Table 2’s point sparsity averages with per-problem dispersion and coefficient magnitude. It connects the semantic mechanisms in Table 4 and Appendix G to the intervention implementation behind Figure 1 and the case trace in Figure 5.",
+      "design_strengths": [
+        "Two-level benchmark/metric headers distinguish intervention frequency from coefficient magnitude.",
+        "Mean ± std exposes problem-level variability hidden by the main sparsity table.",
+        "The repeated family grouping supports direct comparison with Table 1 and Table 2."
+      ],
+      "design_weaknesses": [
+        "Eight columns and long model names require compact type and wide horizontal scanning.",
+        "Mixed percentage and α precision is not fully announced in the header.",
+        "No number of problems per benchmark or distribution plot accompanies the standard deviations."
+      ],
+      "reusable_pattern": "Use nested benchmark headers with paired frequency/intensity metrics and per-problem mean ± std when a sparse intervention has both event rate and coefficient magnitude.",
+      "evidence": {
+        "page": 22,
+        "label": "PDF p.22, Table 5 eight-column usage-statistics table in Appendix F",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6. Reasoning taxonomy for Open-Reasoner-Zero-0.5B (Layer 8, Dict Size 10). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "10 SAE categories for Open-Reasoner-Zero-0.5B, selected at layer 8 with dictionary size 10. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 22–23.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 22,
+        "label": "PDF pp.22–23, Table 6 longtable; starts on p.22",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7. Reasoning taxonomy for Open-Reasoner-Zero-1.5B (Layer 4, Dict Size 10). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "10 SAE categories for Open-Reasoner-Zero-1.5B, selected at layer 4 with dictionary size 10. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 24–26.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 24,
+        "label": "PDF pp.24–26, Table 7 longtable; starts on p.24",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8. Reasoning taxonomy for Open-Reasoner-Zero-7B (Layer 20, Dict Size 10). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "10 SAE categories for Open-Reasoner-Zero-7B, selected at layer 20 with dictionary size 10. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 27–28.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 27,
+        "label": "PDF pp.27–28, Table 8 longtable; starts on p.27",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 9. Reasoning taxonomy for DeepSeek-R1-Distill-Qwen-1.5B (Layer 4, Dict Size 15). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "15 SAE categories for DeepSeek-R1-Distill-Qwen-1.5B, selected at layer 4 with dictionary size 15. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 29–31.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 29,
+        "label": "PDF pp.29–31, Table 9 longtable; starts on p.29",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 32,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 10. Reasoning taxonomy for DeepSeek-R1-Distill-Llama-8B (Layer 6, Dict Size 15). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "15 SAE categories for DeepSeek-R1-Distill-Llama-8B, selected at layer 6 with dictionary size 15. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 32–34.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 32,
+        "label": "PDF pp.32–34, Table 10 longtable; starts on p.32",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 35,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 11. Reasoning taxonomy for DeepSeek-R1-Distill-Qwen-14B (Layer 38, Dict Size 5). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "5 SAE categories for DeepSeek-R1-Distill-Qwen-14B, selected at layer 38 with dictionary size 5. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 35–36.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 35,
+        "label": "PDF pp.35–36, Table 11 longtable; starts on p.35",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 37,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 12. Reasoning taxonomy for DeepSeek-R1-Distill-Qwen-32B (Layer 27, Dict Size 15). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "15 SAE categories for DeepSeek-R1-Distill-Qwen-32B, selected at layer 27 with dictionary size 15. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 37–39.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 37,
+        "label": "PDF pp.37–39, Table 12 longtable; starts on p.37",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 40,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 13. Reasoning taxonomy for Open-Reasoner-Zero-32B (Layer 27, Dict Size 15). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "15 SAE categories for Open-Reasoner-Zero-32B, selected at layer 27 with dictionary size 15. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 40–42.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 40,
+        "label": "PDF pp.40–42, Table 13 longtable; starts on p.40",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 14",
+      "page": 43,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 14. Reasoning taxonomy for QwQ-32B (Layer 27, Dict Size 10). Categories are identified by our SAE; examples are top-activating sentences.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "None; descriptive taxonomy rows and top-activating examples have no uncertainty or interval.",
+      "data_and_statistics": "10 SAE categories for QwQ-32B, selected at layer 27 with dictionary size 10. Each row pairs a category label with a natural-language description and one top-activating example; the table reports no aggregate frequency, count, or error statistic. The longtable spans 43–45.",
+      "evidence_relation": "Appendix G expands the taxonomy configuration selected by Figure 2 and supplies semantic category labels used by the intervention in Figure 1, the vector fitting in Figure 3, the activated-mechanism summary in Table 4, and the qualitative trace in Figure 5.",
+      "design_strengths": [
+        "The caption identifies model, layer, and dictionary size, while the repeated three-column header defines the row semantics.",
+        "Longtable continuation pages preserve category descriptions and top-activating examples for independent inspection.",
+        "Category names are bold, making the semantic inventory scannable despite dense prose."
+      ],
+      "design_weaknesses": [
+        "Descriptions and examples occupy two or three dense appendix pages with compact type.",
+        "No category frequency, activation count, or stability field accompanies the qualitative labels.",
+        "Model-specific category names vary across tables, so cross-model semantic alignment requires manual reading."
+      ],
+      "reusable_pattern": "For a model-specific semantic inventory, use a captioned longtable with fixed Category/Description/Top-Activating Example columns and repeated headers across pages.",
+      "evidence": {
+        "page": 43,
+        "label": "PDF pp.43–45, Table 14 longtable; starts on p.43",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 establishes the what/when construction; Figure 2 selects SAE taxonomies; Figure 3 tests category-vector fitting; Tables 1–2 present recovery and intervention sparsity; Figure 4 removes components; Figure 5 gives a concrete trace; Tables 3–5 and Tables 6–14 provide stability, usage, and complete taxonomy details.",
+    "caption_system": "Captions use an italic Figure/Table label followed by a bold short title and prose. Main captions usually state setup, encoding, comparison, and sometimes the conclusion; Table 1 and Figure 2 additionally define aggregation/normalization and appendix pointers. Appendix taxonomy captions identify model, layer, dictionary size, and the three column roles.",
+    "table_header_system": "Table 1 and Table 5 use two-level benchmark headers; Table 2 uses a flat benchmark header; Tables 3–4 use flat analytical headers; Tables 6–14 repeat a fixed Category/Description/Top-Activating Example header across longtable continuations. Family separators are italic and model/benchmark labels remain explicit.",
+    "method_result_ablation_link": "The proposed heuristic/vector decomposition in Figure 1 is operationalized by Figure 2’s taxonomy search and Figure 3’s vector-loss curves, evaluated as gap recovery in Table 1 and sparse intervention in Table 2. Figure 4 provides negative controls for category, vector, magnitude, and position, and Figure 5 demonstrates the trigger-to-answer path.",
+    "main_appendix_link": "The main text points from Figure 2 to selected Appendix G taxonomies (Tables 6–14), from Table 1 to judge agreement in Appendix C, and from Table 2 to the qualitative trace and usage details. Appendix Tables 3–5 supply stability, mechanism shares, and per-problem usage needed to interpret the main claims.",
+    "typography_consistency": "Body and captions use an embedded Times-like Nimbus Roman face with Computer Modern math; plot axes, diagrams, and Figure 5 use DejaVu Sans. The family split is coherent, though Figure 5 response text and the long taxonomy tables are the smallest reading surfaces.",
+    "color_consistency": "ORZ/R1/QwQ warm/cool/green semantics recur in Figures 2 and 3, while Figure 4 uses a two-model blue/red contrast and Figure 5 uses a local pastel category palette. Redundant markers, line styles, outlines, hatching, and labels help, but the diverging heatmap and pastel trace are not fully grayscale-safe."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Full-width what/when method schematic with explicit component letters and an outcome card.",
+      "Shared-axis family-coded line panels using hue, marker, and line style as redundant identity channels.",
+      "Within-model taxonomy heatmaps with common layout, explicit best/worst outlines, dead-state hatching, and a selection caption.",
+      "Headline tables that combine absolute triplets with a relative gap-recovery measure and define aggregation in the caption.",
+      "Negative-control bars with a zero reference, direct labels, and one hatch for the reference pipeline.",
+      "Appendix longtables with repeated semantic headers and fixed category/description/example columns."
+    ],
+    "highest_value_objects": [
+      "Figure 1 — clearest method interface and visual anchor.",
+      "Table 1 — central absolute/relative reconstruction result across models and benchmarks.",
+      "Figure 2 — taxonomy-selection search and normalization caveat.",
+      "Figure 4 — component-level negative controls with directionally interpretable failures.",
+      "Figure 5 — readable qualitative bridge from sparse intervention to a solved example."
+    ],
+    "failure_patterns": [
+      "Within-panel normalization in Figure 2 limits cross-model score comparison.",
+      "Dense multi-column Table 1 and long Appendix G tables require small type and heavy scanning.",
+      "Figure 3 and several appendix tables omit uncertainty or sample-size context for visual differences.",
+      "Figure 5 is a single selected case with color-dependent, rasterized small text.",
+      "Public table generators and the appendix generator are stale relative to the final PDF layout, so source support is partial."
+    ],
+    "one_sentence_visual_strategy": "以全宽 what/when 分解建立方法接口，再用 taxonomy heatmap、holdout loss、绝对/相对恢复表、稀疏度与负对照逐层锁定机制，最后以附录长表和单例 trace 提供可复核细节。"
+  }
+}

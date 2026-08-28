@@ -1,0 +1,2113 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-db71b40c7495",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://https://github.com/zhangbaijin/LVLMs-Saliency",
+      "https://github.com/zhangbaijin/LVLMs-Saliency"
+    ],
+    "selected_repository": "https://github.com/zhangbaijin/LVLMs-Saliency",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/zhangbaijin/LVLMs-Saliency",
+        "path": "paper/motivation.png",
+        "role": "rendered_asset",
+        "tool": "GitHub README image embed / PNG",
+        "evidence": "README 明确嵌入该文件；下载的 835×655 PNG 与 PDF p.2 Figure 1 的输入、四格热图和 token-flow 构图逐一匹配。它是渲染资产，不是可重算的绘图脚本。"
+      },
+      {
+        "repository_url": "https://github.com/zhangbaijin/LVLMs-Saliency",
+        "path": "paper/pattern.png",
+        "role": "rendered_asset",
+        "tool": "GitHub README image embed / PNG",
+        "evidence": "README 明确嵌入该文件；下载的 835×595 PNG 与 PDF p.3 Figure 2 的信息流 schema、wallpaper/blue heatmap 和句子 strip 逐一匹配。没有公开生成参数。"
+      },
+      {
+        "repository_url": "https://github.com/zhangbaijin/LVLMs-Saliency",
+        "path": "paper/difference.png",
+        "role": "rendered_asset",
+        "tool": "GitHub README image embed / PNG",
+        "evidence": "README 明确嵌入该文件；下载的 1204×555 PNG 与 PDF p.8 Figure 3 的 LocoRE before/after、clock→watch/teaching→standing 和 saliency map 构图逐一匹配。没有公开图表生成脚本。"
+      }
+    ],
+    "search_note": "PDF 的作者链接是 malformed URL https://https://github.com/zhangbaijin/LVLMs-Saliency；本地 visual_source_inventory.csv 因此自动写为 no_public_source_found，但候选名与作者建立直接关系。通过 unicli search 路由后，用 gh repo view、gh search repos、gh search code 和递归树验证直接仓库 zhangbaijin/LVLMs-Saliency（非 fork，README 含 [ICLR 2026 Oral] 与完整题名）。README 只明确映射 paper/motivation.png、paper/pattern.png、paper/difference.png 到 F1–F3；仓库树未发现论文 TeX、TikZ/PGF、figure-generation script 或 table-generator。根目录推理脚本、observation 图片和 vendored FastV 工具没有 Figure 1–14/Table 1–6 的直接生成映射，未声称为精确视觉源；本地 corpus/visual_sources/iclr-2026-db71b40c7495/ 及 visual_source_files_local.csv 均无目标源文件。"
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 3,
+    "appendix_figures": 10,
+    "appendix_tables": 3,
+    "dominant_figure_typography": {
+      "family": [
+        "Calibri",
+        "Arial Black",
+        "Times New Roman",
+        "Nimbus Roman No9 L"
+      ],
+      "size_pt": {
+        "minimum": 5.8,
+        "median": 8.0,
+        "maximum": 12.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "CMR",
+        "CMMI"
+      ],
+      "body_size_pt": 6.5,
+      "header_size_pt": 7.2,
+      "header_weight": "bold",
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "palette_strategy": "定性热图反复使用浅粉—粉红—洋红顺序强度，蓝色承载 token/流向，绿勾与红叉承载正确性；F4/F10 使用蓝绿红系列，表格用浅蓝/浅薰衣草行带。颜色有语义但热图大多没有共享数值色条。",
+    "vector_raster_mix": "PDF caption、表格和正文为矢量文字；F1–F14 的主要图形均来自嵌入 raster（图内字体和热图随 PNG 缩放），因此视觉图与论文正文 Nimbus/CMR 字形混用。",
+    "style_consistency": "两栏 ICLR 版式、booktabs 表格、粉色 saliency grammar、红绿 correctness grammar 和蓝色 token 说明在全篇一致；字号、色条、caption 完整度和图内字体在不同来源资产之间不一致。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "heatmap",
+        "image_montage"
+      ],
+      "purpose": [
+        "headline",
+        "qualitative_evidence",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Attention vs. Saliency Maps for Correct and Hallucinated Tokens (Qwen2-VL-7B). Left (correct token wallpaper): Attention maps show no distinctive pattern, while our LVLMs-Saliency maps reveal strong, structured grounding to prior outputs. Right (hallucinated token blue): Attention maps remain visually similar, but saliency maps collapse, signaling loss of contextual dependency.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.5,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#FBE7E5",
+          "#ECA1BF",
+          "#C52A8C",
+          "#3976B8",
+          "#58B947",
+          "#EA2D24"
+        ],
+        "semantic_mapping": "粉色/洋红表示 attention 或 saliency 强度；蓝色表示 token/流向；绿勾与红叉分别表示正确与幻觉。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "四种 attention/saliency 条件与下方 System→Prompt→Output token 流",
+        "y": "历史 token 位置（无连续数值刻度）",
+        "color": "attention/saliency 强度、正确性和流向颜色",
+        "shape": "绿勾/红叉状态符号",
+        "line": "弧形 token 依赖箭头",
+        "facet": "correct vs. hallucinated；attention vs. saliency",
+        "text": "token 名称、pattern1、high/low saliency、Correct/Wrong pattern"
+      },
+      "data_and_statistics": "Qwen2-VL-7B 的 wallpaper 正确 token 与 blue hallucinated token qualitative example；图示 attention 与 saliency 的形状差异，没有样本量、重复、聚合或不确定性。热图强度不可当作定量效应读取。",
+      "evidence_relation": "F1 支撑引言中「attention-only 难以区分、saliency 暴露 output-context grounding」的 headline，并为 F2 的 pattern、F3 的 LocoRE intervention 以及后续 SGRS/LocoRE 设计提供视觉入口。",
+      "design_strengths": [
+        "固定输入和 token 的四格对照使抽象机制立即可见。",
+        "底部 token-flow strip 把颜色热图连接到可读的上下文依赖。"
+      ],
+      "design_weaknesses": [
+        "无共享 colorbar、归一化范围或样本 protocol，强度不可复核。",
+        "图内文字和热图在双栏缩放后偏小，灰度下主差异减弱。"
+      ],
+      "reusable_pattern": "固定同一输入/输出，按 correct/hallucinated 与 attention/saliency 做同构四格，并用 token-flow strip 解释方向；复用时应增加共享色条和样本定义.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "introduction",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "heatmap",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2: Output Token Saliency Patterns in Qwen2-VL-7B. When generating a correct token (e.g., wallpaper), the current token assigns high saliency to recent output tokens, typically decaying with distance. In contrast, when generating a hallucinated token (e.g., blue), saliency toward all prior outputs collapses — signaling contextual disconnection.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#FBE7E5",
+          "#ECA1BF",
+          "#C52A8C",
+          "#3976B8",
+          "#58B947",
+          "#EA2D24"
+        ],
+        "semantic_mapping": "六类 System/Prompt/Output 信息流与 saliency 强度由矩阵颜色和蓝色文本/箭头共同表示；绿勾/红叉标识正确性。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 5,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 15,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token 类型和历史位置（categorical/无连续坐标）",
+        "y": "System、Prompt、Output 层级与 token 顺序",
+        "color": "saliency 强度；粉色/洋红 heatmap 与蓝色 token 说明",
+        "shape": "绿勾/红叉",
+        "line": "弧形依赖箭头及距离衰减示意",
+        "facet": "共享信息流 schema；wallpaper vs. blue",
+        "text": "System→system 等路径、sentence1/2/3、high/low saliency"
+      },
+      "data_and_statistics": "Qwen2-VL-7B 的输出 token saliency pattern qualitative example；caption 声称正确 token 对 recent output 有距离衰减、幻觉 token 对 prior output collapse，但不提供样本量或误差。",
+      "evidence_relation": "F2 将 F1 的视觉差异具体化为 recent-output distance decay 与 contextual disconnection，为第 3 页的 SGRS gatekeeper/LocoRE stabilizer 双干预作机制铺垫。",
+      "design_strengths": [
+        "先给共享信息流 grammar，再给同构 correct/hallucinated 矩阵，阅读方向明确。",
+        "底部句子 strip 将矩阵模式映射回自然语言上下文。"
+      ],
+      "design_weaknesses": [
+        "面板编码层级多，右侧 heatmap 仍无统一色条和数值范围。",
+        "caption 未解释图例/颜色和示例筛选，脱离正文只能定性理解。"
+      ],
+      "reusable_pattern": "先展示 token-flow grammar，再用一对同构 heatmap 复现机制差异；复用时应加面板编号、共享色条和轴标题.",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "heatmap"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: Effect of LocoRE on output token saliency map (Qwen2-VL-7B). Without LocoRE: When generating an incorrect token(clock), saliency scores assigned to prior output tokens are low — indicating weak contextual grounding. With LocoRE: The same position now generates a correct token(watch), accompanied by significantly higher saliency scores to recent outputs — demonstrating LocoRE’s ability to restore contextual coherence and prevent hallucination via attention reinforcement.",
+        "word_count": 65,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#F9E0DD",
+          "#E994B9",
+          "#C52A8C",
+          "#3976B8",
+          "#F0B323",
+          "#58B947"
+        ],
+        "semantic_mapping": "粉色/洋红表示 saliency；黄色箭头表示 LocoRE；蓝框是 token 文本；红叉/绿勾表示错误/正确。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 14,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token 位置（无连续数值轴）",
+        "y": "prior output token 层级",
+        "color": "saliency 强度、错误/正确状态与 LocoRE 箭头",
+        "shape": "红叉/绿勾",
+        "line": "黄色 intervention 箭头和 token 依赖箭头",
+        "facet": "两个示例；Without LocoRE vs. With LocoRE",
+        "text": "clock→watch、teaching→standing、saliency labels"
+      },
+      "data_and_statistics": "Qwen2-VL-7B 的两个 qualitative before/after examples，展示 clock→watch 与 teaching→standing 位置，以及 prior-output saliency 增强；无样本量、总体聚合或不确定性。",
+      "evidence_relation": "F3 把 F1/F2 的 context-grounding 机制接到 LocoRE 的直接 intervention，支撑第 4.4 节并与 T3 的 β 选择相连。",
+      "design_strengths": [
+        "同一位置的 intervention 前后对照和黄色箭头使因果操作可见。",
+        "correctness 符号、token 文本和颜色共同提供部分冗余。"
+      ],
+      "design_weaknesses": [
+        "两个案例容易被读作总体效果，缺少多样本汇总。",
+        "caption 的 token(clock)/token(watch) 缺少空格，且热图没有共享尺度。"
+      ],
+      "reusable_pattern": "固定 token 位置做 intervention before/after，并同时标出 token 改变和局部 saliency；以多样本分布补足个案.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4: Ablation study of α: trade-offs between hallucination rate, recall, and latency.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#2F86C7",
+          "#63B357",
+          "#E42C2C",
+          "#333333"
+        ],
+        "semantic_mapping": "蓝圆为 CHAIR_S，绿方为 Recall，红三角为 Latency；黑/灰网格和标注是辅助。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 3,
+        "data_marks_estimate": 15
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "图内上方/右侧",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 3,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "SGRS threshold scaling α（0.0、0.2、0.4、0.6、0.8）",
+        "y": "左轴 Score (%)；右轴 latency（ms/token）",
+        "color": "CHAIR_S、Recall、Latency 三系列",
+        "shape": "圆、方、三角 marker",
+        "line": "三条趋势线；baseline/推荐点辅助标记",
+        "facet": null,
+        "text": "图例、α刻度、hallucination rate/recall/latency labels"
+      },
+      "data_and_statistics": "α 的单栏三系列趋势图：CHAIR_S 约从 48 降至 31，Recall 约 74→71，Latency 约 15→41 ms/token；精确点值、重复和误差未给出。",
+      "evidence_relation": "F4 将第 4.5 节的 α 质量—成本权衡与 T3 联合超参表连接，是正文中直接展示推理成本的对象。",
+      "design_strengths": [
+        "共享 α 轴同时呈现 hallucination、recall 和成本，便于选 operating point。",
+        "marker 形状和颜色对三条线提供冗余区分。"
+      ],
+      "design_weaknesses": [
+        "双纵轴容易把 percentage 与 ms/token 作不当视觉比较。",
+        "caption 只有 setup，没有双轴单位、推荐点、数值标签或不确定性。"
+      ],
+      "reusable_pattern": "用共同超参数轴叠加质量、覆盖和成本曲线；复用时明确双轴单位、标出推荐 operating point 并报告重复.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "heatmap"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 5: Attention map and saliency map of LLaVA1.5-7B.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#FBE7E5",
+          "#ECA1BF",
+          "#C52A8C",
+          "#3976B8",
+          "#58B947",
+          "#EA2D24"
+        ],
+        "semantic_mapping": "Attention/saliency 以浅粉—洋红强度表达；蓝色 token labels、紫色 panel labels、红绿状态作辅助。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 8,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 13,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "System/Prompt/Output token 位置（categorical）",
+        "y": "历史 token 位置（无连续轴）",
+        "color": "attention map 与 saliency score 强度",
+        "shape": "correct/hallucinated 的文字或符号状态",
+        "line": "局部 token 依赖箭头",
+        "facet": "bus 与 street 两个场景；Attention map vs. Saliency score",
+        "text": "people、houses、benches、person、Pattern1/high-low"
+      },
+      "data_and_statistics": "LLaVA1.5-7B 的四个 token/场景 qualitative attention 与 saliency 对照；无样本量、聚合、误差或精确 token score。",
+      "evidence_relation": "F5 将 F1/F2 的观察从 Qwen2-VL-7B 扩展到 LLaVA，为 F10/T5 的跨模型统计提供直观先例。",
+      "design_strengths": [
+        "跨场景复用同构 attention/saliency 面板，视觉 grammar 稳定。",
+        "面板标题和 token 文本部分抵消热图颜色的灰度损失。"
+      ],
+      "design_weaknesses": [
+        "八格密图无共享定量色条，无法判断跨示例强度可比性。",
+        "caption 没有说明 token 的正确/幻觉身份和数据选择。"
+      ],
+      "reusable_pattern": "跨 backbone 使用同构 heatmap grid；让 token label、correctness 状态和共享色阶显式对齐.",
+      "evidence": {
+        "page": 15,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 6: Generation time of a single response.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.8,
+          "median": 6.8,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 9,
+        "hex": [
+          "#4E79A7",
+          "#F28E2B",
+          "#E15759",
+          "#76B7B2",
+          "#59A14F",
+          "#EDC948",
+          "#B07AA1",
+          "#FF9DA7",
+          "#E41A1C"
+        ],
+        "semantic_mapping": "八种方法用分类色，红色水平虚线是 Greedy Baseline。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 8,
+        "annotations": 2,
+        "data_marks_estimate": 8
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "图内上方",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "method（八个 categorical labels，旋转显示）",
+        "y": "Decoding Time (seconds)",
+        "color": "方法类别与红色 Greedy Baseline",
+        "shape": null,
+        "line": "一条水平 Greedy Baseline 虚线",
+        "facet": null,
+        "text": "方法名、柱值/标题、Greedy Baseline"
+      },
+      "data_and_statistics": "单个 response 的 generation time：Greedy 1.8、EAH 2.0、OPERA 23.7、VCD 5.8、HALC 26.1、Ours (SGRS+LocoRE) 30.7、LocoRE Only 1.9、SGRS Only 30.5 秒；无误差、重复、响应长度或硬件统计。",
+      "evidence_relation": "F6 为正文质量结果补充效率边界，并与 F4 的 latency 曲线共同展示 SGRS 的推理代价和 LocoRE-only 的部署选择。",
+      "design_strengths": [
+        "baseline reference line 让方法间成本差异可直接定位。",
+        "单图将全量方法耗时置于同一单位轴。"
+      ],
+      "design_weaknesses": [
+        "inset 窄、x labels 旋转且颜色过多，缩放和灰度阅读困难。",
+        "caption 未定义方法缩写、baseline、硬件或重复口径。"
+      ],
+      "reusable_pattern": "用 baseline reference line 与分类条形图展示 inference cost；复用时改为横向条形图或直接标签，并报告硬件、长度和重复.",
+      "evidence": {
+        "page": 14,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 7: The structure of Local Coherence Reinforcement (LocoRe): attention from the next token to recent outputs is enhanced to preserve contextual coherence.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.5,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#377EB8",
+          "#666666",
+          "#F5F5F5",
+          "#222222"
+        ],
+        "semantic_mapping": "蓝色箭头表示强化，灰/黑 token boxes 表示序列位置，ω_s window 标识局部范围。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "layer/time/token 的空间位置，无数值 x 轴",
+        "y": "decoder layer、recent-output window 的层级位置",
+        "color": "蓝色强化箭头与灰黑 token boxes",
+        "shape": "token 矩形框",
+        "line": "attention reinforcement/Progressive enhance 箭头",
+        "facet": "(A) local window before/after；(B) decoder-layer × generation step",
+        "text": "ω_s、gray/of/room/The、Progressive enhance"
+      },
+      "data_and_statistics": "LocoRE 的结构示意，不是数值测量图；ω_s 为 recent-output window 概念符号，图中没有实际窗口大小、样本或误差。",
+      "evidence_relation": "F7 是 F3 intervention 效果背后的 method interface，连接公式/Algorithm 2、local window 和 T3 的 β 消融。",
+      "design_strengths": [
+        "同时给出局部窗口 before/after 和 layer-time lattice，方法接口直观。",
+        "箭头方向和 `Progressive enhance` 文字形成冗余。"
+      ],
+      "design_weaknesses": [
+        "实际数据路径与概念性蓝箭头没有区分。",
+        "没有 β、窗口大小或 attention 增益量值。"
+      ],
+      "reusable_pattern": "用 before/after 与 layer-time lattice 解释 attention intervention；复用时以不同线型区分实际路径和概念箭头.",
+      "evidence": {
+        "page": 16,
+        "label": "Figure 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "conceptual_diagram",
+        "matrix"
+      ],
+      "purpose": [
+        "method_interface",
+        "other"
+      ],
+      "caption": {
+        "text": "Figure 8: The information flow of different models.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#3B82C4",
+          "#7B61A8",
+          "#D95F9A",
+          "#BDBDBD",
+          "#F0C341",
+          "#222222",
+          "#F5F5F5"
+        ],
+        "semantic_mapping": "蓝/紫/粉矩阵块表示信息流，黄色框突出 EAH 的 enhance vision sink，文字区分 System/Image/Prompt/Output。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": null,
+        "legend_items": 5,
+        "annotations": 15,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "各 panel 内 token key",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "System/Image/Prompt/Output token 类型的空间位置",
+        "y": "attention matrix 层级/方向，无连续轴",
+        "color": "方法矩阵色块与 EAH 黄色强调",
+        "shape": "3D/三角矩阵块",
+        "line": "信息流/attention 方向箭头",
+        "facet": "OPERA、TAME、EAH、Vissink、Farsight 五 panel",
+        "text": "方法名、token key、enhance vision sink"
+      },
+      "data_and_statistics": "五种 LVLM 方法的信息流 schematic；没有数值 attention、样本、聚合、误差或可比较的色阶，色块面积不应当解释为权重。",
+      "evidence_relation": "F8 将 related-work 的 intervention 位置并置，服务于 A.3 的视觉 sink/anchor/output-context 区分，并定位 LocoRE 的互补性。",
+      "design_strengths": [
+        "同一 token-flow grammar 并置五种方法，比较空间直观。",
+        "每个 panel 自带 token key，信息不完全依赖正文。"
+      ],
+      "design_weaknesses": [
+        "透视和色阶未统一，密度高且面板标签弱。",
+        "caption 没有列出五个方法或 panel mapping，脱离正文不自洽。"
+      ],
+      "reusable_pattern": "用统一 token-flow grammar 比较 intervention 位置；复用时加 (a–e) 标签、共享图例并声明为概念示意.",
+      "evidence": {
+        "page": 17,
+        "label": "Figure 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "heatmap"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 9: The saliency map of output token. We compared the other three fusion strategy including Addition, Maximum value (Max) and concat attention+gradient by mlp, there is no pattern between normal and hallucination token, in contrast, attention*gradient fusion is clearer in distinguishing important from unimportant tokens.",
+        "word_count": 46,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#FBE7E5",
+          "#ECA1BF",
+          "#C52A8C",
+          "#3976B8",
+          "#EA2D24"
+        ],
+        "semantic_mapping": "粉色/洋红表示融合 saliency，蓝色表示 Query/axis，红色/绿色 token 状态和文字区分策略/结果。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 16,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token 位置（无连续数值轴）",
+        "y": "System/Prompt/Output 与 Query 位置",
+        "color": "不同 fusion strategy 的 saliency 强度",
+        "shape": "策略/正确性文字和状态符号",
+        "line": "token 依赖/Query 说明箭头",
+        "facet": "Max-value、Attention+gradient、fusion-attention-gradient 等策略",
+        "text": "bed、Child、No pattern、strategy labels"
+      },
+      "data_and_statistics": "比较 Addition、Maximum value (Max)、concat attention+gradient by MLP 与 attention*gradient 的 output-token saliency qualitative map；无样本量、聚合、误差或 score。",
+      "evidence_relation": "F9 回应方法中 attention×gradient fusion 的选择，排除其他 fusion 并为 LVLMs-Saliency 的构造提供机制证据。",
+      "design_strengths": [
+        "固定场景/ token 跨策略复用 heatmap，策略差异容易并读。",
+        "No pattern 和策略标题对 heatmap 提供直接标签。"
+      ],
+      "design_weaknesses": [
+        "面板与策略的对应关系不够紧凑，缺共享 colorbar 和定量 pattern metric。",
+        "caption 的单复数、“other three”和 panel mapping 表述不精确。"
+      ],
+      "reusable_pattern": "固定样本跨融合策略做 small-multiple heatmap；复用时共享色条、加 (a–d) 标签并补定量区分指标.",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 10: Statistical analysis of output-token saliency vs. hallucination. (a) Mean saliency for correct vs. hallucinated tokens across three models. (b) Hallucination probability as a function of saliency bin (per model average).",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#4C92C3",
+          "#D9534F",
+          "#F39C12",
+          "#59A14F",
+          "#7B6FD0"
+        ],
+        "semantic_mapping": "蓝/红柱区分 Correct/Hallucinated；panel (b) 的三模型线用颜色/marker，透明带表示曲线不确定性但其口径未明。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 5,
+        "annotations": 12,
+        "data_marks_estimate": 36
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "panel 内右上",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 4,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "panel (a) 三个 categorical model；panel (b) saliency interval midpoint（0–1 linear）",
+        "y": "panel (a) mean saliency；panel (b) hallucination rate (%)",
+        "color": "token correctness 与三模型 series",
+        "shape": "柱/点 marker 和模型线型",
+        "line": "按 saliency bin 的三模型曲线",
+        "facet": "(a) mean±SD bar；(b) saliency-bin probability line",
+        "text": "mean±SD labels、model names、bin/step-1 points"
+      },
+      "data_and_statistics": "D.1 的三模型 token-level统计：约 12,000 tokens，来自 POPE/CHAIR；panel (a) 报告 correct/hallucinated 的 mean±SD，panel (b) 将 saliency 分成 10 个等宽 bin 并报告条件 hallucination probability。panel (b) band 的计算口径未定义。",
+      "evidence_relation": "F10 是 F1/F2 qualitative pattern 到统计关系的核心桥梁，与 T5 均值表和 T6 decay intervention 组成 D.1 的相关—分箱—干预闭环。",
+      "design_strengths": [
+        "group summary 与 saliency-bin probability 并列，跨模型机制链完整。",
+        "panel (a) 的 error bar 和数值标签使均值可读。"
+      ],
+      "design_weaknesses": [
+        "panel (b) 的透明 band 没有 caption-level definition，分母和 bin 边界依赖正文。",
+        "复合图在双栏内字体较小，模型图例和 step-1 点层次偏密。"
+      ],
+      "reusable_pattern": "一侧报告 group mean±SD，另一侧报告 saliency-bin 条件概率；复用时在 caption 定义分母、band 和 bin 边界.",
+      "evidence": {
+        "page": 19,
+        "label": "Figure 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 20,
+      "module": "limitations",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "heatmap"
+      ],
+      "purpose": [
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 11: Failure example. Even though it’s an hallucination token, the output saliency is still high.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#FBE7E5",
+          "#ECA1BF",
+          "#C52A8C",
+          "#3976B8",
+          "#EA2D24"
+        ],
+        "semantic_mapping": "粉色/洋红为 saliency，蓝色为 token 文本，红叉/绿勾和 high saliency 文字标示失败/正常状态。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token 位置（无连续轴）",
+        "y": "历史输出 token 位置",
+        "color": "saliency 强度与 failure/normal 状态",
+        "shape": "红叉/绿勾",
+        "line": "token 依赖弧形箭头",
+        "facet": "hallucinated bench vs. correct conversation",
+        "text": "bench、conversation、high saliency、traffic-cone context"
+      },
+      "data_and_statistics": "Qwen2-VL-7B 的单个 high-saliency hallucination failure；正文给出 ground truth “a traffic cone” 而输出出现 bench/不相关内容。无频率、样本聚合或不确定性。",
+      "evidence_relation": "F11 把 D.2 的反例接回 F1/F2 核心主张，限定「hallucination 通常低 saliency」而非充分条件，并暴露 SGRS 的高置信错误盲区。",
+      "design_strengths": [
+        "failure 与正常 token 沿用同构图法，反例容易和主证据比较。",
+        "caption 直接承认核心低-saliency 模式存在例外。"
+      ],
+      "design_weaknesses": [
+        "单例没有 failure rate、触发条件或样本筛选，不能量化边界。",
+        "热图无 colorbar，caption 也未给模型/输入细节。"
+      ],
+      "reusable_pattern": "在机制证据后保留同构 failure panel，明确反例机制边界；复用时补 failure rate、筛选规则和可复现输入.",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "qualitative_grid",
+        "heatmap"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 12: Long sequence example. A comparison of the saliency of the correct tokens before and after the hallucination token shows that the saliency of the correct tokens before and after the hallucination token is still greater than that of the original token.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#FBE7E5",
+          "#ECA1BF",
+          "#C52A8C",
+          "#3976B8",
+          "#58B947"
+        ],
+        "semantic_mapping": "粉色/洋红为 saliency，蓝色序列文字与箭头为依赖，红/绿状态标示 hallucinated/correct token。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 7,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "长序列中 token 顺序（categorical/order）",
+        "y": "历史 token 位置",
+        "color": "saliency 强度与 correctness 状态",
+        "shape": "红叉/绿勾",
+        "line": "跨句 token 依赖弧线",
+        "facet": "preparing、few、significant 三个关键 token",
+        "text": "sentence strips、token labels、high/low"
+      },
+      "data_and_statistics": "长序列单例比较 hallucination token few 与前后正确 token preparing/significant；正文结论是前后正确 token saliency 高于幻觉 token，没有样本量、聚合或误差。",
+      "evidence_relation": "F12 将 F3 的局部 before/after 扩展到跨句长序列，并为 F13/F14 的 layer-level 切片铺垫。",
+      "design_strengths": [
+        "完整序列上下文和对应 heatmap 同图，显示跨句 context。",
+        "前后 token 的颜色、符号和箭头形成可扫读对照。"
+      ],
+      "design_weaknesses": [
+        "面板/句子密度高，长 caption 重复同一句比较。",
+        "单例、无共享色条和无数值摘要限制证据强度。"
+      ],
+      "reusable_pattern": "把关键 token 的完整序列上下文与对应 heatmap 对齐；复用时压缩重复 caption 并提供多样本摘要.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 12",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 13: Saliency map of LLaVA1.5 from layer1 to layer32 (hallucination pattern).",
+        "word_count": 12,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.8,
+          "median": 6.8,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#FBE7E5",
+          "#ECA1BF",
+          "#C52A8C",
+          "#3976B8",
+          "#E52A2A"
+        ],
+        "semantic_mapping": "粉色/洋红为 layer-normalized saliency，蓝色为 Low saliency 文字，红色层标签/emoji 标示 hallucination pattern。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 16,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token matrix 位置（categorical，无连续轴）",
+        "y": "历史 token 位置",
+        "color": "layer-normalized saliency 顺序强度",
+        "shape": "8 个 layer panel 与红色 hallucination 状态",
+        "line": null,
+        "facet": "Layer 1/4/8/12/16/20/24/32",
+        "text": "layer labels、Low saliency、局部 colorbar"
+      },
+      "data_and_statistics": "LLaVA1.5 在 8 个 decoder layers 的 hallucination token saliency matrix；无样本量、层间汇总、误差或统计检验。",
+      "evidence_relation": "F13 与 F14 成对检验 D.3 的层级扩展，支持浅层/深层都存在 correct 与 hallucination pattern 的对照以及不绑定单一 attention head 的边界。",
+      "design_strengths": [
+        "八层同构小 multiples 使层间 pattern 可快速扫描。",
+        "局部 colorbar 和 Low saliency label 提供有限冗余。"
+      ],
+      "design_weaknesses": [
+        "caption 只给范围和 pattern，没有采样、归一化或主发现。",
+        "矩阵密、字号小，灰度下细微层差异不可读。"
+      ],
+      "reusable_pattern": "以相同层网格成对展示 correct/hallucination；复用时共享全局 colorbar、层标签格式和每层统计摘要.",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 13",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 14: Saliency map of LLaVA1.5 from layer1 to layer32 (correct pattern).",
+        "word_count": 12,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Calibri",
+          "Arial Black",
+          "Times New Roman",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.8,
+          "median": 6.8,
+          "maximum": 8.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#FBE7E5",
+          "#ECA1BF",
+          "#C52A8C",
+          "#3976B8",
+          "#58B947"
+        ],
+        "semantic_mapping": "粉色/洋红为 layer-normalized saliency，蓝色为 High saliency 文字，绿色层标签/emoji 标示 correct pattern。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 8,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 16,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "token matrix 位置（categorical，无连续轴）",
+        "y": "历史 token 位置",
+        "color": "layer-normalized saliency 顺序强度",
+        "shape": "8 个 layer panel 与绿色 correct 状态",
+        "line": null,
+        "facet": "Layer 1/4/8/12/16/20/24/32",
+        "text": "layer labels、High saliency、局部 colorbar"
+      },
+      "data_and_statistics": "LLaVA1.5 在同样 8 个 decoder layers 的 correct-token saliency matrix；没有样本量、层间聚合、不确定性或层间检验。",
+      "evidence_relation": "F14 与 F13 配对完成 D.3 的 correct/hallucination layer contrast，并回扣 F10/T5 的 token-level统计与 F11 的失败边界。",
+      "design_strengths": [
+        "与 F13 保持 panel 顺序、层采样和图法，配对扫描成本低。",
+        "High saliency 文字和绿色状态补充热图颜色。"
+      ],
+      "design_weaknesses": [
+        "没有显式 shared scale 或差值图，caption 未写 comparison/main finding。",
+        "高密度矩阵和小字体限制独立阅读。"
+      ],
+      "reusable_pattern": "保持 correct/hallucination 成对的层网格、色阶和 panel 顺序，并把共享尺度与层统计写入图例/补充表.",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 14",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Compare results of LocoRE with other SOTA methods on POPE, CHAIR and MME datasets. The best performances within each setting are bolded, baseline: LLaVA-1.5-7B.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR",
+          "CMMI"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 20,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "未提供误差、置信区间、样本分母、重复或显著性；破折号表示缺失/不适用。",
+      "data_and_statistics": "LLaVA-1.5-7B 上 Beam Search、Dola、VCD、OPERA、DOPRA、HALC、CCA-LLaVA、RITUAL、EAH、SID、TAME、Vissink、CausalLLM、AGLA、Farsight、MemVR、ONLY、Reverse-VLM、LocoRE、SGRS+LocoRE 的 POPE、CHAIR 和 MME 结果。POPE/CHAIR 多为 1 位小数，MME 为 2 位；列标题用 ↑/↓ 标明方向。",
+      "evidence_relation": "T1 是正文主结果的跨 baseline 决策面，连接第 3 页 context-preservation 机制与第 4.2 节，并由 T2 扩展模型范围、T3/F4 解释参数。",
+      "design_strengths": [
+        "多层 benchmark header 把 hallucination、recall 和 MME 感知/认知指标放在同一比较面。",
+        "轻量行色和 bold 突出作者方法而不使用完整网格。"
+      ],
+      "design_weaknesses": [
+        "11 列×20 行导致字号小、扫描成本高。",
+        "caption 未展开指标缩写，也没有重复/不确定性 protocol。"
+      ],
+      "reusable_pattern": "用 grouped header 将多个 benchmark 置于同一横向决策面，并用轻量方法高亮；复用时补指标释义、样本和变异信息.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2: Comparison of different LVLMs and LocoRE across all image benchmarks. Notably, in the Hallucination Benchmark, lower scores on CHAIR_I and CHAIR_S indicate better performance, while higher scores are preferable for other metrics.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR",
+          "CMMI"
+        ],
+        "body_size_pt": 6.3,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 27,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 7,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "未提供误差、置信区间、样本分母、重复或显著性；括号 delta 的基准是对应模型基线，需结合正文读取。",
+      "data_and_statistics": "跨 LLaVA-1.5-7B/13B、Intern-VL-7B/13B、Qwen2-VL-7B、Qwen2.5-VL-7B/32B 七个模型组，比较基础模型、既有方法、LocoRE 与 SGRS+LocoRE 在 LLaVA^W、MM-Vet、VizWiz、SQA、CHAIR_S、CHAIR_I、POPE-R、POPE-F1、POPE-A 上的结果。主数值与 delta 为 1 位小数。",
+      "evidence_relation": "T2 将 T1 的单 backbone 结果扩展到跨模型 plugin/generalized VQA，支撑第 4.3/4.4 节，并由 T3/F4 收束 α/β operating point。",
+      "design_strengths": [
+        "模型组、分组表头和括号 delta 让跨 backbone 增益易于扫读。",
+        "caption 明确 hallucination 指标方向，降低反向读表风险。"
+      ],
+      "design_weaknesses": [
+        "27 行与跨 benchmark 尺度差异带来高认知负荷。",
+        "delta 基准、样本协议和不确定性不在表内；PDF 的下标排版不稳定。"
+      ],
+      "reusable_pattern": "按模型组组织统一 plugin comparison，并将相对基线 delta 放在结果旁；复用时把基线、分母和重复写入 caption/脚注.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 3: Ablation study on α (SGRS) and β (LocoRE). Best in bold. β: 0.15 (LLaVA-1.5), 0.20 (Qwen2-VL).",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR",
+          "CMMI"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 8.0,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 7,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "未提供误差、置信区间、样本分母或重复；`-` 表示该 α/β 组合未报告或未运行。",
+      "data_and_statistics": "联合改变 SGRS α 和 LocoRE β，按 LLaVA-1.5 与 Qwen2-VL 两个 model groups 报告 CHAIR_S、CHAIR_I、POPE-F1、POPE-Acc；主结果为 1 位小数，α/β 本身用较短小数表示。",
+      "evidence_relation": "T3 把 F4 的 α 质量—成本权衡和 F3 的局部强化接成联合超参决策，并给复现段落的 α=0.6、β=0.15/0.20 提供直接表格锚点。",
+      "design_strengths": [
+        "小表可快速定位两个 backbone 的推荐 β。",
+        "bold 与破折号比色彩更适合单栏、灰度阅读。"
+      ],
+      "design_weaknesses": [
+        "未解释缺失组合、完整搜索空间和 α 的选择依据。",
+        "单栏无误差，无法判断推荐点的稳定性。"
+      ],
+      "reusable_pattern": "在一张小表中分离两个干预强度并在 caption 给出推荐点；复用时增加搜索空间、未运行原因和变异信息.",
+      "evidence": {
+        "page": 9,
+        "label": "Table 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Comparison of different Video LVLMs and LocoRE across all video benchmarks. In the Video-Based Text Generation Benchmark, five scores are assessed: Cr. (Correctness of Information), Cs. (Consistency), De. (Detail Orientation), Ct. (Contextual Understanding) and Te. (Temporal Understanding). Following Maaz et al. (2023), we use the GPT-3.5 Turbo model to assign a relative score to the model outputs, with scores ranging from 0 to 5.",
+        "word_count": 66,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR",
+          "CMMI"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.3,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 4,
+      "columns": 12,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "未提供误差、置信区间、样本分母、重复或 GPT-3.5 评分者一致性；0–5 是 caption 所述相对评分范围。",
+      "data_and_statistics": "Video-LLaVA 与 Video-LLaMA2 各自对照 + LocoRE (Ours)，覆盖 MSVD-QA、MSRVTT-QA、ActivityNet-QA 的 Accuracy/Score，以及 Video-Based Text Generation 的 Cr./Cs./De./Ct./Te.；QA 数值多为 1 位小数，五项视频文本分数为 2 位。",
+      "evidence_relation": "T4 将 T1/T2 的 image benchmark 闭环扩展到 video zero-shot QA，支撑附录 A.5 的跨模态泛化主张。",
+      "design_strengths": [
+        "caption 完整定义五项缩写、GPT-3.5 评估器和 0–5 范围。",
+        "baseline/+LocoRE 行和分组表头使迁移增益清楚。"
+      ],
+      "design_weaknesses": [
+        "12 列在双栏中仍密集。",
+        "外部评估器与重复/一致性没有不确定性表达。"
+      ],
+      "reusable_pattern": "在 caption 中定义缩写、评分范围和评估器，再用 baseline/+method 分组展示跨模态迁移.",
+      "evidence": {
+        "page": 17,
+        "label": "Table 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 5: Mean saliency scores for correct vs. hallucinated tokens across models.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR",
+          "CMMI"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 3,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "均值 ± SD；未说明 SD 的估计方法、样本分母、token 独立性或重复层级。",
+      "data_and_statistics": "三模型（LLaVA-v1.5-7B、Qwen2-VL-7B、InternVL-7B）的 Correct Tokens 与 Hallucinated Tokens saliency：0.472±0.136/0.193±0.087、0.664±0.158/0.355±0.103、0.508±0.124/0.224±0.095；均值和 SD 均为三位小数。",
+      "evidence_relation": "T5 复核 F10(a) 的柱高，把跨 architecture 的 token-level差异变成可复核数字，并为 T6 intervention 提供基线。",
+      "design_strengths": [
+        "三模型×两类 token 对齐清楚，均值±SD 格式紧凑。",
+        "无颜色与极简规则使灰度复核可靠。"
+      ],
+      "design_weaknesses": [
+        "没有 n、显著性、聚合层级或 SD 口径。",
+        "inset 表脱离 D.1 不能解释 token 标注和数据来源。"
+      ],
+      "reusable_pattern": "用小型 mean±SD 表为复合图提供可复核数字，并附 n、聚合层级和 SD 计算口径.",
+      "evidence": {
+        "page": 19,
+        "label": "Table 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Table 6: Hallucination experiments that artificially lower saliency scores",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR",
+          "CMMI"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "rows": 5,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "无误差表达；各行是人为缩放因子下的单点汇总，未给样本分母或重复。",
+      "data_and_statistics": "对 LLaVA-1.5-7B 的高 saliency correct tokens 施加 r=1.0、0.8、0.6、0.4、0.2（括号为 decay 0–80%），报告 CHAIR_S、POPE-F1、POPE-A；CHAIR_S 从 35.6 增至 56.0，POPE 指标下降，结果均一位小数。",
+      "evidence_relation": "T6 是 F10/T5 相关性之后的 intervention check，用可控 decay 连接 saliency 降低与 benchmark 变化，支撑 D.1 的渐进机制结论。",
+      "design_strengths": [
+        "r 的梯度和三个结果列形成单调干预面。",
+        "无颜色、booktabs 和统一一位小数便于重读。"
+      ],
+      "design_weaknesses": [
+        "caption 未说明模型、干预对象、筛选阈值、指标方向或主发现。",
+        "单点行无重复/误差，不能判断干预稳定性。"
+      ],
+      "reusable_pattern": "将机制干预强度与结果指标置于单调序列表；复用时明确筛选规则、n、重复和变异表达.",
+      "evidence": {
+        "page": 20,
+        "label": "Table 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "F1 建立 attention 与 saliency 的 headline 差异，F2 解释 recent-output distance decay/contextual collapse，F3 接入 LocoRE，T1/T2 给主 benchmark 比较，F4/T3 选择 α/β，附录 F6 给成本、F5/F7/F8/F9 给跨模型/方法机制，F10/T5/T6 给统计与干预验证，F11–F14 给失败、长序列和层边界。整体顺序是观察信号→方法接口→结果→消融→机制验证→反例。",
+    "caption_system": "F1–F3、F9–F12 和 T1–T5 多以加粗 label 开头，并在较长 caption 中混合 setup、comparison 和 finding；F4–F8、F13/F14、T6 主要只有标题或 setup。F1/F2/F3/F9/F10/T4 的 caption 信息最完整，短 caption 对单位、色阶、面板和样本依赖正文。",
+    "table_header_system": "T1/T2/T4 采用两层 grouped header，将 benchmark、模型/方法和 ↑/↓ 指标放在同一横向面；T3 用 α/β 加两类模型指标，T5/T6 用单层简表。精度按 benchmark 大致统一，但 T1/T4 混合 1/2 位小数；缺失值通常用破折号。",
+    "method_result_ablation_link": "Algorithm 1/2、F7 说明 SGRS 的 rejection gate 和 LocoRE 的 recent-output reinforcement；F3 是局部 qualitative effect，T1/T2 是主结果，F4/T3 是 α/β ablation，F6 是推理成本，F10/T5/T6 是统计—干预机制闭环。",
+    "main_appendix_link": "正文 F1–F4、T1–T3 给出诊断、方法效果与超参；附录 F5/F7/F8/F9 扩展 backbone/方法信息流，F6 量化成本，F10/T5/T6 检验相关与干预，F11 明确高 saliency failure，F12–F14 扩展长序列和层维度。",
+    "typography_consistency": "PDF 正文/表格主要是 Nimbus Roman No9 L、CMR/CMMI，表格字号约 6.3–9.5 pt；嵌入图的 Calibri/Arial Black/Times New Roman 与正文不完全一致。caption 的粗体策略相对稳定，但图内 raster 字体大小和字重波动。",
+    "color_consistency": "粉色/洋红 saliency、蓝色 token/流向、绿色 correct、红色 hallucination 在 F1–F3、F5、F9、F11–F14 重复；F4/F6/F10 和表格采用独立的分类色/浅色行带。语义符号与文字提供部分冗余，但共享 colorbar 与灰度安全性不足。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "固定输入和 token 的 attention/saliency 同构对照，并在下方补 token-flow 依赖 strip。",
+      "LocoRE 等 intervention 的 before/after heatmap，显式标出 token 改变、局部窗口和方向箭头。",
+      "grouped benchmark header、↑/↓ 方向标记、模型组和括号 delta 的主结果表。",
+      "mean±SD grouped summary 与 saliency-bin 条件概率曲线并列，再用 decay intervention 连接相关与因果方向。",
+      "correct/hallucination 以相同 layer small-multiple 网格成对呈现，并保留 failure panel 限定机制边界。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：最强的 attention-vs-saliency headline，建立论文的视觉问题。",
+      "Figure 3：将 LocoRE 的机制 intervention 变成可见的 token-level before/after。",
+      "Table 1 与 Table 2：把单 backbone 与跨 LVLM 的 benchmark 结果置于主决策面。",
+      "Figure 10、Table 5、Table 6：跨模型统计、均值变异与人工 decay intervention 共同支撑机制链。",
+      "Figure 11：明确 high-saliency hallucination 反例，防止把低 saliency 读成充分条件。"
+    ],
+    "failure_patterns": [
+      "热图多数没有统一 colorbar、归一化范围或样本级摘要，定性强度难以跨对象复核。",
+      "短 caption（F4–F8、F13/F14、T6）不定义单位、面板、对象、指标方向或主发现。",
+      "双栏 qualitative grid 和单栏 inset 中图内文字偏小；F6 分类色过多，F4 双轴可能造成尺度误读。",
+      "F10(b) 的透明 uncertainty band 未定义；主结果表和 T6 没有重复、分母、失败值或变异协议。",
+      "公开仓库只提供 F1–F3 的 rendered PNG，没有 F4–F14/T1–T6 的可重算绘图、表格或 TeX 源。"
+    ],
+    "one_sentence_visual_strategy": "论文用粉色 saliency 热图揭示 token 上下文断连，before/after 图解释 LocoRE，分组 benchmark 表确认效果，再以跨模型统计、decay 干预、失败案例和 layer 切片限定机制边界。"
+  }
+}

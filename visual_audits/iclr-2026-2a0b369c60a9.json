@@ -1,0 +1,1526 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-2a0b369c60a9",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/yingchengyang/ExDM",
+      "https://github.com/philippe-eecs/IDQL",
+      "https://github.com/Alescontrela/score_matching_rl",
+      "https://github.com/BellmanTimeHut/DIPO",
+      "https://github.com/Zhendong-Wang/Diffusion-Policies-for-Offline-RL",
+      "https://github.com/rll-research/url_benchmark",
+      "https://github.com/Rooshy-yang/BeCL",
+      "https://github.com/thu-ml/CEURL"
+    ],
+    "selected_repository": "https://github.com/yingchengyang/ExDM",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/yingchengyang/ExDM",
+        "path": "URL/result_maze.py",
+        "role": "plot_script",
+        "tool": "matplotlib",
+        "evidence": "Official README is linked from the paper and names the exact title/OpenReview forum. The fetched script contains COLORS, collect_state_coverage, plt.plot(linewidth=2), fill_between(alpha=0.2), mean/std computation and savefig, but its current algs list is only [exdm] and it emits one maze per PNG; it is a partial coverage helper rather than an exact generator for the 13-method Figure 8 or the other figures/tables."
+      }
+    ],
+    "search_note": "先核查 inventory 与 corpus/visual_sources/iclr-2026-2a0b369c60a9/；前者将该论文自动标为 repository_without_visual_source，后者不存在。PDF 首页、正文和 Appendix D.2/D.3 明确链接 ExDM 与若干 baseline 官方仓库；只读 gh metadata/README/tree 严格验证 ExDM 的 description、README 标题、OpenReview forum k0Kb1ynFbt 和 main commit 7e8aafc7208c21dfb1fd43386bf172b8042e94b2。main tree 没有论文图表渲染文件、LaTeX/TikZ/PGF/SVG/notebook 或 table generator；仅 URL/result_maze.py 提供只针对 ExDM 的 coverage plot helper。因此只有 Figure 8 的 line/band 机制和部分参数可作 source evidence，其余字体、颜色、几何均来自 PDF object/rendered observation；baseline 仓库未被冒充为本文视觉源。"
+  },
+  "paper_style": {
+    "main_figures": 4,
+    "main_tables": 1,
+    "appendix_figures": 5,
+    "appendix_tables": 5,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "Liberation Sans",
+        "Times New Roman",
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 4.7,
+        "median": 7.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Times New Roman",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.0,
+      "header_size_pt": 8.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figure 2/6/7 用 black-wall + red sequential log density；Figure 3/4/8/9 以固定但非完全一致的 categorical method colors 识别算法，部分图用 direct labels 或重复 legend 冗余编码；Figure 1/5 用机制色与自然图像色，所有表格保持黑白规则和 bold best。",
+    "vector_raster_mix": "整体为 mixed：p.2 有 JPEG thumbnails 与矢量流程/文字，p.7/27/28 的 maze tiles 是小型 RGB image XObject 加矢量墙/文字，p.24 有 16 个 256×256 JPEG，p.29 Figure 8 是 1400×750 RGB raster（约 283 ppi），p.31 Figure 9 主要是 vector paths/text。",
+    "style_consistency": "caption/正文和表格稳定使用 Nimbus Roman/Times/Computer Modern；图内 quantitative graphics 交替出现 DejaVu Sans、Times New Roman、Liberation Sans。Figure 4/8/9 大体复用 method-color 语义，maze heatmaps 独立使用 red sequential；结构和方法顺序稳定，但内部字体、色条/legend 重复和灰度可读性不一致。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline",
+        "architecture"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Overview of Exploratory Diffusion Model (ExDM). Different from standard RL, URL aims to explore in reward-free environments, requiring expressive policies and models to fit heterogeneous data (Theorem 4.1). During pre-training, ExDM employs the diffusion model to model the heterogeneous exploration data and calculate score-based intrinsic rewards to encourage exploration. Moreover, we adopt a Gaussian behavior policy to collect data that avoids the inefficiency caused by the multi-step sampling of the diffusion policy.",
+        "word_count": 75,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Calibri",
+          "Cambria Math",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#2F5597",
+          "#D7191C",
+          "#5A9838",
+          "#F4EDE1",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色虚线框表示 ExDM 边界，红色箭头/文字表示 score、更新与输出路径，绿色点表示 simplex 状态样本，浅色块表示阶段，黑白为结构与背景。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "蓝色框/红色箭头/绿色 simplex 点编码模块角色与数据流",
+        "shape": "simplex 点、圆形节点、缩略图、圆角模块框",
+        "line": "实线箭头表示数据/更新流，虚线框表示系统边界",
+        "facet": "左 simplex 直觉；中 Pre-train；右 Gaussian/Diffusion 两条 fine-tune",
+        "text": "模块名称、R_score、Theorem 4.1、π_g/π_d 与 downstream task"
+      },
+      "data_and_statistics": "机制示意图，不包含样本、分母、聚合或不确定性；左侧 simplex 是 Theorem 4.1 的直觉，中央 diffusion/score/Gaussian 组件和右侧两条 policy 路径是系统接口。",
+      "evidence_relation": "引言的 heterogeneous replay data 与 maximum-entropy 直觉 → Figure 1 的 diffusion 建模/score reward/Gaussian acting 解耦 → Figure 2/3 的探索与 downstream 结果；Theorem 4.1/4.2 提供理论锚点。",
+      "design_strengths": [
+        "在一张跨栏图中把建模、奖励、acting 和两条 fine-tuning 路径放入同一因果顺序。",
+        "箭头、分组框、颜色与文本对机制角色有冗余编码。"
+      ],
+      "design_weaknesses": [
+        "simplex 和密度曲线没有量纲，可能被误读为定量统计。",
+        "缩略图与多字体引入风格断层，小尺寸时模块文字拥挤。"
+      ],
+      "reusable_pattern": "用左到右 pipeline 同时表达理论直觉、训练循环、acting 边界和 downstream 接口，并用边界框标出组件责任。",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2: Heatmap of explored regions by URL methods in the most complicated mazes.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#FFFFFF",
+          "#FDD0C0",
+          "#FB6A4A",
+          "#DE2D26",
+          "#99000D",
+          "#000000"
+        ],
+        "semantic_mapping": "红色深浅表示 explored-region normalized density；黑色为 maze wall，白色为空/未覆盖区域。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": 6,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.6,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": null,
+        "y": "Explored Ratio（无数值 y 轴）",
+        "color": "trajectory/state visitation normalized value 的顺序红色",
+        "shape": "maze wall mask 与像素 tile",
+        "line": "黑色迷宫边界线",
+        "facet": "上 Square-bottleneck；下 Square-large；每排六个方法",
+        "text": "RND、RE3、MEPOL、CIC、CeSD、ExDM 方法名与右侧 log 色条"
+      },
+      "data_and_statistics": "p.7 的 12 个 100×100 RGB heatmap tiles 展示两种复杂 maze 的 replay-buffer trajectory/state visitation density；色条刻度约为 10^-3、10^-4、10^-5。没有 seed、均值或误差编码。",
+      "evidence_relation": "§5.2 的复杂 maze 定性证据 → Figure 2 → Table 1 的七 maze final coverage；全 13 方法与七 maze 的展开在 Figures 6–8。",
+      "design_strengths": [
+        "相同 maze 几何和共享色条让墙角、瓶颈与覆盖范围可以快速横向比较。",
+        "六个 panel 的方法名直接标注，避免另置 13 项 legend。"
+      ],
+      "design_weaknesses": [
+        "caption 没有定义红色、log 色条或 panel 方法，且只展示 6 个方法。",
+        "红白顺序色在灰度打印和小尺寸下区分度有限，缺少不确定性。"
+      ],
+      "reusable_pattern": "固定 maze mask、方法顺序和共享 log 色条，把局部空间失败模式作为定量 coverage 表的前置证据。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3: Aggregate metrics (Agarwal et al., 2021) for three settings. Details are in Appendix D.5.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 13,
+        "hex": [
+          "#3D3D3D",
+          "#4845A8",
+          "#EE8861",
+          "#D98BC5",
+          "#E6822B",
+          "#57AF7A",
+          "#E8B535",
+          "#4B9CC9",
+          "#E4E93B",
+          "#91C4E4",
+          "#F3B6D8",
+          "#B8946E",
+          "#D64C47"
+        ],
+        "semantic_mapping": "颜色按方法固定；方法名称在每一行左侧直接标注，interval 以横向端点/短线编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": 13,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 112
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "x",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Expert Normalized Score（线性）",
+        "y": "方法类别（每行 direct label）",
+        "color": "13/10/5 个候选方法",
+        "shape": null,
+        "line": "横向 score bar 与 interval 端点",
+        "facet": "设置 a/b/c × Median/IQM/Mean/Optimality Gap 四列",
+        "text": "指标标题、↑/↓方向箭头、方法名和 panel setting labels"
+      },
+      "data_and_statistics": "三种 URLB fine-tuning setting 的 expert-normalized scores；(a) 13 methods、4 domains×10 seeds×4 tasks，(b) 2 domains×10 seeds×4 tasks，(c) QSM/DQL/IDQL/DIPO/ExDM。正文说明使用 stratified bootstrap confidence intervals，Table 4/6 给出 160/80 runs 的精确区间。",
+      "evidence_relation": "正文 §5.3–§5.4 的 Gaussian transfer 与 diffusion transfer 主比较 → Figure 3 四指标 aggregate → Tables 3–6 的 task-level 和区间分解；Figure 1 的两 policy 路径是其方法接口。",
+      "design_strengths": [
+        "四个聚合量在统一的横向 grammar 中可同时扫描。",
+        "direct labels 避免 13 项共享 legend，三种 setting 按行分组。"
+      ],
+      "design_weaknesses": [
+        "caption 没有定义 interval、聚合层级、颜色或 metric 方向；窄条和 pastel 色在缩放/灰度下难读。",
+        "完整任务分解和区间细节被推迟到附录，单看图难判断局部任务差异。"
+      ],
+      "reusable_pattern": "使用“setting 行 × metric 列 × method y 类别”的 aggregate small-multiple，并把 exact task-level 结果移到同构附录表。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 3",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 4: Ablation studies.",
+        "word_count": 4,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 13,
+        "hex": [
+          "#DA554F",
+          "#2E8ABE",
+          "#2EAD8C",
+          "#D55E00",
+          "#F0E442",
+          "#CC79A7",
+          "#0072B2",
+          "#009E73",
+          "#F46D43",
+          "#74ADD1",
+          "#FBAFE4",
+          "#CA9161",
+          "#000000"
+        ],
+        "semantic_mapping": "方法/任务/β 取 categorical colors；ExDM 为红色，panel 内 legend 说明每种颜色。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 13,
+        "legend_items": 13,
+        "annotations": 4,
+        "data_marks_estimate": 108
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "panel top or bottom",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "(a) 100k/500k/1M/2M；(b) Stand/Walk/Run/Jump；(c) 2,3,4,5,6,8,10,15,20；(d) β=1/2.0,1/3.0,1/4.0",
+        "y": "Expert Normalized Score（linear）",
+        "color": "方法、task 或 β setting",
+        "shape": "(a/c) small circular line markers；(b/d) grouped bars",
+        "line": "(a) pre-training curves；(c) task curves；(b/d) bar tops",
+        "facet": "1×4：pre-training、Q learning、diffusion steps、β",
+        "text": "panel labels、legend、axis titles 和 Quadruped heading"
+      },
+      "data_and_statistics": "四个单变量消融：预训练 budget（100k/500k/1M/2M）评估 100k fine-tuning；ExDM 与 w/o IQL；diffusion sampler steps；β。无误差线、重复或 interval 编码。",
+      "evidence_relation": "Figure 1 的两条 policy 路径与方法组件 → Figure 4 的 Q/IQL、sampler、β 和 budget 消融；(a) 的 URLB budget 扩展由 Appendix Figure 9 提供。",
+      "design_strengths": [
+        "四个 panel 分别对应训练预算、Q 函数、采样成本和正则强度，问题—图型匹配明确。",
+        "同一 expert-normalized y 轴使局部变化方向易读。"
+      ],
+      "design_weaknesses": [
+        "caption 只有标题，没有 panel key、单位、seed 或误差定义。",
+        "13-method legend 极小，四种 panel 的字体、颜色和 legend 信息密度较高。"
+      ],
+      "reusable_pattern": "每个 ablation 固定一个主变量、保持共同 y 轴，并在 caption/正文明确操作、评估预算和不确定性。",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 4",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: Illustration of domains with their downstream tasks in URLB (Laskin et al., 2021). We consider 4 domains, and each domain has four downstream tasks.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#1E3850",
+          "#F0A64A",
+          "#D8E5F0",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "DMC 场景 JPEG 保留自然图像颜色；卡片/文字黑白，task 名称承担主要语义标注。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 16,
+        "legend_items": 0,
+        "annotations": 20,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "自然图像外观，不承载数值变量",
+        "shape": "四个圆角 domain 卡片和 16 个 thumbnail",
+        "line": "卡片圆角边框",
+        "facet": "Walker、Quadruped、Jaco、Hopper；每卡 2×2 task",
+        "text": "domain 标题与 stand/walk/run/flip 等 task labels"
+      },
+      "data_and_statistics": "四个 DMC domain、每域四个 downstream task 的 ontology 图；p.24 `pdfimages` 记录 16 个 256×256 JPEG。没有数值样本、聚合或不确定性。",
+      "evidence_relation": "Appendix D.1 的 domain/task 定义 → Figure 5 → Tables 3/5 的 domain→task 两层表头与 Figure 9 的四 domain panels。",
+      "design_strengths": [
+        "同构圆角卡片和 2×2 task grid 让 benchmark ontology 易于扫描。",
+        "图像下方显式 task label，视觉状态不必承担全部语义。"
+      ],
+      "design_weaknesses": [
+        "Jaco reach 方向和 episode/reward 仍需依赖正文；caption 未给渲染或任务条件。",
+        "自然图像颜色在灰度下没有可靠的额外编码作用。"
+      ],
+      "reusable_pattern": "固定卡片尺寸、task 顺序和显式文字标签，用 qualitative grid 建立 benchmark domain/task 索引。",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 5",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Visualization of explored trajectories by URL methods in Square-a, Square-b, Square-c, and Square-d maze.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#FFFFFF",
+          "#FDD0C0",
+          "#FB6A4A",
+          "#DE2D26",
+          "#99000D",
+          "#000000"
+        ],
+        "semantic_mapping": "红色深浅为 trajectory/state visitation normalized value；黑色为 maze walls，白色为空区。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 52,
+        "series": 13,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 520
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.6,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": "Explored Ratio（无数值轴）",
+        "color": "每 tile 的 normalized visitation density",
+        "shape": "maze wall mask 与像素 heatmap",
+        "line": "黑色墙线",
+        "facet": "Square-a/b/c/d 四个 block；每 block 13 方法（7+6）",
+        "text": "13 方法 direct labels 与每 block vertical colorbar"
+      },
+      "data_and_statistics": "p.27 有 52 个 100×100 RGB heatmap tiles、4 条 colorbar，展示全 13 方法在 Square-a–d 的 explored trajectories；无 uncertainty。",
+      "evidence_relation": "Figure 2 的六方法复杂 maze slice → Figure 6 的四 maze exhaustive appendix → Table 1 final coverage 与 Figure 8 training dynamics；Appendix D.4 将 density 与 diffusion expressivity 联系。",
+      "design_strengths": [
+        "全方法和四 maze 使用同一 panel 顺序，支持逐 tile 比较。",
+        "colorbar 按 block 重复，局部阅读不必回到页面顶部。"
+      ],
+      "design_weaknesses": [
+        "52 个小图极其密集，caption 未说明 block 分隔、density 定义或方法顺序。",
+        "红色 log 色条和黑墙在灰度/低分辨率下不安全，且没有方差。"
+      ],
+      "reusable_pattern": "把全量方法/环境移入附录但保持 main heatmap 的方法 token、顺序和色条语法。",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 6",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7: Visualizations of explored trajectories by URL methods in mazes Square-tree, Square-bottleneck, and Square-large, respectively.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#FFFFFF",
+          "#FDD0C0",
+          "#FB6A4A",
+          "#DE2D26",
+          "#99000D",
+          "#000000"
+        ],
+        "semantic_mapping": "红色深浅为 normalized visitation density；黑色墙线和白色空区保持 Figure 6 语义。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 39,
+        "series": 13,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 390
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.6,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": "Explored Ratio（无数值轴）",
+        "color": "normalized visitation density",
+        "shape": "maze wall mask 与 heatmap tile",
+        "line": "黑色迷宫墙线",
+        "facet": "Square-tree、Square-bottleneck、Square-large，依次三个 block",
+        "text": "13 方法 labels、每 block colorbar 与 caption 的 respectively 顺序"
+      },
+      "data_and_statistics": "p.28 有 39 个 100×100 RGB heatmap tiles、3 条 colorbar，覆盖三个复杂结构 maze 的全 13 方法；无 uncertainty。",
+      "evidence_relation": "Figure 2 的复杂 maze qualitative 对照与 Figure 6 的 Square-a–d 展开 → Figure 7 的 tree/bottleneck/large slice → Table 1 三列困难 maze coverage。",
+      "design_strengths": [
+        "三种结构按同构 13-method grammar 组织，便于观察分支/瓶颈/大空间差异。",
+        "与 Figure 6 一致的色条和方法顺序减少跨页认知切换。"
+      ],
+      "design_weaknesses": [
+        "maze 名称只在 caption 以 respectively 给出，block 内没有显式标题。",
+        "色条重复占用空间，面板密度高且无 uncertainty。"
+      ],
+      "reusable_pattern": "按环境难度拆分同构 block，确保主图 qualitative slice 与附录 exhaustive slice 的方法顺序不变。",
+      "evidence": {
+        "page": 28,
+        "label": "Figure 7",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 29,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "experimental_design",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 8: State coverage ratios of different algorithms in 7 mazes during pre-training.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Times New Roman"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 13,
+        "hex": [
+          "#D73027",
+          "#CA9161",
+          "#FBAFE4",
+          "#74ADD1",
+          "#ECE133",
+          "#0173B2",
+          "#DE8F05",
+          "#029E73",
+          "#D55E00",
+          "#CC78BC",
+          "#F46D43",
+          "#009E73",
+          "#CC79A7"
+        ],
+        "semantic_mapping": "固定方法颜色，shared two-row legend 标出 13 个算法；半透明色带与对应曲线绑定。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": 13,
+        "legend_items": 13,
+        "annotations": 7,
+        "data_marks_estimate": 364
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Timesteps（约 20k–100k，linear）",
+        "y": "State Coverage（0–1，linear）",
+        "color": "算法身份；同色 band 表示 dispersion",
+        "shape": null,
+        "line": "每算法 coverage trajectory 实线",
+        "facet": "7 maze small multiples：上 3、下 4",
+        "text": "maze titles、State Coverage/Timesteps 轴和 shared 13-item legend"
+      },
+      "data_and_statistics": "一个 1400×750 RGB raster（约 283 ppi）承载七个 maze 的 coverage-vs-pretraining curves；p.8 定义 coverage 为访问过的 0.01×0.01 square bins 比例，设置为 10 seeds。渲染可见半透明 band；官方 `URL/result_maze.py` 精确计算 mean/std、用 `linewidth=2` 和 `fill_between(alpha=0.2)`，但只循环 `exdm`，不能视为 13-method exact generator。",
+      "evidence_relation": "Table 1 的最终 coverage 与 Figure 2/6/7 的空间 density → Figure 8 的训练速度/平台动态；Figure 4(a) 的四 budget 消融在这里被扩展到七个 maze。",
+      "design_strengths": [
+        "七个环境共用坐标和 shared legend，可比较早期速度与最终平台。",
+        "band 让跨 seed dispersion 在动态曲线中可见。"
+      ],
+      "design_weaknesses": [
+        "raster 小字体和 13 色曲线拥挤，caption 没有定义 band 统计。",
+        "没有同页 exact-value companion table，曲线终点需要依赖 Table 1 交叉读取。"
+      ],
+      "reusable_pattern": "用 shared-color small multiples 展示训练动态并绘制 dispersion band，再用精确终点表收束最终比较。",
+      "evidence": {
+        "page": 29,
+        "label": "Figure 8",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 9: Ablation study of pre-training steps in URLB.",
+        "word_count": 9,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Liberation Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 13,
+        "hex": [
+          "#F37954",
+          "#CE83C1",
+          "#D76B17",
+          "#18A57F",
+          "#DF971C",
+          "#177EB8",
+          "#EBE145",
+          "#7FB2D4",
+          "#F9B4E5",
+          "#CD996F",
+          "#D8423A",
+          "#2E8ABE",
+          "#000000"
+        ],
+        "semantic_mapping": "每 panel 的 13-item legend 将颜色映射到 URL method；ExDM 为红色，柱高表示 expert-normalized score。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 4,
+        "series": 13,
+        "legend_items": 13,
+        "annotations": 4,
+        "data_marks_estimate": 260
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top center of each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Walker、Quadruped、Jaco、Hopper、Overall（categorical）",
+        "y": "Expert Normalized Score (%)，0–100",
+        "color": "13 URL methods",
+        "shape": "分组柱",
+        "line": null,
+        "facet": "2×2 budgets：100k、500k、1M、2M pretraining",
+        "text": "每 panel 重复 legend、domain labels、budget subtitle 与 axis titles"
+      },
+      "data_and_statistics": "四个 URLB pretraining budgets、四个 domain 加 Overall 的 expert-normalized score；每个 category 有 13 根方法柱，图内没有 error bars 或 seed dispersion。",
+      "evidence_relation": "Figure 4(a) 的 budget ablation → Figure 9 的 URLB 四域/Overall appendix extension；D.6 文字指出 ExDM 总体领先、CIC/CeSD 在部分 domain 竞争。",
+      "design_strengths": [
+        "预算作为 facet、domain/Overall 作为 x 类别，能直接看出 ExDM 随预算改善。",
+        "每 panel 完整 legend，单独截取 panel 仍可解读方法色。"
+      ],
+      "design_weaknesses": [
+        "四个 legend 重复且 13 根柱过密，caption 没有 budget、seed、误差或归一化定义。",
+        "没有 task-level 或 interval 分解，柱高差不能单独承担显著性结论。"
+      ],
+      "reusable_pattern": "把 budget 作为 facet、保留 Overall 汇总类别，并在附录表中补充各 budget 的数值与不确定性。",
+      "evidence": {
+        "page": 31,
+        "label": "Figure 9",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1: State coverage in Maze. We report the mean and std of 10 seeds for each algorithm.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 13,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "每格为 10 seeds 的 mean ± std；没有独立 bootstrap 区间、显著性、rank 或 failure column。",
+      "data_and_statistics": "7 个 maze 的 state coverage；ExDM 行为 0.99±0.02、0.99±0.01、0.98±0.02、0.78±0.01、0.91±0.01、0.75±0.15、0.71±0.07，MEPOL 是多数 maze 的最佳 baseline。",
+      "evidence_relation": "Figure 2 的复杂 maze spatial evidence → Table 1 的七 maze endpoint coverage → Figure 8 的时间过程；p.8 正文定义 coverage 为访问过的 0.01×0.01 bins 比例。",
+      "design_strengths": [
+        "环境列和统一 precision 支持跨 maze 横向比较。",
+        "mean±std 与 bold best/baseline 使 endpoint 证据紧凑。"
+      ],
+      "design_weaknesses": [
+        "13×7 表体密度高，caption 未定义 coverage 分母/区域处理。",
+        "复杂 maze 的 dispersion 不易从单格 mean±std 判断，缺少逐 seed 或显著性。"
+      ],
+      "reusable_pattern": "使用“环境列 × 方法行 + mean±dispersion”，在 caption 同时定义 bin、seed、分母和高亮规则。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 26,
+      "module": "appendix:D.3",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "reproduction",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 2: Details of hyperparameters used for Maze2d and state-based URLB.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 8.5,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 26,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "超参数表不承载抽样不确定性；数值精度混合，含整数、0.99、1e-4、公式和文字预算。",
+      "data_and_statistics": "DDPG 组 17 行、ExDM 组 9 行；包括 replay/optimizer/network/budget，以及 VP SDE、αt/σt、3 MLPResnet blocks、4-layer MLP guidance、DPM-Solver、15 steps。",
+      "evidence_relation": "Algorithm 1–2 的实现接口 → Table 2 的继承 DDPG 与 ExDM 新增配置 → Figure 4 的 budget、IQL、sampling-step、β 消融。",
+      "design_strengths": [
+        "row group 把 backbone 继承配置与 ExDM 新增模块分开。",
+        "solver、hidden dim、learning rate 和 train/fine-tune budget 都有显式值。"
+      ],
+      "design_weaknesses": [
+        "Seed frames 重复出现，公式/文本型值不便机器读取。",
+        "没有参数范围、敏感性或实现文件 exact link。"
+      ],
+      "reusable_pattern": "用 Hyperparameter/Value 两列和 row groups 分隔“继承配置/本文新增配置”，并把公式值写成可复制文本。",
+      "evidence": {
+        "page": 26,
+        "label": "Table 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 29,
+      "module": "appendix:D.5",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 3: Detailed results in URLB of different pre-trained methods that fine-tune Gaussian policies with DDPG. Average cumulative reward (mean of 10 seeds) of the best policy.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 6.8,
+        "header_size_pt": 7.2,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 17,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "每 cell 是 10 seeds 的 best-policy average cumulative reward；无 SD/SE/interval。",
+      "data_and_statistics": "15 个方法、16 个 task reward cells，domain→task 两层表头：Walker、Quadruped、Jaco、Hopper 各四 task，所有值一位小数。",
+      "evidence_relation": "Figure 3(a) 的 single-embodiment aggregate → Table 3 的 task-level decomposition；Table 4 汇总 160 runs/method，Figure 5 提供任务语义。",
+      "design_strengths": [
+        "两层表头让 16 个 task 仍可按 domain 扫描。",
+        "bold local maxima 揭示 aggregate 背后的任务级例外。"
+      ],
+      "design_weaknesses": [
+        "17 列和约 7 pt 字体阅读成本高。",
+        "best-policy mean 没有 task-level dispersion 或方法差值列。"
+      ],
+      "reusable_pattern": "保留 main aggregate 与 appendix task-level 原始表的同构 domain→task header，但补充 per-task uncertainty 或差值。",
+      "evidence": {
+        "page": 29,
+        "label": "Table 3",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 29,
+      "module": "appendix:D.5",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: Aggregate metrics (Agarwal et al., 2021) with confidence interval in URLB. For every algorithm, there are 4 domains, each trained with 10 seeds and fine-tuned under 4 downstream tasks, thus each statistic for every method has 160 runs.",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 13,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "每个 method/metric 有 bracket confidence interval，单 embodiment 每项 160 runs；caption 未指定 interval level 或重采样细节。",
+      "data_and_statistics": "13 个方法 × Median/IQM/Mean/Optimality Gap 四指标；点值和区间均两位小数。ExDM 为 Median 0.78 [0.74,0.81]、IQM 0.80 [0.76,0.84]、Mean 0.77 [0.74,0.81]、OG 0.23 [0.20,0.26]。",
+      "evidence_relation": "Figure 3(a) 的横向 interval bars → Table 4 的 exact aggregate；正文 p.9 说明 stratified bootstrap，Table 3 提供 task-level denominator context。",
+      "design_strengths": [
+        "四个聚合量、方向和 160-run 分母集中于窄表。",
+        "与 Table 6 共享列顺序，便于 single/cross embodiment 对照。"
+      ],
+      "design_weaknesses": [
+        "括号区间在小字号下拥挤，interval level 缺失。",
+        "没有 domain/task decomposition，点值和区间无法定位局部异质性。"
+      ],
+      "reusable_pattern": "固定 Median/IQM/Mean/Optimality Gap 列顺序，并在 caption 明确方向、聚合层级和区间算法。",
+      "evidence": {
+        "page": 29,
+        "label": "Table 4",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 30,
+      "module": "appendix:D.5",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5: Detailed results in cross-embodiment state-based DMC. Average cumulative reward (mean of 10 seeds) of the best policy.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 8.0,
+        "header_size_pt": 8.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "每 cell 是 10 seeds 的 best-policy average cumulative reward；没有 SD/SE/interval。",
+      "data_and_statistics": "9 个方法 × 8 task cells；Walker-mass 与 Quadruped-mass 各四 task，domain→task 两层表头，精度一位小数。ExDM 行为 872.2/647.6/266.2/396.7 与 872.7/717.6/465.8/693.7。",
+      "evidence_relation": "Figure 3(b) cross-embodiment aggregate → Table 5 task-level reward → Table 6 的 80-run aggregate interval；Figure 5 的 task ontology提供单 embodiment 对照词汇。",
+      "design_strengths": [
+        "两层 domain/task header 直接暴露 embodiment shift 下局部差异。",
+        "沿用 Table 3 grammar，可与 single-embodiment 表逐列阅读。"
+      ],
+      "design_weaknesses": [
+        "没有任务级 dispersion、归一化或差值列。",
+        "表格仍依赖正文说明 cross-embodiment 的训练/微调条件。"
+      ],
+      "reusable_pattern": "沿用 domain→task header 让不同 embodiment 的 task-level 表可以逐格对照，并把 aggregate 留给窄表。",
+      "evidence": {
+        "page": 30,
+        "label": "Table 5",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 30,
+      "module": "appendix:D.5",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 6: Aggregate metrics (Agarwal et al., 2021) with confidence interval in cross-embodiment URLB. For every algorithm, there are 2 domains, each trained with 10 seeds and fine-tuned under 4 downstream tasks; thus, each statistic for every method has 80 runs.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 10,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "每个 method/metric 有 bracket confidence interval；2 domains×10 seeds×4 tasks=80 runs/method，caption 未说明 interval level/算法。",
+      "data_and_statistics": "10 个方法 × 四个 aggregate metrics，点值与区间两位小数；ExDM 为 Median 0.77 [0.73,0.81]、IQM 0.80 [0.75,0.83]、Mean 0.77 [0.74,0.80]、OG 0.23 [0.20,0.26]。",
+      "evidence_relation": "Figure 3(b) 的 cross-embodiment interval bars → Table 6 exact aggregate；Table 5 提供 Walker-mass/Quadruped-mass task-level分解。",
+      "design_strengths": [
+        "与 Table 4 完全相同的 metric grammar 和 80-run denominator 支持跨设置比较。",
+        "ExDM 高亮和 bracket interval 让总体差异可快速定位。"
+      ],
+      "design_weaknesses": [
+        "10×4 bracket 仍拥挤，缺少 domain-level decomposition。",
+        "interval level 和 bootstrap/分层规则需要正文补充。"
+      ],
+      "reusable_pattern": "固定 aggregate table schema，只替换 embodiment scope 和运行分母，保持跨实验可比。",
+      "evidence": {
+        "page": 30,
+        "label": "Table 6",
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 建立 diffusion 建模/score reward/Gaussian acting/两条 fine-tuning 接口；Figure 2+Table 1 形成复杂 maze spatial/endpoint 闭环；Figure 3+Tables 3–6 连接 single/cross-embodiment transfer；Figure 4 与 Figure 9 做 budget、IQL、sampling-step、β 边界消融；Figures 5–8 补充 benchmark ontology、全量 heatmap 和训练动态。",
+    "caption_system": "Figure 1/5 提供较多 setup，Table 3–6 明确 seed 与部分 runs；Figure 2/4/6/7/8/9 多为短标题，颜色、panel 顺序、band/interval 定义和方法 key 需由正文或附录补足。",
+    "table_header_system": "Table 1 用 maze 列；Table 3/5 用 domain→task 两层表头；Table 4/6 用 metric→interval 窄表；Table 2 用 DDPG/ExDM row groups，构成统一的环境、任务、聚合和复现接口。",
+    "method_result_ablation_link": "Figure 1 的 policy 分工导向 Figure 3(a–c)；Figure 4(b/c/d) 分别检查 IQL、sampler steps、β，Figure 4(a) 和 Figure 9 检查 pre-training budget；Tables 1/3–6 把这些图中的 aggregate 或 spatial claims 具体化。",
+    "main_appendix_link": "主文保留 Figure 2、Table 1、Figure 3、Figure 4 的关键 slice；附录以 Figure 5–9、Table 2–6 提供全 13-method maze、训练动态、task-level reward、aggregate intervals、hyperparameters 和 domain/task ontology。",
+    "typography_consistency": "主文 caption/table 与正文的 Nimbus Roman/Computer Modern 体系一致，图内 chart fonts 跨 DejaVu Sans/Times New Roman/Liberation Sans；PDF object 可确认字体族，但 raster Figure 8 的内部字号只能估计。",
+    "color_consistency": "方法色在 Figure 4/8/9 大体持续但未完全锁定同一 token；Figures 2/6/7 使用独立 red sequential density；Figure 3 使用 pastel method colors，Figure 1/5 的颜色主要是机制/自然图像语义。颜色承担主要识别，marker/line-style 冗余不足。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 Figure 1 的建模—奖励—acting—fine-tune 单向流程表达系统边界。",
+      "用同构 heatmap、共享 log colorbar 和 endpoint table 把空间失败模式连接到 coverage 数值。",
+      "用 setting 行 × metric 列 × method direct labels 展示多聚合量，附录再提供 domain→task 原始表。",
+      "固定方法颜色/顺序贯穿 budget、动态和消融图，同时在附录保留全量环境 slice。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：把 diffusion modeling、score reward、Gaussian acting 和两条下游路径放入同一机制接口。",
+      "Figure 2 + Table 1：复杂 maze 的 spatial qualitative 与七环境 endpoint coverage 闭环。",
+      "Figure 3 + Tables 3–6：single/cross-embodiment aggregate、task-level reward 和区间的互补证据。",
+      "Figure 8：7 maze 的训练动态与 dispersion band，补足最终 coverage 的过程解释。"
+    ],
+    "failure_patterns": [
+      "Figure 4/6/7/8/9 caption 过短，缺少 panel key、颜色、band/interval、seed 或方法顺序定义。",
+      "Figure 2/6/7 依赖阅读顺序区分 maze block，且 13 色方法图在小尺寸/灰度下拥挤。",
+      "Table 1/3/5 与 Figure 9 缺少任务级 dispersion；Table 4/6 的 interval level 和算法没有在 caption 中明确。",
+      "官方仓库没有论文 exact figure/table generator，只有一个只画 ExDM coverage 的 partial helper。"
+    ],
+    "one_sentence_visual_strategy": "论文用“机制接口图 → 复杂迷宫 spatial/coverage 证据 → 多设置 aggregate/task-level 结果 → budget 与组件消融”的同构方法 token 和附录扩展，构成从方法分工到效果与边界的视觉闭环。"
+  }
+}

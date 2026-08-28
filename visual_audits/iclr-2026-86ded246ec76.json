@@ -1,0 +1,1280 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-86ded246ec76",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/grantsrb/rep_divergence"
+    ],
+    "selected_repository": "https://github.com/grantsrb/rep_divergence",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/emd_vis.ipynb",
+        "role": "plot_script",
+        "tool": "Matplotlib/Seaborn/Jupyter",
+        "evidence": "gh-read main; cells 8, 13, and 23 expose barplot, divergence, and CL-epsilon IIA/EMD plotting logic corresponding partially to Figures 2 and 4."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/clloss_synthetic_task.ipynb",
+        "role": "plot_script",
+        "tool": "Matplotlib/Seaborn/Jupyter",
+        "evidence": "gh-read main; cell 9 plots natural/intervened scatter, cell 47 plots synthetic CL/DAS bars and baseline bands, and cell 78 generates the 3 × 3 ablation grid used by Figures 6–9."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/CL_Boundless_DAS.ipynb",
+        "role": "plot_script",
+        "tool": "Matplotlib/Seaborn/Jupyter",
+        "evidence": "gh tree and README identify the notebook as the CL/Boundless DAS experiment source supporting Figure 3’s intervention context."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/Boundless_DAS.ipynb",
+        "role": "plot_script",
+        "tool": "Matplotlib/Seaborn/Jupyter",
+        "evidence": "gh tree and README identify the Boundless DAS experiment source referenced by the Figure 3 caption."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/plotting_utils.py",
+        "role": "plot_script",
+        "tool": "Matplotlib/Seaborn",
+        "evidence": "gh-read main; interleave_scatter and palette helpers provide supporting scatter grammar but not the final composite assets."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/mean_diff_section_4.2_sanity_check.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "gh tree/read identifies the mean-difference intervention sanity-check plotting source named by the repository README."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/csvs/das_emd_cleps0.0.csv",
+        "role": "data_file",
+        "tool": "pandas/GeomLoss",
+        "evidence": "gh-read main; divergence data consumed by emd_vis and relevant to EMD comparison panels."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/csvs/mean_diff_emd.csv",
+        "role": "data_file",
+        "tool": "pandas",
+        "evidence": "gh-read main; mean-difference EMD data named by the repository’s visual-analysis notebook."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/csvs/sae_emd.csv",
+        "role": "data_file",
+        "tool": "pandas",
+        "evidence": "gh-read main; SAE EMD data named by the repository’s visual-analysis notebook."
+      },
+      {
+        "repository_url": "https://github.com/grantsrb/rep_divergence",
+        "path": "divergence/csvs/cl_synthetic_ood.csv",
+        "role": "data_file",
+        "tool": "pandas",
+        "evidence": "gh-read main; synthetic OOD results consumed by the CL experiment plotting notebook."
+      }
+    ],
+    "search_note": "The PDF explicitly links the repository and its README title/citation exactly match the paper title. Read-only gh metadata/tree/content inspection found the listed notebooks, scripts, CSVs, and generated visual directories but no paper .tex/TikZ/PGF source, no exact Figure 1 schematic source, and no final Figure 2–5 composite assets. Automatic inventory was therefore upgraded from no_public_source_found to partial_visual_source only after PDF-link and repository-metadata validation; all remaining object properties come from the PDF object list and 200 dpi rendering."
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 0,
+    "appendix_figures": 6,
+    "appendix_tables": 1,
+    "dominant_figure_typography": {
+      "family": [
+        "sans-serif",
+        "DejaVu Sans",
+        "SFNS"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 10.0,
+        "maximum": 16.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L"
+      ],
+      "body_size_pt": 10.0,
+      "header_size_pt": 10.0,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "Natural/intervened is repeatedly orange/blue or dark/light; EMD and baseline use purple/teal/mint; ten-class synthetic states use hue; Figures 6–9 map CL epsilon to pastel fills and behavior-only DAS to a pink dashed line/band. Legends and line/mark differences provide partial redundancy, but color remains dominant.",
+    "vector_raster_mix": "Figures 1–4 are RGB raster composites, Figure 5 combines raster image fragments with vector SFNS labels, Figures 6–9 are vector paths/text, and the OLS summary is vector text/rules. The mixed pipeline produces different enlargement quality across the appendix.",
+    "style_consistency": "The paper reuses natural/intervened, baseline, dashed-reference, and row/column-grid conventions effectively. Typography family and rendering modality vary between raster main figures, SFNS Figure 5, DejaVu vector grids, and Nimbus table/captions; small labels, undefined uncertainty, and color dependence are recurring weaknesses."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "conceptual_diagram",
+        "scatter"
+      ],
+      "purpose": [
+        "headline",
+        "theory_mechanism",
+        "method_interface",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Causal interventions can recruit hidden circuits that produce misleadingly confirmatory or dormant behavior. (a) Consider natural pathways (dashed arrows) for two classes A and B that carry activity to different behavioral outputs y. In a hypothetical intervention meant to find path A, patching h¹ with a divergent representation can activate distinct, hidden pathways (solid arrows) that result in misleadingly confirmatory behavior (orange) and/or undetected behavior (red). (b) Consider 2D projections of the neural activity of h¹ for a different network that classifies states into one of 10 classes (denoted by hue). Suppose that natural representations (dark points) lie within well-defined decision boundaries (dashed lines) and covary along causal axes, and that intervened representations (light points) are constructed by patching the first axis from a sampled natural representation. Although these representations diverge from the natural distribution, this can be harmless (top) or pernicious (bottom) depending on the network’s functional landscape. In particular, it can be pernicious if the network has a functional landscape where intervened activity unknowingly recruits hidden circuits (visualized as an orange region) or crosses dormant behavioral boundaries (red regions), depending on the claims.",
+        "word_count": 187,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 8.0,
+          "median": 11.0,
+          "maximum": 20.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#004AAD",
+          "#CB6CE6",
+          "#FF3131",
+          "#FF914D",
+          "#CED4D5",
+          "#A8E7C6",
+          "#F3E5E9",
+          "#6B7280"
+        ],
+        "semantic_mapping": "Blue/purple dashed paths identify natural A/B; red/orange solid paths and filled regions identify intervened hidden routes, confirmatory and dormant outcomes; dark/light points separate natural/intervened and hue separates the ten classes.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 8,
+        "annotations": 15,
+        "data_marks_estimate": 500
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 4,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Right panel: Causal Dim 1/2; left panel is a pathway schematic without numeric axes.",
+        "y": "Right panel: functional landscape/decision regions; left panel: hidden-layer to output path.",
+        "color": "Natural/intervened path colors; ten class hues; dark/light natural-intervened points; orange hidden-circuit and red dormant regions.",
+        "shape": "Round scatter marks; arrows and nodes in the architecture panel.",
+        "line": "Dashed natural paths versus solid intervened paths; dashed decision boundaries.",
+        "facet": "Left pathway schematic; right Harmless/Pernicious scatter panels.",
+        "text": "Direct labels Input, h¹, h², Output y, Harmless, Pernicious, class/output outcomes and panel legend."
+      },
+      "data_and_statistics": "Conceptual mechanism, not a sample estimate. The right panel schematically shows ten class clusters, natural/intervened points, decision boundaries, and hidden functional regions; no n, seed, error, interval, or failure-rate statistic is encoded.",
+      "evidence_relation": "The introduction’s causal-intervention problem is turned into a mechanism map: patching h¹ can recruit hidden circuits or dormant boundaries. Figure 1 motivates the empirical divergence comparisons in Figure 2 and the CL mitigation/transfer test in Figure 3; it is not a component-deletion ablation.",
+      "design_strengths": [
+        "Pathway schematic and functional-landscape scatter connect representation divergence to behavioral consequences in one view.",
+        "Dashed/solid paths, dark/light points, region fills, and direct labels give partial redundancy beyond hue.",
+        "The harmless/pernicious pair makes the claim boundary visible before quantitative results."
+      ],
+      "design_weaknesses": [
+        "Ten-class hues and pale regions are weak in grayscale and under color-vision constraints.",
+        "The schematic and scatter have no common quantitative coordinate contract; illustrative boundaries can be mistaken for fitted boundaries.",
+        "No quantitative denominator or uncertainty is provided because the object is conceptual, but the caption does not emphasize that limitation."
+      ],
+      "reusable_pattern": "Pair an intervention pathway diagram with matched harmless/pernicious distribution panels; retain dashed/solid and dark/light redundancies and label schematic versus empirical content explicitly.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 5,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "bar"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "method_interface",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 2: Representational divergence is a common occurrence across various interventions. (a) Directly replacing a coordinate value in one natural representation (orange) with the value from another will eventually create divergent representations (blue). (b) Top two principal components of natural and corresponding intervened representations, taken from the residual stream at the intervention position and with PCA is performed over the combined set of natural and intervened vectors, for three popular causal intervention techniques: a replication of Feng & Steinhardt (2024) for mean difference patching, reconstructed vectors for a single transformer layer using SAELens (Bloom et al., 2024) for sparse autoencoder, and interchange interventions for Boundless DAS (Wu et al., 2023). (c) L2 distance between natural and corresponding intervened representations, and Earth Mover’s Distance (EMD) between natural and intervened distributions (with baseline comparing the natural distribution to itself).",
+        "word_count": 137,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#FF7B02",
+          "#3565FF",
+          "#4B9E99",
+          "#A4D7BE"
+        ],
+        "semantic_mapping": "Orange denotes natural/source representations, blue intervened/patched representations, dark teal EMD, and mint natural-to-natural Baseline EMD.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 4,
+        "annotations": 12,
+        "data_marks_estimate": 320
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Panels (a)/(b): linear Dim 1/Dim 2 or top PCA components; panel (c): categorical intervention method.",
+        "y": "Panels (a)/(b): coordinate/PCA location; panel (c): L2/EMD distance.",
+        "color": "Natural/intervened orange-blue; EMD versus baseline dark teal/mint.",
+        "shape": "Round scatter points; bars in panel (c).",
+        "line": "No line series; tiny black error bars on panel (c).",
+        "facet": "Three panels: coordinate patch, three-method PCA, grouped EMD comparison.",
+        "text": "Panel titles and axes directly identify methods, Natural/Intervened, EMD and baseline."
+      },
+      "data_and_statistics": "Panel (a) visualizes replacing one coordinate in a natural vector with a value from another. Panel (b) plots the first two PCA components over the combined natural/intervened residual-stream vectors for mean-difference patching, SAE, and Boundless DAS. Panel (c) compares paired L2 distance and distribution EMD with a natural-vs-natural baseline; visible error bars lack a caption definition of estimator, replicate, or seed.",
+      "evidence_relation": "Figure 1’s mechanism is instantiated across three intervention techniques. Coordinate geometry leads to PCA separation and then to L2/EMD summaries; Figure 2 supplies the divergence observation that Figure 3 addresses with CL loss. It is a main comparison, not a component-removal ablation.",
+      "design_strengths": [
+        "The three panels move from local patch geometry to method comparison to distribution-level metric.",
+        "The natural-to-natural EMD baseline provides a concrete reference for interpreting nonzero divergence.",
+        "Panel titles and color legend make the intervention families discoverable without reading the surrounding paragraph."
+      ],
+      "design_weaknesses": [
+        "Small raster panels rely heavily on orange/blue and legend lookup; no shape or line redundancy distinguishes all method/state combinations.",
+        "Error bars in panel (c) are visible but their statistical meaning and aggregation unit are absent.",
+        "The combined raster object loses sharpness when enlarged and the caption’s PCA sentence is grammatically difficult to parse."
+      ],
+      "reusable_pattern": "Chain paired geometry, low-dimensional projection, and distribution metric in one figure; include a self-distance baseline and state the PCA population and uncertainty estimator in the caption.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 2",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "line",
+        "bar",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "main_comparison",
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 3: The CL loss reduces representational divergence and can improve out-of-distribution generalization. (a) PCA of natural (orange) and intervened (blue) representations in the Boundless DAS setting presented in Wu et al. (2023) for two CL loss weightings with the same final IIA. (b) IIA (orange) and divergence (purple) of intervened representations from Section 5.1 as a function of CL loss weight (ε). (c) Diagram of CL loss; rectangles are model representations and x₁ and x₂ are deterministic values of the representations along the two synthetic causal dimensions shown in panels (d) and (e). We patch the x₂ value from source to target using DAS and define the CL representation as the average of all natural representations that possess the same variable values as the post-intervention representation. (d) and (e) two causal feature dimensions of representations from a synthetic dataset consisting of ten classes (colors), with both natural (dark) and intervened (light) representations shown. (d) shows results from DAS trained using behavior only, (e) shows DAS trained using only the CL loss. (f) performance of alignment matrices trained on one task and evaluated on another that uses the same causal dimensions. CL loss leads to higher OOD performance.",
+        "word_count": 198,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 10.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#FF9633",
+          "#3666FF",
+          "#C7D1F8",
+          "#FDD9C4",
+          "#98DAA7",
+          "#C7EBED",
+          "#FFF9CA",
+          "#DDA5BC"
+        ],
+        "semantic_mapping": "Orange/blue encode natural/intervened and IIA/divergence traces; light fills encode corresponding states/bands; green/cyan/pastel hues encode CL/DAS or synthetic class conditions.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 12,
+        "legend_items": 12,
+        "annotations": 25,
+        "data_marks_estimate": 500
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom and in-panel",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 3.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Panels (a)/(d)/(e): linear PCA/causal dimensions; panel (b): CL ε progression and dual IIA/EMD curves; panel (f): categorical method comparison.",
+        "y": "PCA/causal feature location; IIA/divergence curves; Cross Task IIA bars.",
+        "color": "Natural/intervened orange-blue and dark/light; IIA/divergence orange-purple; synthetic class hues; CL/DAS bar colors.",
+        "shape": "Scatter points and grouped bars; rectangles/arrows in panel (c).",
+        "line": "Solid IIA/divergence curves and translucent bands; no hatching; panel (f) error bars.",
+        "facet": "Six panels: PCA, ε sweep, CL construction, behavior-only scatter, CL-only scatter, cross-task bar.",
+        "text": "Panel letters, CL/DAS/IIA labels, method headings, axis labels, and synthetic class annotations."
+      },
+      "data_and_statistics": "Panel (a) compares natural/intervened PCA at two CL weights with the same final IIA. Panel (b) varies CL weight ε and overlays IIA with divergence. Panel (c) defines the CL representation as the average of natural representations sharing the post-intervention variable values. Panels (d)/(e) compare ten-class synthetic causal features for behavior-only DAS and CL-only DAS. Panel (f) reports cross-task IIA for alignment matrices trained on one task and evaluated on another; its error bars and panel (b) band are not statistically defined in the caption.",
+      "evidence_relation": "Figure 2 identifies divergence as common; Figure 3 supplies the proposed CL representation construction, its divergence response, and the OOD utility comparison. Figures 5–9 and the OLS summary in the appendix provide task geometry, hyperparameter controls, row-space metrics, and regression support. CL-vs-behavior-only is a loss-term ablation rather than a deletion of a model component.",
+      "design_strengths": [
+        "Method construction, representation geometry, divergence trade-off, and transfer outcome appear in the causal reading order.",
+        "The same natural/intervened dark-light convention carries from the main comparison into the synthetic panels.",
+        "The final cross-task panel gives an explicit utility endpoint instead of stopping at representation distance."
+      ],
+      "design_weaknesses": [
+        "Six panels and many hues make the raster composite dense at paper size.",
+        "Error bars and the translucent band have no definition of SE, replicate, or seed; the plot cannot independently audit uncertainty.",
+        "IIA, OOD, DAS, and CL abbreviations plus the Section 5.1 pointer reduce caption self-containment."
+      ],
+      "reusable_pattern": "Order a composite as representation construction → divergence response → task-outcome test, with a matched loss ablation and a final utility panel; define every uncertainty mark and abbreviation in the caption.",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 3",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "qualitative_evidence",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 4: A number of additional divergence measures to demonstrate the difference between the natural and intervened distributions. Each is labeled by its y-axis. Each metric is computed over a random sample of natural vectors to simulate the natural manifold, and a sampled set of intervened or natural vectors for which to measure the distance from the natural distribution. We refer to this distribution as the \"compared\" distribution. The sampled intervened and natural vectors are always the \"ground-truth pair\" described at the beginning of Appendix A.1. Nearest Cosine Distance: refers to the cosine distance to the nearest sample in the natural manifold. Multiple sampes in the compared distribution can share the same natural sample. This value is averaged over all compared samples. Nearest L2 Distance refers to the cosine distance to the nearest sample in the natural manifold. Multiple sampes in the compared distribution can share the same natural sample. This value is averaged over all compared samples. Min Cos Pairing refers to the lowest cost pairing where cost is the cosine distance between two samples. Vector pairs are exclusive. This value is normalized by the number of samples. Min L2 Pairing refers to the lowest cost pairing where cost is the L2 distance between two samples. Vector pairs are exclusive. This value is normalized by the number of samples. Local PCA Distance refers to the distance to the manifold created using a local PCA of the nearest neighbors. See Appendix A.1.2. EMD refers to the Earth Mover’s Distance. See Appendix A.1.2. KDE refers to the Kernel Density Estimation score. See Appendix A.1.2. Local Linear Reconstruction refers to the local linear reconstruction error. See Appendix A.1.2.",
+        "word_count": 276,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#474473",
+          "#446791"
+        ],
+        "semantic_mapping": "Dark purple bars are Natural and blue bars are Intervened across the eight divergence measures.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 8,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "repeated within panels",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Categorical method labels DAS, Mean Diff, and SAE in each panel.",
+        "y": "Metric-specific divergence value; metric name is the y-axis/panel title.",
+        "color": "Natural versus Intervened purple/blue bars.",
+        "shape": "Grouped bars; no marker encoding.",
+        "line": "Black error bars only; no connecting line.",
+        "facet": "2 × 4 small multiples: Nearest Cos/L2, Min Cos/L2 Pairing, Local Reconstruction/PCA, EMD, KDE.",
+        "text": "Each panel directly labels its metric; repeated Natural/Intervened legend identifies fills."
+      },
+      "data_and_statistics": "Eight additional divergence measures are evaluated over random natural vectors approximating the natural manifold and paired intervened/natural compared vectors. The caption describes nearest distances, exclusive pairings, local PCA, EMD, KDE, and local reconstruction, including averaging/normalization language, but does not define visible error bars, sample sizes, or seeds. The caption retains the PDF typos “sampes” and describes Nearest L2 as cosine distance.",
+      "evidence_relation": "Figure 2(c)’s L2/EMD result is stress-tested with alternative manifold and pairing metrics from Appendix A.1.2. Figure 4 is robustness/reproduction evidence for the divergence claim, not a new method or component ablation.",
+      "design_strengths": [
+        "A consistent 2 × 4 small-multiple contract makes metric dependence inspectable.",
+        "Metric names are direct labels, so the reader need not decode a long global legend.",
+        "Natural/intervened bars are repeated across methods and metrics, enabling local comparisons."
+      ],
+      "design_weaknesses": [
+        "Natural/intervened identity is color-only and grayscale unsafe.",
+        "Error bars are visible without an uncertainty definition, and no sample/seed count is shown.",
+        "The long caption contains a typo and an L2/cosine description conflict, weakening metric auditability."
+      ],
+      "reusable_pattern": "Use a fixed small-multiple matrix to test whether a divergence conclusion survives alternative metrics; pair it with explicit sample, normalization, and uncertainty definitions and non-color state encoding.",
+      "evidence": {
+        "page": 22,
+        "label": "Figure 4",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "method_interface",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: Visualization of the different synthetic tasks used for Figure 3. The Default Task is split into two partitions, both withholding two classes that are contained in the other partition. The OOD task is also split into two partitions, both consisting of 4 classes. The Dense partition consists of a tighter cluster than the Sparse.",
+        "word_count": 56,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "SFNS"
+        ],
+        "size_pt": {
+          "minimum": 8.0,
+          "median": 10.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#DDA5BC",
+          "#A1C0D8"
+        ],
+        "semantic_mapping": "Pink/blue partition fills identify Partition One/Two in Default Task and Sparse/Dense in OOD Task; class clusters retain additional hue differences.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 10,
+        "data_marks_estimate": 500
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "inside left/right panels",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Causal Dim 1/2 synthetic coordinate plane without numeric tick detail.",
+        "y": "Cluster position/spread on the two causal dimensions.",
+        "color": "Partition colors plus separate class hues.",
+        "shape": "Point marks for class samples.",
+        "line": "No line encoding.",
+        "facet": "Two panels: Default Task and OOD Task.",
+        "text": "Panel titles and partition legends directly label the data split and Dense/Sparse relation."
+      },
+      "data_and_statistics": "The Default Task is a ten-class synthetic grid split into two partitions with two classes withheld from each; the OOD task has two non-overlapping four-class partitions and two classes excluded entirely. Dense is a tighter cluster than Sparse. This is a qualitative geometry display with no point-count, noise, seed, or uncertainty statistic.",
+      "evidence_relation": "Appendix A.5.4 defines the partitions used by Figure 3. Figure 5 gives the geometric context required to interpret the CL/DAS transfer result; Figures 6–9 then vary training/validation and row-space metrics over these partitions. It is experimental-design evidence, not a component ablation.",
+      "design_strengths": [
+        "The split geometry is visible rather than left to prose, making the OOD construction auditable.",
+        "The two panels share a compact coordinate language and isolate Dense/Sparse spacing as the visual contrast.",
+        "Partition labels are separated from the ten-class hue clusters."
+      ],
+      "design_weaknesses": [
+        "Partition colors are not shape-redundant and are weak in grayscale.",
+        "Image fragments plus vector labels have a mixed sharpness profile relative to the surrounding vector appendix plots.",
+        "Specific class IDs, point counts, and noise parameters are omitted, so the panel cannot reconstruct the exact dataset."
+      ],
+      "reusable_pattern": "Place a compact synthetic-task geometry card beside the main transfer result; keep partition encoding separate from class encoding and state withheld classes and sample counts in the caption.",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 5",
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6: Out of distribution hyperparameter search showing the DAS IIA on OOD validation data for the trained task partition. We see the DAS loss learning rate (lr) and extra concatenated noisy input dimensions (extra_dim) across the panel columns and rows. The DAS+CL reported values include the behavioral loss whereas the CL label excludes the behavioral loss. The pink dashed lines represent DAS trained with the behavioral loss only.",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 11.33,
+          "median": 14.0,
+          "maximum": 16.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#98DAA7",
+          "#C0EBE9",
+          "#D3C3F6",
+          "#F2AAA7",
+          "#FAC8EC",
+          "#F14CC1"
+        ],
+        "semantic_mapping": "Five pastel bar hues encode CL epsilon levels; pink dashed line/band encodes behavior-only DAS baseline.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 9,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom shared legend",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "CL versus DAS+CL categorical bars; columns are lr=0.005/0.01/0.05.",
+        "y": "Cross Task IIA on OOD validation data, approximately 0.6–1.0.",
+        "color": "Five CL epsilon pastel levels; pink behavior-only DAS baseline.",
+        "shape": "Grouped bars; no marker.",
+        "line": "Pink dashed horizontal baseline and translucent baseline band.",
+        "facet": "3 × 3 grid: rows extra_dims=0/16/64, columns learning rate.",
+        "text": "Row/column headers, panel titles, y-axis metric, and shared epsilon legend are direct labels."
+      },
+      "data_and_statistics": "Cross Task IIA is shown over learning rate, extra concatenated noisy dimensions, and CL epsilon. DAS+CL bars include the behavioral loss, while CL bars exclude it; pink dashed/band baseline is DAS with behavioral loss only. Bar error bars and baseline band are visible but their SE/replicate/seed definition is not stated.",
+      "evidence_relation": "Figure 3’s CL/OOD utility claim is expanded into a hyperparameter robustness grid in Appendix A.5.5. Figure 6 is an IIA outcome ablation/control, with behavior-only DAS as the baseline; Figure 8 measures the corresponding row-space mechanism.",
+      "design_strengths": [
+        "A single 3 × 3 grid exposes two hyperparameters and CL intensity without changing axes.",
+        "The behavior-only dashed baseline creates a stable across-panel reference.",
+        "Vector rendering preserves bars, error caps, and labels when enlarged."
+      ],
+      "design_weaknesses": [
+        "Five pastel levels remain primarily color-coded and are not grayscale safe.",
+        "Error bars and baseline band lack a statistical definition or sample count.",
+        "The caption’s `extra_dim` naming differs from panel `extra_dims`, and abbreviations/split semantics depend on appendix context."
+      ],
+      "reusable_pattern": "Use a row/column hyperparameter grid with one repeated baseline and fixed series order; add marker/texture redundancy and define uncertainty and replicate units in the caption.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 6",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 7: In distribution hyperparameter search showing the DAS IIA on in-distribution validation data for the trained task partition. We see the DAS loss learning rate (lr) and extra concatenated noisy input dimensions (extra_dim) across the panel columns and rows. The DAS+CL reported values include the behavioral loss whereas the CL label excludes the behavioral loss. The pink dashed lines represent DAS trained with the behavioral loss only.",
+        "word_count": 68,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 11.33,
+          "median": 14.0,
+          "maximum": 16.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#98DAA7",
+          "#C0EBE9",
+          "#D3C3F6",
+          "#F2AAA7",
+          "#FAC8EC",
+          "#F14CC1"
+        ],
+        "semantic_mapping": "The Figure 6 pastel epsilon palette is reused; pink dashed line/band is behavior-only DAS.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 9,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom shared legend",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "CL versus DAS+CL categorical bars; columns lr=0.005/0.01/0.05.",
+        "y": "Trained Task IIA on in-distribution validation, near the upper end of the displayed IIA range.",
+        "color": "Five CL epsilon pastel levels and pink behavior-only baseline.",
+        "shape": "Grouped bars.",
+        "line": "Dashed pink baseline and translucent baseline band.",
+        "facet": "3 × 3 grid over extra_dims=0/16/64 and lr.",
+        "text": "Direct row/column headers, metric y-axis, panel titles, and shared legend."
+      },
+      "data_and_statistics": "The same nine hyperparameter combinations as Figure 6 are evaluated on the trained/in-distribution task partition. DAS+CL includes behavioral loss and CL excludes it; error bars and the behavior-only baseline band are visible without an error/replicate definition.",
+      "evidence_relation": "Figure 7 is the in-distribution control for the OOD IIA grid in Figure 6. Together they show whether the CL/DAS comparison changes with validation regime, supporting the transfer interpretation of Figure 3; this is a loss-term/robustness ablation.",
+      "design_strengths": [
+        "Exact layout and color reuse makes Figure 6 versus Figure 7 a low-confounding paired comparison.",
+        "A repeated behavior-only baseline allows the reader to separate loss-term effects from absolute IIA level.",
+        "Vector text and paths keep the dense grid scalable."
+      ],
+      "design_weaknesses": [
+        "As in Figure 6, epsilon identity is color-dependent and uncertainty marks are undefined.",
+        "The nine panels require legend and row/column cross-referencing at small page size.",
+        "The caption says “in distribution” but leaves the exact partition and seed aggregation to surrounding appendix text."
+      ],
+      "reusable_pattern": "Pair an OOD grid with a structurally identical in-distribution control; change only the validation slice and label the split directly to preserve causal comparability.",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 7",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 8: Out of distribution hyperparameter search showing the DAS row-space EMD on OOD validation data for the trained task partition. We see the DAS loss learning rate (lr) and extra concatenated noisy input dimensions (extra_dim) across the panel columns and rows. The DAS+CL reported values include the behavioral loss whereas the CL label excludes the behavioral loss. The pink dashed lines represent DAS trained with the behavioral loss only.",
+        "word_count": 70,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 11.33,
+          "median": 14.0,
+          "maximum": 16.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#98DAA7",
+          "#C0EBE9",
+          "#D3C3F6",
+          "#F2AAA7",
+          "#FAC8EC",
+          "#F14CC1"
+        ],
+        "semantic_mapping": "Five pastel epsilon bar hues plus pink dashed/band behavior-only DAS baseline.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 9,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom shared legend",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "CL versus DAS+CL categorical bars; columns are learning rate.",
+        "y": "Cross Row EMD on OOD validation, approximately 0–0.15.",
+        "color": "Five CL epsilon levels; pink behavior-only DAS reference.",
+        "shape": "Grouped bars.",
+        "line": "Dashed reference and translucent baseline band.",
+        "facet": "3 × 3 extra_dims × learning-rate grid.",
+        "text": "Direct row/column headers and metric label; shared epsilon legend."
+      },
+      "data_and_statistics": "Row EMD restricts the divergence measurement to causal dimensions and is scaled by extra noisy dimensions as described in Appendix A.5.5. The grid mirrors Figure 6’s OOD IIA settings; DAS+CL includes behavioral loss, CL excludes it. Error bars and baseline band are not defined statistically.",
+      "evidence_relation": "Figure 8 is the representation-level companion to Figure 6: it tests whether OOD IIA robustness tracks causal row-space EMD under the same hyperparameter grid. It provides mechanism/ablation support for the divergence-to-utility bridge in Figures 2–3.",
+      "design_strengths": [
+        "Keeping the Figure 6 grid contract makes outcome-to-mechanism comparison direct.",
+        "Row EMD gives a targeted causal-dimension readout instead of conflating noisy dimensions with the mechanism.",
+        "The repeated behavior-only reference supports cross-panel direction checks."
+      ],
+      "design_weaknesses": [
+        "The EMD scaling/units require appendix prose; the chart alone is not self-contained.",
+        "Pastel epsilon hues, small labels, and overlapping near-zero error bars make fine comparisons difficult.",
+        "Uncertainty marks have no stated aggregation or seed count."
+      ],
+      "reusable_pattern": "Duplicate a performance grid with a mechanism-specific estimand to test mediation/consistency; carry over the same axes and baseline and state units, scaling, and uncertainty explicitly.",
+      "evidence": {
+        "page": 26,
+        "label": "Figure 8",
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 27,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "robustness",
+        "efficiency_cost",
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 9: In distribution hyperparameter search showing the DAS row-space EMD on validation data for the trained task partition. We see the DAS loss learning rate (lr) and extra concatenated noisy input dimensions (extra_dim) across the panel columns and rows. The DAS+CL reported values include the behavioral loss whereas the CL label excludes the behavioral loss. The pink dashed lines represent DAS trained with the behavioral loss only.",
+        "word_count": 68,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 11.33,
+          "median": 14.0,
+          "maximum": 16.0
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#98DAA7",
+          "#C0EBE9",
+          "#D3C3F6",
+          "#F2AAA7",
+          "#FAC8EC",
+          "#F14CC1"
+        ],
+        "semantic_mapping": "Figure 8 palette: five pastel CL epsilon levels and pink behavior-only DAS baseline.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 9,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 9,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "bottom shared legend",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "CL versus DAS+CL categorical bars across lr columns.",
+        "y": "Trained Row EMD on validation data, approximately 0–0.15.",
+        "color": "Five CL epsilon hues and pink behavior-only baseline.",
+        "shape": "Grouped bars.",
+        "line": "Pink dashed reference/band.",
+        "facet": "3 × 3 extra_dims × learning-rate grid.",
+        "text": "Metric y-axis, row/column labels, panel titles, and shared legend."
+      },
+      "data_and_statistics": "The same row-space EMD estimand and nine hyperparameter cells as Figure 8 are evaluated on the trained/in-distribution partition. The loss inclusion convention and baseline match Figures 6–8; bars show error marks and the baseline a band without a stated uncertainty or replicate definition.",
+      "evidence_relation": "Figure 9 is the in-distribution control for Figure 8’s OOD Row EMD. Together with Figures 6–7 it tests whether representation-level and utility-level patterns persist across validation regimes, supporting rather than replacing Figure 3’s main claim.",
+      "design_strengths": [
+        "Exact structural reuse isolates the validation-regime change.",
+        "The paired Row EMD grid aligns with the paired IIA grids and makes a mechanism/outcome comparison possible.",
+        "Shared legend and baseline preserve cross-page decoding."
+      ],
+      "design_weaknesses": [
+        "Epsilon and baseline interpretation remain color/legend dependent, with poor grayscale robustness.",
+        "The caption says “validation data” without directly naming in-distribution in the first sentence.",
+        "No seed count, EMD scaling reminder, or uncertainty definition appears in the object."
+      ],
+      "reusable_pattern": "Use an in-distribution twin of a mechanism grid to distinguish transfer-specific behavior from general training effects; mark the data split and uncertainty contract inside the figure.",
+      "evidence": {
+        "page": 27,
+        "label": "Figure 9",
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Unnumbered OLS summary",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Unnumbered OLS summary (no explicit caption in PDF).",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L"
+        ],
+        "body_size_pt": 10.0,
+        "header_size_pt": 10.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 15,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Nonrobust OLS standard errors and coefficient [0.025, 0.975] intervals are printed; no grouped/clustered uncertainty or replicate definition is shown.",
+      "data_and_statistics": "Dependent variable IIA; independent variable Training EMD. The 30 observations arise from two task settings, two partitions, five seeds, and three alignment-training variants. The summary reports R-squared 0.729, adjusted R-squared 0.719, F-statistic 75.28, Training EMD coefficient −0.3424, standard error 0.039, t −8.677, P=0.000, interval [−0.423, −0.262], and omnibus/Jarque–Bera, Durbin–Watson, skew, kurtosis, and condition-number diagnostics.",
+      "evidence_relation": "Appendix A.6 uses this OLS regression to connect causal-axis Training EMD to IIA across the 30 trainings underlying the Figure 3 claim. It is quantitative mechanism/robustness support, not an independent intervention ablation.",
+      "design_strengths": [
+        "The standard statsmodels block keeps sample size, coefficient, uncertainty, fit, and residual diagnostics together.",
+        "The Training EMD row gives a directly inspectable direction and magnitude for the proposed divergence–IIA link.",
+        "The compact output is easy to reproduce from a conventional OLS call."
+      ],
+      "design_weaknesses": [
+        "The object is unnumbered and has no explicit caption, units, or visible grouping by task, partition, seed, or alignment type.",
+        "Conventional intervals and p-values are presented without a robustness rationale; the table cannot expose heterogeneity hidden by the pooled fit.",
+        "Seven narrow columns and mixed precision reduce scanability, and its interpretation depends on A.6 prose and Figure 3."
+      ],
+      "reusable_pattern": "For an appendix regression audit, retain coefficient/uncertainty/sample/diagnostic blocks but add a formal caption, units, grouping columns or paired plot, and an explicit standard-error contract.",
+      "evidence": {
+        "page": 21,
+        "label": "Unnumbered OLS summary",
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 introduces the causal-intervention failure mechanism; Figure 2 measures divergence across interventions; Figure 3 connects CL construction and divergence reduction to OOD IIA; Figures 4–5 audit alternative metrics and synthetic partition geometry; Figures 6–9 pair IIA and Row EMD controls across validation regimes; the OLS summary quantifies the EMD–IIA relationship.",
+    "caption_system": "Figures 1–3 use bold conclusion-first captions; Figures 4–9 use regular descriptive captions with repeated setup/baseline language. Main captions define colors and comparisons more often than uncertainty. Figure 4 contains source typos/metric wording conflict, F6–9 rely on appendix context and abbreviations, and the OLS object lacks a formal caption.",
+    "table_header_system": "The only table-like object is a one-level statsmodels header with fit-summary, coefficient, and residual-diagnostic blocks, minimal horizontal rules, and bold labels. It has no Table number, units, grouping columns, or shared header contract with the IIA/EMD figures.",
+    "method_result_ablation_link": "Figures 1–2 establish the intervention/divergence mechanism; Figure 3 presents CL representation construction, DAS comparison, and OOD utility; Figures 6–7 vary CL/DAS and behavior-only baseline over hyperparameters, while Figures 8–9 read out Row EMD under the same grid. The OLS summary supplies pooled mechanism support; no traditional component-deletion ablation is present.",
+    "main_appendix_link": "Main Figures 1–3 carry the central mechanism and utility narrative. Appendix A.1 Figure 4 broadens divergence metrics, A.5.4 Figure 5 documents task splits, A.5.5 Figures 6–9 expand IIA/Row EMD hyperparameters and regimes, and A.6 reports the regression referenced by the main result.",
+    "typography_consistency": "The sans-serif visual language is broadly shared, but the main raster estimates are about 6–14 pt, Figure 5’s SFNS labels are about 8–10 pt, and vector F6–9 labels are about 11.3–16 pt. Nimbus Roman captions/table and mixed raster/vector provenance make the system coherent in content but not fully uniform in rendering.",
+    "color_consistency": "Orange/blue natural-intervened semantics persist through Figures 1–3 and Figure 5; purple/teal/mint distinguish metrics/baselines; pastel epsilon and pink behavior-only references persist across Figures 6–9. The contract is learnable from legends, but ten-class and five-level palettes remain weak under grayscale."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Mechanism schematic paired with harmless/pernicious geometry to turn a latent failure mode into a visible causal story.",
+      "Geometry → distribution metric → utility outcome chain, as in Figures 2–3, with an explicit self-distance baseline.",
+      "Structurally identical OOD/in-distribution and IIA/Row-EMD grids that change one estimand or data slice at a time."
+    ],
+    "highest_value_objects": [
+      "Figure 1",
+      "Figure 2",
+      "Figure 3",
+      "Figure 6",
+      "Figure 8"
+    ],
+    "failure_patterns": [
+      "Raster composites and small panel labels reduce enlargement/readability; multi-series objects depend too much on color.",
+      "Visible error bars/bands are not defined by estimator, replicate, seed, or aggregation unit.",
+      "Figure 4 has “sampes” and Nearest L2/cosine wording conflict; F6–9 have abbreviation/split and extra_dim context gaps; the OLS summary is unnumbered and captionless.",
+      "The public-source inventory is not sufficient by itself: only the PDF’s explicit repository link and README/title metadata validate the partial source candidate."
+    ],
+    "one_sentence_visual_strategy": "Use pathway mechanisms, natural/intervened geometry, and paired IIA/EMD grids to move from representational divergence to CL mitigation and OOD utility, while reducing color dependence, defining uncertainty, correcting captions, and formally titling/grouping the regression table."
+  }
+}

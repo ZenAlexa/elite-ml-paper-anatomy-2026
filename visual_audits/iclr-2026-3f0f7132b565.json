@@ -1,0 +1,1669 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-3f0f7132b565",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/facebookresearch/lst"
+    ],
+    "selected_repository": "https://github.com/facebookresearch/lst",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/facebookresearch/lst",
+        "path": "lst-figure.jpg",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "GitHub root asset (1024×363) reproduces the PDF Figure 2 token lanes, Patch Encoder, latent transformer, Patch Decoder, colors, and arrows; exact visual match by 200 dpi PDF inspection. It was read remotely into /tmp for comparison and not added to the repository."
+      },
+      {
+        "repository_url": "https://github.com/facebookresearch/lst",
+        "path": "lst/plotting/scaling_figures.py",
+        "role": "plot_script",
+        "tool": "Altair/Pandas",
+        "evidence": "Inspected source defines a scaling chart, but its model domain is BLT Space/SpaceByte/LLaMA/Megabyte++ and does not match the LST/Baseline HellaSwag curves in Figures 1 or 4."
+      },
+      {
+        "repository_url": "https://github.com/facebookresearch/lst",
+        "path": "lst/plotting/config_scaling_figures.yaml",
+        "role": "other",
+        "tool": "OmegaConf",
+        "evidence": "Inspected config points to 4b_df.json, 500m_df.json, scaling_arch_df.json, and scaling_df.json; these data files were not present in the acquired compact source and do not bind the PDF chart values."
+      },
+      {
+        "repository_url": "https://github.com/facebookresearch/lst",
+        "path": "lst/plotting/entropy_figure.py",
+        "role": "plot_script",
+        "tool": "Altair/Pandas",
+        "evidence": "Inspected source creates an entropy line/rule chart, but no entropy figure appears in this 18-page PDF; it is not used as evidence for Figures 1–6."
+      },
+      {
+        "repository_url": "https://github.com/facebookresearch/lst",
+        "path": "lst/plotting/config_entropy_figure.yaml",
+        "role": "other",
+        "tool": "OmegaConf",
+        "evidence": "Inspected config targets entropy_figure.pdf and score/threshold files; no corresponding paper object or acquired data file was found."
+      },
+      {
+        "repository_url": "https://github.com/facebookresearch/lst",
+        "path": "lst/plotting/__init__.py",
+        "role": "other",
+        "tool": null,
+        "evidence": "Inspected file contains only the repository copyright header and no visual parameters."
+      }
+    ],
+    "search_note": "The PDF explicitly links https://github.com/facebookresearch/lst and the OpenReview record is https://openreview.net/forum?id=krGpQzo8Mz. gh auth status and gh API confirm the exact repository title, README paper title, ICLR 2026 Oral claim, and default branch main. The automated reports/tables/visual_source_inventory.csv row says exact_visual_source and lists five acquired lst/plotting files; manual inspection finds the root lst-figure.jpg is an exact Figure 2 asset, while scaling_figures.py targets BLT/SpaceByte/LLaMA/Megabyte++ and entropy_figure.py targets an absent entropy chart. The repository tree contains no matching plot source/data for Figures 1, 4, or 6 and no Table 1–13 generator/TeX/export. Therefore visual-source coverage is partial: Figure 2 is source-exact and all remaining objects are audited from the PDF as the factual source."
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 6,
+    "appendix_figures": 1,
+    "appendix_tables": 7,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "DejaVu Sans",
+        "Arial"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 12.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 8.0,
+      "header_size_pt": 8.0,
+      "header_weight": "bold",
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "palette_strategy": "Figures 1, 4, and 6 reuse a four-category blue/orange/green/red LST/Baseline × Speech/Text palette with Speech solid triangles and Text dashed x markers. Figure 2 uses pastel modality/module blocks; Figure 3 adds purple alignment markers; Figure 5 uses categorical word-cluster colors. Tables are black/white booktabs layouts with bold best values and no cell-color encoding. Color is paired with line, marker, label, or panel semantics but remains important for cross-series identity.",
+    "vector_raster_mix": "Figures 1, 2, 4, and 6 are predominantly vector text/paths; Figure 3 contains a 1678×852 raster illustration at about 697 dpi plus vector captions; Figure 5 contains three 2100×1800 raster panels at about 1193 dpi plus vector captions. Tables 1–13 are predominantly vector text and rules. The GitHub lst-figure.jpg is a separate exact source asset for Figure 2.",
+    "style_consistency": "Nimbus Roman No9 L and Computer Modern math recur in body, captions, tables, and formulae; Arial/DejaVu Sans form local chart/diagram systems. Booktabs tables share two-level task headers, bold best values, and thin horizontal rules. The four-series chart grammar is stable across main and appendix, while diagrams and t-SNE use local pastel/categorical palettes. Figure text is readable at the 200 dpi render but some internal labels are small and color identity is not fully grayscale-safe."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 1: Comparison of LST and Baseline on HellaSwag story completion under two experimental setups, (a) compute-controlled: same number of training iterations and (b) data-controlled: same amount of training data.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans",
+          "Arial"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728"
+        ],
+        "semantic_mapping": "LST Speech、LST Text、Baseline Speech、Baseline Text 分别以蓝/橙/绿/红表示；实线/虚线和三角/x marker 为 Speech/Text 的冗余提示。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 8,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "inside_bottom",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Panel (a): total training iterations, 250k–500k; panel (b): total training tokens, 160B–330B.",
+        "y": "HellaSwag accuracy (%) on a linear scale in both panels.",
+        "color": "Four method/modality combinations: LST Speech, LST Text, Baseline Speech, Baseline Text.",
+        "shape": "Triangle markers for Speech and x markers for Text; no shape difference for LST versus Baseline.",
+        "line": "Solid Speech lines and dashed Text lines; light gray horizontal dashed grid.",
+        "facet": "Compute-controlled fixed iterations versus data-controlled fixed data budget.",
+        "text": "Panel subtitles, axis titles, four-item legends, and direct endpoint percentages."
+      },
+      "data_and_statistics": "HellaSwag accuracy point estimates under two budget controls. The chart has no sample denominator, seed/run count, error bar, interval, or inferential test; exact headline changes such as +6.5 and +5.2 percentage points are supplied by Table 3 and the prose.",
+      "evidence_relation": "Information-density mismatch in the introduction → LST latent patching preview → two-control headline comparison → Tables 3–4 complete budget matrices → Figure 4 scaling → Table 6/Appendix ablations.",
+      "design_strengths": [
+        "The compute and data controls are placed side by side with a common y metric.",
+        "The four series reuse a stable visual grammar that reappears in Figures 4 and 6.",
+        "Endpoint labels make the headline comparison readable without tracing every segment."
+      ],
+      "design_weaknesses": [
+        "The caption does not define S→S/T→T, colors, or uncertainty.",
+        "LST versus Baseline remains color-dependent and is not fully grayscale-safe.",
+        "Sparse point estimates do not communicate run variability or benchmark denominators."
+      ],
+      "reusable_pattern": "Pair compute-controlled and data-controlled panels with one shared series grammar, then bind the plotted endpoints to a table containing exact differences, denominators, and run definitions.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1 — PDF p.2 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 2: Latent Speech-Text Transformer (LST). The model encodes BPE text tokens and HuBERT speech tokens into a shared latent space. A Patch Encoder compresses local speech segments into patch representations, which are jointly processed with text tokens. A Patch Decoder predicts future speech tokens from latent representations, enabling alignment and transfer across modalities.",
+        "word_count": 54,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "DejaVu Sans",
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#BFD9DE",
+          "#CFE2F3",
+          "#FCE5CD",
+          "#D9EAD3",
+          "#F2F2F2"
+        ],
+        "semantic_mapping": "浅绿 text、浅橙 speech、蓝色 encoder/decoder、浅绿中心 transformer、灰色 silence/latent grouping；标签、形状和虚线同时承担角色提示。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 25
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Left-to-right processing: modality tokens and HuBERT spans → Patch Encoder → shared latent transformer → Patch Decoder/output tokens.",
+        "y": "Parallel text/speech lanes, silence and spoken-word groups; no numeric y scale.",
+        "color": "Pastel blocks distinguish text, speech, silence, local patch modules, latent representation, and global transformer.",
+        "shape": "Token rectangles, tall encoder/decoder boxes, rounded global-transformer container, dashed grouping boxes.",
+        "line": "Solid arrows show data flow; dashed connectors and boundaries show correspondence/grouping.",
+        "facet": "Input/encoding, shared latent processing, and decoding/output are sequential regions of one diagram.",
+        "text": "Modality markers, s1–s7, spoken-word labels, Silence, HuBERT Tokens, and module names."
+      },
+      "data_and_statistics": "Conceptual interface diagram with no sample count, denominator, aggregation, uncertainty, or plotted statistic. It establishes token→latent patch→token structure; Table 7 supplies module depth/dimension/head/window details.",
+      "evidence_relation": "Introduction information-density gap → Figure 2 shared-latent interface → Figure 3 boundary choices → Section 3 patch equations/schedule → Tables 6/7/13 and Figure 5 mechanism/efficiency evidence.",
+      "design_strengths": [
+        "The modality lanes, local encoder, global transformer, and decoder form one readable flow.",
+        "Colors, labels, shape hierarchy, and dashed grouping jointly expose the interface.",
+        "The GitHub `lst-figure.jpg` asset matches the PDF token streams, blocks, labels, and arrows exactly."
+      ],
+      "design_weaknesses": [
+        "Small token labels and connectors make the central flow dense at normal paper scale.",
+        "Causal masking, cross-attention, and 4→1 compression are not drawn explicitly.",
+        "The caption does not state the curriculum inference boundary or the local attention window."
+      ],
+      "reusable_pattern": "Use a token→local compression→shared global model→local reconstruction architecture strip, paired with an appendix configuration table for dimensions and attention windows.",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2 — PDF p.3 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "image_montage"
+      ],
+      "purpose": [
+        "method_interface",
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3: Illustrations of alignment and patching methods. (a) Static patching segments speech into fixed-size patches, while aligned patching uses Wav2Vec2+CTC boundaries. (sw = spoken word and sil = silence.) (b) Example of alignment from Wav2Vec2 + CTC, where purple markers indicate word boundaries, aligning the audio signal with corresponding text.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#B7D7E8",
+          "#F6D7A7",
+          "#C9C9C9",
+          "#7B4AB5",
+          "#333333"
+        ],
+        "semantic_mapping": "左 panel 的 token/patch blocks 与 spoken-word/silence 标签区分 patch 规则；右 panel 紫色 marker 表示 CTC word boundaries。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Left: ordered speech/token spans; right: ordered word/audio alignment example without a measured time axis.",
+        "y": "Rows for aligned versus static patching and an audio/word correspondence lane; no numeric y scale.",
+        "color": "Patch block roles and purple boundary markers.",
+        "shape": "Rectangular token spans, boundary lines/markers, and audio/spectrogram-like raster.",
+        "line": "Segmentation boundaries and alignment markers; no quantitative line series.",
+        "facet": "Panel (a) abstract static/aligned segmentation; panel (b) Wav2Vec2+CTC example.",
+        "text": "Text transcript, spoken-word/silence labels, `sw`/`sil`, and subpanel captions."
+      },
+      "data_and_statistics": "Illustrative token/audio segments rather than a sample statistic. There is no denominator, repeated run, uncertainty, or significance display; the visual explains the boundary semantics used by Tables 6 and 10 and Figure 5.",
+      "evidence_relation": "Speech/text boundary mismatch → Figure 2 patch interface → Figure 3 static versus forced alignment → Section 3.1 sets P_i and aligned ranges → Table 6/Table 10 boundary ablations and Figure 5 word-level representations.",
+      "design_strengths": [
+        "Abstract segmentation and a concrete alignment example are paired in two panels.",
+        "Silence as a separately handled patch is visible and caption-defined.",
+        "The caption defines `sw`, `sil`, alignment source, and purple markers."
+      ],
+      "design_weaknesses": [
+        "The audio panel has no time ticks, so boundary offset cannot be quantitatively checked.",
+        "Color and small labels lose clarity after grayscale or aggressive resizing.",
+        "Curriculum’s training-to-static-inference transition is absent from the figure and caption."
+      ],
+      "reusable_pattern": "Pair a rule-based token segmentation schematic with a real alignment snapshot, and define abbreviations, boundary source, silence handling, and any deployment-time dependency in the caption.",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 3 — PDF p.4 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 5,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4: Scaling behavior on HellaSwag (S→S and T→T.) (a) Compute-optimal scaling (420M-1.8B). LST outperforms the baseline, with gains increasing at scale. (b) Sub-optimal token scaling at 7B. Comparison at 70B tokens, below the scaling-law optimum (≈140B).",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans",
+          "Arial"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728"
+        ],
+        "semantic_mapping": "LST Speech、LST Text、Baseline Speech、Baseline Text 分别以蓝/橙/绿/红表示；实线/虚线和三角/x marker 为 Speech/Text 的冗余提示。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 8,
+        "data_marks_estimate": 36
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "inside_bottom",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Panel (a): model-size points 420M–1.8B; panel (b): total training iterations 10k–25k. The first is a model-size sequence and the second is numeric iteration progression.",
+        "y": "HellaSwag accuracy (%) on a linear scale.",
+        "color": "LST/Baseline crossed with Speech/Text, matching Figures 1 and 6.",
+        "shape": "Speech triangle versus Text x markers; line color separates LST and Baseline.",
+        "line": "Solid Speech and dashed Text trajectories with light gray horizontal grid.",
+        "facet": "Compute-optimal scale sweep versus 7B sub-optimal fixed-token training dynamics.",
+        "text": "Scale/iteration ticks, legends, endpoint percentages, and explanatory subcaptions."
+      },
+      "data_and_statistics": "Single-value HellaSwag accuracy curves. At 420M LST/Baseline are 29.2/28.4 (Speech) and 31.6/31.1 (Text); at 1.8B they are 39.0/35.3 and 46.3/45.7. The 7B panel covers a 70B processed-token budget below ≈140B optimum. No seed, interval, denominator, or scaling-fit uncertainty is shown.",
+      "evidence_relation": "Figure 1 budget headline → Figure 4 scale and training dynamics → Table 8 1B/7B fixed-token check → Table 13 sequence/FLOPs proxy → data-limited and modality limitations.",
+      "design_strengths": [
+        "The cross-scale endpoint and large-model trajectory answer different scaling questions in one figure.",
+        "The four-series grammar is stable across budget and ratio figures.",
+        "Subcaptions state the compute-optimal/sub-optimal distinction and critical token budgets."
+      ],
+      "design_weaknesses": [
+        "The evidence covers one benchmark and point estimates without run variability.",
+        "Two panels use different x semantics, so the reader must rely on subcaptions.",
+        "Token-count efficiency remains a proxy; hardware wall-clock and end-to-end latency are absent."
+      ],
+      "reusable_pattern": "Combine a cross-scale endpoint panel with a matched-budget training trajectory, and state the optimality/data-limited regime alongside the plotted comparison.",
+      "evidence": {
+        "page": 5,
+        "label": "Figure 4 — PDF p.5 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: Visualization of word-level speech patch embeddings from alignment patching models on HellaSwag speech, grouped by different linguistic categories. Clusters of the same word are tight and well-separated from others. (a) Personal Pronouns. (b) Sharp Tool Terms. (c) Water-related Terms.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "每个 panel 的点色表示词 identity/lexical cluster；panel 标题区分 personal pronouns、sharp tools、water terms。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 3,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "inside_top_each_panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Unlabeled t-SNE coordinate 1; no semantic numeric scale or tick labels.",
+        "y": "Unlabeled t-SNE coordinate 2; no semantic numeric scale or tick labels.",
+        "color": "Word identity within each lexical category.",
+        "shape": "Colored scatter points; no additional marker-shape channel.",
+        "line": "No connecting lines, reference lines, or grid.",
+        "facet": "Three lexical categories: Personal Pronouns, Sharp Tool Terms, Water-related Terms.",
+        "text": "Panel titles, word legends/categories, and the global caption."
+      },
+      "data_and_statistics": "Qualitative word-level speech patch embeddings from the aligned LST model. The surrounding text reports within-word similarity ≈0.87, between-word similarity ≈0.43, and silhouette 0.65–0.68, but the raster panels show no sample count, t-SNE parameter, repeated embedding, or uncertainty.",
+      "evidence_relation": "Alignment should create semantically coherent word patches → Figure 5 three-category embedding clusters → similarity/silhouette summary → Table 6/Table 10 alignment and curriculum results → cross-modal alignment interpretation.",
+      "design_strengths": [
+        "The three panels use one template and make cluster tightness visually comparable.",
+        "Same-word clusters and nearby related words turn the word-level-patch claim into a concrete diagnostic.",
+        "The caption identifies the model, HellaSwag speech source, grouping, and qualitative conclusion."
+      ],
+      "design_weaknesses": [
+        "Unlabeled t-SNE axes obscure global distance and make stability hard to assess.",
+        "Point identity relies heavily on color and is weak in grayscale.",
+        "No sample count, perplexity, random seed, or repeated-embedding stability is shown."
+      ],
+      "reusable_pattern": "Use a small qualitative scatter grid for mechanism diagnosis, but pair it with quantitative similarity/silhouette, sample counts, and embedding-stability checks.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 5 — PDF p.9 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 16,
+      "module": "appendix A.6",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6: Effect of speech-to-text token ratio at 200k iterations. Results are reported on HellaSwag under both S→S and T→T.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans",
+          "Arial"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62728"
+        ],
+        "semantic_mapping": "LST Speech、LST Text、Baseline Speech、Baseline Text 分别以蓝/橙/绿/红表示；实线/虚线和三角/x marker 为 Speech/Text 的冗余提示。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "inside_bottom",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Categorical speech:text token ratios 1:4, 1:3, 1:2, 1:1.",
+        "y": "HellaSwag accuracy (%) on a linear scale.",
+        "color": "LST/Baseline crossed with Speech/Text, shared with Figures 1 and 4.",
+        "shape": "Speech triangles and Text x markers; Speech solid versus Text dashed.",
+        "line": "Four connected trajectories with light gray horizontal grid.",
+        "facet": "Single ratio-sensitivity panel; S→S and T→T are encoded as series rather than facets.",
+        "text": "Ratio labels, four-item legend, endpoint labels, and caption."
+      },
+      "data_and_statistics": "Single-value HellaSwag accuracy across four training ratios. LST S→S is 40.2 at 1:3, 41.3 at 1:2, and 41.2 at 1:1; LST T→T falls to 47.2 at 1:1. Baseline is 36.8/47.1 at 1:2 and 37.0/45.4 at 1:1. No seed, denominator, interval, or macro-score uncertainty is plotted.",
+      "evidence_relation": "Main text’s roughly one-third speech allocation → Figure 6 ratio ablation → Appendix A.6 macro-score peak at 1:2 and 1:1 text-side drop → Tables 3/4 budget conclusions.",
+      "design_strengths": [
+        "The series show the speech gain/text cost trade-off on one reading path.",
+        "The main-paper four-series syntax remains stable in the appendix.",
+        "The 1:2 operating point and 1:1 text degradation are visually inspectable."
+      ],
+      "design_weaknesses": [
+        "Connecting discrete ratios with lines suggests a continuous interpolation.",
+        "Macro score is discussed in prose but not plotted or labeled.",
+        "Ratio changes exposure and sequence composition together, so the visual does not isolate one mechanism."
+      ],
+      "reusable_pattern": "Plot discrete budget ratios with consistent modality/method encoding, and report the aggregate trade-off rule, total data, and run variation beside the lines.",
+      "evidence": {
+        "page": 16,
+        "label": "Figure 6 — PDF p.16 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 6,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 1: Speech training datasets with total speech hours and the amount of Hubert tokens.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单次汇总值；未报告样本分母、随机 seed、重复次数、标准差、区间或显著性检验。",
+      "data_and_statistics": "LibriLight 44,174 h/3.7B; People Speech 14,699/1.2B; Multilingual LibriSpeech 50,601/4.2B; Spotify 55,309/4.6B. Hours are integer totals and Hubert Tokens (B) uses one decimal.",
+      "evidence_relation": "Speech token-density problem → HuBERT speech datasets → Table 1 corpus scale → Tables 3/4 budget and Table 13 token accounting.",
+      "design_strengths": [
+        "Dataset, hours, and discretized token total answer the core data-scale question.",
+        "Units are explicit in the column headers.",
+        "Booktabs rules keep the small dataset table legible."
+      ],
+      "design_weaknesses": [
+        "No text-pair coverage, filtering, deduplication, or time-slice definition is given.",
+        "The table is a corpus inventory rather than evidence of data quality or sampling uncertainty."
+      ],
+      "reusable_pattern": "Use dataset, raw duration, and discrete-token columns as the reproducibility entry point, with generation and filtering rules in the appendix.",
+      "evidence": {
+        "page": 6,
+        "label": "Table 1 — PDF p.6 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 6,
+      "module": "experimental_design",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "dataset",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 2: Evaluation datasets for story completion (MC = Multiple Choice).",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单次汇总值；未报告样本分母、随机 seed、重复次数、标准差、区间或显著性检验。",
+      "data_and_statistics": "HellaSwag uses 1-in-4 MC for commonsense reasoning; StoryCloze and TopicStoryCloze use 1-in-2 MC for narrative coherence and topic consistency. No task sample count or split denominator is shown.",
+      "evidence_relation": "Story-completion research question → Table 2 task/format map → Tables 3/4 three-task S→S/T→T matrix → Table 9 stability and Tables 11/12 extensions.",
+      "design_strengths": [
+        "The task map is compact and easy to scan.",
+        "Format and intended capability appear in adjacent columns.",
+        "The MC abbreviation is defined in the caption."
+      ],
+      "design_weaknesses": [
+        "No split, sample count, speech-rendering version, or evaluation denominator.",
+        "Focus labels are conceptual and do not replace a reproducible task definition."
+      ],
+      "reusable_pattern": "Use a compact task-format-capability table before results, with split counts and audio-generation provenance in supplementary material.",
+      "evidence": {
+        "page": 6,
+        "label": "Table 2 — PDF p.6 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 3: Main comparison of LST models and baselines under the same computation budget scheme. Each dataset reports both S→S and T→T.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "单次 accuracy 汇总；没有 seed、run count、Std、interval、分母或统计检验。",
+      "data_and_statistics": "Compute-controlled: Base 87/175 and BPE 95/190 interleaved/text tokens (B); all LST variants 108/217. Curriculum versus Base: HellaSwag 39.0→45.5 S→S and 47.0→52.2 T→T; StoryCloze 59.1→61.2/67.8→71.6; TopicStoryCloze 87.5→87.9/95.7→96.1.",
+      "evidence_relation": "Figure 1 compute-controlled headline → Table 3 complete model/task matrix → Figure 4 scaling → Table 6 patch mechanism → Table 13 sequence/FLOPs proxy.",
+      "design_strengths": [
+        "Model variants, processed amounts, three tasks, and both directions share one decision surface.",
+        "Two-level headers make S→S/T→T alignment explicit.",
+        "Bold values draw attention to the strongest LST rows."
+      ],
+      "design_weaknesses": [
+        "Caption omits Int./Text, S/T definitions, denominators, and run count.",
+        "Variable inference patch lengths are collapsed into one budget comparison.",
+        "No explicit cost or failure column accompanies the accuracy values."
+      ],
+      "reusable_pattern": "Use a model × budget × task/direction matrix for the headline, then bind each cell to exact costs, denominators, and uncertainty.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 3 — PDF p.7 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "headline"
+      ],
+      "caption": {
+        "text": "Table 4: Main comparison of LST models and baselines under the same speech/text tokens scheme. Each dataset reports both S→S and T→T.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Accuracy 与 Compute Savings 均为单值；没有 wall-clock、实测 FLOPs、样本分母、seed、重复或区间。",
+      "data_and_statistics": "Data-controlled: Base savings -, BPE 8.2%, Static 19.3%, Curriculum 19.7%. Curriculum versus Base HellaSwag is 40.2→45.5 S→S and 49.6→52.2 T→T; the speech–text gap changes 9.4→6.7.",
+      "evidence_relation": "Figure 1 data-controlled panel → Table 4 effect/cost surface → Table 13 token accounting → Figure 4/Appendix scaling and efficiency boundary.",
+      "design_strengths": [
+        "Effect and cost proxy are visible in the same row/column system.",
+        "S→S and T→T cells allow the speech–text gap to be recomputed.",
+        "BPE’s failure and LST’s savings remain comparable."
+      ],
+      "design_weaknesses": [
+        "Compute Savings is a token/sequence proxy rather than wall-clock or hardware measurement.",
+        "No uncertainty is shown for either effect or savings.",
+        "The gap definition and percentage-point units are not stated in the caption."
+      ],
+      "reusable_pattern": "Put outcome, directional gap, and cost proxy in one table, while documenting the derivation and hardware boundary separately.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 4 — PDF p.7 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 5: LibriSpeech ASR (WER) and TTS (CER) for the 1B model, reporting context units for ASR and generation units for TTS.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 7,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "ASR/TTS WER/CER 为单次汇总；没有 utterance 分母、Whisper CER 测量分母、seed、重复、区间或检验。",
+      "data_and_statistics": "ASR baseline at 1k/2k/4k: 140/202, 44.7/73.2, 20.7/42.4; LST at 1k/2k: 6.8/10.4, 6.0/13.3 with 0.25× context units. TTS at 20k: baseline 14.1/15.1 and 1.0× generation units; LST 14.1/16.2 and 0.25×.",
+      "evidence_relation": "LST sequence compression → Table 5 downstream quality, adaptation steps, and unit reduction → Figure 2 decoder/Table 13 accounting → conclusion efficiency/quality claim.",
+      "design_strengths": [
+        "ASR and TTS quality plus context/generation units share one table.",
+        "Task groups and ↓ markers communicate metric direction.",
+        "Clean/other slices retain an important adverse TTS-other comparison."
+      ],
+      "design_weaknesses": [
+        "Caption does not define clean/other, ↓, or × baseline.",
+        "TTS other CER is 16.2 versus 15.1 for baseline, so “matches” is not uniform across splits.",
+        "No wall-clock or end-to-end latency is measured."
+      ],
+      "reusable_pattern": "Combine downstream quality, adaptation budget, and sequence units, keeping adverse slices and measurement denominators explicit.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 5 — PDF p.8 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 10,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 6: Comparison of patching strategies with approximately matched patch sizes. Static uses fixed patch lengths, Align (sil sep.) treats silence as separate patches, and Align (sil merged) merges silence into words, and Curriculum gradually shifts from Align to Static during training.",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 4,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Accuracy point estimates only; “approximately matched” patch lengths do not constitute a full balancing or uncertainty analysis.",
+      "data_and_statistics": "Static 4: 40.5/48.8, 58.2/69.4, 86.2/95.1; Curriculum sil sep. 5.8→4: 41.3/49.2, 58.6/67.8, 86.6/95.4; Curriculum sil merged 9.4→4: 40.3/48.9, 58.7/68.9, 86.8/95.4; Align sil sep. 5.8: 39.9/49.3, 60.3/69.9, 85.7/95.3; Static 6: 39.4/49.2, 58.7/69.6, 84.9/94.9; Static 9: 37.2/49.4, 57.5/69.7, 84.7/95.9; Align sil merged 9.4: 38.5/49.0, 58.8/69.7, 86.9/96.0 across HS/SC/TSC S→S/T→T.",
+      "evidence_relation": "Figure 3 boundary schematic → Table 6 static/aligned/silence/curriculum ablation → Figure 5 representation → Table 10 BPE alignment → Figure 6 ratio.",
+      "design_strengths": [
+        "Strategy, patch length, and three task/direction blocks are co-located.",
+        "Caption defines silence separation/merging and curriculum.",
+        "The table exposes task-specific trade-offs instead of only one aggregate score."
+      ],
+      "design_weaknesses": [
+        "Patch lengths span 4–9.4, confounding boundary semantics with compute.",
+        "No run variance is reported.",
+        "The final Align row punctuation differs from other row labels, and Curriculum is not best on every task/direction."
+      ],
+      "reusable_pattern": "Use strategy definition + average compression length + multi-task matrix for mechanism ablations, but balance lengths or model length as a covariate.",
+      "evidence": {
+        "page": 10,
+        "label": "Table 6 — PDF p.10 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 15,
+      "module": "appendix A.2.2",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 7: Model architecture configuration. Each module is shown with its depth, hidden dimension, number of attention heads, and other relevant settings.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "架构配置表；不涉及样本分母、运行重复或 inferential uncertainty。",
+      "data_and_statistics": "Patch Encoder 1/1024/16; Global Transformer 25/2048/16 with block-causal and RoPE θ=5×10^5; Patch Decoder 9/1024/16. Notes include patch window=512.",
+      "evidence_relation": "Figure 2 modules → Section 3 local/global attention → Table 7 reproducible dimensions → Table 8 scaling and Table 13 sequence accounting.",
+      "design_strengths": [
+        "Module rows and dimension columns form a direct implementation lookup.",
+        "Notes preserve block-causal/RoPE/window settings.",
+        "Compact booktabs layout fits the appendix column."
+      ],
+      "design_weaknesses": [
+        "No total parameter count or cross-attention frequency.",
+        "Attention roles require cross-reading A.2.1 and the diagram."
+      ],
+      "reusable_pattern": "Pair a module–depth–width–heads–settings table with an interface diagram and a short attention-role description.",
+      "evidence": {
+        "page": 15,
+        "label": "Table 7 — PDF p.15 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 15,
+      "module": "appendix A.4",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 8: Scaling comparison between baseline SpeechLLM and LST at 1B and 7B.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "单值 HellaSwag accuracy；无三-run Std、seed、分母或区间。",
+      "data_and_statistics": "At 1B both use batch 0.5M/200k: Baseline 36.8/47.1 versus LST 41.3/49.2. At 7B both use batch 4.0M/25k: 42.0/54.8 versus 44.2/55.3, S→S/T→T.",
+      "evidence_relation": "Figure 4 scaling endpoints → Table 8 matched-token cross-scale check → Tables 3/4 main comparison → Table 13 efficiency proxy.",
+      "design_strengths": [
+        "Batch, iterations, scale, and both directions fit in a small matched-budget table.",
+        "It supplies exact endpoints for the 7B panel.",
+        "Group separators make 1B/7B comparison quick."
+      ],
+      "design_weaknesses": [
+        "Only HellaSwag is represented.",
+        "Caption does not repeat 70B processed tokens/data reuse or low-optimality regime.",
+        "No uncertainty is shown."
+      ],
+      "reusable_pattern": "Use scale groups with matched budget columns to make a scaling figure auditable at exact endpoints.",
+      "evidence": {
+        "page": 15,
+        "label": "Table 8 — PDF p.15 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 16,
+      "module": "appendix A.5",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 9: Average (Ave) and standard deviation (Std) across three runs. Each task is reported with both S→S and T→T directions.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "setup",
+          "uncertainty_definition",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "明确为三次 runs 的 Ave/Std；Std 是 run-level 变化的摘要，未给随机 seed、样本级方差、区间或显著性检验。",
+      "data_and_statistics": "Curriculum HS S→S 41.4±0.13 and T→T 49.1±0.06; SC T→T 69.5±1.56; other SC/TSC Std occasionally exceed 1.5. Static and Baseline rows retain their larger deviations.",
+      "evidence_relation": "Tables 3/4 single-value headline → Table 9 three-run stability → Figure 6 ratio and Table 10 BPE/word slices → bounded “consistent” claim.",
+      "design_strengths": [
+        "Run count and Ave/Std are explicit in caption and two-level header.",
+        "The same table shows task-specific stability differences.",
+        "S→S/T→T is preserved for all three tasks."
+      ],
+      "design_weaknesses": [
+        "Std aggregation level and seed selection are unspecified.",
+        "Only three strategies are repeated, less than the full Table 3 variant set.",
+        "No interval or hypothesis test accompanies the variability."
+      ],
+      "reusable_pattern": "Use Ave/Std subcolumns for repeated multi-task directional results, with run count, seed policy, and aggregation level in the caption.",
+      "evidence": {
+        "page": 16,
+        "label": "Table 9 — PDF p.16 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 17,
+      "module": "appendix A.7",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 10: Comparison of aligned patching strategies under a speech-to-text token ratio of 1:4. Word Align uses word-level forced alignment, BPE Align uses BPE segmentation, and Curriculum gradually shifts from alignment-based to static patching.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "单次汇总值；未报告样本分母、随机 seed、重复次数、标准差、区间或显著性检验。",
+      "data_and_statistics": "Word Align 5.8*: 40.0/49.9, 59.4/68.6, 84.8/94.6; BPE Align 5.0*: 39.2/50.1, 55.6/69.1, 79.6/95.6; Word Curr. 5.8→4: 41.5/49.5, 57.9/68.9, 86.8/95.1; BPE Curr. 5.0→4: 41.3/48.6, 59.1/67.1, 86.5/95.4 across HS/SC/TSC S→S/T→T.",
+      "evidence_relation": "Figure 3 CTC boundary → Table 6 word/silence mechanism → Table 10 word versus BPE alignment → Figure 5 clusters and Figure 6 ratio.",
+      "design_strengths": [
+        "Boundary granularity, patch size, and directional performance appear together.",
+        "Caption defines Word/BPE/Curriculum semantics and the 1:4 ratio.",
+        "Different S→S/T→T behavior remains visible rather than being averaged away."
+      ],
+      "design_weaknesses": [
+        "Boundary precision and patch length change together.",
+        "No uncertainty or alignment-error measure is included.",
+        "Footnote and main text are needed to interpret silence-span lengths."
+      ],
+      "reusable_pattern": "Place alignment granularity, average patch length, and directional task results in one table before making a word-level superiority claim.",
+      "evidence": {
+        "page": 17,
+        "label": "Table 10 — PDF p.17 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 17,
+      "module": "appendix A.8",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 11: Evaluation on original and improved SC/TSC TTS sets.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单次汇总值；未报告样本分母、随机 seed、重复次数、标准差、区间或显著性检验。",
+      "data_and_statistics": "Baseline: SC original/ours 58.0/59.1 and TSC 78.4/87.5; LST: 60.8/61.2 and 79.5/87.9. Cells are single accuracy values.",
+      "evidence_relation": "TTS artifact/prosody limitation → Table 11 original versus improved rendering → Tables 3/4 SC/TSC headline → quality-boundary interpretation.",
+      "design_strengths": [
+        "Data version is a column factor within the same metric table.",
+        "The tiny table makes robustness to rendering condition easy to scan.",
+        "Booktabs and explicit `(orig.)`/`(ours)` headers are economical."
+      ],
+      "design_weaknesses": [
+        "Caption does not define “ours” rendering or SC/TSC.",
+        "No uncertainty or paired sample information.",
+        "Differences require manual subtraction rather than an explicit delta column."
+      ],
+      "reusable_pattern": "Encode data/rendering version as columns so robustness remains comparable to the main result instead of becoming a disconnected claim.",
+      "evidence": {
+        "page": 17,
+        "label": "Table 11 — PDF p.17 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 17,
+      "module": "appendix A.9",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 12: Fine-grained lexical and syntactic evaluation.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.5,
+        "header_size_pt": 7.5,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单次汇总值；未报告样本分母、随机 seed、重复次数、标准差、区间或显著性检验。",
+      "data_and_statistics": "Baseline scores 72.5 (sWUGGY) and 58.9 (sBLIMP); LST scores 72.8 and 59.0. These are single benchmark scores without sample count or interval.",
+      "evidence_relation": "Local patch reconstruction → Table 12 lexical/syntactic sanity check → Table 5 downstream quality → bounded reconstruction-preservation conclusion.",
+      "design_strengths": [
+        "Minimal rows and columns directly test low-level preservation.",
+        "It complements narrative/commonsense results with a different capability level.",
+        "The compact table has low visual overhead."
+      ],
+      "design_weaknesses": [
+        "Caption does not expand sWUGGY/sBLIMP or specify task version.",
+        "Near-tied values have no repeated-run uncertainty.",
+        "The table alone cannot establish absence of higher-level trade-offs."
+      ],
+      "reusable_pattern": "Use a small low-level sanity-check table beside main-task evidence, with benchmark definitions and repeated estimates in the supplement.",
+      "evidence": {
+        "page": 17,
+        "label": "Table 12 — PDF p.17 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 18,
+      "module": "appendix A.10",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 13: Token accounting under the compute-controlled setting. Interleaved speech–text data follow a 1:2 word ratio. Due to higher speech token density, the baseline allocates 0.77 speech tokens versus 0.23 text tokens within the interleaved portion. LST compresses speech tokens via 4→1 patching, reducing the overall sequence length from 3.00 to 2.42 (∼20% FLOPs reduction).",
+        "word_count": 57,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.2,
+        "header_size_pt": 7.2,
+        "header_weight": "bold",
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 5,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Deterministic token-accounting quantities and a derived FLOPs reduction; no hardware timing, wall-clock variance, seed, sample denominator, or confidence interval.",
+      "data_and_statistics": "Baseline: 0.77 interleaved speech + 0.23 interleaved text + 2.00 text-only = 3.00 total. LST: 0.19 + 0.23 + 2.00 = 2.42. FLOPs Reduction is 0.19×; prose explains ≈20% overall reduction and ≈4× TTS generation-step reduction.",
+      "evidence_relation": "Table 1 token density → Figure 2 4→1 patch interface → Tables 3/4 controlled budgets → Table 13 accounting → Table 5 unit reductions and conclusion efficiency claim.",
+      "design_strengths": [
+        "The previously implicit cost derivation is decomposed into interleaved/text/total columns.",
+        "The caption ties 3.00→2.42 to 4→1 patching and the ≈20% proxy.",
+        "Multi-level headers preserve the speech/text composition distinction."
+      ],
+      "design_weaknesses": [
+        "The two Text units columns require careful reading to distinguish interleaved from text-only data.",
+        "FLOPs reduction is a quadratic sequence-length proxy, not wall-clock.",
+        "The FLOPs Reduction row uses blanks/dash cells that can resemble missing data."
+      ],
+      "reusable_pattern": "Keep token composition, compressed length, and derived cost in one accounting table, while naming the derivation and proxy-versus-measurement boundary.",
+      "evidence": {
+        "page": 18,
+        "label": "Table 13 — PDF p.18 rendered at 200 dpi",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "The sequence is information-density mismatch → token/patch architecture → static/aligned boundary mechanism → controlled-budget main comparison → scale/dynamics → ASR/TTS transfer → embedding diagnosis → patching ablation → appendix ratio, stability, data-version, low-level, and token-accounting checks.",
+    "caption_system": "Figure captions use title plus setup/interpretation; Figure 2–3 explain interfaces and Figure 4 subcaptions state the scaling finding. Figure 1 and Figure 6 omit series definitions and uncertainty. Table captions are short object/setup statements; Table 9 uniquely defines three runs and Ave/Std, while Table 13 spells out the accounting derivation.",
+    "table_header_system": "Main result Tables 3–4 and ablation Tables 6/10 use two-level headers with task groups and S→S/T→T subcolumns. Table 5 groups ASR/TTS by Task and adds clean/other plus context/generation units. Appendix tables reuse the same direction and task grammar, with Table 9 adding Ave/Std subcolumns and Table 13 separating interleaved speech/text from text-only units.",
+    "method_result_ablation_link": "Figure 2 and Table 7 bind encoder/global-transformer/decoder interfaces to architecture details; Figure 3 and Tables 6/10 bind boundary semantics to ablations; Figures 1/4 and Tables 3/4/8 bind budgets and scale; Figure 5 supplies qualitative alignment diagnosis; Table 5 and Table 13 bind downstream units and cost accounting.",
+    "main_appendix_link": "The main paper keeps headline budget comparisons, scale, downstream quality, and the primary patching table. Appendix A.4–A.11 adds fixed-token endpoints, three-run stability, speech ratio, BPE alignment, TTS version robustness, low-level capability, sequence accounting, and aligner perturbation; these complete boundaries but do not add wall-clock measurement.",
+    "typography_consistency": "Caption PDF objects are Nimbus Roman No9 L at approximately 9.963 pt; table and body text use Nimbus Roman/Computer Modern, with Arial/DejaVu Sans in chart/diagram internals. Weight and rule treatment are stable, while local plot labels are smaller than captions.",
+    "color_consistency": "The chart palette and Speech/Text line/marker convention recur across Figures 1/4/6. Figure 2–3 and Figure 5 use separate local semantic palettes; labels and shapes provide some redundancy, but four-series and word-cluster identities still degrade in grayscale."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Token→patch→shared-global→token architecture strip with an appendix module-configuration table.",
+      "Four-series budget/scale/ratio line grammar reused across controlled comparisons and ablations.",
+      "Model × budget × task × S→S/T→T tables that bind performance to a cost proxy.",
+      "Ave/Std two-level stability table and explicit token-accounting table for uncertainty and efficiency boundaries.",
+      "Abstract segmentation plus concrete forced-alignment example for mechanism explanation."
+    ],
+    "highest_value_objects": [
+      "Figure 2",
+      "Table 3",
+      "Table 4",
+      "Figure 4",
+      "Table 5",
+      "Table 13"
+    ],
+    "failure_patterns": [
+      "Main quantitative objects are mostly single point estimates; repeat/Std evidence is deferred to Table 9 and denominators remain absent.",
+      "Token/sequence savings are proxies without wall-clock or end-to-end latency.",
+      "Approximately matched patch sizes confound boundary semantics and compute in Tables 6 and 10.",
+      "Figure 5 t-SNE is qualitative and under-specified for stability or global distance.",
+      "Color remains a major identity channel despite partial line/marker/text redundancy.",
+      "TTS other CER is worse for LST than baseline, limiting a blanket no-quality-cost claim."
+    ],
+    "one_sentence_visual_strategy": "Use a shared token/patch mechanism diagram and four-series budget/scale lines for the headline, bind effect and proxy cost in S→S/T→T tables, and move alignment, stability, data-version, low-level, and accounting checks to the appendix for explicit boundary control."
+  }
+}

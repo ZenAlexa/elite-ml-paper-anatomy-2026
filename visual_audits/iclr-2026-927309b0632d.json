@@ -1,0 +1,2427 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-927309b0632d",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/danyalrehman/FALCON",
+      "https://github.com/transferable-samplers/transferable-samplers"
+    ],
+    "selected_repository": null,
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/transferable-samplers/transferable-samplers",
+        "path": "README.md",
+        "role": "other",
+        "tool": "GitHub API",
+        "evidence": "Appendix F.1 links this public repository for SBG/TarFlow weights and implementation. Its README describes transferable/Sequential Boltzmann Generator baselines, not FALCON figure or table sources."
+      },
+      {
+        "repository_url": "https://github.com/transferable-samplers/transferable-samplers",
+        "path": "src/transferable_samplers/evaluation/plots/plot_energies.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Public baseline utility with STIXGeneral, figsize=(4,3), dpi=300, 100 linear bins, density=True, step histograms, linewidth=3, and a COLORS list. It is contextual only; the paper does not identify it as the FALCON Figure 3/5 source."
+      },
+      {
+        "repository_url": "https://github.com/transferable-samplers/transferable-samplers",
+        "path": "src/transferable_samplers/evaluation/plots/plot_ramachandran.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Public baseline utility with 100×100 hist2d, LogNorm, rasterized=True, φ/ψ range [−π,π], and Free energy / k_B T colorbar. Its grammar resembles Figures 8–11 and 14–17 but its FALCON provenance is unconfirmed."
+      }
+    ],
+    "search_note": "The visual_source_inventory.csv row for this paper is unresolved and lists danyalrehman/FALCON and transferable-samplers/transferable-samplers. The PDF abstract explicitly links https://github.com/danyalrehman/FALCON; gh api returned 404 and the author public-repository list had no same-named repository, so no FALCON README, TeX, plot generator, table generator, or editable figure source was available. The local corpus/visual_sources/iclr-2026-927309b0632d/ directory is absent. Appendix F.1 links transferable-samplers/transferable-samplers for the SBG baseline; its recursive tree has related baseline plotting utilities but no FALCON paper composition or TeX/TikZ/PGF/SVG source. Therefore the status is partial_visual_source, selected_repository is null, and the listed scripts are contextual rather than exact FALCON sources."
+  },
+  "paper_style": {
+    "main_figures": 7,
+    "main_tables": 5,
+    "appendix_figures": 10,
+    "appendix_tables": 1,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern",
+        "DejaVu Sans",
+        "STIXGeneral",
+        "Inconsolata"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 7.5,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern"
+      ],
+      "body_size_pt": 6.7,
+      "header_size_pt": 6.7,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "主文比较图使用黑、橙、紫、粉的离散方法色；能量直方图固定 True data/Proposal/Proposal (reweighted) 的橙、粉、紫语义；regularization/schedule 消融使用紫到橙的序列；Ramachandran 与 angular prediction 热图统一使用浅黄到深紫/黑的 Free energy / kBT sequential scale。Figure 1 是紫/蓝的概念流程图。HEX 均从 PDF 渲染估计，未找到 FALCON 图源中的 exact HEX。",
+    "vector_raster_mix": "正文、caption 和表格规则是 PDF 字体/矢量对象；主文折线、柱状和直方图主要由矢量路径组成。Figures 8–11、14–17 的热图资源是栅格图像并叠加向量坐标与色条，整体为 mixed output。pdfimages 显示这些资源的有效分辨率至少 198 dpi，满足本审计的至少 180 dpi 检查要求。",
+    "style_consistency": "所有主文/附录对象共享 ICLR 单栏版式、Nimbus/Computer Modern 字体层级和克制的 caption 系统。图表的 purple/magenta/orange family 在比较与消融中反复出现，热图共享 colorbar 和角度坐标；但 inset 图和十面板热图字号偏小，颜色承担了多数方法/密度语义，灰度和色弱冗余不足。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "other",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "pipeline"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Flow map learns from biased data, with SNIS re-weighting generated samples consistent with the Boltzmann distribution, approaching equality with infinite samples under mild regularity conditions.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 4,
+        "hex": [
+          "#5E2A91",
+          "#B8A1CE",
+          "#DCE4F2",
+          "#173B7A"
+        ],
+        "semantic_mapping": "Source/biased/debiased density tones, flow paths, and directional arrows; all HEX values are estimated from the rendered PDF.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "Density tone and blue arrows distinguish source/target states and transport direction.",
+        "shape": "Density contours versus flow paths versus the SNIS formula box.",
+        "line": "Path direction arrows encode the processing order.",
+        "facet": "Source → biased target → SNIS → debiased target.",
+        "text": "Labels x0, xs, xt, x1, v(xs,s), and uθ(xs,s,t) name the states and vector fields."
+      },
+      "data_and_statistics": "Conceptual density shapes and many flow paths show the source-to-target map; the boxed SNIS expression shows normalized reweighting. No sample denominator, empirical uncertainty, or numerical metric is plotted.",
+      "evidence_relation": "Links the BG/SNIS problem in §§1–2 and Eqs. 1–2 to the quantitative efficiency and quality objects in Figure 2 and Tables 2–5.",
+      "design_strengths": [
+        "A single horizontal causal interface combines biased source, transport, statistical correction, and target.",
+        "Arrow direction and variable labels make the method hand-off legible without axes."
+      ],
+      "design_weaknesses": [
+        "Many translucent paths overlap at the small conference width.",
+        "The diagram does not quantify proposal likelihood, energy, or SNIS weight dispersion."
+      ],
+      "reusable_pattern": "Use a page-width biased-source → correction → target flow diagram to turn a theoretical interface into the experiment entry point, placing state variables beside the arrows.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 2: Performance-inference time comparison between NFs and CNFs for 10^4 dipeptide samples.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#111111",
+          "#55258E",
+          "#F58A66",
+          "#6B2B8E",
+          "#C43B7F"
+        ],
+        "semantic_mapping": "FALCON, SBG, and three DiT solver/trace variants are separated by method colors and marker/line combinations.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 0,
+        "data_marks_estimate": 25
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Evaluation Time, GPU Hours on a log scale.",
+        "y": "Torus Wasserstein-W2, T-W2.",
+        "color": "Method and solver/trace variant.",
+        "shape": "Open/filled hexagon-like markers.",
+        "line": "Method curves with vertical error bars.",
+        "facet": null,
+        "text": "Legend names FALCON, SBG (Tan et al.), DiT euler (exact), DiT dopri5 (exact), and DiT dopri5 (Hutch)."
+      },
+      "data_and_statistics": "Five method/solver series compare T-W2 against evaluation time for 10^4 dipeptide samples. Error bars are visible but their aggregation is not defined by the caption; training time is not separated.",
+      "evidence_relation": "Extends the introduction claim that CNF likelihood costs many function evaluations; Table 4 supplies cumulative cost, while Table 5 and Figure 13 split the comparison by NFE and solver.",
+      "design_strengths": [
+        "Log time compresses multiple cost orders into a single frontier.",
+        "A common T-W2 axis makes comparable-quality operating points easy to locate."
+      ],
+      "design_weaknesses": [
+        "The inset is crowded by five series, markers, and error bars.",
+        "No operating point or numeric annotation is shown, so the “two orders faster” reading requires visual estimation."
+      ],
+      "reusable_pattern": "Pair a log-cost x-axis with task quality and a companion numeric table so a solver frontier is not interpreted from the inset alone.",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: True MD energy distribution with best FALCON unweighted and re-sampled proposals for alanine dipeptide (left), tri-alanine (center left), and alanine tetrapeptide (center right), and hexa-alanine (right).",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#FF9D82",
+          "#D94B89",
+          "#71359E"
+        ],
+        "semantic_mapping": "True data, Proposal, and Proposal (reweighted) are encoded by orange, pink, and purple filled/step histograms.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 4,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper left in first panel",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Energy E(x), with a panel-specific range.",
+        "y": "Normalized Density.",
+        "color": "True data, Proposal, Proposal (reweighted).",
+        "shape": "Histogram/step marks for each sample set.",
+        "line": null,
+        "facet": "Four molecular systems and their step counts as panel titles.",
+        "text": "Legend in the first panel names the three distributions."
+      },
+      "data_and_statistics": "Four systems use overlaid density histograms; the panel titles show 4, 8, 8, and 16 steps. No formal distance, seed dispersion, or confidence interval is plotted.",
+      "evidence_relation": "Adds local energy-shape evidence to Tables 2–3 and connects the SNIS/debiasing mechanism in Figure 1 to the later Ramachandran mode checks.",
+      "design_strengths": [
+        "A common three-distribution grammar makes proposal versus reweighted proposal easy to compare with True data.",
+        "Facet titles expose the actual inference steps."
+      ],
+      "design_weaknesses": [
+        "Different panel ranges prevent direct comparison of peak heights across molecules.",
+        "Semi-transparent overlap is difficult to distinguish in grayscale or dense modes."
+      ],
+      "reusable_pattern": "Overlay true, uncorrected proposal, and reweighted proposal distributions in fixed small multiples, with the computational step count in each panel title.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4: Performance with additional samples.",
+        "word_count": 6,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#4C1D95",
+          "#C23A88"
+        ],
+        "semantic_mapping": "SBG and FALCON are shown as two sample-budget curves.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 1,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Number of Samples Generated, N_t, on a log scale.",
+        "y": "Energy-W2, E-W2.",
+        "color": "SBG versus FALCON.",
+        "shape": "Open circle markers.",
+        "line": "Sample-budget curves with vertical error bars.",
+        "facet": null,
+        "text": "Legend names SBG and FALCON; a vertical dashed budget/reference line marks the comparison budget."
+      },
+      "data_and_statistics": "The plot varies generated sample count and reports E-W2 for SBG and FALCON. Appendix F.1 states three SBG draws per sample count; the figure does not expose the complete sample denominator or aggregation in its caption.",
+      "evidence_relation": "Supports the claim that increasing SBG to 5 × 10^6 samples does not remove the E-W2 gap, complementing Table 3, Table 4, and Figure 2.",
+      "design_strengths": [
+        "A log sample-budget axis makes diminishing returns visible.",
+        "The dashed budget reference and error bars link sample cost to quality."
+      ],
+      "design_weaknesses": [
+        "Small size makes the curves and error bars easy to conflate.",
+        "E-W2 is the only metric, so the panel cannot establish an all-metrics advantage alone."
+      ],
+      "reusable_pattern": "Use a log sample-budget versus quality curve to test whether more samples close a gap, and define draw count and error bars in the caption.",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "histogram"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: Improved proposal and re-weighted sample energies with increased steps for alanine dipeptide.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#FF9D82",
+          "#D94B89",
+          "#71359E"
+        ],
+        "semantic_mapping": "True data, Proposal, and Proposal (reweighted) retain Figure 3 color semantics.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 4,
+        "data_marks_estimate": 120
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper left in first panel",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Energy E(x), with a panel-specific range.",
+        "y": "Normalized Density.",
+        "color": "True data, Proposal, Proposal (reweighted).",
+        "shape": "Histogram/step marks.",
+        "line": null,
+        "facet": "Inference steps: 1-step, 2-step, 4-step, and 8-step.",
+        "text": "Legend in the first panel names the three distributions."
+      },
+      "data_and_statistics": "Four ALDP step settings show the three energy distributions; increased steps make proposal and reweighted shapes visually approach True data. There is no plotted replicate or formal distance.",
+      "evidence_relation": "Visualizes the step-count mechanism alongside Table 5’s few-step/high-NFE comparison, Figure 6’s regularization sweep, and Figure 7’s schedule ablation.",
+      "design_strengths": [
+        "The fixed palette and facets isolate the step-count change.",
+        "The progression from 1 to 8 steps gives a direct shape-level diagnostic."
+      ],
+      "design_weaknesses": [
+        "Overlaid fills hide small modes.",
+        "Caption and panel axes do not report binning or replicate aggregation."
+      ],
+      "reusable_pattern": "Hold the reference/proposal/reweighted histogram grammar fixed while varying one computational knob across small multiples.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Performance trade-off with increasing regularization.",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#71359E",
+          "#8E2A8E",
+          "#E14465",
+          "#FDA16B"
+        ],
+        "semantic_mapping": "Four step settings (2, 4, 8, 16) use a purple-to-orange categorical sequence.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "unknown",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower left and upper right by panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Regularization λr on a log scale.",
+        "y": "ESS (log y in left panel) and T-W2 (linear y in right panel).",
+        "color": "Step count: 2, 4, 8, 16.",
+        "shape": null,
+        "line": "Four step-specific curves with vertical error bars.",
+        "facet": "Two panels encode ESS and T-W2.",
+        "text": "Axis titles and separate legends identify the two metrics and four step series."
+      },
+      "data_and_statistics": "The visible sweep covers λr values from the appendix set {10^0, 10^1, 10^2, 10^3, 10^4, 10^5}, with the rendered main plot mainly labeled through 10^4. Curves represent the two metrics across four step counts; the paper reports three trained seeds for quantitative experiments.",
+      "evidence_relation": "Connects Eq. 8–9’s invertibility regularization to the chosen λr=10 setting, and to Figure 12’s auxiliary reverse-loss diagnostic.",
+      "design_strengths": [
+        "Log λr reveals a cross-order-of-magnitude trade-off.",
+        "Separate metric panels avoid overlaying ESS and T-W2 on one scale."
+      ],
+      "design_weaknesses": [
+        "The two panels use different y scales, which makes cross-panel visual intuition risky.",
+        "The short caption omits metric names, step series, sweep range, and error-bar definition."
+      ],
+      "reusable_pattern": "Use side-by-side metric panels for regularization trade-offs, while stating the complete sweep and selected operating point in the caption or table.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 7: Performance vs. choice of inference schedule.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#71359E",
+          "#8E2A8E",
+          "#E14465",
+          "#FDA16B",
+          "#C43B7F"
+        ],
+        "semantic_mapping": "Five schedule categories are distinguished by a purple-to-orange categorical palette and direct x labels.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "unknown",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Schedule categories: lin., geom., cos., cheby., edm.",
+        "y": "T-W2 (linear left panel) and E-W2 (log right panel).",
+        "color": "Inference schedule category.",
+        "shape": null,
+        "line": "None; black vertical error bars are the uncertainty display.",
+        "facet": "Two metric facets.",
+        "text": "Direct abbreviated schedule labels on the x-axis; the appendix defines full schedules."
+      },
+      "data_and_statistics": "Five schedules are compared at the ALDP 8-step setting. Bars show T-W2 and E-W2, with black error bars from the paper’s three trained seeds; the right panel uses a log y scale.",
+      "evidence_relation": "Links Eqs. 16–21’s schedule definitions to the steps and regularization ablations in Figures 5–6; EDM is selected for Tables 2–5.",
+      "design_strengths": [
+        "Direct schedule labels avoid a separate legend.",
+        "Identical category order across the two panels supports paired reading."
+      ],
+      "design_weaknesses": [
+        "Log E-W2 and linear T-W2 should not be compared by bar height alone.",
+        "Abbreviations and error aggregation are delegated to the body and appendix."
+      ],
+      "reusable_pattern": "Use paired categorical bars with a fixed schedule order and shared error-bar convention for local/global metrics.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 7",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8: Left: Training data for alanine dipeptide; Right: Test data for alanine dipeptide.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#FFF2B2",
+          "#F58A65",
+          "#AA2D75",
+          "#120C30"
+        ],
+        "semantic_mapping": "Sequential free-energy / kBT color scale maps log-density occupancy from pale yellow to dark purple/black.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 20000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "φ0 angle, approximately −π to π.",
+        "y": "ψ0 angle, approximately −π to π.",
+        "color": "Free energy / kBT colorbar.",
+        "shape": null,
+        "line": null,
+        "facet": "Training versus held-out test panel.",
+        "text": "Panel titles identify MD Data (Training Set) and MD Data (Held-out Test Set)."
+      },
+      "data_and_statistics": "Two 100 × 100-style LogNorm Ramachandran heatmaps show ALDP train and held-out test angular occupancy. The colorbar is shared; sample count and uncertainty are not plotted.",
+      "evidence_relation": "Makes the train/test split underlying Figure 14 and Appendix D visible, giving Figure 1’s biased-data narrative a dataset-level reference.",
+      "design_strengths": [
+        "Shared colorbar and identical angular coordinates make mode shifts inspectable.",
+        "The held-out panel is directly adjacent to the training reference."
+      ],
+      "design_weaknesses": [
+        "Color is the only density channel and is not grayscale-safe.",
+        "Caption omits colorbar definition, angle units, sample count, and binning."
+      ],
+      "reusable_pattern": "Put training and held-out angular distributions side by side with a shared physical colorbar and fixed coordinates.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 8",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 9: Left and left center: Training data for tri-alanine; Right center and right: Test data for tri-alanine.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#FFF2B2",
+          "#F58A65",
+          "#AA2D75",
+          "#120C30"
+        ],
+        "semantic_mapping": "Shared sequential free-energy / kBT scale across four φi/ψi panels.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 40000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "φ1/φ2 angular coordinates.",
+        "y": "ψ1/ψ2 angular coordinates.",
+        "color": "Free energy / kBT.",
+        "shape": null,
+        "line": null,
+        "facet": "First two panels training; last two panels held-out test.",
+        "text": "Panel order and captions identify train/test and torsion pair."
+      },
+      "data_and_statistics": "Four 100 × 100-style LogNorm heatmaps show two tri-alanine torsion pairs, with training in the first two panels and held-out test in the last two. No uncertainty or numeric overlap score is shown.",
+      "evidence_relation": "Extends Figure 8’s data-split baseline to AL3 and supplies the reference panels for Figure 15 and the larger-peptide metrics in Table 3.",
+      "design_strengths": [
+        "Fixed train/test ordering and a shared colorbar preserve cross-pair comparison.",
+        "Torsion-pair panels make coverage differences visible without a dense table."
+      ],
+      "design_weaknesses": [
+        "Panel labels become hard to read at single-column scale.",
+        "No quantitative mode coverage or sample count accompanies the color patterns."
+      ],
+      "reusable_pattern": "For multiple torsion pairs, keep train/test grouping and the physical color scale invariant across panels.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 9",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 10: First three: Training data for alanine tetrapeptide; Last three: Test data for alanine tetrapeptide.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#FFF2B2",
+          "#F58A65",
+          "#AA2D75",
+          "#120C30"
+        ],
+        "semantic_mapping": "The same sequential free-energy / kBT scale is shared across six panels.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": 60000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "φ1, φ2, φ3 angle coordinates.",
+        "y": "ψ1, ψ2, ψ3 angle coordinates.",
+        "color": "Free energy / kBT.",
+        "shape": null,
+        "line": null,
+        "facet": "First three training; last three held-out test.",
+        "text": "Panel titles/positions identify torsion indices and train/test groups."
+      },
+      "data_and_statistics": "Six 100 × 100-style LogNorm heatmaps cover three AL4 torsion pairs, with 3+3 training/test grouping. No mode-wise difference statistic or uncertainty is plotted.",
+      "evidence_relation": "Provides the AL4 train/test reference for Figure 16 and contextualizes the AL4 row of Table 3.",
+      "design_strengths": [
+        "The fixed 3+3 structure scales the AL3 grammar without changing semantics.",
+        "Common axes and colorbar preserve physical interpretation."
+      ],
+      "design_weaknesses": [
+        "Six small panels force very small labels.",
+        "The caption does not define the free-energy transformation or binning."
+      ],
+      "reusable_pattern": "Scale a torsion-pair heatmap matrix by adding columns while preserving the train/test block and shared color semantics.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 10",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 11: First five: Training data for hexa-alanine; Last three: Test data for hexa-alanine.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#FFF2B2",
+          "#F58A65",
+          "#AA2D75",
+          "#120C30"
+        ],
+        "semantic_mapping": "Rows use a shared sequential free-energy / kBT scale for all ten torsion-pair panels.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 10,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 100000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "φ1–φ5 angle coordinates.",
+        "y": "ψ1–ψ5 angle coordinates.",
+        "color": "Free energy / kBT.",
+        "shape": null,
+        "line": null,
+        "facet": "First row training and second row held-out test.",
+        "text": "Row/column position identifies train/test and torsion pair."
+      },
+      "data_and_statistics": "The rendered PDF contains ten 100 × 100-style LogNorm heatmaps: five training panels in the first row and five held-out test panels in the second row. The caption says “Last three,” but the physical object shows five test panels; no uncertainty is plotted.",
+      "evidence_relation": "Supplies the largest-peptide train/test coverage baseline for Figure 17 and the AL6 scalability claim in Table 3.",
+      "design_strengths": [
+        "The 2 × 5 matrix keeps row condition and torsion index explicit.",
+        "Shared color semantics make mode coverage comparable with Figures 8–10 and 14–17."
+      ],
+      "design_weaknesses": [
+        "Ten panels are extremely dense at paper scale.",
+        "The caption’s “Last three” conflicts with the five rendered test panels and lowers reproducibility clarity."
+      ],
+      "reusable_pattern": "Use fixed condition rows, torsion-index columns, and a shared colorbar for high-dimensional structural distributions, with an explicit panel-count check.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 11",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 12: Auxiliary model loss from reflow target training on forward flow.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#D9CBE8",
+          "#7650A4"
+        ],
+        "semantic_mapping": "Raw reverse-loss trace is light purple; 0.99 EMA is dark purple.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": 40
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper left",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Epoch, 0–1000.",
+        "y": "Training Loss on a logarithmic scale.",
+        "color": "Raw versus 0.99 EMA trace.",
+        "shape": "Raw and EMA are visually distinct line series.",
+        "line": null,
+        "facet": null,
+        "text": "Legend names Reversible Loss Curve (Raw) and Reversible Loss Curve (0.99 EMA)."
+      },
+      "data_and_statistics": "A raw noisy loss and a smoothed 0.99 EMA loss are shown over 1000 epochs on a log y scale. The body specifies frozen forward training and 2 × 10^5 prior-target pairs; recovered-latent ℓ2 error is not plotted.",
+      "evidence_relation": "Provides a local practical reverse-map diagnostic for the Linv mechanism in Figure 6; it does not replace the ideal conditions of Propositions 1–2 or establish a global likelihood bound.",
+      "design_strengths": [
+        "Log scaling exposes a long loss descent and preserves the noisy-versus-trend distinction.",
+        "The raw/EMA pairing separates observation smoothing from a second experiment."
+      ],
+      "design_weaknesses": [
+        "The caption omits the EMA definition, training-set size, and final reverse error.",
+        "One auxiliary setting cannot establish global invertibility."
+      ],
+      "reusable_pattern": "Plot raw and smoothed auxiliary losses together, while reporting the smoothing parameter and a final interpretable reconstruction error.",
+      "evidence": {
+        "page": 23,
+        "label": "Figure 12",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 13: Performance of FALCON vs. our DiT CNFs as a function of NFEs.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#111111",
+          "#F48C6C",
+          "#57208C",
+          "#BD3E84"
+        ],
+        "semantic_mapping": "FALCON and three DiT Euler/Dopri5 exact/Hutch variants use distinct method colors.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Number of Function Evaluations, NFE, on a log scale.",
+        "y": "Torus Wasserstein-W2, T-W2.",
+        "color": "Solver and exact/Hutchinson trace variant.",
+        "shape": "Open circle markers.",
+        "line": "Solver curves with vertical error bars.",
+        "facet": null,
+        "text": "Legend identifies FALCON, DiT euler (exact), DiT dopri5 (exact), and DiT dopri5 (Hutch)."
+      },
+      "data_and_statistics": "Four solver series relate NFE to T-W2. Body text identifies FALCON 4-step and 8-step operating comparisons, while the plot does not annotate tolerance, sample count, or exact match points.",
+      "evidence_relation": "Splits Figure 2’s time claim into an NFE frontier and pairs with Table 5’s 4–16 versus 200–265 NFE values and Appendix D solver settings.",
+      "design_strengths": [
+        "Log NFE places few-step and adaptive solver regimes on one axis.",
+        "Color and legend preserve solver identity across the error-bar curves."
+      ],
+      "design_weaknesses": [
+        "Operating points and uncertainty aggregation are not numerically annotated.",
+        "NFE still needs Figure 2 and Table 4 to translate into wall-clock cost."
+      ],
+      "reusable_pattern": "Treat computational budget as a log x-axis, keep the task metric on y, and pin tolerance and matching operating points in a companion table.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 13",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "inset",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 14: Left: Test data for alanine dipeptide; Right: FALCON’s angular predictions for alanine dipeptide.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#FFF2B2",
+          "#F58A65",
+          "#AA2D75",
+          "#120C30"
+        ],
+        "semantic_mapping": "Held-out reference and prediction heatmaps share a free-energy / kBT sequential scale.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 2,
+        "data_marks_estimate": 20000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "φ0 angle.",
+        "y": "ψ0 angle.",
+        "color": "Free energy / kBT.",
+        "shape": null,
+        "line": null,
+        "facet": "Held-out test versus FALCON prediction.",
+        "text": "Panel titles identify MD Data (Held-out Test Set) and Model Predictions."
+      },
+      "data_and_statistics": "Two ALDP angular heatmaps compare held-out MD test data with FALCON predictions on the same φ0/ψ0 coordinates and shared colorbar. There is no difference map, mode-wise error, sample count, or uncertainty.",
+      "evidence_relation": "Acts as a direct post-test of Figure 8’s target distribution and Figure 1’s debiasing mechanism; it complements Figure 12’s practical reverse diagnostic.",
+      "design_strengths": [
+        "Shared coordinates and colorbar make mode locations directly comparable.",
+        "The reference/prediction pairing is compact enough for an appendix inset."
+      ],
+      "design_weaknesses": [
+        "Visual similarity can be read as complete correctness without a difference statistic.",
+        "The caption does not define the colorbar or prediction sample budget."
+      ],
+      "reusable_pattern": "Place reference and prediction angular heatmaps side by side with one physical color scale, and add a difference or mode-coverage metric.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 14",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 15: Left and left center: Test data for tri-alanine; Right and right center: FALCON’s angular predictions for tri-alanine.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#FFF2B2",
+          "#F58A65",
+          "#AA2D75",
+          "#120C30"
+        ],
+        "semantic_mapping": "Test and prediction panels share the sequential free-energy / kBT color scale.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 40000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "φ1/φ2 angles.",
+        "y": "ψ1/ψ2 angles.",
+        "color": "Free energy / kBT.",
+        "shape": null,
+        "line": null,
+        "facet": "First two test panels versus last two prediction panels.",
+        "text": "Panel ordering identifies torsion pair and test/prediction block."
+      },
+      "data_and_statistics": "Four AL3 heatmaps compare two held-out test torsion pairs with two FALCON prediction pairs. The paper notes that some modes are underweighted; the visual contains no mode-wise numeric weights or uncertainty.",
+      "evidence_relation": "Extends Figure 14 to tri-alanine and aligns with Figure 9’s test baseline and Table 3’s larger-peptide local/global metrics.",
+      "design_strengths": [
+        "Fixed left/right grouping and a shared colorbar preserve structural comparability.",
+        "Torsion-pair order stays aligned between test and prediction."
+      ],
+      "design_weaknesses": [
+        "Underweighted modes must be judged visually.",
+        "Caption omits sample count, bins, and quantitative discrepancy."
+      ],
+      "reusable_pattern": "Keep reference/prediction blocks and torsion order fixed as molecular size grows, with one shared physical colorbar.",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 15",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 16: First three: Test data for alanine tetrapeptide; Last three: FALCON’s angular predictions for alanine tetrapeptide.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#FFF2B2",
+          "#F58A65",
+          "#AA2D75",
+          "#120C30"
+        ],
+        "semantic_mapping": "Six panels use a shared sequential free-energy / kBT scale.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": 60000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "φ1/φ2/φ3 angles.",
+        "y": "ψ1/ψ2/ψ3 angles.",
+        "color": "Free energy / kBT.",
+        "shape": null,
+        "line": null,
+        "facet": "First three test; last three prediction.",
+        "text": "Panel grouping and torsion indices identify the six heatmaps."
+      },
+      "data_and_statistics": "Six AL4 heatmaps compare three held-out test torsion pairs with three FALCON prediction pairs. No difference map, uncertainty, or mode-wise score is displayed.",
+      "evidence_relation": "Connects Table 3’s AL4 aggregate metrics and Figure 10’s train/test baseline to angle-wise qualitative output.",
+      "design_strengths": [
+        "The 3+3 grouping makes test/prediction correspondence direct.",
+        "The same angle coordinates and colorbar maintain semantic continuity."
+      ],
+      "design_weaknesses": [
+        "Small panels limit inspection of individual modes.",
+        "Caption does not explain the color scale or numerical prediction budget."
+      ],
+      "reusable_pattern": "Use a fixed test/prediction split and torsion index order for high-dimensional molecular outputs.",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 16",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 17: First five: Test data for hexa-alanine; Last five: FALCON’s angular predictions for hexa-alanine.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "STIXGeneral",
+          "Computer Modern Type 3"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#FFF2B2",
+          "#F58A65",
+          "#AA2D75",
+          "#120C30"
+        ],
+        "semantic_mapping": "Ten panels share the sequential free-energy / kBT scale.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 10,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 100000
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "φ1–φ5 angles.",
+        "y": "ψ1–ψ5 angles.",
+        "color": "Free energy / kBT.",
+        "shape": null,
+        "line": null,
+        "facet": "First row test; second row FALCON prediction.",
+        "text": "Rows encode test/prediction and columns encode torsion-pair index."
+      },
+      "data_and_statistics": "Ten AL6 heatmaps compare five held-out test torsion pairs with five FALCON prediction pairs. The 5+5 physical grouping agrees with the caption; no uncertainty or difference map is included.",
+      "evidence_relation": "Provides the largest-peptide qualitative endpoint, linking Figure 11’s train/test coverage and Table 3’s AL6 metrics to the scalability claim.",
+      "design_strengths": [
+        "The 2 × 5 layout aligns exactly with the five torsion indices.",
+        "Shared colorbar makes the reference/prediction matrix auditable across pairs."
+      ],
+      "design_weaknesses": [
+        "Panel size makes sparse predicted modes difficult to read.",
+        "No mode-wise quantitative score supports the visual similarity judgment."
+      ],
+      "reusable_pattern": "Align the prediction matrix with the dataset matrix through identical rows, columns, coordinates, and colorbar semantics.",
+      "evidence": {
+        "page": 25,
+        "label": "Figure 17",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 3,
+      "module": "other",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "experimental_design",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Related method overview",
+        "word_count": 5,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "minimal",
+      "highlighting": [],
+      "uncertainty": "Capability cells are categorical check/cross marks; no uncertainty, rank, or repeat statistic.",
+      "data_and_statistics": "Seven method rows (BioEmu, FlowMaps, TBG, RegFlow, Prose, FFFlows, FALCON) and four capability columns: Invertible, Regression-loss, Few Step, FreeForm Arch. FALCON is checked in all four capability columns.",
+      "evidence_relation": "Positions methods in the Related Work taxonomy before Tables 2–5 test sampling quality and cost.",
+      "design_strengths": [
+        "Four capability columns are compact and fast to scan.",
+        "The FALCON row’s all-check pattern is visually salient without a large graphic."
+      ],
+      "design_weaknesses": [
+        "No citation/version or decision rule supports each capability mark.",
+        "Color plus ✓/✗ is not fully safe for grayscale printing."
+      ],
+      "reusable_pattern": "Use a small capability matrix to define comparison dimensions, then reserve numeric tables for empirical evidence.",
+      "evidence": {
+        "page": 3,
+        "label": "Table 1",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 2: Results on alanine dipeptide. Best results are bolded, with second-best underlined.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 4,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "Most cells are points or mean ± SD; dashes mean unavailable, and SBG SMC ESS is explicitly invalid. ↑/↓ arrows define metric direction.",
+      "data_and_statistics": "Nine algorithm rows report ESS, E-W2, and T-W2 for ALDP. Values include FALCON ESS 0.067 ± 0.013, E-W2 0.225 ± 0.104, T-W2 0.402 ± 0.021; FALCON-A has ESS 0.097 ± 0.007, E-W2 0.512 ± 0.038, T-W2 0.180 ± 0.005; ECNF++ has the best ESS 0.275 ± 0.010.",
+      "evidence_relation": "Primary ALDP numeric anchor for Figure 3/5 distributions, Figure 2/4 costs and sample budget, and Table 5’s Dopri5 comparison; different FALCON variants win different metrics.",
+      "design_strengths": [
+        "Metric arrows and bold/underline provide a stable comparison grammar.",
+        "FALCON variants remain visible instead of collapsing to one selected row."
+      ],
+      "design_weaknesses": [
+        "Method abbreviations, ESS normalization, and unavailable cells require body definitions.",
+        "Mixed point estimates and mean ± SD complicate row-level visual comparison."
+      ],
+      "reusable_pattern": "Use metric-direction arrows, explicit best/second-best formatting, and an unavailable symbol while preserving method variants.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 2",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 3: Quantitative results on tri-alanine (AL3), alanine tetrapeptide (AL4), and hexa-alanine (AL6). Baseline methods presented with SNIS, unless stated otherwise. Evaluations are conducted over 2 × 10^5 samples.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 10,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline",
+        "cell_color",
+        "best_second_best"
+      ],
+      "uncertainty": "Most quality cells are mean ± SD over the reported model seeds; baselines can be points or dashes. ↑/↓ arrows define direction. The caption states 2 × 10^5 evaluations.",
+      "data_and_statistics": "Six algorithm rows span three dataset groups (AL3, AL4, AL6), each with ESS, E-W2, and T-W2. Selected anchors: AL3 FALCON E-W2 0.544 ± 0.013; AL4 FALCON ESS 0.055 ± 0.003 and E-W2 0.686 ± 0.047; AL6 FALCON E-W2 0.892 ± 0.311; FALCON-A supplies different ESS/T-W2 points.",
+      "evidence_relation": "Main scalability table; Figures 3 and 8–11/15–17 supply distribution-level context, while Table 4 supplies cumulative cost. The table caption’s 2 × 10^5 conflicts with Appendix D.1’s 10^4 proposal-sample wording and must remain an audit caveat.",
+      "design_strengths": [
+        "Dataset groups and metric subcolumns put size scaling and local/global quality on one surface.",
+        "Consistent FALCON row highlighting carries over from Table 2."
+      ],
+      "design_weaknesses": [
+        "Ten columns force small type and dense cross-dataset scanning.",
+        "The sample-budget conflict with Appendix D.1 weakens direct reproduction."
+      ],
+      "reusable_pattern": "Group columns by dataset size and metrics by local/global meaning, with one highlighting and uncertainty grammar across all groups.",
+      "evidence": {
+        "page": 7,
+        "label": "Table 3",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "double_column",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 4: Cumulative training + inference time across flows. 2 × 10^5 samples evaluated with (atol = rtol = 10^−5 for our CNF and 4-step FALCON). All experiments were conducted on a NVIDIA L40S with batch size 1024.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "minimal",
+      "highlighting": [],
+      "uncertainty": "Point estimates only; no error, repeat count, or significance display. The table does not put the time unit in a dedicated header.",
+      "data_and_statistics": "Four molecular systems compare cumulative training + inference time for ECNF++, SBG, DiT CNF (Ours), and FALCON (Ours). FALCON times are 7.65, 11.45, 18.84, and 25.76 across ALDP, AL3, AL4, and AL6. Hardware is NVIDIA L40S with batch size 1024.",
+      "evidence_relation": "Turns Figure 2’s inference-time comparison into a system-level cumulative cost table and complements Table 5 NFE and Figure 13 solver curves.",
+      "design_strengths": [
+        "Hardware, batch size, tolerance, and sample budget appear in the caption.",
+        "Rows cover the same four molecular systems used by the main quality objects."
+      ],
+      "design_weaknesses": [
+        "Time units are implied rather than explicit in the table header.",
+        "No best highlight, training budget, or repeat variability slows audit of cost differences."
+      ],
+      "reusable_pattern": "State units, hardware, sample budget, and training/inference boundary directly in a system-cost table, with a visible low-cost highlight.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 4",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 5: Quantitative results on alanine dipeptide, tri-alanine, alanine tetrapeptide, and hexa-alanine compared to our Dopri5-integrated CNFs. Evaluations were conducted over 2 × 10^5 points across methods.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": 3,
+      "rules": "partial_grid",
+      "highlighting": [],
+      "uncertainty": "ESS, E-W2, and T-W2 are mean ± SD; NFE is an integer. ↑/↓ arrows define metric direction; no best/second-best or cell-color highlighting.",
+      "data_and_statistics": "Four system row groups pair FALCON-Dopri5 with FALCON. NFE pairs are 257/4 (ALDP), 265/8 (AL3), 200/8 (AL4), and 207/16 (AL6), with quality columns for ESS, E-W2, and T-W2.",
+      "evidence_relation": "Core evidence for the 4–16 versus 200–265 NFE claim; ties Figure 2/13 solver cost to Figure 5 step trade-off. Its 2 × 10^5 points caption should be read with the Appendix D.1 sample-budget discrepancy.",
+      "design_strengths": [
+        "System row groups put high-NFE and few-step methods in direct pairs.",
+        "Quality uncertainty and NFE share one row-level audit surface."
+      ],
+      "design_weaknesses": [
+        "No wall-clock column or best highlight is provided.",
+        "The reader must track three metric directions and reconcile the separate sample-budget wording."
+      ],
+      "reusable_pattern": "Pair a high-accuracy solver with a few-step solver per system and report quality, NFE, budget, and uncertainty together.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 5",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 18,
+      "module": "experimental_design",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Overview of FALCON configurations across datasets.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "minimal",
+      "highlighting": [],
+      "uncertainty": "Architecture points only; no uncertainty, rank, optimizer, split, or solver statistic.",
+      "data_and_statistics": "Four datasets share Hidden Size 192, Blocks 6, Heads 6, Cond. Dim. 64, and Parameters 3.2M. Values are constant across ALDP, AL3, AL4, and AL6.",
+      "evidence_relation": "Separates model capacity from Tables 2–5 quality results and connects Appendix D.1 architecture details to Figures 3, 6, and 8–17.",
+      "design_strengths": [
+        "Identical rows make cross-dataset capacity control immediately visible.",
+        "The narrow table avoids mixing architecture with performance metrics."
+      ],
+      "design_weaknesses": [
+        "Optimizer, EMA, augmentation, data split, and solver settings remain outside the table.",
+        "A single parameter count does not document training or inference reproducibility."
+      ],
+      "reusable_pattern": "Use a compact architecture table to hold capacity constant across datasets and keep optimizer/split/scheduler details in the implementation section.",
+      "evidence": {
+        "page": 18,
+        "label": "Table 6",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 建立 biased source → flow map → SNIS → debiased target 的因果接口；Figure 2 把接口接到时间质量 frontier；Tables 2–5 与 Figures 3–7 给出质量、分布和成本/消融；Figures 8–17 在附录展开数据覆盖、反向诊断和角度预测。",
+    "caption_system": "Caption 均以 Figure/Table 编号加短标题开头，随后按 setup、panel mapping、comparison 或 high-level finding 补充。主文 Figure 4/6/7 和附录 Figure 12–17 的 caption 很短，常需正文恢复轴、误差和样本预算；Figure 11 的 panel count 与实物不一致。",
+    "table_header_system": "结果表用 ↑/↓ 指标方向、两层 dataset/metric header、mean ± SD 和 bold/underline best/second-best；Table 1 用 capability 列，Table 4 用方法列，Table 5 用 system row groups，Table 6 用 architecture columns。规则以 minimal/booktabs 和少量 partial-grid 为主。",
+    "method_result_ablation_link": "Figure 1 与 Eqs. 1–9 解释 flow/SNIS/Linv；Figures 5–7 将 steps、λr 和 schedule 变成可见消融；Tables 2–5 将这些选择绑定到 ESS/E-W2/T-W2、NFE 与累计时间；Figure 12 只提供局部 reverse-loss 实证边界。",
+    "main_appendix_link": "主文 Figures 1–7、Tables 1–5 负责方法、主结果和成本；Appendix Table 6 固定模型容量，Figures 8–11 给出 train/test coverage，Figures 12–13 给出 reverse/NFE diagnostics，Figures 14–17 给出 angle-wise prediction checks。",
+    "typography_consistency": "PDF 字体对象显示 Nimbus Roman No9 L、Computer Modern、DejaVu Sans/STIX 与 Inconsolata 子系统。表体和 inset 图文字约 5–9 pt，整体层级一致，但小 inset legend、十面板 heatmap 和角度下标降低可读性。",
+    "color_consistency": "橙/粉/紫稳定编码 distribution variants，黑/橙/紫/粉编码 solver/method，紫到橙编码 steps/schedules，浅黄到深紫/黑编码 free-energy heatmaps。颜色通常没有形状或线型的充分冗余，灰度与色弱打印需要改进。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 biased source、flow map、SNIS 和 debiased target 的页宽流程图把理论接口连接到实验。",
+      "用固定 True data/Proposal/Proposal (reweighted) histogram 语法和 step small multiples同时展示分布形状与计算旋钮。",
+      "把指标方向、best/second-best、seed dispersion、sample budget、NFE 和累计成本放到相邻 Tables 2–5，形成 quality–cost decision surface。",
+      "在 train/test 与 prediction heatmaps 中复用 shared free-energy colorbar、角度坐标和 torsion index，形成可追溯的高维结构矩阵。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：方法从 biased BG 数据到 SNIS-debiased target 的视觉入口。",
+      "Figure 2 与 Tables 4–5：分别承载 time frontier、累计系统成本和 NFE/quality 配对数字。",
+      "Table 3 与 Figure 3：分别承载 larger-peptide 数值质量和四系统 energy-shape sanity check。",
+      "Figures 8–11 与 14–17：将 train/test coverage 与 angle-wise prediction 对齐，限定 qualitative scalability claim。"
+    ],
+    "failure_patterns": [
+      "Inset 图、legend 和 error bars 偏小，且 Figure 2/4/6/7/12/13 缺少完整 operating-point 与误差定义。",
+      "Figure 3/5 的 binning/范围、Figure 6/7 的 series 与 metric 定义没有完全进入 caption。",
+      "Figure 4 只有 E-W2，不能独立支撑 all-metrics claim；Table 2–3 的最优变体也随 metric 和 dataset 变化。",
+      "Figure 11 caption 写 “Last three” 但实物是五个 test panels；Table 3 caption 的 2 × 10^5 与 Appendix D.1 的 10^4 wording 存在复现冲突。",
+      "FALCON 代码链接当前 404，baseline 仓的 plotting utilities 只能作为 contextual source，不能冒充 exact FALCON figure source。"
+    ],
+    "one_sentence_visual_strategy": "以 biased-to-debiased flow 图建立 SNIS 与可逆 map 的因果骨架，用 ESS/W2/时间/NFE 表图绑定质量和成本，再以 train/test 构象热图、regularization/schedule 消融和 auxiliary reverse 曲线限定 few-step likelihood 的实践边界。"
+  }
+}

@@ -1,0 +1,3205 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-4d615382a559",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/AI4Science-WestlakeU/RealPDEBench",
+      "https://github.com/Shrediquette/PIVlab",
+      "https://github.com/WaterLily-jl/WaterLily.jl",
+      "https://github.com/weymouth/lily-pad"
+    ],
+    "selected_repository": "https://github.com/AI4Science-WestlakeU/RealPDEBench",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/AI4Science-WestlakeU/RealPDEBench",
+        "path": "imgs/figure1.png",
+        "role": "rendered_asset",
+        "tool": "PNG",
+        "evidence": "GitHub main tree asset; 2578×943 RGB PNG at approximately 200 dpi. The green real-world/lavender simulated five-scenario montage visually corresponds to PDF Figure 1, but no editable generator is present."
+      },
+      {
+        "repository_url": "https://github.com/AI4Science-WestlakeU/RealPDEBench",
+        "path": "README.md",
+        "role": "other",
+        "tool": "Markdown",
+        "evidence": "README identifies the ICLR 2026 RealPDEBench paper, five datasets, 700+ trajectories, ten baseline models, nine metrics, and links the figure asset; it contains no chart/table generator."
+      },
+      {
+        "repository_url": "https://github.com/AI4Science-WestlakeU/RealPDEBench",
+        "path": "realpdebench/utils/metrics.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Metric implementation context for RMSE/MAE/Rel L2/fRMSE/physics metrics used by the paper tables; no plotting calls or figure layout source."
+      },
+      {
+        "repository_url": "https://github.com/AI4Science-WestlakeU/RealPDEBench",
+        "path": "realpdebench/data/numerical_real_compare.py",
+        "role": "other",
+        "tool": "Python",
+        "evidence": "Simulation-versus-real comparison/data processing context related to the Appendix B.4 analyses; not an exact Figure 11/12 generator."
+      },
+      {
+        "repository_url": "https://github.com/AI4Science-WestlakeU/RealPDEBench",
+        "path": "realpdebench/configs/cylinder/unet.yaml",
+        "role": "other",
+        "tool": "YAML",
+        "evidence": "Representative baseline configuration; confirms model/evaluation context but has no visual styling or rendered-figure instructions."
+      },
+      {
+        "repository_url": "https://github.com/AI4Science-WestlakeU/RealPDEBench",
+        "path": "realpdebench/data/sim_generation/cylinder/fixed_cylinder/FloodPlot.pde",
+        "role": "other",
+        "tool": "Processing/PDE",
+        "evidence": "Simulation-side field rendering helper in the public tree; it is not the paper’s chart/table/qualitative-grid source and is not used for source-exact visual properties."
+      }
+    ],
+    "search_note": "The inventory row names AI4Science-WestlakeU/RealPDEBench but marks it repository_without_visual_source; direct gh verification found imgs/figure1.png, so this audit records partial_visual_source while preserving the inventory mismatch. The local corpus/visual_sources/iclr-2026-4d615382a559/ directory is absent. gh repo view and a non-truncated recursive main-tree query confirmed the title/README and 351 entries. No .tex/.tikz/.pgf/.svg/.ipynb or paper-specific plot/table generator was found. PIVlab, WaterLily, and lily-pad are tooling/candidate repositories, not exact author visual sources. All chart/table/diagram properties therefore remain rendered_estimate or pdf_object; only the Figure 1 PNG is a direct rendered asset."
+  },
+  "paper_style": {
+    "main_figures": 6,
+    "main_tables": 1,
+    "appendix_figures": 15,
+    "appendix_tables": 8,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "Computer Modern",
+        "Cambria Math"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 14.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern",
+        "Cambria Math"
+      ],
+      "body_size_pt": 6.2,
+      "header_size_pt": 6.5,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "正文与 caption 使用黑色/Nimbus Roman；Figure 1 以浅绿 real-world、浅紫 simulated 和深蓝文字组织五场景 thumbnail；结果图使用局部 categorical baseline colors，profile 图固定蓝 Target/橙 Pred，FFT 图使用绿 spectrum/红 peaks，field grids 使用 viridis-like sequential colorbars。表格使用黑色规则、粗体 best 和 Table 1 的 dataset cell color。颜色在局部图内提供语义，但跨所有对象并非严格的全局方法色板。",
+    "vector_raster_mix": "PDF 文字、caption、表格文字/规则、坐标轴和大量线条可作为 PDF 对象检查；照片、Figure 1 图像资产、schematic/photo 组合与定性 field panels 含嵌入 raster。整体是 mixed vector/raster，且没有可公开重建所有对象的 TeX/plot source。",
+    "style_consistency": "双栏 ICLR 版式、Nimbus Roman/Computer Modern 正文与表格、DejaVu Sans 风格的 plot labels、重复的 blue Target/orange Pred profile grammar 和 viridis-like heatmap grammar 在对象族内稳定；但 Table 1 的 dataset colors、baseline chart colors、照片和 schematic palette 之间不形成统一全局颜色合同。附录表和 qualitative grids 的极高密度显著降低独立核查性。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "abstract",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "headline",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Five scenarios in RealPDEBench with the corresponding real-world and simulated data. It demonstrates the differences between real-world and simulated data, such as the different modalities, measurement noise, and numerical errors. These discrepancies motivate and call for our proposed benchmark, RealPDEBench, to systematically collect data and conduct experimental analysis.",
+        "word_count": 50,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#E2EDD9",
+          "#EFEAF4",
+          "#303877",
+          "#332D2B",
+          "#2BAF93",
+          "#A4D95B",
+          "#D4559E",
+          "#FFB73A"
+        ],
+        "semantic_mapping": "Figure 1 uses a pale green real-world band and pale lavender simulated band; dark blue/purple typography and teal, lime, magenta, orange, and white image cards distinguish scenario/modality thumbnails. The colors are coupled to row labels and card placement, but the thumbnail images themselves are not a quantitative scale.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 35
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "five scenario columns: Cylinder, Controlled Cylinder, Foil, FSI, Combustion",
+        "y": "two horizontal rows: Real-world data above Simulated data",
+        "color": "green/lavender row bands plus modality thumbnail colors",
+        "shape": "stacked field thumbnails and modality cards",
+        "line": "none; card placement and row band carry grouping",
+        "facet": "scenario columns × real-world/simulated rows",
+        "text": "row headers, scenario names, u/v/p/I/qdot/XOH/XCO labels"
+      },
+      "data_and_statistics": "Conceptual/data-montage object with no point estimates or uncertainty. Five paired scenarios are shown with real-world versus simulated fields and different observed/unobserved modalities; thumbnail appearance conveys qualitative texture and noise rather than a calibrated numeric scale.",
+      "evidence_relation": "Abstract claim about paired real-world/simulated data and modality/noise/numerical-error gaps → Figure 1 → Section 2 dataset construction → Table 7 metadata and Table 1/2 metric comparisons. It establishes the benchmark interface but cannot quantify the gap alone.",
+      "design_strengths": [
+        "The two-row, five-column pairing makes the benchmark scope immediately legible.",
+        "Repeated thumbnail cards and direct modality labels avoid a separate legend.",
+        "The image is also present as `imgs/figure1.png` in the author repository, providing the only direct visual asset found."
+      ],
+      "design_weaknesses": [
+        "Many tiny modality labels and stacked thumbnails lose readability at normal two-column scale.",
+        "The caption names the differences but does not define the exact field/value ranges or which modalities are masked in evaluation.",
+        "Color and texture do not provide grayscale-safe or quantitatively comparable evidence."
+      ],
+      "reusable_pattern": "Use a fixed scenario-column × real/simulated-row montage for a benchmark overview; keep row labels, modality names, and paired field examples in the same visual coordinate system.",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "image_montage"
+      ],
+      "purpose": [
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 2: Photos of real-world data collection. (a) Water tunnel after laser irradiation. (b) Particle imaging photos taken by the camera. (c) Motion control equipment. (d) Swirl combustor equipment.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#2B6E9E",
+          "#2F7F55",
+          "#D3A84F",
+          "#555555",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Natural photographic colors identify water-tunnel illumination, particle images, motion-control hardware, and combustor equipment; color has no numeric measurement semantics.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 4,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 4
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "four photo slots ordered (a)–(d)",
+        "y": null,
+        "color": "natural photographic appearance only",
+        "shape": "four separate equipment photographs",
+        "line": null,
+        "facet": "four-panel horizontal montage",
+        "text": "(a)–(d) labels and caption descriptions"
+      },
+      "data_and_statistics": "Four photographic panels document the water tunnel after laser irradiation, particle imaging, motion control, and swirl combustor equipment. There are no axes, sampled values, scale bars, or uncertainty summaries.",
+      "evidence_relation": "Section 2 collection claims → Figure 2 physical acquisition context → Appendix B.3 measurement details and Figures 9–10 schematics. The photos support provenance/context, not model accuracy.",
+      "design_strengths": [
+        "A single horizontal strip lets readers map each apparatus to the caption quickly.",
+        "The four panels use consistent dimensions and centered letter labels."
+      ],
+      "design_weaknesses": [
+        "The photos do not include scale, camera parameters, or a visual cue for which dataset each apparatus generates.",
+        "Dark/green illumination and busy hardware reduce component legibility; grayscale carries little semantic redundancy."
+      ],
+      "reusable_pattern": "Pair a concise equipment montage with later schematic panels, but add dataset names, measurement plane, and one scale/reference object.",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 2 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "box",
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 3: (a) Frequency errors of baselines (statistics of 10 values) on real-world vs. simulated data from Controlled Cylinder. (b) Validation RMSE curves of real-world finetuning on Combustion, with crosses marking the best RMSE of real-world training. The x-axis shows the percentage of update iterations. (c) RMSE under 1, 2, 3, 5, and 10 rounds of autoregressive evaluation on Cylinder.",
+        "word_count": 60,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 11,
+        "hex": [
+          "#D55E5E",
+          "#F2A900",
+          "#76C7E5",
+          "#9A9D23",
+          "#4E84B4",
+          "#D36ACB",
+          "#F29B79",
+          "#898989",
+          "#2A9D45",
+          "#F0AFC0",
+          "#8A2BE2"
+        ],
+        "semantic_mapping": "Distinct baseline/model colors identify the ten scientific-ML/traditional methods in legends; line style, marker, cross, and position supply limited redundancy. Colors are reused locally within a chart rather than as a strict cross-figure brand mapping.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": 13,
+        "legend_items": 11,
+        "annotations": 5,
+        "data_marks_estimate": 65
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "multiple",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "panel (a) categorical Task; panels (b)/(c) percentage of update iterations or autoregressive round",
+        "y": "frequency error, log RMSE, or RMSE depending on panel",
+        "color": "baseline/model identity in categorical colors",
+        "shape": "box/point marks in (a), crosses in (b), circular points in (c)",
+        "line": "colored series and solid lines; crosses identify best real-world-training RMSE",
+        "facet": "three distinct diagnostics: Controlled Cylinder gap, Combustion convergence, Cylinder horizon",
+        "text": "axis titles, panel letters, right-side method legend"
+      },
+      "data_and_statistics": "Panel (a) shows ten frequency-error values for simulated versus real-world Controlled Cylinder tasks. Panel (b) shows validation RMSE over update-iteration percentage for Combustion, with crosses marking the best real-world-training RMSE. Panel (c) shows RMSE at 1, 2, 3, 5, and 10 autoregressive rounds on Cylinder. The figure gives point/curve/distribution summaries but no confidence intervals or seed definition beyond the ten values in (a).",
+      "evidence_relation": "Section 4.2/4.3/4.5 claims about sim-to-real frequency gap, faster finetuning convergence, and long-horizon error → Figure 3 three-panel diagnostic → Tables 1–5 and Appendix Tables 2–5. Panel (a) motivates the benchmark; panels (b)/(c) motivate update-ratio and autoregressive tables.",
+      "design_strengths": [
+        "Three panels compress distinct failure mechanisms without changing the paper’s overall visual language.",
+        "Panel (a) exposes a distribution rather than only a mean; panel (b) marks the comparison target with crosses.",
+        "Panel (c) makes error growth across horizons visible."
+      ],
+      "design_weaknesses": [
+        "The panel-specific units/scales differ and the compact shared legend is hard to map at small size.",
+        "“Statistics of 10 values” does not identify trajectories, repeats, or aggregation; no uncertainty is shown for the curves.",
+        "A single multi-panel caption does not define every color/line role or clarify that the panels use different datasets."
+      ],
+      "reusable_pattern": "Use a three-panel diagnostic when one claim has gap, convergence, and horizon mechanisms; explicitly label each panel’s dataset, unit, repetition, and uncertainty.",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 3 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "other"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 4: Trade-off of RMSE and Frequency Error. Distant points are linked with dashed lines. We omit the points where the DMD error is far from the center to make most of the points clearer.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 11,
+        "hex": [
+          "#D55E5E",
+          "#F2A900",
+          "#76C7E5",
+          "#9A9D23",
+          "#4E84B4",
+          "#D36ACB",
+          "#F29B79",
+          "#898989",
+          "#2A9D45",
+          "#F0AFC0",
+          "#8A2BE2"
+        ],
+        "semantic_mapping": "Distinct baseline/model colors identify the ten scientific-ML/traditional methods in legends; line style, marker, cross, and position supply limited redundancy. Colors are reused locally within a chart rather than as a strict cross-figure brand mapping.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 8,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Frequency Error on the horizontal axis, arranged around a central origin across dataset quadrants",
+        "y": "RMSE on the vertical axis, likewise arranged around the origin",
+        "color": "baseline/model identity",
+        "shape": "colored circular points",
+        "line": "dashed links connect distant points to the central frame",
+        "facet": "four visible quadrants/dataset regions: FSI, Foil, Cylinder, Controlled Cylinder",
+        "text": "dataset names, axis metric labels, baseline legend, central dashed reference geometry"
+      },
+      "data_and_statistics": "Each point combines RMSE and Frequency Error for a baseline on one of four fluid datasets. The plot is arranged around a central origin so proximity indicates jointly better values; DMD points far from the center are omitted, while distant points are linked with dashed lines. It is a point-estimate trade-off, with no uncertainty or repeated-run distribution.",
+      "evidence_relation": "Section 4.4 trade-off argument → Figure 4 → Table 1’s RMSE/FE cells and per-dataset baseline interpretation. The omission of far DMD points means this visual is a readable summary, not a complete inventory; Table 1 remains the audit source for all values.",
+      "design_strengths": [
+        "The origin-centered layout communicates a two-objective decision surface quickly.",
+        "Four dataset regions allow cross-dataset pattern recognition in one object.",
+        "The caption discloses the DMD omission and dashed-link convention."
+      ],
+      "design_weaknesses": [
+        "The quadrant arrangement is not a conventional Cartesian encoding of signed metrics and requires body-text reconstruction.",
+        "Omitting distant DMD points hides an important failure mode from the headline view.",
+        "Dense labels and many similar colors make exact point-to-method matching difficult."
+      ],
+      "reusable_pattern": "For multi-dataset trade-offs, use a shared metric frame with explicit quadrant labels and retain a companion complete table or inset for omitted/outlier values.",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 4 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: (a) MVPEs of real-world finetuning under 10-round autoregressive evaluation on Cylinder. (b) MVP of U-Net’s 10-round autoregressive prediction on Cylinder.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#0000FF",
+          "#FF9900",
+          "#303030"
+        ],
+        "semantic_mapping": "Blue circles/solid lines are Target and orange x/solid lines are Pred in profile panels; dark gray/black is text and axes. The paired marker shapes make the two roles partly recoverable in grayscale.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": 12,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "panel (a) categorical baselines; panel (b) normalized profile coordinate u/U0",
+        "y": "panel (a) MVPE; panel (b) normalized transverse coordinate y/D",
+        "color": "bar color identifies each baseline; blue/orange profile role",
+        "shape": "bars in (a); circles versus x markers in (b)",
+        "line": "bars; Target/Predict solid profile lines",
+        "facet": "bar summary plus four 1D–4D probe profiles",
+        "text": "baseline names, 1D–4D headings, Target/Pred legend, axis labels"
+      },
+      "data_and_statistics": "Panel (a) reports MVPE for real-world finetuning under ten-round autoregression on Cylinder across ten named baselines. Panel (b) shows one U-Net output profile at four probe-based diagnostic settings, comparing Target and Pred across y/D. Values are point summaries; the profile is a representative curve with no uncertainty.",
+      "evidence_relation": "Section 4.5 long-horizon evaluation → Figure 5 → Figure 3c round-error curve and Appendix Tables 3–5/9. Panel (a) supports the MVPE ranking; panel (b) makes the U-Net profile error spatially inspectable.",
+      "design_strengths": [
+        "The bar-plus-profile composition connects a scalar long-horizon summary to a field-level diagnostic.",
+        "Target/Pred marker and color pairing is easy to follow in the profile panels.",
+        "Probe columns expose how the diagnostic changes with dimensionality."
+      ],
+      "design_weaknesses": [
+        "Baseline labels in the bar panel are rotated and small; there is no explicit numeric label on each bar.",
+        "The caption does not define MVPE, normalization, sampling, or whether the profile is representative.",
+        "The two panels have different visual units and comparison sets, so the shared figure can imply stronger linkage than is shown."
+      ],
+      "reusable_pattern": "Pair a scalar ranking with a representative profile, but define normalization and sample selection and state that the qualitative profile is not an uncertainty summary.",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Figure 5 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 10,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6: Normalized low-, mid- and high-frequency fRMSE on Foil.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 11,
+        "hex": [
+          "#D55E5E",
+          "#F2A900",
+          "#76C7E5",
+          "#9A9D23",
+          "#4E84B4",
+          "#D36ACB",
+          "#F29B79",
+          "#898989",
+          "#2A9D45",
+          "#F0AFC0",
+          "#8A2BE2"
+        ],
+        "semantic_mapping": "Distinct baseline/model colors identify the ten scientific-ML/traditional methods in legends; line style, marker, cross, and position supply limited redundancy. Colors are reused locally within a chart rather than as a strict cross-figure brand mapping.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 11,
+        "legend_items": 11,
+        "annotations": 0,
+        "data_marks_estimate": 33
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "three categorical frequency bands: Low, Mid, High",
+        "y": "normalized fRMSE",
+        "color": "baseline/model identity",
+        "shape": "grouped bars",
+        "line": null,
+        "facet": "one panel with three frequency-band groups",
+        "text": "rotated baseline labels and right legend"
+      },
+      "data_and_statistics": "Grouped bars compare normalized low-, mid-, and high-frequency fRMSE for eleven methods on Foil. The values are normalized point estimates; the caption gives no denominator, reference normalization, replicate count, or uncertainty.",
+      "evidence_relation": "Section 4.5 frequency-band question → Figure 6 → Appendix Table 6 full five-dataset frequency table. The main figure highlights the Foil slice where the text discusses CNO’s relative improvement at higher frequency.",
+      "design_strengths": [
+        "Three band groups make the directional frequency pattern visible at a glance.",
+        "A common y-axis permits within-panel comparison across methods."
+      ],
+      "design_weaknesses": [
+        "Eleven adjacent bars per group create a long color legend and weak method tracking across groups.",
+        "Normalization is not defined in the caption; bars have no numeric labels or error encoding.",
+        "The figure omits the other four datasets and thus cannot stand for the full frequency result."
+      ],
+      "reusable_pattern": "Use grouped bars for a focused frequency-band slice, but pair them with a compact method key and a complete table that defines normalization and uncertainty.",
+      "evidence": {
+        "page": 10,
+        "label": "p.10 Figure 6 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 7: Mean velocity profile of u predicted by baselines’ 10-round autoregressive evaluation on Cylinder.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#0000FF",
+          "#FF9900",
+          "#303030"
+        ],
+        "semantic_mapping": "Blue circles/solid lines are Target and orange x/solid lines are Pred in profile panels; dark gray/black is text and axes. The paired marker shapes make the two roles partly recoverable in grayscale.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 44,
+        "series": 22,
+        "legend_items": 2,
+        "annotations": 44,
+        "data_marks_estimate": 880
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "within each mini-panel, normalized velocity u/U0",
+        "y": "normalized transverse coordinate y/D",
+        "color": "Target versus Pred role",
+        "shape": "blue circles for Target; orange x for Pred",
+        "line": "solid line in each paired profile",
+        "facet": "eleven baseline blocks × four probes (1D–4D)",
+        "text": "baseline row labels, 1D–4D headers, repeated Target/Pred legends"
+      },
+      "data_and_statistics": "A dense 11-baseline × 4-probe small-multiple grid shows mean velocity profiles of u for ten-round autoregressive Cylinder evaluation. Each mini-panel overlays Target and Pred at normalized y/D; no sample count, repeat distribution, or uncertainty is provided.",
+      "evidence_relation": "Appendix A.2 qualitative extension of Figure 5b → Figure 7 → Tables 3–5 horizon metrics. It provides profile-level evidence for the same long-horizon comparisons, while the tables remain the complete numeric source.",
+      "design_strengths": [
+        "A fixed four-probe layout makes baseline-by-baseline shape comparison possible.",
+        "The Target/Pred marker grammar is stable across all 44 panels.",
+        "Rows preserve the method vocabulary used in Tables 1–6."
+      ],
+      "design_weaknesses": [
+        "Forty-four panels and repeated legends make exact inspection slow; labels approach the minimum readable size.",
+        "Only a representative mean profile is shown, with no variability or sample provenance.",
+        "Several colorbars/scales are absent because these are profiles, so magnitude comparability depends on axes that vary by panel."
+      ],
+      "reusable_pattern": "Use a repeated method-row × diagnostic-column profile matrix for qualitative audit, but add a shared legend, explicit test-case identifier, and uncertainty or multiple trajectories.",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 7 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 8: Mean velocity profile of v predicted by baselines’ 10-round autoregressive evaluation on Cylinder.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#0000FF",
+          "#FF9900",
+          "#303030"
+        ],
+        "semantic_mapping": "Blue circles/solid lines are Target and orange x/solid lines are Pred in profile panels; dark gray/black is text and axes. The paired marker shapes make the two roles partly recoverable in grayscale.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 44,
+        "series": 22,
+        "legend_items": 2,
+        "annotations": 44,
+        "data_marks_estimate": 880
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "within each mini-panel, normalized velocity v/U0",
+        "y": "normalized transverse coordinate y/D",
+        "color": "Target versus Pred role",
+        "shape": "blue circles for Target; orange x for Pred",
+        "line": "solid paired profile lines",
+        "facet": "eleven baseline blocks × four probes (1D–4D)",
+        "text": "baseline row labels, 1D–4D headers, repeated Target/Pred legends"
+      },
+      "data_and_statistics": "A dense 11-baseline × 4-probe small-multiple grid shows mean velocity profiles of v for ten-round autoregressive Cylinder evaluation. Each mini-panel overlays Target and Pred; there is no uncertainty, sample count, or aggregate definition beyond the mean-profile label.",
+      "evidence_relation": "Appendix A.2 continuation of Figure 7 for the orthogonal velocity component → Figures 5/7 and Tables 3–5. The grid exposes component-specific qualitative failure that scalar RMSE/fRMSE summaries can hide.",
+      "design_strengths": [
+        "The u/v companion figures preserve identical geometry and method order.",
+        "Repeated Target/Pred symbols support local reading without a global color key."
+      ],
+      "design_weaknesses": [
+        "The 44-panel density makes small deviations and legend text difficult to inspect.",
+        "The caption does not identify the representative trajectory, averaging window, or profile extraction location.",
+        "Component-specific axis ranges and profile shapes make cross-panel magnitude comparisons fragile."
+      ],
+      "reusable_pattern": "Keep paired component matrices aligned across pages so readers can compare error modes, and annotate shared scales or profile extraction rules.",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Figure 8 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "screenshot"
+      ],
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 9: Schematic illustration of the Circulating Water Tunnel platform and the PIV measurement system installation. (a) A schematic of the water tunnel. (b) Experiment equipment.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#FFFFFF",
+          "#B7C4C9",
+          "#3B7CA5",
+          "#1686C7",
+          "#D62728"
+        ],
+        "semantic_mapping": "Black/gray lines and arrows describe the water-tunnel flow path; blue/green apparatus colors and red numbered markers identify photographed equipment. The schematic labels laser, test section, and camera directly.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "left-to-right tunnel path in schematic; no quantitative axis",
+        "y": "equipment positions and measurement plane in schematic",
+        "color": "gray/black flow and blue/green hardware; red marker 1 in photo",
+        "shape": "tunnel walls, camera/laser symbols, photo apparatus",
+        "line": "arrows show circulating flow and dashed optical paths",
+        "facet": "schematic (a) paired with equipment photo (b)",
+        "text": "Laser Generator, Test Section, Camera, Laser Shooting Surface, (a)/(b)"
+      },
+      "data_and_statistics": "Panel (a) is a schematic of the circulating water tunnel and PIV optical path; panel (b) is a photograph of the equipment. This is a setup/reproduction object with no measured values, scale bar, or uncertainty.",
+      "evidence_relation": "Appendix B.3 collection/calibration description → Figure 9 platform evidence → Figure 2 photos and Table 7 resolution/modalities. It explains how fluid real-world fields arise, not how models score.",
+      "design_strengths": [
+        "Schematic and photograph are adjacent, making abstract optical paths concrete.",
+        "Direct labels and arrows provide a usable acquisition map.",
+        "The caption names the PIV installation and panel roles."
+      ],
+      "design_weaknesses": [
+        "The photograph lacks a legend tying every visible component to the schematic.",
+        "No scale, camera coordinate, laser-sheet thickness, or measurement-plane dimensions are encoded in the figure.",
+        "The caption uses “Experiment equipment” without naming the numbered red marker."
+      ],
+      "reusable_pattern": "Pair a labeled apparatus schematic with a real photograph, retaining common landmarks and a scale/coordinate reference for replication.",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 9 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 28,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "screenshot"
+      ],
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 10: (a) A schematic of the FSI experimental set-up. (b) The experimental setup with free-vibration response of a cylinder in an oscillating cylinder wake.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#FFFFFF",
+          "#B7C4C9",
+          "#6B7F8A",
+          "#D62728",
+          "#2E8B57"
+        ],
+        "semantic_mapping": "Gray/black CAD-style lines encode the tandem-cylinder and free-vibration mechanics; colored apparatus/photo details and red hardware accents distinguish the photographed setup.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "schematic component positions, no quantitative x scale",
+        "y": "schematic component positions and vibration direction",
+        "color": "gray structure, red/green hardware accents, natural photo color",
+        "shape": "tandem cylinders, bearing, magnet, micro drive, load cell",
+        "line": "arrows/leader lines identify components and setup",
+        "facet": "FSI schematic (a) paired with setup/free-vibration photograph (b)",
+        "text": "Load Cell, Bearing Seat, Air Bearing, Circular Magnet, Steel Plate, Micro Drive, Load Basket"
+      },
+      "data_and_statistics": "Panel (a) diagrams the FSI experimental setup; panel (b) photographs the apparatus and free-vibration response context. No response trace, time scale, calibration, or uncertainty is plotted despite the caption’s response wording.",
+      "evidence_relation": "Appendix B.2/B.3 FSI acquisition description → Figure 10 setup context → Figure 2/9 apparatus evidence and Table 7 FSI metadata. It supports experimental design/reproduction rather than predictive performance.",
+      "design_strengths": [
+        "Leader-line labels expose the mechanical degrees of freedom and instrumentation.",
+        "The CAD schematic and photograph provide complementary views of the same setup."
+      ],
+      "design_weaknesses": [
+        "Labels and leader lines are crowded around the central mechanism.",
+        "The “free-vibration response” is not quantitatively visualized; the photo alone cannot establish response characteristics.",
+        "No dimensions, coordinate frame, or operating condition is embedded in the panel."
+      ],
+      "reusable_pattern": "Use a labeled CAD/photo pair for hardware context, but add a small response trace, dimensions, and operating-condition strip when the caption claims dynamics.",
+      "evidence": {
+        "page": 28,
+        "label": "p.28 Figure 10 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 31,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 11: Mean velocity profile of simulated u on Cylinder.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#0000FF",
+          "#FF9900",
+          "#303030"
+        ],
+        "semantic_mapping": "Blue circles/solid lines are Target and orange x/solid lines are Pred in profile panels; dark gray/black is text and axes. The paired marker shapes make the two roles partly recoverable in grayscale.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": 24,
+        "legend_items": 2,
+        "annotations": 12,
+        "data_marks_estimate": 240
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "lower left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "normalized u/U0 within each profile",
+        "y": "normalized y/D",
+        "color": "Target versus Pred",
+        "shape": "blue circles and orange x markers",
+        "line": "solid paired profile lines",
+        "facet": "three stacked profile rows × four probe dimensions 1D–4D; row meaning is not labeled",
+        "text": "1D–4D headings and repeated Target/Pred legends"
+      },
+      "data_and_statistics": "Three stacked sets of four probe-based mean velocity profiles compare Target and Pred for simulated Cylinder u. The panels expose 1D–4D probe diagnostics, but the rows are not labeled with trajectory, setting, or aggregation identifiers; no uncertainty is shown.",
+      "evidence_relation": "Appendix B.4 simulated-versus-real comparison → Figure 11 → Table 8 full-trajectory MVPE and Table 9 200-step baseline MVPE. It supplies a qualitative profile view of the simulated-data gap before the numeric MVPE summaries.",
+      "design_strengths": [
+        "The repeated 1D–4D columns make probe dimensionality visually explicit.",
+        "Target/Pred marker grammar matches Figures 5, 7, and 8."
+      ],
+      "design_weaknesses": [
+        "The unlabeled three-row repetition makes the comparison unit ambiguous.",
+        "Small profiles and repeated legends consume space without a shared y-axis explanation.",
+        "The caption does not state whether profiles are measured, simulated, or model output beyond “simulated u”."
+      ],
+      "reusable_pattern": "Use a probe-diagnostic matrix for simulation/measurement comparison only when every row has a stable case label and common scale.",
+      "evidence": {
+        "page": 31,
+        "label": "p.31 Figure 11 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 32,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 12: Frequency analysis of the Combustion dataset. (a) Real-world data. (b) Simulated data.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#2CA02C",
+          "#E53935",
+          "#D9D9D9"
+        ],
+        "semantic_mapping": "Green line is the FFT magnitude spectrum, red dots mark detected peak frequencies, and light gray gridlines support frequency reading.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 1,
+        "annotations": 8,
+        "data_marks_estimate": 160
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Frequency (Hz)",
+        "y": "FFT Magnitude",
+        "color": "green spectrum; red peak markers",
+        "shape": "red dots at detected peaks",
+        "line": "green spectrum line",
+        "facet": "2×2 panels grouped by (a) real-world and (b) simulated Combustion data",
+        "text": "panel labels, Peak frequencies legend, axes"
+      },
+      "data_and_statistics": "Four FFT spectra (two rows for each of the real-world and simulated groups) show frequency in Hz versus FFT magnitude. Red dots mark detected peak frequencies. The caption does not state sampling-rate reconciliation, windowing, normalization, or peak-detection threshold.",
+      "evidence_relation": "Appendix B.4 combustion sim/real frequency comparison → Figure 12 → Figure 3a/b frequency/convergence diagnostics and Table 2 FE. It is qualitative frequency evidence and does not replace the full metric table.",
+      "design_strengths": [
+        "The 2×2 arrangement separates real-world and simulated groups while keeping axes consistent.",
+        "Peak dots and a compact legend make salient frequencies easy to locate."
+      ],
+      "design_weaknesses": [
+        "Rows within each group are not captioned with trajectory or condition identifiers.",
+        "Sampling-rate and FFT processing choices are absent from the caption despite a documented 4000 Hz versus 2000 fps discrepancy elsewhere.",
+        "Peak markers do not encode uncertainty or detection sensitivity."
+      ],
+      "reusable_pattern": "Use paired spectra for sim/real mechanism checks, but print sampling rate, window, normalization, condition labels, and a shared peak-selection rule.",
+      "evidence": {
+        "page": 32,
+        "label": "p.32 Figure 12 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 38,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 13: Visualization of results (u) on Cylinder dataset.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative u velocity field sample for Cylinder: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G visualization claim → Figure 13 → Tables 1–5 Cylinder metrics and Figure 7 u profiles. The grid gives spatial qualitative context for the scalar and profile results, but one sample cannot establish dataset-wide performance.",
+      "design_strengths": [
+        "Ground Truth and method rows share the same four time columns.",
+        "The colorbar next to every panel exposes local value ranges.",
+        "Method order matches the main tables and Figure 7."
+      ],
+      "design_weaknesses": [
+        "Forty-eight small heatmaps are visually dense and all captions are tiny.",
+        "Per-panel colorbar ranges differ, so apparent color similarity is not a calibrated cross-method error comparison.",
+        "Only one sample is shown and no residual/difference row is provided."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 38,
+        "label": "p.38 Figure 13 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 39,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 14: Visualization of results (v) on Cylinder dataset.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative v velocity field sample for Cylinder: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G visualization claim → Figure 14 → Figure 8 v profiles and Tables 1–5 Cylinder metrics. It isolates component-specific spatial behavior that aggregate metrics may hide.",
+      "design_strengths": [
+        "The v companion uses identical row/time geometry to Figure 13.",
+        "Colorbars make the signed field range visible in each panel.",
+        "Direct method labels preserve cross-object lookup."
+      ],
+      "design_weaknesses": [
+        "Signed v fields use visually similar sequential colors rather than a clearly centered diverging key.",
+        "Per-panel scales and a single representative sample limit cross-row inference.",
+        "The caption does not specify time values, sample ID, or prediction horizon."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 39,
+        "label": "p.39 Figure 14 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 40,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 15: Visualization of results (u) on Controlled Cylinder dataset.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative u velocity field sample for Controlled Cylinder: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G visualization claim → Figure 15 → Table 1/2 Controlled Cylinder metrics and Figure 3a frequency-gap context. It provides spatial examples for the controlled-flow setting.",
+      "design_strengths": [
+        "All methods and four snapshots are aligned in a consistent grid.",
+        "The real-world-looking ground truth is visually contrasted against smoother DeepONet outputs and noisier baselines.",
+        "Colorbars are visible per field."
+      ],
+      "design_weaknesses": [
+        "The visual comparison is qualitative and lacks shared scales, residuals, and case metadata.",
+        "The caption does not explain why the time labels are t=1,3,5,7 here while other figures use t=3,8,13,18.",
+        "Small method labels and repeated colorbars increase scan cost."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 40,
+        "label": "p.40 Figure 15 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 16",
+      "page": 41,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 16: Visualization of results (v) on Controlled Cylinder dataset.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative v velocity field sample for Controlled Cylinder: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G continuation of Figure 15 → Tables 1–5 Controlled Cylinder component metrics. It supplies a visual failure slice for the transverse component.",
+      "design_strengths": [
+        "Exact geometric pairing with Figure 15 supports u/v comparison.",
+        "Spatial texture differences remain visible across methods and time.",
+        "Method row order is stable."
+      ],
+      "design_weaknesses": [
+        "No shared diverging color normalization is stated for signed v.",
+        "The grid shows one sample with no uncertainty or error map.",
+        "Caption provides no time-step or measurement-plane definition."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 41,
+        "label": "p.41 Figure 16 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 17",
+      "page": 42,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 17: Visualization of results (u) on FSI dataset.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative u velocity field sample for FSI: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G visualization claim → Figure 17 → FSI rows in Tables 1–6 and Figure 10 setup. It links the tandem-cylinder experiment to spatial prediction behavior.",
+      "design_strengths": [
+        "The smaller FSI spatial domain remains legible across the full page.",
+        "Ground Truth and method rows are directly paired at four horizons.",
+        "Colorbars and axes appear consistently in each panel."
+      ],
+      "design_weaknesses": [
+        "Changing colorbar limits undermine direct color comparison across methods.",
+        "The caption does not state the FSI trajectory, structural state, or time sampling.",
+        "No residual map or uncertainty quantifies the visual differences."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 42,
+        "label": "p.42 Figure 17 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 18",
+      "page": 43,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 18: Visualization of results (v) on FSI dataset.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative v velocity field sample for FSI: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G continuation of Figure 17 → FSI component metrics in Tables 1–6. It complements the u-field visual with the cross-flow component.",
+      "design_strengths": [
+        "u/v pages are layout-matched for paired inspection.",
+        "The repeated four-time columns make temporal degradation inspectable.",
+        "Direct row labels avoid a separate model legend."
+      ],
+      "design_weaknesses": [
+        "Signed-field palette and varying colorbar scales make exact comparison fragile.",
+        "Only one qualitative FSI case is shown and the caption gives no sample or scale metadata.",
+        "The page is information-dense despite limited quantitative annotation."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 43,
+        "label": "p.43 Figure 18 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 19",
+      "page": 44,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 19: Visualization of results (u) on Foil dataset.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative u velocity field sample for Foil: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G visualization claim → Figure 19 → Foil rows in Tables 1–6 and Figure 6 frequency-band analysis. It shows spatial prediction examples for the hydrofoil dataset.",
+      "design_strengths": [
+        "The four snapshots retain a stable spatial frame across every baseline.",
+        "Colorbars support local field interpretation and expose smooth versus textured outputs.",
+        "The layout reuses the established qualitative-grid contract."
+      ],
+      "design_weaknesses": [
+        "Foil operating condition (angle/Re) is absent from the caption and row labels.",
+        "Colorbar limits vary, and a single sample cannot represent the 5×19 experimental grid.",
+        "No error/residual panels connect the visual differences to fRMSE."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 44,
+        "label": "p.44 Figure 19 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 20",
+      "page": 45,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 20: Visualization of results (v) on Foil dataset.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative v velocity field sample for Foil: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G continuation of Figure 19 → Foil component metrics and Figure 6 fRMSE slice. It exposes transverse-field qualitative errors alongside u.",
+      "design_strengths": [
+        "u/v page pairing makes component changes easy to compare.",
+        "Time-column repetition shows whether structures persist across the horizon.",
+        "Model labels match Table 1 naming."
+      ],
+      "design_weaknesses": [
+        "No shared signed scale or residual row is supplied.",
+        "Angle of attack, Reynolds number, and sample identifier are not encoded.",
+        "Dense colorbars and tiny axes reduce rapid cross-method reading."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 45,
+        "label": "p.45 Figure 20 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 21",
+      "page": 46,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 21: Visualization of results (I) on Combustion dataset.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "DejaVu Sans",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 14.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 5,
+        "hex": [
+          "#440154",
+          "#31688E",
+          "#1F9E89",
+          "#35B779",
+          "#FDE725"
+        ],
+        "semantic_mapping": "Viridis-like sequential field colors map scalar velocity/intensity values; each small heatmap has a vertical colorbar. Row labels identify baselines and panel titles identify time, but colorbar ranges are not globally fixed across all rows.",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 48,
+        "series": 12,
+        "legend_items": 0,
+        "annotations": 48,
+        "data_marks_estimate": 48
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "spatial grid coordinate within each field panel",
+        "y": "spatial grid coordinate within each field panel",
+        "color": "sequential scalar field value through each panel colorbar",
+        "shape": "none",
+        "line": "none",
+        "facet": "ground truth plus 11 baseline rows × four selected time columns",
+        "text": "row labels Ground Truth/method and panel titles Prediction or Ground Truth with time"
+      },
+      "data_and_statistics": "One representative luminescence intensity I field sample for Combustion: a Ground Truth row followed by eleven baseline prediction rows, each across four time snapshots. Each of the 48 field panels has a colorbar, but colorbar limits visibly vary by row/panel; there is no sample count, uncertainty, or ensemble spread.",
+      "evidence_relation": "Appendix G visualization claim → Figure 21 → Combustion rows in Tables 1–6 and Figure 12 frequency analysis. It supplies the only spatial qualitative view for the intensity modality.",
+      "design_strengths": [
+        "The dark-background intensity fields make flame-shape persistence visually salient.",
+        "Four time columns and eleven methods preserve the common benchmark grid.",
+        "Per-panel colorbars acknowledge that intensity is not velocity."
+      ],
+      "design_weaknesses": [
+        "Combustion intensity colorbar ranges vary strongly across methods and time, blocking calibrated visual ranking.",
+        "The caption does not define I, intensity units, sampling, or the representative case.",
+        "One sample and no residual/uncertainty view are insufficient to support broad model claims."
+      ],
+      "reusable_pattern": "Use a fixed ground-truth row + method rows × time columns grid for spatial prediction audit, with shared color limits, a sample identifier, and an explicit residual/error row.",
+      "evidence": {
+        "page": 46,
+        "label": "p.46 Figure 21 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 1: Results of RMSE, Rel L2 , fRMSE, and Update Ratio. Different datasets have different colors. Because DMD lacks the training process, we place its inference results in the last column and leave the rest blank. The smaller the error result, the darker the color. The bolded is the best.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 6.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 60,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": 4,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "No mean±SD, interval, rank, or replicate spread; ML Average is a point average and DMD training cells are blank.",
+      "data_and_statistics": "Five dataset blocks (Cylinder, Controlled Cylinder, FSI, Foil, Combustion), each with 11 named model rows plus an ML Average and DMD row (60 body rows). Columns are Dataset, Baseline, Params, then Simulated Training (RMSE, Rel L2, fRMSE), Real-world Training (RMSE, Rel L2, fRMSE), and Real-world Finetuning (RMSE, Rel L2, fRMSE, Ratio). Values are point estimates; DMD is blank for training columns as stated in the caption. Metrics are mostly four decimals and Params uses M units.",
+      "evidence_relation": "Main results anchor for the three training regimes → Figures 3–6 and Appendix Tables 2–6. The update-ratio column carries the convergence claim, while the color/bold cells carry local comparisons.",
+      "design_strengths": [
+        "Five dataset blocks align the same model/metric decision surface.",
+        "Group headers make the three training regimes and DMD exception visible.",
+        "Cell shading and bold provide fast within-block scanning."
+      ],
+      "design_weaknesses": [
+        "Thirteen columns and 60 body rows force very small text.",
+        "“Different datasets have different colors” is not a key to which color means which dataset.",
+        "Color intensity and bold are redundant only partly; no uncertainty or denominator is provided.",
+        "The broad table and “best” rule can overstate isolated cell winners as a general model ranking."
+      ],
+      "reusable_pattern": "Use a repeated dataset block × regime header for paired benchmark tables, but add a stable dataset swatch key, metric direction, and uncertainty/replicate columns.",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 1 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2: Results of other metrics. The bolded values are the best.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 6.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 60,
+      "columns": 14,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": 5,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "All values are point estimates; DMD training cells and Combustion KE cells are dashes. No uncertainty, denominator, or rank is reported.",
+      "data_and_statistics": "Five dataset blocks × 12 baseline rows (60 body rows), with Dataset/Baseline followed by three four-metric groups: Simulated Training, Real-world Training, Real-world Finetuning; each group has MAE, R2, KE, FE. Values are five-decimal point estimates; KE is “-” for Combustion because the modality is light intensity, and DMD training entries are unavailable.",
+      "evidence_relation": "Completes Table 1’s metric family with MAE/R2/KE/FE → Figure 3/4 and Tables 3–6. It is the full other-metrics audit table for all five datasets.",
+      "design_strengths": [
+        "The three regime groups keep the Table 1 comparison grammar.",
+        "The KE dash convention is consistent with the caption’s best-value rule."
+      ],
+      "design_weaknesses": [
+        "Fourteen columns at appendix size are hard to audit.",
+        "The caption only says “other metrics”; it does not define abbreviations, directions, or the Combustion exclusion.",
+        "Bold best cells are not accompanied by uncertainty or multiplicity context."
+      ],
+      "reusable_pattern": "Keep additional metrics in a structurally identical appendix table, but define every abbreviation and missingness rule in the caption/header.",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Table 2 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3: 2 rounds of autoregressive evaluation. The bolded values are the best.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 6.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 60,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 5,
+      "decimal_precision": 5,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Point estimates after two autoregressive rounds; no uncertainty, sample count, or per-trajectory failure rate.",
+      "data_and_statistics": "Five dataset blocks × 12 baseline rows (60 body rows). Columns are Dataset, Baseline, RMSE, MAE, Rel L2, R2, KE, fRMSE, FE for two-round autoregressive evaluation. All entries are point estimates shown to five decimals; no seed distribution, interval, rank, or failure count is reported.",
+      "evidence_relation": "First full autoregressive horizon table → Figure 3c/5 and Table 5. It provides the numeric counterpart to the visual error-growth claim.",
+      "design_strengths": [
+        "Seven metrics fit in a stable nine-column structure.",
+        "Dataset blocks preserve direct model comparison."
+      ],
+      "design_weaknesses": [
+        "The table has only a short title caption and does not define “round” or evaluation window.",
+        "Metric directions are encoded only in Table 1 or earlier prose, not this header.",
+        "The large point-estimate matrix hides horizon variability."
+      ],
+      "reusable_pattern": "Use one horizon table per round only if a compact multi-round table is impractical; repeat metric arrows and define the autoregressive unit.",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Table 3 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 4: 3 rounds of autoregressive evaluation. The bolded values are the best.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 6.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 60,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 5,
+      "decimal_precision": 5,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Point estimates after three autoregressive rounds; no uncertainty, sample count, or per-trajectory failure rate.",
+      "data_and_statistics": "Five dataset blocks × 12 baseline rows (60 body rows). The same seven metric columns as Table 3 are evaluated after three autoregressive rounds. Point estimates use five decimals; Combustion KE remains unavailable and DMD is included as a baseline with no uncertainty.",
+      "evidence_relation": "Three-round continuation of Table 3 → Figure 3c and Table 5. Together Tables 3–4 establish short-horizon degradation patterns behind the ten-round qualitative profiles.",
+      "design_strengths": [
+        "Identical layout to Table 3 makes horizon comparison low-friction.",
+        "Five dataset blocks preserve breadth."
+      ],
+      "design_weaknesses": [
+        "The near-identical page requires explicit continued/horizon navigation from the caption.",
+        "No uncertainty or failure indicator distinguishes robust degradation from outliers.",
+        "The caption does not state why only two and three rounds are tabulated here."
+      ],
+      "reusable_pattern": "Repeat a horizon-table template only with an explicit horizon badge and a compact paired-delta view across rounds.",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Table 4 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "failure",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 5: 1, 2, and 3 rounds of autoregressive evaluation under RMSE, relative L2 error, and fRMSE. The bolded values are the best.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.2,
+        "header_size_pt": 6.5,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 60,
+      "columns": 11,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": 4,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Point estimates for one, two, and three rounds; no uncertainty, distribution, or denominator.",
+      "data_and_statistics": "Five dataset blocks × 12 baseline rows (60 body rows). Dataset/Baseline are followed by three grouped headers (1 Round, 2 Round, 3 Round), each containing RMSE, Rel L2, fRMSE (11 columns total). Values are rounded to four decimals; no uncertainty or trajectory-level distribution is given.",
+      "evidence_relation": "Cross-round compact summary → Tables 3–4 full seven-metric values and Figure 3c. The table makes RMSE/Rel L2/fRMSE horizon trends comparable in one view.",
+      "design_strengths": [
+        "Three horizon groups align directly across the same model row.",
+        "Only the three most central metrics are repeated, reducing width relative to Tables 3–4."
+      ],
+      "design_weaknesses": [
+        "The header is wide and uses small type; the caption does not define arrows/directions.",
+        "Best-cell bolding across different horizons can be mistaken for one global winner.",
+        "No uncertainty or paired change column is provided."
+      ],
+      "reusable_pattern": "Use grouped horizon headers for core metrics, adding explicit metric direction and paired change/uncertainty when trends are central.",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 5 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 25,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "mechanism",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 6: Low, mid, high frequency error. The bolded values are the best.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 60,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 5,
+      "decimal_precision": 5,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Frequency-band point estimates only; no error bars, normalization reference, sample count, or uncertainty.",
+      "data_and_statistics": "Five dataset blocks × 12 baseline rows (60 body rows). Columns are Dataset, Baseline, Low-fRMSE, Mid-fRMSE, High-fRMSE. Each cell is a five-decimal point estimate; bold identifies the best value in the relevant comparison, without uncertainty or normalization denominator.",
+      "evidence_relation": "Full frequency-band complement to main Figure 6 → Section 4.5 CNO/high-frequency interpretation. It expands the Foil slice to all datasets and baselines.",
+      "design_strengths": [
+        "Low/mid/high bands are directly comparable in adjacent columns.",
+        "The same five-block organization as Tables 1–5 makes model coverage explicit."
+      ],
+      "design_weaknesses": [
+        "Caption is terse and does not define fRMSE normalization or frequency cutoffs.",
+        "Bold best values without uncertainty can overstate small differences.",
+        "Dataset block labels plus long method names consume vertical space."
+      ],
+      "reusable_pattern": "Use a compact frequency-band table to back a focused grouped-bar figure, with band boundaries and normalization in the header or note.",
+      "evidence": {
+        "page": 25,
+        "label": "p.25 Table 6 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 26,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 7: Overview of datasets. n traj is the number of trajectories. n frame is the number of frames.",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 5,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Metadata table; no uncertainty, aggregation, or performance statistic. Numeric fields mix counts, seconds, dimensions, and GB.",
+      "data_and_statistics": "Five rows, one per dataset. Columns are Dataset, n traj, n frame, Δt (s), a two-column Resolution group (Simulated/Real-world), Memory (GB), and a two-column Modalities group (Simulated/Real-world), for nine columns. Mixed integer, scientific-notation, dimension, memory, and text fields are not governed by one decimal precision.",
+      "evidence_relation": "Dataset-detail prose → Table 7 metadata contract → Figures 1–2/9–12 and all result tables. It is the only consolidated source for trajectory/frame/resolution/memory/modalities.",
+      "design_strengths": [
+        "Multi-level Resolution and Modalities headers organize heterogeneous metadata.",
+        "Five rows give a compact benchmark inventory."
+      ],
+      "design_weaknesses": [
+        "The caption defines n traj/n frame but not Δt, memory semantics, or modality abbreviations.",
+        "Modalities and resolution cells are dense, and the relationship between ×2 counts and real/sim pairing is not stated in the table itself.",
+        "No data-volume/processing qualifier distinguishes raw from processed memory."
+      ],
+      "reusable_pattern": "Use a two-level metadata table for paired datasets, explicitly defining count pairing, sampling, storage scope, and modality abbreviations.",
+      "evidence": {
+        "page": 26,
+        "label": "p.26 Table 7 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "dataset",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 8: MVPE of simulated data (full trajectory).",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 1,
+      "decimal_precision": 5,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "One full-trajectory MVPE value per fluid dataset; no uncertainty, trajectory count, or normalization definition in the table.",
+      "data_and_statistics": "One data row with four columns: Cylinder, Controlled Cylinder, FSI, and Foil. Each value is simulated-data MVPE over the full trajectory; the caption does not include a row label because the column headers identify datasets. Values are five decimals and no uncertainty is reported.",
+      "evidence_relation": "Appendix B.4 full-trajectory simulated-data gap → Table 8 → Figure 11 profiles and Table 9 200-step baseline comparison. It isolates simulated data before model comparison.",
+      "design_strengths": [
+        "Very compact four-dataset summary.",
+        "Column headers directly identify the comparison units."
+      ],
+      "design_weaknesses": [
+        "No explicit row label or MVPE definition appears in the body.",
+        "The single row cannot show trajectory heterogeneity or uncertainty.",
+        "The caption does not explain why Combustion is absent."
+      ],
+      "reusable_pattern": "Use a one-row dataset summary only with a fully defined metric note and a companion uncertainty/range representation.",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Table 8 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 30,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "failure"
+      ],
+      "caption": {
+        "text": "Table 9: MVPE of baselines (200 steps).",
+        "word_count": 7,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern",
+          "Cambria Math"
+        ],
+        "body_size_pt": 6.5,
+        "header_size_pt": 6.8,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 12,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 5,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "Two point-estimate condition rows; DMD simulated-training value is blank. No uncertainty or cost/compute denominator.",
+      "data_and_statistics": "Two condition rows (Simulated training and Real-world finetuning) plus eleven model columns (FNO, WDNO, UNet, DeepONet, MWT, CNO, GK-Transformer, Transolver, DPOT-SFT, DPOT-L-FT, DMD), with a leading condition column (12 columns total). Values are five-decimal point estimates for 200-step Cylinder MVPE; DMD simulated-training is unavailable.",
+      "evidence_relation": "Appendix B.4 200-step MVPE comparison → Table 9 → Figure 5a and Tables 3–5. It connects simulated training and real-world finetuning to a fixed long horizon.",
+      "design_strengths": [
+        "Condition rows and model columns make the finetuning contrast compact.",
+        "DMD’s missing simulated-training cell is explicit rather than fabricated."
+      ],
+      "design_weaknesses": [
+        "The model header is long and the caption does not define “200 steps” relative to ten rounds.",
+        "UNet/DPOT naming differs slightly from Table 1, increasing cross-table matching cost.",
+        "No uncertainty or per-run failure indicator accompanies the headline contrast."
+      ],
+      "reusable_pattern": "Use a two-condition × model matrix for fixed-horizon summaries, preserving exact model names and defining unavailable cells and horizon conversion.",
+      "evidence": {
+        "page": 30,
+        "label": "p.30 Table 9 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先定义五个 paired real-world/simulated 场景，Figure 2 与 Appendix Figures 9–10 给出采集硬件与实验设置；Table 1 建立三种训练范式和五数据集主比较，Figure 3 依次展示 sim/real gap、finetuning convergence 与 autoregressive horizon，Figure 4 汇总 RMSE–FE trade-off，Figures 5–6 把长时 MVPE 与频带 fRMSE 落到决策图。Appendix Tables 2–6 完整化指标/horizon/frequency，Figures 7–8、11–12 提供 profiles/spectra，Tables 7–9 固化 metadata 与 MVPE，Figures 13–21 展示每个数据集的 qualitative field grids。",
+    "caption_system": "Figure/Table 编号和冒号格式稳定，caption 多为短标题+设置；Figure 1、3、4、9 的 caption 解释部分视觉编码，Table 1 解释颜色、DMD 空白和 bold。大多数 appendix caption 只给标题/设置，不定义 uncertainty、sampling、normalization、代表样本或 metric 缩写；caption 通常不直接写主发现，结论留在正文。",
+    "table_header_system": "性能表以 Dataset/Baseline 为左侧锚点，并按 Simulated Training、Real-world Training、Real-world Finetuning 或 autoregressive round 建立分组表头；Table 6 采用 Low/Mid/High 频带，Table 7 采用 Resolution/Modalities 两级 metadata header，Tables 8–9 退化为横向数据集/模型 header。结构复用提高可比性，但 metric direction、缩写和 DMD/Combustion missingness 没有在每张表中完整重复。",
+    "method_result_ablation_link": "Figure 1 的 paired-data interface 与 Figure 2/9/10 的采集证据落到 Table 7；Table 1 连接三训练范式与 RMSE/Rel L2/fRMSE/Update Ratio；Figure 3–6 将差异、收敛、trade-off、长期误差和频带机制显式化；Appendix Tables 2–6/8–9 提供完整 metric/horizon/MVPE numeric backing，Figures 7–8/11–12 与 Figures 13–21 则承担 qualitative verification。没有独立组件消融视觉源，故方法图到结果图主要是 benchmark interface→comparison，而非因果 ablation。",
+    "main_appendix_link": "主文只保留 Figure 1–6 和 Table 1 作为 benchmark overview、sim/real gap、finetuning、trade-off、long-horizon 与 frequency-band headline；Appendix A 承担 Tables 2–6 与 Figures 7–8，Appendix B 承担 Table 7/Figures 9–12/Table 8–9，Appendix G 承担 Figures 13–21 的单样本 qualitative grids。主文 caption/图形依赖附录来恢复完整 metrics、data processing 和 scale。",
+    "typography_consistency": "pdffonts 显示 NimbusRomNo9L、NimbusMonL、Computer Modern math、CambriaMath、DejaVuSans 和少量 Arial/Dubai 资源；正文/表格主要是 Nimbus Roman/Computer Modern，plots 常为 DejaVu Sans。大表和 44/48-panel grids 的轴/legend 约 5.5–7 pt 级别，虽在 200 dpi 可辨认，普通阅读缩放下仍是独立审计瓶颈。",
+    "color_consistency": "profile figures 共享 blue Target/orange Pred，heatmap grids 共享 viridis-like sequential appearance，FFT figures 共享 green spectrum/red peak roles；但 baseline colors 在 Figures 3–6 和 Table 1 中不构成全篇固定 mapping，Table 1 dataset shading 仅局部有效，qualitative field colorbars 的 ranges 也跨行变化。颜色冗余有限，灰度阅读会丢失方法/数据集区分。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用五场景列 × real-world/simulated 行的首图 montage 固定 paired benchmark scope，并直接标出 modality。",
+      "用 Table 1 的 Dataset/Baseline × 三训练范式分组表头承载跨数据集主比较，并显式保留 DMD 缺失训练列。",
+      "用 Figure 3 将 gap、convergence 和 horizon 三个机制压缩到同一诊断图，再由完整 appendix tables 审计点估计。",
+      "用 Figure 5 的 scalar bar + profile 组合把 long-horizon summary 与 field-level qualitative evidence 连接起来。",
+      "用方法行 × probe/time 列的重复 small multiples 保持 baseline/Target/Pred 语义稳定，覆盖复杂 field 的可视核查。",
+      "把采集 schematic/photo、metadata table、frequency spectrum 和 qualitative grid 作为从硬件到指标的证据链，而不是只展示模型排名。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：paired real-world/simulated 五场景 benchmark interface。",
+      "Table 1：五数据集、三训练范式和 baseline 的主决策面。",
+      "Figure 3：gap、finetuning convergence、autoregressive horizon 的三机制诊断。",
+      "Figure 4：RMSE–Frequency Error trade-off 的跨数据集摘要（需与完整表配套）。",
+      "Figures 7–8 与 13–21：把长期 profile 和场域预测误差落到可视对象。"
+    ],
+    "failure_patterns": [
+      "Figure 4 为可读性省略远离中心的 DMD 点；headline trade-off 不能替代完整 Table 1。",
+      "大多数表格和 qualitative grids 只有 point estimate/代表样本，没有 seed、trajectory 分布、区间或 failure count。",
+      "caption 对 MVPE、fRMSE normalization、FFT sampling/window、profile row identity、heatmap colorbar ranges 等定义不足。",
+      "多组 baseline categorical colors 只在局部图中稳定，灰度和跨图追踪困难；Table 1 dataset 色也没有独立 key。",
+      "Appendix 44/48-panel grids 与 60-row tables 通过密度压缩了证据，且 qualitative field panels 的 colorbar ranges 变化会削弱跨方法颜色比较。",
+      "阅读中记录的 baseline count、physics metric type count、Combustion sampling rate 和 Foil/FSI trajectory count 歧义，在视觉对象中没有被额外澄清。"
+    ],
+    "one_sentence_visual_strategy": "RealPDEBench 以 paired real-world/simulated 场景首图、三范式主表、gap/convergence/trade-off 结果图和大规模 appendix profiles/heatmaps 构成从采集到模型比较的证据链，但依赖高密度点估计、局部颜色合同和未充分定义的 caption，独立复现与灰度核查仍受限。"
+  }
+}

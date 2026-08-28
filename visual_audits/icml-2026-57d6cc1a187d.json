@@ -1,0 +1,1710 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-57d6cc1a187d",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+      "https://github.com/paschalidoud/paschalidoud.github.io",
+      "https://github.com/will-rice/icml-2026-reproductions"
+    ],
+    "selected_repository": "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+    "visual_source_files": [
+      {
+        "repository_url": "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+        "path": "videos/paper_figures/pipeline-top.svg",
+        "role": "diagram_source",
+        "tool": "SVG",
+        "evidence": "Official MOTIVE project page directly serves the exact top panel of PDF Figure 1; source SVG is 2983 × 588 and exposes editable paths, text, and colors."
+      },
+      {
+        "repository_url": "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+        "path": "videos/paper_figures/pipeline-bottom.svg",
+        "role": "diagram_source",
+        "tool": "SVG",
+        "evidence": "Official MOTIVE project page directly serves the exact bottom panel of PDF Figure 1; source SVG is 3052 × 688 and exposes editable paths, text, and colors."
+      },
+      {
+        "repository_url": "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+        "path": "videos/paper_figures/Figure 2/float/",
+        "role": "rendered_asset",
+        "tool": "MP4/video",
+        "evidence": "The official page lists the float query plus top_10 and bottom_10 clips used for the Float panel of PDF Figure 2."
+      },
+      {
+        "repository_url": "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+        "path": "videos/paper_figures/Figure 2/roll/",
+        "role": "rendered_asset",
+        "tool": "MP4/video",
+        "evidence": "The official page lists the roll query plus top10 and bottom_10 clips used for the Roll panel of PDF Figure 2."
+      },
+      {
+        "repository_url": "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+        "path": "videos/paper_figures/Figure 3/",
+        "role": "rendered_asset",
+        "tool": "MP4/video",
+        "evidence": "The official page lists compress, Spin, slide, and free-fall folders, each with base, random, and ours videos corresponding to PDF Figure 3."
+      },
+      {
+        "repository_url": "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+        "path": "videos/motion_visualization/*/*_original.mp4",
+        "role": "rendered_asset",
+        "tool": "MP4/video",
+        "evidence": "Seven numbered folders on the official page expose the original videos used as the Original columns in PDF Figure 9."
+      },
+      {
+        "repository_url": "https://research.nvidia.com/labs/sil/projects/MOTIVE/",
+        "path": "videos/motion_visualization/*/*_motion_centered_gray.mp4",
+        "role": "rendered_asset",
+        "tool": "MP4/video",
+        "evidence": "Seven numbered folders on the official page expose the motion_centered_gray overlays used as the Motion Overlay columns in PDF Figure 9."
+      }
+    ],
+    "search_note": "The automatic inventory row reports no_public_source_found and the local corpus/visual_sources directory is absent. PDF/project links lead to the official NVIDIA MOTIVE page, which supplies exact Figure 1 SVG panels and rendered videos corresponding to Figures 2, 3, and 9, but no plot scripts, table generators, TeX/TikZ/PGF, or source for Figures 4–8 and Tables 1–7. Read-only gh searches by full title, arXiv 2601.08828, OpenReview ID zAl9heLw4q, and Motive found no author code repository; the personal website has only a related teaser, while will-rice/icml-2026-reproductions is a paper-ID-linked CPU toy reproduction without paper visual files. The resulting status is partial_visual_source."
+  },
+  "paper_style": {
+    "main_figures": 5,
+    "main_tables": 2,
+    "appendix_figures": 4,
+    "appendix_tables": 5,
+    "dominant_figure_typography": {
+      "family": [
+        "DejaVu Sans",
+        "XCharter",
+        "Computer Modern Math"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 7.0,
+        "maximum": 16.0
+      },
+      "weight": [
+        "regular",
+        "semibold",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "XCharter",
+        "Computer Modern Math"
+      ],
+      "body_size_pt": 8.5,
+      "header_size_pt": 9.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "NVIDIA green (approximately #76B900; rendered PDF close to #73B829) marks Motive headers, panel borders, overlay headers, and highlighted result rows. Pale green, blue, pink, and yellow separate motion, query/selection, loss, and projection roles; Figure 7 uses a local light-to-dark green sequential scale and Figure 6 uses blue/green/pink distribution fills. Natural video colors are data content rather than semantic palette.",
+    "vector_raster_mix": "Captions, prose, table rules, and most table/axis text are PDF vector objects. Figure 1 combines vector structure with embedded imagery and has exact public SVG panels; Figures 2–4 and 8–9 are mainly raster frame montages; Figures 5–7 are predominantly vector charts/matrices, with Figure 7 colorbar strips rendered as image-like objects.",
+    "style_consistency": "XCharter and Computer Modern mathematics stabilize captions, tables, and equations; green branded headers and pale panel fields connect method diagrams and qualitative grids. Internal sans-serif labels and embedded video frames introduce a deliberate but visibly mixed publication/video style. Small 5–10 pt labels are the recurring readability limit."
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 4,
+      "module": "method / §3.1–§3.2",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: Motive. Top. Motion-gradient computation (§3.4) has three steps: (1) detect motion with AllTracker, (2) compute motion-magnitude patches, (3) apply loss-space motion masks to focus gradients on dynamic regions. Bottom. Our method (§3.2) is made scalable via a single-sample variant with common randomness and a projection, computed for each pair of training and query data, aggregated (§3.5) for a final ranking, and eventually used to select fine-tuning subsets.",
+        "word_count": 69,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 16.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#76B900",
+          "#B6DA7A",
+          "#FFF5B9",
+          "#FFDEDE",
+          "#FEC63B",
+          "#C4C4C4",
+          "#300604"
+        ],
+        "semantic_mapping": "Green stage headers/borders mark Motive; pale green/yellow/pink/gray blocks distinguish motion, projection/matrix, loss, and gradient elements; dark text and arrows carry labels.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Left-to-right processing order from input video/query to motion gradient and influence selection.",
+        "y": "Top panel measures motion and constructs a motion-weighted loss; bottom panel computes scalable train/query ranking.",
+        "color": "Green branded module headers; pale blocks distinguish motion, matrices/projection, loss, and gradients.",
+        "shape": "Rounded rectangles, icons, matrices, and terminal selection boxes distinguish operation types.",
+        "line": "Solid arrows and connectors show workflow order and pairing.",
+        "facet": "Top/bottom workflow layers.",
+        "text": "Direct operation labels, equations, and “high-influence selection” callout."
+      },
+      "data_and_statistics": "Conceptual method interface tied to Eqs. 6–18 and Algorithm 1. It shows AllTracker, motion patches, loss-space masks, shared randomness, projection, normalized gradients, matrix multiplication, and ranking; it contains no sample denominator, effect estimate, uncertainty, or failure rate.",
+      "evidence_relation": "Introduction question about which training clips influence target motion → §3.1–§3.5 and Eqs. 6–18 → Figure 1 measurement/projection/ranking interface → Algorithm 1 execution → Table 1, Figure 3, and Table 2 downstream evidence. The object carries method-interface evidence rather than performance evidence.",
+      "design_strengths": [
+        "Two stacked layers pair motion-specific measurement with scalable attribution and selection.",
+        "Direct labels, equation callouts, arrows, and repeated green framing make the executable interface legible.",
+        "The official project page exposes reusable exact SVG panels for the two halves."
+      ],
+      "design_weaknesses": [
+        "Small labels, icons, and arrows create high local density.",
+        "The figure omits key experiment parameters such as F=81, top-10% budget, and tensor dimensions.",
+        "Pastel subcategories lean on color, so grayscale separation among secondary roles weakens."
+      ],
+      "reusable_pattern": "Place property-specific measurement above shared-randomness/low-dimensional ranking and the selection action, using one palette and equation callouts; add budget and candidate denominator at the output for quantitative work.",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 1; two stacked panels",
+        "bbox": [
+          62.362,
+          360.296,
+          533.0,
+          643.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 7,
+      "module": "method / §3.5",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "method_interface",
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 2: Motion Attribution Samples with Wan2.1-T2V-1.3B. Top: Query clips showing float (left) and roll (right) motions. Middle: Top-ranked positive training samples identified by Motive with high influence scores. Bottom: Negative influence samples with minimal, camera-only motion, or cartoon-style content that conflict with target motions. Videos are included in the supplementary material.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#3F8EDB",
+          "#76B900",
+          "#F0443E",
+          "#EAF6EA"
+        ],
+        "semantic_mapping": "Blue, green, and red row strips label Query, Positive Influence, and Negative Influence; pale fields support row separation.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 30
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Frame progression within each clip tile row.",
+        "y": "Query, Positive Influence, and Negative Influence rows.",
+        "color": "Blue/green/red row headers encode query, high-influence positive, and negative influence roles.",
+        "shape": "Video-frame tiles; no point marker geometry.",
+        "line": null,
+        "facet": "Float and Roll motion panels.",
+        "text": "Motion name, row-role pills, and query prompt labels."
+      },
+      "data_and_statistics": "Representative clips for Float and Roll. Positive rows show Motive top-ranked training samples; negative rows show minimal-motion, camera-only, or cartoon-style samples. Approximately 30 displayed frames are arranged as two cases × (3 query + 6 positive + 6 negative). No scores, top-K denominator, sampling rule, repeats, or uncertainty are shown.",
+      "evidence_relation": "§3.5 influence ranking → Figure 2 positive/negative content contrast → §4.2 interpretation of clear physical dynamics versus static/camera-only/cartoon clips → Table 1 and Figure 3 quantitative/qualitative outcomes. Negative rows explicitly carry failure evidence.",
+      "design_strengths": [
+        "Float and Roll share a stable three-row structure, making role comparison immediate.",
+        "Query prompts and temporal frames connect the abstract influence score to recognizable video content.",
+        "Position, row labels, and color jointly encode semantics."
+      ],
+      "design_weaknesses": [
+        "Representative tiles have no selection denominator, score values, or failure proportion.",
+        "Natural appearance, background, and art style can confound the motion interpretation.",
+        "Small frame tiles and saturated row strips require enlargement for detailed inspection."
+      ],
+      "reusable_pattern": "Use a fixed Query—Positive—Negative montage for attribution interpretation, then report the candidate pool, top-K rule, and negative hit/failure rate alongside it.",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 2; Float/Roll qualitative grid",
+        "bbox": [
+          62.362,
+          385.368,
+          533.0,
+          704.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 9,
+      "module": "results / §4.2",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 3: Qualitative Comparisons. We compare four motion scenarios across the base model (Wan2.1-T2V-1.3B), or fine-tuned with random selection and Motive. Our approach produces more realistic motion. Videos are included in the supplementary material.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#70A524",
+          "#76B900",
+          "#EAF6EA"
+        ],
+        "semantic_mapping": "Green headers and pale green fields identify method rows/panels; natural frame colors remain data content.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 16,
+        "data_marks_estimate": 36
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Three ordered frames per generated clip.",
+        "y": "Base, Random Selection, and Ours rows.",
+        "color": "Green method headers and pale fields identify selection condition.",
+        "shape": "Frame tiles; no marker geometry.",
+        "line": null,
+        "facet": "Four scenario panels: Compress, Spin, Slide, Free fall.",
+        "text": "Scenario title, method row labels, and prompt snippets."
+      },
+      "data_and_statistics": "Four selected motion scenarios compare the base Wan2.1-T2V-1.3B model with equal-data-budget Random and Motive fine-tuning. The paper interprets the samples as higher motion fidelity and temporal consistency. There are about 36 displayed frames, with no timestamps, sample-pool denominator, score, repeat, or failure count.",
+      "evidence_relation": "Figure 2 sample semantics → §4.2 equal-budget comparison across four scenarios → Figure 3 qualitative motion-fidelity/temporal-consistency bridge → Table 1 VBench and Table 2 human evaluation. It carries main-result qualitative evidence.",
+      "design_strengths": [
+        "The four scenarios use the same three-row/three-frame structure, enabling horizontal and vertical comparison.",
+        "Base/Random/Ours labels and prompts make the intervention explicit.",
+        "Temporal progression is visible without an additional legend."
+      ],
+      "design_weaknesses": [
+        "Selected cases have no sampling rule, failure count, or frame timestamps.",
+        "The caption says four scenarios but does not name them, leaving the panel headings to supply key context.",
+        "“More realistic motion” is not tied in the figure to an independent score or repetition."
+      ],
+      "reusable_pattern": "Use a fixed scenario × method grid with identical frame positions; add frame times, sample-pool/failure counts, and a qualitative scoring rule.",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 3; four-scenario qualitative grid",
+        "bbox": [
+          62.362,
+          481.015,
+          533.0,
+          823.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 10,
+      "module": "ablation / §4.4",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 4: Impact of Frame-Length Normalization on Motion Attribution. Comparison of top-ranked samples for floating motion query. Left: With proper frame-length normalization, top samples consistently exhibit floating motion (waves, floating objects, surfing). Right: Without normalization, rankings are biased by video length, resulting in no coherent patterns among top samples.",
+        "word_count": 49,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#3F8EDB",
+          "#BB6B6D",
+          "#76B900"
+        ],
+        "semantic_mapping": "Blue marks the query, red the no-normalization condition, and green the normalized condition.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": 9
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Frame/tile order within the query and ranked-sample strips.",
+        "y": "Query, Without Frame Normalization, and With Frame Normalization panels.",
+        "color": "Blue/red/green condition strips encode query/no correction/correction.",
+        "shape": "Video-frame tiles.",
+        "line": null,
+        "facet": "Three condition panels for one floating-motion query.",
+        "text": "Panel headings and motion prompt labels."
+      },
+      "data_and_statistics": "Top-ranked representative samples for one floating-motion query under frame-length handling. The surrounding text reports raw score–length correlation ρ=78.0% and a 54.0% reduction after 81-frame standardization; the image strip itself has no frame lengths, scores, absolute post-standardization ρ, repeats, or uncertainty.",
+      "evidence_relation": "Eq. 11 and §3.3 frame-length correction → §4.4 81-frame protocol and correlation reduction → Figure 4 ranked-sample ablation → Figure 5 projection ablation. The figure is an intuitive mechanism check; its quantitative correlation remains in prose.",
+      "design_strengths": [
+        "Query and two processing conditions are shown side by side under one motion target.",
+        "Green/red contrast makes the claimed coherence difference easy to scan.",
+        "Each condition has a comparable tile count."
+      ],
+      "design_weaknesses": [
+        "The caption calls the normalized condition “Left” and the unnormalized condition “Right”, while the visible panels are Query, red Without, then green With; the panel headings must resolve this mapping conflict.",
+        "No actual frame lengths or scores are shown, and the small top-three sample set cannot establish stability.",
+        "The possible cancellation of Eq. 11 scalar scaling by later L2 normalization is not isolated visually."
+      ],
+      "reusable_pattern": "Use Query—No correction—Correction triptychs with panel names repeated in the caption, and bind the visual pattern to an absolute bias metric and repeated sample definition.",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 4; frame-length normalization strip",
+        "bbox": [
+          62.362,
+          162.177,
+          533.0,
+          421.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 10,
+      "module": "ablation / §4.4",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Figure 5: Projection dimension analysis. Spearman correlation between projected and full gradients shows rapid improvement with projection dimension, with 512 providing a strong trade-off between accuracy and efficiency.",
+        "word_count": 28,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#76B900",
+          "#F5F5F2",
+          "#222222"
+        ],
+        "semantic_mapping": "Green line encodes rank correlation; light gray plot field and black axes/text provide neutral structure.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 5
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Categorical projection dimensions 128, 256, 512, 1024, 2048.",
+        "y": "Spearman correlation ρ between projected and full-gradient rankings.",
+        "color": "Green identifies the single projected-gradient series.",
+        "shape": "Circular markers at each projection dimension.",
+        "line": "Dashed connecting line shows saturation trend.",
+        "facet": null,
+        "text": "Axis titles, tick labels, and caption identify 512 trade-off."
+      },
+      "data_and_statistics": "Point estimates of projected-versus-full-gradient Spearman agreement: 46.9% at D′=128, 74.7% at 512, 75.7% at 1024, and 76.1% at 2048; the 256 point is approximately 69–70% from the rendered chart. No seed, repeat, error bar, or runtime/storage axis is included.",
+      "evidence_relation": "§3.2/§3.6 Fastfood/JL scalability → Figure 5 ranking-preservation ablation → D′=512 selection → Appendix Tables 6–7 runtime. It connects an efficiency knob to a quality proxy.",
+      "design_strengths": [
+        "A single categorical line makes the rapid gain and post-512 saturation readable in a compact inset.",
+        "Markers and the connecting line give redundant trend cues.",
+        "The chosen dimension is explicitly stated in the caption and prose."
+      ],
+      "design_weaknesses": [
+        "The inset is small and x tick labels are crowded at page scale.",
+        "No uncertainty or repeated projection draw is shown.",
+        "The “trade-off” claim has no cost/storage encoding in the chart; the intermediate point is not reported exactly in prose."
+      ],
+      "reusable_pattern": "Use a compact rank-agreement versus projection-dimension line with a separate cost summary and repeated/error display, rather than leaving trade-off evidence only to the caption.",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 5; projection-dimension inset",
+        "bbox": [
+          321.167,
+          679.233,
+          533.0,
+          822.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 20,
+      "module": "appendix / D.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "histogram",
+        "bar"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Motive is not simply selecting “motion-rich” clips. Our influence scores are computed via gradients, and training videos are considered influential only when they directly improve the model’s ability to generate the target motion dynamics, not because they contain more motion overall.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#E0EFFF",
+          "#BED8C8",
+          "#F7CBD2",
+          "#555555"
+        ],
+        "semantic_mapping": "Light blue All, green Top 10%, pink Bottom 10%, and dashed gray mean/uniform references distinguish distribution roles.",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 4,
+        "annotations": 6,
+        "data_marks_estimate": 60
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "Inside upper-left/upper-center in (a); upper-right in (b).",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Panel (a) uses linear mean-motion magnitude; panel (b) uses categorical motion bins 0–9.",
+        "y": "Panel (a) number of samples; panel (b) percentage of selected videos.",
+        "color": "All/Top 10%/Bottom 10% fills and Uniform reference.",
+        "shape": "Histogram bins in (a), grouped bars in (b).",
+        "line": "Dashed vertical means and horizontal uniform reference.",
+        "facet": "Motion Distribution and Distribution Across Motion Bins.",
+        "text": "Mean labels, axis titles, legend, and panel captions."
+      },
+      "data_and_statistics": "VIDGEN 10k-video mean motion magnitude distributions for all, top-10% influence, and bottom-10% influence. Means are 3.75, 3.85, and 3.69; the text calls the top–bottom difference 4.3%. Panel (b) shows ten-bin selected-video proportions against a 10.0% uniform reference. No interval, repetition, or significance display.",
+      "evidence_relation": "Figure 1 motion-weighted gradient → Appendix D.1 top/bottom influence versus raw motion magnitude → Figure 6 shortcut analysis → constrained claim that influence is not a simple motion-rich filter. It is descriptive robustness evidence, not causal proof.",
+      "design_strengths": [
+        "Distribution and bin-composition panels provide both global and category-level views.",
+        "Mean guides and the uniform reference make deviations visible.",
+        "The paired panels directly test the paper’s proposed shortcut concern."
+      ],
+      "design_weaknesses": [
+        "No sample-count uncertainty or across-query variation is shown.",
+        "The two panels use different x semantics and small axis labels.",
+        "Light fills depend on color and become difficult to distinguish in grayscale."
+      ],
+      "reusable_pattern": "Pair a distribution view with bin composition to test a selection shortcut, and state candidate n, quantile rule, and uncertainty in the caption.",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 6; two-panel motion distribution analysis",
+        "bbox": [
+          62.362,
+          428.166,
+          533.0,
+          597.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 21,
+      "module": "appendix / D.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "matrix"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "dataset"
+      ],
+      "caption": {
+        "text": "Figure 7: Cross-motion influence overlap across datasets. Heatmaps showing the percentage overlap of top-100 influential training samples across motion categories for (a) 4DNEX and (b) VIDGEN datasets. Each cell (i, j) shows the percentage of motion category i’s influential data (aggregated from 5 queries per category) that also appears in motion category j’s top-100 influential samples. The asymmetric nature of the matrices (e.g., bounce→float ≠ float→bounce) arises because different motion categories have different numbers of unique influential videos, leading to directional overlap percentages. Consistent high-overlap pairs (e.g., bounce-float: 44.4%/46.3%) and low-overlap pairs (e.g., free fall-stretch: 12.8%/12.7%) across datasets validate that these influence patterns reflect fundamental aspects of motion representation in video generation models.",
+        "word_count": 113,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 6,
+        "hex": [
+          "#F6FCED",
+          "#D8F2AF",
+          "#C0E98A",
+          "#9EB974",
+          "#5A8F00",
+          "#3C7800"
+        ],
+        "semantic_mapping": "Light-to-dark green encodes directional top-100 overlap percentage; cell numbers and row/column labels provide redundant semantics.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 200,
+        "data_marks_estimate": 200
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "categorical",
+        "y_scale": "categorical",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "Right of each heatmap.",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.3,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Categorical target motion category in the fixed order roll, bounce, float, free fall, compress, spin, swing, slide, stretch, explode.",
+        "y": "Categorical source motion category in the same order.",
+        "color": "Sequential green heatmap and separate Overlap (%) colorbar for each dataset.",
+        "shape": "Rectangular matrix cells.",
+        "line": null,
+        "facet": "4DNeX (a) and VIDGEN (b) paired matrices.",
+        "text": "One-decimal overlap value in every cell and axis category labels."
+      },
+      "data_and_statistics": "Directional overlap of top-100 influential training samples, aggregated from five queries per motion category, for 4DNeX and VIDGEN. Mean overlaps are about 24.0% and 24.3%; bounce→float is 44.4%/46.3% and free fall→stretch is 12.8%/12.7%. There is no query-level variance, denominator count, bootstrap, or interval.",
+      "evidence_relation": "Figure 6 shortcut analysis → Appendix D.2 cross-motion overlap → Figure 7 paired matrices → descriptive claim that motion influence patterns recur across datasets. The appendix matrix extends mechanism interpretation beyond the main benchmark.",
+      "design_strengths": [
+        "The two datasets share category order and cell semantics, enabling direct visual comparison.",
+        "Numbers, colorbars, and asymmetric layout expose both magnitude and direction.",
+        "The long caption defines aggregation and the source of asymmetry."
+      ],
+      "design_weaknesses": [
+        "Two hundred tiny cells and duplicated colorbars create high density.",
+        "The figure omits per-category unique counts and query-level variation.",
+        "Directional denominator logic lives in the caption rather than a visible cue inside each matrix."
+      ],
+      "reusable_pattern": "Use paired same-scale heatmaps with cell annotations and an explicit directional definition; add per-category counts and variation before interpreting overlap as mechanism.",
+      "evidence": {
+        "page": 21,
+        "label": "Figure 7; paired cross-motion overlap heatmaps",
+        "bbox": [
+          62.362,
+          303.149,
+          533.0,
+          648.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 24,
+      "module": "appendix / F.2",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "dataset",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 8: Illustration of motion query set. We generate near-realistic video queries with Veo-3 across ten motion categories. Each category contains five query videos synthesized with controlled prompts and manually screened for clarity and physical plausibility.",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#6BA501",
+          "#76B900"
+        ],
+        "semantic_mapping": "Green column headers encode the ten motion categories; natural frame colors are illustrative content.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 10,
+        "series": 10,
+        "legend_items": 0,
+        "annotations": 10,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Ten motion-category columns.",
+        "y": "Two representative frame tiles per category.",
+        "color": "Green category headers; image colors carry visual examples.",
+        "shape": "Uniform image tiles.",
+        "line": null,
+        "facet": "One column per Bounce, Compress, Float, Explode, Free Fall, Roll, Spin, Slide, Stretch, Swing category.",
+        "text": "Direct category names in green headers."
+      },
+      "data_and_statistics": "The caption states ten Veo-3 motion categories and five query videos per category, generated with controlled prompts and manually screened. The montage displays two frame-level examples per category, not all five videos; it gives no prompt, item ID, screening count, failure count, or uncertainty.",
+      "evidence_relation": "§4.1 ten categories/50 queries → Appendix F.2 prompt and screening details → Figure 8 taxonomy montage → Figure 3 and VBench test coverage. It supplies experimental-design and dataset evidence.",
+      "design_strengths": [
+        "A fixed 2×5 grid compresses the ten-category taxonomy into one scan-friendly object.",
+        "Uniform tile size and green headers make category retrieval fast.",
+        "Text labels preserve category identity when image content is ambiguous."
+      ],
+      "design_weaknesses": [
+        "Two displayed examples per category do not visually account for the five query videos claimed in the caption.",
+        "Prompts, item IDs, and screening criteria are absent, as are failed examples.",
+        "Subject scale, background, and image style vary across categories."
+      ],
+      "reusable_pattern": "Use fixed taxonomy columns and direct headers, while reporting total per-category count, displayed subset, prompt/ID index, and screening rule.",
+      "evidence": {
+        "page": 24,
+        "label": "Figure 8; ten-category query montage",
+        "bbox": [
+          62.362,
+          332.52,
+          533.0,
+          650.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 26,
+      "module": "appendix / H.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "qualitative_grid",
+        "image_montage"
+      ],
+      "purpose": [
+        "method_interface",
+        "mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 9: Motion Overlay Visualization. Comparison of original frames and motion overlays for seven video samples across three time points (early, middle, late). The motion overlay demonstrates the spatial weighting of our motion loss: dynamic regions remain visible, while static backgrounds are attenuated to neutral gray. Takeaway: This provides heuristic intuition into what information our motion attribution focuses on: the information in grayer regions, which lack motion, is down-weighted by our method.",
+        "word_count": 72,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "XCharter"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#4588D9",
+          "#76B900",
+          "#BDBDBD"
+        ],
+        "semantic_mapping": "Blue Original headers, green Motion Overlay headers, and neutral gray attenuation mark the spatial weighting interpretation.",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 7,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": 42
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.5,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Early, middle, and late timepoints, each split into Original and Motion Overlay.",
+        "y": "Seven representative video samples.",
+        "color": "Blue/green column headers and gray overlay background encode original/overlay and attenuation.",
+        "shape": "Paired frame tiles.",
+        "line": null,
+        "facet": "Three temporal groups repeated across seven rows.",
+        "text": "Timepoint, Original/Motion Overlay headers, and sample row labels."
+      },
+      "data_and_statistics": "Seven representative videos × three timepoints × two views gives about 42 frame tiles. Overlay frames preserve dynamic regions and attenuate static background to gray. No mask magnitude scale, opacity/normalization, pixel unit, sample-selection rule, repeat, or uncertainty is shown; the caption explicitly calls the interpretation heuristic.",
+      "evidence_relation": "Eqs. 12–16 motion magnitude/mask → Appendix H.1 overlay construction → Figure 9 spatial-weighting intuition → Figure 1 motion-weighted-loss interface. It explains the mechanism and does not estimate downstream performance.",
+      "design_strengths": [
+        "Original and overlay are paired at each timepoint, so spatial changes can be inspected directly.",
+        "Repeated headers make the temporal and view dimensions explicit.",
+        "Gray attenuation provides a clear visual link to the motion-mask story."
+      ],
+      "design_weaknesses": [
+        "Overlay opacity, normalization, and magnitude scale are unspecified.",
+        "Seven representative rows are dense and lack an item-selection rule.",
+        "The “grayer regions” takeaway is heuristic and should not be read as pixel-level causal contribution."
+      ],
+      "reusable_pattern": "Use Original—Overlay temporal pairs to explain spatial weighting, and add a colorbar, normalization range, timestamp, and sample-selection rule.",
+      "evidence": {
+        "page": 26,
+        "label": "Figure 9; original/overlay temporal montage",
+        "bbox": [
+          62.362,
+          480.239,
+          533.0,
+          812.0
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 8,
+      "module": "results / §4.1",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 1: VBench Evaluation. Performance comparison on VBench [Huang et al., 2024] across different baselines (all values in %, higher is better). All selection methods use 10% of training data; our method uses majority vote aggregation (§3.5) across motion queries. MM: motion masking. Subj.: Subject Consistency, Bg.: Background Consistency, Mot.: Motion Smoothness, Dyn.: Dynamic Degree, Aesth.: Aesthetic Quality, Img.: Imaging Quality.",
+        "word_count": 61,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "XCharter",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 13,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "No SD, SE, interval, seed, repeat, or failure column; every cell is a one-decimal point estimate.",
+      "data_and_statistics": "VBench percentages, higher is better, for Wan2.1-T2V-1.3B and Wan2.2-TI2V-5B across Subject Consistency, Background Consistency, Motion Smoothness, Dynamic Degree, Aesthetic Quality, and Imaging Quality. All selection methods use 10% of training data. Motive Dynamic Degree is 47.6%/48.3% versus Random 41.3%/41.6%, w/o MM 43.8%/43.8%, and Full FT 42.0%/45.3%; generation sample counts and aggregation details are absent.",
+      "evidence_relation": "§3 top-10%/majority-vote selection → §4.1 model/metric setup → Table 1 main quantitative comparison → Figure 3, Table 2, and Appendix Table 5. It is the headline point-estimate table without uncertainty closure.",
+      "design_strengths": [
+        "Two model groups and identical metrics align the main comparison on one page-wide surface.",
+        "Same budget and relevant baselines are visible together.",
+        "Motive row color and bold local maxima accelerate scanning."
+      ],
+      "design_weaknesses": [
+        "Thirteen columns make the table dense at single-page scale.",
+        "No uncertainty, random seed, repetition, or per-dimension sample denominator is supplied.",
+        "Uniform best-value bolding can obscure that Dynamic Degree and Motion Smoothness are the primary motion targets."
+      ],
+      "reusable_pattern": "Retain model-group × metric-group headers and equal-budget baselines, while adding target indicators, sample denominator, and repeated/uncertainty fields.",
+      "evidence": {
+        "page": 8,
+        "label": "Table 1; VBench Evaluation",
+        "bbox": [
+          62.063,
+          83.445,
+          533.0,
+          392.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 10,
+      "module": "results / §4.3",
+      "placement": "main",
+      "width": "inset",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: Human evaluation. Pairwise comparisons across 50 videos with 17 participants (850 total). Win, tie, and loss rates show where our method is preferred, rated equal, or outperformed.",
+        "word_count": 29,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "XCharter",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 9.0,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No interval, test, repeat, per-row n, or allocation field; the caption states 50 videos, 17 participants, and 850 total judgments.",
+      "data_and_statistics": "Win/Tie/Loss percentages for Ours versus Base (74.1/12.3/13.6), Random (58.9/12.1/29.0), Full FT (53.1/14.8/32.1), and w/o MM (46.9/20.0/33.1). The body says three pairings while the table has four rows, so the 850-judgment denominator allocation is unclear.",
+      "evidence_relation": "Table 1 automated VBench → §4.3 pairwise perceptual protocol → Table 2 four comparison rows → prose emphasis on Base and Full FT preference. It supplements the headline with human preference but cannot establish unreported significance.",
+      "design_strengths": [
+        "One row per baseline and three rates form a compact decision surface.",
+        "Caption defines the rate semantics and gives participant/video totals.",
+        "Booktabs rules keep the narrow table readable beside the results prose."
+      ],
+      "design_weaknesses": [
+        "The four rows conflict with the body’s “three pairings”, and total-judgment allocation is unstated.",
+        "No per-comparison n, blinding/repeat detail, interval, or test is included.",
+        "The inset depends on body text to explain protocol boundaries."
+      ],
+      "reusable_pattern": "Keep the intuitive Win/Tie/Loss layout, but add per-comparison n, assignment rule, and uncertainty in the table note or companion table.",
+      "evidence": {
+        "page": 10,
+        "label": "Table 2; Human evaluation",
+        "bbox": [
+          320.868,
+          451.581,
+          533.0,
+          640.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 17,
+      "module": "appendix / A. Notation",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 3: Glossary and notation.",
+        "word_count": 5,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "XCharter",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 30,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "italic"
+      ],
+      "uncertainty": "Not applicable: symbol-definition glossary with no statistical columns.",
+      "data_and_statistics": "Symbol/Description glossary for Acronyms and Basic Notation (3 rows), Video Generation (7), Datasets (9), and Latent Space and Diffusion Components (11). Rows cover VAE/DiT, video tensors, datasets and queries, latent variables, noise, flow/diffusion schedules, and fixed timestep/noise notation.",
+      "evidence_relation": "Main-text notation callout on p. 2 → Table 3 and Table 4 → Eqs. 1–18 and Algorithm 1 symbol interpretation. Table 3 supplies the first half of the method reproduction interface.",
+      "design_strengths": [
+        "Domain row groups reduce the lookup burden across a long glossary.",
+        "A narrow symbol column and full description column preserve mathematical detail.",
+        "Black-and-white booktabs styling remains consistent with the result tables."
+      ],
+      "design_weaknesses": [
+        "Thirty dense rows and small mathematical glyphs are costly to scan.",
+        "The caption gives no coverage summary or main-text cross-reference.",
+        "Continuation/group context is not repeated in a way that supports isolated reuse."
+      ],
+      "reusable_pattern": "Split a long glossary by domain, repeat column headings on continuation pages, and add first-use equation indices for core pipeline symbols.",
+      "evidence": {
+        "page": 17,
+        "label": "Table 3; Glossary and notation",
+        "bbox": [
+          230.216,
+          110.444,
+          533.0,
+          730.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 18,
+      "module": "appendix / A. Notation",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 4: Glossary and notation (continued).",
+        "word_count": 6,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "XCharter",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 25,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 4,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "italic"
+      ],
+      "uncertainty": "Not applicable: symbol-definition glossary with no statistical columns.",
+      "data_and_statistics": "Continuation glossary with Attribution and Influence (6 rows), Loss Functions (7), Motion Representations (6), and Projections and Computational Details (6). It defines influence, TopK/MajVote, losses, motion tensors/masks, and Fastfood/full/projected dimensions.",
+      "evidence_relation": "Table 3 notation layer → Table 4 attribution/motion/projection layer → Eqs. 10–18, Figure 1, and Algorithm 1. The continuation supports exact reading of the executable method.",
+      "design_strengths": [
+        "The row-group order follows the method from attribution through projection.",
+        "The two-column structure and rules match Table 3, aiding page-to-page lookup.",
+        "Core symbols needed for the main pipeline are collected in one continuation."
+      ],
+      "design_weaknesses": [
+        "The “continued” caption does not summarize its four groups.",
+        "Small subscripts and superscripts increase lookup errors.",
+        "There is no formula-number or first-use index linking definitions to the main text."
+      ],
+      "reusable_pattern": "Keep continuation tables structurally identical and add a note naming covered groups plus the principal equations that use them.",
+      "evidence": {
+        "page": 18,
+        "label": "Table 4; Glossary and notation (continued)",
+        "bbox": [
+          203.645,
+          188.766,
+          533.0,
+          800.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 20,
+      "module": "appendix / C.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 5: VBench Evaluation on LTX-2B. Performance comparison on VBench [Huang et al., 2024] across different baselines (all values in %, higher is better). All selection methods use 10% of training data; MM: motion masking.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "XCharter",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "cell_color"
+      ],
+      "uncertainty": "No SD, SE, interval, seed, repeat, prompt count, or failure column; cells are one-decimal point estimates.",
+      "data_and_statistics": "LTX-2B Video VBench percentages across Subject Consistency, Background Consistency, Motion Smoothness, Dynamic Degree, Aesthetic Quality, and Imaging Quality. Selection methods use 10% training data and higher is better. Dynamic Degree is 45.1% for Motive, 41.8% w/o MM, 40.2% V-JEPA, 38.9% Full FT, and 36.5% Base.",
+      "evidence_relation": "Table 1 Wan-model comparison → Appendix C third-architecture slice → Table 5. It supports a cross-model robustness claim with the same metric order but no additional uncertainty closure.",
+      "design_strengths": [
+        "The table preserves the main table’s row and metric order, enabling direct model comparison.",
+        "The LTX-2B header is explicit and the Motive row keeps the green visual anchor.",
+        "A page-wide layout avoids wrapping the six metrics."
+      ],
+      "design_weaknesses": [
+        "Sampling, seed, and model-specific runtime details are omitted from the table.",
+        "Abbreviated “Qual.” headers still require caption/context.",
+        "The target motion dimensions are not visually distinguished from quality-preservation dimensions."
+      ],
+      "reusable_pattern": "Add a new model as an isomorphic table extension, retain metric order, and include model-specific n/seed plus a target metric marker.",
+      "evidence": {
+        "page": 20,
+        "label": "Table 5; VBench Evaluation on LTX-2B",
+        "bbox": [
+          62.063,
+          83.445,
+          533.0,
+          337.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 24,
+      "module": "appendix / G.1",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Runtime Breakdown. Detailed computational complexity and runtime for each component of our motion attribution framework on 10k training samples with Wan2.1-T2V-1.3B model.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "XCharter",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No runtime variance, hardware sensitivity, repeat, or confidence field; values are approximate operational costs.",
+      "data_and_statistics": "Wan2.1-T2V-1.3B, 10k training samples, one A100. Gradient computation: query ~54 seconds and training ~150 hours, reducible to ~2.3 hours on 64 GPUs; projection ~1.97 seconds/sample at D′=512; influence computation ~46 milliseconds/query for 1 query × 10k samples; majority vote ~139 milliseconds for 50 queries × 10k. Complexity rows are O(B), O(|D|D′ log D′), O(|D|D′), and O(|D|q).",
+      "evidence_relation": "§3.6 asymptotic complexity → Appendix G.1 amortization/parallelism → Table 6 component accounting → Table 7 baseline totals. It makes the operational cost of Figure 1’s pipeline explicit.",
+      "design_strengths": [
+        "Complexity, runtime, hardware, and Notes are aligned per component.",
+        "Notes distinguish one-time training-gradient cost from reusable query operations.",
+        "Partial rules preserve hierarchy without a heavy grid."
+      ],
+      "design_weaknesses": [
+        "The 150-hour one-time cost visually dominates all other values.",
+        "Per-sample, per-query, and total units are mixed and need prose to interpret.",
+        "No hardware variance, resource cost, or quality–cost curve is shown."
+      ],
+      "reusable_pattern": "Put asymptotic cost, units, total, hardware, and amortization status together, with one-time and marginal query costs in separate columns.",
+      "evidence": {
+        "page": 24,
+        "label": "Table 6; Runtime Breakdown",
+        "bbox": [
+          62.063,
+          373.626,
+          533.0,
+          657.0
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 25,
+      "module": "appendix / G.1",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 7: Runtime Comparison with Baselines. Total computational time required for processing 10k training samples with Wan2.1-T2V-1.3B model on a single GPU across different data selection methods.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "XCharter",
+          "Computer Modern Math"
+        ],
+        "body_size_pt": 8.5,
+        "header_size_pt": 9.0,
+        "header_weight": "mixed",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "No variance, repeat, parallelism, amortization, or downstream quality field; text values use mixed approximate units.",
+      "data_and_statistics": "Single-GPU total time for 10k Wan2.1-T2V-1.3B samples: Random <1 second, Motion Magnitude ~5.5 hours, Optical Flow ~5.7 hours, V-JEPA ~3 hours, Ours ~150 hours. The table does not expose Motive’s marginal query cost or 64-GPU amortized scenario.",
+      "evidence_relation": "Table 6 component accounting + Appendix G.1 baseline definitions → Table 7 single-GPU 10k total → discussion of upfront cost, reuse, and practical curation.",
+      "design_strengths": [
+        "One-line multi-method comparison makes the upfront cost gap immediate.",
+        "Caption states model, sample scale, and single-GPU boundary.",
+        "Booktabs treatment keeps the narrow table uncluttered."
+      ],
+      "design_weaknesses": [
+        "“Ours” total and baseline totals require prose to establish comparable pipeline boundaries.",
+        "No parallel or amortized scenario, marginal query cost, repeat, or quality outcome is present.",
+        "Mixed units and long baseline names make the one-row header dense."
+      ],
+      "reusable_pattern": "Keep a total-cost overview but add one-time versus marginal cost and an amortized scenario so cost and quality can be decided on the same surface.",
+      "evidence": {
+        "page": 25,
+        "label": "Table 7; Runtime Comparison with Baselines",
+        "bbox": [
+          62.063,
+          83.445,
+          533.0,
+          157.0
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "The sequence moves from target-motion question to motion mask/gradient interface, efficient ranking, selected examples, VBench and human outcomes, then projection/frame-length ablations and appendix extensions for model, shortcut, overlap, query, runtime, and overlay evidence. Figure 1 is the method spine; Figures 2–3 connect scores to content and outputs; Tables 1–2 carry the main decision surface.",
+    "caption_system": "Most captions start with a title and bold headline phrase, with Figure 2 and Tables 3–4 as weaker title-only/less formal cases. Figure 7 has the fullest encoding and aggregation definition. Main gaps are Figure 3’s unnamed scenarios, Figure 4’s Left/Right mapping conflict, and the absence of uncertainty definitions in performance/cost captions.",
+    "table_header_system": "Tables 1 and 5 use model headers spanning six metric columns; Table 2 uses Win/Tie/Loss; Tables 6–7 use component or method headers with runtime units in body/notes. Tables 3–4 keep a symbol/description glossary. Performance, cost, and failures are distributed across objects rather than shown in one unified decision table.",
+    "method_result_ablation_link": "Figure 1 and Eqs. 10–18 align with Algorithm 1; Ours w/o MM in Tables 1, 2, and 5 provides component deletion; Figure 5 selects D′=512; Figure 4 tests frame-length handling; Figure 6 checks a raw-motion shortcut. Eq. 11’s scalar role versus later L2 normalization remains visually unseparated.",
+    "main_appendix_link": "The main paper supplies method, primary benchmark, human evaluation, and key ablations. Appendix A defines symbols; C adds LTX-2B; D adds motion shortcut/overlap; F adds query details; G adds runtime/limitations; H adds overlay. Algorithm 1 in E is the direct executable companion to Figure 1.",
+    "typography_consistency": "XCharter and Computer Modern mathematics are stable across prose, captions, equations, and tables, while internal figure labels mix DejaVu/sans-serif, SVG text, and embedded video typography. The recurring 5–10 pt labels define the main visual readability limit.",
+    "color_consistency": "NVIDIA green links pipeline panels, Motive rows, query headers, and overlay headers; blue/green/red recur for query/positive/negative and original/overlay roles. Figure 6/7 use local scales with clear captions, but light pastel fills and secondary pipeline categories weaken under grayscale."
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Stack property-specific measurement above shared-randomness/low-dimensional ranking and the final selection action, with direct labels and equation callouts.",
+      "Use a fixed Query—Positive—Negative qualitative grid to make influence scores observable and expose negative examples as failure evidence.",
+      "Pair same-budget benchmark tables with Win/Tie/Loss human evaluation and appendix component/runtime accounting.",
+      "Use paired distribution/bin views or same-scale heatmaps for shortcut and cross-dataset mechanism checks, while defining direction, aggregation, and reference in the caption."
+    ],
+    "highest_value_objects": [
+      "Figure 1 — executable method interface.",
+      "Table 1 — two Wan-model headline comparison.",
+      "Table 2 — perceptual preference supplement.",
+      "Figure 5 — projection-dimension selection.",
+      "Figure 4 — frame-length mechanism ablation.",
+      "Tables 6–7 — deployment-relevant cost boundary."
+    ],
+    "failure_patterns": [
+      "Representative qualitative examples omit sampling denominator, failure rate, and score.",
+      "VBench, LTX-2B, projection, heatmap, and cost views rely on point estimates without repeats or uncertainty.",
+      "Table 2 has four comparison rows despite prose saying three pairings, so the 850-judgment allocation is unclear.",
+      "Figure 4 caption Left/Right labels conflict with the visible Query/Without/With panel order.",
+      "Figure 8 displays two examples per category while its caption states five query videos, with no prompt/ID/screening audit.",
+      "The 150-hour upfront gradient cost and marginal query cost are split between tables and prose, and Eq. 11’s algebraic role is not isolated by ablation."
+    ],
+    "one_sentence_visual_strategy": "NVIDIA green links motion mask to projected influence ranking and targeted subset selection, while isomorphic qualitative grids, VBench/human tables, and appendix mechanism/cost views supply content, outcome, and deployment context."
+  }
+}

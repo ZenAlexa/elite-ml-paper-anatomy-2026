@@ -1,0 +1,2779 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "icml-2026-7207f7ebdc88",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/IntelChina-AI/BitTern"
+    ],
+    "selected_repository": "https://github.com/IntelChina-AI/BitTern",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/IntelChina-AI/BitTern",
+        "path": "projects/cat-q/assets/cat-q-overview.png",
+        "role": "rendered_asset",
+        "tool": "unknown",
+        "evidence": "官方仓库 README 的 Overview 直接引用该图；README 标题与 arXiv:2606.26650/CAT-Q 标题严格匹配；已核对 main HEAD 5a8fcd4f7e03，图形与 PDF Figure 1 对应。"
+      },
+      {
+        "repository_url": "https://github.com/IntelChina-AI/BitTern",
+        "path": "projects/cat-q/assets/softened-ternarization.png",
+        "role": "rendered_asset",
+        "tool": "unknown",
+        "evidence": "官方仓库 README 的 Overview 直接引用该图；README 标题与论文 arXiv:2606.26650 严格匹配；main HEAD 5a8fcd4f7e03 资产与 PDF Figure 3 的时间阶段/曲线序列对应。"
+      },
+      {
+        "repository_url": "https://github.com/IntelChina-AI/BitTern",
+        "path": "projects/cat-q/assets/main-results.png",
+        "role": "rendered_asset",
+        "tool": "unknown",
+        "evidence": "官方仓库 README 的 Main Results 直接引用该图，alt 文本为 CAT-Q results across dense and MoE models；其表头和数值与 PDF Table 1 对应；main HEAD 5a8fcd4f7e03。"
+      },
+      {
+        "repository_url": "https://github.com/IntelChina-AI/BitTern",
+        "path": "projects/cat-q/assets/qat-comparison.png",
+        "role": "rendered_asset",
+        "tool": "unknown",
+        "evidence": "官方仓库 README 的 Comparison with QAT-based Ternary LLMs 直接引用该图，表头和数值与 PDF Table 2 对应；README 标题严格匹配论文；main HEAD 5a8fcd4f7e03。"
+      }
+    ],
+    "search_note": "先核对 reports/tables/visual_source_inventory.csv：该行将 IntelChina-AI/BitTern 标为 repository_without_visual_source，且 corpus/visual_sources/icml-2026-7207f7ebdc88/ 为空。随后用 gh 只读检查仓库元数据、README、递归树和 main HEAD 5a8fcd4f7e0366554b732d300a37e6ea467c3c35：README 标题、作者、arXiv:2606.26650、OpenReview 链接与论文直接对应；当前树含四个官方 PNG rendered assets（Figure 1/3 与 Table 1/2 的紧凑复用图），但未发现 plot/figure/table 生成脚本、LaTeX/TikZ/PGF、notebook 或原始绘图数据，因此只能记为 partial_visual_source；未把 SliderQuant 作为本文视觉源。"
+  },
+  "paper_style": {
+    "main_figures": 3,
+    "main_tables": 13,
+    "appendix_figures": 11,
+    "appendix_tables": 2,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman"
+      ],
+      "size_pt": {
+        "minimum": 6,
+        "median": 8,
+        "maximum": 10
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "high"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern Roman"
+      ],
+      "body_size_pt": 6.7,
+      "header_size_pt": 6.7,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "正文方法图使用黑/红/蓝强调结构与可学习/先验语义；量化误差散点统一使用 tab10 蓝橙绿三色；ST loss 使用红/绿二色。多数图依赖 caption 或重复图例解释颜色，缺少形状冗余编码。",
+    "vector_raster_mix": "PDF 页面 3 的 Figure 1、页面 14 的 Figure A、页面 15 的 Figure B 主要由矢量路径和 PDF 文字组成；Figure 2（p.3）为 4763×2366 raster image，Figure 3（p.4）为 2379×279 JPEG，Figures C–K（p.17–19）为每 panel 约 1200×596 raster images；caption、面板标签和表格文字仍是 PDF 对象。",
+    "style_consistency": "正文与附录沿用 Times/Nimbus Roman + Computer Modern 数学字体，caption 使用斜体标签；表格均为小字号、部分竖线和横向分组线，粗体/下划线标默认或最好值。三色误差图在 Figure 2 与 Figures C–K 一致，但 Figure B 改用红/绿并重复图例。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1. Overview of the CAT-Q’s learning flow for ternarizing the weights of a linear layer in any pre-trained LLM and its hardware-friendly weight reconstruction for ternary model deployment. Please see Figure 3 for an illustration of the softened ternarization process.",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Cambria Math",
+          "Times New Roman",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 8,
+          "median": 10,
+          "maximum": 14
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#000000",
+          "#FF0000",
+          "#0996FF"
+        ],
+        "semantic_mapping": "黑色为流程、公式与边框；红色为可学习因子 δ；亮蓝色为统计先验 μ0、α0、Δ0。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.2,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": null,
+        "y": null,
+        "color": "红色/亮蓝色区分 learnable factors 与 statistics-based priors",
+        "shape": null,
+        "line": "实线流程箭头与虚线 T↔阈值判定关联",
+        "facet": null,
+        "text": "W、Ŵ、T、α、μ、Δ 及阶段标签"
+      },
+      "data_and_statistics": "非定量方法接口图；展示 W→Ŵ→可微/硬三值化→T→W≈αT 的处理链，以及 μ、α、Δ 的可学习因子和统计先验。",
+      "evidence_relation": "引言将信息损失与收敛困难定位为问题；Figure 1 把 Eq. (3)–(4) 的 LM 参数化接到 Eq. (2) 的三值判定，再连到部署时的 W≈αT；Figure 3 展开其中 ST 阶段。",
+      "design_strengths": [
+        "完整覆盖学习、判定和部署三个接口，读者可沿箭头读出方法边界。",
+        "公式与文字标签同时出现，硬件重构路径清楚。"
+      ],
+      "design_weaknesses": [
+        "同一画布同时承载算法流程、公式和部署关系，视觉密度高。",
+        "红/蓝语义有帮助但在灰度输出中区分度弱；没有额外形状编码。"
+      ],
+      "reusable_pattern": "用一条带阶段括号的左到右 pipeline 同时呈现可学习参数、离散化操作和推理重构，适合方法总览图。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 1",
+        "bbox": [
+          45,
+          67,
+          568,
+          199
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure 2. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same settings, we use the 4th layer of Qwen3-4B for an illustration. In the Appendix, we provide additional comparisons on different layers across multiple LLMs.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 8,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 60000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，0–约20,000",
+        "y": "weight reconstruction errors，约0–5.5",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": null,
+        "text": null
+      },
+      "data_and_statistics": "每个量化权重组的重构误差散点；横轴为 group index，纵轴为误差；无聚合、区间或重复汇总。蓝色点形成约 3.5 的高带，橙色点约 1.5 起并有高离群点，绿色点集中在接近 0 的低带。",
+      "evidence_relation": "Eq. (1)–(4) 定义 α、Δ 与重构；Figure 2 在 Qwen3-4B 第 4 层显示 SA、DL、LM 的误差分布；Table 8 把同一比较推进到任务准确率，Figures C–K 扩展层、投影和专家。",
+      "design_strengths": [
+        "一个坐标系直接显示三种策略的误差分布、离群点和方差差异。",
+        "颜色与 caption inline key 一致，图形本身不依赖额外图例框。"
+      ],
+      "design_weaknesses": [
+        "颜色是唯一方法编码，灰度打印和色觉差异下难以区分。",
+        "散点严重重叠，未报告样本量、均值或误差定义；图中不直接标出哪一策略最好。"
+      ],
+      "reusable_pattern": "固定三色方法语义、共享坐标轴并用透明/密集点云表达分布，适用于量化误差机制对比。",
+      "evidence": {
+        "page": 3,
+        "label": "Figure 2",
+        "bbox": [
+          307,
+          248,
+          541,
+          365
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "conceptual_diagram",
+        "line"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 3. Illustration of the softened ternarization (ST) process. For a linear layer, taking its pre-trained weights W as the initialization point (t = 0), ST employs a learnable two-stage relay of differentiable ternarization and hard ternarization to ensure stable convergence. In the first stage, ST produces an asymptotic ternary output by performing continuous quantization based on the transformed weights Ŵ. It relies on a novel smooth transition function f (·) to gradually evolve from the identity mapping to differentiable ternarization via a sequence of continuous mappings with progressively increasing sharpness along the normalized calibration time state 0 < t ≤ γ. In the second stage γ < t ≤ 1, ST proceeds with hard ternarization to get a final solution. Notations are clarified in the Method section.",
+        "word_count": 122,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Times New Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 9,
+          "maximum": 13
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 2,
+        "hex": [
+          "#000000",
+          "#FF0000"
+        ],
+        "semantic_mapping": "黑色为轴、公式、箭头与阶段文字；红色为随 s 变尖的转换曲线和时间箭头。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 8,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 7,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "输入权重 Ŵ，示意为线性输入",
+        "y": "三值化输出 Ti，−1 到 +1",
+        "color": "红色转换曲线；黑色轴与阶段标注",
+        "shape": null,
+        "line": "红色曲线与三段时间箭头",
+        "facet": "t=0、0<t≤γ、γ<t≤1 三个阶段",
+        "text": "Ti=Wi、Ti=f(...)、Ti=Q(...)、Δ 与阶段范围"
+      },
+      "data_and_statistics": "连续映射到硬三值化的示意序列；8 个小坐标图（起点、连续变尖的中间状态和硬化终点）按时间排列，不代表观测样本或统计量。",
+      "evidence_relation": "Section 2.3 从 Eq. (5)–(6) 定义 f 与两阶段 relay；Figure 3 解释 γ 的可微阶段和硬化阶段；Table 6、Table 7 检验 γ 与 s0；Figure B 检查 ST 对收敛曲线的影响。",
+      "design_strengths": [
+        "时间箭头、阶段括号和曲线形态共同表达 annealing 机制。",
+        "同一函数从 identity-like 到近硬阈值的变化可被快速读取。"
+      ],
+      "design_weaknesses": [
+        "中间状态没有具体 s 数值，曲线序列的采样步长不可从图中复现。",
+        "图内小坐标图较窄，数学标注在缩放后可读性下降。"
+      ],
+      "reusable_pattern": "用多小图展示连续退火轨迹，再以显式阶段箭头连接到离散终点；适合解释优化过程而非性能结果。",
+      "evidence": {
+        "page": 4,
+        "label": "Figure 3",
+        "bbox": [
+          113,
+          86,
+          523,
+          134
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure A",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "matrix"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure A. Illustrative output curves of our proposed smooth transition function f (·) with varying sharpness choices of s. As s increases, f (·) gradually transitions from a finite sequence of continuous mappings with increasing sharpness to a near-discrete ternary weight output in terms of the high-precision weight input, approximating a hard ternarization solution.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "encoding_key",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Computer Modern Roman",
+          "Computer Modern Math"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 2,
+        "hex": [
+          "#000000",
+          "#FF0000"
+        ],
+        "semantic_mapping": "黑色为坐标轴、±Δ、±1 与 s 标签；红色为 f(·) 曲线。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 12,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "高精度权重输入的无刻度线性轴，±Δ 阈值标记",
+        "y": "输出 −1、0、+1，线性示意",
+        "color": "红色 f(·) 曲线",
+        "shape": null,
+        "line": "实线曲线",
+        "facet": "s=0.5、1、2、5、10、30、50、100、500、1000、5000、10000",
+        "text": "每个面板的 s、±Δ、±1"
+      },
+      "data_and_statistics": "12 个小面板按两行六列展示 s 增大时的函数形状；每面板只有一条曲线，没有样本、误差或统计聚合。",
+      "evidence_relation": "Eq. (5) 给出平滑函数；Figure A 以 12 个 s 值把 Section 2.3 的连续到近离散过渡具体化；Table 7 在任务准确率上选择 s0=30。",
+      "design_strengths": [
+        "面板网格完整覆盖从 0.5 到 10000 的 sharpness 范围。",
+        "阈值 ±Δ 和输出 ±1 在每个面板重复，读者可对照函数边界。"
+      ],
+      "design_weaknesses": [
+        "重复坐标轴占据空间，面板内没有统一的 x/y 轴标题。",
+        "s 值跨越多个数量级但没有对数刻度或数值差异说明。"
+      ],
+      "reusable_pattern": "用规则化小倍图将一个参数的连续变化映射到形状变化，并保留阈值参照线。",
+      "evidence": {
+        "page": 14,
+        "label": "Figure A",
+        "bbox": [
+          55,
+          340,
+          560,
+          530
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure B",
+      "page": 15,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure B. Comparison of the calibration loss curves of CAT-Q with vs. without the softened ternarization (ST) component. We use the 1st, 5th, 9th, 13th, 17th and 20th sliding windows of our method with Qwen3-4B for illustrative comparisons. By introducing the ST component, although the loss curves of CAT-Q exhibit a different optimization trajectory trend compared to those of merely using the learnable modulation (LM) component, it consistently converges to substantially lower loss values. This behavior supports the core insight of the ST component, which enables smoother optimization and mitigates the adverse effect of early-epoch hard ternarization.",
+        "word_count": 97,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Times New Roman",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 7,
+          "maximum": 10
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#FF0000",
+          "#008000"
+        ],
+        "semantic_mapping": "红色=without ST，绿色=with ST；每个面板右上角图例重复给出。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": 732
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Epoch，0–60",
+        "y": "Loss，各面板量级不同",
+        "color": "ST 开关",
+        "shape": null,
+        "line": "两条实线曲线",
+        "facet": "1st、5th、9th、13th、17th、20th sliding window，3×2",
+        "text": "面板标签与图例"
+      },
+      "data_and_statistics": "六个 sliding window 的 calibration loss 随 epoch 曲线；红/绿两条轨迹，无误差带或重复实验区间。ST 曲线通常先低后缓升，without ST 由高处下降并保持更高终值。",
+      "evidence_relation": "Section 2.4 定义 sliding-layer objective；Figure B 对比加入 ST 与仅 LM；Table 5 的 ST 行和 Table 6 的 γ 选择提供任务级消融，支撑“平滑优化、较低残余误差”的机制解释。",
+      "design_strengths": [
+        "六个窗口重复相同编码，能检查 ST 结论是否跨窗口一致。",
+        "每面板有直接图例和轴标题，脱离正文仍可辨认。"
+      ],
+      "design_weaknesses": [
+        "图例重复六次，占用绘图区且不提供共享尺度说明。",
+        "绿色曲线在部分面板后期上升，caption 未定义曲线的 loss 单位或优化步数。"
+      ],
+      "reusable_pattern": "用同一坐标语法的 3×2 小倍图对照处理开关，适合揭示优化轨迹而非单点性能。",
+      "evidence": {
+        "page": 15,
+        "label": "Figure B",
+        "bbox": [
+          80,
+          55,
+          530,
+          300
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure C",
+      "page": 17,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure C. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 4th layer of Qwen3-4B for an illustration.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure C 的 4th layer of Qwen3-4B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 17,
+        "label": "Figure C",
+        "bbox": [
+          80,
+          55,
+          530,
+          230
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure D",
+      "page": 17,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure D. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 15th layer of Qwen3-4B for an illustration.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure D 的 15th layer of Qwen3-4B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 17,
+        "label": "Figure D",
+        "bbox": [
+          80,
+          245,
+          530,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure E",
+      "page": 17,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure E. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 30th layer of Qwen3-4B for an illustration.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure E 的 30th layer of Qwen3-4B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 17,
+        "label": "Figure E",
+        "bbox": [
+          80,
+          435,
+          530,
+          610
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure F",
+      "page": 18,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure F. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 4th layer of Llama2-7B for an illustration.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure F 的 4th layer of Llama2-7B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure F",
+        "bbox": [
+          80,
+          55,
+          530,
+          230
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure G",
+      "page": 18,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure G. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 15th layer of Llama2-7B for an illustration.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure G 的 15th layer of Llama2-7B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure G",
+        "bbox": [
+          80,
+          245,
+          530,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure H",
+      "page": 18,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure H. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 30th layer of Llama2-7B for an illustration.",
+        "word_count": 47,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure H 的 30th layer of Llama2-7B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure H",
+        "bbox": [
+          80,
+          435,
+          530,
+          610
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure I",
+      "page": 19,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure I. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 15th layer (gate_proj) of Qwen3-30B-A3B for an illustration., where six experts are uniformly sampled from the total 128 experts for an illustration.",
+        "word_count": 63,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure I 的 15th layer (gate_proj) of Qwen3-30B-A3B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 19,
+        "label": "Figure I",
+        "bbox": [
+          80,
+          55,
+          530,
+          230
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure J",
+      "page": 19,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure J. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 15th layer (up_proj) of Qwen3-30B-A3B for an illustration., where six experts are uniformly sampled from the total 128 experts for an illustration.",
+        "word_count": 63,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure J 的 15th layer (up_proj) of Qwen3-30B-A3B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 19,
+        "label": "Figure J",
+        "bbox": [
+          80,
+          245,
+          530,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure K",
+      "page": 19,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "ablation"
+      ],
+      "caption": {
+        "text": "Figure K. Comparison of weight reconstruction errors with the scaling factor α and the threshold Δ determined by static approximation (blue dots), direct learning (orange dots) and our learnable modulation (green dots). Under the same ternarization setting, we use the 15th layer (down_proj) of Qwen3-30B-A3B for an illustration., where six experts are uniformly sampled from the total 128 experts for an illustration.",
+        "word_count": 63,
+        "moves": [
+          "title",
+          "encoding_key",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Computer Modern Roman"
+        ],
+        "size_pt": {
+          "minimum": 5,
+          "median": 6,
+          "maximum": 9
+        },
+        "weight": [
+          "regular"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0D",
+          "#2CA02C"
+        ],
+        "semantic_mapping": "蓝色点=static approximation，橙色点=direct learning，绿色点=learnable modulation。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 6,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "quantized weight group index，各面板范围随投影维度变化",
+        "y": "weight reconstruction errors，各面板 y 上限不同",
+        "color": "三种 α/Δ 策略",
+        "shape": "三者均为实心圆点",
+        "line": null,
+        "facet": "2×3 projections 或专家切片；面板标签 (a)–(f)",
+        "text": "projection/expert 名称位于各面板下方"
+      },
+      "data_and_statistics": "每个图含 6 个散点面板；每面板沿量化权重组索引绘制三种策略的重构误差点云。无均值、置信区间、误差带或聚合统计，离群点以稀疏高点保留。",
+      "evidence_relation": "Appendix F 将 Figure 2 的 Qwen3-4B 第 4 层比较扩展为 Figure K 的 15th layer (down_proj) of Qwen3-30B-A3B；三色方法编码保持不变，用于检验 LM 在层、投影类型、模型规模和专家切片上的稳定性；Table 8 提供对应任务级策略比较。",
+      "design_strengths": [
+        "六面板保持统一三色和轴语法，便于跨层/投影横向扫描。",
+        "密集点云保留离群值，直接呈现 LM 低误差与较小波动的形态。"
+      ],
+      "design_weaknesses": [
+        "不同面板 y 轴上限变化大，跨面板绝对误差比较受限。",
+        "没有图例，颜色含义只在 caption 中说明；高密度点云遮挡局部结构。",
+        "未提供每组样本数或误差汇总，视觉结论难以量化复核。"
+      ],
+      "reusable_pattern": "用 2×3 small multiples 固定方法颜色、按 projection/layer/expert 分面，并保留全量 group-level 点云以检查离群值。",
+      "evidence": {
+        "page": 19,
+        "label": "Figure K",
+        "bbox": [
+          80,
+          435,
+          530,
+          610
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1. Performance of different ternary LLMs produced by CAT-Q in the PTQ regime and evaluated on five zero-shot commonsense reasoning benchmarks. Qwen3-30B-A3B, Ring-flash-2.0 (RF2-100B-A6.1B) and Qwen3-235B-A22B are MoE models, while the others are dense models. The metric is accuracy (%).",
+        "word_count": 42,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 23,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 10,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "每个模型行是五个 zero-shot 任务准确率（%）及 Avg 五任务平均；同时列出 W16A16 基线与 CAT-Q 的 W1.58A8/W1.58A16（仅部分模型有 A8），没有重复、标准差或区间。",
+      "evidence_relation": "引言关于跨架构/规模适用性的主张→Section 3.3→Table 1；与 Figure 1 的量化接口相连，并为 Table 2–4 的 QAT/PTQ 比较提供 CAT-Q 基线；Table 13 延伸到部署效率。",
+      "design_strengths": [
+        "按模型分组并用横线分隔，FP16 与 ternary 行可直接对照。",
+        "指标列统一两位小数，Avg 列位于最右侧形成单一决策面。"
+      ],
+      "design_weaknesses": [
+        "未报告误差或运行重复，跨模型差异不能作为不确定性结论。",
+        "表格较密，Method 列同时承载模型名、量化配置和 +CAT-Q，扫描成本高。"
+      ],
+      "reusable_pattern": "以模型为 row group、任务为并列列并将聚合 Avg 放在末列，适合跨规模主结果表。",
+      "evidence": {
+        "page": 6,
+        "label": "Table 1",
+        "bbox": [
+          45,
+          54,
+          290,
+          390
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2. Comparison of CAT-Q and different QAT-based ternarization methods under W1.58A16 quantization. #Tokens denotes the number of training tokens for quantization.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 11,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "五个 zero-shot 任务准确率（%）与 Avg；#Tokens 是量化训练 token 量（100B、300B、10B、1T 或 1M/2M），无方差。每个模型规模块内比较 QAT 方法与 CAT-Q。",
+      "evidence_relation": "Section 3.2/3.3 以 QAT 训练成本为对照；Table 2 把摘要中的“约 100,000× token reduction”与准确率并列，Table 3 换成 W1.58A8；Table 5–12 解释 CAT-Q 设计。",
+      "design_strengths": [
+        "token budget 与准确率并排，直接表达成本–性能权衡。",
+        "模型规模分块清楚，最佳 Avg 用粗体提示。"
+      ],
+      "design_weaknesses": [
+        "不同方法的训练 token 口径和数据流程未在表内进一步限定。",
+        "粗体只标 Avg 最优行，任务列比较仍需逐列阅读。"
+      ],
+      "reusable_pattern": "将资源预算列（#Tokens）与任务性能列置于同一表头，并用模型规模 row groups 组织公平比较。",
+      "evidence": {
+        "page": 6,
+        "label": "Table 2",
+        "bbox": [
+          45,
+          375,
+          290,
+          530
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 3. Comparison of CAT-Q and different QAT-based ternarization methods under W1.58A8 quantization. #Tokens denotes the number of training tokens for quantization.",
+        "word_count": 23,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "W1.58A8 下五任务准确率（%）、Avg 与量化 token 量；三组 1.3B/3B/7B 左右的 BitNetV2 和 CAT-Q 配对，无不确定性。",
+      "evidence_relation": "Table 3 与 Table 2 构成激活精度切片：同一 QAT token 对照转为 A8；与 Table 1 的 A8 行和 Figure 1 的部署路径相关，支持摘要中的 W1.58A8 可用性表述。",
+      "design_strengths": [
+        "行数少且一一配对，token 成本和 A8 性能差异可快速核对。",
+        "最优 Avg 粗体突出。"
+      ],
+      "design_weaknesses": [
+        "只覆盖三个模型规模，不能单独代表全部十个模型。",
+        "无方差、硬件设置或多次运行说明。"
+      ],
+      "reusable_pattern": "在保持列结构不变的情况下，用小型配对表隔离激活量化配置，便于与 W1.58A16 表横向对照。",
+      "evidence": {
+        "page": 6,
+        "label": "Table 3",
+        "bbox": [
+          305,
+          54,
+          550,
+          180
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 6,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 4. Comparison of CAT-Q and recent PTQ methods with bit-widths close to 1.58-bit. PB-LLM†, DB-LLM† and BiLLM† use dual 1-bit representations (or say, binary residual) and mixed-precision quantization, so W1* in them is close to or larger than W2A16 in terms of bit width. EfficientQAT‡ is actually a PTQ method as it uses pre-trained LLMs and “QAT” is for re-training.",
+        "word_count": 62,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Llama2-7B 与 Llama2-70B 的五任务准确率（%）、Avg 和 #Bits；比较 FP16、2-bit PTQ、双 1-bit/混合精度与 CAT-Q，无方差。脚注 †/‡ 在 caption 中解释代表格式和 EfficientQAT 的 PTQ 身份。",
+      "evidence_relation": "Section 3.2 的 PTQ 对照→Table 4；与 Table 1 的 Llama2 行形成模型级基准，与 Table 13 的 W2A16/TQ1_0/TQ2_0 部署格式相连。",
+      "design_strengths": [
+        "caption 主动解释 W1* 与 W2A16 的可比边界，减少误读。",
+        "两个规模分块、Avg 末列和粗体最佳值便于看 trade-off。"
+      ],
+      "design_weaknesses": [
+        "W1* 是混合精度近似位宽，表中没有展开每种方法的真实位宽组成。",
+        "大量方法名和脚注符号增加阅读负担；点估计无重复或误差。"
+      ],
+      "reusable_pattern": "在同一任务列下并列位宽、方法和 Avg，并在 caption 中声明非同构位宽的比较边界。",
+      "evidence": {
+        "page": 6,
+        "label": "Table 4",
+        "bbox": [
+          305,
+          170,
+          550,
+          400
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 5. Ablation of the complementarity of δµ, δα and δΔ in the learnable modulation (LM) component as well as the softened ternarization (ST) component under W1.58A16 ternarization. The baseline in the first row corresponds to SliderQuant without the proposed LM and ST components.",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 14,
+      "columns": 11,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Qwen3-4B 与 Llama2-7B 各 7 行，逐步勾选 δµ、δα、δΔ、ST；五任务准确率（%）和 Avg，无方差。基线是 SliderQuant，无 LM/ST。",
+      "evidence_relation": "Eq. (3) 定义 LM 三因子、Eq. (6) 定义 ST；Table 5 是方法组件→任务效果的主消融；Figure 3/B 提供 ST 机制图和 loss 轨迹，Table 8/9/10 拆分 α、Δ、µ 设计。",
+      "design_strengths": [
+        "勾选矩阵把组件增量与性能变化直接绑定。",
+        "两个模型 row group 重复同一消融路径，粗体末行突出完整 CAT-Q。"
+      ],
+      "design_weaknesses": [
+        "✓ 图符号对 screen reader 和纯文本复制不友好。",
+        "单表同时放四个开关与六个指标，列窄且需要理解 SliderQuant 基线。"
+      ],
+      "reusable_pattern": "用二值组件列呈现累积消融，再接统一任务指标；适合展示互补性而非仅列最终版本。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 5",
+        "bbox": [
+          45,
+          55,
+          290,
+          310
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 6. Ablation of the softened ternarization process with varying choices of the calibration epoch ratio γ allocated for differentiable ternarization. The underlined results are for our default setting (γ = 0.8), and the best results are in bold.",
+        "word_count": 39,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Qwen3-4B 与 Llama2-7B 各测试 γ=0.5–1.0 六个值；每行五任务准确率（%）和 Avg，无方差。默认 γ=0.8 下划线、各列最佳粗体。",
+      "evidence_relation": "Figure 3 的阶段比例 γ→Table 6；γ=0.8 的默认选择连接 Table A 配置，γ=1.0 的相对下降支撑硬三值化第二阶段必要性。",
+      "design_strengths": [
+        "参数扫描覆盖完整 0.5–1.0 区间，默认与最佳标记规则清楚。",
+        "模型分块和指标列一致，便于判断鲁棒区间。"
+      ],
+      "design_weaknesses": [
+        "下划线/粗体在小字号下拥挤，且没有曲线显示趋势。",
+        "只报告点估计，未给不同 γ 的运行变异。"
+      ],
+      "reusable_pattern": "将一个阶段比例参数作为有序行扫描，保留默认下划线和最佳粗体双标记。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 6",
+        "bbox": [
+          45,
+          310,
+          290,
+          540
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 7,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 7. Ablation of the softened ternarization process with varying choices of the constant s0. The underlined results are for our default setting (s0 = 30), and the best results are in bold.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Qwen3-4B 与 Llama2-7B 各测试 s0=10、15、30、100、200、1000；五任务准确率（%）和 Avg，无方差；s0=30 默认下划线且多数指标最佳粗体。",
+      "evidence_relation": "Eq. (5) sharpness 与 Figure A 的函数曲线→Table 7；Table A 固定 s0=30，Figure B 检查 ST 优化轨迹。",
+      "design_strengths": [
+        "参数值从平滑到近硬阈值有序排列，视觉上支持 sweet spot。",
+        "粗体与下划线显式表达选择和最好结果。"
+      ],
+      "design_weaknesses": [
+        "参数跨数量级却用普通行表，缺少尺度视觉提示。",
+        "caption 没有说明每个 s0 的运行成本或不确定性。"
+      ],
+      "reusable_pattern": "用参数扫描表连接函数形状与任务性能，并将默认值和最优值分别编码。",
+      "evidence": {
+        "page": 7,
+        "label": "Table 7",
+        "bbox": [
+          305,
+          54,
+          550,
+          285
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 8. Ablation of different strategies to determine the scaling factor α and the threshold Δ. We compare three strategies analyzed in the Method section, including static approximation (SA), direct learning (DL) and our learnable modulation (LM). The underlined results are for our default setting, and the best results are in bold.",
+        "word_count": 52,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "SA、DL、LM 三种 α/Δ 估计策略在 Qwen3-4B、Llama2-7B 上的五任务准确率（%）和 Avg；无方差，LM 行默认下划线/最佳粗体。",
+      "evidence_relation": "Figure 2 的重构误差机制→Table 8 的下游准确率验证；Eq. (3)–(4) 与 Appendix Figures C–K 提供参数化和跨层分布证据。",
+      "design_strengths": [
+        "三种策略列少，策略定义在 caption 明确，比较路径短。",
+        "同一指标列和模型 row group 使 Figure 2 的视觉趋势可对照。"
+      ],
+      "design_weaknesses": [
+        "把所有层/组的误差压缩成任务点估计，机制到效果的中间量不可见。",
+        "underline/bold 双标记在小表中密集。"
+      ],
+      "reusable_pattern": "先在图中展示误差分布，再用同列任务表验证策略选择，形成机制–结果配对。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 8",
+        "bbox": [
+          45,
+          54,
+          290,
+          225
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 9. Ablation of LM with vs. without µ for weight reconstruction namely W ≈ αT + µ vs. W ≈ αT. The underlined results are for our default setting, and the best results are in bold.",
+        "word_count": 36,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Qwen3-4B/Llama2-7B 各比较 with µ 与 without µ；五任务准确率（%）和 Avg，无方差；默认行下划线、逐列最佳粗体。",
+      "evidence_relation": "Eq. (3) 的 μ 调制与 Section 2.2 的 W≈αT 取舍→Table 9；结论回到硬件友好的零点自由部署，并与 Table 13 的格式实现相连。",
+      "design_strengths": [
+        "把公式层面的 µ 取舍直接转成两行对照，信息密度高。",
+        "表头写出两种重构式，脱离正文仍可理解。"
+      ],
+      "design_weaknesses": [
+        "只有两个模型和四个点估计，差异幅度小且无变异信息。",
+        "公式较长挤压列宽。"
+      ],
+      "reusable_pattern": "将一个公式设计差异写入表头并以 paired rows 连接模型级结果。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 9",
+        "bbox": [
+          45,
+          235,
+          290,
+          380
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 10",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 10. Ablation of CAT-Q with learnable vs. different hand-crafted choices of the threshold Δ. The underlined results are for our default setting, and the best results are in bold.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Qwen3-4B/Llama2-7B 各比较 Δ=0.125、0.25、0.5、1、2 与 Learnable；五任务准确率（%）和 Avg，无方差。",
+      "evidence_relation": "LM 的 Δ=δΔΔ0 与 Eq. (4)→Table 10；Table A 的 Δ0=0.5 是初始化而非最终可学习阈值，Table 8 汇总策略级效果。",
+      "design_strengths": [
+        "固定阈值与 Learnable 放在同一有序列，易见非单调和最优行。",
+        "默认/最好值的双重标记保持与其他消融表一致。"
+      ],
+      "design_weaknesses": [
+        "Δ 数值未注明是否归一化到同一权重组尺度。",
+        "小字号和 9 列布局使阈值与任务列的视觉层级弱。"
+      ],
+      "reusable_pattern": "用手工基线的有序参数行对照可学习版本，检验“学习阈值”而不是只报告一个结果。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 10",
+        "bbox": [
+          45,
+          54,
+          290,
+          420
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 11",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 11. Ablation of CAT-Q with varying numbers of calibration samples. The underlined results are for our default setting, and the best results are in bold.",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Qwen3-4B/Llama2-7B 各测试 32、64、128、256、512、1024 个 calibration samples；五任务准确率（%）和 Avg，无方差；512 默认下划线，1024 多数最佳粗体。",
+      "evidence_relation": "摘要/Section 3.1 的 512 样本成本主张→Table 11；与 Table 2/3 的 1M token 对照和 Table A 的 calibration 配置相连，并揭示更高样本数的性能收益。",
+      "design_strengths": [
+        "样本数从小到大有序，成本变量和性能列同表呈现。",
+        "默认与最佳编码清晰，能支持 512 的成本–性能选择。"
+      ],
+      "design_weaknesses": [
+        "没有把样本数换算成 tokens 或显存/时间，成本含义需回正文。",
+        "无重复或误差，不能判断小幅增益稳定性。"
+      ],
+      "reusable_pattern": "以 calibration budget 为行轴、统一 benchmark 列为结果轴，适合呈现资源–准确率曲线的表格版。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 11",
+        "bbox": [
+          305,
+          54,
+          550,
+          270
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 12",
+      "page": 8,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 12. Ablation of CAT-Q with varying quantization group sizes. The underlined results are for our default setting, and the best results are in bold.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 6.7,
+        "header_size_pt": 6.7,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold",
+        "underline"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Qwen3-4B 比较 group size 64/128/256/512/Channel-wise 五种设置；Llama2-7B 比较 64/128/256/Channel-wise 四种设置；五任务准确率（%）和 Avg，无方差。",
+      "evidence_relation": "Section 2.4/Appendix B.2 的 group-wise quantization→Table 12；Table A 固定 group size=128，结果为默认与公平 QAT 比较的依据。",
+      "design_strengths": [
+        "group size 有序，Channel-wise 作为离散替代项单独可见。",
+        "默认 128 与逐列最好值的编码一致。"
+      ],
+      "design_weaknesses": [
+        "两个模型的 group size 行集合不同，横向比较不完全对称。",
+        "没有报告模型大小、速度或显存代价，group size 的效率含义缺失。"
+      ],
+      "reusable_pattern": "把粒度参数按模型分组、以同一任务列对照，适合展示精度–粒度敏感性。",
+      "evidence": {
+        "page": 8,
+        "label": "Table 12",
+        "bbox": [
+          305,
+          330,
+          550,
+          520
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 13",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 13. Comparison of model deployment cases across different low-bit formats with llama.cpp on an Intel Core i9-13900KF CPU and an NVIDIA GeForce RTX 4090 GPU. We report profiling results on both CPU and GPU for standard 4-bit and 2-bit models, together with the 1.58-bit model obtained by CAT-Q, which is implemented as TQ1_0 on CPU and TQ2_0 on GPU. We set the batch size to 1 and the generation length to 512 tokens.",
+        "word_count": 78,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 4,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "Qwen3-4B 与 Llama2-7B 各列 W4A16(Q4_K_M)、W2A16(Q2_K_M)、CAT-Q(TQ1_0|TQ2_0)；报告 Weight Memory (GB) 与 CPU|GPU Throughput (Tokens/s)，单次 profiling 配置 batch=1、生成 512 tokens，无重复/误差。",
+      "evidence_relation": "摘要的部署效率主张→Table 13；Table 1/4 的 W1.58/W2 格式比较转为真实 llama.cpp CPU/GPU 资源，Appendix B.2 解释 group-wise 与部署实现。",
+      "design_strengths": [
+        "把内存与 CPU/GPU 吞吐置于同一多级表头，直接支持效率决策。",
+        "CAT-Q 行粗体突出内存与吞吐优势，模型 row group 清楚。"
+      ],
+      "design_weaknesses": [
+        "CPU/GPU 用竖线压缩在一列，复制和无障碍阅读不理想。",
+        "caption 未提供硬件运行重复、上下文长度或端到端延迟分布。"
+      ],
+      "reusable_pattern": "用多级表头把低比特格式、内存和双设备吞吐放进同一决策面，适用于部署结果。",
+      "evidence": {
+        "page": 9,
+        "label": "Table 13",
+        "bbox": [
+          45,
+          54,
+          290,
+          180
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table A",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table A. The detailed hyper-parameter settings of CAT-Q.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 12,
+      "columns": 2,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": null,
+      "rules": "partial_grid",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "列出 C4、512 samples、2048 tokens/sample、group size 128、Δ0=0.5、s0=30、γ=0.8、batch 3、AdamW、60 epochs、learning rate 0.001、linear decay to zero；不是性能统计，无不确定性。",
+      "evidence_relation": "Appendix B.1 将 Table A 作为正文默认设置的复现接口；Δ0/s0/γ 对应 Figures A/3 与 Tables 6/7，样本数对应 Table 11，group size 对应 Table 12。",
+      "design_strengths": [
+        "按校准、初始化、优化三组分隔，复现参数可快速查找。",
+        "Setting 列短而规整，适合复制到配置文件。"
+      ],
+      "design_weaknesses": [
+        "caption 极短，没有指出哪些设置是默认、哪些实验会覆盖。",
+        "参数单位和取值范围未在表内说明；三组分隔没有显式 row-group 标签。"
+      ],
+      "reusable_pattern": "用两列 key–value 表并以横线分隔配置阶段，作为正文实验的最小复现清单。",
+      "evidence": {
+        "page": 14,
+        "label": "Table A",
+        "bbox": [
+          306,
+          94,
+          533,
+          240
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table B",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "double_column",
+      "purpose": [
+        "failure",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table B. Pilot results on challenging mathematics and coding tasks under W1.58A16 ternarization. CAT-Q+ denotes an enhanced variant of CAT-Q under the same quantization setting but with a new calibration data generation strategy.",
+        "word_count": 34,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern Roman"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 8,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "partial_grid",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "未报告重复运行、方差或区间；仅 Table A 为配置清单，不适用统计不确定性。",
+      "data_and_statistics": "三行（W16A16 基线、W1.58A16 CAT-Q、W1.58A16 CAT-Q+）在 MATH-500、GSM8K、Omni-MATH、HumanEval+、MBPP+ 与 Avg 上的准确率（%），两位小数，无方差；CAT-Q 行接近全零，CAT-Q+ 行粗体。",
+      "evidence_relation": "Appendix E 把复杂数学/代码作为失败边界；Table B 与主文 commonsense 表不同，揭示 CAT-Q 直接 PTQ 的任务分布外退化，并把 CAT-Q+ 的校准数据策略留作后续技术报告。",
+      "design_strengths": [
+        "任务列覆盖数学和代码多个难度面，失败信号非常直接。",
+        "caption 定义 CAT-Q+，粗体突出改进但保留 CAT-Q 失败行。"
+      ],
+      "design_weaknesses": [
+        "表中没有模型身份、模型规模或具体评测模型，无法完整复现实验对象。",
+        "仅三行点估计，无失败率定义、重复和不确定性；全零容易造成视觉结论过度简化。"
+      ],
+      "reusable_pattern": "在主结果之外单独设置 failure table，保留失败基线并以增强校准变体作为可追踪对照。",
+      "evidence": {
+        "page": 15,
+        "label": "Table B",
+        "bbox": [
+          80,
+          594,
+          470,
+          703
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先给出 LM/ST/部署接口，Figure 2 给出 α/Δ 误差机制，Figure 3 与 Figure A 展开 ST 函数和退火轨迹；Tables 1–4 建立跨模型、QAT/PTQ 和 token 成本主比较，Tables 5–12 逐项消融，Table 13 把准确率叙事延伸到 CPU/GPU 内存吞吐；Figure B 与 Figures C–K 提供优化轨迹和跨层/专家的机制复核，Table B 负责复杂任务失败边界。",
+    "caption_system": "所有 caption 以斜体 Figure/Table 标签开头，正文 caption 多数同时给设置、比较对象和编码说明；Figure 2、C–K 把颜色 key 写入 caption，Figure B 在图内重复 legend；表格 caption 统一说明指标/默认值/最佳值，但 Table A 很短，Table B 未给模型身份。",
+    "table_header_system": "性能表统一采用 Model/Method、量化或预算列、PIQA/ARC-e/ARC-c/HS/WG、Avg↑；消融表把被扫描的设计参数置于指标前；Table 13 用两级硬件资源表头，Table A 为 Configuration/Setting，Table B 为数学/代码任务。",
+    "method_result_ablation_link": "Eq. (3)–(7) 的 LM、ST 和 sliding-layer objective 由 Figure 1/3 接口化；Table 1–4 给结果，Table 5–12 和 Figure B 把组件、γ、s0、α/Δ、µ、samples、group size 与结果绑定；Figures C–K 检查同一机制跨层和专家的误差分布。",
+    "main_appendix_link": "正文 Figure 2 明确指向 Appendix 的 Figures C–K；正文 p.9 逐项指向 Appendix 的数据、设置、Figure A/B、Table B、Figures C–K 和限制。Table A/B 与 Figures A–K 提供默认参数、连续函数、loss、复杂任务失败和泛化切片。",
+    "typography_consistency": "表格与正文均以 Nimbus Roman/Computer Modern 为主，表格约 6.7–7 pt body/header；方法图公式较大，raster scatter 内嵌 DejaVu Sans 小字号。Figure B 与表格 caption 仍保持 Roman 体系，但 raster panel 内外字体混合导致附录图的视觉层级略不均。",
+    "color_consistency": "Figure 2 与 Figures C–K 稳定复用蓝=SA、橙=DL、绿=LM；Figure 1 用红=learnable factors、蓝=statistics priors，Figure 3/A 用红色函数，Figure B 用红=without ST、绿=with ST。语义在每个 caption 明示，但多数量化图没有形状/线型冗余。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "用 Figure 1 的单一 pipeline 把可学习参数、离散算子和部署重构连成方法接口。",
+      "用 Figure 2/ C–K 的固定蓝橙绿语义和散点点云保留误差离群与跨层/专家异质性。",
+      "用 Table 2/3 将 calibration/training token 预算和五任务准确率置于同一决策面。",
+      "用 Tables 5–12 的 row-group 参数扫描、默认下划线和最佳粗体形成可复用消融系统。",
+      "用 Figure B 的重复 sliding-window 小倍图展示机制是否跨窗口成立。"
+    ],
+    "highest_value_objects": [
+      "Figure 1（p.3）：最清楚地定义 LM、ST、T 与部署边界。",
+      "Table 1（p.6）：十模型跨规模主结果基准。",
+      "Table 2（p.6）：把约 1M calibration tokens 与 QAT 的 10B–1T tokens 直接并列。",
+      "Table 13（p.9）：把低比特表示连接到真实 CPU/GPU 内存和吞吐。",
+      "Table B（p.15）：显式保留数学/代码任务失败边界，避免主结果泛化过度。"
+    ],
+    "failure_patterns": [
+      "Figure 2 与 Figures C–K 以颜色作为唯一方法编码，灰度和色觉差异下不稳健。",
+      "密集散点图未给样本量、误差定义或汇总统计，且跨面板 y 轴范围不统一。",
+      "多张表仅报告点估计；没有重复、方差或 profiling variability。",
+      "Table B 缺少模型身份，Table A 缺少配置覆盖说明；这些缺口削弱复现。",
+      "Table 13 的 CPU|GPU 竖线复合列以及 ✓ 组件矩阵增加无障碍和机器读取成本。"
+    ],
+    "one_sentence_visual_strategy": "论文以方法接口图串起可学习调制与软化三值化，再用统一颜色的误差点云、紧凑性能/成本表和附录消融小倍图，把“低成本、跨规模、但复杂推理仍失败”的证据边界压缩到一条可追踪视觉叙事。"
+  }
+}

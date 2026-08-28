@@ -1,0 +1,1412 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-dba10825e0af",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/mf2023/PiscesL1",
+      "https://github.com/mattian7/mrRoPE"
+    ],
+    "selected_repository": "https://github.com/mattian7/mrRoPE",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/mattian7/mrRoPE",
+        "path": "analysis/fourier.py",
+        "role": "plot_script",
+        "tool": "PyTorch/NumPy/Matplotlib",
+        "evidence": "main d1a6f31... blob e0ef03355c8bd1e89992db8d3f03dc7190129b7a；含 get_yarn_freq/get_radix_freq 和 Distance/QK 绘图入口，支持 Figure 5–6 机制方向但不是 PDF generator。"
+      },
+      {
+        "repository_url": "https://github.com/mattian7/mrRoPE",
+        "path": "output/draw.py",
+        "role": "plot_script",
+        "tool": "pandas/Matplotlib",
+        "evidence": "main d1a6f31... blob bf93a118463e69e5b3146a910dd60c2a242d2da7；读取 Proofpile CSV 绘制 PPL 曲线，不是 Figure 3 或 Figure 7–8 源。"
+      },
+      {
+        "repository_url": "https://github.com/mattian7/mrRoPE",
+        "path": "output/longbench-llama10.csv",
+        "role": "data_file",
+        "tool": "CSV",
+        "evidence": "main d1a6f31... blob d634494571f1de26e085d8dc5dce1fa2285c30ff；YaRN/radix 早期 LongBench 点值。"
+      },
+      {
+        "repository_url": "https://github.com/mattian7/mrRoPE",
+        "path": "output/longbench-llama16.csv",
+        "role": "data_file",
+        "tool": "CSV",
+        "evidence": "main d1a6f31... blob 1bf693de4bf4813d7ca6b5429896231469f60b52；YaRN/radix 早期 LongBench 点值。"
+      },
+      {
+        "repository_url": "https://github.com/mattian7/mrRoPE",
+        "path": "output/proofpile-long-small-radix.csv",
+        "role": "data_file",
+        "tool": "CSV",
+        "evidence": "main d1a6f31... blob 3fdcbb39f32ca68af8a406ede0522ed7aae24538；LLaMA2 早期 Proofpile PPL 曲线。"
+      },
+      {
+        "repository_url": "https://github.com/mattian7/mrRoPE",
+        "path": "output/proofpile-long-small-yarn.csv",
+        "role": "data_file",
+        "tool": "CSV",
+        "evidence": "main d1a6f31... blob eeff2cd62a66eaad58b8e231f945dcae2da74f61；LLaMA2 早期 Proofpile PPL 曲线。"
+      },
+      {
+        "repository_url": "https://github.com/mattian7/mrRoPE",
+        "path": "scaled_rope/LlamaYaRNRadix.py",
+        "role": "other",
+        "tool": "PyTorch",
+        "evidence": "main d1a6f31... blob 4064b90dfd499d3636a34cbe53fb5a4bdfd29632；实现 YaRN-radix 频率/尺度变换，不含图表排版。"
+      }
+    ],
+    "search_note": "reports/tables/visual_source_inventory.csv 的自动候选 mf2023/PiscesL1 与论文及作者不匹配，已排除。gh 严格方法名检索得到 mattian7/mrRoPE；gh repo view 的描述为 mixed-radix RoPE，gh api users/mattian7 的姓名为论文第一作者 Qingyuan Tian，README 明确写有 YaRN-radix code/data。仓库有方法、早期分析脚本和 CSV，但没有 PDF Figure 1–8 的完整排版源、paper_tex 或表格生成器，故为 partial_visual_source。"
+  },
+  "paper_style": {
+    "main_figures": 6,
+    "main_tables": 3,
+    "appendix_figures": 2,
+    "appendix_tables": 2,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "DejaVu Sans/Matplotlib"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 8.0,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math"
+      ],
+      "body_size_pt": 7.0,
+      "header_size_pt": 7.0,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "正文实验曲线采用 Matplotlib 式类别色，Figure 4 使用绿—黄—橙—红连续 Score 色条，Figure 1 使用 pastel 结构块；表格保持黑白 booktabs 并以 bold/underline 排名。",
+    "vector_raster_mix": "Figure 2–8 主图区域由 pdfimages 显示为嵌入栅格，Figure 1 为嵌入图像与 PDF 文本/箭头对象混合；表格、caption 和规则为 PDF 文本/路径对象。",
+    "style_consistency": "表格规则和字体高度一致；Figure 3–6 与 Figure 7–8 共享 Matplotlib 网格/图例语法，但 Figure 1 为独立的概念框图，Pro 的色值跨图并不完全统一。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 1: The overall framework of our work. Our key contributions are: (1) a unified theoretical framework for major RoPE-extensions, reflecting them into a specific radix conversion behavior; (2) a progressive radix conversion method MrRoPE-Pro, which outperforms other SoTA methods across various tasks.",
+        "word_count": 43,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "DejaVu Sans/Matplotlib"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#CFE7A8",
+          "#B8D8F2",
+          "#F0C7D0",
+          "#F8CFA8",
+          "#D96B6B",
+          "#B9DCCB",
+          "#2F6EA5",
+          "#D9D9D9"
+        ],
+        "semantic_mapping": "浅绿、浅蓝、浅粉表示 RoPE/NTK/YaRN 频率变换；浅橙、砖红、浅绿、深蓝表示 NTK/YaRN/MrRoPE-Uni/MrRoPE-Pro 的 radix blocks；灰色和黑色表示流程框、箭头和文字。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 10,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "mixed",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper-right local legend",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.9,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "dimension order and left-to-right theory-to-method flow",
+        "y": "conceptual scale λ and lower/middle/higher dimension bands",
+        "color": "RoPE-extension family and radix-conversion method",
+        "shape": "rounded boxes, stepped blocks, and arrowheads",
+        "line": "arrows for transformation direction; block height for scale",
+        "facet": "frequency transformations → MrRoPE Theory → Radix Conversion Methodology",
+        "text": "panel titles, β/λ labels, Regressive/Progressive, Intermediate dimensions"
+      },
+      "data_and_statistics": "概念图；没有样本、聚合、重复、分母或误差统计。β、λ3β–λ6β 和 d/λ 仅表达 radix/scale 结构。",
+      "evidence_relation": "Introduction 的统一 RoPE-extension gap → §2 radix 视角与 §3 MrRoPE 公式 → Figure 1 方法接口 → Figure 3 尺度曲线、Table 1–3 结果 → Figure 5–6 机制。",
+      "design_strengths": [
+        "左—中—右阅读方向同时给出既有变体、统一理论和 Pro 的转换方向。",
+        "阶梯块和箭头把 progressive/regressive 变成可扫描的空间语法。"
+      ],
+      "design_weaknesses": [
+        "概念块、公式和图例偏小。",
+        "颜色在灰度打印中区分下降，图形本身没有量化或不确定性证据。"
+      ],
+      "reusable_pattern": "用「既有变体 → 统一表示 → 新方法/特例」的页宽框图表达理论接口，并用阶梯/箭头编码方向性。",
+      "evidence": {
+        "page": 2,
+        "label": "p. 2 Figure 1 及 caption",
+        "bbox": [
+          108.0,
+          196.389,
+          144.762,
+          206.352
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 3,
+      "module": "theory",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 2: The biased positional estimate m̂ of RoPE across different base.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans/Matplotlib",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#F0A34D",
+          "#D95B63",
+          "#5C5BC0"
+        ],
+        "semantic_mapping": "橙、红、蓝紫分别表示 b=5e4、b=1e5、b=5e5；透明面积是曲线下区域，不是误差带。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 2,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Real Distance",
+        "y": "Estimated Distance (×10^6)",
+        "color": "base b",
+        "shape": null,
+        "line": "three deterministic rising curves",
+        "facet": null,
+        "text": "base legend and axis labels"
+      },
+      "data_and_statistics": "由 Eq. (7) 计算的确定性 m̂–real distance 曲线；三条曲线只改变 base，没有实验重复、样本分母或置信区间。",
+      "evidence_relation": "Eq. (4)–(7) 的 RoPE/radix 推导 → Figure 2 经验线性检查 → §3 MrRoPE 形式化；承担理论直觉而非性能比较。",
+      "design_strengths": [
+        "单一坐标系直观显示 base 对线性位置估计的影响。",
+        "图例、颜色和纵轴数量级共同表达参数差异。"
+      ],
+      "design_weaknesses": [
+        "填充区域可能被误读为 uncertainty。",
+        "小尺寸或灰度下三条曲线容易叠加，caption 没有直接写出大 base 延长线性区。"
+      ],
+      "reusable_pattern": "对确定性机制叠加同轴参数曲线，并在 caption 明确填充不表示误差。",
+      "evidence": {
+        "page": 3,
+        "label": "p. 3 Figure 2 及 caption",
+        "bbox": [
+          108.0,
+          706.772,
+          143.835,
+          716.735
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 6,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 3: The cumulative scaling factor s_d of different RoPE extension methods across varying dimension index.(Scale-up to 16x and 4x)",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans/Matplotlib",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#66B57A",
+          "#E04B5A",
+          "#3E7EBB",
+          "#F2A33A"
+        ],
+        "semantic_mapping": "四种颜色对应 MrRoPE-basic、Yarn、MrRoPE-pro、NTK；虚实线进一步区分策略。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 0,
+        "data_marks_estimate": 128
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-left in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.1,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "RoPE dimension index",
+        "y": "Cumulative Scale s_d (log-scaled)",
+        "color": "extension method",
+        "shape": null,
+        "line": "solid/dashed method trajectories",
+        "facet": "Llama 3.1-8B (8K) versus Qwen-2.5-7B (32K)",
+        "text": "panel titles and method legend"
+      },
+      "data_and_statistics": "s_d=∏(j=1…d−1) λ_j 的确定性累计尺度；左 panel 上限 16×，右 panel 上限 4×，无 runs、样本、误差或聚合统计。",
+      "evidence_relation": "Eq. (16) 的低/中/高维 scale factor → Figure 3 的 s_d 形状 → Table 1 PPL 与正文对 YaRN regressive、Pro progressive 的解释。",
+      "design_strengths": [
+        "以同一累计量在两个模型/窗口条件下对齐四种策略。",
+        "log y 轴压缩 1–16× 范围并保留低尺度区域。"
+      ],
+      "design_weaknesses": [
+        "caption 保留 index.(Scale-up 的排版错误且未解释 log 轴。",
+        "每个 panel 重复图例占据绘图区，缺少误差或直接结论。"
+      ],
+      "reusable_pattern": "用同一累计量做多模型分面，固定方法颜色/线型，并在 caption 说明轴变换和 scale 上限。",
+      "evidence": {
+        "page": 6,
+        "label": "p. 6 Figure 3 及 caption",
+        "bbox": [
+          108.0,
+          390.322,
+          145.449,
+          400.285
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 4: In the Needle-IN-A-Haystack test, MrRoPE-Pro (right) effectively extends LLaMA3-8B’s context window to nearly 96K, which is much longer than the performance of YaRN (left).",
+        "word_count": 26,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans/Matplotlib",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 4,
+        "hex": [
+          "#12D29F",
+          "#C5BC4C",
+          "#F07A4C",
+          "#F05A5F"
+        ],
+        "semantic_mapping": "绿为高 Score，黄/橙为中间分数，红为低 Score；右侧共享色条给出约 0–10 的 Score。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": null,
+        "legend_items": 1,
+        "annotations": 2,
+        "data_marks_estimate": 500
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "right shared colorbar",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.2,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "context length 8K–128K",
+        "y": "insertion Depth 0–100%",
+        "color": "ROUGE-1 retrieval Score",
+        "shape": "heatmap cells",
+        "line": null,
+        "facet": "YaRN (S=16) versus MrRoPE-Pro (S=16)",
+        "text": "panel labels, axis labels, shared colorbar"
+      },
+      "data_and_statistics": "LLaMA3-8B、S=16、varying context length/depth 的 NIAH retrieval score；正文说明用 ROUGE-1 测 recall，120K 多数深度仍超过 85%。没有重复、分母、缺失值或误差显示。",
+      "evidence_relation": "§4.1 任务设置 → Figure 4 long-context stress 对照 → Table 2 RULER 与 Table 3 Infinite-Bench；直接承载 Pro 的稳健性 headline。",
+      "design_strengths": [
+        "共享色条和同一坐标网格让二维性能变化可直接对齐。",
+        "左右 panel 清楚显示 Pro 在长窗口的稳定区域。"
+      ],
+      "design_weaknesses": [
+        "颜色是主要数值通道且 caption 未定义 Score，灰度/色觉缺陷读数困难。",
+        "色块为点估计，没有 uncertainty；96K 边界依赖正文叙述。"
+      ],
+      "reusable_pattern": "对检索 stress test 使用同尺度并列 heatmap 和共享色条，并在 caption 补充 score、分母和重复策略。",
+      "evidence": {
+        "page": 7,
+        "label": "p. 7 Figure 4 及 caption",
+        "bbox": [
+          108.0,
+          708.935,
+          143.985,
+          718.898
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "theory",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 5: The cosine sum of the rotation angles in each dimension, measuring the ability to give more attention to similar tokens than a random one. The base value and original context length are consistent with the settings of LLaMA2-7B.",
+        "word_count": 40,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans/Matplotlib",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#C44E52",
+          "#DD8452",
+          "#4C72B0"
+        ],
+        "semantic_mapping": "红、橙、蓝对应 Original RoPE、YaRN、MrRoPE-Pro；黑/灰虚线表示零线和 roots/bounds。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 6,
+        "data_marks_estimate": 5000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 0.8,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Distance",
+        "y": "Sum of Cosines",
+        "color": "extension method",
+        "shape": null,
+        "line": "solid method curves and dashed zero/root guides",
+        "facet": "full dimensions versus middle-part dimensions",
+        "text": "panel titles and root/reference guides"
+      },
+      "data_and_statistics": "根据 Bθ(m)=Σ cos(mθ_j) 对 relative distance 计算的确定性曲线，base=10,000、原始窗口为 LLaMA2-7B；正文报告 Pro 理论上界约 1K→28K，YaRN 约 6K。",
+      "evidence_relation": "§4.4 RoPE Bound Theory → Figure 5 全维/中间维 cosine proxy → Figure 6 attention score distribution；支撑扩大理论窗口和减少中间维 oscillation 的机制。",
+      "design_strengths": [
+        "全维与 middle-part 两 panel 直接对应正文两步理论解释。",
+        "零线与 root 线把理论判据叠加在曲线上。"
+      ],
+      "design_weaknesses": [
+        "高频锯齿和多组虚线在小图中重叠，root 线的归属主要依靠颜色。",
+        "caption 未直接陈述 28K/6K，确定性曲线也没有显式标明无统计 uncertainty。"
+      ],
+      "reusable_pattern": "把全量理论函数与关键子集并列，并用独立 reference lines 表示阈值或根。",
+      "evidence": {
+        "page": 9,
+        "label": "p. 9 Figure 5 及 caption",
+        "bbox": [
+          108.0,
+          217.766,
+          145.041,
+          227.729
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 9,
+      "module": "theory",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "scatter"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 6: Middle-partial attention score on extended context windows. For each relative position, we randomly selected 50 token pairs’ corresponding attention score calculated by the middle dimensions.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans/Matplotlib",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#C44E52",
+          "#DD8452",
+          "#4C72B0"
+        ],
+        "semantic_mapping": "红、橙、蓝对应 RoPE、YaRN、MrRoPE-Pro；透明散点表达 raw score density。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 2,
+        "data_marks_estimate": 5000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper-right in each panel",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "distribution",
+        "line_width_pt": 0.5,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Distance",
+        "y": "Attention Score",
+        "color": "RoPE/YaRN/MrRoPE-Pro",
+        "shape": "scatter point",
+        "line": null,
+        "facet": "LLaMA2-7b 4K→64K versus LLaMA3-8B 8K→128K",
+        "text": "panel titles and method legend"
+      },
+      "data_and_statistics": "每个 relative position 随机抽取 50 个 token pairs，计算 middle dimensions 的 attention score；散点云为 raw distribution，不是均值/置信带，也未报告随机种子。",
+      "evidence_relation": "Figure 5 频率/root 机制 → Figure 6 中间维 attention score 分布 → 结论中关于 Pro 延长 periodicity、稳定 positional encoding 的解释。",
+      "design_strengths": [
+        "把 aggregate PPL 看不到的 middle-dimension 结构分面展示。",
+        "原始散点保留周期性和离散程度。"
+      ],
+      "design_weaknesses": [
+        "大量透明点形成视觉噪声，方法差异依赖颜色和正文解释。",
+        "caption 未给 score 归一化/尺度，抽样分布与估计误差没有显式区分。"
+      ],
+      "reusable_pattern": "使用 relative distance × raw pair distribution 的分面散点，并在 caption 写明抽样数量、单位和随机化规则。",
+      "evidence": {
+        "page": 9,
+        "label": "p. 9 Figure 6 及 caption",
+        "bbox": [
+          108.0,
+          629.249,
+          144.822,
+          639.212
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 14,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 7: LLama3-8B-Instruct PPL score tested on 128K context window across different α/β settings.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans/Matplotlib",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E"
+        ],
+        "semantic_mapping": "蓝圆点实线为 YaRN，橙方点实线为 MrRoPE-Pro；marker 形状提供颜色之外的区分。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left in (a), upper-right in (b)",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "d_h or d_l",
+        "y": "Perplexity score",
+        "color": "YaRN versus MrRoPE-Pro",
+        "shape": "circle versus square marker",
+        "line": "solid connecting lines",
+        "facet": "d_h (β) versus d_l (α)",
+        "text": "panel titles, parameter labels, method legend"
+      },
+      "data_and_statistics": "LLaMA3-8B-Instruct 在 128K context、不同 d_h/d_l（与 β/α 对应）下的 PPL 点估计；正文指出 d_h 约 [34,39] 区间保持低 PPL 且 Pro 一致低于 YaRN。无 runs 或 uncertainty。",
+      "evidence_relation": "Appendix B 的 d_l,d_h 定义和 α/β → Figure 7 敏感性扫描 → Figure 8 跨架构复核 → α=32、β=1 default。",
+      "design_strengths": [
+        "两个参数方向采用同一图形语法，保留完整局部扫描。",
+        "marker 和颜色共同区分方法。"
+      ],
+      "design_weaknesses": [
+        "纵轴差异小，caption 不写方法映射、扫描范围或最佳点。",
+        "没有重复、误差条或置信信息。"
+      ],
+      "reusable_pattern": "将同一参数化的两个一维扫描并列，固定 baseline/proposed 的颜色与 marker，并报告最优点。",
+      "evidence": {
+        "page": 14,
+        "label": "p. 14 Figure 7 及 caption",
+        "bbox": [
+          108.0,
+          627.437,
+          144.513,
+          637.4
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 15,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 8: Qwen2.5-3B-Instruct PPL score tested on 128K context window across different α/β settings.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans/Matplotlib",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E"
+        ],
+        "semantic_mapping": "蓝圆点实线为 YaRN，橙方点实线为 MrRoPE-Pro；marker 形状提供颜色之外的区分。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": 20
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower-left in (a), upper-right in (b)",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "d_h or d_l",
+        "y": "Perplexity score",
+        "color": "YaRN versus MrRoPE-Pro",
+        "shape": "circle versus square marker",
+        "line": "solid connecting lines",
+        "facet": "d_h (β) versus d_l (α)",
+        "text": "panel titles, parameter labels, method legend"
+      },
+      "data_and_statistics": "Qwen2.5-3B-Instruct 在 128K 下的 d_h/d_l PPL 点估计；正文报告最佳 (d_l,d_h)=(23,40)，对应 α=32、β=1，且 Pro 对参数变化相对不敏感。无重复、误差或区间。",
+      "evidence_relation": "Figure 7 的 LLaMA3 扫描 → Figure 8 的不同架构复核 → Appendix B.1 default configuration；补充 Figure 3 与 Table 1 的模型边界。",
+      "design_strengths": [
+        "跨架构保持 Figure 7 的视觉模板，减少比较转换。",
+        "细微 PPL 变化仍保留完整扫描轨迹。"
+      ],
+      "design_weaknesses": [
+        "纵轴范围极窄、caption 不写最佳参数或方法关系。",
+        "方法映射依赖图例，灰度阅读风险高且无 uncertainty。"
+      ],
+      "reusable_pattern": "用同布局跨模型扫描检验默认配置迁移，并在 caption 报告最优参数、窗口和方法映射。",
+      "evidence": {
+        "page": 15,
+        "label": "p. 15 Figure 8 及 caption",
+        "bbox": [
+          108.0,
+          253.263,
+          145.639,
+          263.226
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 1: Perplexity scores on proofpile dataset across different models. The best and second-best results are boldfaced and underlined, respectively.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 8,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "正文称随机抽取十条超过 128K 的 Proofpile 序列并以 float32 计算；表格只有点估计，无 SD/SE、区间、失败计数或逐行分母，>10 表示截断/上界值。",
+      "data_and_statistics": "两侧 model panel 各含 4 个方法行和 5 个 evaluation lengths；比较 LLaMA3/Qwen2.5、NTK/YaRN/MrRoPE-Uni/MrRoPE-Pro 的 PPL，精度混合为 2/3 位并含 >10。",
+      "evidence_relation": "§4.1 inference-only 设置 → Table 1 跨模型/方法长序列结果 → YaRN regressive 解释 → Appendix Table 4 补充 LLaMA2。",
+      "design_strengths": [
+        "固定 evaluation-length 列序，双 panel 便于跨模型对读。",
+        "bold/underline 直接表达 best/second-best。"
+      ],
+      "design_weaknesses": [
+        "双 panel 表头密且小数精度不一致。",
+        "caption 未写十条随机序列和 float32，也不显示 uncertainty。"
+      ],
+      "reusable_pattern": "跨模型并列固定 evaluation-length 列，并保留 best/second-best 的文字高亮；在 caption 写清抽样和截断规则。",
+      "evidence": {
+        "page": 7,
+        "label": "p. 7 Table 1 及 caption",
+        "bbox": [
+          108.0,
+          138.241,
+          140.737,
+          148.204
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 2: Retrieval scores on RULER benchmark across all 13 subtasks.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "13 个子任务聚合 retrieval score，在 8K–128K 五个长度给出百分比；无 SD/SE、区间、样本分母或任务级失败分解。",
+      "data_and_statistics": "两侧 model panel 各含 YaRN 与 MrRoPE-Pro 两行；LLaMA3 Pro 为 96.2/94.2/94.3/91.3/86.6，Qwen Pro 为 82.3/82.9/78.5/70.4/53.2，精度一位。",
+      "evidence_relation": "Figure 4 NIAH stress → Table 2 多子任务 retrieval → Table 3 真实任务切片。",
+      "design_strengths": [
+        "共享长度列和 panel 表头让方向清楚。",
+        "无额外颜色装饰，适合与表 1 对读。"
+      ],
+      "design_weaknesses": [
+        "caption 未说明 13-subtask 的聚合方式、分数方向或重复。",
+        "Scale setting 需从表体读取，且没有 uncertainty。"
+      ],
+      "reusable_pattern": "使用 model panel + 固定长度列表达多 benchmark 子任务，并在 caption 定义聚合单位。",
+      "evidence": {
+        "page": 8,
+        "label": "p. 8 Table 2 及 caption",
+        "bbox": [
+          164.188,
+          266.115,
+          196.317,
+          276.078
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Table 3: Long context performance comparison on Infinite-Bench. In each subset, we randomly choose 100 samples with lengths ranging from 100K to 128K. MrRoPE-Pro outperforms YaRN under the same settings while approaching GPT-4 in some tasks (e.g., QA Dialogue, Math Find).",
+        "word_count": 41,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 5,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "每个子集随机 100 个 100K–128K 样本，单元格为百分比，Avg 为六个子任务的平均；无 run-level uncertainty、置信区间或失败分解，整数百分比与一位小数 Avg 混用。",
+      "data_and_statistics": "单表比较 GPT-4、Yi-34B-200K、Kimi-Chat、LLaMA3-8B YaRN/Pro 的 KV/PassKey/Number/Code Debug/Math Find/QA Dialogue 与 Avg。",
+      "evidence_relation": "Table 2 retrieval 稳健性 → Table 3 Infinite-Bench 任务 → 正文关于 Pro 缩小与 GPT-4/长上下文模型差距的叙述 → Appendix Table 5。",
+      "design_strengths": [
+        "外部模型、同模型 baseline/proposed 和任务切片处于同一决策面。",
+        "caption 给出抽样数和长度范围，限定百分比解释。"
+      ],
+      "design_weaknesses": [
+        "Extensioin 列名有拼写错误。",
+        "任务分母与不确定性未给出，跨组 bold 规则不完全对称。"
+      ],
+      "reusable_pattern": "同时保留任务列和 Avg，并用横线区分外部参考组与同模型对照组。",
+      "evidence": {
+        "page": 8,
+        "label": "p. 8 Table 3 及 caption",
+        "bbox": [
+          108.0,
+          520.072,
+          141.076,
+          530.035
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4: Perplexity scores of LLaMA2-7B-chat-hf on proofpile dataset. The best and second best results are boldfaced and underlined respectively.",
+        "word_count": 20,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 8,
+      "header_levels": 2,
+      "row_groups": 1,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "best_second_best"
+      ],
+      "uncertainty": "LLaMA2-7B-chat-hf 在 4K–64K 的 Proofpile PPL 点值，含 NTK 在 64K 的 >10；无重复、误差或区间。",
+      "data_and_statistics": "一个 LLaMA2 panel，4 个方法行、Context Window/Scale/Extension Method 加 5 个 evaluation lengths，精度固定两位。",
+      "evidence_relation": "正文 Table 1 因篇幅省略 LLaMA2 → Appendix C.1/Table 4 补齐同一 Proofpile 设计。",
+      "design_strengths": [
+        "复制主表列序、方法顺序和 bold/underline 规则，附录结果可直接对读。"
+      ],
+      "design_weaknesses": [
+        "caption 写 chat-hf、panel 写 Instruct，命名不一致。",
+        "caption 省略抽样、float32 和 >10 截断说明。"
+      ],
+      "reusable_pattern": "补充模型时复制主表列序和高亮规则，避免新增阅读转换成本。",
+      "evidence": {
+        "page": 15,
+        "label": "p. 15 Table 4 及 caption",
+        "bbox": [
+          108.0,
+          411.429,
+          140.657,
+          421.392
+        ],
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 5: Resultes of LLaMA3-8B-Instruct and Qwen2.5-3B-Instruct on LongBenchV2 dataset. SD: Single-Document QA, LD: Long-dialogue History Understanding, MD: Multi-Document QA, LICL: Long In-context Learning, LSD: Long Structured Data Understanding, CU: Code Repository Understanding.",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 9,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "LongBench-V2 六任务点值，无样本数、重复、误差或区间；精度混合，包含一位、两位和整数。",
+      "data_and_statistics": "两个 model panel 各含 YaRN/Pro 两行，列为 Context Window、Scale、Extension Method 和 SD/LD/MD/LICL/LSD/CU。",
+      "evidence_relation": "正文 §4.3 将 LongBench-V2 指向 Appendix C.2；Table 5 补充 Table 2–3 的 real-world 证据，但模型名称存在不一致。",
+      "design_strengths": [
+        "caption 一次性定义六个缩写。",
+        "两个 panel 复用同一任务列，方法方向易于比较。"
+      ],
+      "design_weaknesses": [
+        "Resultes 拼写错误，caption 写 LLaMA3 而 panel 为 LLaMA2。",
+        "没有任务样本数、聚合/分母或 uncertainty。"
+      ],
+      "reusable_pattern": "附录 benchmark 表固定任务列序，并使 caption、panel 标题和正文模型名称完全一致。",
+      "evidence": {
+        "page": 16,
+        "label": "p. 16 Table 5 及 caption",
+        "bbox": [
+          108.0,
+          90.808,
+          141.813,
+          100.771
+        ],
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 建立频率变换→MrRoPE Theory→radix conversion 接口，Figure 2 给出 base–distance 直觉，Figure 3 给累计 scale，Table 1–3 给 PPL、retrieval 和真实任务，Figure 4–6 闭合稳健性/理论机制，Figure 7–8 与 Table 4–5 在附录补充超参数、LLaMA2 和 LongBench-V2。",
+    "caption_system": "大多数 caption 为编号+标题+设置；Table 1/4 解释 best/second-best，Table 3/Figure 4 直接写主发现，Figure 2/3/7/8 较短，颜色、聚合、重复和 uncertainty 多依赖图内图例或正文。",
+    "table_header_system": "Table 1、2、4、5 共用 model panel + Context Window/Scale/Extension Method + length/task 列；Table 3 用 Models/Extension Method + task + Avg；表格统一 booktabs 横线、无竖线和粗体排名。",
+    "method_result_ablation_link": "Figure 1/2/3 负责理论和方法接口，Table 1–3 负责主比较，Figure 4–6 负责 robustness/mechanism，Figure 7–8 负责 α/β 消融，Table 4–5 扩展模型和 benchmark 覆盖。",
+    "main_appendix_link": "正文 Table 1 指向 Appendix C.1/Table 4，§4.3 指向 Appendix C.2/Table 5，Appendix B.1 的 Figure 7–8 支持 α=32、β=1 default；没有新的可编辑图表源。",
+    "typography_consistency": "caption/表格 PDF 字体以 Nimbus Roman No9 L 和 Computer Modern 为主，表体约 7 pt、caption 约 9.963 pt；图内 Matplotlib 与 Figure 1 自定义字体造成可见字号差异。",
+    "color_consistency": "Figure 3–6 重用类别色思路，Figure 7–8 固定蓝 YaRN/橙 Pro 的 marker 语法；Figure 1 的 pastel/深蓝语义相近但色值不完全相同，所有彩色图的灰度安全性有限。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "以统一理论接口→累计尺度→机制 proxy→benchmark 的顺序安排不同证据层级。",
+      "跨模型/窗口使用并列 panel 或子表，固定 evaluation-length 列序降低比较转换。",
+      "用同构双 panel 扫描 α/β，固定 baseline/proposed 的颜色与 marker，并将最优点回写到 caption/正文。"
+    ],
+    "highest_value_objects": [
+      "Figure 1：理论—方法接口。",
+      "Table 1：Proofpile headline 跨模型 PPL。",
+      "Figure 4：NIAH 长窗口稳健性。",
+      "Figure 5–6：RoPE upper-bound 与 middle-part attention 机制。"
+    ],
+    "failure_patterns": [
+      "多数图为嵌入栅格且无完整可重绘源；小字号、重复图例、高密度散点和 colorbar 增加读取成本。",
+      "颜色不完全灰度安全，caption 常未定义颜色、聚合、重复和点估计性质。",
+      "Table 3 的 Extensioin、Table 5 的 Resultes 与模型命名不一致；表格和理论图均不呈现 uncertainty。"
+    ],
+    "one_sentence_visual_strategy": "以三段式框图建立 mixed-radix 语义，再用尺度曲线、二维检索场、cosine/attention 机制图和同构表格逐层闭合理论—方法—性能—附录复核；公开作者仓库只提供部分方法/早期分析源，PDF 完整图表仍以渲染观察为准。"
+  }
+}

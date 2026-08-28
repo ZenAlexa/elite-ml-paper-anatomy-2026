@@ -1,0 +1,2004 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-bdf44f310e82",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/ToyotaResearchInstitute/diffmpc"
+    ],
+    "selected_repository": "https://github.com/ToyotaResearchInstitute/diffmpc",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/ToyotaResearchInstitute/diffmpc",
+        "path": "figs/diffmpc.jpg",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "GitHub main 的 1600×1008 JPEG；图内架构/Algorithm 1–2 artwork 与 PDF p.6 Figure 2 直接匹配。"
+      },
+      {
+        "repository_url": "https://github.com/ToyotaResearchInstitute/diffmpc",
+        "path": "figs/supra_puddle.jpg",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "GitHub main 的 1600×397 JPEG；与 PDF p.9 Figure 7 center-view panel 直接匹配。"
+      },
+      {
+        "repository_url": "https://github.com/ToyotaResearchInstitute/diffmpc",
+        "path": "benchmarking/imitation-learning/plot_IL_results.ipynb",
+        "role": "plot_script",
+        "tool": "matplotlib/scipy.interpolate",
+        "evidence": "cells 0–2 载入 train_il_* 数据，定义 red/blue curves、`linewidth=2` 和 10th–90th percentile fill；对应 Figure 4 的曲线处理，但 PDF 蓝线型/横轴标签存在版本差异。"
+      },
+      {
+        "repository_url": "https://github.com/ToyotaResearchInstitute/diffmpc",
+        "path": "benchmarking/reinforcement-learning/warm_start_plot.py",
+        "role": "plot_script",
+        "tool": "matplotlib/numpy",
+        "evidence": "精确设置 log PCG tolerance、three ticks、两幅 shared-y panels、blue linewidth 2 和 2.5/97.5 percentile `fill_between`；对应 Figure 10。"
+      },
+      {
+        "repository_url": "https://github.com/ToyotaResearchInstitute/diffmpc",
+        "path": "benchmarking/imitation-learning/plot_expert_data.py",
+        "role": "plot_script",
+        "tool": "matplotlib/JAX",
+        "evidence": "绘制 cart-pole demonstration state/control data，提供 IL 数据上下文；当前脚本输出不是 PDF 中编号 Figure 1–13 的直接复刻。"
+      }
+    ],
+    "search_note": "PDF p.10 reproducibility statement 明确链接 ToyotaResearchInstitute/diffmpc；README 标题与论文完全一致，gh repo view/tree main 确认 inventory 中的 notebook/script，并额外确认 figs/diffmpc.jpg 与 figs/supra_puddle.jpg。corpus/visual_sources/iclr-2026-bdf44f310e82/ 有 plot_IL_results.ipynb 与 plot_expert_data.py 紧凑副本；warm_start_plot.py 与两个 JPEG 通过 GitHub API 只读核查。Figure 2、Figure 7 center-view、Figure 4 的部分 plotting logic、Figure 10 有可复用源，其他 9 个 figures 和 6 张 tables 没有可确认的同编号视觉源，因此覆盖状态为 partial_visual_source；未拉取数据集、checkpoint 或完整仓库。"
+  },
+  "paper_style": {
+    "main_figures": 8,
+    "main_tables": 0,
+    "appendix_figures": 5,
+    "appendix_tables": 6,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "Nimbus Mono L",
+        "sans-serif"
+      ],
+      "size_pt": {
+        "minimum": 6.0,
+        "median": 8.0,
+        "maximum": 11.0
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic",
+        "monospace"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "Computer Modern math",
+        "Nimbus Mono L"
+      ],
+      "body_size_pt": 7.0,
+      "header_size_pt": 7.0,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "主结果反复使用红=baseline/Trajax、蓝=learned/DiffMPC；Figure 3 用蓝/红编码 Forward/Backward，Figure 4/6/8/13 用红蓝方法对照，Figure 10/12 使用蓝/紫单色，Figure 11 用三色区分 seed，表格维持黑白 booktabs。透明带、浅色柱和灰色网格承担辅助层次，但并非所有 caption 都重复颜色语义。",
+    "vector_raster_mix": "Figure 1、2、5–13 中多数视觉对象来自嵌入 raster；Figure 3 和 Figure 4 的曲线/文字主要是 PDF vector paths/text；caption、正文、算法和六张表为 PDF vector text/rules。整体为 mixed，宽表与窄栏图的可读性由 PDF 渲染尺寸限制。",
+    "style_consistency": "正文、caption、公式和表格稳定使用 Nimbus Roman No9 L 与 Computer Modern math，方法名/代码使用 Nimbus Mono L；图像资产和 Matplotlib 图引入 sans/数学 raster 字形。booktabs、红蓝方法语义和状态/轨迹复合图跨正文与附录保持一致，但 caption 的统计定义和图内字体/字号并未完全统一。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 3,
+      "module": "theory",
+      "placement": "main",
+      "width": "inset",
+      "types": [
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 1: DO solves optimization problems in z (the forward pass) and computes sensitivities with respect to parameters θ (the backward pass), moving along the loss surface ℓ defined by the optimization problem.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 7.0,
+          "median": 9.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#3B82B6",
+          "#E53935",
+          "#000000",
+          "#A8C5E1",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "蓝色路径为 forward pass，红色路径为 backward pass；黑色点、坐标轴和曲面边界提供几何参照。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": 1
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "z/参数方向",
+        "y": "loss surface 高度与 θ 方向",
+        "color": "blue=forward，red=backward",
+        "shape": "loss surface、黑色解点和箭头",
+        "line": "有向蓝/红路径",
+        "facet": null,
+        "text": "ℓ、z、θ、Forward Pass、Backward Pass"
+      },
+      "data_and_statistics": "机制示意图，不含样本、数值尺度、聚合、分母或不确定性。",
+      "evidence_relation": "DO/KKT/IFT primer（§2.2）→ OCP、SQP 和 IFT（§3）→ Figure 2 solver 接口 → Figure 3–4 效率与学习结果。",
+      "design_strengths": [
+        "曲面与有向路径把 forward/backward 分工压缩成单一视觉入口。",
+        "箭头、颜色、文字和黑点共同表达流程与解点。"
+      ],
+      "design_weaknesses": [
+        "没有地形数值、步长或收敛判据，概念路径不能承担定量证据。",
+        "窄栏 raster 中斜向坐标轴与红蓝颜色易损失，caption 依赖正文术语。"
+      ],
+      "reusable_pattern": "在公式前用同一解点连接正向求解和反向敏感度路径，再用数据流图落实组件。",
+      "evidence": {
+        "page": 3,
+        "label": "p.3 Figure 1 图面、caption 与 §2.2 primer 段落",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 6,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "matrix"
+      ],
+      "purpose": [
+        "method_interface",
+        "theory_mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 2: DiffMPC architecture: forward and backward passes, data flows, and main steps.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "sans-serif",
+          "Nimbus Mono L"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic",
+          "monospace"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#0000FF",
+          "#FF0000",
+          "#D9D9D9",
+          "#000000",
+          "#FFFFFF",
+          "#F2F2F2"
+        ],
+        "semantic_mapping": "蓝色/红色箭头分别表示 forward/backward 数据流；黑色框与文字、灰色 stair 矩阵块和白底表示算法结构。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 12,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "输入到 forward solve、backward sensitivity、输出的阶段顺序",
+        "y": "forward/backward 阶段和矩阵层级",
+        "color": "蓝/红方向箭头，灰/黑矩阵结构",
+        "shape": "阶段框、Schur/PCG 矩阵块、算法框",
+        "line": "蓝/红/黑有向箭头与虚线阶段框",
+        "facet": "forward 与 backward 两个流程区",
+        "text": "Evaluate、Linesearch、PCG、矩阵符号、Algorithm 1/2"
+      },
+      "data_and_statistics": "公开 1600×1008 `figs/diffmpc.jpg` 的架构与算法版面作为图像资产；图内没有经验样本，矩阵块只表示结构和复用。",
+      "evidence_relation": "§3.1–§3.3 的 SQP、Schur、PCG、IFT → Figure 2 forward/backward 接口 → Algorithm 1/2 → Figure 3、Table 3、Figure 9/10。",
+      "design_strengths": [
+        "算法伪代码和数据流在同一页面绑定，矩阵复用和方向箭头易于追踪。",
+        "颜色、框线和上下阶段形成多通道流程提示，公开 JPEG 可复用。"
+      ],
+      "design_weaknesses": [
+        "算法字号很小，多个公式/算法引用需要回到正文。",
+        "raster 在缩放后模糊，caption 没有解释 backward 复用 forward matrices 的原因。"
+      ],
+      "reusable_pattern": "把阶段框、共享中间矩阵和伪代码步骤并排绑定，用颜色表达数据流而非装饰。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 2 图面、caption、Algorithm 1–2；GitHub `figs/diffmpc.jpg`",
+        "bbox": null,
+        "basis": "source_exact"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 3: RL computation times on one of the test problems. Error bars indicate 2σ confidence intervals. Each backward pass also includes one forward pass (to evaluate the inputs of Algorithm 2).",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#3B3BFF",
+          "#FF3B3B",
+          "#B3B3FF",
+          "#FFB3B3"
+        ],
+        "semantic_mapping": "蓝色柱为 Forward，红色柱为 Backward；浅色填充和同色边界对应 pass 角色。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 16,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "solver×device 的 8 个 categorical 组",
+        "y": "Time (ms)，左上 `×10^4`",
+        "color": "Forward/Backward pass",
+        "shape": "grouped bars 与 error bars",
+        "line": null,
+        "facet": "CPU 与 GPU 两组、四个 solver",
+        "text": "柱顶 timing 数字、CPU/GPU、Forward/Backward legend"
+      },
+      "data_and_statistics": "一个 RL test problem；p.6 说明 reward 聚合 50 个环境步、batch 64 的 rollout，每个 problem 平均 10 seeds，backward 还包含一次 forward。误差条按 caption 为 2σ；柱顶数值是直接标注。",
+      "evidence_relation": "引言的 GPU speedup >4× → §4.1 benchmark → Figure 3 Problem 1 主比较 → Appendix Table 3 六问题 timing → Figure 10 warm-start。",
+      "design_strengths": [
+        "设备、solver 和 pass 组合在单轴上可横向比较，柱顶数字减少读图误差。",
+        "error bars 和 Forward/Backward 颜色直接支持效率主张。"
+      ],
+      "design_weaknesses": [
+        "Theseus CPU 的高值超出约 `1×10^4 ms` 纵轴上限，柱被截断；图因此不能完整呈现极慢值。",
+        "单个 problem 的图面易被外推为全局结果，红蓝在灰度下辨识度弱。"
+      ],
+      "reusable_pattern": "将 solver×device×pass 组合成 grouped bars，保留精确标签和误差条，再用附录宽表覆盖完整 problem grid。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Figure 3、caption 与柱顶数值；p.6 §4.1 protocol",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 7,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4: Losses over 200 epochs for the pendulum cart-pole IL benchmark.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#FF0000",
+          "#0000FF",
+          "#FFB3B3",
+          "#B3B3FF"
+        ],
+        "semantic_mapping": "Trajax 为红色实线，DiffMPC 为蓝色虚线；浅红/浅蓝带表示曲线 spread。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 0,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "Epoch 0–200",
+        "y": "上 panel 为 Imitation Loss，下 panel 为 Model Loss `||θ−θ*||₂`",
+        "color": "Trajax/DiffMPC 方法角色",
+        "shape": "无 marker；实线/虚线区分方法",
+        "line": "红实线与蓝虚线及各自半透明 band",
+        "facet": "imitation loss 与 model loss 两个 panel",
+        "text": "panel y labels、Epoch、legend"
+      },
+      "data_and_statistics": "cart-pole IL 的 200 epoch 曲线；论文正文称 GPU 上 DiffMPC 约快 2× 且保持收敛。公开 notebook cell 2 载入两方法 runs，使用红/蓝、`linewidth=2` 和 10th–90th percentile band；PDF caption 未定义 band，且图中蓝线为 dotted。",
+      "evidence_relation": "§4.2 IL end-to-end training claim → Figure 4 双指标收敛 → Appendix B.2 dynamics、32 initial conditions、学习率和 warm-start；与 Figure 3 timing 互补。",
+      "design_strengths": [
+        "任务损失和参数恢复误差分开，避免只凭一个 loss 判断收敛。",
+        "共享 epoch 轴与 spread band 使两方法趋势紧凑可比。"
+      ],
+      "design_weaknesses": [
+        "caption 未定义颜色、线型、band、样本数或 spread；“2× faster”没有对应 wall-clock 数字。",
+        "窄栏中浅色带和蓝虚线的辨识成本较高。"
+      ],
+      "reusable_pattern": "用共享 x 的任务损失/参数误差双 panel，保留方法颜色、线型和分布带，并在 caption 写清 band 统计。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Figure 4 两 panel、legend、caption；GitHub `benchmarking/imitation-learning/plot_IL_results.ipynb`",
+        "bbox": null,
+        "basis": "source_exact"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "image_montage"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "experimental_design",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: Proposed RL training pipeline to robustify an MPC policy πθ(x) for drifting.",
+        "word_count": 15,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#D9D9D9",
+          "#000000",
+          "#0000FF",
+          "#FF0000",
+          "#FFFFFF",
+          "#8C8C8C"
+        ],
+        "semantic_mapping": "灰色 RL training 容器和批次卡片、黑色模块、蓝/红 forward/backward 箭头、白底和照片自然色共同编码阶段。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 15,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Baseline→RL training→Post RL 阶段顺序",
+        "y": "environment/state、policy rollout、loss/gradient lanes",
+        "color": "蓝/红 forward/backward；灰色 batch cards",
+        "shape": "环境、policy、loss 框和两张 endpoint 照片",
+        "line": "箭头与虚线 inset boundary",
+        "facet": "baseline / RL training / post-RL",
+        "text": "`{E^i}`、`θ`、`{x_0^i}`、`π^θ(x)`、`E^i`、`L`、Baseline/Post RL"
+      },
+      "data_and_statistics": "概念流程图；正文另给 batch `B=32`、episode length `H=200`、1000 training steps 和 14 hours，但这些数值未画入图面。堆叠卡片表示 batched environments。",
+      "evidence_relation": "§5 domain randomization 定义 → Figure 5 环境/初始状态/政策/损失闭环 → Figure 6 模拟鲁棒性与 Figure 12 参数变化 → Figure 7–8 车辆部署。",
+      "design_strengths": [
+        "把环境采样、可微 rollout、loss 和反向更新收在一条流程。",
+        "before/after 车辆端点和有向箭头增强应用语境，并提供冗余方向线索。"
+      ],
+      "design_weaknesses": [
+        "照片没有 trial 数或成功条件，更多是端点示意。",
+        "batch、episode length 和 simulator details 未画出；符号密集且 caption 未定义变量。"
+      ],
+      "reusable_pattern": "在中心闭环框内同时画环境采样、policy、loss 与反向更新，两侧用 matched endpoint 表示训练前后。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 5 图面、caption 与 §5 rollout 描述",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "main_comparison",
+        "robustness",
+        "failure",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 6: Vehicle states (left) and position trajectories (right) when drifting a figure 8 with puddles.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 6,
+        "hex": [
+          "#FF0000",
+          "#0000FF",
+          "#6BAED6",
+          "#73B076",
+          "#000000",
+          "#8C8C8C"
+        ],
+        "semantic_mapping": "红/蓝主线区分 baseline/learned，浅色线显示 rollout variation，黑色起点/标记和灰色网格/环境提供辅助编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 2,
+        "legend_items": 4,
+        "annotations": 2,
+        "data_marks_estimate": 2000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "top_left",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左侧 timestep 0–1000；右侧 Position E",
+        "y": "左侧 β/ωr/δ/τ；右侧 Position N",
+        "color": "baseline 红、learned 蓝及浅色 rollout",
+        "shape": "黑圆起点、彩色 `×` spinout",
+        "line": "solid state/trajectory lines",
+        "facet": "4 state/control panels + Baseline/Learned top-view panels",
+        "text": "β、ωr、δ、τ 单位，Baseline/Learned/Spinout legend"
+      },
+      "data_and_statistics": "20 次 randomized-environment roll-outs；正文给 learned 成功率 100%、baseline 70%。四个状态/控制量与两个位置 panel 由多条细轨迹显示变化；没有 band 或均值统计。",
+      "evidence_relation": "Figure 5 domain-randomized pipeline → Figure 6 模拟鲁棒性主比较 → Figure 12 learned parameter shifts → Figure 7–8 硬件转移与 Figure 13 边界。",
+      "design_strengths": [
+        "将 action/state buffer 与最终路径结果放在一个对象中。",
+        "起点圆点和 spinout `×` 让失败时刻/位置可追踪，多 rollout 线保留环境变化。"
+      ],
+      "design_weaknesses": [
+        "六个异质 panel 叠加后密度高，单位和量纲切换频繁。",
+        "成功分母和失败判据不在 caption 中，红蓝与浅色轨迹灰度可读性弱。"
+      ],
+      "reusable_pattern": "用状态/动作 stack 加 top-view outcome，同时用显式终止 marker 表达 failure。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Figure 6 图面、caption 与 §5 20-rollout 结果段",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "image_montage"
+      ],
+      "purpose": [
+        "headline",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 7: Vehicle drifting through a water puddle: top view (left) and center view (right). The Supra robustly drifts despite variations in friction, which requires carefully selecting actions and sideslip.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "sans-serif",
+          "Computer Modern math",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 8.0,
+          "median": 12.0,
+          "maximum": 15.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#5B8FCB",
+          "#FFFFFF",
+          "#000000",
+          "#6E7176",
+          "#E15151",
+          "#D8B17D",
+          "#9EDBEA"
+        ],
+        "semantic_mapping": "自然照片颜色表示车辆、道路、水坑与天空；蓝字标出 Water Puddle，黑箭头表示 v/β，白虚线表示参考/运动路径。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": 2
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "空间场景，不设数值 x",
+        "y": "空间场景，不设数值 y",
+        "color": "自然图像色彩；蓝色 puddle 标签",
+        "shape": "车辆、黑色向量箭头",
+        "line": "白色虚线轨迹；黑色 v/β 箭头",
+        "facet": "top view 与 center view",
+        "text": "Water Puddle、v、β"
+      },
+      "data_and_statistics": "一组车辆照片的 qualitative hardware evidence；没有试验次数、空间尺度、时间序列或统计聚合。公开 `figs/supra_puddle.jpg` 1600×397 JPEG 与右侧 center-view 面板直接匹配。",
+      "evidence_relation": "§5 figure-8 domain-randomized training → donut 车辆部署 → Figure 7 硬件 qualitative anchor → Figure 8 状态/轨迹量化展示。",
+      "design_strengths": [
+        "top/center 双视角直接固定物理场景，少量箭头把照片连接到 v 与 β。",
+        "公开原图可复用，puddle 和车辆位置在两视角中清楚。"
+      ],
+      "design_weaknesses": [
+        "照片本身不能验证 robustly 或 friction variation；水坑边界、尺度和时间序列未量化。",
+        "蓝色标注依赖颜色和小字，缺少 baseline/learned 的直接对照。"
+      ],
+      "reusable_pattern": "用 top/center 双视角照片固定场景，再以向量箭头标出可测运动量，避免让照片承担统计结论。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 7 两张照片、标注与 caption；GitHub `figs/supra_puddle.jpg`",
+        "bbox": null,
+        "basis": "source_exact"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "map"
+      ],
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "qualitative_evidence",
+        "failure"
+      ],
+      "caption": {
+        "text": "Figure 8: Drifting a donut with a water puddle with a Toyota Supra. Left: State trajectories of two runs with the baseline vs the learned policy. Right: top view trajectories of the runs.",
+        "word_count": 33,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 5,
+        "hex": [
+          "#FF0000",
+          "#0000FF",
+          "#999999",
+          "#D9D9D9",
+          "#000000"
+        ],
+        "semantic_mapping": "红色 baseline、蓝色 learned；灰色 Water Patch、浅灰网格和黑色事件 marker 提供环境/事件语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 7,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 5,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左侧 Path distance；右侧 Position E",
+        "y": "六个状态/控制量；右侧 Position N",
+        "color": "baseline 红、learned 蓝",
+        "shape": "黑色起始圆点和彩色 spinout `×`",
+        "line": "各状态与 top-view solid lines",
+        "facet": "six state panels + top-view trajectory",
+        "text": "r、v、β、ωr、δ、τ、Water Patch、legend"
+      },
+      "data_and_statistics": "donut 水坑的两次 run；左侧六个 state/control panel 与右侧 top-view trajectory 对齐，右图灰色 Water Patch 标示干扰区。对象不承载多次统计，正文以 baseline spinout 与 learned completion 描述结果。",
+      "evidence_relation": "Figure 7 物理场景 → §5 donut transfer claim → Figure 8 matched state/trajectory comparison → Appendix Figure 13 figure-8 on-vehicle response。",
+      "design_strengths": [
+        "控制量变化与空间结果对齐，灰色 puddle 和事件 marker 将 failure 绑定到轨迹。",
+        "方法颜色跨 panel 稳定，legend 与起始圆点支持阅读方向。"
+      ],
+      "design_weaknesses": [
+        "只有两次 run，不能替代硬件重复统计。",
+        "小 panel 标签和浅网格较细，caption 未定义终止/失败 marker。"
+      ],
+      "reusable_pattern": "让状态 stack 与空间路径共享方法颜色，并在空间 panel 标出环境干扰区和事件 marker。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 8 状态/轨迹 panels、legend、Water Patch 与 caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 15,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "box"
+      ],
+      "purpose": [
+        "ablation",
+        "robustness",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 9: Cosine similarity between computed gradients and finite differencing across PCG exit tolerances.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 3,
+        "hex": [
+          "#000000",
+          "#008000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "黑色箱体/须与离群点，绿色 median 线，白色画布；颜色不是方法分组。",
+        "redundant_encoding": false,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 6,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 600
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "box",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "六个 tolerance 标签（log-spaced 值等距排布）",
+        "y": "Cosine Similarity",
+        "color": "黑色分布、绿色 median",
+        "shape": "box/whisker 与 outlier dots",
+        "line": "box edges、whiskers",
+        "facet": null,
+        "text": "1e-12…1e-2 tolerance 标签"
+      },
+      "data_and_statistics": "每个 PCG exit tolerance 有 100 个 problem instances；箱体、须和离群点展示 cosine similarity 分布。正文称至 `10^-6` 仍高度一致，并将 `10^-12` 用于其他结果。",
+      "evidence_relation": "§3.4 gradient accuracy 限制 → Figure 9 tolerance diagnostic → `10^-12` 主实验选择 → Figure 10 warm-start/tolerance trade-off。",
+      "design_strengths": [
+        "用分布而非均值暴露高 tolerance 下的 outliers 和退化。",
+        "单 panel 结构紧凑，六个 tolerance 水平容易横向扫读。"
+      ],
+      "design_weaknesses": [
+        "log tolerance 视觉等距，容易误读相邻水平的间隔。",
+        "caption 未写 100 instances、box 定义或一致性判断阈值；只覆盖一个 QP problem family。"
+      ],
+      "reusable_pattern": "把 solver tolerance 作为机制旋钮，用 boxplot 显示 gradient accuracy 分布，并在 caption 声明样本数和箱体统计。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Figure 9 boxplots、坐标、caption 与 B.1 accuracy 段",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 15,
+      "module": "ablation",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "area"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 10: RL with DiffMPC: Speedups from warm-starting (SolveTime_cold − SolveTime_warm) / SolveTime_cold for different PCG exit tolerances ε, with ±2 standard deviation intervals.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 3,
+        "hex": [
+          "#0000FF",
+          "#B3B3FF",
+          "#BFBFBF"
+        ],
+        "semantic_mapping": "蓝线表示 warm-start speedup 均值，浅蓝 band 表示 spread，灰色为网格/坐标。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 3
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "log",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "band",
+        "line_width_pt": 2.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "PCG Tolerance ε（log）",
+        "y": "Speedup (%)",
+        "color": "蓝色 mean 与浅蓝 interval",
+        "shape": "无 marker",
+        "line": "每个 panel 一条 solid blue line",
+        "facet": "Forward Pass 与 Backward Pass",
+        "text": "panel titles、Speedup (%)、PCG Tolerance ε"
+      },
+      "data_and_statistics": "每个 tolerance 有 100 independent runs；speedup 定义为 `(cold−warm)/cold`。正文给 `10^-12` forward/backward 约 4%/4%，`10^-4` 约 11%/9%。公开 `warm_start_plot.py` 精确设置 log x、three ticks、shared-y、blue `linewidth=2` 与 `fill_between`；源代码用 2.5/97.5 percentile，而 PDF caption 写 ±2 standard deviation。",
+      "evidence_relation": "PCG warm-start 方法主张 → p.7 warm-start 段 → Figure 10 tolerance response → 其他结果固定 `ε=10^-12` 的配置边界。",
+      "design_strengths": [
+        "shared-y 和 log x 让两种 pass 的 tolerance 趋势直接可比。",
+        "单一主线加透明 band，面板简洁且不遮挡趋势。"
+      ],
+      "design_weaknesses": [
+        "源代码 percentile band 与 PDF 的 ±2σ 术语不一致，统计解释需保守。",
+        "图内没有 raw timing、样本数或具体 speedup 数字，增益较小需结合正文。"
+      ],
+      "reusable_pattern": "对单一 solver knob 使用 shared-y 双 panel，绘制均值和 spread，并让源代码与 caption 采用同一误差定义。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Figure 10 两 panel、caption；p.7 warm-start 段；GitHub `benchmarking/reinforcement-learning/warm_start_plot.py`",
+        "bbox": null,
+        "basis": "source_exact"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "robustness",
+        "ablation",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 11: Wall-clock training loss curves across 3 seeds.",
+        "word_count": 9,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#3E8E55",
+          "#C43D4B",
+          "#426DB3",
+          "#BFD8C7",
+          "#D9D9D9"
+        ],
+        "semantic_mapping": "绿/红/蓝三条线区分 seed；浅色背景和灰色网格不承担数据分组。",
+        "redundant_encoding": false,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 0,
+        "data_marks_estimate": 300
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "time",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Time (Minutes)",
+        "y": "Loss",
+        "color": "三种颜色对应 3 seeds",
+        "shape": "无 marker",
+        "line": "三条 noisy solid traces",
+        "facet": null,
+        "text": "Time (Minutes)、Loss"
+      },
+      "data_and_statistics": "drifting RL first 100 steps 的 3 seed wall-clock traces；B.3 文字给 batch `B=32`、RTX 3090、18 GB VRAM，并称约 40 minutes 后稳定。没有均值、band 或 seed-specific 数值表。",
+      "evidence_relation": "B.3 drifting RL training procedure → Figure 11 运行噪声/时间诊断 → Figure 12 参数变化 → Figure 13 硬件响应。",
+      "design_strengths": [
+        "保留三条原始 seed 曲线，尖峰和稳定时间可见。",
+        "wall-clock x 轴直接连接训练成本。"
+      ],
+      "design_weaknesses": [
+        "没有 legend，颜色与具体 seed 无法追踪。",
+        "“stabilizes”没有预定义阈值或汇总统计，caption 未写 first 100 steps、硬件和 memory。"
+      ],
+      "reusable_pattern": "将少量 seed 的 raw wall-clock traces 作为训练动态补充图，在 caption 写清时间窗、硬件和聚合规则。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Figure 11 曲线、坐标、caption 与 training dynamics 段",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 12: Change in MPC policy parameters after learning θ by domain randomization that includes water puddles.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "sequential",
+        "color_count": 3,
+        "hex": [
+          "#9999FF",
+          "#D4D4FF",
+          "#000000"
+        ],
+        "semantic_mapping": "浅紫 horizontal bars 表示相对 nominal 的变化，深色边界和黑色百分比标签辅助方向读取。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 13,
+        "data_marks_estimate": 14
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "categorical",
+        "grid": "x",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "Percent change vs nominal（含 0% reference）",
+        "y": "Dynamics variable / Cost variable 类别",
+        "color": "统一浅紫 bars；正负方向由长度与 signed label 编码",
+        "shape": "horizontal bars",
+        "line": "solid bar outlines 与 0% 虚线",
+        "facet": "Dynamics variable 与 Cost variable 两 panel",
+        "text": "13 个变量名与百分比 direct labels"
+      },
+      "data_and_statistics": "相对 Table 5 nominal 的 14 个可见参数变化：dynamics `I_w +3.58%`、`C_f +0.37%`、`C_r +0.11%`、`μ_f −4.54%`、`μ_r −13.38%`；cost `ω_r +7.38%`、`r 0.00%`、`s 0.00%`、`v −0.44%`、`δ −0.46%`、`Δφ −0.62%`、`τ −1.94%`、`e −7.50%`、`β −58.00%`。图中 bars 是点值，无不确定性。",
+      "evidence_relation": "Table 5 nominal vector → Figure 12 learned-minus-nominal diagnostic → §5 rear friction `−13%` 与 sideslip cost `−58%` → Figure 6/8/13 robustness。",
+      "design_strengths": [
+        "0% reference、signed labels 和 bar length 同时展示方向与大小。",
+        "dynamics/cost 分组直接暴露不对称的参数变化。"
+      ],
+      "design_weaknesses": [
+        "近零 bars 在窄图中几乎不可见，Greek/下标标签细小。",
+        "没有 parameter uncertainty、seed spread 或 learned absolute values。"
+      ],
+      "reusable_pattern": "用带零线的 signed horizontal bars 展示学习前后参数，按机制角色分组并保留相对百分比标签。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Figure 12 两个 bar panels、0% line、labels 与 additional simulation 段",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "map"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "failure",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 13: On-vehicle test for drifting a figure 8 trajectory with a water puddle in the first turn. Closed-loop response task with the baseline (red) and the learned controller (blue).",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "sans-serif"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 11.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#FF0000",
+          "#0000FF",
+          "#999999",
+          "#D9D9D9",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "红/蓝区分 baseline/learned，灰色 Water Patch 和网格表达环境，黑圆点/`×` 表达事件。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 7,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": 2,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左侧 Path distance；右侧 Position E",
+        "y": "r/ν/β/ωr/δ/τ 与 Position N",
+        "color": "baseline 红、learned 蓝",
+        "shape": "黑色起始圆、彩色 `×` 终止/失败",
+        "line": "solid state and trajectory traces",
+        "facet": "six state/control panels + top-view",
+        "text": "单位、Water Patch、baseline/learned legend"
+      },
+      "data_and_statistics": "一次 on-vehicle figure-8 first-turn puddle test per controller；baseline 在第一弯 spin out，learned 完成 maneuver。左侧六个 state/control panel，右侧 top-view path；无重复或不确定性。",
+      "evidence_relation": "Figure 6 模拟 figure-8 robustness → Figure 13 额外 on-vehicle response → Figure 12 learned parameters 与 p.19 单次硬件限制。",
+      "design_strengths": [
+        "状态响应和空间轨迹对齐，显式 failure marker 让差异可见。",
+        "caption 明确红/蓝含义，邻近正文主动披露每种方法仅一次。"
+      ],
+      "design_weaknesses": [
+        "单次 run 不能支持通用硬件成功率；baseline spinout 后曲线提前终止，比较区间不完全相同。",
+        "没有重复、误差或时间成本编码。"
+      ],
+      "reusable_pattern": "硬件闭环结果同时画 state response 和 spatial trajectory，并用 failure marker 与 caption 限定试验分母。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Figure 13 panels、Water Patch、legend、caption 与 additional hardware 段",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 14,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "ablation",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 1: Computation times (s) with mpc.pytorch for Problem 1 on the GPU.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 2,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "单个 Problem 1 GPU timing；B.1 说明是 first seed，表内没有重复、误差或失败列。",
+      "data_and_statistics": "原版/修改版 `mpc.pytorch` 的 Fwd/Bwd 秒数：67.9→1.9、136.4→4.5。",
+      "evidence_relation": "mpc.pytorch serial list-comprehension 修改 → Table 1 → Figure 3 公平 baseline → Table 3 六问题 timing。",
+      "design_strengths": [
+        "最小 paired table 直接表达 implementation change，单位和 pass 方向清楚。",
+        "Modified 单元加粗，读取重点明确。"
+      ],
+      "design_weaknesses": [
+        "first seed 单点易被误读为普遍 speedup。",
+        "没有原始 timing protocol、variance 或修改成本。"
+      ],
+      "reusable_pattern": "用双行 paired table 表达 baseline implementation change，并在 caption/正文写清重复与统计范围。",
+      "evidence": {
+        "page": 14,
+        "label": "p.14 Table 1、caption 与 B.1 Setup 段",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 15,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "experimental_design",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 2: Parameters in the RL benchmark: state dimension n_x, control dimension n_u, MPC horizon T, RL episodes length H, batch size B.",
+        "word_count": 25,
+        "moves": [
+          "title",
+          "setup",
+          "abbreviation_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "配置表不承载抽样不确定性；没有 seed、分布参数、solver tolerance 或硬件列。",
+      "data_and_statistics": "六个 Problem 的 state/control dimensions、MPC horizon、episode length、batch size；全部为整数配置值。",
+      "evidence_relation": "§4.1 随机 QP → Table 2 problem grid → Figure 3 Problem 1 → Table 3 完整 timing。",
+      "design_strengths": [
+        "集中保存影响计算成本的 state/control/horizon/batch 组合，Problem ID 可被后续结果表复用。"
+      ],
+      "design_weaknesses": [
+        "随机化范围、10 seeds、solver settings 和设备没有进入表内。",
+        "caption 的 `RL episodes length` 语法略不自然。"
+      ],
+      "reusable_pattern": "把 state/control/horizon/batch 作为同行配置表，随后在 timing 表按同一 Problem ID 引用。",
+      "evidence": {
+        "page": 15,
+        "label": "p.15 Table 2、caption 与 B.1 QP problems 段",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 3: Timing results on CPU and GPU across 6 problem instances with mean time and 2σ (s).",
+        "word_count": 19,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 16,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 8,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "每个 method/problem 的 mean time 后括号为 2σ；B.1 说明每个 problem/method 10 independent runs。无 failure、speedup 或显著性列。",
+      "data_and_statistics": "4 methods × 2 GPU flags × 2 passes，横向 6 problems；CPU/GPU、Fwd/Bwd 的秒数保留两位小数，GPU DiffMPC 行加粗。",
+      "evidence_relation": "Figure 3 的单个 representative problem → Table 3 六问题完整 CPU/GPU 结果 → Table 4 非线性 attitude → Figure 10 tolerance/warm-start。",
+      "design_strengths": [
+        "设备、pass 和 problem 三个维度一次展开，并保留 CPU 上 DiffMPC 较慢的反例。",
+        "method/device row groups 让 paired Fwd/Bwd 易于扫读。"
+      ],
+      "design_weaknesses": [
+        "9 列宽表迫使字号变小，2σ 分母在 caption 之外。",
+        "正文的 speedup 需要读者跨列自行计算。"
+      ],
+      "reusable_pattern": "将实现×设备×pass 组织成分组行、problem instances 组织成列，并以 mean(spread) 保留完整效率证据。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Table 3、caption、row groups 与 B.1 timing protocol",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 16,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 4: Compute times on the nonlinear attitude stabilization problem.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 3,
+      "header_levels": 1,
+      "row_groups": 2,
+      "decimal_precision": 1,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "括号中的 spread 数值存在，但 caption 没有定义是 SD、2σ 还是其他量；正文给 batch 和随机化范围，却没有明确重复数。",
+      "data_and_statistics": "trajax/DiffMPC × Fwd/Bwd 的 compute time（ms）：310.6 (24.1)、505.0 (27.4)、39.8 (8.0)、69.3 (16.1)。",
+      "evidence_relation": "B.1 nonlinear attitude stabilization → Table 4 对比 → 约 7.3× backward speedup → 与 Table 3 线性 QP timing 互补。",
+      "design_strengths": [
+        "任务、pass、单位和两种方法紧凑呈现，分组横线足以表达 paired comparison。"
+      ],
+      "design_weaknesses": [
+        "括号统计含义和设备未定义；horizon、batch、随机化分母不在表头或 caption。"
+      ],
+      "reusable_pattern": "为新增非线性任务复用 Method×Pass 表，但在 caption 声明设备、重复数和括号统计定义。",
+      "evidence": {
+        "page": 16,
+        "label": "p.16 Table 4、caption 与 nonlinear attitude 段",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 17,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "reproduction",
+        "other"
+      ],
+      "caption": {
+        "text": "Table 5: Nominal vehicle model parameters and controller gains for the baseline MPC policy.",
+        "word_count": 14,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 19,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "纯 nominal configuration point values，无 seed、分布或统计不确定性。",
+      "data_and_statistics": "一行 `Value` 给出 18 个参数列（含 Q/R gains、a/b/m/rw、μf/μr、Cf/Cr、Iw）；精度混合，表头无单位。",
+      "evidence_relation": "B.3 vehicle model/MPC → Table 5 nominal reference → Figure 12 relative changes → Figure 6/8/13 learned response。",
+      "design_strengths": [
+        "固定高维 nominal vector，并与 Figure 12 的相对变化保持直接键值关系。"
+      ],
+      "design_weaknesses": [
+        "18 个参数压成单行，字体和符号很小；单位与变量含义分散在正文。",
+        "没有 learned absolute values 或 uncertainty。"
+      ],
+      "reusable_pattern": "对高维 controller/model configuration 使用一行 nominal vector，后续 change plot 保持同一列顺序。",
+      "evidence": {
+        "page": 17,
+        "label": "p.17 Table 5、caption 与 B.3 model 段",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "experimental_design",
+        "robustness",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Table 6: Parameters used for domain randomization. On water puddles, tire friction coefficients drop to μ = 0.6.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "Computer Modern math",
+          "Nimbus Mono L"
+        ],
+        "body_size_pt": 7.0,
+        "header_size_pt": 7.0,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 9,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "range 行是 uniform domain-randomization ranges，不是统计误差区间；特殊 puddle friction `μ=0.6` 写在 caption。",
+      "data_and_statistics": "`μf`、`μr`、`10^{-3}Cf`、`10^{-3}Cr`、`Iw`、`s0`、`ℓpuddle`、`spuddle` 八个参数范围，整数与小数混合。",
+      "evidence_relation": "Figure 5 环境采样 → Table 6 ranges → Figure 6 20-rollout robustness → Figure 12 learned parameter shift。",
+      "design_strengths": [
+        "一行覆盖 friction、stiffness、inertia 和 puddle geometry，便于复现实验抽样。",
+        "caption 暴露特殊 water-puddle friction 条件。"
+      ],
+      "design_weaknesses": [
+        "单位、uniform 分布和 s0/puddle 变量语义依赖正文。",
+        "没有 random seed、实际样本或逐因素 ablation。"
+      ],
+      "reusable_pattern": "集中记录 domain-randomization 参数与范围，并在 caption 明确特殊环境值。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Table 6、caption 与 B.3 Randomization 段",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1/2 先固定 DO 与 DiffMPC 机制接口，Figure 3/4 给出 solver/IL efficiency，Figure 5/6 将机制嵌入 domain-randomized drifting，Figure 7/8 以真实车辆和 transfer 任务收束；Figure 9/10 与 Tables 1–4 在 appendix 提供 accuracy、warm-start、problem grid 和非线性扩展，Figures 11–13 与 Tables 5–6 补充训练动态、参数机制和 hardware boundary。",
+    "caption_system": "所有 caption 使用 `Figure/Table n:`；Figure 3、10、Table 3 明确 uncertainty，其他 caption 多为标题+设置，颜色、panel、样本数和 failure marker 说明不足。caption 没有粗体结论标题。",
+    "table_header_system": "表格普遍是一层数学表头、booktabs 横线和无竖线；Method/Pass/Problem 等维度依靠 row rules 与上下文，Table 3 用 GPU checkmark 和 method groups 承载多维 timing，Table 5/6 用宽向量/范围行服务复现。",
+    "method_result_ablation_link": "Figure 2 对应 Eq. 4/8/11 与 Algorithm 1/2；Figure 3/4 对应正文 efficiency/IL results；Figure 9/10 是 tolerance 与 warm-start 消融，Table 1 是 baseline implementation ablation，Table 3/4 扩展 problem 与 nonlinear task。",
+    "main_appendix_link": "正文 Figure 3–8 承担 headline，appendix Table 3、Figure 9/10、Figures 11–13 和 Tables 1/2/4/5/6 提供完整配置、诊断和边界；Figure 13 的单次硬件限制与 Figure 7/8 qualitative evidence 相邻闭合。",
+    "typography_consistency": "Nimbus Roman No9 L、Computer Modern math 与 Nimbus Mono L 让正文、caption、表格和代码标签一致；raster 图内 sans/数学字形来自嵌入资产，Figure 2/5/7 的图内字体无法完全与 PDF 正文统一。",
+    "color_consistency": "红=baseline/Trajax、蓝=learned/DiffMPC 在主结果中稳定，Figure 3 将两色重映射为 Forward/Backward，Figure 11 另用三色表示 seed，附录 Figure 10/12 使用蓝/紫。颜色语义稳定但 caption 未在每个对象重复定义，灰度读取依赖线型、marker、位置或数字标签。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 2 的阶段框—共享矩阵—算法步骤把方法图直接绑定到公式和伪代码。",
+      "Figure 6/8/13 的状态 stack + top-view trajectory + failure marker 同时承载机制、结果和失败边界。",
+      "Table 3 的实现×设备×pass 分组行与 problem 列保留完整效率证据，而非只展示最佳 GPU 单元。",
+      "Figure 10 的 shared-y、log tolerance 双 panel 适合展示 solver knob 的 efficiency response，但必须同步定义 uncertainty。"
+    ],
+    "highest_value_objects": [
+      "Figure 2（方法接口）",
+      "Figure 3（GPU efficiency headline）",
+      "Figure 6（20-rollout simulation robustness）",
+      "Figure 8（硬件 transfer qualitative comparison）",
+      "Table 3（六问题完整 timing）",
+      "Figure 13（主动限定单次 hardware evidence）"
+    ],
+    "failure_patterns": [
+      "Figure 3 的 Theseus CPU 柱被纵轴截断。",
+      "Figure 4、9、11、12、13 caption 缺少样本、统计或颜色定义。",
+      "Figure 9 把 log tolerance 等距显示，Figure 10 源代码 percentile band 与 caption 的 ±2σ 术语不一致。",
+      "Table 4 括号统计、Table 5/6 单位依赖正文；窄栏 raster 与宽表小字体影响可读性。"
+    ],
+    "one_sentence_visual_strategy": "论文以红蓝方法对照和“求解器机制→GPU/IL效率→随机化漂移→车辆证据”的连续路径组织图表，再把 tolerance、配置、参数和硬件重复限制下沉到附录。"
+  }
+}

@@ -1,0 +1,2493 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-0e6979a1fd18",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "https://github.com/NVlabs/Sana",
+      "https://github.com/NVlabs/LongLive",
+      "https://nvlabs.github.io/Sana/Video/"
+    ],
+    "selected_repository": "https://github.com/NVlabs/Sana",
+    "visual_source_files": [],
+    "search_note": "PDF 首页明确链接 https://nvlabs.github.io/Sana/Video/；reading 与 reports/tables/visual_source_inventory.csv 将 NVlabs/Sana 作为直接标题/README 命中候选，状态为 partial_visual_source。只读 gh repo view 与 main 递归 tree 已核查 NVlabs/Sana；README 明确列出 SANA-Video/LongSANA，树中有 docs/sana_video.md、docs/longsana.md、diffusion/model/sana_video2.py、diffusion/longsana/ 和 inference_video_scripts/ 等实现/文档，但没有与 PDF Figure 1–15 或 Table 1–9 对应的 plot/figure/visual/table generator、.tex/.tikz/.pgf/.svg/.ipynb、源数据或论文排版文件。NVlabs/LongLive 也只作 LongSANA 候选核查，没有对应视觉源。local visual-source manifest 确认目录内仅有 generic 的 DPG/Geneval/Image-Reward metric metadata/annotation/environment 文件（6 个 acquired，DPG CSV 另因 7.3 MB 被 skipped_large），这些文件与本 PDF 的 video Figure/Table 不匹配，故不登记为 source_exact visual_source_files；所有图形属性使用 rendered_estimate，表格文字/字体使用 pdf_object。仓库实现路径和 generic metric assets 不冒充论文图表源，也未获取模型权重、数据集或 checkpoint。"
+  },
+  "paper_style": {
+    "main_figures": 6,
+    "main_tables": 6,
+    "appendix_figures": 9,
+    "appendix_tables": 3,
+    "dominant_figure_typography": {
+      "family": [
+        "Arial",
+        "Helvetica Neue",
+        "DejaVu Sans",
+        "Computer Modern math"
+      ],
+      "size_pt": {
+        "minimum": 5.0,
+        "median": 6.5,
+        "maximum": 10.0
+      },
+      "weight": [
+        "regular",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "rendered_estimate",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "CMR10",
+        "CMMI7",
+        "CMSY7"
+      ],
+      "body_size_pt": 6.0,
+      "header_size_pt": 6.0,
+      "header_weight": "bold",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "正文机制/结果图以绿色（Linear/Compute/SANA-Video）与灰色（Full/对照）为主，红色标记 OOM/加速，架构图使用 pastel categorical blocks；附录 qualitative grids 保留自然图像颜色并用直接行标签/框选承载语义。整体不是灰度安全的单一调色板。",
+    "vector_raster_mix": "PDF 正文、caption、表格和轴外文字为 pdfTeX text/vector objects；Figure 1–6 与 Figure 7–15 的主体为嵌入 raster/JPX/JPEG 复合图，页面按 200 dpi 渲染检查；Table 1–9 以 PDF 字体对象核对。",
+    "style_consistency": "主文 caption/表格沿用 Nimbus Roman/Computer Modern 的 ICLR 极简排版，图内 chart/diagram 多采用 Arial/Helvetica-like raster 标签；绿色/灰色成本语义在 Figure 1/3/5/6 与 Table 结果之间大体连续，但附录自然图像、prompt 截图和 pastel pipeline 的视觉语言明显异质。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 1,
+      "module": "abstract",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "bar",
+        "line"
+      ],
+      "purpose": [
+        "headline",
+        "efficiency_cost",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: An overview of generated videos and inference latency and memory of SANA-Video. The generation latency is measured under 50 denoising steps. Linear attention is more efficient for video generation and our block linear attention maintains a fixed memory requirement for long videos.",
+        "word_count": 44,
+        "moves": [
+          "title",
+          "setup",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#63BE3C",
+          "#A7A7A7",
+          "#D62728",
+          "#252525",
+          "#FFFFFF",
+          "#4C78A8",
+          "#E45756",
+          "#F2CF5B"
+        ],
+        "semantic_mapping": "绿色表示 Block Linear Attention/SANA-Video，灰色表示 Causal Full Attention 或基线，红色用于 OOM/加速注释；上方视频帧与下方图表还包含多色生成样例。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 7,
+        "legend_items": 4,
+        "annotations": 12,
+        "data_marks_estimate": 36
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "unknown",
+        "y_scale": "unknown",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "图(c)(d)上方或图内各自放置系列图例",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "图(a)按视频帧从左至右；图(b)为模型类别/延迟刻度；图(c)(d)为视频长度（秒）",
+        "y": "图(b)延迟（s）；图(c) GPU VRAM（GB）；图(d)延迟（min）",
+        "color": "Block Linear 与 Causal Full 的系列身份、模型/任务类别和 OOM/加速注释",
+        "shape": "胶片帧、水平条、折线与菱形数据点",
+        "line": "绿色/灰色系列线，图(c)红色虚线 OOM 边界",
+        "facet": "(a)生成样例；(b)720×1280×81 延迟；(c)480×832 长度-显存；(d)480×832 长度-延迟",
+        "text": "模型名、分辨率、长度、延迟数值、7.2 GB、OOM、2.4×/16×等直接标注"
+      },
+      "data_and_statistics": "复合图把 720×1280×81 的生成样例/延迟与 480×832 的长度扩展成本放在同一张图；图(b)是 5 个模型的单次 latency 点估计，图(c)(d)是不同视频长度的单次曲线，没有误差条、重复数、区间或失败计数（OOM 仅作为一个标注）。",
+      "evidence_relation": "摘要中的高效高分辨率长视频主张 → Figure 1 总览 → Figure 2 的 Linear DiT/Block KV cache 接口 → Table 1 复杂度、Table 2/4 主比较和 Figure 6 NVFP4 成本。",
+      "design_strengths": [
+        "在首屏同时给出感知质量样例、速度、显存和长度扩展，主张入口非常短。",
+        "绿色/灰色系列与直接数值标签让复杂度增长趋势无需读者反推。",
+        "图(c)的 OOM 标注与固定 7.2 GB 线直接服务于长视频记忆主张。"
+      ],
+      "design_weaknesses": [
+        "四种视觉任务挤在一张页宽复合图中，缩小后图(b)模型名与图(c)(d)刻度较难核验。",
+        "彩色视频帧和绿色/灰色曲线没有完全等价的灰度编码，图(d)跨模型/长度的比较条件仍需依赖正文。",
+        "caption 未说明 batch、GPU、480P/720P 在各子图中的完整条件，也未定义 OOM 边界或点是否为单次测量。"
+      ],
+      "reusable_pattern": "用“样例蒙太奇 + 资源曲线/条形成本”在摘要首图把质量、速度和可扩展性接成一个决策面；复用时应把每个子图的硬件、分辨率、步数和重复定义写进 caption。",
+      "evidence": {
+        "page": 1,
+        "label": "p.1 Figure 1 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 4,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "method_interface",
+        "mechanism",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 2: Overview of SANA-Video. Fig.(a) A high-level block-wise autoregressive training pipeline based on our block causal KV cache. (Details in Sec. 3.3). Fig.(b) Our model pipeline, containing an Autoencoder, Re-writer, Linear DiT, and a text encoder. Fig.(c) The detailed design of the added 3D RoPE in linear attention and the temporal convolution in our Linear DiT’s Mix-FFN.",
+        "word_count": 58,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 4.5,
+          "median": 6.5,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#DCEFFC",
+          "#F8D9D5",
+          "#F1E2F1",
+          "#E8F4D1",
+          "#F7C77E",
+          "#BEE7F1",
+          "#FFE0A3",
+          "#F29D7E",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "浅蓝、浅粉、浅绿和浅橙分别区分视频/文本输入、AutoEncoder、Linear/Cross Attention、Mix-FFN、Re-writer/LLM 与时间嵌入；箭头、分栏标题和模块文字提供结构冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 28,
+        "data_marks_estimate": 32
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "左至右的训练/推理数据流与模块调用顺序",
+        "y": "图(a)相邻 block 的层级；图(b)(c)模块内部的上下数据依赖",
+        "color": "视频 latent、文本条件、Linear/Cross Attention、Mix-FFN、3D RoPE 和 temporal convolution 的模块类别",
+        "shape": "视频帧堆叠、圆角模块、竖向流水块、矩阵/箭头和虚线分隔",
+        "line": "实线数据流、弧形 block 连接与虚线分栏/缓存边界",
+        "facet": "(a) block-wise AR training；(b) overall model pipeline；(c) Linear DiT module",
+        "text": "AutoEncoder、Re-writer、Small LLM、Time Emb、Linear Attn、Cross Attn、Mix FFN、3D RoPE、ConvLayer、O(n)等直接标签"
+      },
+      "data_and_statistics": "纯架构/流程图，没有样本、坐标轴或估计统计；图(a)展示 block-wise autoregressive training 和 causal KV cache，图(b)展示从视频与 prompt 到 Linear DiT 的接口，图(c)展开 3D RoPE、线性注意力和 temporal/spatial Mix-FFN 的算子关系。",
+      "evidence_relation": "§3.1/§3.2 的三阶段训练与 Linear DiT 组件 → Figure 2 接口总览 → Figure 3 的 RoPE 稳定性、Figure 4 的 block cache 机制 → Table 1/2/4 的复杂度与结果。",
+      "design_strengths": [
+        "三栏按“训练范式—整体管线—模块细节”由粗到细组织，方法边界与后续公式调用一一对应。",
+        "缓存、Re-writer、Small LLM 和时间嵌入均直接标注，复现者能定位条件输入。",
+        "图(c)用颜色块和箭头同时表达算子顺序与计算复杂度，适合作为方法接口图。"
+      ],
+      "design_weaknesses": [
+        "图中文字和算子尺寸在正文缩放后偏小，图(c)的矩阵维度、卷积核与箭头容易需要放大确认。",
+        " pastel 色块缺少严格灰度等价编码，颜色的语义映射主要依靠文字标签。",
+        "caption 只说明组件和所在 section，没有交代图(a)的 block 数、缓存状态，也没有指出训练/推理差异。"
+      ],
+      "reusable_pattern": "用三层架构图把“训练协议—模型管线—关键算子”串在同一页，后续理论和消融都可按面板回指；复用时应为缓存生命周期增加显式状态标记。",
+      "evidence": {
+        "page": 4,
+        "label": "p.4 Figure 2 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 5,
+      "module": "method",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "heatmap",
+        "line",
+        "matrix"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "mechanism",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 3: Analysis of Linear Attention with RoPE. (a) Visual comparison of attention maps. First two plots compare vanilla softmax attention (Wan) to our linear attention without positional encoding. The latter two plots show our method’s effect: applying RoPE after the ReLU kernel results in a sparser, more localized attention pattern. (b) Training loss for the QK sum (Eq. 2 denominator). Removing RoPE from the denominator (green line) ensures training stability, as discussed in Sec. 3.2.",
+        "word_count": 76,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#F2F8E9",
+          "#D7E9B5",
+          "#A7CD72",
+          "#65AE3A",
+          "#2F8F2F",
+          "#8A8A8A",
+          "#D0D0D0"
+        ],
+        "semantic_mapping": "四张 attention map 采用浅绿到深绿的顺序强度表达局部注意力；训练曲线用绿色区分移除 denominator RoPE 的稳定版本、灰色表示对照。面板标题和线图图例补充语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 5,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 8,
+        "data_marks_estimate": 2000
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "unknown",
+        "y_scale": "unknown",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "图(b)右上角图例；图(a)由各矩阵下方直接标签标识",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "图(a)矩阵列 token 位置；图(b) Training Steps（约 0–1500）",
+        "y": "图(a)矩阵行 token 位置；图(b) Training Loss",
+        "color": "attention map 强度与 Pre-/Post-RoPE QK sum 系列",
+        "shape": "四个方阵 heatmap 与两条时间序列折线",
+        "line": "绿色/灰色折线；矩阵内部以色阶而非线型表示强度",
+        "facet": "(a) 四种 attention map；(b) Pre/Post-RoPE QK Sum",
+        "text": "Vanilla Attention from Wan、No PE、ϕ(RoPE(x))、RoPE(ϕ(x)) (Ours)、Training Loss/Steps、Pre/Post-RoPE QK sum"
+      },
+      "data_and_statistics": "图(a)是 attention matrix 的定性热图比较，图(b)是 QK sum denominator 的单次 training-loss 轨迹；caption 给出约束关系但未给 seed、重复次数、聚合方式或误差带，曲线与热图均为点/像素证据而非不确定性统计。",
+      "evidence_relation": "§3.2 的 RoPE 顺序与 Eq. (2) 数值稳定性主张 → Figure 3 的 attention-locality/denominator 证据 → Figure 5(a)(b) 的组件消融与 Table 5 VBench 结果。",
+      "design_strengths": [
+        "热图与损失曲线在同一复合图中分别回答“局部性”和“稳定性”，机制解释与可观测证据对齐。",
+        "四个矩阵都有直接标签，绿色/灰色线图例明确，阅读无需跨页找编码。",
+        "caption 明确指出去掉 denominator RoPE 的绿色线与稳定性结论，脱离正文仍能理解核心比较。"
+      ],
+      "design_weaknesses": [
+        "attention map 没有数值色条、token 轴或归一化说明，颜色深浅只能支持相对的视觉判断。",
+        "训练曲线无误差/多次运行与初始值说明，灰色曲线的波动不能被解释为不确定性。",
+        "复合图内字体很小，公式记号 ϕ、RoPE 和 QK sum 需要正文上下文才能完整解释。"
+      ],
+      "reusable_pattern": "将机制的空间模式（heatmap）与训练稳定性（loss curve）并列，适合把算子改动映射到两个可观察后果；复用时应添加色条、实验重复和稳定性判据。",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Figure 3 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 6,
+      "module": "theory",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "matrix",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "theory_mechanism",
+        "method_interface",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 4: Overview of Block Linear Attention. (a) We compare the attention compute mechanism among vanilla attention, linear attention and causal linear attention. (b) The illustration of block causal Mix-FFN in processing the adjacent blocks.",
+        "word_count": 35,
+        "moves": [
+          "title",
+          "comparison",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "Computer Modern math"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 9.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#B7D9F3",
+          "#D0D0D0",
+          "#A6193F",
+          "#6FBE00",
+          "#FFFFFF",
+          "#243447",
+          "#43A2D4"
+        ],
+        "semantic_mapping": "图例用浅蓝 Token、灰色 Mask、深红 KV Cache、绿色 Compute 四类色块编码；块边界、矩阵标签、箭头和文字说明提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": null,
+        "legend_items": 4,
+        "annotations": 22,
+        "data_marks_estimate": 90
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "顶部共享图例",
+        "shared_legend": true,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "图(a)矩阵列/历史 token；图(b)相邻 block 的时间/缓存方向",
+        "y": "图(a)矩阵行/query；图(b)block 内 Token/Zero Padding/Conv cache 层级",
+        "color": "Token、Mask、KV Cache、Compute 的角色",
+        "shape": "矩阵网格、竖向 token 条、缓存块、箭头和虚线 block 分隔",
+        "line": "实线矩阵/数据流、蓝色弯箭头缓存传递、虚线 block 边界",
+        "facet": "(a) Vanilla/Linear/Causal Linear Attention；(b) Block Causal Mix-FFN",
+        "text": "Token、Mask、KV Cache、Compute、Block1/2、Cumulative Sum、Zero Padding、Cached Token-1"
+      },
+      "data_and_statistics": "概念/机制图，不含经验样本或误差；图(a)用矩阵与色块解释 vanilla、linear、causal-linear 的内存/计算路径，图(b)用 zero padding 与上一 block 的 cached token 解释 causal Mix-FFN 的状态传递。",
+      "evidence_relation": "§3.3 的 constant-memory global KV cache 与 Eq. (3) → Figure 4 的运算和缓存机制 → Table 1 的 O(N×D)/O(D²) 对照、Algorithm 1 的更新步骤及 Figure 1(c) 显存曲线。",
+      "design_strengths": [
+        "将三个注意力实现放在同一视觉基线下，复杂度差异可直接与 Table 1 对读。",
+        "图例把关键色块定义集中在顶部，缓存方向和 block 边界通过箭头/虚线重复表达。",
+        "图(b)把 Mix-FFN 的 zero padding 与 cached last frame 展示为实际状态，而非只写模块名。"
+      ],
+      "design_weaknesses": [
+        "矩阵示意没有给出 block 大小、N、D 或实际内存数值，不能单凭图复现复杂度量级。",
+        "红/绿对比在灰度或色弱条件下不稳，图例中的颜色承担了主要语义。",
+        "caption 未明确 causal linear 的 global context 与 fixed-memory 结论，主发现需要正文解释。"
+      ],
+      "reusable_pattern": "用“统一矩阵比较 + 相邻块状态图”展示复杂度机制，让理论符号与缓存实现共享一套视觉语言；复用时应在图内标注变量和状态生命周期。",
+      "evidence": {
+        "page": 6,
+        "label": "p.6 Figure 4 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "page_width",
+      "types": [
+        "line",
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "ablation",
+        "mechanism",
+        "efficiency_cost",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 5: SANA-Video configuration ablation studies. (a) Training loss curves with and without 3D RoPE. (b) Training loss curves with and without temporal 2D Convolution. (c) Latency comparison of SANA-Video between linear and full attention. (d) Comparison of monotonically increasing versus random timestep sampling in autoregressive block training.",
+        "word_count": 48,
+        "moves": [
+          "title",
+          "comparison",
+          "setup"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 6.5,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#78BE20",
+          "#A6A6A6",
+          "#D62728",
+          "#F2CE5B",
+          "#1F77B4",
+          "#E45756",
+          "#54A24B",
+          "#F58518",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "图(a)(b)绿色/灰色表示有无组件；图(c)绿色与灰色区分 linear/full attention，红色标注 2×/4× speedup；图(d)使用真实视频帧并用绿色框/箭头突出块位置。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 6,
+        "legend_items": 6,
+        "annotations": 10,
+        "data_marks_estimate": 520
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "unknown",
+        "y_scale": "unknown",
+        "grid": "unknown",
+        "legend_present": true,
+        "legend_placement": "图(a)(b)图内右上，图(c)图内上方；图(d)用直接标签",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "图(a)(b) Training Steps（0–30000）；图(c)分辨率类别（192p/480p/720p）；图(d)block/timestep 位置",
+        "y": "图(a)(b) Training Loss；图(c)Latency（s）；图(d)没有数值轴",
+        "color": "组件开关、attention 类型、speedup 注释和 qualitative frame 标记",
+        "shape": "折线、菱形 latency 点、视频帧矩阵与绿色框",
+        "line": "绿色/灰色 loss/latency 曲线，红色虚线或箭头 speedup 注释",
+        "facet": "(a) 3D RoPE；(b) Temporal Conv；(c) Attention Type Profile；(d) Timestep Settings",
+        "text": "w/ vs w/o、Training Loss/Steps、192p/480p/720p、2×/4× latency speedup、Random/Increasing、Block 1/3"
+      },
+      "data_and_statistics": "四面板结合两组训练损失、三分辨率 latency profile 和两个 block 的 qualitative timestep 对照；曲线是点估计，图(d)是定性帧序列，没有重复、误差条、置信区间或失败值。",
+      "evidence_relation": "§3.2 的 3D RoPE/temporal convolution 与 §3.3 的 increasing-SNR sampler → Figure 5 四个 ablation 视图 → Table 5 数值消融，Figure 3 机制图和 Table 6 长视频比较。",
+      "design_strengths": [
+        "同一图内同时覆盖机制（loss）、成本（latency）和行为（帧序列），与三项设计的因果叙述顺序一致。",
+        "图(a)(b)共享相似坐标与颜色，组件开关的方向可快速比较；图(c)将 speedup 直接写在曲线附近。",
+        "图(d)把随机/单调 timestep 的跨 block 视觉后果呈现出来，补足 Table 5 的点分数。"
+      ],
+      "design_weaknesses": [
+        "四面板的轴尺度和数据类型不同，读者不能把曲线高度与 qualitative frame 直接置于同一数值语义。",
+        "loss 曲线虽有明显噪声，但没有说明其是单次轨迹还是重复统计；speedup 也没有原始 latency 表。",
+        "caption 把 temporal 2D Convolution 写入，但没有定义图(d)两列对应的 block、采样预算或 qualitative 判据。"
+      ],
+      "reusable_pattern": "把“开关消融—成本曲线—行为样例”放进固定四面板模板；复用时应为每个 panel 提供可核验数值表、重复定义和相同硬件/步数。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 5 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 9,
+      "module": "results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 6: Latency comparison of our model on BF16 and NVFP4 precision.",
+        "word_count": 12,
+        "moves": [
+          "title",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 8.5
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#909090",
+          "#74BF00",
+          "#D62728",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "灰色柱为 BF16、绿色柱为 NVFP4，红色虚线/箭头标注 2.4× 加速；柱内数值与顶部图例提供文字冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 4,
+        "data_marks_estimate": 4
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "图顶部",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "两种输出分辨率/长度类别：480×832×81 与 720×1280×81",
+        "y": "50-Step Latency (s) on RTX 5090",
+        "color": "BF16 与 NVFP4 precision",
+        "shape": "每个分辨率类别两根并列柱",
+        "line": "红色虚线/箭头显示 BF16→NVFP4 的 2.4× 变化",
+        "facet": "两个分辨率面板",
+        "text": "BF16、NVFP4、120/50、71/29、2.4×、分辨率标签"
+      },
+      "data_and_statistics": "两组 RTX 5090、50-step latency 的单次柱值：480×832×81 为 120→50 s，720×1280×81 为 71→29 s；没有质量指标、重复数、误差或量化失效计数。",
+      "evidence_relation": "§5 on-device 4-bit quantization 与摘要中的 71→29 s 主张 → Figure 6 的 BF16/NVFP4 成本对照；与 Figure 1 的速度总览、Table 4 的 H100 BF16 主比较互补，但没有量化质量表。",
+      "design_strengths": [
+        "两个分辨率共享同一 y 轴和图例，2.4× 注释直接把工程收益写在柱组上。",
+        "柱内标值让小图在不依赖刻度的情况下仍可读。",
+        "将 RTX 5090 边缘部署协议与 H100 结果分开，避免硬件混淆。"
+      ],
+      "design_weaknesses": [
+        "caption 没有给出分辨率、50 steps、RTX 5090 或具体数值，脱离正文不自洽。",
+        "只展示 latency，未报告 BF16/NVFP4 的 VBench 或视觉质量变化，无法判断速度–质量折衷。",
+        "红绿颜色在灰度下区分弱，虽有图例和柱内数字但没有纹理冗余。"
+      ],
+      "reusable_pattern": "用共享坐标的成对柱把精度切换的延迟收益压缩成可扫描的工程证据；复用时应把硬件、步数和质量回归一并放入 caption/表格。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Figure 6 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Figure 7: Qualitative comparison among T2V methods. SANA-Video has comparable motion control and video-text semantic alignment with state-of-the-art small diffusion models.",
+        "word_count": 21,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#0B5FA5",
+          "#F2A900",
+          "#E45756",
+          "#54A24B",
+          "#FFFFFF",
+          "#1F77B4",
+          "#B279A2",
+          "#FF9DA6"
+        ],
+        "semantic_mapping": "不同模型按行分组，视频帧保留自然图像的多色；绿色框/红色 prompt 强调 SANA-Video 画面细节和动作语义，行标签承担主要模型编码。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每一行内的时间帧从左至右",
+        "y": "方法行与两个 prompt 场景（flamingo、painter）",
+        "color": "模型身份用行标签；红/绿文字与框突出 prompt/动作细节",
+        "shape": "3 个模型 × 4 帧的图像蒙太奇",
+        "line": null,
+        "facet": "两种 T2V prompt 场景，Wan2.1-1.3B/Wan2.2-5B/SANA-Video 三行对照",
+        "text": "模型行标签、Prompt 文本、被框选的 flamingo 细节与动作描述"
+      },
+      "data_and_statistics": "定性 T2V 对照：两条 prompt、每个模型四个时间帧，比较 motion control、语义对齐和视觉质量；没有 VBench 数值、样本分母、重复生成或盲评统计。",
+      "evidence_relation": "Appendix D.2 的 T2V comparison → Figure 7 的 flamingo/painter 对照 → Table 4 的 T2V VBench 与 Figure 5 的机制/消融；它是主表分数的视觉补充而非独立效率证据。",
+      "design_strengths": [
+        "固定模型行顺序和帧列使运动变化容易横向追踪。",
+        "prompt 文本与帧序列相邻，读者可将动作语义映射到具体画面。",
+        "SANA-Video 行突出细节框，适合展示视觉 failure/成功模式。"
+      ],
+      "design_weaknesses": [
+        "每个模型只有一个样例 prompt，选择机制、seed、帧间隔和失败样例均未说明。",
+        "多色自然图像无灰度/定量编码，质量和运动判断依赖主观观察。",
+        "caption 的“comparable”没有给出哪个维度的判定或与 Table 4 数值的对应。"
+      ],
+      "reusable_pattern": "用“固定 prompt × 模型行 × 时间帧列”做定性对照；复用时应同时提供 prompt/seed/帧时间和定量指标，避免把单例当总体结论。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Figure 7 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 20,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "main_comparison",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 8: Qualitative comparison among I2V methods. SANA-Video has better motion control and video-text semantic alignment.",
+        "word_count": 16,
+        "moves": [
+          "title",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.5,
+          "median": 7.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#0B5FA5",
+          "#F2A900",
+          "#E45756",
+          "#54A24B",
+          "#FFFFFF",
+          "#1F77B4",
+          "#B279A2",
+          "#FF9DA6"
+        ],
+        "semantic_mapping": "LTX-Video、SkyReel-V2 和 SANA-Video 以行标签区分；提示词中的运动/相机要求用红色强调，画面框和文字提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 6,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每个方法行的生成帧从左至右",
+        "y": "两个 I2V 场景（expression、cow slow-motion）与方法行",
+        "color": "方法以行标签区分；红色 prompt 词强调相机/运动条件",
+        "shape": "参考图列 + 3 个方法 × 4 帧的网格",
+        "line": null,
+        "facet": "上方表情变化场景、下方棕牛 slow-motion 场景",
+        "text": "LTX-Video、SkyReel-V2、SANA-Video、Prompt 文本和 I2V compare 标签"
+      },
+      "data_and_statistics": "两个 I2V 场景、三种方法、每行四帧的定性比较；展示相机保持、表情和 slow-motion 语义，但没有逐样本评分、失败率、seed 或重复统计。",
+      "evidence_relation": "Appendix D.2 I2V comparison 与主文 Table 4 I2V 结果 → Figure 8 视觉控制案例；与 Figure 9/10 的单模型 I2V consistency/motion-score 扩展相连。",
+      "design_strengths": [
+        "参考 prompt 与生成帧同页，能观察语义约束是否被执行。",
+        "方法行和帧顺序规整，横向比较成本低。",
+        "两个场景覆盖相机稳定与运动幅度，补充定量 Semantic/I2V 分数。"
+      ],
+      "design_weaknesses": [
+        "只呈现作者挑选的两个案例，caption 未声明选择规则或失败样例。",
+        "自然图像质量与运动控制没有可重复的评分标尺，颜色也不灰度安全。",
+        "caption 没有列出具体 baseline 版本和 I2V 分辨率/步数。"
+      ],
+      "reusable_pattern": "用“同一参考/指令、不同方法、连续帧”的 I2V qualitative grid 对齐语义控制与运动表现；复用时需将 prompt、采样设置和全量评估绑定。",
+      "evidence": {
+        "page": 20,
+        "label": "p.20 Figure 8 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Figure 9: Visualization of image-to-video generation. SANA-Video can keep consistent with the first frame while generating realistic motion.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#111111",
+          "#FFFFFF",
+          "#4C78A8",
+          "#F58518",
+          "#E45756",
+          "#54A24B",
+          "#B279A2"
+        ],
+        "semantic_mapping": "黑色标题/虚线分隔 Reference Frame 与 Generation Frames；四个场景用自然图像色彩，行间直接 prompt 文本作为场景身份。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 4,
+        "series": 4,
+        "legend_items": 0,
+        "annotations": 9,
+        "data_marks_estimate": 16
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每行由 reference frame 到生成帧的时间顺序",
+        "y": "四个 prompt 场景",
+        "color": "Reference/Generation 角色由标题与黑色虚线分隔，画面本身不承担方法颜色",
+        "shape": "一张 reference + 三张 generation frame 的四行网格",
+        "line": "竖向黑色虚线分隔参考图与生成帧",
+        "facet": "Ragdoll cat、selfie、skydiving、valley 四个 I2V prompt",
+        "text": "Reference Frame、Generation Frames、截断 prompt 文本"
+      },
+      "data_and_statistics": "四个 I2V 案例，每行 1 张 reference 与 3 张生成帧；这是 consistency/realistic motion 的定性证据，没有量化 temporal consistency、选择规则或不确定性。",
+      "evidence_relation": "Appendix D.3 “More I2V Results” → Figure 9 展示单模型 reference-to-generation 接口 → Figure 8 baseline 对照、Figure 10 motion score 控制与 Table 4 I2V 分数。",
+      "design_strengths": [
+        "统一标题和虚线把 reference 与生成序列清楚分开。",
+        "四个不同场景让读者看到单模型接口的覆盖面，而非只重复一个 prompt。",
+        "每行 prompt 与图像就近排列，语义与帧变化容易互证。"
+      ],
+      "design_weaknesses": [
+        "定性案例没有 baseline、seed、帧时间或失败案例，不能从视觉上估计总体一致率。",
+        "prompt 在图中被截断，caption 也不补全指令，脱离正文不完全可复现。",
+        "只用布局和自然图像色彩表达时间与场景，灰度打印下仍可读但运动幅度难比较。"
+      ],
+      "reusable_pattern": "用“参考帧列 + 生成帧列 + 多场景行”建立 I2V consistency 的最小可读模板；复用时应附完整 prompt 和定量 temporal metric。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Figure 9 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 10",
+      "page": 21,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "mechanism",
+        "ablation",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 10: The impact of motion score on I2V task. Higher motion score can lead to larger motion.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#111111",
+          "#FFFFFF",
+          "#4C78A8",
+          "#F58518",
+          "#E45756",
+          "#54A24B",
+          "#B279A2"
+        ],
+        "semantic_mapping": "Motion10/Motion30 由左侧行标签直接编码，图像自身色彩只表达内容，避免将自然颜色误当成数值系列。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 3,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每行三个连续生成帧从左至右",
+        "y": "Motion10 与 Motion30 两行",
+        "color": "运动设置由直接行标签编码，不依赖颜色",
+        "shape": "两行 × 两个场景 × 三帧的图像网格",
+        "line": null,
+        "facet": "黑猫与花园犬两个相同参考图场景",
+        "text": "Motion10、Motion30、Example/Done 等直接标签"
+      },
+      "data_and_statistics": "同一参考图/场景下比较 Motion10 与 Motion30 的定性帧序列；没有光流、motion score 数值轴、重复样本或量化一致性指标。",
+      "evidence_relation": "Appendix D.4 与数据处理中的 optical-flow motion score → Figure 10 作为 controllability 机制示例 → Figure 5(d) SNR/timestep 消融及 Figure 9 I2V consistency。",
+      "design_strengths": [
+        "在同一场景内只改变 Motion 标签，控制了大部分视觉内容，因果直觉清晰。",
+        "行标签直接编码设置，避免把猫/狗本身颜色当作变量。",
+        "短网格占用小，适合附录作为可读的控制案例。"
+      ],
+      "design_weaknesses": [
+        "Motion10/30 的实际数值单位、计算方式和 prompt 注入位置不在 caption 中。",
+        "只有两个案例，无法判断 motion score 对语义保持或失败率的总体影响。",
+        "帧间隔和采样设置缺失，较大运动是速度变化还是时间采样差异不明。"
+      ],
+      "reusable_pattern": "用固定 reference 与两级控制参数的 paired grid 展示可控性；复用时应同步报告 optical-flow 定义、完整 prompt 和全量分布。",
+      "evidence": {
+        "page": 21,
+        "label": "p.21 Figure 10 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 11",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "headline",
+        "qualitative_evidence",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Figure 11: Long video visualization of LongSANA.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#0B5FA5",
+          "#F2A900",
+          "#54A24B",
+          "#E45756",
+          "#FFFFFF",
+          "#1F77B4",
+          "#B279A2"
+        ],
+        "semantic_mapping": "0–10s 至 50–60s 的时间段由左侧行标签编码，所有帧为同一 Arctic fox rollout 的自然图像；底部 prompt 文本提供语义锚点。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 5,
+        "panels": 6,
+        "series": 1,
+        "legend_items": 0,
+        "annotations": 8,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每个 10 秒时间窗内四帧从左至右",
+        "y": "0–10s、10–20s、…、50–60s 六个时间行",
+        "color": "时间由标签编码，画面颜色保持场景/主体信息",
+        "shape": "6×4 长视频 frame grid",
+        "line": null,
+        "facet": "单一 Arctic fox / LongSANA 60s rollout",
+        "text": "时间窗标签、底部完整 prompt、LongSANA caption"
+      },
+      "data_and_statistics": "单个 60 秒 LongSANA rollout 的 24 个抽帧组成定性时间网格；它没有多条 rollout、失败率、自动一致性指标或 uncertainty，不能替代 VBench-Long 的总体评估。",
+      "evidence_relation": "Appendix D.5 的 1-minute visualization → Figure 11 展示长程 motion/semantic continuity → Table 9 的 30s VBench-Long 分数和正文 Figure 1(c) fixed-memory 论证。",
+      "design_strengths": [
+        "六个连续 10 秒窗口在一页内展示，读者可沿时间轴检查主体、背景和动作是否漂移。",
+        "左侧时间标签和底部完整 prompt 使长视频案例脱离正文也有语义锚点。",
+        "高信息密度适合暴露长程 consistency 的视觉 failure，而不只展示首尾帧。"
+      ],
+      "design_weaknesses": [
+        "只有单个 prompt/rollout，选择与失败处理未知，长视频结论外推范围很窄。",
+        "24 张图缩小后主体细节不易读，图中没有 frame timestamp 或可计算轨迹。",
+        "caption 没有写 60s、帧率、分辨率或抽帧规则，定性证据复现信息不足。"
+      ],
+      "reusable_pattern": "用“时间窗行 × 连续帧列”把 minute-scale rollout 的长程一致性压缩为可扫读图；复用时应报告抽帧规则、多个 seed 和自动 temporal metric。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Figure 11 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 12",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "pipeline",
+        "architecture",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "dataset",
+        "method_interface",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 12: Data filtering paradigm of SANA-Video.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.0,
+          "median": 8.0,
+          "maximum": 12.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 9,
+        "hex": [
+          "#FFFFFF",
+          "#F5E1B8",
+          "#DCEFFC",
+          "#F8E4A7",
+          "#CFE8C8",
+          "#DCC9E9",
+          "#F2B8A7",
+          "#7FB3D5",
+          "#6A3D9A"
+        ],
+        "semantic_mapping": "虚线圆角区域分隔 data acquisition/shot processing/filtering/embedding/training；橙、蓝、黄、绿、紫节点区分 raw data、text clips、filters、embeddings 与 pre-training/SFT。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 24,
+        "data_marks_estimate": 28
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "从 Public/Synthetic Data 到 Raw Data、Text-Clips Pairs、Embeds 再到 Pre-Training/SFT 的左至右流程",
+        "y": "各阶段内部的上下来源/过滤器/输出层级",
+        "color": "数据形态与训练阶段的分组",
+        "shape": "虚线大框、圆角处理框、圆柱数据存储、椭圆训练节点、箭头",
+        "line": "实线流程箭头和跨阶段连接",
+        "facet": "Data acquisition；shot/caption processing；motion/aesthetic/saturation filtering and training",
+        "text": "Public Data、Synthetic Data、Scene Cut、Captioning、Motion/Aesthetic/Saturation Filters、Text/VAE Embeds、Human Selection、Pre-Training/SFT"
+      },
+      "data_and_statistics": "数据处理流程图，没有样本数值轴或统计；把 public/synthetic acquisition、scene cut/captioning、motion/aesthetic/saturation filters 和 text/VAE embeddings 映射到 pre-training/SFT 输入。",
+      "evidence_relation": "Appendix E 数据集构建文字 → Figure 12 过滤管线接口 → Figure 13 captioning prompt、Figure 14 SFT 影响和 Table 4/9 的训练/长视频结果。",
+      "design_strengths": [
+        "分阶段虚线框明确了数据处理边界，数据存储与训练端点使用不同形状。",
+        "过滤维度和 embedding 类型都直接标注，能把附录文字转为可追踪流程。",
+        "左至右方向统一，适合复现者建立数据依赖图。"
+      ],
+      "design_weaknesses": [
+        "没有过滤阈值、保留比例、数据规模或各阶段失败/删除计数，流程不能单独复现。",
+        "pastel 色彩和小字体对灰度/色弱用户不友好，箭头在节点密集处需要放大。",
+        "caption 只有标题，没有说明 human selection 的位置或 text/VAE embeds 的用途。"
+      ],
+      "reusable_pattern": "用“数据形态圆柱 + 过滤节点 + 训练端点”的 staged pipeline 表示数据生命周期；复用时应把阈值、规模和数据版本写在节点或附表。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 12 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 13",
+      "page": 23,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "screenshot",
+        "qualitative_grid",
+        "pipeline"
+      ],
+      "purpose": [
+        "method_interface",
+        "dataset",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 13: An overview of the captioning pipeline.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 5.0,
+          "median": 7.0,
+          "maximum": 13.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#F7F7F7",
+          "#F7DFCE",
+          "#B6D8F2",
+          "#111111",
+          "#FFFFFF",
+          "#D62728",
+          "#2CA02C",
+          "#7F7F7F"
+        ],
+        "semantic_mapping": "灰色大背景包裹视频帧、桃色 User prompt 面板、蓝色 Qwen-2.5-VL 输出气泡；黑/红文本强调任务要求与示例，角色图标提供冗余。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 3,
+        "series": null,
+        "legend_items": 0,
+        "annotations": 18,
+        "data_marks_estimate": 10
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "视频输入 → User instruction/example → Qwen-2.5-VL English caption 输出",
+        "y": "输入帧、prompt 面板与 assistant 输出的上下层级",
+        "color": "User/assistant 角色和 prompt/output 区块",
+        "shape": "视频帧条、圆角对话框、人物/模型图标和大面板",
+        "line": "speech-bubble 指向与垂直堆叠关系",
+        "facet": "视频输入示例、详细 captioning prompt、Qwen-2.5-VL 输出示例",
+        "text": "User、Qwen-2.5-VL、Task Requirements、Example English prompt、Directly output the English text"
+      },
+      "data_and_statistics": "截图式 captioning 接口示例，展示视频帧、约 80–100 字的 English prompt 要求与一条输出；不含模型准确率、人工一致性、prompt 采样分布或失败统计。",
+      "evidence_relation": "Appendix E Captioning 与 Figure 12 的 Captioning 节点 → Figure 13 公开 Qwen-2.5-VL 输入/输出接口 → Figure 10 motion score 文本注入和后续 SFT 数据构建。",
+      "design_strengths": [
+        "把不可见的 captioning prompt、输入帧和输出气泡放进一个截图，接口意图清晰。",
+        "User/Qwen 角色和桃/蓝背景形成可识别的输入输出层级。",
+        "任务要求列出动作、镜头、细节和英文输出约束，便于复现 prompt 语义。"
+      ],
+      "design_weaknesses": [
+        "大段 prompt 文字在单页截图中极密，无法像源文本一样搜索或复制。",
+        "caption 没有列出 Qwen-2.5-VL 版本、解码参数、caption 质量检查或拒答处理。",
+        "配色依赖角色颜色，灰度和色弱条件下输出/输入区分变弱。"
+      ],
+      "reusable_pattern": "将模型调用的输入帧、结构化 prompt 和输出示例作为附录接口卡片；复用时应提供机器可读 prompt、模型版本和验证样本。",
+      "evidence": {
+        "page": 23,
+        "label": "p.23 Figure 13 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 14",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "ablation",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 14: Analysis of the influence of SFT. Fine-tuning on the human preferred SFT data can improve the video details and adherence to the laws of physics.",
+        "word_count": 27,
+        "moves": [
+          "title",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#111111",
+          "#FFFFFF",
+          "#00B7E6",
+          "#F5A623",
+          "#54A24B",
+          "#E45756",
+          "#7F7F7F"
+        ],
+        "semantic_mapping": "w.o./w. SFT 由行标签编码；两组案例用自然图像色彩，绿色框标出眼睛/pipe 细节，caption 文字给出细节与物理规律语义。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 2,
+        "legend_items": 0,
+        "annotations": 5,
+        "data_marks_estimate": 12
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每个案例的连续帧从左至右",
+        "y": "w.o. SFT 与 w. SFT 两行",
+        "color": "SFT 条件由行标签，绿色框标记局部改进区域",
+        "shape": "两行 × 两个案例 × 三帧的 qualitative grid",
+        "line": null,
+        "facet": "猫眼细节案例与画布/水管物理案例",
+        "text": "w.o. SFT、w. SFT、绿色局部框、Figure caption"
+      },
+      "data_and_statistics": "两个 SFT 前后 qualitative 案例（眼睛细节、pipe/physics），没有全量视频评分、人工偏好样本数、随机种子或失败比例；绿色框是作者选定局部区域而非统计量。",
+      "evidence_relation": "Appendix E 的约 5,000 条 human-preferred SFT 数据与 §5 → Figure 14 作为 SFT ablation qualitative evidence → Table 5 结构消融和 Figure 15 下游任务。",
+      "design_strengths": [
+        "前后条件共享 prompt/场景，局部绿色框让“细节改进”观察目标明确。",
+        "两类 failure mode（细节与物理）覆盖不同质量维度。",
+        "小规模网格在附录页中占用适中，标签直接且不需要额外 legend。"
+      ],
+      "design_weaknesses": [
+        "只有两个挑选案例，无法支持 SFT 对总体质量的因果结论。",
+        "caption 没有给出 human preference 的采样、prompt、seed 或评价协议。",
+        "绿色框与自然色彩在灰度下不稳定，局部改进仍需放大对照。"
+      ],
+      "reusable_pattern": "用同一案例的 w.o./w. paired grid 展示 fine-tuning 改变的局部 failure mode；复用时应绑定全量 preference/automatic metrics 和选择规则。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Figure 14 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 15",
+      "page": 24,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "image_montage",
+        "qualitative_grid"
+      ],
+      "purpose": [
+        "qualitative_evidence",
+        "other"
+      ],
+      "caption": {
+        "text": "Figure 15: Visualization of world model task generation.",
+        "word_count": 8,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Arial",
+          "Helvetica Neue",
+          "DejaVu Sans"
+        ],
+        "size_pt": {
+          "minimum": 6.5,
+          "median": 8.0,
+          "maximum": 10.0
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "rendered_estimate",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 8,
+        "hex": [
+          "#111111",
+          "#FFFFFF",
+          "#4C78A8",
+          "#54A24B",
+          "#F58518",
+          "#E45756",
+          "#B279A2",
+          "#7F7F7F"
+        ],
+        "semantic_mapping": "Robotics、Driving、MineCraft 由左侧行标签编码；每行六帧体现时间演化，真实/游戏场景颜色来自图像，不代表量化变量。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 3,
+        "series": 3,
+        "legend_items": 0,
+        "annotations": 4,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": false,
+        "legend_placement": null,
+        "shared_legend": null,
+        "direct_labels": true,
+        "marker_types": null,
+        "line_styles": null,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": null,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "每个下游任务的六个生成帧从左至右",
+        "y": "Robotics、Driving、MineCraft 三行",
+        "color": "任务类别由行标签，画面色彩仅为场景内容",
+        "shape": "3×6 frame grid",
+        "line": null,
+        "facet": "embodied AI/robotics、autonomous driving、game/MineCraft",
+        "text": "Robotics、Driving、MineCraft、Figure title"
+      },
+      "data_and_statistics": "三类 world-model 下游任务的单组定性帧序列；没有任务成功率、控制误差、轨迹条件、交互闭环或失败案例，因此只支持“潜在应用展示”。",
+      "evidence_relation": "§5 Applications and Deployment 与 Appendix F → Figure 15 的 Robotics/Driving/MineCraft qualitative demo → Figure 14 SFT 影响和 Figure 1 的 Physical AI/World Simulation 入口。",
+      "design_strengths": [
+        "三类任务并列且每行六帧，覆盖 embodied AI、驾驶和游戏场景的视觉多样性。",
+        "任务标签直接写在行侧，读者不会将自然图像色彩误读为模型系列。",
+        "作为应用附录，它把主文的 world-model potential 具体化为可观察案例。"
+      ],
+      "design_weaknesses": [
+        "没有输入控制条件、动作/相机轨迹、数据来源细节或定量任务指标，无法验证 world-model 能力。",
+        "每类只有一行案例且没有 baseline，容易把 demo 误读为系统性结果。",
+        "caption 只有标题，未定义 MineCraft 拼写、帧间隔、生成长度或任务协议。"
+      ],
+      "reusable_pattern": "用“任务类别行 × 时间帧列”作为下游应用展示模板；复用时必须加控制条件、任务指标、baseline 与失败分层。",
+      "evidence": {
+        "page": 24,
+        "label": "p.24 Figure 15 visual and caption",
+        "bbox": null,
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 5,
+      "module": "theory",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "theory_mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 1: For a sequence with N tokens ∈ R1×D, memory and compute costs are compared among three attention types. Causal linear attention shows best efficiency while maintains global memory.",
+        "word_count": 30,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 3,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "只给出符号级 O(·) 渐近复杂度；没有经验样本、GPU、重复、误差或统计检验。",
+      "data_and_statistics": "三行 causal full/local/linear attention 比较 Memory、N-th token compute 和 N tokens compute；N、D、W 是符号变量，不能由表恢复具体 wall-clock。",
+      "evidence_relation": "§3.3 constant-memory/global-context 问题 → Table 1 理论复杂度 → Figure 4 机制图、Equation (3)/Algorithm 1 缓存实现 → Figure 1(c) 和 Table 2/4 成本结果。",
+      "design_strengths": [
+        "将内存、单 token 和全序列计算放在统一四列表头，决策维度完整。",
+        "三种 attention 类型同一行结构，O(N²D) 与 O(D²) 的增长关系易于扫读。",
+        "caption 直接写出 causal linear 的效率/全局记忆结论，理论表有明确用途。"
+      ],
+      "design_weaknesses": [
+        "表头只有符号，没有解释 N/D/W 的实际视频 token 对应；脱离正文难判断适用范围。",
+        "竖向分隔线与 booktabs 极简线混用，超小字号下公式可读性有限。",
+        "只有渐近上界，没有常数、实际测量或 cache/quality trade-off，不能单独证明速度收益。"
+      ],
+      "reusable_pattern": "用“资源维度 × 算法类型”的极简 asymptotic 表先锁定机制预期，再用实验表验证；复用时应同时给出符号定义和实际 protocol。",
+      "evidence": {
+        "page": 5,
+        "label": "p.5 Table 1 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 7,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 2: Latency on H100 GPU and VBench evaluation on 720×1280×81 resolution videos.",
+        "word_count": 13,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "四个模型的单次 latency/VBench point estimates；没有 batch/step/seed/重复数、方差、区间或失败值，caption 也未说明这些条件。",
+      "data_and_statistics": "Wan-2.1-14B、Wan-2.1-1.3B、Wan-2.2-5B、SANA-Video-2B 四行；Latency(s) 为整数，Total/Quality/Semantic 为两位小数；H100、720×1280×81。",
+      "evidence_relation": "DCAE-V/Linear DiT 方法与高分辨率效率主张 → Table 2 720P 结果 → Table 3 VAE reconstruction、Table 4 480P 综合主比较和 Figure 1(b)。",
+      "design_strengths": [
+        "把 720P latency 与 VBench 三项分数放在同一小表，质量–成本权衡可直接检查。",
+        "模型规模/名称和 SANA 行加粗，表格在单栏宽度下仍能快速定位作者方法。",
+        "箭头方向清楚，数值精度在 VBench 列一致。"
+      ],
+      "design_weaknesses": [
+        "caption 未给出 H100 batch、denoising steps 或重复协议，跨模型 latency 的可比性依赖正文。",
+        "作者行加粗但没有 best/second-best 规则或显著性标记，点差可能被过度解读。",
+        "小表省略参数量、VAE/步数等解释变量，不能单独解释 36s 的来源。"
+      ],
+      "reusable_pattern": "在小表内并列硬件成本与质量分数，作为高分辨率主结果切片；复用时应把 batch、步数、seed 和参数量纳入表头/脚注。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 2 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 7,
+      "module": "method",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 3: Reconstruction capability of different Autoencoders on Panda-70M 192p resolution.",
+        "word_count": 11,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "Panda-70M 192p reconstruction 的 point metrics；虽有数据集名称，但没有每行样本分母、重复、误差、扰动设置或显著性检验。",
+      "data_and_statistics": "四种 autoencoder 行，Ratio、PSNR、SSIM、LPIPS 四个指标；Ratio 为整数，PSNR/SSIM/LPIPS 两位小数；LPIPS 方向为 ↓。",
+      "evidence_relation": "§3.5 高压缩 VAE 选择 → Table 3 重建/压缩率对照 → Table 2 的 720P latency 和 Appendix Table 8 的 latent perturbation robustness。",
+      "design_strengths": [
+        "压缩 Ratio 与 PSNR/SSIM/LPIPS 同表，直接呈现效率和重建质量的折衷。",
+        "指标方向箭头与统一小数位降低了读表歧义。",
+        "作者 DCAE-V 行加粗，使其在压缩率更高但重建略低时的定位清晰。"
+      ],
+      "design_weaknesses": [
+        "没有 latent shape、temporal/spatial factor 或运行成本，Ratio 不能直接映射到 token 数。",
+        "caption 未说明重建样本数与评估实现，数值可复现性不足。",
+        "只报告一个干净 latent 条件，无法支持正文所需的扰动鲁棒性；需依赖 Table 8。"
+      ],
+      "reusable_pattern": "将压缩率与重建质量并列，帮助读者判断 encoder 的工程选择；复用时应同时报告 latent 形状、样本量和扰动切片。",
+      "evidence": {
+        "page": 7,
+        "label": "p.7 Table 3 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 4",
+      "page": 8,
+      "module": "results",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "headline"
+      ],
+      "caption": {
+        "text": "Table 4: Comprehensive comparison of our method with SOTA approaches in efficiency and performance on VBench. The speed is tested on one H100 GPU with BF16 Precision. Latency: Measured with a batch size of 1, on a 480×832×81 video, using the model’s default inference steps for a fair comparison. We highlight the best, second best, and third best entries.",
+        "word_count": 59,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "encoding_key"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 14,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 2,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "underline",
+        "italic",
+        "best_second_best"
+      ],
+      "uncertainty": "两组任务的 latency、speedup、参数量和 VBench scores 都是 point estimates；没有 seed、重复、误差/区间、失败值或统计检验。",
+      "data_and_statistics": "Text-to-Video 8 个方法行、Image-to-Video 6 个方法行；7 列为 Methods、Latency(s)、Speedup、#Params(B)、Total、Quality、Semantic/I2V。延迟为 H100 BF16、batch=1、480×832×81、默认 steps；速度、参数和分数混合于同一决策面。",
+      "evidence_relation": "§4.2 综合比较 → Table 4 主 headline（60s/8.0×/8.2× 与 VBench）→ Table 2 720P、Table 5/6 消融和 Appendix Table 9 长视频切片。",
+      "design_strengths": [
+        "硬件成本、模型规模和质量分数同表，质量–效率–参数决策面最完整。",
+        "T2V/I2V 两级 row group 和 Semantic/I2V 表头避免任务混淆。",
+        "best/second/third 以 bold/underline/italic 叠加，且 caption 明确其编码规则。"
+      ],
+      "design_weaknesses": [
+        "14 个方法行和 7 列在页宽内仍较密，长模型名和蓝色引用降低逐 cell 核验效率。",
+        "默认 steps、模型实现和 H100 protocol 可能跨 baseline 不完全同质，表中没有逐行 protocol/failure 标记。",
+        "作者行的高亮与点估计没有重复/不确定性，best 的细小分差不能直接视为稳健优势。"
+      ],
+      "reusable_pattern": "用分任务 row group 将 latency、speedup、参数量和质量放入一张主比较表；复用时需保持 protocol 同质并标注重复/失败。",
+      "evidence": {
+        "page": 8,
+        "label": "p.8 Table 4 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 5",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "ablation",
+        "mechanism"
+      ],
+      "caption": {
+        "text": "Table 5: Quantitative ablation studies on VBench.",
+        "word_count": 7,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 6,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "六个 ablation 配置的 VBench point scores；无重复、seed、误差、区间或显著性检验。三组相邻 pair 是设计因素对照，不是独立总体。",
+      "data_and_statistics": "w/o/w Temporal Conv、w/o/w 3D RoPE、Random/Increasing Steps 三组各两行；Total/Quality/Semantic 三列均保留两位小数，向上箭头表示越高越好。",
+      "evidence_relation": "Figure 5 的 loss/latency/qualitative ablation → Table 5 的 VBench 数值 → §4.3 组件重要性结论；再连接 Figure 3 RoPE 机制和 Table 6 长视频质量。",
+      "design_strengths": [
+        "三组 paired rows 直接对应正文三项设计，改动边界清楚。",
+        "同一指标列跨 pair 对齐，小数精度统一，适合做局部差值检查。",
+        "极简横线和居中表头减少视觉噪声。"
+      ],
+      "design_weaknesses": [
+        "caption 没有列出模型、分辨率、steps、VBench split 或 paired 运行关系。",
+        "没有高亮、增量列或误差，读者需自行计算每个组件的改善幅度。",
+        "三组 row group 仅靠空行/横线区分，窄屏或灰度阅读时层级较弱。"
+      ],
+      "reusable_pattern": "用固定指标列和相邻 paired rows 记录组件开关的结果；复用时应加 change/delta、运行协议和重复统计。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 5 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 6",
+      "page": 9,
+      "module": "ablation",
+      "placement": "main",
+      "width": "single_column",
+      "purpose": [
+        "main_comparison",
+        "robustness",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Table 6: Comparison of autoregressive video generation methods on VBench.",
+        "word_count": 10,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "CausVid、SkyReels-V2、Self-Forcing、SANA-Video 四行的 VBench point estimates；无长视频长度、seed、重复、误差或失败值列。",
+      "data_and_statistics": "Model、Total Score↑、Quality Score↑、Semantic Score↑ 四列；SANA-Video 行加粗，分数两位小数；表格针对 autoregressive 方法而非完整模型规模/延迟决策面。",
+      "evidence_relation": "§4.3 Long Video Generation → Table 6 对 AR baseline 的 VBench 对照 → Figure 5(c)(d) attention/timestep 成本与 Appendix Table 9 的 VBench-Long/FPS。",
+      "design_strengths": [
+        "四行窄表适合快速定位 LongSANA/SANA-Video 与 AR baseline 的分数关系。",
+        "指标方向箭头和作者行加粗足以支撑正文的比较叙述。",
+        "将 autoregressive 子集单独列出，避免与 Table 4 的 T2V/I2V 混合。"
+      ],
+      "design_weaknesses": [
+        "caption 没有说明视频长度、分辨率、采样步数或模型名称 LongSANA/SANA-Video 的关系。",
+        "没有 latency/FPS 或质量方差，无法支撑“long”场景下的效率结论。",
+        "点差尤其是 Self-Forcing 与 SANA-Video 的相近分数没有稳健性证据。"
+      ],
+      "reusable_pattern": "用一个小型 AR 专门表把机制相关 baseline 与主模型对齐；复用时应同时报告 sequence length、FPS/latency 和不确定性。",
+      "evidence": {
+        "page": 9,
+        "label": "p.9 Table 6 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 7",
+      "page": 18,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "single_column",
+      "purpose": [
+        "reproduction",
+        "method_interface"
+      ],
+      "caption": {
+        "text": "Table 7: Architecture details of the proposed SANA-Video.",
+        "word_count": 8,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 6,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 0,
+      "rules": "booktabs",
+      "highlighting": [
+        "none"
+      ],
+      "uncertainty": "单行模型配置表，不是抽样统计；所有数字为 architecture constants，没有 uncertainty、重复或比较基线。",
+      "data_and_statistics": "SANA-Video-2B 一行、Model/Width/Depth/FFN/#Heads/#Param(M) 六列；宽度 2240、深度 20、FFN 6720、20 heads、2056M 参数，均为整数。",
+      "evidence_relation": "Appendix C implementation details → Table 7 复现所需模型规模 → Figure 2 Linear DiT、Table 4 #Params(B) 和 Algorithm 1 推理接口。",
+      "design_strengths": [
+        "六列短表集中给出复现实验最关键的结构常数。",
+        "参数名直接对应 Transformer 配置，单位/数量级不需要额外图例。",
+        "附录位置合理，避免主文主比较表被配置细节占用。"
+      ],
+      "design_weaknesses": [
+        "只有一个模型版本，没有层级/latent/tokenizer 细节或配置文件链接。",
+        "caption 没有说明参数量是否含 VAE/text encoder，#Param(M) 的统计边界不明。",
+        "极简表缺少表注，FFN/Width 与 Table 4 的 2B 关系需读者自行核对。"
+      ],
+      "reusable_pattern": "用单行 architecture card 固定记录 width/depth/FFN/heads/params；复用时应给出参数统计边界和可执行配置路径。",
+      "evidence": {
+        "page": 18,
+        "label": "p.18 Table 7 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 8",
+      "page": 19,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "robustness",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 8: Performance comparison of different VAE models on 1000 samples from Panda-70M with different noise perturbation levels.",
+        "word_count": 18,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "uncertainty_definition"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 9,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 3,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "1000 个 Panda-70M samples 在 ε=0、0.1、0.2 三组 latent Gaussian perturbation 下的 point PSNR/SSIM/LPIPS；caption 给样本数和扰动层级，但无跨样本 SD/SE/区间。",
+      "data_and_statistics": "Model、latent shape、psnr↑、ssim↑、lpips↓ 五列；三组 ε 各 3 行（Wan2.1VAE/Wan2.2VAE/DCAE-V），latent shape 含通道与 T/H/W ratio；PSNR/SSIM/LPIPS 两位小数。",
+      "evidence_relation": "§3.5 VAE 选择与扰动假设 → Table 8 附录鲁棒性切片 → Table 3 干净重建、Table 2 高分辨率 latency 和 DCAE-V 设计。",
+      "design_strengths": [
+        "显式列出 ε=0/0.1/0.2，直接检验 diffusion latent 偏离 clean distribution 时的重建退化。",
+        "latent shape 与三种质量指标并列，压缩率/质量 trade-off 比 Table 3 更可解释。",
+        "每个 ε 组通过粗体突出组内最佳，分组横线清晰。"
+      ],
+      "design_weaknesses": [
+        "表头使用小写 psnr/ssim/lpips 且未解释单位，caption 没有定义 ε 的具体注入位置/标准差。",
+        "只给均值/单点，没有跨 1000 样本的离散度、失败值或 perceptual 人评。",
+        "三组 9 行在附录仍较密，模型名和 latent shape 需要逐行核对。"
+      ],
+      "reusable_pattern": "用扰动强度 row group 展开“干净—轻扰动—强扰动”的 robustness curve；复用时应增加 dispersion、样本级分布和扰动定义。",
+      "evidence": {
+        "page": 19,
+        "label": "p.19 Table 8 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    },
+    {
+      "label": "Table 9",
+      "page": 22,
+      "module": "appendix",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost",
+        "robustness"
+      ],
+      "caption": {
+        "text": "Table 9: Comparison of long video generation methods on the VBench-Long (Zhang et al., 2024) benchmark. All compared methods generate 30s videos for evaluation.",
+        "word_count": 24,
+        "moves": [
+          "title",
+          "setup",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": true,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "CMR10",
+          "CMMI7",
+          "CMSY7"
+        ],
+        "body_size_pt": 6.0,
+        "header_size_pt": 6.0,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 4,
+      "columns": 5,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "best_second_best"
+      ],
+      "uncertainty": "四种长视频方法的 VBench-Long Total/Quality/Semantic 与 FPS point estimates；caption 固定 30s 评估长度，但没有重复、seed、误差、硬件或失败统计。",
+      "data_and_statistics": "Model、Total Score↑、Quality Score↑、Semantic Score↑、FPS 五列；SkyReels-V2/FramePack/Self Forcing/SANA-Video 四行；三项分数和 FPS 均两位小数，最佳分数/FPS 用粗体。",
+      "evidence_relation": "Appendix D.6 的 long video evaluation → Table 9 将质量与实时 FPS 放在同一决策面 → Figure 11 60s qualitative rollout、Table 6 AR VBench 与 Figure 1(c) memory scaling。",
+      "design_strengths": [
+        "把长视频质量与 FPS 同表，是主文效率叙事在长序列条件下的最有价值补充。",
+        "30s evaluation 条件在 caption 明确，指标方向和小数位统一。",
+        "SANA-Video 的 Semantic/Total/FPS 优势在同一行可快速读取。"
+      ],
+      "design_weaknesses": [
+        "硬件、分辨率、采样步数和“FPS”测量边界没有在 caption 中说明，跨方法可比性仍依赖正文/代码。",
+        "单点结果没有重复或不确定性，27.50 FPS 的实时性结论缺少负载/峰值定义。",
+        "Quality 并非最佳但与 Total/Semantic/FPS 同时加粗规则需读者读 caption/视觉判断，强调层级略不一致。"
+      ],
+      "reusable_pattern": "用“长序列质量列 + 吞吐列”将质量与实时成本统一；复用时应固定硬件/分辨率/steps，并报告跨 seed 的质量与 FPS 分布。",
+      "evidence": {
+        "page": 22,
+        "label": "p.22 Table 9 table and caption",
+        "bbox": null,
+        "basis": "pdf_object"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Figure 1 先给生成质量与资源成本入口；Figure 2 定义 Linear DiT、3D RoPE、Mix-FFN 和 block-wise cache 接口；Figure 3/4 将 RoPE 稳定性和 causal linear attention 机制连接到 Table 1 渐近复杂度；Table 2/3/4 给出 720P、VAE 和统一 T2V/I2V 主比较；Figure 5/Table 5 消融组件与 sampler，Table 6/9 扩展到 AR/30s 长视频；Appendix Figures 7–15 提供 T2V/I2V、长 rollout、数据过滤、SFT 和 world-model qualitative evidence。",
+    "caption_system": "Figure captions 以“标题 + 面板说明 +（少量）主发现”为主；Figure 1/3/7–10/14 直接写出主发现，Figure 2/4/5 主要说明结构或比较。多数附录 qualitative captions 缺少 seed、帧间隔、选择规则和统计定义。",
+    "table_header_system": "主表表头统一使用 Methods/Model、Latency、Speedup、#Params 与 VBench Total/Quality/Semantic 方向箭头；VAE 表使用 Ratio/PSNR/SSIM/LPIPS；长视频附表追加 FPS。T2V/I2V 和 ε/方法组通过 row group、横线或 italic header 区分。",
+    "method_result_ablation_link": "Figure 2 的组件接口 → Figure 3/4 机制与 Table 1 复杂度 → Table 2/3/4 主结果 → Figure 5/Table 5 paired ablation → Table 6/9 长视频结果；Figure 6 另接量化成本，但没有质量回归表。",
+    "main_appendix_link": "正文 Figure 1–6、Table 1–6 建立效率/机制/主比较；Appendix Algorithm 1（schema 不含 algorithm 对象）补充 KV-cache 推理伪代码，Table 7/8/9 补充 architecture、VAE perturbation 和 VBench-Long，Figures 7–15 给 qualitative/data/SFT/world-model 扩展。",
+    "typography_consistency": "表格使用 PDF object 可核验的 Nimbus Roman/CMR/CMMI/CMSY；图内 raster 标签多为 Arial/Helvetica-like，正文标题/caption 仍为 Nimbus Roman/Computer Modern。字号在 composite/qualitative 图中偏小，附录截图和 Figure 11/13 的文字密度差异较大。",
+    "color_consistency": "绿色大体表示 SANA/Linear/Compute，灰色表示 full attention/BF16/对照，红色表示异常或 speedup；但自然图像、prompt 截图和 pastel pipeline 不共享同一 palette，语义主要靠行列标签、图例和 caption 补足。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "摘要首图将 qualitative montage 与 latency/VRAM/length 曲线合成同一决策面，先给价值再给资源边界。",
+      "方法图采用“训练协议—整体管线—关键算子”三级架构，理论图再用矩阵和缓存状态解释复杂度。",
+      "主比较表把质量、延迟、加速比和参数量放在同一表中，并用 T2V/I2V row group 保持任务边界。",
+      "消融采用 Figure 5 的机制/成本/行为四面板与 Table 5 的 paired rows，形成定性—定量互补。",
+      "附录 qualitative grid 固定方法/条件行与时间帧列，适合展示 T2V/I2V 一致性和长视频漂移。"
+    ],
+    "highest_value_objects": [
+      "Figure 2：最清楚地定义 Linear DiT、3D RoPE、Mix-FFN 和 block-wise AR/KV-cache 的接口边界。",
+      "Figure 4 + Table 1：把 causal linear attention 的矩阵运算、缓存状态和 O(D²)/O(N²D) 预期闭合。",
+      "Table 4：唯一同时呈现 T2V/I2V 质量、latency、speedup 和参数量的主决策表。",
+      "Figure 5 + Table 5：将三项设计的 loss/latency/qualitative 变化和 VBench 分数连接起来。",
+      "Table 9 + Figure 11：分别给长视频质量/FPS 点值和 60s qualitative rollout，但外推仍受单例限制。"
+    ],
+    "failure_patterns": [
+      "Figure 1/5/6 与 Table 2/4/9 的 latency/FPS 多为单次点估计，硬件、分辨率、steps、batch 和 baseline protocol 不总在对象内自洽。",
+      "所有图表都缺少重复/seed/误差或失败值；qualitative figures 也没有选择规则、全量分布或盲评。",
+      "附录 Figures 7–15 的自然图像/截图只能支持展示性机制或潜在应用，不能替代 VBench、temporal consistency 或 world-model task metrics。",
+      "主文颜色编码（绿/灰/红）在灰度/色弱输出下不完全安全，且附录 palette 异质、图内字号偏小。",
+      "公开 NVlabs/Sana 仓库包含实现和文档但没有论文图表生成源，无法 source_exact 复现所有对象。"
+    ],
+    "one_sentence_visual_strategy": "论文用绿色/灰色效率语义把“Linear DiT 与 constant-memory cache → 复杂度 → 主质量/成本比较 → paired ablation → 长视频与应用样例”串成一条视觉论证链，但统计不确定性、协议完整性和公开图表源不足限制了可复核性。"
+  }
+}

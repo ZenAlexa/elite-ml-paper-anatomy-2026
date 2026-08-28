@@ -1,0 +1,1405 @@
+{
+  "schema_version": "visual-audit.v1",
+  "paper_id": "iclr-2026-9ba8184b9ae8",
+  "source_acquisition": {
+    "status": "partial_visual_source",
+    "repository_candidates": [
+      "naimengye/speculative-action"
+    ],
+    "selected_repository": "https://github.com/naimengye/speculative-action",
+    "visual_source_files": [
+      {
+        "repository_url": "https://github.com/naimengye/speculative-action",
+        "path": "chess-game/plot.py",
+        "role": "plot_script",
+        "tool": "Matplotlib/SciPy",
+        "evidence": "README names the combined bar charts as Figure 2; create_combined_bar_plots matches Figure 2 and create_time_token_plot matches Figure 6."
+      },
+      {
+        "repository_url": "https://github.com/naimengye/speculative-action",
+        "path": "e-commerce/tau-bench/analysis_static_combine.ipynb",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "Cells 10–12 match Figure 8(a,b) and Figure 3 axes, colors, bars, error bars and grids."
+      },
+      {
+        "repository_url": "https://github.com/naimengye/speculative-action",
+        "path": "e-commerce/tau-bench/figures/pre_acc_error_bar.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "790x590 PNG is a visual match for the PDF Figure 3 raster chart and is generated/located beside the cited notebook."
+      },
+      {
+        "repository_url": "https://github.com/naimengye/speculative-action",
+        "path": "e-commerce/tau-bench/figures/time_accuracy.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "789x590 PNG matches PDF Figure 8(a), including log time axis and User Typing Time reference."
+      },
+      {
+        "repository_url": "https://github.com/naimengye/speculative-action",
+        "path": "e-commerce/tau-bench/figures/price_accuracy.png",
+        "role": "rendered_asset",
+        "tool": null,
+        "evidence": "790x590 PNG matches PDF Figure 8(b), including price axis and three model series."
+      },
+      {
+        "repository_url": "https://github.com/naimengye/speculative-action",
+        "path": "os-tuning/scripts/plot_use_case.py",
+        "role": "plot_script",
+        "tool": "Matplotlib",
+        "evidence": "README names the OS plots as Figures 5, 7 and 9; plot_figure5, plot_figure7 and plot_token_cost match the PDF layouts/styles, with PDF-only convergence-marker differences noted for Figure 9."
+      }
+    ],
+    "search_note": "先核查自动 inventory 与空的 corpus/visual_sources/iclr-2026-9ba8184b9ae8/，再用 gh 只读核验仓库元数据、README 与 tree。README 标题和 PDF 链接直接建立 naimengye/speculative-action 与论文关系；只将可由脚本/PNG 逐项匹配的 6 个源文件记为视觉源。Figure 1、Figure 4、Table 1–3 没有公开绘图/表格/LaTeX 源；自动候选中的结果 JSON 和测试文件未被当作源。"
+  },
+  "paper_style": {
+    "main_figures": 6,
+    "main_tables": 1,
+    "appendix_figures": 3,
+    "appendix_tables": 2,
+    "dominant_figure_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "DejaVu Sans",
+        "DejaVu Sans Bold",
+        "HelveticaNeue",
+        "STIXGeneral",
+        "Arial"
+      ],
+      "size_pt": {
+        "minimum": 6,
+        "median": 9,
+        "maximum": 18
+      },
+      "weight": [
+        "regular",
+        "medium",
+        "bold"
+      ],
+      "style": [
+        "roman",
+        "italic"
+      ],
+      "provenance": "mixed",
+      "confidence": "medium"
+    },
+    "dominant_table_typography": {
+      "family": [
+        "Nimbus Roman No9 L",
+        "rtxr",
+        "txsy"
+      ],
+      "body_size_pt": 10,
+      "header_size_pt": 10,
+      "header_weight": "mixed",
+      "provenance": "pdf_object",
+      "confidence": "high"
+    },
+    "palette_strategy": "按子任务使用局部 categorical palette：Figure 1 为 lane/state pastel，Figure 2 为 skyblue/lightcoral，Figure 3 为三档蓝，Figure 4 为蓝/橙，Figure 5/7 为 OS 蓝/红，Figure 6 为四策略色，Figure 8 为 blue/yellow/green，Figure 9 为 tab10 风格配置色；Table 2 用蓝/紫/红文字加粗标 selected time/convergence。颜色多承担系列身份，跨图没有单一全局方法 palette。",
+    "vector_raster_mix": "Figure 1、2、5、6、7、9 主要为 PDF vector paths/text；Figure 3、4、8 由 p.7/p.8/p.20 的嵌入 raster images 承载；Table 1/2 为 PDF text/rules。source-generated vector 与 raster PNG 混用造成字体、抗锯齿和线宽观感差异。",
+    "style_consistency": "Letter 双栏、caption label 和 booktabs 表格骨架稳定；正文/表格 Nimbus Roman 与数学字体一致，但图内 DejaVu/Helvetica/STIX 混用。Figure 8 panel label typo、Figure 9 caption truncation 和孤立 Table 3 label 是跨对象完整性断点。"
+  },
+  "figures": [
+    {
+      "label": "Figure 1",
+      "page": 2,
+      "module": "method / §1–§2 framework",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "architecture",
+        "pipeline",
+        "conceptual_diagram"
+      ],
+      "purpose": [
+        "headline",
+        "method_interface",
+        "theory_mechanism",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 1: Illustration of our framework in a chess-playing environment. While the Actor issues an LLM call to decide the next move, the Speculator uses a faster model to guess it. These guesses enable parallel API calls for the next steps, and once a guess is verified, the system gains time through parallelization. The process runs in the backend, ensuring a lossless speedup for the user.",
+        "word_count": 66,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": true,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "HelveticaNeue",
+          "HelveticaNeue-Medium",
+          "Arial",
+          "STIXGeneral"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 9,
+          "maximum": 17
+        },
+        "weight": [
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "mixed",
+        "color_count": 7,
+        "hex": [
+          "#F2ECE1",
+          "#DDF3EA",
+          "#017100",
+          "#EE220C",
+          "#004D80",
+          "#000000",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "米色/薄荷色分别编码 Non-Speculative/Speculative lane；绿色为预测或成功，红色为 mismatch/reject，蓝色为验证/commit，黑白为文字和底色。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 2,
+        "annotations": 12,
+        "data_marks_estimate": 0
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "none",
+        "y_scale": "none",
+        "grid": "none",
+        "legend_present": true,
+        "legend_placement": "top_center",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "从当前动作到后继动作的时间/流程方向。",
+        "y": "Non-Speculative 与 Speculative 两条 lane 及其分支层级。",
+        "color": "lane、预测成功、mismatch 和验证状态。",
+        "shape": "棋盘、Actor/Speculator 图标和圆角模块框。",
+        "line": "实线箭头表示调用/推进，虚线或叉表示验证失败/分支拒绝。",
+        "facet": "上下两条 lane；不是统计 facet。",
+        "text": "动作标签、lane 标题、模型/Actor 名称、check 与 mismatch 符号。"
+      },
+      "data_and_statistics": "动作标签 `a_t=[e2e4]`、`a_{t+1}=[c5c7]` 和 `â_t^1 != a_t` 是说明性状态/校验示例，不是统计样本；没有分母、重复或误差。",
+      "evidence_relation": "引言关于 LLM API 等待占据 agent 时间的主张 → §2 Actor/Speculator 接口与验证不变式 → Figure 1 → p.5 的 Algorithm 1 → Figures 2–4 的 lossless 实验。",
+      "design_strengths": [
+        "将方法接口、验证不变式和时间收益置于同一左到右阅读方向。",
+        "上下 lane、箭头、叉号和 check 提供多通道机制编码。"
+      ],
+      "design_weaknesses": [
+        "图标和动作标签密集，缩小后小字难读。",
+        "latency、branch count 和验证窗口没有量化；“lossless speedup”没有数值证据。"
+      ],
+      "reusable_pattern": "用“权威调用 → 快速预测 → 并行预取 → 验证 → commit/reject”的双 lane 流程解释无损机制；定量复用时增加验证分母和时间单位。",
+      "evidence": {
+        "page": 2,
+        "label": "Figure 1: Illustration of our framework in a chess-playing environment",
+        "bbox": [
+          120,
+          50,
+          493,
+          285
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 2",
+      "page": 6,
+      "module": "results / §3.1.2 Chess results",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 2: Percentage of time saved and percentage of correct predictions across 5 runs at 30 steps.",
+        "word_count": 17,
+        "moves": [
+          "title",
+          "setup"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 8,
+          "median": 9,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#87CEEB",
+          "#F08080"
+        ],
+        "semantic_mapping": "skyblue=Speculative Accuracy (%)；lightcoral=Time Saved (%).",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": 6
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper_left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "1、2、3 speculative predictions。",
+        "y": "百分比；准确率和时间节省共用同一百分比轴。",
+        "color": "两个 bar 系列分别表示预测准确率与 time saved。",
+        "shape": "矩形 bar。",
+        "line": "error-bar caps 和 bar 边框。",
+        "facet": null,
+        "text": "bar 顶部直接标 31.3/41.3/54.7% 与 11.8/15.0/19.5%。"
+      },
+      "data_and_statistics": "5 runs、30 steps；准确率是各步预测动作命中的比例，time saved 是并行相对串行耗时的比例。`chess-game/plot.py` 的 `create_combined_bar_plots` 用 `stats.t.ppf(0.975, n-1)` 计算 yerr、`capsize=8` 和 y-grid，但 PDF caption 没有定义误差条是区间、SD 还是 SE，也没有显示单次 run 或失败值。",
+      "evidence_relation": "Figure 1 的无损流程 → Figure 2 的 chess 主比较 → Figure 3/4 的其他 lossless tool-use 结果；宽度收益也为 Figure 6 的成本—延迟分析提供入口。",
+      "design_strengths": [
+        "同一 x 轴并列正确率和时间收益，趋势可快速扫描。",
+        "直接数值和 error caps 使小幅收益可查，且源码与 PDF 对应明确。"
+      ],
+      "design_weaknesses": [
+        "两个不同统计量共用百分比轴，误差语义未定义。",
+        "颜色是主要系列身份，caption 没写出 54.7%/19.5% 主结论和分母。"
+      ],
+      "reusable_pattern": "用 grouped bars + 直接数值 + 运行间 error caps 比较 speculation width；复用时在 caption 明确 error 类型、分母和最优宽度。",
+      "evidence": {
+        "page": 6,
+        "label": "Figure 2: Percentage of time saved and percentage of correct predictions",
+        "bbox": [
+          306,
+          465,
+          505,
+          730
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 3",
+      "page": 7,
+      "module": "results / §3.2.2 E-Commerce",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 3: APIs prediction accuracy across various Speculator models.",
+        "word_count": 9,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 9,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#9ECAE1",
+          "#6BAED6",
+          "#3182BD"
+        ],
+        "semantic_mapping": "浅/中/深蓝分别表示 Gemini-2.5-Flash、GPT-5 family、Multi Agent。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 9,
+        "data_marks_estimate": 9
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper_left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "low、medium、high reasoning capability。",
+        "y": "APIs Prediction Accuracy (%)。",
+        "color": "Speculator model family/configuration。",
+        "shape": "矩形 bar。",
+        "line": "error-bar caps。",
+        "facet": null,
+        "text": "9 个 bar 顶部的百分比 labels。"
+      },
+      "data_and_statistics": "正文设置 reasoning budgets 为 1024/2048/4096 tokens，并把 API prediction accuracy 定义为与 ground-truth APIs 匹配的 speculative calls 比例；9 个点约为 22.8/24.1/32.5、23.4/27.2/34.9、23.3/34.3/38.5%。没有样本数、run aggregation 或 error-bar 定义。notebook cell 12 与 `pre_acc_error_bar.png` 的 bar/yerr/grid 结构和 PDF 完全匹配。",
+      "evidence_relation": "§3.2 的多模型/多预算配置 → Figure 3 的 API accuracy 主比较 → Figure 1/Algorithm 1 的 lossless tool-use 接口；它是跨 e-commerce 模型的实验复核。",
+      "design_strengths": [
+        "统一三档 budget 与三类 Speculator，直接 labels 便于比较。",
+        "误差条保留了跨运行波动的视觉入口，且 PNG/source 可复核。"
+      ],
+      "design_weaknesses": [
+        "栅格化后小字号与 caps 受论文缩放影响。",
+        "三种蓝色灰度区分弱；caption 不说明 budget、分母和误差。"
+      ],
+      "reusable_pattern": "以 reasoning budget 为 x、模型为颜色系列，直接标百分比和误差；复用时用 marker/纹理补充颜色，并写明 accuracy 分母。",
+      "evidence": {
+        "page": 7,
+        "label": "Figure 3: APIs prediction accuracy across various Speculator models",
+        "bbox": [
+          326,
+          255,
+          504,
+          470
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 4",
+      "page": 8,
+      "module": "results / §3.3 HotpotQA",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "bar"
+      ],
+      "purpose": [
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 4: Accuracy with gemini-2.5-flash as the Actor. Speculating multiple actions (k = 3) yields higher accuracy than predicting a single action.",
+        "word_count": 22,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 9,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 2,
+        "hex": [
+          "#6BAED6",
+          "#FDAE6B"
+        ],
+        "semantic_mapping": "蓝=top-3 prediction；橙=top-1 prediction。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "rendered_estimate"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 6,
+        "data_marks_estimate": 6
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "categorical",
+        "y_scale": "linear",
+        "grid": "y",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 0,
+        "line_styles": 0,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "error_bar",
+        "line_width_pt": 1.0,
+        "provenance": "rendered_estimate"
+      },
+      "encodings": {
+        "x": "gpt-5-nano、gpt-4.1-nano、gemini-2.5-flash Speculator。",
+        "y": "Accuracy（百分比/strict API accuracy，轴上未写单位）。",
+        "color": "top-3 与 top-1。",
+        "shape": "矩形 bar。",
+        "line": "error-bar caps。",
+        "facet": null,
+        "text": "6 个 bar 顶部直接标 31.67/15.08%、46.25/18.75%、38.33/19.58%。"
+      },
+      "data_and_statistics": "HotpotQA strict API accuracy；图的主方向是 k=3 高于 single action，最高约 46.25%。没有 test/query 数、重复次数、误差条定义或失败值；`Accuracy` 轴缺少 `%` 与 strict-match 分母，需要 §3.3 才能解释。",
+      "evidence_relation": "§3.3 的 HotpotQA single/top-k API 预测 → Figure 4 的 width comparison → 与 Figures 2–3 的 lossless accuracy 证据并列。",
+      "design_strengths": [
+        "top-1/top-3 对照直接，caption 明确方向性发现。",
+        "三种 Speculator 的横向差异集中在一张图中。"
+      ],
+      "design_weaknesses": [
+        "栅格图在单栏中使小字和误差条偏小。",
+        "颜色没有纹理冗余，轴名没有单位/strict-match 定义，且仓库中没有对应 plotting source。"
+      ],
+      "reusable_pattern": "用同一模型 x 轴展示 top-1/top-k 收益，直接标百分比；在 caption 写清严格匹配分母、N 和误差。",
+      "evidence": {
+        "page": 8,
+        "label": "Figure 4: Accuracy with gemini-2.5-flash as the Actor",
+        "bbox": [
+          326,
+          130,
+          504,
+          270
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 5",
+      "page": 9,
+      "module": "results / §4.2 OS tuning",
+      "placement": "main",
+      "width": "double_column",
+      "types": [
+        "line",
+        "scatter",
+        "other"
+      ],
+      "purpose": [
+        "main_comparison",
+        "mechanism",
+        "efficiency_cost"
+      ],
+      "caption": {
+        "text": "Figure 5: (Left) Comparison of Speculator-Actor, Speculator-only, and Actor-only convergence. The Speculator shortens time spent exploring poor settings. The Speculator-only agent stabilizes quickly but at a worse final value. (Right) Average p95 latency over a 20-second tuning experiment showing that rapid reaction offers immediate performance benefits (see §B.3.3). Lower is better.",
+        "word_count": 51,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 9,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 6,
+        "hex": [
+          "#5DADE2",
+          "#85C1E9",
+          "#E74C3C",
+          "#000000",
+          "#D9D9D9",
+          "#FFFFFF"
+        ],
+        "semantic_mapping": "Actor-only/Speculator-only/Actor+Speculator 用蓝/浅蓝/红；黑虚线为 OS Default，浅色带为 Optimal Region，黑白为文字/底色。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 4,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 5,
+        "annotations": 2,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 2,
+        "line_styles": 3,
+        "hatching": false,
+        "reference_lines": 2,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.3,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "左图 Time (s)，0–200；右 inset 为 Configuration。",
+        "y": "左图 min_granularity (ms)，log；右侧为 p95 latency (ms)。",
+        "color": "三种配置和两种 reference 状态。",
+        "shape": "轨迹点/marker；右侧为表格单元。",
+        "line": "三条收敛线、OS Default 虚线和 Optimal Region 阴影带。",
+        "facet": "左 convergence plot + 右 Configuration/Latency p95 (ms) inset。",
+        "text": "legend、坐标、三行 latency 数值和配置标签。"
+      },
+      "data_and_statistics": "左侧为 OS `min_granularity` 收敛轨迹；正文报告 Speculator-only 约 0.55 ms/36.24 ms 的较差解，joint 系统约 0.2 ms/30.26 ms。右侧是 20 秒 tuning experiment 的平均 p95 latency：Untuned 102.97、Actor-only 54.00、Actor + Spec. 37.93。没有轨迹不确定性、N 或离散度。`plot_figure5` 精确给出颜色、log y、linewidth 2.2/2.4、grid 和右侧小表。",
+      "evidence_relation": "正文 §4 从 Figures 2–4 的 lossless setting 转入 last-write-wins 的 lossy OS；Figure 5 同时支撑 convergence、reaction 和 final latency，并由 Figure 7 机制化、由 Figure 9/Table 2 展开累计成本。",
+      "design_strengths": [
+        "收敛过程与最终 latency summary 配对，过程和决策结果在一个画布闭合。",
+        "log y 适合跨数量级的 setting 变化，源脚本可复核。"
+      ],
+      "design_weaknesses": [
+        "左图多层 reference encoding 在小尺寸下密集。",
+        "没有重复/误差显示；p95 聚合、阴影语义和 baseline 条件依赖正文。"
+      ],
+      "reusable_pattern": "用 log 收敛轨迹 + latency inset 把过程动力学和决策指标绑定；复用时明确阴影、p95 聚合、baseline 和重复不确定性。",
+      "evidence": {
+        "page": 9,
+        "label": "Figure 5: (Left) Comparison of Speculator-Actor, Speculator-only, and Actor-only convergence",
+        "bbox": [
+          108,
+          80,
+          504,
+          330
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 6",
+      "page": 10,
+      "module": "ablation / §5.2 Dynamic selective speculation",
+      "placement": "main",
+      "width": "single_column",
+      "types": [
+        "scatter",
+        "pareto"
+      ],
+      "purpose": [
+        "ablation",
+        "efficiency_cost",
+        "theory_mechanism"
+      ],
+      "caption": {
+        "text": "Figure 6: Cost-latency tradeoff across different speculation widths, forming a Pareto curve.",
+        "word_count": 12,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "DejaVu Sans Bold",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 10,
+          "maximum": 14
+        },
+        "weight": [
+          "regular",
+          "semibold",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#2E86AB",
+          "#A23B72",
+          "#F18F01",
+          "#4CAF50"
+        ],
+        "semantic_mapping": "1/2/3 speculation 与 confidence-based threshold policy 四种策略；marker 另编码 target step。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 1,
+        "series": 4,
+        "legend_items": 4,
+        "annotations": 4,
+        "data_marks_estimate": 24
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "lower_left",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 4,
+        "line_styles": 2,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.5,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "Percentage of Time Spent (%)，约 70–95。",
+        "y": "Percentage of Extra Tokens Used (%)，约 80–190。",
+        "color": "speculation width/threshold strategy。",
+        "shape": "target steps 20/30/40/50 对应 circle/square/pentagon/diamond。",
+        "line": "每一策略的灰色连线表示路径/Pareto 关系。",
+        "facet": null,
+        "text": "策略直接标签、Target Steps legend 与点位置。"
+      },
+      "data_and_statistics": "点表示 target steps 20/30/40/50 下 1、2、3 speculation 与 confidence threshold 的额外 token percentage 和 time-spent percentage；没有 seed、误差、单个 task 分布或失败值。它对应 §5.2 continuation-value/greedy threshold 的简化实现，支持选择性扩展降低额外 token 成本的消融结论。",
+      "evidence_relation": "§5 理论中的 marginal branch rule → Figure 6 的 width/threshold Pareto ablation → 结论中对额外 token cost 与 latency reduction 的权衡。",
+      "design_strengths": [
+        "颜色、marker、直接标签三重编码 width、策略和 target step。",
+        "灰色连线让 Pareto 方向和 workload 变化可读，源码参数精确。"
+      ],
+      "design_weaknesses": [
+        "无误差、点数和重复说明；百分比基准依赖 §5。",
+        "caption 没有解释 confidence policy 的含义或优势。"
+      ],
+      "reusable_pattern": "在二维成本—延迟面上用 marker 编码 target step、颜色编码策略、灰色连线显示 Pareto 路径；caption 应补坐标分母和点聚合。",
+      "evidence": {
+        "page": 10,
+        "label": "Figure 6: Cost-latency tradeoff across different speculation widths",
+        "bbox": [
+          320,
+          55,
+          504,
+          275
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 7",
+      "page": 18,
+      "module": "appendix / B.3.3 Speculative Reaction Time Benefits",
+      "placement": "appendix",
+      "width": "single_column",
+      "types": [
+        "line"
+      ],
+      "purpose": [
+        "mechanism",
+        "robustness",
+        "qualitative_evidence"
+      ],
+      "caption": {
+        "text": "Figure 7: A controlled experiment showing the system’s step response after a manual perturbation at t = 0. The Actor-Speculator system corrects the poor setting within a second, while the Actor-only system must wait over 10 seconds for its next decision cycle. The quantitative results of this experiment are summarized in Figure 5 (Right) in the main text.",
+        "word_count": 58,
+        "moves": [
+          "title",
+          "setup",
+          "comparison",
+          "main_finding",
+          "appendix_pointer"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 8,
+          "median": 10,
+          "maximum": 14
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman",
+          "italic"
+        ],
+        "provenance": "mixed",
+        "confidence": "high"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 3,
+        "hex": [
+          "#E74C3C",
+          "#5DADE2",
+          "#000000"
+        ],
+        "semantic_mapping": "红=Speculator + Actor，蓝=Actor-only，黑/灰为轴和 grid。",
+        "redundant_encoding": true,
+        "grayscale_safe": true,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 2,
+        "panels": 1,
+        "series": 2,
+        "legend_items": 2,
+        "annotations": 2,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "time",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_right",
+        "shared_legend": false,
+        "direct_labels": true,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 0,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.4,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "Time (s)，0–20；手动扰动 t=0 后的时间响应。",
+        "y": "min_granularity (ms)，log。",
+        "color": "joint vs Actor-only。",
+        "shape": "响应轨迹及 Speculator 的 x marker。",
+        "line": "step/solid response curves。",
+        "facet": null,
+        "text": "speculator response、actor response 直接文字和 legend。"
+      },
+      "data_and_statistics": "单次受控 10-ms setting step response；红线约 1 秒恢复，蓝线需等待超过 10 秒。没有重复、误差、置信区间或 sample count。Figure 7 是 Figure 5 右侧 aggregate p95 latency 的机制证据。",
+      "evidence_relation": "附录 B.3.3 的手动 perturbation → Figure 7 的即时/延迟响应 → Figure 5 (Right) 的 p95 量化结果。",
+      "design_strengths": [
+        "把 aggregate latency 转成清晰的扰动—响应轨迹。",
+        "颜色、直接响应标签和附录指针使机制与主文结果易连接。"
+      ],
+      "design_weaknesses": [
+        "单次受控轨迹不表示跨扰动稳定性。",
+        "log y、反应定义和颜色语义仍需正文，图中文字较小。"
+      ],
+      "reusable_pattern": "用 step response 展示“扰动—快速 provisional action—权威 Actor 更新”，并与 aggregate latency 图互指；复用时加多次扰动带或明确示例边界。",
+      "evidence": {
+        "page": 18,
+        "label": "Figure 7: A controlled experiment showing the system’s step response",
+        "bbox": [
+          195,
+          130,
+          504,
+          370
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 8",
+      "page": 20,
+      "module": "appendix / C.2.1 E-commerce",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "scatter",
+        "line"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Figure 8: Prediction Accuracy against Speculator’s Cost across different models. (a) Accuracy–Speculator time cost trade-off across models. The dashed line shows average user typing time. (d) Accuracy–Speculator price trade-off across models, reflecting the monetary cost of speculative execution.",
+        "word_count": 38,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 7,
+          "median": 9,
+          "maximum": 12
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 4,
+        "hex": [
+          "#0000FF",
+          "#B3B300",
+          "#008000",
+          "#000000"
+        ],
+        "semantic_mapping": "blue=Gemini-2.5-Flash，yellow/olive=GPT-5 family，green=Multi Agent，black dashed=User Typing Time。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 3,
+        "legend_items": 3,
+        "annotations": 1,
+        "data_marks_estimate": 18
+      },
+      "plot_grammar": {
+        "rendering": "raster",
+        "x_scale": "unknown",
+        "y_scale": "linear",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "upper_left",
+        "shared_legend": false,
+        "direct_labels": false,
+        "marker_types": 1,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 1,
+        "uncertainty_display": "none",
+        "line_width_pt": 2.0,
+        "provenance": "source_exact"
+      },
+      "encodings": {
+        "x": "panel (a) 为 Time Cost/Turn (s) log；panel (b) 为 Price Cost/Turn (USD) linear。",
+        "y": "两个 panel 均为 API Prediction Accuracy (%) linear。",
+        "color": "三种 Speculator 模型。",
+        "shape": "圆 marker。",
+        "line": "各点之间的 solid connecting line；左 panel 另有虚线 typing-time reference。",
+        "facet": "左 time-cost、右 price-cost；PDF 实际标 (a)/(b)。",
+        "text": "每 panel 各自 legend 和 panel label。"
+      },
+      "data_and_statistics": "以时间成本和价格成本分别对 API prediction accuracy；点按不同 reasoning budget/模型配置连接。正文将 accuracy 定义为 ground-truth API 匹配比例，图没有 run count、误差、cost aggregation 或失败值。`analysis_static_combine.ipynb` cells 10–11 及 `time_accuracy.png`/`price_accuracy.png` 与 PDF 栅格对象匹配。",
+      "evidence_relation": "§3.2 e-commerce accuracy → Figure 8 的 deployment time/price cost trade-off → 与 Figure 3 的模型/budget accuracy 和 OS cost figures 形成成本扩展。",
+      "design_strengths": [
+        "相同质量指标下并列 latency-cost 与 monetary-cost，左图 log x 能容纳跨数量级时间。",
+        "notebook 与 PNG 提供可复核的源参数和渲染资产。"
+      ],
+      "design_weaknesses": [
+        "caption 把实际 (b) 错写为 (d)，破坏 panel 对账。",
+        "颜色缺少纹理冗余；两 panel x scale 不同且成本聚合/不确定性未说明。"
+      ],
+      "reusable_pattern": "对相同质量指标并列 latency-cost 和 monetary-cost panel，明确 log/linear、reference line 和共同 y；复用时同步 panel 编号与 caption。",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 8: Prediction Accuracy against Speculator’s Cost across different models",
+        "bbox": [
+          80,
+          60,
+          520,
+          300
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Figure 9",
+      "page": 20,
+      "module": "appendix / C.2.2 OS hyperparameter tuning",
+      "placement": "appendix",
+      "width": "page_width",
+      "types": [
+        "line",
+        "other"
+      ],
+      "purpose": [
+        "efficiency_cost",
+        "main_comparison",
+        "reproduction"
+      ],
+      "caption": {
+        "text": "Figure 9: Cumulative token usage and cost over time. The left and right plots show the cumulative cost (USD) and total tokens used, respectively, for all three configurations. The vertical lines mark the observed convergence point for each system. The Actor-only model converges at 200s",
+        "word_count": 45,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": true,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "DejaVu Sans",
+          "Nimbus Roman No9 L"
+        ],
+        "size_pt": {
+          "minimum": 6,
+          "median": 8,
+          "maximum": 11
+        },
+        "weight": [
+          "regular",
+          "bold"
+        ],
+        "style": [
+          "roman"
+        ],
+        "provenance": "mixed",
+        "confidence": "medium"
+      },
+      "color": {
+        "mode": "categorical",
+        "color_count": 5,
+        "hex": [
+          "#1F77B4",
+          "#FF7F0E",
+          "#2CA02C",
+          "#D62727",
+          "#9367BD"
+        ],
+        "semantic_mapping": "蓝=Speculator-only，橙=Actor-only，绿/红=joint 的 Speculator/Actor，紫=joint Total。",
+        "redundant_encoding": true,
+        "grayscale_safe": false,
+        "provenance": "source_exact"
+      },
+      "complexity": {
+        "score": 3,
+        "panels": 2,
+        "series": 5,
+        "legend_items": 5,
+        "annotations": 3,
+        "data_marks_estimate": null
+      },
+      "plot_grammar": {
+        "rendering": "vector",
+        "x_scale": "linear",
+        "y_scale": "log",
+        "grid": "both",
+        "legend_present": true,
+        "legend_placement": "bottom_center",
+        "shared_legend": true,
+        "direct_labels": false,
+        "marker_types": 0,
+        "line_styles": 1,
+        "hatching": false,
+        "reference_lines": 3,
+        "uncertainty_display": "none",
+        "line_width_pt": 1.0,
+        "provenance": "mixed"
+      },
+      "encodings": {
+        "x": "两个 panel 均为 Time (s)，0–200 linear。",
+        "y": "左 Cumulative Cost (USD) log；右 Cumulative Tokens log。",
+        "color": "五个配置/组件 series。",
+        "shape": null,
+        "line": "cumulative step/line；竖直虚线标 observed convergence。",
+        "facet": "左 cost、右 tokens。",
+        "text": "底部共享 legend 和 convergence marker。"
+      },
+      "data_and_statistics": "两 panel 表达 OS 调参随时间的累计 USD/token 消耗，竖线标各系统观察到的 convergence；Table 2 以 13s/20s/30s/60s/120s/200s 离散值复核曲线。没有重复、区间或失败值。`plot_token_cost` 精确覆盖双 panel、step、labels、grid 和 series；当前公开函数片段未包含 PDF 可见的全部竖线，因此 marker 属性以 PDF 优先、记为 mixed。",
+      "evidence_relation": "OS lossy convergence → Figure 9 的累计资源轨迹 → Table 2 的选定时间点 → 正文 13s joint vs 200s Actor-only 的成本/收敛结论。",
+      "design_strengths": [
+        "log y 与共享 time 轴把 cost、tokens、convergence 放在同一决策面。",
+        "共享 legend 和 Table 2 使曲线与离散数值可互查。"
+      ],
+      "design_weaknesses": [
+        "5 条 series 与小字 legend 密集，竖线没有直接绑定到配置。",
+        "无不确定性；caption 在 `200s` 截断且“三种配置”与五条绘制 series 需正文解释。"
+      ],
+      "reusable_pattern": "用并列 log-y 累积资源曲线、共享 legend 和 convergence 竖线，配套 selected-time table；复用时标注每条竖线、定价/聚合定义并完成 caption。",
+      "evidence": {
+        "page": 20,
+        "label": "Figure 9: Cumulative token usage and cost over time",
+        "bbox": [
+          80,
+          290,
+          520,
+          430
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "label": "Table 1",
+      "page": 1,
+      "module": "introduction",
+      "placement": "main",
+      "width": "page_width",
+      "purpose": [
+        "headline",
+        "experimental_design"
+      ],
+      "caption": {
+        "text": "Table 1: Estimated time state-of-the-art AI agents spend on various tasks/environments.",
+        "word_count": 11,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "rtxr"
+        ],
+        "body_size_pt": 10,
+        "header_size_pt": 10,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 1,
+      "columns": 4,
+      "header_levels": 1,
+      "row_groups": 0,
+      "decimal_precision": null,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "无 mean±SD、区间、重复或误差；10–20/5–30/30–45 为估计范围，Kaggle Chess Game 为单点 1 hour。",
+      "data_and_statistics": "四种外部任务时间估计：OS Tasks 10–20 min、Deep Research 5–30 min、Data Pipeline 30–45 min、Kaggle Chess Game 1 hour；单位写入单元格，表不是作者实验结果。",
+      "evidence_relation": "引言关于 agent 等待/决策时间瓶颈的动机 → Figure 1 的后台并行接口 → Figures 2–5 的 latency/time-saving 实验。",
+      "design_strengths": [
+        "四种任务并排，单位直观，booktabs 规则克制。"
+      ],
+      "design_weaknesses": [
+        "来源/测量条件依赖表头引用和正文；区间与单点精度不一致。",
+        "没有统一 aggregation、agent/model identity 或可比性说明。"
+      ],
+      "reusable_pattern": "用统一时间单位并排展示任务级等待预算作为方法动机；复用时增加来源、观察协议和估计不确定性。",
+      "evidence": {
+        "page": 1,
+        "label": "Table 1: Estimated time state-of-the-art AI agents spend",
+        "bbox": [
+          118,
+          560,
+          493,
+          635
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 2",
+      "page": 20,
+      "module": "appendix / C.2.2 OS hyperparameter tuning",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "reproduction",
+        "main_comparison"
+      ],
+      "caption": {
+        "text": "Table 2: Cumulative tokens and cost (in cents) at selected time marks. While Speculation incurs higher instantaneous costs, its rapid convergence (bolded) prevents long-term resource waste compared to the slower Actor-only baseline.",
+        "word_count": 32,
+        "moves": [
+          "title",
+          "setup",
+          "encoding_key",
+          "comparison",
+          "main_finding"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": true
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L",
+          "rtxr"
+        ],
+        "body_size_pt": 10,
+        "header_size_pt": 10,
+        "header_weight": "bold",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": 7,
+      "columns": 7,
+      "header_levels": 2,
+      "row_groups": 0,
+      "decimal_precision": 2,
+      "rules": "booktabs",
+      "highlighting": [
+        "bold",
+        "text_color"
+      ],
+      "uncertainty": "累计资源确定性取样，没有 mean±SD、区间、重复或失败值；颜色/加粗只标记 selected-time/convergence 语义，不是统计不确定性。",
+      "data_and_statistics": "7 行为 Base Prompt、13s、20s、30s、60s、120s、200s；7 列为 Elapsed Time 加三组配置各 Tokens/Cost。tokens 为千位分隔整数；cost 通常 2 位小数，但 200s Speculator-only 为 21.5，精度不一致。关键值含 13s joint 12,135 tokens/0.17 cents、200s Actor-only 63,376/2.18、joint total 607,877/7.83。",
+      "evidence_relation": "Figure 9 的累计曲线 → Table 2 的 selected-time 离散复核 → 正文 13s joint 与 200s Actor-only convergence/cost 主张；也补充 Figure 5 的 latency 叙事。",
+      "design_strengths": [
+        "两层配置→Tokens/Cost 表头把性能/成本放入同一决策面。",
+        "关键时间点可直接复核 Figure 9，booktabs 保持扫描效率。"
+      ],
+      "design_weaknesses": [
+        "cost 小数位不一致；caption 的 “bolded” 与多个彩色时间点的实际高亮不完全同构。",
+        "无不确定性、定价假设或运行间离散度，宽表附录缩放后较紧。"
+      ],
+      "reusable_pattern": "将累计资源曲线的关键时间点用两层 grouped header 展开，配置下同时给 tokens/cost，并用可解释高亮标 convergence；复用时统一精度并定义定价/重复。",
+      "evidence": {
+        "page": 20,
+        "label": "Table 2: Cumulative tokens and cost (in cents) at selected time marks",
+        "bbox": [
+          108,
+          450,
+          504,
+          620
+        ],
+        "basis": "rendered_observation"
+      }
+    },
+    {
+      "label": "Table 3",
+      "page": 20,
+      "module": "appendix / C.2.2 OS hyperparameter tuning (malformed label)",
+      "placement": "appendix",
+      "width": "page_width",
+      "purpose": [
+        "efficiency_cost",
+        "other"
+      ],
+      "caption": {
+        "text": "Table 3",
+        "word_count": 2,
+        "moves": [
+          "title"
+        ],
+        "headline_bold": false,
+        "self_contained": false,
+        "main_finding_stated": false
+      },
+      "typography": {
+        "family": [
+          "Nimbus Roman No9 L"
+        ],
+        "body_size_pt": 10,
+        "header_size_pt": 10,
+        "header_weight": "regular",
+        "provenance": "pdf_object",
+        "confidence": "high"
+      },
+      "rows": null,
+      "columns": null,
+      "header_levels": null,
+      "row_groups": null,
+      "decimal_precision": null,
+      "rules": "none",
+      "highlighting": [
+        "bold"
+      ],
+      "uncertainty": "没有可见表格，因此不存在可审计的不确定性、区间、重复或失败值；紧随其后的 prose 也没有表格数据。",
+      "data_and_statistics": "Table 2 底线下居中出现 `Table 3`，随后是 `Impact of Context Strategy on Cost.` 段落，说明 history compression、Actor 读取压缩摘要以及调用次数驱动的 cost difference；没有行、列、表头、单位或数值，不能把段落当作 Table 3。",
+      "evidence_relation": "Figure 9/Table 2 的 OS cost 证据 → C.2.2 context compression 机制解释；该对象是 PDF 版面计数标签，未形成数据表。",
+      "design_strengths": [
+        "保留 PDF 可见对象计数并指出其与 Figure 9/Table 2 的上下文关系。"
+      ],
+      "design_weaknesses": [
+        "缺少表格内容、表头和 caption 冒号；孤立标签与 prose 脱节，把它当完整表会制造不存在的证据。"
+      ],
+      "reusable_pattern": "若表格被移除或渲染失败，应删除孤立计数或显式标注 prose-only，不能以段落 heading 冒充 table；此记录仅用于 PDF/inventory 对账。",
+      "evidence": {
+        "page": 20,
+        "label": "Table 3（孤立标签）及其后 Impact of Context Strategy on Cost 段落",
+        "bbox": [
+          108,
+          610,
+          504,
+          735
+        ],
+        "basis": "rendered_observation"
+      }
+    }
+  ],
+  "cross_object_system": {
+    "visual_narrative": "Table 1 以任务级时间估计提出瓶颈；Figure 1 给出 Actor/Speculator、验证和无损并行接口；Figures 2–4 在 chess、e-commerce、HotpotQA 做 lossless accuracy/time 比较；Figure 5 转入 OS 的 lossy last-write-wins 收敛与 latency；Figure 6 做 width/threshold 的成本—延迟消融；Figure 7 解释 reaction-time 机制；Figure 8 展开 e-commerce time/price cost；Figure 9 与 Table 2 闭合 OS 累计 tokens/cost 和 convergence。孤立 Table 3 label 后的 prose 补充 context compression，但没有量化表格。",
+    "caption_system": "Figure/Table 标签统一以 Figure n:/Table n: 开头，通常 caption 位于对象下方，Table 2 caption 上置。Figure 1/5/7/8/9 较完整，Figure 2/3/4/6 过短；Figure 8 错写 (d)，Figure 9 在 200s 截断，Table 3 无题名/表格。error bar、band、N、聚合和不确定性很少在 caption 定义。",
+    "table_header_system": "Table 1 为扁平四列任务表；Table 2 为两层配置→Tokens/Cost grouped header；Table 3 无表头。Table 1 的区间/单点精度和 Table 2 的 cost 小数位没有完全统一。",
+    "method_result_ablation_link": "Figure 1 与 Algorithm 1 说明机制接口；Figures 2–4 给出 lossless 跨环境结果；Figure 5 说明 lossy OS last-write-wins；Figure 6 把 Theorem 3 的 marginal-branch logic 变成 confidence-threshold ablation；Figures 7–9/Table 2 提供 OS reaction/cost 附录证据。",
+    "main_appendix_link": "正文 Figure 5 直接指向 B.3.3 的 Figure 7；正文/附录的 OS cost claim 由 Figure 9 与 Table 2 复核；Figure 8 补充 e-commerce 的 time/price cost。附录 C.2.2 的 context-compression prose 没有生成相应可读 Table 3。",
+    "typography_consistency": "正文和表格的 Nimbus Roman/数学字体稳定；图内 sans-serif 依源文件/栅格资产变化，且 raster Figures 3/4/8 与 vector Figures 2/5/6/7/9 的小字号、抗锯齿和线宽不同。",
+    "color_consistency": "蓝/红在部分 OS 图中重复表达 baseline/joint，但 Figure 2/3/4/6/8 各自使用不同 palette；Figure 6 的 marker/label 和 Figure 9 的 legend 提供一定灰度冗余，Figures 2–4/8 主要依赖颜色。"
+  },
+  "final_judgment": {
+    "most_reusable_patterns": [
+      "Figure 1 的双 lane “权威动作—快速预测—验证—提交/拒绝”流程，将方法接口和 correctness invariant 放在同一阅读方向。",
+      "Figure 2/3/4 的 grouped bars + 直接数值 + error caps，用统一 x 轴比较 width、模型或 top-k；复用时补齐误差/分母语义。",
+      "Figure 5 的收敛轨迹与 latency inset 配对，将过程动力学和最终决策指标绑定。",
+      "Figure 6 的 Pareto scatter 用 marker 编码 target step、颜色编码策略、灰色连线显示路径。",
+      "Figure 9 + Table 2 的 log 累积资源曲线与 selected-time grouped table，同时表达 convergence、tokens 和 cost。"
+    ],
+    "highest_value_objects": [
+      "Figure 1（机制总览）",
+      "Figure 2（lossless 主比较）",
+      "Figure 5（OS 过程与 p95）",
+      "Figure 6（成本/延迟消融）",
+      "Figure 9 与 Table 2（附录成本闭环）"
+    ],
+    "failure_patterns": [
+      "Figures 2–4/8 的 error bars 没有定义类型、聚合或分母；Figure 5/7/9/Table 2 没有运行间不确定性。",
+      "vector/raster/source font 混用，窄栏图小字号和多项 legend 降低可读性。",
+      "Figure 8 的 (d) panel typo、Figure 9 的 caption 截断、Table 3 的孤立标签破坏对象—caption 对账。",
+      "颜色经常是系列唯一强身份，灰度打印/色觉差异下 Figures 2–4/8 难以可靠区分。",
+      "Table 1 的外部时间估计、Table 2 的 cost 精度和高亮语义缺少统一统计规范。"
+    ],
+    "one_sentence_visual_strategy": "论文以“机制流程 → 多环境无损比较 → lossy OS 的动力学/成本消融 → 附录资源复核”为主线，优点是过程、质量和成本相互调用，代价是局部 caption、对象完整性和跨图视觉规范没有闭合。"
+  }
+}
